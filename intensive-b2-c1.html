@@ -304,26 +304,28 @@ function shuffleMatchGrid(container) {
     var boxes = Array.from(grid.querySelectorAll('.mt-box'));
     var defs  = Array.from(grid.querySelectorAll('.di2'));
     var n = defs.length;
-    if (!n || boxes[0].classList.contains('revealed')) return; // already answered
+    if (!n || !boxes.length || boxes[0].classList.contains('revealed')) return;
 
-    // Build shuffle order
-    var order = Array.from({length:n},(_,i)=>i);
-    for (var i=n-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));[order[i],order[j]]=[order[j],order[i]];}
+    // Fisher-Yates shuffle
+    var order = Array.from({length:n},function(_,i){return i;});
+    for (var i=n-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=order[i];order[i]=order[j];order[j]=t;}
 
-    // Save original inner text of each definition (strip the letter prefix)
+    // Extract definition text robustly: clone, remove the <b> letter child, take the rest
     var origText = defs.map(function(el){
-      return el.innerHTML.replace(/^<b>[a-z]\.<\/b>&ensp;/,'');
+      var clone = el.cloneNode(true);
+      var b = clone.querySelector('b');
+      if (b) b.remove();
+      return clone.innerHTML.replace(/^[\s\u00a0\u2002\u2003]+/,'');
     });
 
-    // Rewrite definitions in shuffled order
+    // Rewrite definitions with shuffled content, preserving the letter label
     defs.forEach(function(el,i){
       var letter = String.fromCharCode(97+i);
       var wordIdx = order[i];
-      el.innerHTML = '<b>'+letter+'.<\/b>&ensp;'+origText[wordIdx];
+      el.innerHTML = '<b>'+letter+'.</b>&ensp;'+origText[wordIdx];
     });
 
-    // Update data-ans on each word box
-    // For word j, its definition is now at position newPos[j]
+    // Remap data-ans: for word j, find which position its text ended up at
     var newPos = {};
     order.forEach(function(wordIdx,pos){ newPos[wordIdx]=pos; });
     boxes.forEach(function(box,j){
