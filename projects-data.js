@@ -30,12 +30,12 @@ var PROJECT_RUBRIC = [
       "Most deliverables present but thin or rushed.",
       "All deliverables complete and to brief.",
       "All deliverables complete, with genuine care and at least one thing beyond the brief." ] },
-  { id: "collab",   label: "Collaboration",             labelPt: "Colaboracao",  bands: [
+  { id: "collab",   label: "Collaboration",             labelPt: "Colaboração",  bands: [
       "Left the work to others or worked alone against the team.",
       "Did an assigned share, but needed chasing.",
       "Reliable team member; met deadlines and helped others.",
       "Drove the team forward; unblocked others and raised the standard of the work." ] },
-  { id: "delivery", label: "Delivery",                  labelPt: "Apresentacao", bands: [
+  { id: "delivery", label: "Delivery",                  labelPt: "Apresentação", bands: [
       "Read from the page; inaudible or unrehearsed.",
       "Delivered the content but with little contact with the audience.",
       "Clear, audible, mostly unscripted; handled questions.",
@@ -1104,7 +1104,7 @@ function projectStepCount(p){
   return n;
 }
 function projectCriteria(p){
-  return PROJECT_RUBRIC.concat(p.extra ? [{ id: p.extra.id, label: p.extra.label, note: p.extra.note, project: true }] : []);
+  return PROJECT_RUBRIC.concat(p.extra ? [{ id: p.extra.id, label: p.extra.label, labelPt: p.extra.labelPt || p.extra.label, note: p.extra.note, project: true }] : []);
 }
 if (typeof module !== "undefined" && module.exports) {
   module.exports = { ADVANCED_PROJECTS: ADVANCED_PROJECTS, PROJECT_RUBRIC: PROJECT_RUBRIC };
