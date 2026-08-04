@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Essay Coach — Advanced Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800;9..144,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg: #f4f2ec;
+    --panel: #ffffff;
+    --panel2: #eceadf;
+    --border: #ddd8c8;
+    --text: #23262e;
+    --muted: #6b6f7c;
+    --accent: #b07d1f;
+    --accent-soft: rgba(176,125,31,.14);
+    --hook: #b07d1f;
+    --thesis: #0e9668;
+    --topic: #1d7fc4;
+    --example: #c04a8c;
+    --linker: #7a5cc9;
+    --shadow: 0 8px 28px rgba(30,30,20,.10);
+}
+html[data-theme="dark"] {
+    --bg: #10141f;
+    --panel: #1a2030;
+    --panel2: #232b3f;
+    --border: #303a52;
+    --text: #eaedf5;
+    --muted: #96a0b8;
+    --accent: #f0b94e;
+    --accent-soft: rgba(240,185,78,.14);
+    --hook: #f0b94e;
+    --thesis: #5fe0ab;
+    --topic: #6fc3f7;
+    --example: #f791c8;
+    --linker: #b8a3f5;
+    --shadow: 0 10px 32px rgba(0,0,0,.4);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    transition: background .3s, color .3s;
+}
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    html { scroll-behavior: auto; }
+}
+
+.back-link {
+    position: fixed; top: 14px; left: 14px; z-index: 100000;
+    background: rgba(20,24,36,.72); color: #fff;
+    padding: 8px 16px; border-radius: 999px;
+    font-size: .85rem; font-weight: 600; text-decoration: none;
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,.18);
+}
+.back-link:hover { background: rgba(20,24,36,.9); }
+
+.theme-btn {
+    position: fixed; top: 14px; right: 14px; z-index: 100000;
+    background: var(--panel); color: var(--text);
+    border: 1px solid var(--border); border-radius: 999px;
+    width: 40px; height: 40px; font-size: 1.1rem; cursor: pointer;
+    box-shadow: var(--shadow);
+}
+
+.wrap { max-width: 1060px; margin: 0 auto; padding: 68px 22px 80px; }
+
+header.hero { text-align: center; margin-bottom: 26px; }
+.hero h1 {
+    font-family: 'Fraunces', serif; font-weight: 900;
+    font-size: clamp(2.3rem, 5.5vw, 3.4rem);
+    letter-spacing: -.01em; line-height: 1.05;
+}
+.hero h1 .ink { color: var(--accent); font-style: italic; }
+.hero p { color: var(--muted); margin-top: 8px; font-size: 1.02rem; }
+
+/* ---------- Tabs ---------- */
+.tabs {
+    display: flex; justify-content: center; gap: 8px; margin: 22px 0 26px;
+    flex-wrap: wrap;
+}
+.tab-btn {
+    font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1rem;
+    padding: 12px 26px; border-radius: 999px; cursor: pointer;
+    border: 1px solid var(--border); background: var(--panel); color: var(--muted);
+    transition: all .2s;
+}
+.tab-btn.active { background: var(--accent); border-color: var(--accent); color: #16130a; }
+.tab-btn:not(.active):hover { color: var(--text); border-color: var(--accent); }
+
+.view { display: none; }
+.view.active { display: block; animation: fadeUp .3s ease; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* ---------- Level chips ---------- */
+.level-row { display: flex; justify-content: center; gap: 10px; margin-bottom: 22px; flex-wrap: wrap; }
+.chip {
+    padding: 9px 20px; border-radius: 999px; cursor: pointer;
+    border: 1px solid var(--border); background: var(--panel);
+    font-weight: 700; font-size: .95rem; color: var(--muted); transition: all .15s;
+}
+.chip:hover { border-color: var(--accent); color: var(--text); }
+.chip.active { background: var(--accent); border-color: var(--accent); color: #16130a; }
+.level-tagline { text-align: center; color: var(--muted); font-size: .95rem; margin-bottom: 20px; }
+.level-tagline b { color: var(--text); }
+
+/* ---------- Step navigator ---------- */
+.step-dots { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+.dot {
+    width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--border);
+    background: var(--panel); color: var(--muted); font-weight: 700; font-size: .85rem;
+    cursor: pointer; transition: all .15s;
+}
+.dot:hover { border-color: var(--accent); color: var(--text); }
+.dot.active { background: var(--accent); border-color: var(--accent); color: #16130a; transform: scale(1.12); }
+.dot.done { border-color: var(--accent); color: var(--accent); }
+
+.step-card {
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 18px; box-shadow: var(--shadow);
+    padding: clamp(22px, 4vw, 40px);
+}
+.step-eyebrow {
+    color: var(--accent); font-weight: 800; font-size: .8rem;
+    text-transform: uppercase; letter-spacing: .12em; margin-bottom: 8px;
+}
+.step-card h2 {
+    font-family: 'Fraunces', serif; font-weight: 800;
+    font-size: clamp(1.5rem, 3.4vw, 2.1rem); margin-bottom: 14px; line-height: 1.15;
+}
+.step-body { font-size: 1.06rem; line-height: 1.65; }
+.step-body p { margin-bottom: 12px; }
+.step-body ul, .step-body ol { margin: 0 0 12px 22px; }
+.step-body li { margin-bottom: 6px; }
+.step-body b { color: var(--accent); }
+
+.ex {
+    background: var(--panel2); border-left: 4px solid var(--accent);
+    border-radius: 0 12px 12px 0; padding: 14px 18px; margin: 14px 0;
+    font-size: 1.04rem;
+}
+.ex .lbl {
+    display: block; font-size: .72rem; font-weight: 800; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 5px;
+}
+.ex.bad { border-left-color: var(--example); }
+.ex.bad .lbl { color: var(--example); }
+
+.phrases { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+.phrase {
+    background: var(--accent-soft); color: var(--text);
+    border: 1px solid var(--accent); border-radius: 999px;
+    padding: 6px 14px; font-size: .95rem; font-weight: 600;
+}
+
+.tryit {
+    margin-top: 20px; padding: 16px 18px; border-radius: 12px;
+    border: 1.5px dashed var(--accent); background: transparent;
+}
+.tryit .lbl {
+    font-size: .72rem; font-weight: 800; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 5px;
+}
+
+.exercise {
+    margin-top: 16px; border: 1px solid var(--border); border-radius: 14px;
+    overflow: hidden; background: var(--panel2);
+}
+.exercise .ex-head {
+    background: var(--accent); color: #16130a; font-weight: 800;
+    font-size: .74rem; letter-spacing: .09em; text-transform: uppercase;
+    padding: 9px 16px;
+}
+.ex-display { padding: 18px; font-size: 1.08rem; line-height: 1.65; }
+.ex-display .task {
+    color: var(--muted); font-size: .92rem; margin-bottom: 12px;
+    font-style: italic; display: block;
+}
+.ex-display .board {
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 16px; margin-top: 6px;
+}
+.ex-display .board + .board { margin-top: 10px; }
+.ex-display b { color: var(--accent); }
+.ex-display .num { color: var(--accent); font-weight: 800; margin-right: 6px; }
+.reveal-btn {
+    margin: 0 18px 16px; padding: 9px 20px; border-radius: 10px;
+    border: 1px solid var(--accent); background: transparent; color: var(--accent);
+    font-weight: 700; cursor: pointer; font-family: 'Inter', sans-serif; font-size: .95rem;
+}
+.reveal-btn:hover { background: var(--accent-soft); }
+.ex-reveal {
+    margin: 0 18px 18px; padding: 16px 18px; border-radius: 10px;
+    background: var(--panel); border-left: 4px solid var(--thesis);
+    font-size: 1.05rem; line-height: 1.65;
+}
+.ex-reveal[hidden] { display: none; }
+.ex-reveal .rlbl {
+    display: block; font-size: .72rem; font-weight: 800; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--thesis); margin-bottom: 6px;
+}
+.ex-reveal b { color: var(--thesis); }
+.ex-reveal .mark {
+    background: color-mix(in srgb, var(--thesis) 22%, transparent);
+    border-radius: 4px; padding: 0 3px; font-weight: 700;
+}
+.ex-reveal p { margin-bottom: 8px; }
+.ex-reveal p:last-child { margin-bottom: 0; }
+.ex-reveal ul { margin: 6px 0 6px 20px; }
+.ex-reveal li { margin-bottom: 4px; }
+
+.step-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 22px; gap: 12px; }
+.nav-btn {
+    padding: 12px 26px; border-radius: 12px; font-weight: 700; font-size: 1rem;
+    cursor: pointer; border: 1px solid var(--border); background: var(--panel);
+    color: var(--text); transition: all .15s;
+}
+.nav-btn.primary { background: var(--accent); border-color: var(--accent); color: #16130a; }
+.nav-btn:disabled { opacity: .35; cursor: default; }
+.nav-btn:not(:disabled):hover { transform: translateY(-1px); box-shadow: var(--shadow); }
+.step-count { color: var(--muted); font-weight: 600; font-size: .92rem; }
+
+/* ---------- Essay anatomy (model) ---------- */
+.legend { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 6px; }
+.leg {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 6px 13px; border-radius: 999px; cursor: pointer;
+    border: 1px solid var(--border); background: var(--panel2);
+    font-size: .87rem; font-weight: 700; color: var(--text); transition: all .15s;
+}
+.leg::before { content: ""; width: 11px; height: 11px; border-radius: 3px; background: var(--c); }
+.leg.on { border-color: var(--c); background: var(--panel); box-shadow: 0 0 0 2px var(--c) inset; }
+.legend-hint { color: var(--muted); font-size: .85rem; margin-bottom: 10px; }
+
+.model {
+    background: var(--panel2); border: 1px solid var(--border);
+    border-radius: 14px; padding: 22px 24px; margin-top: 10px;
+    font-size: 1.1rem; line-height: 1.9;
+}
+.model .mprompt {
+    font-family: 'Fraunces', serif; font-weight: 800; font-size: 1.12rem;
+    margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--border);
+}
+.model p { margin-bottom: 14px; }
+.model p:last-child { margin-bottom: 0; }
+.pt { border-bottom: 3px solid var(--c); padding: 1px 2px; border-radius: 3px; transition: all .2s; }
+.pt-hook { --c: var(--hook); }
+.pt-thesis { --c: var(--thesis); }
+.pt-topic { --c: var(--topic); }
+.pt-example { --c: var(--example); }
+.pt-linker { --c: var(--linker); }
+.model.focusing .pt { border-bottom-color: transparent; opacity: .45; }
+.model.focusing .pt.spot { border-bottom-color: var(--c); background: color-mix(in srgb, var(--c) 22%, transparent); opacity: 1; }
+
+/* ---------- Prompt bank ---------- */
+.bank-controls {
+    display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+    justify-content: center; margin-bottom: 10px;
+}
+.bank-controls .search {
+    flex: 1 1 240px; max-width: 340px;
+    padding: 11px 16px; border-radius: 12px;
+    border: 1px solid var(--border); background: var(--panel); color: var(--text);
+    font-size: .98rem; font-family: 'Inter', sans-serif;
+}
+.bank-controls .search:focus { outline: 2px solid var(--accent); border-color: var(--accent); }
+.random-btn {
+    padding: 11px 22px; border-radius: 12px; border: none; cursor: pointer;
+    background: var(--accent); color: #16130a; font-weight: 800; font-size: .98rem;
+    font-family: 'Inter', sans-serif; transition: transform .15s;
+}
+.random-btn:hover { transform: translateY(-1px); }
+.filter-row { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 8px 0 6px; }
+.filter-row .chip { padding: 7px 15px; font-size: .87rem; }
+.bank-count { text-align: center; color: var(--muted); font-size: .88rem; margin: 8px 0 16px; }
+
+.prompt-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 14px;
+}
+.prompt-card {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 14px;
+    padding: 18px; cursor: pointer; transition: all .18s;
+    display: flex; flex-direction: column; gap: 10px;
+}
+.prompt-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--accent); }
+.prompt-card .ptext { font-size: 1rem; line-height: 1.5; flex: 1; }
+.badges { display: flex; gap: 6px; flex-wrap: wrap; }
+.badge {
+    font-size: .72rem; font-weight: 800; letter-spacing: .06em;
+    padding: 4px 10px; border-radius: 999px; text-transform: uppercase;
+}
+.badge.lvl { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent); }
+.badge.cat { background: var(--panel2); color: var(--muted); border: 1px solid var(--border); }
+.no-results { text-align: center; color: var(--muted); padding: 40px 0; font-size: 1.05rem; }
+
+/* ---------- Spotlight overlay ---------- */
+.spotlight {
+    position: fixed; inset: 0; z-index: 200000;
+    background: rgba(8,10,18,.92); backdrop-filter: blur(6px);
+    display: none; align-items: center; justify-content: center; padding: 30px;
+}
+.spotlight.open { display: flex; animation: fadeUp .25s ease; }
+.spot-card {
+    max-width: 900px; width: 100%; text-align: center;
+    max-height: 90vh; overflow-y: auto;
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 22px; padding: clamp(28px, 5vw, 52px); box-shadow: var(--shadow);
+    position: relative;
+}
+.spot-card .badges { justify-content: center; margin-bottom: 18px; }
+.spot-text {
+    font-family: 'Fraunces', serif; font-weight: 800;
+    font-size: clamp(1.35rem, 3.2vw, 2.2rem); line-height: 1.3;
+}
+.linker-title {
+    text-align: center; font-weight: 800; font-size: .78rem;
+    letter-spacing: .1em; text-transform: uppercase; color: var(--muted);
+    margin: 26px 0 4px; padding-top: 22px; border-top: 1px solid var(--border);
+}
+.linker-title b { color: var(--accent); }
+.linker-groups {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 16px 22px; text-align: left; margin-top: 16px;
+}
+.lgroup h5 {
+    font-size: .74rem; font-weight: 800; letter-spacing: .07em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
+}
+.lgroup .lchips { display: flex; flex-wrap: wrap; gap: 6px; }
+.lchip {
+    background: var(--panel2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 5px 11px; font-size: .93rem; font-weight: 600;
+    color: var(--text);
+}
+.spot-actions { display: flex; gap: 12px; justify-content: center; margin-top: 28px; flex-wrap: wrap; }
+.spot-close {
+    position: absolute; top: 14px; right: 14px;
+    background: var(--panel2); border: 1px solid var(--border); color: var(--text);
+    width: 38px; height: 38px; border-radius: 50%; font-size: 1.1rem; cursor: pointer;
+}
+
+@media (max-width: 560px) {
+    .wrap { padding-top: 74px; }
+    .step-card h2 { font-size: 1.4rem; }
+    .model { font-size: 1rem; }
+}
+button:focus-visible, a:focus-visible, input:focus-visible, .prompt-card:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 2px;
+}
+</style>
+</head>
+<body>
+<a class="back-link" href="./">← Advanced Hub</a>
+<button class="theme-btn" onclick="toggleTheme()" aria-label="Toggle light/dark theme" id="themeBtn">☀️</button>
+
+<div class="wrap">
+    <header class="hero">
+        <h1>Essay <span class="ink">Coach</span></h1>
+        <p>Learn to build an essay step by step — then practise with TOEFL-style prompts.</p>
+    </header>
+
+    <div class="tabs" role="tablist">
+        <button class="tab-btn active" id="tabLearn" onclick="showTab('learn')">✍️ Learn to Write</button>
+        <button class="tab-btn" id="tabBank" onclick="showTab('bank')">🗂️ Prompt Bank</button>
+    </div>
+
+    <!-- ============ LEARN VIEW ============ -->
+    <section class="view active" id="viewLearn">
+        <div class="level-row" id="levelRow"></div>
+        <div class="level-tagline" id="levelTagline"></div>
+        <div class="step-dots" id="stepDots"></div>
+        <div class="step-card" id="stepCard"></div>
+        <div class="step-nav">
+            <button class="nav-btn" id="prevBtn" onclick="moveStep(-1)">← Previous</button>
+            <span class="step-count" id="stepCount"></span>
+            <button class="nav-btn primary" id="nextBtn" onclick="moveStep(1)">Next →</button>
+        </div>
+    </section>
+
+    <!-- ============ PROMPT BANK VIEW ============ -->
+    <section class="view" id="viewBank">
+        <div class="bank-controls">
+            <input type="text" class="search" id="promptSearch" placeholder="Search prompts…" oninput="renderBank()">
+            <button class="random-btn" onclick="randomPrompt()">🎲 Random Prompt</button>
+        </div>
+        <div class="filter-row" id="levelFilters"></div>
+        <div class="filter-row" id="catFilters"></div>
+        <div class="bank-count" id="bankCount"></div>
+        <div class="prompt-grid" id="promptGrid"></div>
+        <div class="no-results" id="noResults" style="display:none;">No prompts match your filters.</div>
+    </section>
+</div>
+
+<!-- Spotlight -->
+<div class="spotlight" id="spotlight" onclick="if(event.target===this)closeSpotlight()">
+    <div class="spot-card">
+        <button class="spot-close" onclick="closeSpotlight()" aria-label="Close">✕</button>
+        <div class="badges" id="spotBadges"></div>
+        <div class="spot-text" id="spotText"></div>
+        <div id="spotLinkers"></div>
+        <div class="spot-actions">
+            <button class="nav-btn primary" onclick="randomPrompt()">🎲 Another one</button>
+            <button class="nav-btn" onclick="closeSpotlight()">Close</button>
+        </div>
+    </div>
+</div>
+
+<script>
+/* ================= THEME ================= */
+function toggleTheme() {
+    const html = document.documentElement;
+    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('adv-theme', next);
+    updateThemeBtn();
+}
+function updateThemeBtn() {
+    document.getElementById('themeBtn').textContent =
+        document.documentElement.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙';
+}
+(function() {
+    const saved = localStorage.getItem('adv-theme');
+    if (saved) document.documentElement.setAttribute('data-theme', saved);
+})();
+
+/* ================= LESSON DATA ================= */
+const LEGEND = [
+    { key: 'hook',    label: 'Hook / opener',   cls: 'pt-hook' },
+    { key: 'thesis',  label: 'Opinion / thesis', cls: 'pt-thesis' },
+    { key: 'topic',   label: 'Topic sentence',  cls: 'pt-topic' },
+    { key: 'example', label: 'Example / detail', cls: 'pt-example' },
+    { key: 'linker',  label: 'Linking word',    cls: 'pt-linker' }
+];
+
+const LESSONS = {
+    A2: {
+        tagline: 'Target: a short opinion text of <b>60–80 words</b> — one strong paragraph (or two short ones).',
+        steps: [
+        {
+            title: 'What is an opinion text?',
+            body: `
+            <p>At A2, an "essay" is a <b>short opinion text</b>. It has three jobs:</p>
+            <ol>
+                <li><b>Say your opinion</b> in one clear sentence.</li>
+                <li><b>Give reasons</b> — two is perfect.</li>
+                <li><b>Finish</b> with a closing sentence.</li>
+            </ol>
+            <div class="ex"><span class="lbl">Shape of the text</span>
+            My opinion → Reason 1 → Reason 2 → Closing sentence</div>
+            <p>That's it. Short and clear beats long and confusing.</p>`,
+            tryIt: 'As a class: is pizza better than hamburger? Say one opinion sentence and one reason out loud.',
+            exercise: {
+                display: `<div class="task">Complete the frame out loud. Choose any topic below.</div><div class="board" style="font-size:1.15rem;font-weight:600;">I think ______ is better than ______, because ______.</div><div class="board"><b>Topics:</b> Pizza / Hamburger &nbsp;·&nbsp; Summer / Winter &nbsp;·&nbsp; Cats / Dogs &nbsp;·&nbsp; Weekend / School day</div>`,
+                reveal: `<span class="rlbl">Example answer</span><p>"I think <b>summer</b> is better than <b>winter</b>, because I can swim and the days are longer."</p>`
+            }
+        },
+        {
+            title: 'Read the question carefully',
+            body: `
+            <p>Before you write, find <b>what the question asks</b>. Underline the key words.</p>
+            <div class="ex"><span class="lbl">Question</span>
+            Do you prefer <u>weekends at home</u> or <u>weekends outside</u>? <u>Why</u>?</div>
+            <p>This question asks for <b>two things</b>:</p>
+            <ul>
+                <li>Your <b>choice</b> (home or outside)</li>
+                <li>Your <b>reasons</b> (the "why")</li>
+            </ul>
+            <p>If you forget the "why", your answer is incomplete!</p>`,
+            tryIt: 'Show a prompt from the Prompt Bank. Students underline the key words and say what the question asks for.',
+            exercise: {
+                display: `<div class="task">Which words are the key words? What does the question ask you to do?</div><div class="board" style="font-size:1.2rem;font-weight:600;">Do you prefer weekends at home or weekends outside? Why?</div>`,
+                reveal: `<span class="rlbl">Answer</span><p>Key words: <span class="mark">prefer</span>, <span class="mark">home / outside</span>, <span class="mark">why</span>.</p><p>It asks for <b>two things</b>: your choice (home or outside) <b>and</b> your reasons (the "why").</p>`
+            }
+        },
+        {
+            title: 'Plan with a mini-map',
+            body: `
+            <p>Don't start writing immediately. Make a <b>mini-map</b> first — just words, not sentences:</p>
+            <div class="ex"><span class="lbl">Mini-map (30 seconds)</span>
+            My choice: <b>outside</b><br>
+            Reason 1: friends → park, football<br>
+            Reason 2: fresh air → feel happy</div>
+            <p>Two reasons with one detail each. Now writing is easy — you just turn each line into a sentence.</p>`,
+            tryIt: 'Give students 1 minute to make a mini-map for a prompt. Words only — no full sentences allowed!',
+            exercise: {
+                display: `<div class="task">Make a mini-map for this question. Words only — no full sentences.</div><div class="board" style="font-size:1.15rem;font-weight:600;">Do you prefer summer or winter holidays? Why?</div>`,
+                reveal: `<span class="rlbl">Sample mini-map</span><ul><li><b>My choice:</b> summer</li><li><b>Reason 1:</b> beach → swim with friends</li><li><b>Reason 2:</b> no school → free time</li></ul>`
+            }
+        },
+        {
+            title: 'Start with your opinion',
+            body: `
+            <p>Your first sentence gives your <b>opinion</b>. Use one of these openers:</p>
+            <div class="phrases">
+                <span class="phrase">I think…</span>
+                <span class="phrase">In my opinion…</span>
+                <span class="phrase">For me…</span>
+                <span class="phrase">I prefer… because…</span>
+            </div>
+            <div class="ex"><span class="lbl">Good first sentence</span>
+            In my opinion, weekends outside are better than weekends at home.</div>
+            <div class="ex bad"><span class="lbl">Too vague</span>
+            Weekends are nice. <i>(Nice? Which weekends? What is your opinion?)</i></div>`,
+            tryIt: 'Students write only the first sentence for their mini-map. Read three aloud and vote: is the opinion clear?',
+            exercise: {
+                display: `<div class="task">Three first sentences. Which show a clear opinion? Which are too vague?</div><div class="board"><span class="num">A</span>Weekends are nice.</div><div class="board"><span class="num">B</span>In my opinion, weekends outside are better than weekends at home.</div><div class="board"><span class="num">C</span>I like the weekend a lot.</div>`,
+                reveal: `<span class="rlbl">Answer</span><p><b>A</b> ✗ vague — nice how? No real opinion.</p><p><b>C</b> ✗ vague — likes what exactly? No comparison.</p><p><b>B</b> ✓ clear — it states a preference (outside vs. home).</p>`
+            }
+        },
+        {
+            title: 'Connect your reasons',
+            body: `
+            <p>Now turn your two reasons into sentences. Use <b>connectors</b> to join ideas:</p>
+            <div class="phrases">
+                <span class="phrase">because</span>
+                <span class="phrase">and</span>
+                <span class="phrase">but</span>
+                <span class="phrase">also</span>
+                <span class="phrase">so</span>
+                <span class="phrase">For example,</span>
+            </div>
+            <div class="ex"><span class="lbl">Reasons with connectors</span>
+            First, I can see my friends. For example, we play football in the park. Also, the fresh air is good, so I feel happy.</div>
+            <p>One connector per sentence is enough. Don't use them all at once!</p>`,
+            tryIt: 'Sentence-building game: give a reason ("friends"), students must say a full sentence with one connector.',
+            exercise: {
+                display: `<div class="task">Turn each reason word into a full sentence. Use ONE connector: because / and / also / so / but.</div><div class="board"><b>Reasons:</b> friends &nbsp;·&nbsp; fresh air &nbsp;·&nbsp; tired</div>`,
+                reveal: `<span class="rlbl">Example sentences</span><ul><li>friends → "I like the park <b>because</b> I can see my friends."</li><li>fresh air → "The fresh air is good, <b>so</b> I feel happy."</li><li>tired → "Sometimes I am tired, <b>but</b> a short walk helps."</li></ul>`
+            }
+        },
+        {
+            title: 'Close it',
+            body: `
+            <p>Finish with <b>one closing sentence</b>. It repeats your opinion with different words:</p>
+            <div class="phrases">
+                <span class="phrase">That is why…</span>
+                <span class="phrase">So, for me…</span>
+                <span class="phrase">This is why I prefer…</span>
+            </div>
+            <div class="ex"><span class="lbl">Closing sentence</span>
+            That is why weekends outside are the best for me.</div>
+            <p>Then <b>check your work</b>:</p>
+            <ul>
+                <li>✅ Is my opinion in the first sentence?</li>
+                <li>✅ Do I have two reasons?</li>
+                <li>✅ Do all sentences start with a capital letter and end with a full stop?</li>
+                <li>✅ Did I answer the "why"?</li>
+            </ul>`,
+            tryIt: 'Students swap texts with a partner and check the four boxes above on each other\'s work.',
+            exercise: {
+                display: `<div class="task">Read this student text. Check it against the four boxes. What is missing?</div><div class="board" style="line-height:1.7;">weekends outside are good. we play football. the fresh air is nice.</div>`,
+                reveal: `<span class="rlbl">Answer</span><p>✗ No capital letters and no clear opinion opener — start with "In my opinion,…"</p><p>✗ No closing sentence.</p><p>✓ Two reasons are present (football, fresh air).</p><p><b>Fixed:</b> "In my opinion, weekends outside are good. We play football and the fresh air is nice. That is why I prefer them."</p>`
+            }
+        }
+        ],
+        model: {
+            prompt: 'Do you prefer weekends at home or weekends outside? Why?',
+            html: `
+            <p><span class="pt pt-thesis">In my opinion, weekends outside are better than weekends at home.</span>
+            <span class="pt pt-linker">First,</span> <span class="pt pt-topic">I can see my friends.</span>
+            <span class="pt pt-linker">For example,</span> <span class="pt pt-example">we play football in the park near my house.</span>
+            <span class="pt pt-linker">Also,</span> <span class="pt pt-topic">the fresh air is good for me,</span>
+            <span class="pt pt-linker">so</span> <span class="pt pt-example">I feel happy and relaxed after.</span>
+            <span class="pt pt-linker">But</span> sometimes it rains, and then home is nice too.
+            <span class="pt pt-thesis">That is why weekends outside are the best for me.</span></p>`
+        }
+    },
+
+    B1: {
+        tagline: 'Target: a <b>3–4 paragraph essay</b> of <b>120–150 words</b> with an introduction, body and conclusion.',
+        steps: [
+        {
+            title: 'The essay skeleton',
+            body: `
+            <p>At B1, your text becomes a real <b>essay</b> with separate paragraphs:</p>
+            <ol>
+                <li><b>Introduction</b> — present the topic and give your opinion (your <i>thesis</i>).</li>
+                <li><b>Body paragraph 1</b> — your first reason, explained.</li>
+                <li><b>Body paragraph 2</b> — your second reason, explained.</li>
+                <li><b>Conclusion</b> — repeat your opinion in new words.</li>
+            </ol>
+            <div class="ex"><span class="lbl">Why paragraphs matter</span>
+            One paragraph = one idea. When you change idea, change paragraph. The reader can follow you easily.</div>`,
+            tryIt: 'Show students a model essay with the paragraph breaks removed. Can they find where the paragraphs should split?',
+            exercise: {
+                display: `<div class="task">This essay has no paragraph breaks. Where should the 4 paragraphs split?</div><div class="board" style="line-height:1.75;">School uniforms are common in many countries. In my opinion, students should wear them. First, uniforms make students equal. Nobody is judged for being rich or poor. In addition, uniforms save time in the morning. Students do not need to choose clothes. In conclusion, I believe uniforms are a good idea.</div>`,
+                reveal: `<span class="rlbl">Answer — split before each marked word</span><p>Break before <span class="mark">First,</span> · before <span class="mark">In addition,</span> · before <span class="mark">In conclusion,</span>.</p><p>→ <b>Introduction</b> / <b>Body 1</b> / <b>Body 2</b> / <b>Conclusion</b>. One idea per paragraph.</p>`
+            }
+        },
+        {
+            title: 'Attack the prompt',
+            body: `
+            <p>Prompts have <b>task words</b> that tell you what to do. Learn to spot them:</p>
+            <ul>
+                <li><b>"Do you agree or disagree…"</b> → choose a side and defend it.</li>
+                <li><b>"Which do you prefer…"</b> → choose one option and say why.</li>
+                <li><b>"What are the advantages and disadvantages…"</b> → give both sides.</li>
+            </ul>
+            <div class="ex"><span class="lbl">Prompt</span>
+            Do you <u>agree or disagree</u>? Students should wear school uniforms.</div>
+            <p>Task: pick a side. You can't sit in the middle — <b>commit to an opinion</b> and spend the essay defending it.</p>`,
+            tryIt: 'Read three prompts from the Prompt Bank. For each one, students identify the task in five words or fewer.',
+            exercise: {
+                display: `<div class="task">For each prompt, name the task in five words or fewer.</div><div class="board"><span class="num">1</span>Do you agree or disagree? Students should have less homework.</div><div class="board"><span class="num">2</span>Which do you prefer: online classes or classroom classes?</div><div class="board"><span class="num">3</span>What are the advantages and disadvantages of social media?</div>`,
+                reveal: `<span class="rlbl">Answer</span><ul><li><b>1</b> → Choose a side, defend it.</li><li><b>2</b> → Pick one, give reasons.</li><li><b>3</b> → Give both sides.</li></ul>`
+            }
+        },
+        {
+            title: 'Brainstorm, then choose',
+            body: `
+            <p>Write down <b>every</b> reason you can think of — then keep only your <b>two strongest</b>.</p>
+            <div class="ex"><span class="lbl">Brainstorm: uniforms — agree</span>
+            everyone equal ✅ &nbsp;|&nbsp; saves time in the morning ✅ &nbsp;|&nbsp; cheaper?? &nbsp;|&nbsp; looks smart (weak) &nbsp;|&nbsp; no fashion competition (same as "equal")</div>
+            <p>A <b>strong</b> reason is one you can explain <i>and</i> give an example for. If you can't imagine an example, drop it.</p>`,
+            tryIt: 'Two-minute brainstorm race in pairs: most reasons wins. Then each pair crosses out everything except their best two.',
+            exercise: {
+                display: `<div class="task">Topic: "Teenagers should have a part-time job." Which TWO reasons are strongest? Cross out the weak ones.</div><div class="board">earn their own money &nbsp;·&nbsp; learn responsibility &nbsp;·&nbsp; it looks good &nbsp;·&nbsp; less time to study &nbsp;·&nbsp; meet new people</div>`,
+                reveal: `<span class="rlbl">Answer</span><p>Strongest: <span class="mark">earn their own money</span> and <span class="mark">learn responsibility</span> — both can be explained and given an example.</p><p>"it looks good" is too vague. "less time to study" argues <b>the other side</b> — save it for a counter-point, not a supporting reason.</p>`
+            }
+        },
+        {
+            title: 'Write the introduction',
+            body: `
+            <p>A B1 introduction has <b>two sentences</b>:</p>
+            <ol>
+                <li>A <b>general sentence</b> about the topic (the hook).</li>
+                <li>Your <b>thesis</b> — your clear opinion.</li>
+            </ol>
+            <div class="ex"><span class="lbl">Introduction</span>
+            School uniforms are a common topic of discussion in many countries. In my opinion, students should wear them, for two main reasons.</div>
+            <div class="ex bad"><span class="lbl">Common mistake</span>
+            Starting with "I agree." — the reader doesn't know the topic yet! Present the topic first.</div>`,
+            tryIt: 'Give a prompt; students write only the two-sentence introduction. Compare a few on the board.',
+            exercise: {
+                display: `<div class="task">Prompt: "Do you agree schools should teach cooking?" Which introduction is better, and why?</div><div class="board"><span class="num">A</span>I agree. Cooking is good.</div><div class="board"><span class="num">B</span>Many teenagers leave school without knowing how to cook a simple meal. In my opinion, schools should teach cooking, for two main reasons.</div>`,
+                reveal: `<span class="rlbl">Answer</span><p><b>B</b> is better: it presents the topic first (a general sentence), then gives a clear thesis with a preview ("two reasons").</p><p><b>A</b> jumps to "I agree" before the topic is introduced, and "good" is vague.</p>`
+            }
+        },
+        {
+            title: 'Body paragraphs: P.E.E.',
+            body: `
+            <p>Each body paragraph follows <b>P.E.E.</b>:</p>
+            <ul>
+                <li><b>P — Point:</b> a topic sentence with your reason.</li>
+                <li><b>E — Explain:</b> why is this reason true or important?</li>
+                <li><b>E — Example:</b> a specific situation, real or realistic.</li>
+            </ul>
+            <div class="ex"><span class="lbl">P.E.E. in action</span>
+            <b>(P)</b> First, uniforms make all students equal. <b>(E)</b> When everyone wears the same clothes, nobody is judged for being rich or poor. <b>(E)</b> For example, in my cousin's school, students stopped comparing brands after uniforms were introduced.</div>
+            <p>Three sentences per paragraph is enough at B1. Point → Explain → Example, then stop.</p>`,
+            tryIt: 'Give students a Point ("Video games improve English"). In pairs, they add the Explain and the Example.',
+            exercise: {
+                display: `<div class="task">These sentences are a P.E.E. paragraph in the wrong order. Put them as Point → Explain → Example.</div><div class="board"><span class="num">a</span>For example, my cousin learned English mostly by watching gaming videos.</div><div class="board"><span class="num">b</span>Video games can improve your English.</div><div class="board"><span class="num">c</span>Many games are in English, so players read and hear the language constantly.</div>`,
+                reveal: `<span class="rlbl">Answer</span><p>Point = <b>b</b> → Explain = <b>c</b> → Example = <b>a</b>.</p><p>Correct order: <span class="mark">b → c → a</span>.</p>`
+            }
+        },
+        {
+            title: 'Link it together',
+            body: `
+            <p>Linking words are the <b>signposts</b> of your essay. Use them to start paragraphs and connect ideas:</p>
+            <div class="phrases">
+                <span class="phrase">First, / Second,</span>
+                <span class="phrase">In addition,</span>
+                <span class="phrase">However,</span>
+                <span class="phrase">For example,</span>
+                <span class="phrase">On the other hand,</span>
+                <span class="phrase">As a result,</span>
+            </div>
+            <div class="ex bad"><span class="lbl">Careful!</span>
+            "However" contrasts two ideas. Don't use it just because it sounds fancy: <i>"I like pizza. However, I also like pasta."</i> ← These ideas don't contrast!</div>`,
+            tryIt: 'Linking-word lottery: draw a linker, students must use it correctly in a sentence about the class topic.',
+            exercise: {
+                display: `<div class="task">Choose the correct linker: However / For example / As a result.</div><div class="board"><span class="num">1</span>Uniforms save time. ______, students can sleep a little longer.</div><div class="board"><span class="num">2</span>Some people love the city. ______, others prefer the countryside.</div><div class="board"><span class="num">3</span>Sport has many benefits. ______, it keeps you healthy.</div>`,
+                reveal: `<span class="rlbl">Answer</span><ul><li><b>1</b> → As a result</li><li><b>2</b> → However</li><li><b>3</b> → For example</li></ul>`
+            }
+        },
+        {
+            title: 'Conclude and check',
+            body: `
+            <p>The conclusion <b>restates your thesis in new words</b> and can add one final thought. Never introduce a new reason here.</p>
+            <div class="phrases">
+                <span class="phrase">In conclusion,</span>
+                <span class="phrase">To sum up,</span>
+                <span class="phrase">For these reasons,</span>
+            </div>
+            <div class="ex"><span class="lbl">Conclusion</span>
+            In conclusion, I believe school uniforms are a good idea because they create equality and make mornings simpler.</div>
+            <p><b>Final checklist:</b></p>
+            <ul>
+                <li>✅ Clear thesis in the introduction?</li>
+                <li>✅ One idea per paragraph, with P.E.E.?</li>
+                <li>✅ At least four different linking words?</li>
+                <li>✅ Conclusion restates (not copies!) the thesis?</li>
+            </ul>`,
+            tryIt: 'Peer review: partners check the four boxes and underline every linking word they find.',
+            exercise: {
+                display: `<div class="task">Does this conclusion do its job? Find the linking word. Does it restate the thesis? (Thesis was: uniforms are a good idea.)</div><div class="board">In conclusion, I believe school uniforms are a good idea because they make students equal and save time.</div>`,
+                reveal: `<span class="rlbl">Answer</span><p>✓ Linking word: <span class="mark">In conclusion,</span></p><p>✓ It restates the thesis in fresh words and sums up both reasons. No new reason is added — correct.</p>`
+            }
+        }
+        ],
+        model: {
+            prompt: 'Do you agree or disagree? Students should wear school uniforms.',
+            html: `
+            <p><span class="pt pt-hook">School uniforms are a common topic of discussion in many countries.</span>
+            <span class="pt pt-thesis">In my opinion, students should wear them, for two main reasons.</span></p>
+            <p><span class="pt pt-linker">First,</span> <span class="pt pt-topic">uniforms make all students equal.</span>
+            When everyone wears the same clothes, nobody is judged for being rich or poor.
+            <span class="pt pt-linker">For example,</span> <span class="pt pt-example">in my cousin's school, students stopped comparing expensive brands after uniforms were introduced.</span></p>
+            <p><span class="pt pt-linker">In addition,</span> <span class="pt pt-topic">uniforms save time in the morning.</span>
+            Students do not need to decide what to wear every day.
+            <span class="pt pt-linker">As a result,</span> <span class="pt pt-example">they can sleep a little longer and arrive at school less stressed.</span></p>
+            <p><span class="pt pt-linker">In conclusion,</span> <span class="pt pt-thesis">I believe school uniforms are a good idea because they create equality and make mornings simpler.</span></p>`
+        }
+    },
+
+    B2: {
+        tagline: 'Target: a <b>4–5 paragraph academic essay</b> of <b>200–250 words</b> — the TOEFL independent writing format.',
+        steps: [
+        {
+            title: 'What TOEFL-style writing expects',
+            body: `
+            <p>A TOEFL-style independent essay is judged on four things:</p>
+            <ul>
+                <li><b>Position:</b> a clear, consistent opinion from start to finish.</li>
+                <li><b>Development:</b> reasons that are explained and supported with <b>specific</b> examples.</li>
+                <li><b>Organisation:</b> a logical paragraph structure with smooth transitions.</li>
+                <li><b>Language:</b> varied vocabulary and grammar, with few errors.</li>
+            </ul>
+            <div class="ex"><span class="lbl">The standard architecture</span>
+            Introduction (hook → thesis with preview) → Body 1 → Body 2 → optional counterargument paragraph → Conclusion</div>
+            <p>You have limited time in an exam, so this structure becomes your <b>autopilot</b> — you never waste minutes deciding what comes next.</p>`,
+            tryIt: 'Show a B2 prompt. As a class, sketch the five-paragraph plan on the board in under three minutes.',
+            exercise: {
+                display: `<div class="task">Prompt: "Technology has made it easier to learn — agree or disagree?" Sketch the five-paragraph plan.</div><div class="board" style="font-weight:600;">Intro → Body 1 → Body 2 → Counter → Conclusion</div>`,
+                reveal: `<span class="rlbl">Model plan</span><ul><li><b>Intro:</b> hook (digital tools everywhere) + thesis (agree)</li><li><b>Body 1:</b> access → free courses online for anyone</li><li><b>Body 2:</b> personalisation → apps adapt to your pace</li><li><b>Counter:</b> distraction → but that is discipline, not technology</li><li><b>Conclusion:</b> restate + a wider point</li></ul>`
+            }
+        },
+        {
+            title: 'Deconstruct the prompt',
+            body: `
+            <p>B2 prompts often hide <b>assumptions</b> you can attack or accept. Read twice, then decide your angle.</p>
+            <div class="ex"><span class="lbl">Prompt</span>
+            Do you agree or disagree? <u>Technology has made it easier for people to learn.</u></div>
+            <p>Ask yourself:</p>
+            <ul>
+                <li>What exactly is being claimed? (<i>easier</i> — not <i>better</i> or <i>deeper</i>)</li>
+                <li>Which side can I support with <b>concrete examples</b>? Choose the side you can defend, not necessarily the one you personally believe.</li>
+                <li>What would the opposite side say? You'll need this for your counterargument.</li>
+            </ul>`,
+            tryIt: 'Devil\'s advocate drill: students must argue the side they do NOT believe for 60 seconds.',
+            exercise: {
+                display: `<div class="task">Statement: "People today are too dependent on their phones." Give the strongest argument for BOTH sides.</div><div class="board" style="font-weight:600;">FOR (agree): ______ &nbsp;&nbsp;|&nbsp;&nbsp; AGAINST (disagree): ______</div>`,
+                reveal: `<span class="rlbl">Model answers</span><p><b>FOR:</b> phones interrupt real conversations and sleep; many people check them over a hundred times a day.</p><p><b>AGAINST:</b> phones are tools — depending on one device that replaces maps, banks, and cameras is efficient, not weak.</p>`
+            }
+        },
+        {
+            title: 'Plan: thesis + preview',
+            body: `
+            <p>Spend 3–5 minutes planning. Your plan needs:</p>
+            <ol>
+                <li>A <b>thesis</b> — your position in one sentence.</li>
+                <li><b>Two body points</b>, each with a specific example.</li>
+                <li>One <b>counterargument</b> you can refute.</li>
+            </ol>
+            <div class="ex"><span class="lbl">5-minute plan</span>
+            Thesis: agree — technology makes learning easier<br>
+            Body 1: access → free courses, e.g. learning English on YouTube/apps<br>
+            Body 2: personalisation → apps adapt speed, e.g. spaced repetition<br>
+            Counter: distraction → but this is a discipline problem, not a technology problem</div>`,
+            tryIt: 'Timed planning race: 4 minutes, full plan for a new prompt. Plans on paper, best plan wins.',
+            exercise: {
+                display: `<div class="task">Prompt: "Is it better to choose a job you love or a job that pays well?" Write a full plan in 4 minutes.</div><div class="board" style="font-weight:600;">Thesis: ___ · Body 1: ___ · Body 2: ___ · Counter: ___</div>`,
+                reveal: `<span class="rlbl">Model plan</span><ul><li><b>Thesis:</b> a job you love is better in the long run.</li><li><b>Body 1:</b> motivation → you work harder at what you enjoy (a passionate teacher improves faster).</li><li><b>Body 2:</b> wellbeing → less stress and burnout over the years.</li><li><b>Counter:</b> money brings security → true, but a "good enough" salary in a loved job beats a high salary you dread.</li></ul>`
+            }
+        },
+        {
+            title: 'The funnel introduction',
+            body: `
+            <p>A B2 introduction moves from <b>general → specific</b>, like a funnel:</p>
+            <ol>
+                <li><b>Hook:</b> a general observation about the topic's importance today.</li>
+                <li><b>Thesis:</b> your position, stated firmly.</li>
+                <li><b>Preview:</b> announce your reasons (optional but powerful in exams).</li>
+            </ol>
+            <div class="ex"><span class="lbl">Funnel introduction</span>
+            Over the past two decades, digital tools have transformed nearly every aspect of daily life, and education is no exception. I strongly agree that technology has made learning easier, both because it has expanded access to knowledge and because it allows people to study in a personalised way.</div>
+            <div class="ex bad"><span class="lbl">Avoid</span>
+            "Nowadays, technology is very important in our lives." — technically correct, but so generic that every examiner has read it a thousand times.</div>`,
+            tryIt: 'Hook workshop: students rewrite the generic "Nowadays…" opener for three different topics.',
+            exercise: {
+                display: `<div class="task">Replace the tired opener "Nowadays, technology is very important" with a real hook for each topic.</div><div class="board"><b>Topic 1:</b> online learning &nbsp;·&nbsp; <b>Topic 2:</b> social media &nbsp;·&nbsp; <b>Topic 3:</b> fast food</div>`,
+                reveal: `<span class="rlbl">Model hooks</span><p><b>1:</b> "A student in a remote village can now attend a lecture from a world-class university."</p><p><b>2:</b> "The average teenager checks their phone more than a hundred times a day."</p><p><b>3:</b> "In many cities, a full meal is now cheaper and faster than cooking at home."</p>`
+            }
+        },
+        {
+            title: 'Body paragraphs that convince',
+            body: `
+            <p>Upgrade P.E.E. to <b>P.E.E.L.</b> — Point, Explain, Example, <b>Link</b> back to the thesis:</p>
+            <div class="ex"><span class="lbl">P.E.E.L. paragraph</span>
+            <b>(P)</b> The most significant change is access. <b>(E)</b> In the past, quality education depended on living near good schools or affording private tutors. <b>(Ex)</b> Today, a student in a small town can take a free programming course from a top university or master English pronunciation through video platforms. <b>(L)</b> This democratisation of knowledge is precisely what makes learning easier than ever before.</div>
+            <p><b>Specific beats general.</b> "A student in a small town can take a free programming course" convinces; "people can learn things online" does not.</p>`,
+            tryIt: 'Specificity ladder: take the sentence "Social media is bad for teenagers" and make it more specific three times.',
+            exercise: {
+                display: `<div class="task">Make this sentence more specific — three times.</div><div class="board" style="font-weight:600;">Social media is bad for teenagers.</div>`,
+                reveal: `<span class="rlbl">Specificity ladder</span><p><b>1:</b> Social media harms teenagers' mental health.</p><p><b>2:</b> Constant comparison on social media lowers teenagers' self-esteem.</p><p><b>3:</b> Seeing edited photos of others for hours each day makes many teenagers feel their own lives are not good enough.</p>`
+            }
+        },
+        {
+            title: 'The counterargument move',
+            body: `
+            <p>Acknowledging the other side — and defeating it — is the clearest signal of B2-level thinking:</p>
+            <ol>
+                <li><b>Concede:</b> present the opposing view fairly.</li>
+                <li><b>Refute:</b> show why it doesn't defeat your thesis.</li>
+            </ol>
+            <div class="phrases">
+                <span class="phrase">Admittedly, …</span>
+                <span class="phrase">Some may argue that…</span>
+                <span class="phrase">It is true that… However, …</span>
+                <span class="phrase">Nevertheless, …</span>
+            </div>
+            <div class="ex"><span class="lbl">Concede + refute</span>
+            Admittedly, some argue that devices are a source of constant distraction. However, this is a question of discipline rather than a flaw in technology itself; the same phone that offers social media also offers dictionaries and flashcards.</div>`,
+            tryIt: 'Concede–refute tennis: one student states an objection, their partner must refute it in one sentence.',
+            exercise: {
+                display: `<div class="task">Thesis: "Technology makes learning easier." Concede this objection, then refute it in one sentence.</div><div class="board">Objection: Phones are full of distractions.</div>`,
+                reveal: `<span class="rlbl">Model concede + refute</span><p>"<span class="mark">Admittedly,</span> phones offer endless distractions. <span class="mark">However,</span> this is a matter of self-discipline, not a flaw in the technology — the same device also holds dictionaries and study apps."</p>`
+            }
+        },
+        {
+            title: 'Cohesion: the invisible glue',
+            body: `
+            <p>B2 essays flow because of <b>cohesive devices</b> — transitions, referencing, and varied structures:</p>
+            <div class="phrases">
+                <span class="phrase">Furthermore,</span>
+                <span class="phrase">Consequently,</span>
+                <span class="phrase">Nevertheless,</span>
+                <span class="phrase">Despite this,</span>
+                <span class="phrase">In contrast,</span>
+                <span class="phrase">This means that…</span>
+                <span class="phrase">Such a change…</span>
+            </div>
+            <p>Also connect with <b>reference words</b>: <i>this democratisation, such tools, these platforms</i>. They tie a new sentence to the previous idea without repeating it.</p>
+            <div class="ex bad"><span class="lbl">Overdose warning</span>
+            One transition per sentence is too many. Aim for one or two per paragraph, placed where the logic genuinely turns.</div>`,
+            tryIt: 'Give students a "choppy" paragraph with no transitions. They rewrite it with exactly two cohesive devices.',
+            exercise: {
+                display: `<div class="task">This paragraph is choppy. Rewrite it using exactly TWO cohesive devices.</div><div class="board" style="line-height:1.7;">Cities have many jobs. Cities are crowded. Rent is expensive. Many young people still move there.</div>`,
+                reveal: `<span class="rlbl">Model rewrite</span><p>"Cities offer many jobs; <span class="mark">however</span>, they are crowded and rent is expensive. <span class="mark">Despite this,</span> many young people still move there for the opportunities."</p>`
+            }
+        },
+        {
+            title: 'Conclude and self-edit',
+            body: `
+            <p>The conclusion: restate the thesis in <b>fresh language</b>, synthesise your reasons, and (optionally) end with a wider implication.</p>
+            <div class="ex"><span class="lbl">Conclusion</span>
+            In conclusion, by opening the doors of knowledge to everyone and adapting to each learner's pace, technology has fundamentally simplified the act of learning. The challenge for our generation is not access to education, but the discipline to use it.</div>
+            <p><b>Self-edit rubric</b> (spend your last 3 minutes here):</p>
+            <ul>
+                <li>✅ Position clear and consistent in every paragraph?</li>
+                <li>✅ Every body paragraph has a <i>specific</i> example?</li>
+                <li>✅ Counterargument conceded and refuted?</li>
+                <li>✅ No sentence repeated with the same words? Vary your vocabulary.</li>
+                <li>✅ Subject–verb agreement, articles, plural -s?</li>
+            </ul>`,
+            tryIt: 'Students grade the model essay (next step) against this rubric before grading their own.',
+            exercise: {
+                display: `<div class="task">This conclusion is weak. Improve it: restate in fresh words and add a wider point. (Thesis: technology makes learning easier.)</div><div class="board">In conclusion, technology makes learning easier. I said this before.</div>`,
+                reveal: `<span class="rlbl">Model conclusion</span><p>"In conclusion, by opening knowledge to everyone and adapting to each learner's pace, technology has transformed how we study. The real challenge now is not access to learning, but the discipline to use it well."</p>`
+            }
+        }
+        ],
+        model: {
+            prompt: 'Do you agree or disagree with the following statement? Technology has made it easier for people to learn. Use specific reasons and examples to support your answer.',
+            html: `
+            <p><span class="pt pt-hook">Over the past two decades, digital tools have transformed nearly every aspect of daily life, and education is no exception.</span>
+            <span class="pt pt-thesis">I strongly agree that technology has made learning easier, both because it has expanded access to knowledge and because it allows people to study in a personalised way.</span></p>
+            <p><span class="pt pt-topic">The most significant change is access.</span>
+            In the past, quality education depended on living near good schools or affording private tutors.
+            <span class="pt pt-linker">Today,</span> <span class="pt pt-example">a student in a small town can take a free programming course from a top university or master English pronunciation through video platforms.</span>
+            This democratisation of knowledge is precisely what makes learning easier than ever before.</p>
+            <p><span class="pt pt-linker">Furthermore,</span> <span class="pt pt-topic">technology personalises the learning process.</span>
+            Traditional classrooms move at one speed for everyone, but digital tools adapt to the individual.
+            <span class="pt pt-linker">For instance,</span> <span class="pt pt-example">language apps use spaced repetition to show a learner exactly the words they are about to forget.</span></p>
+            <p><span class="pt pt-linker">Admittedly,</span> some argue that devices are a source of constant distraction.
+            <span class="pt pt-linker">However,</span> this is a question of discipline rather than a flaw in technology itself;
+            <span class="pt pt-example">the same phone that offers social media also offers dictionaries and flashcards.</span></p>
+            <p><span class="pt pt-linker">In conclusion,</span> <span class="pt pt-thesis">by opening the doors of knowledge to everyone and adapting to each learner's pace, technology has fundamentally simplified the act of learning.</span>
+            The challenge for our generation is not access to education, but the discipline to use it.</p>`
+        }
+    }
+};
+
+/* ================= PROMPT BANK DATA ================= */
+const CATS = ['Agree / Disagree', 'Preference', 'If / Imagine', 'Explain / Describe', 'Advantages / Disadvantages'];
+const PROMPTS = [
+    // A2
+    { level: 'A2', cat: 'Preference', text: 'Do you prefer studying alone or with friends? Why?' },
+    { level: 'A2', cat: 'Explain / Describe', text: 'What is your favourite season? Explain why you like it.' },
+    { level: 'A2', cat: 'Preference', text: 'Is it better to live in a house or an apartment? Why?' },
+    { level: 'A2', cat: 'Agree / Disagree', text: 'Do you agree or disagree? Homework is important.' },
+    { level: 'A2', cat: 'If / Imagine', text: 'If you could have any animal as a pet, what would you choose? Why?' },
+    { level: 'A2', cat: 'Preference', text: 'Do you prefer eating at home or in a restaurant? Why?' },
+    { level: 'A2', cat: 'Explain / Describe', text: 'What is the best gift you have ever received? Describe it.' },
+    { level: 'A2', cat: 'Agree / Disagree', text: 'Do you agree or disagree? Everyone should play a sport.' },
+    { level: 'A2', cat: 'If / Imagine', text: 'If you could visit any city in the world, where would you go? Why?' },
+    { level: 'A2', cat: 'Advantages / Disadvantages', text: 'What are the good and bad things about mobile phones?' },
+    { level: 'A2', cat: 'Preference', text: 'Do you prefer summer holidays or winter holidays? Why?' },
+    { level: 'A2', cat: 'Explain / Describe', text: 'Describe a person you admire and explain why you admire them.' },
+    { level: 'A2', cat: 'Agree / Disagree', text: 'Do you agree or disagree? Watching TV is a good way to relax.' },
+    { level: 'A2', cat: 'Preference', text: 'Do you prefer cats or dogs? Why?' },
+    { level: 'A2', cat: 'Explain / Describe', text: 'Describe your favourite food and explain why you like it.' },
+    { level: 'A2', cat: 'If / Imagine', text: 'If you had a free day tomorrow, what would you do?' },
+    { level: 'A2', cat: 'Preference', text: 'Do you prefer reading books or watching videos? Why?' },
+    { level: 'A2', cat: 'Agree / Disagree', text: 'Do you agree or disagree? Music helps you study.' },
+    { level: 'A2', cat: 'Explain / Describe', text: 'What is your favourite day of the week? Explain why.' },
+    { level: 'A2', cat: 'Advantages / Disadvantages', text: 'What are the good and bad things about living in a big family?' },
+    { level: 'A2', cat: 'If / Imagine', text: 'If you could meet a famous person, who would it be? Why?' },
+    { level: 'A2', cat: 'Preference', text: 'Is it better to travel by car or by bus? Why?' },
+    { level: 'A2', cat: 'Explain / Describe', text: 'Describe a place you like to visit and say why you like it.' },
+    { level: 'A2', cat: 'Agree / Disagree', text: 'Do you agree or disagree? Weekends are better than weekdays.' },
+    // B1
+    { level: 'B1', cat: 'Agree / Disagree', text: 'Do you agree or disagree? Students should wear school uniforms.' },
+    { level: 'B1', cat: 'Preference', text: 'Some people prefer to watch films at home; others prefer the cinema. Which do you prefer and why?' },
+    { level: 'B1', cat: 'Advantages / Disadvantages', text: 'What are the advantages and disadvantages of social media for teenagers?' },
+    { level: 'B1', cat: 'If / Imagine', text: 'If you could change one thing about your school, what would it be and why?' },
+    { level: 'B1', cat: 'Agree / Disagree', text: 'Do you agree or disagree? Video games are a waste of time.' },
+    { level: 'B1', cat: 'Preference', text: 'Is it better to have a few close friends or many casual friends? Why?' },
+    { level: 'B1', cat: 'Explain / Describe', text: 'Explain why learning English is important for your future. Give examples.' },
+    { level: 'B1', cat: 'Agree / Disagree', text: 'Do you agree or disagree? All students should learn to cook at school.' },
+    { level: 'B1', cat: 'If / Imagine', text: 'If you won a large amount of money, how would you use it? Explain your choices.' },
+    { level: 'B1', cat: 'Advantages / Disadvantages', text: 'What are the advantages and disadvantages of studying online?' },
+    { level: 'B1', cat: 'Preference', text: 'Some people plan trips carefully; others prefer to be spontaneous. Which is better, in your opinion?' },
+    { level: 'B1', cat: 'Agree / Disagree', text: 'Do you agree or disagree? Teenagers should have part-time jobs.' },
+    { level: 'B1', cat: 'Agree / Disagree', text: 'Do you agree or disagree? Homework should be banned.' },
+    { level: 'B1', cat: 'Preference', text: 'Some people prefer to study in the morning; others at night. Which is better and why?' },
+    { level: 'B1', cat: 'Advantages / Disadvantages', text: 'What are the advantages and disadvantages of having a pet?' },
+    { level: 'B1', cat: 'If / Imagine', text: 'If you could invent a new subject for school, what would it be and why?' },
+    { level: 'B1', cat: 'Agree / Disagree', text: 'Do you agree or disagree? Money is the most important thing for happiness.' },
+    { level: 'B1', cat: 'Preference', text: 'Is it better to grow up in a city or in the countryside? Why?' },
+    { level: 'B1', cat: 'Explain / Describe', text: 'Explain why sport is important for young people. Give examples.' },
+    { level: 'B1', cat: 'Advantages / Disadvantages', text: 'What are the advantages and disadvantages of smartphones in the classroom?' },
+    { level: 'B1', cat: 'If / Imagine', text: 'If you could live in any country for one year, where would you go and why?' },
+    { level: 'B1', cat: 'Agree / Disagree', text: 'Do you agree or disagree? Children watch too much television today.' },
+    { level: 'B1', cat: 'Preference', text: 'Some people like to plan everything; others prefer surprises. Which do you prefer, and why?' },
+    { level: 'B1', cat: 'Explain / Describe', text: 'Explain how a good friend should behave. Give examples.' },
+    // B2
+    { level: 'B2', cat: 'Agree / Disagree', text: 'Do you agree or disagree with the following statement? Technology has made it easier for people to learn. Use specific reasons and examples to support your answer.' },
+    { level: 'B2', cat: 'Preference', text: 'Some people believe university education should be free for everyone. Others think students should pay for it. Which view do you support? Use specific reasons.' },
+    { level: 'B2', cat: 'Agree / Disagree', text: 'Do you agree or disagree? It is more important to choose a job you love than a job that pays well. Support your answer with examples.' },
+    { level: 'B2', cat: 'Advantages / Disadvantages', text: 'What are the advantages and disadvantages of living in a big city? Use specific examples in your answer.' },
+    { level: 'B2', cat: 'If / Imagine', text: 'If you could create one invention to improve daily life, what would it be? Explain how it would help people.' },
+    { level: 'B2', cat: 'Agree / Disagree', text: 'Do you agree or disagree with the following statement? People today are too dependent on their phones. Use specific reasons and examples.' },
+    { level: 'B2', cat: 'Preference', text: 'Some people prefer to work in teams; others prefer to work independently. Which do you prefer and why? Include specific examples.' },
+    { level: 'B2', cat: 'Agree / Disagree', text: 'Do you agree or disagree? Famous people have a responsibility to be good role models. Support your position with reasons and examples.' },
+    { level: 'B2', cat: 'Explain / Describe', text: 'Explain how one person has influenced your life. Use specific details to support your answer.' },
+    { level: 'B2', cat: 'Advantages / Disadvantages', text: 'What are the advantages and disadvantages of using artificial intelligence in education? Use specific examples.' },
+    { level: 'B2', cat: 'Agree / Disagree', text: 'Do you agree or disagree? It is better to make decisions quickly than to think about them for a long time. Use reasons and examples.' },
+    { level: 'B2', cat: 'If / Imagine', text: 'If you could study a subject that is not taught at your school, what would you choose and why? Give specific reasons.' },
+    { level: 'B2', cat: 'Agree / Disagree', text: 'Do you agree or disagree? Social media does more harm than good. Use specific reasons and examples.' },
+    { level: 'B2', cat: 'Preference', text: 'Some people believe schools should focus on academic subjects; others on practical skills. Which view do you support? Use specific reasons.' },
+    { level: 'B2', cat: 'Advantages / Disadvantages', text: 'What are the advantages and disadvantages of remote work? Use specific examples in your answer.' },
+    { level: 'B2', cat: 'Agree / Disagree', text: 'Do you agree or disagree? Governments should invest more in public transport than in roads. Support your answer with reasons and examples.' },
+    { level: 'B2', cat: 'If / Imagine', text: 'If you could change one law in your country, what would it be? Explain your reasons.' },
+    { level: 'B2', cat: 'Agree / Disagree', text: 'Do you agree or disagree? Students learn more from experience than from books. Use specific reasons and examples.' },
+    { level: 'B2', cat: 'Preference', text: 'Some people prefer to spend money on experiences; others on possessions. Which brings more happiness? Include specific examples.' },
+    { level: 'B2', cat: 'Explain / Describe', text: 'Explain how travel can change a person\'s view of the world. Use specific details.' },
+    { level: 'B2', cat: 'Advantages / Disadvantages', text: 'What are the advantages and disadvantages of learning a language abroad rather than at home? Use specific examples.' },
+    { level: 'B2', cat: 'Agree / Disagree', text: 'Do you agree or disagree? Competition among students does more good than harm. Support your position with reasons and examples.' },
+    { level: 'B2', cat: 'If / Imagine', text: 'If you were the principal of your school for one day, what would you change and why? Give specific reasons.' },
+    { level: 'B2', cat: 'Agree / Disagree', text: 'Do you agree or disagree? A country\'s culture is best understood through its food. Use specific reasons and examples.' }
+];
+
+/* ================= LINKING WORDS BY LEVEL ================= */
+const LINKERS = {
+    A2: [
+        { type: 'Giving your opinion', items: ['I think…', 'In my opinion,', 'For me,'] },
+        { type: 'Adding ideas', items: ['and', 'also', 'too'] },
+        { type: 'Giving a reason', items: ['because'] },
+        { type: 'Contrast', items: ['but'] },
+        { type: 'Giving an example', items: ['for example'] },
+        { type: 'Ordering ideas', items: ['First,', 'Then,', 'Finally,'] },
+        { type: 'Showing a result', items: ['so'] }
+    ],
+    B1: [
+        { type: 'Giving your opinion', items: ['In my opinion,', 'I believe (that)…', 'I think that…'] },
+        { type: 'Adding ideas', items: ['In addition,', 'Also,', 'Moreover,'] },
+        { type: 'Giving reasons', items: ['because', 'since', 'as'] },
+        { type: 'Showing results', items: ['so', 'therefore', 'as a result'] },
+        { type: 'Contrast', items: ['however', 'on the other hand', 'although'] },
+        { type: 'Giving examples', items: ['for example', 'for instance', 'such as'] },
+        { type: 'Sequencing', items: ['First,', 'Second,', 'Next,', 'Finally,'] },
+        { type: 'Condition', items: ['if', 'unless'] },
+        { type: 'Concluding', items: ['In conclusion,', 'To sum up,'] }
+    ],
+    B2: [
+        { type: 'Stating a position', items: ['In my view,', 'I would argue that…', 'It seems to me that…'] },
+        { type: 'Adding / building', items: ['Furthermore,', 'Moreover,', 'What is more,', 'In addition,'] },
+        { type: 'Cause / reason', items: ['because', 'since', 'due to', 'owing to'] },
+        { type: 'Result / consequence', items: ['therefore', 'consequently', 'as a result', 'thus'] },
+        { type: 'Contrast', items: ['however', 'nevertheless', 'in contrast', 'whereas', 'on the other hand'] },
+        { type: 'Concession', items: ['admittedly', 'it is true that…', 'even though', 'despite (this)'] },
+        { type: 'Condition', items: ['provided that', 'as long as', 'unless', 'if'] },
+        { type: 'Exemplifying', items: ['for instance', 'to illustrate', 'namely', 'such as'] },
+        { type: 'Concluding', items: ['In conclusion,', 'To conclude,', 'Ultimately,'] }
+    ]
+};
+
+/* ================= LEARN STATE ================= */
+const LEVELS = ['A2', 'B1', 'B2'];
+let curLevel = 'B1';
+let curStep = 0;
+let focusPart = null;
+
+function buildLevelRow() {
+    const row = document.getElementById('levelRow');
+    row.innerHTML = LEVELS.map(l =>
+        `<button class="chip ${l === curLevel ? 'active' : ''}" onclick="setLevel('${l}')">${l}</button>`
+    ).join('');
+}
+function setLevel(l) {
+    curLevel = l;
+    curStep = 0;
+    focusPart = null;
+    buildLevelRow();
+    renderLesson();
+}
+function totalSteps() {
+    return LESSONS[curLevel].steps.length + 1; // +1 for the model essay step
+}
+function moveStep(dir) {
+    const t = totalSteps();
+    const next = curStep + dir;
+    if (next < 0 || next >= t) return;
+    curStep = next;
+    focusPart = null;
+    renderLesson();
+    document.getElementById('stepCard').scrollIntoView({ block: 'nearest' });
+}
+function goStep(i) {
+    curStep = i;
+    focusPart = null;
+    renderLesson();
+}
+function renderLesson() {
+    const lesson = LESSONS[curLevel];
+    const t = totalSteps();
+    document.getElementById('levelTagline').innerHTML = lesson.tagline;
+
+    // dots
+    document.getElementById('stepDots').innerHTML = Array.from({ length: t }, (_, i) => {
+        const cls = i === curStep ? 'active' : (i < curStep ? 'done' : '');
+        const label = i === t - 1 ? '★' : (i + 1);
+        return `<button class="dot ${cls}" onclick="goStep(${i})" aria-label="Step ${i + 1}">${label}</button>`;
+    }).join('');
+
+    // card
+    const card = document.getElementById('stepCard');
+    if (curStep < lesson.steps.length) {
+        const s = lesson.steps[curStep];
+        card.innerHTML = `
+            <div class="step-eyebrow">${curLevel} · Step ${curStep + 1} of ${t}</div>
+            <h2>${s.title}</h2>
+            <div class="step-body">${s.body}</div>
+            ${s.tryIt ? `<div class="tryit"><span class="lbl">🎯 Try it in class</span>${s.tryIt}</div>` : ''}
+            ${s.exercise ? `
+                <div class="exercise">
+                    <div class="ex-head">📋 On screen</div>
+                    <div class="ex-display">${s.exercise.display}</div>
+                    <button class="reveal-btn" onclick="toggleReveal(this)">Reveal answer ↓</button>
+                    <div class="ex-reveal" hidden>${s.exercise.reveal}</div>
+                </div>` : ''}
+        `;
+    } else {
+        card.innerHTML = `
+            <div class="step-eyebrow">${curLevel} · Model essay</div>
+            <h2>Study the model</h2>
+            <div class="step-body">
+                <p>Every part of this essay is doing a job. Click a label below to spotlight that part in the text.</p>
+            </div>
+            <div class="legend">${LEGEND.map(p =>
+                `<button class="leg ${focusPart === p.key ? 'on' : ''}" style="--c:var(--${p.key})" onclick="toggleFocus('${p.key}')">${p.label}</button>`
+            ).join('')}</div>
+            <div class="legend-hint">Click again to show everything.</div>
+            <div class="model ${focusPart ? 'focusing' : ''}" id="modelBox">
+                <div class="mprompt">${lesson.model.prompt}</div>
+                ${lesson.model.html}
+            </div>
+        `;
+        applyFocus();
+    }
+
+    // nav
+    document.getElementById('prevBtn').disabled = curStep === 0;
+    document.getElementById('nextBtn').disabled = curStep === t - 1;
+    document.getElementById('stepCount').textContent = `${curStep + 1} / ${t}`;
+}
+function toggleReveal(btn) {
+    const box = btn.nextElementSibling;
+    const open = box.hasAttribute('hidden');
+    if (open) { box.removeAttribute('hidden'); btn.textContent = 'Hide answer ↑'; }
+    else { box.setAttribute('hidden', ''); btn.textContent = 'Reveal answer ↓'; }
+}
+function toggleFocus(key) {
+    focusPart = (focusPart === key) ? null : key;
+    document.querySelectorAll('.leg').forEach(el => {
+        el.classList.toggle('on', el.textContent === LEGEND.find(p => p.key === focusPart)?.label);
+    });
+    const box = document.getElementById('modelBox');
+    box.classList.toggle('focusing', !!focusPart);
+    applyFocus();
+}
+function applyFocus() {
+    const box = document.getElementById('modelBox');
+    if (!box) return;
+    const cls = focusPart ? 'pt-' + focusPart : null;
+    box.querySelectorAll('.pt').forEach(el => {
+        el.classList.toggle('spot', !!cls && el.classList.contains(cls));
+    });
+}
+
+/* ================= PROMPT BANK ================= */
+let bankLevel = 'All';
+let bankCat = 'All';
+let lastSpot = -1;
+
+function buildFilters() {
+    const lv = ['All', ...LEVELS];
+    document.getElementById('levelFilters').innerHTML = lv.map(l =>
+        `<button class="chip ${l === bankLevel ? 'active' : ''}" onclick="setBankLevel('${l}')">${l === 'All' ? 'All levels' : l}</button>`
+    ).join('');
+    const ct = ['All', ...CATS];
+    document.getElementById('catFilters').innerHTML = ct.map(c =>
+        `<button class="chip ${c === bankCat ? 'active' : ''}" onclick="setBankCat('${c.replace(/'/g, "\\'")}')">${c === 'All' ? 'All types' : c}</button>`
+    ).join('');
+}
+function setBankLevel(l) { bankLevel = l; buildFilters(); renderBank(); }
+function setBankCat(c) { bankCat = c; buildFilters(); renderBank(); }
+
+function filteredPrompts() {
+    const q = document.getElementById('promptSearch').value.trim().toLowerCase();
+    return PROMPTS.map((p, i) => ({ ...p, i }))
+        .filter(p => (bankLevel === 'All' || p.level === bankLevel))
+        .filter(p => (bankCat === 'All' || p.cat === bankCat))
+        .filter(p => !q || p.text.toLowerCase().includes(q));
+}
+function renderBank() {
+    const list = filteredPrompts();
+    const grid = document.getElementById('promptGrid');
+    document.getElementById('noResults').style.display = list.length ? 'none' : 'block';
+    document.getElementById('bankCount').textContent =
+        `${list.length} prompt${list.length === 1 ? '' : 's'} shown`;
+    grid.innerHTML = list.map(p => `
+        <div class="prompt-card" tabindex="0" role="button"
+             onclick="openSpotlight(${p.i})"
+             onkeydown="if(event.key==='Enter')openSpotlight(${p.i})">
+            <div class="badges">
+                <span class="badge lvl">${p.level}</span>
+                <span class="badge cat">${p.cat}</span>
+            </div>
+            <div class="ptext">${p.text}</div>
+        </div>
+    `).join('');
+}
+
+function openSpotlight(i) {
+    const p = PROMPTS[i];
+    lastSpot = i;
+    document.getElementById('spotBadges').innerHTML =
+        `<span class="badge lvl">${p.level}</span><span class="badge cat">${p.cat}</span>`;
+    document.getElementById('spotText').textContent = p.text;
+    const groups = LINKERS[p.level] || [];
+    document.getElementById('spotLinkers').innerHTML =
+        `<div class="linker-title">Linking words to use — <b>${p.level}</b></div>
+         <div class="linker-groups">` +
+        groups.map(g =>
+            `<div class="lgroup"><h5>${g.type}</h5><div class="lchips">` +
+            g.items.map(w => `<span class="lchip">${w}</span>`).join('') +
+            `</div></div>`
+        ).join('') +
+        `</div>`;
+    document.getElementById('spotlight').classList.add('open');
+}
+function closeSpotlight() {
+    document.getElementById('spotlight').classList.remove('open');
+}
+function randomPrompt() {
+    const list = filteredPrompts();
+    if (!list.length) return;
+    let pick;
+    do {
+        pick = list[Math.floor(Math.random() * list.length)];
+    } while (list.length > 1 && pick.i === lastSpot);
+    openSpotlight(pick.i);
+}
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeSpotlight();
+});
+
+/* ================= TABS ================= */
+function showTab(t) {
+    document.getElementById('viewLearn').classList.toggle('active', t === 'learn');
+    document.getElementById('viewBank').classList.toggle('active', t === 'bank');
+    document.getElementById('tabLearn').classList.toggle('active', t === 'learn');
+    document.getElementById('tabBank').classList.toggle('active', t === 'bank');
+}
+
+/* ================= INIT ================= */
+updateThemeBtn();
+buildLevelRow();
+renderLesson();
+buildFilters();
+renderBank();
+</script>
+</body>
+</html>
