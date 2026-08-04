@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOEFL ITP Coach — Advanced Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800;9..144,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg: #f2f4f7;
+    --panel: #ffffff;
+    --panel2: #e8ecf3;
+    --border: #d4dae6;
+    --text: #1f2530;
+    --muted: #64708a;
+    --accent: #2563c4;
+    --accent-soft: rgba(37,99,196,.12);
+    --listen: #7a5cc9;
+    --struct: #0e9668;
+    --read: #c26414;
+    --good: #0e9668;
+    --bad: #c2413b;
+    --shadow: 0 8px 28px rgba(20,30,50,.10);
+}
+html[data-theme="dark"] {
+    --bg: #0f1420;
+    --panel: #1a2130;
+    --panel2: #232c40;
+    --border: #303b55;
+    --text: #eaedf5;
+    --muted: #96a0b8;
+    --accent: #6ea8ff;
+    --accent-soft: rgba(110,168,255,.14);
+    --listen: #b8a3f5;
+    --struct: #5fe0ab;
+    --read: #f5a860;
+    --good: #5fe0ab;
+    --bad: #f58a84;
+    --shadow: 0 10px 32px rgba(0,0,0,.4);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    transition: background .3s, color .3s;
+}
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    html { scroll-behavior: auto; }
+}
+
+.back-link {
+    position: fixed; top: 14px; left: 14px; z-index: 100000;
+    background: rgba(20,24,36,.72); color: #fff;
+    padding: 8px 16px; border-radius: 999px;
+    font-size: .85rem; font-weight: 600; text-decoration: none;
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,.18);
+}
+.back-link:hover { background: rgba(20,24,36,.9); }
+.theme-btn {
+    position: fixed; top: 14px; right: 14px; z-index: 100000;
+    background: var(--panel); color: var(--text);
+    border: 1px solid var(--border); border-radius: 999px;
+    width: 40px; height: 40px; font-size: 1.1rem; cursor: pointer;
+    box-shadow: var(--shadow);
+}
+
+.wrap { max-width: 1060px; margin: 0 auto; padding: 68px 22px 90px; }
+
+header.hero { text-align: center; margin-bottom: 24px; }
+.hero h1 {
+    font-family: 'Fraunces', serif; font-weight: 900;
+    font-size: clamp(2.3rem, 5.5vw, 3.3rem);
+    letter-spacing: -.01em; line-height: 1.05;
+}
+.hero h1 .ink { color: var(--accent); font-style: italic; }
+.hero p { color: var(--muted); margin-top: 8px; font-size: 1.02rem; }
+
+/* Tabs */
+.tabs { display: flex; justify-content: center; gap: 8px; margin: 22px 0 26px; flex-wrap: wrap; }
+.tab-btn {
+    font-weight: 700; font-size: 1rem;
+    padding: 12px 24px; border-radius: 999px; cursor: pointer;
+    border: 1px solid var(--border); background: var(--panel); color: var(--muted);
+    transition: all .2s; font-family: 'Inter', sans-serif;
+}
+.tab-btn.active { background: var(--accent); border-color: var(--accent); color: #0d1524; }
+.tab-btn:not(.active):hover { color: var(--text); border-color: var(--accent); }
+.tab-btn .tdot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 7px; vertical-align: 1px; }
+
+.view { display: none; }
+.view.active { display: block; animation: fadeUp .3s ease; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* Learn / Practice mode chips */
+.mode-row { display: flex; justify-content: center; gap: 10px; margin-bottom: 22px; flex-wrap: wrap; }
+.chip {
+    padding: 9px 22px; border-radius: 999px; cursor: pointer;
+    border: 1px solid var(--border); background: var(--panel);
+    font-weight: 700; font-size: .95rem; color: var(--muted); transition: all .15s;
+    font-family: 'Inter', sans-serif;
+}
+.chip:hover { border-color: var(--accent); color: var(--text); }
+.chip.active { background: var(--accent); border-color: var(--accent); color: #0d1524; }
+
+/* Cards */
+.card {
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 18px; box-shadow: var(--shadow);
+    padding: clamp(20px, 4vw, 36px); margin-bottom: 22px;
+}
+.eyebrow {
+    color: var(--accent); font-weight: 800; font-size: .78rem;
+    text-transform: uppercase; letter-spacing: .12em; margin-bottom: 8px;
+}
+.card h2 {
+    font-family: 'Fraunces', serif; font-weight: 800;
+    font-size: clamp(1.4rem, 3.2vw, 2rem); margin-bottom: 12px; line-height: 1.15;
+}
+.card h3 {
+    font-family: 'Fraunces', serif; font-weight: 800;
+    font-size: 1.25rem; margin: 20px 0 8px;
+}
+.body { font-size: 1.05rem; line-height: 1.65; }
+.body p { margin-bottom: 12px; }
+.body ul, .body ol { margin: 0 0 12px 22px; }
+.body li { margin-bottom: 6px; }
+.body b { color: var(--accent); }
+
+/* Example boxes */
+.ex {
+    background: var(--panel2); border-left: 4px solid var(--accent);
+    border-radius: 0 12px 12px 0; padding: 13px 17px; margin: 13px 0;
+    font-size: 1.02rem; line-height: 1.55;
+}
+.ex .lbl {
+    display: block; font-size: .72rem; font-weight: 800; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 5px;
+}
+.ex.good { border-left-color: var(--good); }
+.ex.good .lbl { color: var(--good); }
+.ex.bad { border-left-color: var(--bad); }
+.ex.bad .lbl { color: var(--bad); }
+
+/* Format-at-a-glance table */
+.fmt { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 1rem; }
+.fmt th, .fmt td { padding: 11px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+.fmt th { font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.fmt td b { font-family: 'Fraunces', serif; font-size: 1.05rem; }
+.fmt .sec-l b { color: var(--listen); }
+.fmt .sec-s b { color: var(--struct); }
+.fmt .sec-r b { color: var(--read); }
+
+/* Idiom / grammar spotlight grid */
+.spot-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; margin: 14px 0; }
+.spot {
+    background: var(--panel2); border: 1px solid var(--border);
+    border-radius: 12px; padding: 11px 14px; font-size: .97rem; line-height: 1.45;
+}
+.spot b { display: block; color: var(--accent); margin-bottom: 2px; }
+
+/* Question cards & answer-sheet bubbles */
+.q-card {
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 16px; box-shadow: var(--shadow);
+    padding: 20px 22px; margin-bottom: 16px;
+}
+.q-top { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
+.q-num {
+    font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.1rem;
+    color: var(--accent); min-width: 34px;
+}
+.q-text { font-size: 1.08rem; font-weight: 600; line-height: 1.5; margin-bottom: 12px; }
+.q-stem { font-size: 1.08rem; line-height: 1.7; margin-bottom: 12px; }
+.q-stem .blank { border-bottom: 2px solid var(--muted); padding: 0 26px; }
+.q-stem .seg { text-decoration: underline; text-underline-offset: 4px; font-weight: 600; }
+.q-stem sup { color: var(--accent); font-weight: 800; font-size: .72em; margin-left: 1px; }
+
+.opts { display: flex; flex-direction: column; gap: 7px; }
+.opt {
+    display: flex; align-items: center; gap: 12px; text-align: left;
+    background: transparent; border: 1px solid transparent; border-radius: 10px;
+    padding: 7px 10px; cursor: pointer; color: var(--text);
+    font-family: 'Inter', sans-serif; font-size: 1.02rem; line-height: 1.45; transition: background .12s;
+}
+.opt:hover { background: var(--accent-soft); }
+.opt .bub {
+    flex: none; width: 30px; height: 30px; border-radius: 50%;
+    border: 2px solid var(--muted); display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: .85rem; color: var(--muted); transition: all .15s;
+}
+.opt.sel .bub { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.q-card.revealed .opt { cursor: default; }
+.q-card.revealed .opt:hover { background: transparent; }
+.q-card.revealed .opt.correct .bub { background: var(--good); border-color: var(--good); color: #0d1524; }
+.q-card.revealed .opt.correct { font-weight: 700; }
+.q-card.revealed .opt.sel:not(.correct) .bub { background: var(--bad); border-color: var(--bad); color: #fff; }
+
+.q-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+.reveal-btn, .play-btn, .ghost-btn {
+    font-family: 'Inter', sans-serif; font-weight: 700; font-size: .92rem;
+    padding: 9px 18px; border-radius: 999px; cursor: pointer; transition: all .15s;
+}
+.reveal-btn { background: var(--accent); border: 1px solid var(--accent); color: #0d1524; }
+.reveal-btn:hover { filter: brightness(1.08); }
+.ghost-btn { background: var(--panel); border: 1px solid var(--border); color: var(--muted); }
+.ghost-btn:hover { border-color: var(--accent); color: var(--text); }
+.play-btn { background: var(--listen); border: 1px solid var(--listen); color: #0d1524; }
+.play-btn.playing { animation: pulse 1s infinite; }
+@keyframes pulse { 0%,100% { filter: brightness(1); } 50% { filter: brightness(1.2); } }
+
+.expl {
+    background: var(--panel2); border-left: 4px solid var(--good);
+    border-radius: 0 10px 10px 0; padding: 11px 15px; margin-top: 12px;
+    font-size: .98rem; line-height: 1.55;
+}
+.expl b { color: var(--good); }
+.transcript {
+    background: var(--panel2); border: 1px dashed var(--border);
+    border-radius: 12px; padding: 13px 16px; margin-top: 12px;
+    font-size: .98rem; line-height: 1.7;
+}
+.transcript .sp { font-weight: 800; color: var(--listen); }
+
+/* Section headers inside practice */
+.part-head {
+    display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+    margin: 30px 0 6px;
+}
+.part-head h3 { font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.5rem; margin: 0; }
+.part-head span { color: var(--muted); font-size: .95rem; }
+.part-note { color: var(--muted); font-size: .95rem; margin-bottom: 14px; }
+
+/* Listening controls */
+.voice-sel {
+    font-family: 'Inter', sans-serif; font-weight: 600; font-size: .88rem;
+    background: var(--panel2); color: var(--text);
+    border: 1px solid var(--border); border-radius: 999px;
+    padding: 7px 12px; cursor: pointer; max-width: 210px;
+}
+.voice-sel:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+.audio-bar {
+    display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;
+    background: var(--panel); border: 1px solid var(--border); border-radius: 14px;
+    padding: 12px 16px; margin-bottom: 20px; box-shadow: var(--shadow);
+}
+.audio-bar .lab { font-size: .88rem; font-weight: 700; color: var(--muted); }
+.speed-chip { padding: 6px 15px; font-size: .88rem; }
+
+/* Reading passage */
+.passage {
+    background: var(--panel2); border: 1px solid var(--border); border-radius: 14px;
+    padding: 18px 20px; margin: 12px 0 18px; font-size: 1.04rem;
+}
+.passage .pline { display: flex; gap: 14px; line-height: 1.75; }
+.passage .ln {
+    flex: none; width: 26px; text-align: right; color: var(--muted);
+    font-size: .78rem; padding-top: .35em; user-select: none;
+}
+.passage .ptitle {
+    font-family: 'Fraunces', serif; font-weight: 800; font-size: 1.2rem;
+    text-align: center; margin-bottom: 10px;
+}
+
+footer { text-align: center; color: var(--muted); font-size: .85rem; margin-top: 40px; }
+
+@media (max-width: 640px) {
+    .wrap { padding: 64px 14px 70px; }
+    .q-card { padding: 16px 14px; }
+    .passage .pline { gap: 8px; }
+}
+</style>
+</head>
+<body>
+<a class="back-link" href="./">← Advanced Hub</a>
+<button class="theme-btn" onclick="toggleTheme()" aria-label="Toggle theme">◐</button>
+
+<div class="wrap">
+<header class="hero">
+    <h1>TOEFL <span class="ink">ITP</span> Coach</h1>
+    <p>Learn the paper-based test, section by section — then practice like it's exam day.</p>
+</header>
+
+<div class="tabs">
+    <button class="tab-btn active" data-tab="overview" onclick="showTab('overview')">Overview</button>
+    <button class="tab-btn" data-tab="listening" onclick="showTab('listening')"><span class="tdot" style="background:var(--listen)"></span>Listening</button>
+    <button class="tab-btn" data-tab="structure" onclick="showTab('structure')"><span class="tdot" style="background:var(--struct)"></span>Structure</button>
+    <button class="tab-btn" data-tab="reading" onclick="showTab('reading')"><span class="tdot" style="background:var(--read)"></span>Reading</button>
+</div>
+
+<!-- ============ OVERVIEW ============ -->
+<section class="view active" id="view-overview">
+    <div class="card">
+        <div class="eyebrow">The test at a glance</div>
+        <h2>What is the TOEFL ITP?</h2>
+        <div class="body">
+            <p>The TOEFL ITP (Institutional Testing Program) is a <b>paper-based</b> multiple-choice test of academic English. Every question has four options — A, B, C, D — and you mark your answer by filling in a bubble on an answer sheet. There is no writing and no speaking.</p>
+            <table class="fmt">
+                <tr><th>Section</th><th>Questions</th><th>Time</th><th>What it tests</th></tr>
+                <tr class="sec-l"><td><b>1 · Listening</b></td><td>50</td><td>35 min</td><td>Short conversations, longer conversations, and mini-talks — heard once only</td></tr>
+                <tr class="sec-s"><td><b>2 · Structure &amp; Written Expression</b></td><td>40</td><td>25 min</td><td>Grammar: completing sentences and finding errors</td></tr>
+                <tr class="sec-r"><td><b>3 · Reading</b></td><td>50</td><td>55 min</td><td>Five academic passages with comprehension questions</td></tr>
+            </table>
+            <p>Total: <b>140 questions in about 2 hours</b>. Scores range from 310 to 677. Each section is scored separately, so improving your weakest section raises your total fastest.</p>
+            <h3>Golden rules for the whole test</h3>
+            <ul>
+                <li><b>Never leave a blank.</b> There is no penalty for wrong answers — always guess.</li>
+                <li><b>Pace yourself.</b> The clock is your biggest opponent, especially in Section 2.</li>
+                <li><b>Answer in order on the sheet.</b> Skipping a line on the bubble sheet ruins everything after it. Check your question number every few answers.</li>
+                <li><b>Eliminate first.</b> Crossing out two bad options turns a 25% guess into a 50% guess.</li>
+            </ul>
+            <p>Use the tabs above to study each section: every tab has a <b>Learn</b> page with strategies and examples, and a <b>Practice</b> page with exam-style questions and teacher-controlled answers.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ============ LISTENING ============ -->
+<section class="view" id="view-listening">
+    <div class="mode-row">
+        <button class="chip active" data-mode="learn" onclick="setMode('listening','learn')">📖 Learn</button>
+        <button class="chip" data-mode="practice" onclick="setMode('listening','practice')">✏️ Practice</button>
+    </div>
+
+    <div id="listening-learn">
+        <div class="card">
+            <div class="eyebrow" style="color:var(--listen)">Section 1 · 50 questions · 35 minutes</div>
+            <h2>Listening Comprehension</h2>
+            <div class="body">
+                <p>You hear everything <b>once only</b> — no replays, no transcripts. The audio never stops, so if you miss a question, guess immediately and move on. The section has three parts:</p>
+                <table class="fmt">
+                    <tr><th>Part</th><th>Format</th><th>Questions</th></tr>
+                    <tr><td><b>A</b></td><td>Short conversations (two speakers, two lines) + one spoken question</td><td>30</td></tr>
+                    <tr><td><b>B</b></td><td>Longer conversations (about a minute)</td><td>~8</td></tr>
+                    <tr><td><b>C</b></td><td>Mini-talks and short lectures</td><td>~12</td></tr>
+                </table>
+
+                <h3>Part A strategy: the second speaker is the answer</h3>
+                <p>Almost every Part A question asks about the <b>second speaker</b> — what they mean, imply, or will do next. The first speaker sets the scene; the second speaker carries the answer.</p>
+                <div class="ex">
+                    <span class="lbl">Example</span>
+                    <i>Woman:</i> Are you coming to the party on Friday?<br>
+                    <i>Man:</i> I wish I could, but I work that night.<br>
+                    <i>Question:</i> What does the man mean? → <b>He can't go to the party.</b>
+                </div>
+                <p>Notice: the correct answer <b>rephrases</b> the idea. It almost never repeats the exact words you heard. In fact, an option that repeats a word from the audio is often a trap.</p>
+
+                <h3>Watch out for sound-alike traps</h3>
+                <div class="ex bad">
+                    <span class="lbl">Trap</span>
+                    You hear: "I can't <b>bear</b> this cold weather." → A wrong option might mention a <b>beer</b> or a <b>bear</b> (the animal). If an option just sounds like the audio, be suspicious.
+                </div>
+
+                <h3>Idioms and expressions the ITP loves</h3>
+                <p>Part A is full of everyday idioms. If you know the expression, the question is easy; if not, it's almost impossible. Learn these classics:</p>
+                <div class="spot-grid">
+                    <div class="spot"><b>give someone a hand</b>help someone</div>
+                    <div class="spot"><b>be swamped / snowed under</b>be extremely busy</div>
+                    <div class="spot"><b>pass with flying colors</b>succeed brilliantly</div>
+                    <div class="spot"><b>call off</b>cancel</div>
+                    <div class="spot"><b>put off</b>postpone, delay</div>
+                    <div class="spot"><b>grab a bite</b>eat something quickly</div>
+                    <div class="spot"><b>be broke</b>have no money</div>
+                    <div class="spot"><b>under the weather</b>feeling a little sick</div>
+                    <div class="spot"><b>it slipped my mind</b>I forgot</div>
+                    <div class="spot"><b>You can say that again</b>I completely agree</div>
+                    <div class="spot"><b>Not that I know of</b>I don't think so</div>
+                    <div class="spot"><b>It's up to you</b>you decide</div>
+                    <div class="spot"><b>run into someone</b>meet by chance</div>
+                    <div class="spot"><b>be about to</b>be ready to do very soon</div>
+                    <div class="spot"><b>figure out</b>understand, solve</div>
+                    <div class="spot"><b>stay up</b>not go to bed</div>
+                </div>
+
+                <h3>Suggestion language = "What will they probably do?"</h3>
+                <div class="ex">
+                    <span class="lbl">Patterns</span>
+                    <b>Why don't we…? / How about…? / Let's… / We could always…</b> — when you hear these, expect a question about what the speakers will <i>probably do next</i>.
+                </div>
+
+                <h3>Parts B &amp; C strategy: read ahead</h3>
+                <ul>
+                    <li>While instructions play, <b>skim the next answer options</b>. Options tell you the topic and what to listen for.</li>
+                    <li>The <b>first sentence</b> of a talk usually announces the topic — that's the "main purpose" answer.</li>
+                    <li>Listen for <b>numbers, names, and reasons</b>; detail questions come in the same order as the audio.</li>
+                    <li>Common settings: library, professor's office, registration desk, class lecture, campus tour.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="listening-practice" hidden>
+        <div class="audio-bar">
+            <span class="lab">🔊 Speed:</span>
+            <button class="chip speed-chip" data-rate="0.85" onclick="setRate(0.85)">Slower</button>
+            <button class="chip speed-chip active" data-rate="1" onclick="setRate(1)">Normal</button>
+            <button class="chip speed-chip" data-rate="1.15" onclick="setRate(1.15)">Faster</button>
+        </div>
+        <div class="audio-bar">
+            <span class="lab">👨 Man:</span>
+            <select class="voice-sel" id="selM" onchange="setVoice('M', this.value)"></select>
+            <span class="lab">👩 Woman:</span>
+            <select class="voice-sel" id="selW" onchange="setVoice('W', this.value)"></select>
+            <span class="lab">🎙️ Narrator:</span>
+            <select class="voice-sel" id="selN" onchange="setVoice('N', this.value)"></select>
+            <button class="ghost-btn" onclick="testVoices(this)">▶ Test voices</button>
+        </div>
+        <div class="part-head"><h3 style="color:var(--listen)">Part A</h3><span>Short conversations — play once, answer, reveal</span></div>
+        <p class="part-note">Exam rule: audio plays <b>once</b>. Use Replay only when teaching.</p>
+        <div id="la-items"></div>
+        <div class="part-head"><h3 style="color:var(--listen)">Part B</h3><span>A longer conversation with four questions</span></div>
+        <div id="lb-items"></div>
+        <div class="part-head"><h3 style="color:var(--listen)">Part C</h3><span>Mini-talks with four questions each</span></div>
+        <div id="lc-items"></div>
+    </div>
+</section>
+
+<!-- ============ STRUCTURE ============ -->
+<section class="view" id="view-structure">
+    <div class="mode-row">
+        <button class="chip active" data-mode="learn" onclick="setMode('structure','learn')">📖 Learn</button>
+        <button class="chip" data-mode="practice" onclick="setMode('structure','practice')">✏️ Practice</button>
+    </div>
+
+    <div id="structure-learn">
+        <div class="card">
+            <div class="eyebrow" style="color:var(--struct)">Section 2 · 40 questions · 25 minutes</div>
+            <h2>Structure &amp; Written Expression</h2>
+            <div class="body">
+                <p>This is the grammar section — and the fastest. You have about <b>35 seconds per question</b>, so pattern recognition beats slow analysis. Two parts:</p>
+                <table class="fmt">
+                    <tr><th>Part</th><th>Format</th><th>Questions</th></tr>
+                    <tr><td><b>Structure</b></td><td>A sentence with a blank — choose the option that completes it correctly</td><td>15</td></tr>
+                    <tr><td><b>Written Expression</b></td><td>A sentence with four underlined parts — find the one that is <i>wrong</i></td><td>25</td></tr>
+                </table>
+                <p>Structure questions test whether you can build a correct sentence; Written Expression tests whether you can spot a broken one. The same grammar points power both.</p>
+
+                <h3>The Big Rule: one subject, one verb</h3>
+                <p>Before anything else, find the <b>main subject</b> and <b>main verb</b>. Most Structure answers simply supply the missing one; most wrong options add an extra one.</p>
+                <div class="ex good"><span class="lbl">Correct</span>Honey <b>is</b> one of the few foods that never spoils. <i>(subject: Honey, verb: is)</i></div>
+                <div class="ex bad"><span class="lbl">Wrong</span>Honey <b>it is</b> one of the few foods… <i>(two subjects — "Honey" and "it")</i></div>
+
+                <h3>Point 1 · Subject–verb agreement</h3>
+                <p>The test hides the subject behind a prepositional phrase. Cross the phrase out mentally.</p>
+                <div class="ex good"><span class="lbl">Correct</span>The <b>results</b> <s>of the experiment</s> <b>were</b> surprising.</div>
+                <div class="ex bad"><span class="lbl">Wrong</span>The results of the experiment <b>was</b> surprising.</div>
+
+                <h3>Point 2 · Word form: adjective vs. adverb</h3>
+                <div class="ex good"><span class="lbl">Correct</span>She explained the theory <b>clearly</b>. <i>(adverb describes the verb)</i></div>
+                <div class="ex bad"><span class="lbl">Wrong</span>She explained the theory <b>clear</b>.</div>
+
+                <h3>Point 3 · Parallel structure</h3>
+                <p>Items joined by <b>and / or / but</b> must have the same form.</p>
+                <div class="ex good"><span class="lbl">Correct</span>Bats use sound <b>to find</b> food, <b>to avoid</b> obstacles, and <b>to communicate</b>.</div>
+                <div class="ex bad"><span class="lbl">Wrong</span>Bats use sound to find food, <b>avoiding</b> obstacles, and to communicate.</div>
+
+                <h3>Point 4 · Verb tense signals</h3>
+                <div class="ex"><span class="lbl">Signals</span><b>in 1492 / ago / last year</b> → simple past · <b>since / for / so far</b> → present perfect · <b>by the time… had</b> → past perfect</div>
+                <div class="ex bad"><span class="lbl">Wrong</span>Columbus <b>has sailed</b> across the Atlantic in 1492. <i>(a finished date needs simple past: sailed)</i></div>
+
+                <h3>Point 5 · Appositives &amp; relative clauses</h3>
+                <p>A noun phrase between commas can rename the subject with <b>no extra verb</b> — or a clause with <b>which / who + verb</b> can describe it.</p>
+                <div class="ex good"><span class="lbl">Correct</span>The Sahara, <b>which covers</b> a third of Africa, is the largest hot desert.</div>
+                <div class="ex good"><span class="lbl">Also correct</span>The Sahara, <b>the largest hot desert on Earth</b>, covers a third of Africa.</div>
+                <div class="ex bad"><span class="lbl">Wrong</span>The Sahara, <b>that covers</b> a third of Africa, is… <i>("that" cannot follow a comma)</i></div>
+
+                <h3>Point 6 · Inversion after negative openers</h3>
+                <p>After <b>Not until… / Rarely / Never / Only after…</b> at the start of a sentence, the verb moves before the subject, like a question.</p>
+                <div class="ex good"><span class="lbl">Correct</span>Not until the 19th century <b>did scientists prove</b> that bacteria cause disease.</div>
+                <div class="ex bad"><span class="lbl">Wrong</span>Not until the 19th century <b>scientists proved</b>…</div>
+
+                <h3>Point 7 · Comparatives &amp; the double trap</h3>
+                <div class="ex good"><span class="lbl">Correct</span>The new computers are much <b>faster</b> than the old ones. · The higher you climb, <b>the thinner</b> the air becomes.</div>
+                <div class="ex bad"><span class="lbl">Wrong</span>much <b>more faster</b> · <b>more easier</b> · taller <b>from</b> me</div>
+
+                <h3>Point 8 · Count vs. non-count classics</h3>
+                <div class="ex bad"><span class="lbl">Never plural</span><b>information · advice · equipment · furniture · research · knowledge</b> — "informations" is always wrong.</div>
+
+                <h3>Point 9 · Preposition partners</h3>
+                <div class="ex"><span class="lbl">Memorize</span>depend <b>on</b> · interested <b>in</b> · capable <b>of</b> · similar <b>to</b> · different <b>from</b> · <b>despite</b> (never "despite of") · because <b>of</b></div>
+
+                <h3>Point 10 · Pronoun agreement</h3>
+                <div class="ex good"><span class="lbl">Correct</span>The committee announced <b>its</b> decision. <i>(a committee = one thing)</i></div>
+                <div class="ex bad"><span class="lbl">Wrong</span>Each of the students raised <b>their</b> hand… <i>(on the ITP, "each" is singular: his or her)</i></div>
+
+                <h3>How to attack Written Expression</h3>
+                <ul>
+                    <li>Read the <b>whole sentence</b> first — the error is often agreement between two distant words.</li>
+                    <li>Check the underlined parts in this order: <b>verbs → word forms → parallelism → pronouns → prepositions</b>.</li>
+                    <li>You <b>don't</b> need to correct the error — just find it. Don't waste time rewriting.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="structure-practice" hidden>
+        <div class="part-head"><h3 style="color:var(--struct)">Structure</h3><span>Choose the option that correctly completes the sentence</span></div>
+        <div id="st-items"></div>
+        <div class="part-head"><h3 style="color:var(--struct)">Written Expression</h3><span>One underlined part is wrong — find it</span></div>
+        <div id="we-items"></div>
+    </div>
+</section>
+
+<!-- ============ READING ============ -->
+<section class="view" id="view-reading">
+    <div class="mode-row">
+        <button class="chip active" data-mode="learn" onclick="setMode('reading','learn')">📖 Learn</button>
+        <button class="chip" data-mode="practice" onclick="setMode('reading','practice')">✏️ Practice</button>
+    </div>
+
+    <div id="reading-learn">
+        <div class="card">
+            <div class="eyebrow" style="color:var(--read)">Section 3 · 50 questions · 55 minutes</div>
+            <h2>Reading Comprehension</h2>
+            <div class="body">
+                <p>Five academic passages (about 250–350 words each) with roughly ten questions per passage. Budget <b>about 10 minutes per passage</b> — including its questions. The topics are academic (science, history, biography, culture) but <b>every answer is in the text</b>. Never use outside knowledge.</p>
+
+                <h3>Read the questions like a detective</h3>
+                <p>Each question type has a fixed shape and a fixed strategy:</p>
+
+                <h3>1 · Main idea</h3>
+                <div class="ex"><span class="lbl">Looks like</span>"What is the main topic of the passage?" / "What is the author's main purpose?"</div>
+                <p><b>Strategy:</b> read the first sentence of each paragraph. The correct answer covers the <i>whole</i> passage — options that only match one paragraph are traps.</p>
+
+                <h3>2 · Detail</h3>
+                <div class="ex"><span class="lbl">Looks like</span>"According to the passage, when did…?" / "The author states that…"</div>
+                <p><b>Strategy:</b> pick a keyword from the question (a name, number, or unusual noun), scan for it, and read that sentence carefully. The answer paraphrases the text.</p>
+
+                <h3>3 · Vocabulary in context</h3>
+                <div class="ex"><span class="lbl">Looks like</span>"The word <i>'durable'</i> in line 4 is closest in meaning to…"</div>
+                <p><b>Strategy:</b> re-read the sentence and replace the word with each option. Context beats dictionary knowledge — a familiar word may be used in an unusual way.</p>
+
+                <h3>4 · Reference</h3>
+                <div class="ex"><span class="lbl">Looks like</span>"The word <i>'they'</i> in line 9 refers to…"</div>
+                <p><b>Strategy:</b> look <b>backwards</b> for the nearest noun that agrees in number, then test it by substitution.</p>
+
+                <h3>5 · Inference</h3>
+                <div class="ex"><span class="lbl">Looks like</span>"It can be inferred from the passage that…" / "The author implies…"</div>
+                <p><b>Strategy:</b> the answer is one small logical step from the text — never a big leap. If an option needs outside knowledge or says something extreme (<i>always, never, all</i>), it's usually wrong.</p>
+
+                <h3>6 · Negative fact (NOT / EXCEPT)</h3>
+                <div class="ex"><span class="lbl">Looks like</span>"All of the following are mentioned EXCEPT…"</div>
+                <p><b>Strategy:</b> this is a hunting game — three options are in the passage, one is not. Find and eliminate the three. Slow but reliable; save it for last if you're short on time.</p>
+
+                <h3>Pacing plan</h3>
+                <ul>
+                    <li>Don't read the whole passage deeply first. <b>Skim 30 seconds</b> for topic and layout, then go straight to the questions.</li>
+                    <li>Questions follow the <b>order of the passage</b> — question 3's answer is usually after question 2's.</li>
+                    <li>If a question eats more than a minute, bubble your best guess and move on. You can circle it in the booklet and return.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="reading-practice" hidden>
+        <p class="part-note" style="text-align:center">Three practice passages, easiest to hardest. Line numbers on the left match the questions.</p>
+        <div id="rd-passages"></div>
+    </div>
+</section>
+
+<footer>TOEFL ITP Coach · Phil Young's English School · Practice material written for classroom use</footer>
+</div>
+
+<script>
+/* ---------- Theme ---------- */
+function toggleTheme() {
+    const html = document.documentElement;
+    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('adv-theme', next);
+}
+(function() {
+    const saved = localStorage.getItem('adv-theme');
+    if (saved) document.documentElement.setAttribute('data-theme', saved);
+})();
+
+/* ---------- Tabs & modes ---------- */
+function showTab(name) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
+    document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.id === 'view-' + name));
+    stopSpeech();
+}
+function setMode(section, mode) {
+    const view = document.getElementById('view-' + section);
+    view.querySelectorAll('.chip[data-mode]').forEach(c => c.classList.toggle('active', c.dataset.mode === mode));
+    document.getElementById(section + '-learn').hidden = (mode !== 'learn');
+    document.getElementById(section + '-practice').hidden = (mode !== 'practice');
+    stopSpeech();
+}
+
+/* ---------- TTS engine ---------- */
+let ttsRate = 1;
+let voiceM = null, voiceW = null, voiceN = null;
+let speaking = false;
+let currentBtn = null;
+
+function setRate(r) {
+    ttsRate = r;
+    document.querySelectorAll('.speed-chip').forEach(c => c.classList.toggle('active', parseFloat(c.dataset.rate) === r));
+}
+let enVoices = [];
+function pickVoices() {
+    const all = speechSynthesis.getVoices();
+    enVoices = all.filter(v => v.lang && v.lang.toLowerCase().startsWith('en'));
+    if (!enVoices.length) return;
+    const us = enVoices.filter(v => v.lang.toLowerCase().includes('us'));
+    const pool = us.length ? us : enVoices;
+    const female = pool.find(v => /female|samantha|victoria|zira|jenny|aria|susan|karen|moira|tessa/i.test(v.name));
+    const male = pool.find(v => /male|daniel|david|alex|guy|fred|tom|james|mark/i.test(v.name) && v !== female);
+    // auto-picked defaults, overridden by any saved choice that still exists
+    voiceW = byName(localStorage.getItem('itpVoiceW')) || female || pool[0];
+    voiceM = byName(localStorage.getItem('itpVoiceM')) || male || pool.find(v => v !== voiceW) || pool[0];
+    voiceN = byName(localStorage.getItem('itpVoiceN')) || pool.find(v => v !== voiceW && v !== voiceM) || voiceM;
+    fillSelects();
+}
+function byName(name) {
+    return name ? enVoices.find(v => v.name === name) : null;
+}
+function fillSelects() {
+    [['selM', voiceM], ['selW', voiceW], ['selN', voiceN]].forEach(([id, cur]) => {
+        const sel = document.getElementById(id);
+        if (!sel) return;
+        sel.innerHTML = enVoices.map(v =>
+            '<option value="' + v.name.replace(/"/g, '&quot;') + '"' + (cur && v.name === cur.name ? ' selected' : '') + '>' +
+            v.name + ' (' + v.lang + ')</option>'
+        ).join('');
+    });
+}
+function setVoice(sp, name) {
+    const v = byName(name);
+    if (!v) return;
+    if (sp === 'M') voiceM = v;
+    else if (sp === 'W') voiceW = v;
+    else voiceN = v;
+    localStorage.setItem('itpVoice' + sp, name);
+}
+function testVoices(btn) {
+    speakLines([
+        ["M", "Hello, I'm the man's voice."],
+        ["W", "And I'm the woman's voice."],
+        ["N", "Number one. What does the man mean?"]
+    ], btn);
+}
+if ('speechSynthesis' in window) {
+    speechSynthesis.onvoiceschanged = pickVoices;
+    pickVoices();
+}
+function stopSpeech() {
+    if ('speechSynthesis' in window) speechSynthesis.cancel();
+    speaking = false;
+    if (currentBtn) { currentBtn.classList.remove('playing'); currentBtn = null; }
+}
+/* lines: array of [speaker, text]; speaker M / W / N (narrator) */
+function speakLines(lines, btn) {
+    if (!('speechSynthesis' in window)) { alert('Sorry — this browser does not support speech synthesis.'); return; }
+    stopSpeech();
+    if (!voiceW && !voiceM) pickVoices();
+    speaking = true;
+    currentBtn = btn || null;
+    if (currentBtn) currentBtn.classList.add('playing');
+    let i = 0;
+    const sameVoice = voiceM === voiceW;
+    function next() {
+        if (!speaking || i >= lines.length) { stopSpeech(); return; }
+        const [sp, text] = lines[i++];
+        const u = new SpeechSynthesisUtterance(text);
+        u.rate = ttsRate * (sp === 'N' ? 0.95 : 1);
+        if (sp === 'W') { u.voice = voiceW; u.pitch = sameVoice ? 1.25 : 1.05; }
+        else if (sp === 'M') { u.voice = voiceM; u.pitch = sameVoice ? 0.8 : 0.95; }
+        else { u.voice = voiceN; u.pitch = 1; }
+        u.onend = () => setTimeout(next, sp === 'N' ? 150 : 420);
+        u.onerror = () => setTimeout(next, 100);
+        speechSynthesis.speak(u);
+    }
+    next();
+}
+
+/* ---------- Data: Listening Part A ---------- */
+const PART_A = [
+    { conv: [["W","Are you coming to the study group tonight?"],["M","I'd love to, but I'm swamped with my chemistry report."]],
+      q: "What does the man mean?",
+      opts: ["He has already finished his report.","He is too busy to come.","He doesn't like chemistry.","He will arrive late tonight."], a: 1,
+      why: "\"Swamped\" means extremely busy — so he can't come." },
+    { conv: [["M","How did you do on the history exam?"],["W","I passed with flying colors!"]],
+      q: "What does the woman mean?",
+      opts: ["She did very well on the exam.","She failed the exam.","She colored her exam paper.","She hasn't received her grade yet."], a: 0,
+      why: "\"To pass with flying colors\" = to succeed brilliantly. Option C is a sound-alike trap." },
+    { conv: [["W","Do you know where Professor Lima's office is?"],["M","It's on the third floor, right next to the library entrance."]],
+      q: "What does the man say about the office?",
+      opts: ["It is inside the library.","It is next to the library entrance.","It is on the first floor.","It has been moved recently."], a: 1,
+      why: "A detail question — the answer restates exactly what he said: third floor, next to the library entrance." },
+    { conv: [["M","I heard the field trip was called off."],["W","Yeah, because of the storm."]],
+      q: "What happened to the field trip?",
+      opts: ["It was postponed until next week.","It was moved indoors.","It was canceled.","It was shortened."], a: 2,
+      why: "\"Called off\" = canceled. \"Postponed\" would be \"put off\"." },
+    { conv: [["W","Why don't we grab a bite before the lecture?"],["M","Good idea — I'm starving."]],
+      q: "What will the speakers probably do next?",
+      opts: ["Go to the lecture immediately.","Get something to eat.","Cook dinner at home.","Buy tickets for a show."], a: 1,
+      why: "\"Why don't we…\" signals a suggestion; \"grab a bite\" = eat something quickly. He agrees." },
+    { conv: [["M","Could you give me a hand with these boxes?"],["W","Sure, just let me put my bag down first."]],
+      q: "What will the woman probably do?",
+      opts: ["Help the man carry the boxes.","Give the man her bag.","Put the boxes down.","Buy some new boxes."], a: 0,
+      why: "\"Give someone a hand\" = help someone. \"Sure\" = she agrees." },
+    { conv: [["W","Have you seen my calculator anywhere?"],["M","Isn't that it, under your notebook?"]],
+      q: "What does the man imply?",
+      opts: ["He borrowed the calculator.","The calculator is probably under the notebook.","The woman lost her notebook.","The woman should buy a new calculator."], a: 1,
+      why: "His question politely points out where the calculator is — an implication question." },
+    { conv: [["M","The concert tickets sold out in an hour."],["W","You can say that again — I couldn't get one either."]],
+      q: "What does the woman mean?",
+      opts: ["She wants the man to repeat himself.","She agrees, and she also failed to get a ticket.","She bought the last ticket.","She doesn't like concerts."], a: 1,
+      why: "\"You can say that again\" = I completely agree. Option A is the literal trap." },
+    { conv: [["W","Is the cafeteria still open?"],["M","Not that I know of. It usually closes at eight."]],
+      q: "What does the man mean?",
+      opts: ["The cafeteria is probably closed.","The cafeteria never closes.","He doesn't know where the cafeteria is.","The cafeteria opens at eight."], a: 0,
+      why: "\"Not that I know of\" = I don't think so. It usually closes at eight, so it's probably closed now." },
+    { conv: [["M","I was about to call you about the assignment."],["W","Great minds think alike — I have a question about it too."]],
+      q: "What does the woman mean?",
+      opts: ["She already finished the assignment.","She was thinking the same thing.","She thinks the man is very intelligent.","She forgot about the assignment."], a: 1,
+      why: "\"Great minds think alike\" is said when two people have the same idea at the same time." },
+    { conv: [["W","You look exhausted this morning."],["M","I stayed up all night finishing my essay."]],
+      q: "What does the man mean?",
+      opts: ["He didn't sleep last night.","He got up very early.","He couldn't finish his essay.","He is going to bed now."], a: 0,
+      why: "\"Stay up all night\" = not go to bed at all." },
+    { conv: [["M","Should we take the bus to the museum, or walk?"],["W","It's up to you, but it looks like rain."]],
+      q: "What does the woman suggest?",
+      opts: ["They should probably take the bus.","They should visit the museum another day.","She refuses to make plans.","They should walk quickly."], a: 0,
+      why: "\"It's up to you\" = you decide — but mentioning rain is a hint that the bus is the better choice." }
+];
+
+/* ---------- Data: Listening Part B ---------- */
+const PART_B = {
+    title: "At the library",
+    conv: [
+        ["M","Excuse me, I'm looking for books about the history of aviation. It's for my term paper."],
+        ["W","Aviation history… those would be on the fourth floor, in the section marked T L. Do you have your student card with you?"],
+        ["M","Yes, right here. How many books am I allowed to borrow?"],
+        ["W","Six at a time, for three weeks. But I should warn you — a lot of aviation material is in the reference collection, and reference books can't leave the library."],
+        ["M","That's fine. Can I photocopy pages from those?"],
+        ["W","Of course. The copy machines are next to the elevator on each floor. They take coins or a copy card, which you can buy at the front desk."],
+        ["M","Great. And what if a book I need is checked out?"],
+        ["W","You can place a hold at the desk or online, and we'll email you as soon as it comes back."]
+    ],
+    questions: [
+        { q: "Where does this conversation probably take place?",
+          opts: ["In a bookstore","In a library","In a professor's office","At an airport"], a: 1,
+          why: "Borrowing limits, a reference collection, and holds all point to a library." },
+        { q: "Why does the man need the books?",
+          opts: ["He is writing a term paper.","He is learning to fly.","He is preparing a class presentation.","He wants to sell them."], a: 0,
+          why: "He says it directly in his first line: \"It's for my term paper.\"" },
+        { q: "What does the woman say about reference books?",
+          opts: ["They can be borrowed for three weeks.","They cannot be taken out of the library.","They are kept on the first floor.","They are only for professors."], a: 1,
+          why: "\"Reference books can't leave the library\" — so he can only photocopy them." },
+        { q: "What should the man do if a book he needs is checked out?",
+          opts: ["Buy his own copy","Place a hold","Ask his professor","Come back next semester"], a: 1,
+          why: "She tells him to place a hold at the desk or online and wait for an email." }
+    ]
+};
+
+/* ---------- Data: Listening Part C ---------- */
+const PART_C = [
+    { title: "Talk 1 · A biology mini-lecture", speaker: "M",
+      text: "Today we'll look at one of nature's great survival experts: the camel. Most people believe that a camel's hump stores water, but that's a myth. The hump actually stores fat — up to thirty-five kilograms of it — which the animal can convert to energy and water when food is scarce. And because the fat is concentrated in one place instead of spread under the skin, the rest of the body releases heat more easily. That's a real advantage in the desert. Camels have other tricks as well. They can drink over one hundred liters of water in about ten minutes. Their thick lips let them eat thorny desert plants. And they can close their nostrils completely to keep out blowing sand. A camel's body temperature can also rise several degrees before it even begins to sweat, so it loses far less water than a human would. Next week, we'll compare these adaptations with those of desert reptiles.",
+      questions: [
+        { q: "What is the main topic of the talk?",
+          opts: ["The history of desert travel","How camels survive in the desert","Differences between camels and reptiles","How animals store water"], a: 1,
+          why: "The first sentence announces it: the camel as a survival expert. The other options are too narrow or about next week." },
+        { q: "According to the speaker, what does a camel's hump contain?",
+          opts: ["Water","Fat","Muscle","Air"], a: 1,
+          why: "The water idea is called a myth — the hump stores fat." },
+        { q: "Why can a camel's body release heat easily?",
+          opts: ["Its fat is concentrated in one place.","It sweats constantly.","It drinks cold water.","Its skin is very thin."], a: 0,
+          why: "Fat in one place (the hump) instead of under the skin lets the rest of the body lose heat." },
+        { q: "What will the class probably discuss next week?",
+          opts: ["Desert reptiles","Camel farming","The water cycle","A trip to the zoo"], a: 0,
+          why: "The last sentence of a talk often previews the next class — listen right to the end." }
+      ]
+    },
+    { title: "Talk 2 · A museum announcement", speaker: "W",
+      text: "Good morning, everyone, and welcome to the City Museum of Photography. Before we begin, a few quick announcements. Our special exhibition this month is called Frozen in Time, and it features more than eighty photographs of daily life in the nineteen twenties, all taken by the pioneering photographer Alice Monteiro. The exhibition is on the second floor, and our guided tour will start there in about fifteen minutes. Please note that flash photography is not permitted anywhere in the museum, since the strong light can damage these old prints. The gift shop and café are on the ground floor, next to the main entrance, and they'll stay open until six. If you get separated from the group, just ask any staff member in a blue uniform. All right — if you'd like to leave coats or bags, the free cloakroom is to your left, and then we'll head upstairs together.",
+      questions: [
+        { q: "Who is probably speaking?",
+          opts: ["A photographer","A museum guide","A café manager","A history professor"], a: 1,
+          why: "She welcomes visitors, gives museum rules, and leads a tour — a classic ITP speaker-identification question." },
+        { q: "What is Frozen in Time?",
+          opts: ["A photography exhibition","A film about winter","A book about the 1920s","A new café"], a: 0,
+          why: "It's the special exhibition of photographs from the 1920s." },
+        { q: "Why is flash photography not allowed?",
+          opts: ["It disturbs other visitors.","The light can damage the old prints.","It is too noisy.","Cameras are not permitted in the museum."], a: 1,
+          why: "A reason question — listen for \"since\" and \"because\"." },
+        { q: "What will the visitors probably do next?",
+          opts: ["Visit the gift shop","Leave their coats and go upstairs","Watch a film","Meet Alice Monteiro"], a: 1,
+          why: "The final instructions tell you what happens next: cloakroom, then upstairs." }
+      ]
+    }
+];
+
+/* ---------- Data: Structure ---------- */
+const STRUCTURE = [
+    { stem: "The Amazon River, ____ through seven countries, carries more water than any other river on Earth.",
+      opts: ["it flows","which flows","flows","which it flows"], a: 1,
+      why: "Between commas we need a relative clause: \"which flows\". Option A and D add an extra subject; option C would give the sentence two main verbs." },
+    { stem: "Not until the nineteenth century ____ that bacteria cause many diseases.",
+      opts: ["scientists proved","did scientists prove","scientists did prove","when scientists proved"], a: 1,
+      why: "A negative opener (\"Not until…\") forces question-style inversion: did + subject + base verb." },
+    { stem: "____ in 1888, the Kodak camera made photography available to ordinary people.",
+      opts: ["Introduced","It was introduced","Introducing","To introduce"], a: 0,
+      why: "A reduced passive clause: \"(Which was) introduced in 1888\". The camera was introduced, so we need the past participle, not -ing." },
+    { stem: "The higher you climb, ____ the air becomes.",
+      opts: ["the thinner","thinner","the thinnest","thinner than"], a: 0,
+      why: "The double comparative pattern: \"the + comparative…, the + comparative…\"." },
+    { stem: "Honey ____ one of the few foods that never spoils.",
+      opts: ["it is","is","being","which is"], a: 1,
+      why: "The sentence has a subject (Honey) but no main verb — only \"is\" completes it. \"It is\" doubles the subject." },
+    { stem: "Ostriches cannot fly, ____ run faster than most birds can fly.",
+      opts: ["but they can","although they can","they can","so can they"], a: 0,
+      why: "We need a contrast connector plus a subject: \"but they can run…\". Option C creates a comma splice." },
+    { stem: "____ of the Moon causes the ocean tides on Earth.",
+      opts: ["The gravitational pull","That the gravitational pull","It is the gravitational pull","The pull is gravitational"], a: 0,
+      why: "The blank is the subject of \"causes\" — a simple noun phrase. Options B, C and D all break the sentence." },
+    { stem: "Rubber trees must grow for about seven years ____ they can be tapped for the first time.",
+      opts: ["until","before","that","while"], a: 1,
+      why: "The trees grow first, then are tapped: \"before\". \"Until\" would mean the growing stops when tapping starts — close, but the idiom here is \"grow for X years before…\"." },
+    { stem: "Marie Curie was the first person ____ two Nobel Prizes in two different sciences.",
+      opts: ["winning","who win","to win","won"], a: 2,
+      why: "After \"the first / the last / the only + noun\", English uses the infinitive: \"the first person to win\"." },
+    { stem: "Only after the invention of refrigeration ____ possible to ship fresh meat over long distances.",
+      opts: ["it became","became it","did it become","it did become"], a: 2,
+      why: "\"Only after…\" at the start of a sentence triggers inversion: did it become." },
+    { stem: "The Sahara, ____ covers about a third of Africa, is the largest hot desert in the world.",
+      opts: ["that","which","where","it"], a: 1,
+      why: "After a comma, use \"which\" — never \"that\" — for a non-essential clause about a thing." },
+    { stem: "Scientists estimate ____ more than eight million species of animals on Earth.",
+      opts: ["there are that","that there are","that they are","there be"], a: 1,
+      why: "\"Estimate that + clause\": that there are more than eight million species. \"They are\" has no clear reference." }
+];
+
+/* ---------- Data: Written Expression ---------- */
+/* parts: strings are plain text; {l,t} objects are underlined segments A–D */
+const WRITTEN = [
+    { parts: ["The leaves of the maple tree ",{l:"A",t:"turns"}," bright red ",{l:"B",t:"in"}," the autumn ",{l:"C",t:"when"}," temperatures ",{l:"D",t:"begin"}," to fall."], a: "A",
+      why: "The subject is \"leaves\" (plural) — the prepositional phrase \"of the maple tree\" is a distraction. Correct: turn." },
+    { parts: [{l:"A",t:"Each"}," of the students ",{l:"B",t:"have"}," to give a short presentation ",{l:"C",t:"at the end"}," ",{l:"D",t:"of the course"},"."], a: "B",
+      why: "\"Each\" is always singular on the ITP: each of the students has to give…" },
+    { parts: ["The scientist explained the theory so ",{l:"A",t:"clear"}," that ",{l:"B",t:"everyone"}," in the audience ",{l:"C",t:"was able"}," to ",{l:"D",t:"understand"}," it."], a: "A",
+      why: "The word describes how she explained (a verb), so it must be an adverb: clearly." },
+    { parts: ["Bats use sound waves ",{l:"A",t:"to find"}," food, ",{l:"B",t:"avoiding"}," obstacles, and ",{l:"C",t:"to communicate"}," ",{l:"D",t:"with"}," one another."], a: "B",
+      why: "Parallel structure: to find, to avoid, and to communicate. One -ing form breaks the list." },
+    { parts: ["Columbus ",{l:"A",t:"has sailed"}," across the Atlantic ",{l:"B",t:"in 1492"}," ",{l:"C",t:"with"}," three small ships and ",{l:"D",t:"about"}," ninety men."], a: "A",
+      why: "A finished past date (in 1492) requires the simple past: sailed, not the present perfect." },
+    { parts: [{l:"A",t:"Almost all"}," of the ",{l:"B",t:"informations"}," in the library ",{l:"C",t:"can now be accessed"}," ",{l:"D",t:"through"}," the online catalog."], a: "B",
+      why: "\"Information\" is a non-count noun — it never takes -s." },
+    { parts: ["Mount Everest ",{l:"A",t:"is higher"}," ",{l:"B",t:"than any"}," other ",{l:"C",t:"mountains"}," ",{l:"D",t:"in the"}," world."], a: "C",
+      why: "\"Any other\" is followed by a singular noun: higher than any other mountain." },
+    { parts: ["The committee will announce ",{l:"A",t:"their"}," decision ",{l:"B",t:"as soon as"}," all the votes ",{l:"C",t:"have been"}," ",{l:"D",t:"counted"},"."], a: "A",
+      why: "On the ITP a committee is one unit — a singular thing: its decision." },
+    { parts: [{l:"A",t:"Despite of"}," the heavy rain, the outdoor concert ",{l:"B",t:"continued"}," ",{l:"C",t:"as"}," ",{l:"D",t:"planned"},"."], a: "A",
+      why: "It's either \"despite the rain\" or \"in spite of the rain\" — never \"despite of\"." },
+    { parts: ["The new laboratory is equipped ",{l:"A",t:"with"}," computers that ",{l:"B",t:"are"}," much ",{l:"C",t:"more faster"}," ",{l:"D",t:"than"}," the old ones."], a: "C",
+      why: "A double comparative — \"faster\" is already comparative, so \"more\" must go." },
+    { parts: ["Neither the teacher nor ",{l:"A",t:"the students"}," ",{l:"B",t:"was able"}," ",{l:"C",t:"to open"}," the locked door ",{l:"D",t:"of"}," the classroom."], a: "B",
+      why: "With neither…nor, the verb agrees with the nearer subject — \"the students\" — so: were able." },
+    { parts: ["The company decided ",{l:"A",t:"to expand"}," its factory because the demand ",{l:"B",t:"for"}," its products ",{l:"C",t:"have"}," increased ",{l:"D",t:"sharply"},"."], a: "C",
+      why: "The subject of the verb is \"the demand\" (singular) — \"for its products\" is the classic prepositional-phrase trap. Correct: has increased." }
+];
+
+/* ---------- Data: Reading ---------- */
+const READING = [
+    { title: "Passage 1 · The Story of Blue Jeans", level: "Easier",
+      lines: [
+        "Blue jeans are among the most popular items of clothing",
+        "in the world, yet they began as simple work clothes.",
+        "In the 1870s, a tailor named Jacob Davis was making",
+        "trousers for miners in the American West. The miners",
+        "complained that ordinary trousers were not durable enough",
+        "for heavy labor, so Davis strengthened the corners of the",
+        "pockets with small metal rivets. The improved trousers",
+        "were an immediate success. Davis could not afford the",
+        "patent fee, so he wrote to his fabric supplier, Levi",
+        "Strauss, and the two men became partners in 1873.",
+        "For decades, jeans remained clothing for workers such as",
+        "miners, farmers, and railroad men. That changed in the",
+        "1950s, when Hollywood films showed young actors wearing",
+        "them, and jeans suddenly became a symbol of youthful",
+        "rebellion. Today they are worn everywhere, by everyone,",
+        "and the world buys more than a billion pairs every year."
+      ],
+      questions: [
+        { q: "What is the main topic of the passage?",
+          opts: ["The life of Levi Strauss","How blue jeans developed from work clothes into everyday fashion","Mining in the American West","How Hollywood films influence fashion"], a: 1,
+          why: "Main idea: the answer must cover the whole passage. Options A, C and D each match only one part of it." },
+        { q: "According to the passage, why did Davis add rivets to the trousers?",
+          opts: ["To make them more fashionable","To make them stronger for heavy work","To make them cheaper to produce","To make them easier to wash"], a: 1,
+          why: "Detail: the miners complained the trousers were not durable enough, so he strengthened the pockets." },
+        { q: "The word \"durable\" in line 5 is closest in meaning to",
+          opts: ["comfortable","long-lasting","expensive","fashionable"], a: 1,
+          why: "Vocabulary in context: trousers for heavy labor need to last — durable = long-lasting." },
+        { q: "Davis became partners with Levi Strauss because",
+          opts: ["Strauss invented the rivet","Davis could not pay the patent fee alone","they were old friends","Strauss owned a clothing store"], a: 1,
+          why: "Detail, lines 8–10: he could not afford the patent fee, so he wrote to his supplier." },
+        { q: "The word \"them\" in line 14 refers to",
+          opts: ["films","actors","jeans","workers"], a: 2,
+          why: "Reference: actors were wearing… jeans. Test by substitution: \"showed young actors wearing jeans\"." },
+        { q: "It can be inferred from the passage that before the 1950s, jeans were",
+          opts: ["mainly practical rather than fashionable","worn only in Hollywood","more expensive than other trousers","difficult to buy in America"], a: 0,
+          why: "Inference: for decades they were workers' clothing; fashion status only came later — one small step from the text." },
+        { q: "All of the following are mentioned as early wearers of jeans EXCEPT",
+          opts: ["miners","farmers","railroad men","sailors"], a: 3,
+          why: "Negative fact: find the three that ARE in the text (lines 11–12) and eliminate them." },
+        { q: "According to the passage, how many pairs of jeans are sold worldwide each year?",
+          opts: ["About a million","Several thousand","More than a billion","The passage does not say"], a: 2,
+          why: "Detail, last line: more than a billion pairs every year." }
+      ]
+    },
+    { title: "Passage 2 · The Dance of the Honeybee", level: "Medium",
+      lines: [
+        "When a honeybee discovers a rich source of food, it does",
+        "not keep the information to itself. Instead, it returns to",
+        "the hive and performs a remarkable behavior known as the",
+        "waggle dance. The dancing bee moves in a pattern shaped",
+        "like the number eight, shaking its body rapidly during the",
+        "middle section of the dance. Other bees crowd around the",
+        "dancer, and from this performance they obtain precise",
+        "instructions for finding the food.",
+        "The dance communicates two essential facts: direction and",
+        "distance. The angle of the dance in relation to the sun",
+        "indicates the direction of the food source, while the",
+        "duration of the shaking phase shows how far away it is.",
+        "The longer the bee waggles, the more distant the food.",
+        "The Austrian scientist Karl von Frisch decoded the dance",
+        "in the 1940s, and in 1973 the discovery earned him a",
+        "Nobel Prize. His work proved that complex communication",
+        "is not limited to human beings."
+      ],
+      questions: [
+        { q: "What is the passage mainly about?",
+          opts: ["The life cycle of honeybees","How bees tell each other where food is","The career of Karl von Frisch","How bees produce honey"], a: 1,
+          why: "Main idea: every paragraph serves the same point — the dance as communication about food." },
+        { q: "According to the passage, what shape does the waggle dance follow?",
+          opts: ["A circle","A straight line","A figure eight","A square"], a: 2,
+          why: "Detail, lines 4–5: a pattern shaped like the number eight." },
+        { q: "The word \"obtain\" in line 7 is closest in meaning to",
+          opts: ["receive","lose","ignore","repeat"], a: 0,
+          why: "Vocabulary: the watching bees get precise instructions from the dance." },
+        { q: "What does the angle of the dance indicate?",
+          opts: ["The distance to the food","The type of food","The direction of the food in relation to the sun","The size of the hive"], a: 2,
+          why: "Detail, lines 10–11. Notice the two facts are split: angle = direction, duration = distance." },
+        { q: "How does a bee show that food is very far away?",
+          opts: ["It dances in a larger circle","It waggles for a longer time","It dances closer to the sun","It repeats the dance many times"], a: 1,
+          why: "Detail, line 13: the longer the bee waggles, the more distant the food." },
+        { q: "The word \"it\" in line 12 refers to",
+          opts: ["the dance","the hive","the food source","the sun"], a: 2,
+          why: "Reference: the duration shows how far away the food source is. Substitute each option to check." },
+        { q: "What can be inferred about scientists before the 1940s?",
+          opts: ["They did not yet understand what the dance meant.","They believed bees could not see the sun.","They had never observed bees dancing.","They thought bees were more intelligent than humans."], a: 0,
+          why: "Inference: if von Frisch decoded it in the 1940s, its meaning was not understood before — one logical step, no more." },
+        { q: "Why does the author mention the Nobel Prize?",
+          opts: ["To show the importance of von Frisch's discovery","To explain how bees are studied today","To compare bees with other insects","To describe von Frisch's education"], a: 0,
+          why: "Purpose question: the prize is evidence of how significant the discovery was." }
+      ]
+    },
+    { title: "Passage 3 · Why the Brain Needs Sleep", level: "Harder",
+      lines: [
+        "For a long time, scientists regarded sleep as a passive",
+        "state in which the brain simply rested. Research over the",
+        "past few decades has overturned this view. The sleeping",
+        "brain, far from being idle, is intensely active, and one",
+        "of its most important tasks is the consolidation of",
+        "memory — the process by which fragile new memories are",
+        "converted into stable, long-term ones.",
+        "During deep sleep, the brain appears to replay the",
+        "experiences of the day, strengthening the connections",
+        "between neurons that encode important information while",
+        "weakening those that do not. This selective process may",
+        "explain why people often solve problems after, quite",
+        "literally, sleeping on them.",
+        "The implications for students are clear. Staying up all",
+        "night to study before an examination deprives the brain",
+        "of exactly the process it needs to store new material.",
+        "In one study, students who slept after learning a list of",
+        "words remembered significantly more of them than students",
+        "who remained awake for the same number of hours."
+      ],
+      questions: [
+        { q: "What is the main purpose of the passage?",
+          opts: ["To describe the stages of sleep","To explain the active role sleep plays in memory","To compare human and animal sleep","To argue that students study too much"], a: 1,
+          why: "Main idea: old view rejected, new view explained, implications given — all about sleep and memory." },
+        { q: "According to the passage, scientists used to believe that during sleep the brain",
+          opts: ["replayed the day's events","was simply resting","created new neurons","solved problems"], a: 1,
+          why: "Detail, lines 1–2: sleep was seen as a passive state of rest." },
+        { q: "The word \"idle\" in line 4 is closest in meaning to",
+          opts: ["inactive","damaged","confused","asleep"], a: 0,
+          why: "Vocabulary: \"far from being idle, is intensely active\" — the contrast gives you the meaning." },
+        { q: "What does the brain appear to do during deep sleep?",
+          opts: ["Erase all unimportant memories","Replay the experiences of the day","Stop all electrical activity","Create dreams about the future"], a: 1,
+          why: "Detail, lines 8–9. Option A is too extreme — the text says \"weakening\", not erasing." },
+        { q: "The word \"consolidation\" in line 5 is closest in meaning to",
+          opts: ["deletion","strengthening","invention","comparison"], a: 1,
+          why: "Vocabulary: the definition follows the dash — fragile memories converted into stable ones." },
+        { q: "The word \"them\" in line 13 refers to",
+          opts: ["connections","neurons","problems","experiences"], a: 2,
+          why: "Reference: people solve problems after sleeping on them — the idiom \"to sleep on a problem\"." },
+        { q: "The author would most probably advise a student to",
+          opts: ["study all night before an important exam","sleep well after studying new material","avoid studying word lists","drink coffee to stay awake"], a: 1,
+          why: "Inference: the passage says all-night study deprives the brain of what it needs — so the advice is the opposite." },
+        { q: "What was the result of the study mentioned in the passage?",
+          opts: ["Students who slept remembered more words.","All students remembered the same number of words.","Students who stayed awake learned faster.","The study produced no clear results."], a: 0,
+          why: "Detail, last three lines: the sleepers remembered significantly more." }
+      ]
+    }
+];
+
+/* ---------- Question store & interaction ---------- */
+const QSTORE = {};
+const LETTERS = ["A","B","C","D"];
+
+function optsHTML(qid, opts) {
+    return '<div class="opts">' + opts.map((o, i) =>
+        '<button class="opt" data-q="' + qid + '" data-i="' + i + '" onclick="selectOpt(this)">' +
+        '<span class="bub">' + LETTERS[i] + '</span><span>' + o + '</span></button>'
+    ).join('') + '</div>';
+}
+function selectOpt(btn) {
+    const card = btn.closest('.q-card');
+    if (card.classList.contains('revealed')) return;
+    card.querySelectorAll('.opt').forEach(o => o.classList.remove('sel'));
+    btn.classList.add('sel');
+}
+function revealQ(qid, btn) {
+    const card = document.getElementById('card-' + qid);
+    const data = QSTORE[qid];
+    if (!card || !data) return;
+    const open = !card.classList.contains('revealed');
+    if (open) {
+        card.classList.add('revealed');
+        card.querySelectorAll('.opt').forEach(o => o.classList.toggle('correct', +o.dataset.i === data.a));
+        card.querySelector('.expl').hidden = false;
+        btn.textContent = 'Hide answer ↑';
+    } else {
+        card.classList.remove('revealed');
+        card.querySelectorAll('.opt').forEach(o => o.classList.remove('correct'));
+        card.querySelector('.expl').hidden = true;
+        btn.textContent = 'Reveal answer ↓';
+    }
+}
+function toggleBox(id, btn, showTxt, hideTxt) {
+    const el = document.getElementById(id);
+    const open = el.hasAttribute('hidden');
+    if (open) { el.removeAttribute('hidden'); btn.textContent = hideTxt; }
+    else { el.setAttribute('hidden', ''); btn.textContent = showTxt; }
+}
+
+function qCardHTML(qid, num, qText, opts, why, extraActions) {
+    return '<div class="q-card" id="card-' + qid + '">' +
+        '<div class="q-top"><span class="q-num">' + num + '</span></div>' +
+        '<div class="q-text">' + qText + '</div>' +
+        optsHTML(qid, opts) +
+        '<div class="q-actions">' + (extraActions || '') +
+        '<button class="reveal-btn" onclick="revealQ(\'' + qid + '\', this)">Reveal answer ↓</button></div>' +
+        '<div class="expl" hidden><b>Answer: ' + LETTERS[QSTORE[qid].a] + '.</b> ' + why + '</div>' +
+    '</div>';
+}
+
+/* ---------- Renderers ---------- */
+function transcriptHTML(lines) {
+    return lines.map(l => '<div><span class="sp">' + (l[0] === 'M' ? 'Man' : l[0] === 'W' ? 'Woman' : 'Narrator') + ':</span> ' + l[1] + '</div>').join('');
+}
+
+function playA(i, btn) { speakLines(PART_A[i].conv.concat([["N", PART_A[i].q]]), btn); }
+function playB(btn) { speakLines(PART_B.conv, btn); }
+function readQB(i, btn) { speakLines([["N", PART_B.questions[i].q]], btn); }
+function playC(t, btn) { speakLines([[PART_C[t].speaker, PART_C[t].text]], btn); }
+function readQC(t, i, btn) { speakLines([["N", PART_C[t].questions[i].q]], btn); }
+
+function renderPartA() {
+    const box = document.getElementById('la-items');
+    box.innerHTML = PART_A.map((item, idx) => {
+        const qid = 'la' + idx;
+        QSTORE[qid] = { a: item.a };
+        const play = '<button class="play-btn" onclick="playA(' + idx + ', this)">▶ Play</button>' +
+            '<button class="ghost-btn" onclick="toggleBox(\'tr-' + qid + '\', this, \'Show transcript\', \'Hide transcript\')">Show transcript</button>';
+        return '<div class="q-card" id="card-' + qid + '">' +
+            '<div class="q-top"><span class="q-num">' + (idx + 1) + '</span>' +
+            '<span class="q-text" style="margin:0">' + item.q + '</span></div>' +
+            optsHTML(qid, item.opts) +
+            '<div class="q-actions">' + play +
+            '<button class="reveal-btn" onclick="revealQ(\'' + qid + '\', this)">Reveal answer ↓</button></div>' +
+            '<div class="transcript" id="tr-' + qid + '" hidden>' + transcriptHTML(item.conv) + '</div>' +
+            '<div class="expl" hidden><b>Answer: ' + LETTERS[item.a] + '.</b> ' + item.why + '</div>' +
+        '</div>';
+    }).join('');
+}
+
+function renderPartB() {
+    const box = document.getElementById('lb-items');
+    let html = '<div class="q-card">' +
+        '<div class="q-top"><span class="q-num">🎧</span><span class="q-text" style="margin:0">' + PART_B.title + '</span></div>' +
+        '<div class="q-actions">' +
+        '<button class="play-btn" onclick="playB(this)">▶ Play conversation</button>' +
+        '<button class="ghost-btn" onclick="toggleBox(\'tr-lb\', this, \'Show transcript\', \'Hide transcript\')">Show transcript</button></div>' +
+        '<div class="transcript" id="tr-lb" hidden>' + transcriptHTML(PART_B.conv) + '</div></div>';
+    html += PART_B.questions.map((qu, i) => {
+        const qid = 'lb' + i;
+        QSTORE[qid] = { a: qu.a };
+        const readBtn = '<button class="ghost-btn" onclick="readQB(' + i + ', this)">🔈 Read question</button>';
+        return qCardHTML(qid, (i + 13), qu.q, qu.opts, qu.why, readBtn);
+    }).join('');
+    box.innerHTML = html;
+}
+
+function renderPartC() {
+    const box = document.getElementById('lc-items');
+    let html = '';
+    let num = 17;
+    PART_C.forEach((talk, t) => {
+        html += '<div class="q-card">' +
+            '<div class="q-top"><span class="q-num">🎧</span><span class="q-text" style="margin:0">' + talk.title + '</span></div>' +
+            '<div class="q-actions">' +
+            '<button class="play-btn" onclick="playC(' + t + ', this)">▶ Play talk</button>' +
+            '<button class="ghost-btn" onclick="toggleBox(\'tr-lc' + t + '\', this, \'Show transcript\', \'Hide transcript\')">Show transcript</button></div>' +
+            '<div class="transcript" id="tr-lc' + t + '" hidden>' + talk.text + '</div></div>';
+        html += talk.questions.map((qu, i) => {
+            const qid = 'lc' + t + '_' + i;
+            QSTORE[qid] = { a: qu.a };
+            const readBtn = '<button class="ghost-btn" onclick="readQC(' + t + ',' + i + ', this)">🔈 Read question</button>';
+            return qCardHTML(qid, num++, qu.q, qu.opts, qu.why, readBtn);
+        }).join('');
+    });
+    box.innerHTML = html;
+}
+
+function renderStructure() {
+    document.getElementById('st-items').innerHTML = STRUCTURE.map((item, i) => {
+        const qid = 'st' + i;
+        QSTORE[qid] = { a: item.a };
+        const stem = item.stem.replace('____', '<span class="blank"></span>');
+        return '<div class="q-card" id="card-' + qid + '">' +
+            '<div class="q-top"><span class="q-num">' + (i + 1) + '</span></div>' +
+            '<div class="q-stem">' + stem + '</div>' +
+            optsHTML(qid, item.opts) +
+            '<div class="q-actions"><button class="reveal-btn" onclick="revealQ(\'' + qid + '\', this)">Reveal answer ↓</button></div>' +
+            '<div class="expl" hidden><b>Answer: ' + LETTERS[item.a] + '.</b> ' + item.why + '</div>' +
+        '</div>';
+    }).join('');
+}
+
+function renderWritten() {
+    document.getElementById('we-items').innerHTML = WRITTEN.map((item, i) => {
+        const qid = 'we' + i;
+        QSTORE[qid] = { a: LETTERS.indexOf(item.a) };
+        const stem = item.parts.map(p =>
+            typeof p === 'string' ? p : '<span class="seg">' + p.t + '</span><sup>' + p.l + '</sup>'
+        ).join('');
+        const opts = item.parts.filter(p => typeof p !== 'string').map(p => '"' + p.t + '"');
+        return '<div class="q-card" id="card-' + qid + '">' +
+            '<div class="q-top"><span class="q-num">' + (i + 13) + '</span></div>' +
+            '<div class="q-stem">' + stem + '</div>' +
+            optsHTML(qid, opts) +
+            '<div class="q-actions"><button class="reveal-btn" onclick="revealQ(\'' + qid + '\', this)">Reveal answer ↓</button></div>' +
+            '<div class="expl" hidden><b>Answer: ' + item.a + '.</b> ' + item.why + '</div>' +
+        '</div>';
+    }).join('');
+}
+
+function renderReading() {
+    let num;
+    document.getElementById('rd-passages').innerHTML = READING.map((p, pi) => {
+        num = 1;
+        let html = '<div class="part-head"><h3 style="color:var(--read)">' + p.title + '</h3><span>' + p.level + '</span></div>';
+        html += '<div class="passage">' +
+            p.lines.map((ln, li) => '<div class="pline"><span class="ln">' + (li + 1) + '</span><span>' + ln + '</span></div>').join('') +
+        '</div>';
+        html += p.questions.map((qu, i) => {
+            const qid = 'rd' + pi + '_' + i;
+            QSTORE[qid] = { a: qu.a };
+            return qCardHTML(qid, num++, qu.q, qu.opts, qu.why, '');
+        }).join('');
+        return html;
+    }).join('');
+}
+
+/* ---------- Init ---------- */
+document.addEventListener('DOMContentLoaded', () => {
+    renderPartA();
+    renderPartB();
+    renderPartC();
+    renderStructure();
+    renderWritten();
+    renderReading();
+});
+window.addEventListener('beforeunload', stopSpeech);
+</script>
+</body>
+</html>
