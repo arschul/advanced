@@ -1,0 +1,2276 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced 4 – Booklet Companion – GrammarHub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<style>
+:root{
+ --paper:#f3efe7; --card:#fbf9f4; --raise:#ffffff;
+ --ink:#22302a; --ink-soft:#5d6b63; --ink-faint:#8a958d;
+ --line:#e5ddd0; --line-soft:#eee7db;
+ --brand:#1f6f5c; --brand-soft:#e4efe9; --brand-deep:#144a3d;
+ --coral:#e2664a; --coral-soft:#fbe4dc;
+ --gold:#cf9526; --gold-soft:#f6ecd4;
+ --correct:#1f7a55; --correct-soft:#e2efe6;
+ --wrong:#cf4a37; --wrong-soft:#f8e2dd;
+ --r:16px; --r-sm:10px; --r-xs:7px;
+}
+:root[data-theme="dark"]{
+ --paper:#121815; --card:#1a221e; --raise:#212b26;
+ --ink:#eef2ec; --ink-soft:#a7b3ac; --ink-faint:#788079;
+ --line:#2a352f; --line-soft:#232d28;
+ --brand:#4bb795; --brand-soft:#1a2a24; --brand-deep:#78d3b6;
+ --coral:#f0805f; --coral-soft:#2c211d;
+ --gold:#e0b24d; --gold-soft:#2a2417;
+ --correct:#4bb488; --correct-soft:#18271f;
+ --wrong:#e46a54; --wrong-soft:#2c1d19;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;}
+em{font-family:'Newsreader',Georgia,serif;font-style:italic;}
+
+/* ── TOP BAR ── */
+.top{position:sticky;top:0;z-index:60;display:flex;align-items:center;gap:.9rem;height:60px;padding:0 1.1rem;
+ background:color-mix(in srgb, var(--paper) 92%, transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
+.burger{display:inline-flex;align-items:center;gap:.45rem;background:none;border:1px solid var(--line);border-radius:100px;height:36px;padding:0 .85rem;font:inherit;font-size:.84rem;font-weight:600;color:var(--ink-soft);cursor:pointer;flex:none;}
+.burger:hover{border-color:var(--brand);color:var(--brand);}
+.burger b{font-weight:700;}
+.brand{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.02rem;letter-spacing:-.02em;color:var(--brand);text-decoration:none;white-space:nowrap;}
+.brand span{color:var(--coral);}
+.brand small{display:block;font-family:'DM Sans',sans-serif;font-weight:500;font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);}
+.searchwrap{position:relative;flex:1;max-width:420px;margin-left:auto;}
+.search{width:100%;background:var(--card);border:1px solid var(--line);border-radius:100px;padding:.5rem 2.2rem .5rem 2.2rem;font:inherit;font-size:.87rem;color:var(--ink);}
+.search:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft);}
+.searchwrap::before{content:'⌕';position:absolute;left:.85rem;top:50%;transform:translateY(-50%);color:var(--ink-faint);font-size:1.05rem;}
+.iconbtn{background:none;border:1px solid var(--line);border-radius:100px;width:36px;height:36px;display:grid;place-items:center;cursor:pointer;color:var(--ink-soft);font-size:.95rem;flex:none;}
+.iconbtn:hover{border-color:var(--brand);color:var(--brand);}
+.iconbtn[disabled]{opacity:.32;cursor:default;}
+.iconbtn[disabled]:hover{border-color:var(--line);color:var(--ink-soft);}
+.setnav{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:.84rem;color:var(--ink-soft);white-space:nowrap;letter-spacing:-.01em;overflow:hidden;text-overflow:ellipsis;max-width:36vw;}
+.setnav b{color:var(--coral);font-weight:800;margin-right:.4rem;}
+
+/* ── LAYOUT ── */
+.wrap{display:block;}
+.side{position:fixed;top:60px;left:0;z-index:56;width:312px;max-width:86vw;height:calc(100vh - 60px);overflow-y:auto;
+ border-right:1px solid var(--line);padding:1.1rem .8rem 4rem;background:var(--paper);
+ transform:translateX(-103%);transition:transform .24s ease;box-shadow:0 14px 44px rgba(0,0,0,.18);}
+.side.open{transform:none;}
+.scrim{display:none;}
+.scrim.on{display:block;position:fixed;inset:60px 0 0;background:rgba(0,0,0,.34);z-index:54;}
+.side h4{font-family:'DM Sans',sans-serif;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin:1.3rem .55rem .5rem;font-weight:700;}
+.side h4:first-child{margin-top:.2rem;}
+.slink{display:flex;gap:.6rem;align-items:baseline;width:100%;text-align:left;background:none;border:none;border-radius:var(--r-sm);padding:.5rem .55rem;cursor:pointer;color:var(--ink-soft);font:inherit;font-size:.84rem;line-height:1.35;}
+.slink:hover{background:var(--card);color:var(--ink);}
+.slink.on{background:var(--brand-soft);color:var(--brand-deep);font-weight:600;}
+.slink .num{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:.72rem;color:var(--ink-faint);min-width:1.35rem;flex:none;}
+.slink.on .num{color:var(--brand);}
+.slink .ttl{flex:1;}
+.slink .pip{width:7px;height:7px;border-radius:50%;background:var(--line);flex:none;align-self:center;}
+.slink .pip.part{background:var(--gold);}
+.slink .pip.full{background:var(--brand);}
+.slink.hide{display:none;}
+.side h4.hide{display:none;}
+
+.main{padding:2rem clamp(1.1rem,3.5vw,3rem) 6rem;max-width:1400px;margin:0 auto;}
+
+/* ── SET HEADER ── */
+.shead{border-bottom:1px solid var(--line);padding-bottom:1.4rem;margin-bottom:1.8rem;}
+.eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--coral);background:var(--coral-soft);border-radius:100px;padding:.28rem .7rem;}
+.shead h1{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(1.7rem,3.6vw,2.5rem);line-height:1.08;letter-spacing:-.025em;margin:.8rem 0 .4rem;}
+.shead .sub{color:var(--ink-soft);font-size:1rem;max-width:70ch;}
+.bar{height:6px;border-radius:100px;background:var(--line-soft);margin-top:1.1rem;overflow:hidden;}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--brand),var(--gold));width:0;transition:width .4s;}
+.barlabel{display:flex;justify-content:space-between;font-size:.74rem;color:var(--ink-faint);margin-top:.45rem;}
+
+/* ── SECTION ── */
+.sec{margin:2.4rem 0;}
+.sec > h2{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.22rem;letter-spacing:-.01em;display:flex;align-items:center;gap:.7rem;margin-bottom:1rem;}
+.sec > h2 .tag{font-size:.72rem;font-weight:700;letter-spacing:.08em;color:var(--brand);background:var(--brand-soft);border-radius:var(--r-xs);padding:.2rem .5rem;flex:none;}
+
+/* learn blocks */
+.learn{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1.3rem 1.4rem;margin-bottom:1.2rem;}
+.learn > * + *{margin-top:.95rem;}
+.learn p{font-size:.95rem;color:var(--ink-soft);max-width:82ch;}
+.formula{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;text-align:center;background:var(--raise);border:1px dashed var(--brand);border-radius:var(--r-sm);padding:.85rem 1rem;color:var(--brand-deep);letter-spacing:.01em;font-size:.95rem;}
+.trick{background:var(--gold-soft);border-left:3px solid var(--gold);border-radius:var(--r-xs);padding:.75rem .95rem;font-size:.9rem;color:var(--ink);}
+.note{background:var(--coral-soft);border-left:3px solid var(--coral);border-radius:var(--r-xs);padding:.75rem .95rem;font-size:.9rem;}
+.egs{display:flex;flex-direction:column;gap:.5rem;}
+.egs{max-width:92ch;}
+.egs div{font-family:'Newsreader',Georgia,serif;font-style:italic;font-size:1.02rem;line-height:1.5;padding-left:1.1rem;position:relative;color:var(--ink);}
+.egs div::before{content:'';position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--gold);}
+.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+table{border-collapse:collapse;width:100%;font-size:.87rem;min-width:420px;}
+th{text-align:left;font-weight:700;font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-faint);padding:.5rem .65rem;border-bottom:1px solid var(--line);}
+td{padding:.55rem .65rem;border-bottom:1px solid var(--line-soft);vertical-align:top;color:var(--ink-soft);}
+td:first-child{color:var(--ink);font-weight:500;}
+tr:last-child td{border-bottom:none;}
+
+/* ── EXERCISE CARD ── */
+.ex{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1.3rem 1.4rem;margin-bottom:1.1rem;}
+.ex.done{border-color:var(--brand);}
+.exhead{display:flex;align-items:flex-start;gap:.7rem;margin-bottom:.35rem;}
+.exno{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:.78rem;color:var(--raise);background:var(--brand);border-radius:var(--r-xs);padding:.22rem .5rem;flex:none;letter-spacing:.03em;}
+.ex.done .exno::after{content:' ✓';}
+.exi{font-size:.9rem;color:var(--ink-soft);flex:1;}
+.items{margin-top:1rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,30rem),1fr));gap:.9rem 2.2rem;align-items:start;}
+.items.one{grid-template-columns:minmax(0,1fr);}
+.item{display:flex;gap:.7rem;align-items:flex-start;}
+.idx{font-family:'Bricolage Grotesque',sans-serif;font-size:.78rem;font-weight:700;color:var(--ink-faint);min-width:1.3rem;padding-top:.35rem;flex:none;}
+.body{flex:1;min-width:0;}
+.q{font-size:.95rem;line-height:1.75;}
+.q em{color:var(--ink);}
+
+input.txt,textarea.txt{font:inherit;font-size:.92rem;color:var(--ink);background:var(--raise);border:1px solid var(--line);border-radius:var(--r-xs);padding:.35rem .55rem;}
+input.txt{min-width:8rem;width:9.5rem;}
+input.gapi{width:8.5rem;text-align:center;border-bottom:2px solid var(--brand);border-radius:var(--r-xs) var(--r-xs) 0 0;}
+input.txt:focus,textarea.txt:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft);}
+.wide{width:100%;display:block;margin-top:.4rem;}
+textarea.txt{width:100%;display:block;margin-top:.45rem;resize:vertical;min-height:2.6rem;line-height:1.6;}
+.ok{border-color:var(--correct)!important;background:var(--correct-soft)!important;}
+.no{border-color:var(--wrong)!important;background:var(--wrong-soft)!important;}
+
+.opts{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.45rem;}
+.opt{font:inherit;font-size:.83rem;background:var(--raise);border:1px solid var(--line);border-radius:100px;padding:.28rem .8rem;cursor:pointer;color:var(--ink-soft);transition:.15s;}
+.opt:hover{border-color:var(--brand);color:var(--brand);}
+.opt.sel{background:var(--brand);border-color:var(--brand);color:#fff;font-weight:600;}
+.opt.sel.good{background:var(--correct);border-color:var(--correct);}
+.opt.sel.bad{background:var(--wrong);border-color:var(--wrong);}
+.opt.reveal{border-color:var(--correct);color:var(--correct);}
+select.txt{font:inherit;font-size:.88rem;padding:.32rem .5rem;border:1px solid var(--line);border-radius:var(--r-xs);background:var(--raise);color:var(--ink);margin-top:.35rem;}
+
+.why{font-size:.83rem;color:var(--ink-soft);margin-top:.4rem;padding-left:.75rem;border-left:2px solid var(--line);display:none;}
+.why.show{display:block;}
+.why b{color:var(--brand-deep);font-weight:600;}
+
+.row{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1.1rem;align-items:center;}
+.btn{font:inherit;font-size:.85rem;font-weight:600;border-radius:100px;padding:.45rem 1.05rem;cursor:pointer;border:1px solid transparent;}
+.btn.primary{background:var(--brand);color:#fff;}
+.btn.primary:hover{background:var(--brand-deep);}
+.btn.ghost{background:none;border-color:var(--line);color:var(--ink-soft);}
+.btn.ghost:hover{border-color:var(--coral);color:var(--coral);}
+.score{margin-left:auto;font-size:.83rem;font-weight:600;color:var(--ink-faint);}
+.score.good{color:var(--correct);}
+.score.part{color:var(--gold);}
+
+.model{margin-top:.45rem;font-family:'Newsreader',Georgia,serif;font-style:italic;font-size:1rem;color:var(--brand-deep);background:var(--brand-soft);border-radius:var(--r-xs);padding:.5rem .7rem;display:none;}
+.model.show{display:block;}
+.model b{font-family:'DM Sans',sans-serif;font-style:normal;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:.2rem;opacity:.75;}
+
+.project{background:var(--raise);border:1px solid var(--gold);border-radius:var(--r-sm);padding:1rem 1.1rem;font-size:.93rem;}
+.project .extra{margin-top:.7rem;padding-top:.7rem;border-top:1px dashed var(--line);color:var(--ink-soft);font-size:.88rem;}
+
+.saved{font-size:.74rem;color:var(--ink-faint);margin-top:.3rem;height:1rem;}
+
+/* ── HOME ── */
+.home h1{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(2rem,5vw,3.1rem);line-height:1.03;letter-spacing:-.03em;margin:.9rem 0 .7rem;}
+.home h1 span{color:var(--coral);}
+.home .lede{color:var(--ink-soft);font-size:1.02rem;max-width:46ch;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(226px,1fr));gap:.9rem;margin-top:1.6rem;}
+.tile{text-align:left;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1rem 1.1rem;cursor:pointer;font:inherit;color:inherit;transition:.2s;position:relative;}
+.tile:hover{border-color:var(--brand);transform:translateY(-3px);}
+.tile .n{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:.72rem;letter-spacing:.1em;color:var(--coral);}
+.tile h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:.99rem;line-height:1.25;margin:.35rem 0 .3rem;letter-spacing:-.01em;}
+.tile p{font-size:.8rem;color:var(--ink-faint);line-height:1.45;}
+.tile .mini{height:4px;border-radius:100px;background:var(--line-soft);margin-top:.8rem;overflow:hidden;}
+.tile .mini i{display:block;height:100%;background:var(--brand);width:0;}
+.tile.hide{display:none;}
+.foot{margin-top:3.5rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.78rem;color:var(--ink-faint);line-height:1.7;}
+
+.pager{display:flex;gap:.6rem;margin-top:3rem;padding-top:1.4rem;border-top:1px solid var(--line);}
+.pager button{flex:1;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:var(--r-sm);padding:.75rem .95rem;cursor:pointer;font:inherit;color:var(--ink);}
+.pager button:hover{border-color:var(--brand);}
+.pager small{display:block;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:.15rem;}
+.pager .nx{text-align:right;}
+.pager button[disabled]{opacity:.35;cursor:default;}
+
+@media(max-width:880px){
+ .burger b{display:none;}
+ .burger{padding:0 .7rem;}
+ .main{padding:1.4rem 1.1rem 5rem;}
+ .brand small{display:none;}
+ .searchwrap{max-width:none;}
+ .setnav{display:none;}
+}
+@media(max-width:640px){
+ .searchwrap{display:none;}
+}
+@media print{
+ .top,.side,.pager,.row,.scrim{display:none!important;}
+ .main{padding:0;max-width:none;}
+ .model,.why{display:block!important;}
+ .ex,.learn{break-inside:avoid;border-color:#ccc;}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <button class="burger" id="burger" aria-label="Show set list">☰ <b>Sets</b></button>
+  <span class="setnav" id="setnav"></span>
+  <a class="brand" href="./index.html" title="Back to the Advanced Hub">Advanced<span>4</span><small>Booklet companion</small></a>
+  <div class="searchwrap"><input class="search" id="q" type="search" placeholder="Search sets — conditionals, ellipsis, op-ed…" autocomplete="off" aria-label="Search sets"></div>
+  <button class="iconbtn" id="prev" title="Previous set (←)" aria-label="Previous set">‹</button>
+  <button class="iconbtn" id="next" title="Next set (→)" aria-label="Next set">›</button>
+  <button class="iconbtn" id="print" title="Print this set" aria-label="Print this set">⎙</button>
+  <button class="iconbtn" id="theme" title="Light / dark" aria-label="Toggle light or dark">☾</button>
+</header>
+
+<div class="scrim" id="scrim"></div>
+<div class="wrap">
+  <nav class="side" id="side" aria-label="Sets"></nav>
+  <main class="main" id="main"></main>
+</div>
+
+<script>
+/* ══════════ DATA ══════════ */
+var DATA=[];
+/* ===== SETS 1–5 ===== */
+DATA.push(
+
+{n:1,t:"If This, Then That: Mastering Conditionals",s:"Conditional review — zero, first, second, third",grp:"Grammar core",tags:"conditional zero first second third if hypothetical",
+ sec:[
+  {L:"A",t:"Conditional review – four types",
+   learn:[
+    {b:"p",x:"Conditionals express cause and effect or hypothetical situations. The verb tense tells you how probable (or real) the situation is."},
+    {b:"table",h:["Conditional","Use","If clause","Main clause","Example"],r:[
+      ["Zero","General truths / scientific facts","If + present simple","present simple","If you heat ice, it melts."],
+      ["First","Real / possible future","If + present simple","will + infinitive","If it rains, I will stay home."],
+      ["Second","Unreal / hypothetical present or future","If + past simple","would + infinitive","If I won the lottery, I would travel."],
+      ["Third","Unreal / hypothetical past (impossible to change)","If + past perfect","would have + past participle","If I had studied, I would have passed."]]},
+    {b:"trick",x:"Zero = always true · First = maybe true in the future · Second = imagine now (not true) · Third = imagine the past (too late)"}
+   ],
+   ex:[
+    {n:"A1",k:"pick",i:"Read each sentence. Choose Z (zero), F (first), S (second) or T (third).",
+     o:[["Z","Zero"],["F","First"],["S","Second"],["T","Third"]],
+     q:[["If you mix blue and yellow, you get green.","Z"],
+        ["If I had seen the email, I would have replied.","T"],
+        ["If she studies hard, she will pass the exam.","F"],
+        ["If I were the president, I would change the law.","S"],
+        ["If it snows tomorrow, school will close.","F"],
+        ["If he had worn a helmet, he wouldn't have been injured.","T"],
+        ["Water freezes if the temperature drops below 0°C.","Z"],
+        ["If I knew the answer, I would tell you.","S"]]},
+    {n:"A2",k:"write",i:"Complete each sentence with your own ideas. Check to compare with a model answer.",
+     q:[["(Zero) If you don't water your plants,","they die."],
+        ["(First) If I finish my work early today,","I will go for a run before dinner."],
+        ["(Second) If I could speak three languages fluently,","I would apply for a job abroad."],
+        ["(Third) If I had woken up earlier this morning,","I would have caught the express bus."],
+        ["(Zero) If people drive too fast,","accidents happen."],
+        ["(First) If it rains this weekend,","we will postpone the barbecue."],
+        ["(Second) If I had more free time,","I would learn to play the piano."],
+        ["(Third) If I had chosen a different career,","I would have moved to another city."]]}
+   ]},
+  {L:"B",t:"Third conditional – focus on past impossibility",
+   learn:[
+    {b:"p",x:"The third conditional talks about the past, which cannot be changed."},
+    {b:"formula",x:"IF + PAST PERFECT, WOULD HAVE + PAST PARTICIPLE"},
+    {b:"eg",x:["If I had saved more money, I would have bought the car. (But I didn't save money, so I didn't buy the car.)",
+              "If I hadn't missed the bus, I wouldn't have been late.",
+              "If she had studied, she wouldn't have failed."]}
+   ],
+   ex:[
+    {n:"B1",k:"gap",i:"Complete with the third conditional.",
+     q:[["If I ___ (know) you were coming, I ___ (bake) a cake.",["had known","would have baked"]],
+        ["She ___ (not / miss) the flight if she ___ (leave) earlier.",["wouldn't have missed|would not have missed","had left"]],
+        ["If they ___ (save) more money, they ___ (buy) a house by now.",["had saved","would have bought"]],
+        ["He ___ (not / get) the job if he ___ (not / prepare) for the interview.",["wouldn't have got|would not have got|wouldn't have gotten|would not have gotten","hadn't prepared|had not prepared"]],
+        ["If we ___ (take) a taxi, we ___ (arrive) on time.",["had taken","would have arrived"]]]},
+    {n:"B2",k:"open",i:"Write two third conditional sentences about regrets or past mistakes.",
+     q:[["Something you regret: If I had … , I would have …","If I had started saving earlier, I would have travelled last summer."],
+        ["Something you are glad happened differently: If I hadn't … , I wouldn't have …","If I hadn't taken that evening course, I wouldn't have met my best friend."]]}
+   ]},
+  {L:"C",t:"Write one sentence for each conditional type",
+   learn:[],
+   ex:[
+    {n:"C1",k:"study",i:"Study the models.",h:["Conditional","Model sentence"],r:[
+      ["Zero","If you don't charge your phone, the battery dies."],
+      ["First","If I finish this course successfully, I will apply for a better job."],
+      ["Second","If I spoke perfect English, I would feel more confident in interviews."],
+      ["Third","If I had started learning English earlier, I would have reached C1 sooner."]]},
+    {n:"C2",k:"open",i:"Think about your health and write your own example for each conditional.",
+     q:[["Zero — general truth / scientific fact","If you skip breakfast, your concentration drops."],
+        ["First — real / possible future","If I sleep eight hours tonight, I will feel much sharper tomorrow."],
+        ["Second — unreal / hypothetical present","If I had a gym next to my office, I would train every morning."],
+        ["Third — unreal / hypothetical past","If I had seen a doctor sooner, I wouldn't have been ill for so long."]]}
+   ]},
+  {L:"D",t:"Mini Project: The Time Machine Letter",learn:[],
+   ex:[{n:"D1",k:"project",i:"Write a short letter (4–6 sentences) from your future self (five years from now) to your present self, stating some facts and/or giving advice. Use at least one conditional of each type (zero, first, second, third). Underline each conditional.",
+        x:"Example starter: \"Dear younger me, here's what life taught me. If you don't study…\""}]}
+ ]},
+
+{n:2,t:"Time Travel Trouble: Mixed Conditionals",s:"Mixed conditionals — past → present / present → past",grp:"Grammar core",tags:"mixed conditional past present paraphrase",
+ sec:[
+  {L:"A",t:"Mixed conditionals – what are they?",
+   learn:[
+    {b:"p",x:"In Set 1 you learned four standard conditionals where both clauses are in the same time frame. Mixed conditionals combine different time frames. They are common in academic English and near-native speech."},
+    {b:"formula",x:"DIFFERENT TIME IN THE IF CLAUSE + DIFFERENT TIME IN THE MAIN CLAUSE"},
+    {b:"table",h:["Type","If clause","Main clause","Meaning","Example"],r:[
+      ["Past → Present","Past (something that did or didn't happen)","Present result","A past action affects the present","If I had studied medicine (past), I would be a doctor now (present)."],
+      ["Present → Past","Present (a general truth or habit)","Past result","A present situation affects a past outcome","If I were more organized (present), I wouldn't have missed the deadline (past)."]]},
+    {b:"trick",x:"Past → Present = had done (if) + would do (main) · Present → Past = did / were (if) + would have done (main)"}
+   ],
+   ex:[
+    {n:"A1",k:"pick",i:"Read each mixed conditional. Choose PaPr (past → present) or PrPa (present → past).",
+     o:[["PaPr","Past → Present"],["PrPa","Present → Past"]],
+     q:[["If I had taken that job, I would be living in London now.","PaPr"],
+        ["If she weren't afraid of flying, she would have visited us last year.","PrPa"],
+        ["If he had saved more money, he wouldn't be so stressed about bills.","PaPr"],
+        ["If I spoke French fluently, I would have applied for that position.","PrPa"],
+        ["If we had left earlier, we wouldn't be stuck in traffic now.","PaPr"],
+        ["If you were more patient, you wouldn't have argued with the manager.","PrPa"]]},
+    {n:"A2",k:"write",i:"Complete each sentence with your own idea.",
+     q:[["(Past → Present) If I had studied harder in high school, I … now.","would have a scholarship now."],
+        ["(Present → Past) If I were more confident in my English, I … yesterday.","would have spoken up in the meeting yesterday."],
+        ["(Past → Present) If I hadn't forgotten my phone at home, I … right now.","would be answering your messages right now."],
+        ["(Present → Past) If I didn't have so much work to do, I … last weekend.","would have gone to the coast last weekend."],
+        ["(Past → Present) If she had accepted the scholarship, she … today.","would be studying in Lisbon today."],
+        ["(Present → Past) If he weren't so stubborn, he … last week.","would have apologised last week."]]}
+   ]},
+  {L:"B",t:"Conditional paraphrasing",
+   learn:[
+    {b:"p",x:"Paraphrasing a conditional means expressing the same meaning using different words or a different structure."},
+    {b:"eg",x:["Original: If you don't water the plants, they die. → Paraphrase: Plants die when they are not watered.",
+              "Original: If I had studied law, I would be a lawyer now. → Paraphrase: I'm not a lawyer today because I didn't study law."]}
+   ],
+   ex:[
+    {n:"B1",k:"write",i:"Rewrite each sentence in your own words without changing the meaning.",
+     q:[["If you heat ice, it melts. (zero)","Ice melts when it is heated."],
+        ["If it rains tomorrow, the match will be cancelled. (first)","The match will be cancelled in the event of rain tomorrow."],
+        ["If I were rich, I would buy a house on the beach. (second)","I'm not rich, so I can't buy a house on the beach."],
+        ["If I had set my alarm, I wouldn't have been late. (third)","I was late because I didn't set my alarm."],
+        ["If he had taken the train, he would be here already. (mixed: past → present)","He isn't here yet because he didn't take the train."],
+        ["If she weren't so talented, she wouldn't have won the competition. (mixed: present → past)","She won the competition because she is so talented."]]},
+    {n:"B2",k:"open",i:"Write one original mixed conditional sentence. Then paraphrase it.",
+     q:[["Your original mixed conditional","If I had learned to drive, I would be commuting by car now."],
+        ["Your paraphrase (different words, same meaning)","I take the bus to work because I never learned to drive."]]}
+   ]},
+  {L:"C",t:"Extra practice",learn:[],
+   ex:[
+    {n:"C1",k:"write",i:"Change each pair of sentences into the mixed conditional type indicated.  Model: I didn't go to university. I don't have a degree. (Past → Present) → If I had gone to university, I would have a degree now.",
+     q:[["I am not a good swimmer. I didn't join the water polo team. (Present → Past)","If I were a good swimmer, I would have joined the water polo team."],
+        ["She missed the meeting. She doesn't know the new policy. (Past → Present)","If she hadn't missed the meeting, she would know the new policy."],
+        ["He doesn't speak Spanish. He didn't apply for the job in Madrid. (Present → Past)","If he spoke Spanish, he would have applied for the job in Madrid."],
+        ["They left late. They are stuck in traffic. (Past → Present)","If they hadn't left late, they wouldn't be stuck in traffic."],
+        ["I am not organized. I forgot the deadline. (Present → Past)","If I were organized, I wouldn't have forgotten the deadline."]]},
+    {n:"C2",k:"open",i:"Write 4 mixed conditional sentences using personal examples. Choose one topic: pets, the environment, or family.",
+     q:[["Sentence 1 (past → present)","If we hadn't adopted our dog, the house would be much quieter now."],
+        ["Sentence 2 (past → present)","If my parents had stayed in the countryside, I would be living far from the city today."],
+        ["Sentence 3 (present → past)","If I weren't allergic to cats, I would have taken that kitten last year."],
+        ["Sentence 4 (present → past)","If my family didn't recycle so carefully, we would have produced twice as much waste last year."]]}
+   ]},
+  {L:"D",t:"Mini Project: Mixed Conditional Charades",learn:[],
+   ex:[{n:"D1",k:"project",i:"With a partner or small group, write a list of mixed conditional sentences. Then act them out without speaking the sentence itself. Step 1: write the sentences. Step 2: plan a 30-second silent skit. Step 3: perform for the class. Step 4: classmates guess the exact sentence.",
+        x:"Challenge: write a short paragraph (4–5 sentences) about a regret that affects your present life. Use at least 2 mixed conditionals."}]}
+ ]},
+
+{n:3,t:"The Past Before the Past",s:"Past perfect review — had + past participle",grp:"Grammar core",tags:"past perfect had sequence simple past",
+ sec:[
+  {L:"A",t:"Past perfect – what is it?",
+   learn:[
+    {b:"p",x:"The past perfect shows that one past action happened before another past action."},
+    {b:"formula",x:"HAD + PAST PARTICIPLE"},
+    {b:"table",h:["Sentence","Meaning"],r:[
+      ["When I arrived, she left.","She left right after I arrived (or at the same time) — ambiguous."],
+      ["When I arrived, she had left.","She left BEFORE I arrived. Clear sequence."]]}
+   ],
+   ex:[
+    {n:"A1",k:"mcq",i:"Which action happened FIRST?",
+     q:[["When I woke up, my brother had already made breakfast.",["I woke up","my brother had made breakfast"],1,"The past perfect marks the earlier action."],
+        ["She had finished her homework before the movie started.",["she had finished her homework","the movie started"],0,"Finishing came before the film started."],
+        ["He had never seen the ocean until he visited California.",["he had never seen the ocean","he visited California"],0,"The period of never seeing it comes first; the visit ends it."],
+        ["After they had eaten dinner, they went for a walk.",["they had eaten dinner","they went for a walk"],0,"'After + past perfect' marks the first event."],
+        ["I realized that I had left my keys at work.",["I realized","I had left my keys"],1,"Leaving the keys happened before the moment of realising."]]},
+    {n:"A2",k:"gap",i:"Complete each sentence using the past perfect form of the verb in parentheses.",
+     q:[["By the time we arrived at the theater, the movie ___ (already / start).",["had already started"]],
+        ["She was upset because she ___ (lose) her phone.",["had lost"]],
+        ["He didn't recognize the town because it ___ (change) so much.",["had changed"]],
+        ["After they ___ (finish) the project, they presented it to the class.",["had finished"]],
+        ["I was exhausted because I ___ (not / sleep) well the night before.",["hadn't slept|had not slept"]],
+        ["She ___ (never / try) sushi before she went to Japan.",["had never tried"]]]}
+   ]},
+  {L:"B",t:"Past perfect vs. simple past – when to use each",
+   learn:[
+    {b:"p",x:"The key is sequence. Which event happened first?"},
+    {b:"table",h:["Use","Example","Why"],r:[
+      ["Simple past (both events)","I ate dinner. Then I watched TV.","Clear order, but no emphasis on 'before'."],
+      ["Past perfect + simple past","I had eaten dinner before I watched TV.","Emphasises that eating was COMPLETE before watching."],
+      ["Simple past + simple past (with time marker)","I ate dinner at 7pm and watched TV at 8pm.","Time markers make the order clear without the past perfect."]]},
+    {b:"note",x:"Not necessary: with before, after or when the order is already clear — I ate dinner before I watched TV is fine. Useful: when the order is not obvious — When the police arrived, the thief had left (the thief left first)."}
+   ],
+   ex:[
+    {n:"B1",k:"gap",i:"Complete each sentence with the correct form of the verb in parentheses.",
+     q:[["When I ___ (get) home, my roommate ___ (already / cook) dinner.",["got","had already cooked"]],
+        ["She ___ (finish) her report before the deadline.",["had finished|finished"]],
+        ["By the time the teacher ___ (arrive), the students ___ (leave).",["arrived","had left"]],
+        ["I ___ (never / see) such a beautiful sunset until I ___ (go) to Hawaii.",["had never seen","went"]],
+        ["After he ___ (graduate) from university, he ___ (move) to London.",["had graduated|graduated","moved"]],
+        ["She realized that she ___ (forget) to lock the door before she ___ (leave) the house.",["had forgotten","left"]]]}
+   ]},
+  {L:"C",t:"Write showing clear sequence",
+   learn:[],
+   ex:[
+    {n:"C1",k:"study",i:"Study the models.",h:["Model sentence","First action (past perfect)","Second action (simple past)"],r:[
+      ["I had already eaten dinner when my friend arrived.","had eaten","arrived"],
+      ["She had never traveled abroad before she turned 20.","had never traveled","turned"],
+      ["The train had left by the time we got to the station.","had left","got"]]},
+    {n:"C2",k:"open",i:"Write sentences using the past perfect to show clear sequence. Use the time marker given.",
+     q:[["use before","I had already sent the file before she asked for it."],
+        ["use after","After I had checked the address, I called a taxi."],
+        ["use by the time","By the time the concert started, we had found our seats."],
+        ["use when","When the teacher came in, the class had gone completely silent."],
+        ["use already or never","I had never eaten octopus until that dinner in Lisbon."]]}
+   ]},
+  {L:"D",t:"Mini Project: The \"What Had Happened Was…\" Story",learn:[],
+   ex:[{n:"D1",k:"project",i:"Write a short, funny or dramatic story (5–7 sentences) about a chain of past events where something went wrong or got confusing. Use at least 3 past perfect verbs to show what had already happened before the main event.",x:""}]}
+ ]},
+
+{n:4,t:"The Blame Shifter: Passive Voice",s:"Passive voice in all tenses",grp:"Grammar core",tags:"passive voice active be past participle agent",
+ sec:[
+  {L:"A",t:"Passive voice – what is it?",
+   learn:[
+    {b:"p",x:"In the active voice, the subject does the action. In the passive voice, the subject receives the action."},
+    {b:"table",h:["Voice","Formula","Example"],r:[
+      ["Active","Subject + verb + object","The researcher conducted the study."],
+      ["Passive","Object + be + past participle (+ by + agent)","The study was conducted by the researcher."]]},
+    {b:"note",x:"Why use the passive? The doer is unknown or unimportant (My phone was stolen); the receiver matters more (The president was elected in 2020); academic writing sounds objective (The data were analyzed)."},
+    {b:"table",h:["Tense","Active","Passive (be + past participle)"],r:[
+      ["Present simple","She writes reports.","Reports are written by her."],
+      ["Present continuous","She is writing a report.","A report is being written by her."],
+      ["Past simple","She wrote a report.","A report was written by her."],
+      ["Past continuous","She was writing a report.","A report was being written by her."],
+      ["Present perfect","She has written a report.","A report has been written by her."],
+      ["Past perfect","She had written a report.","A report had been written by her."],
+      ["Future (will)","She will write a report.","A report will be written by her."],
+      ["Future (going to)","She is going to write a report.","A report is going to be written by her."],
+      ["Modals","She must write a report.","A report must be written by her."]]},
+    {b:"trick",x:"The passive always uses be + past participle. The tense lives in the verb be."}
+   ],
+   ex:[
+    {n:"A1",k:"mcq",i:"Active or passive — and which tense?",
+     q:[["The experiment was conducted by the team.",["Active – past simple","Passive – past simple","Passive – present perfect"],1,"was + conducted = past simple passive."],
+        ["Scientists study climate change every day.",["Active – present simple","Passive – present simple","Active – present continuous"],0,"No form of be + participle, so it is active."],
+        ["The results have been published in a journal.",["Passive – past simple","Active – present perfect","Passive – present perfect"],2,"have been + published = present perfect passive."],
+        ["They will announce the winner tomorrow.",["Active – future (will)","Passive – future (will)","Active – present simple"],0,"They (the doer) is the subject, so it is active."],
+        ["The bridge is being repaired right now.",["Passive – present simple","Passive – present continuous","Active – present continuous"],1,"is being + repaired = present continuous passive."]]},
+    {n:"A2",k:"gap",i:"Complete each sentence with the correct passive form of the verb in parentheses.",
+     q:[["English ___ (speak) in many countries around the world.",["is spoken"]],
+        ["The project ___ (finish) by next Friday.",["will be finished"]],
+        ["The cake ___ (eat) before the party started.",["had been eaten"]],
+        ["The documents ___ (sign) by the manager right now.",["are being signed"]],
+        ["A new hospital ___ (build) in our city since last year.",["has been built"]],
+        ["The letter ___ (send) yesterday.",["was sent"]],
+        ["The problem ___ (solve) by the end of the week. (will)",["will be solved"]],
+        ["The windows ___ (break) during the storm last night.",["were broken"]]]}
+   ]},
+  {L:"B",t:"Active vs. passive – when to use each",
+   learn:[
+    {b:"table",h:["Use active when…","Use passive when…"],r:[
+      ["The doer is important","The doer is unknown or obvious"],
+      ["You want to be direct and clear","You want to be objective (academic writing)"],
+      ["Most of the time in everyday speech","The receiver matters more than the doer"]]},
+    {b:"eg",x:["Mistakes were made. (passive — avoids saying WHO)","The manager made mistakes. (active — specific and direct)"]},
+    {b:"note",x:"Academic writing tip: use the passive when the action matters more than who did it. The data were collected over six months reads better than We collected the data over six months."}
+   ],
+   ex:[
+    {n:"B1",k:"mcq",i:"Choose the better option for each context.",
+     q:[["A scientific report about a lab experiment",["I mixed the chemicals.","The chemicals were mixed."],1,"Academic reports stay objective; the doer is obvious."],
+        ["A news article about a robbery",["Someone stole a car from Main Street.","A car was stolen from Main Street."],1,"The doer is unknown, so the passive is natural."],
+        ["An email to a coworker about a mistake",["The report was submitted late.","You submitted the report late."],0,"The passive softens the blame — usually more diplomatic with a colleague."],
+        ["A history textbook",["People built the pyramids thousands of years ago.","The pyramids were built thousands of years ago."],1,"The builders are unknown; the pyramids are the focus."]]}
+   ]},
+  {L:"C",t:"Transform active sentences to passive + explain why",
+   learn:[],
+   ex:[
+    {n:"C1",k:"study",i:"Study the models.",h:["Active sentence","Passive transformation"],r:[
+      ["The committee approved the proposal.","The proposal was approved by the committee."],
+      ["Someone has cleaned the office.","The office has been cleaned."],
+      ["The company will launch a new app.","A new app will be launched."]]},
+    {n:"C2",k:"write",i:"Transform each active sentence to passive. Then think about why the passive might be preferred.",
+     q:[["Researchers collected the data over six months.","The data were collected over six months. — objective academic tone; the researchers are not the point."],
+        ["Someone stole my wallet yesterday.","My wallet was stolen yesterday. — the doer is unknown."],
+        ["The jury awarded first prize to Maria.","Maria was awarded first prize by the jury. — the receiver is more important."],
+        ["They have postponed the meeting.","The meeting has been postponed. — recent action with a present result; who postponed it is irrelevant."],
+        ["The school must address this issue.","This issue must be addressed by the school. — obligation focused on the issue, not the institution."]]}
+   ]},
+  {L:"D",t:"Mini Project: The \"Mystery Incident\" News Report",learn:[],
+   ex:[{n:"D1",k:"project",i:"Write a short news report (5–7 sentences) about a mysterious incident where no one knows who did it. Use at least 4 passive verbs in different tenses.",
+        x:"Challenge — rewrite this paragraph from active to passive where appropriate (some sentences may stay active): \"Scientists conducted a study on sleep patterns. They asked 200 participants to track their sleep for one month. The researchers analyzed the data and discovered a link between screen time and poor sleep. They published the results in a medical journal.\""}]}
+ ]},
+
+{n:5,t:"Putting It All Together",s:"Integrated review — conditionals, past perfect & passive",grp:"Review",tags:"review integrated conditionals past perfect passive quiz",
+ sec:[
+  {L:"A",t:"What are we reviewing?",
+   learn:[
+    {b:"table",h:["Set","Topic"],r:[
+      ["1","Conditionals (zero, first, second, third)"],
+      ["2","Mixed conditionals (past → present / present → past)"],
+      ["3","Past perfect review (had + past participle)"],
+      ["4","Passive voice"]]}
+   ],
+   ex:[
+    {n:"A1",k:"pick",i:"Read each sentence and choose the set it belongs to.",
+     o:[["1","Set 1"],["2","Set 2"],["3","Set 3"],["4","Set 4"]],
+     q:[["If I had studied law, I would be a lawyer now.","2"],
+        ["The experiment was conducted by the research team.","4"],
+        ["If you heat water to 100°C, it boils.","1"],
+        ["By the time we arrived, the movie had already started.","3"],
+        ["If she were more organized, she wouldn't have missed the deadline.","2"],
+        ["The report has been submitted to the committee.","4"]]}
+   ]},
+  {L:"B",t:"Mixed error correction",learn:[],
+   ex:[
+    {n:"B1",k:"write",i:"Each sentence has one error. Write the corrected sentence.",
+     q:[["If I would have known about the meeting, I would have attended.","If I had known about the meeting, I would have attended."],
+        ["The letter was wrote by my assistant yesterday.","The letter was written by my assistant yesterday."],
+        ["If she studies harder, she would have passed the exam.","If she had studied harder, she would have passed the exam."],
+        ["After I had finished my dinner, I had watched TV.","After I had finished my dinner, I watched TV."],
+        ["If I am more confident, I would have applied for the job last month.","If I were more confident, I would have applied for the job last month."],
+        ["The new bridge is build right now.","The new bridge is being built right now."],
+        ["If he had taken the train, he will be here by now.","If he had taken the train, he would be here by now."],
+        ["She realized that she left her keys at home after she arrived.","She realized that she had left her keys at home."],
+        ["The data has been collect over a six-month period.","The data has been collected over a six-month period."],
+        ["If I was you, I would accept the offer.","If I were you, I would accept the offer."],
+        ["The presentation will be gave by the CEO tomorrow.","The presentation will be given by the CEO tomorrow."],
+        ["If they had left earlier, they wouldn't be stuck in traffic yesterday.","If they had left earlier, they wouldn't have been stuck in traffic yesterday."],
+        ["The homework has been finish by the students.","The homework has been finished by the students."],
+        ["If I knew the answer, I would have told you yesterday.","If I had known the answer, I would have told you yesterday."],
+        ["When the police arrived, the thief already left.","When the police arrived, the thief had already left."]]}
+   ]},
+  {L:"C",t:"20-item mixed quiz",learn:[],
+   ex:[
+    {n:"C1",k:"gap",i:"Part 1 — conditional completion (1–5). Complete with the correct form of the verb in parentheses.",
+     q:[["If you ___ (heat) ice, it melts.",["heat"]],
+        ["If I had seen the email, I ___ (reply) immediately.",["would have replied"]],
+        ["She would travel more if she ___ (have) more money.",["had"]],
+        ["If I ___ (know) you were coming, I would have baked a cake.",["had known"]],
+        ["If she ___ (study) harder now, she would have passed the exam last week.",["studied"]]]},
+    {n:"C2",k:"gap",i:"Part 2 — mixed conditional completion (6–8).",
+     q:[["If I had taken that job, I ___ (live) in New York right now.",["would be living|would live"]],
+        ["If she spoke French fluently, she ___ (apply) for that position last year.",["would have applied"]],
+        ["If he ___ (not / miss) the bus this morning, he wouldn't be late for work now.",["hadn't missed|had not missed"]]]},
+    {n:"C3",k:"gap",i:"Part 3 — past perfect vs. simple past (9–11).",
+     q:[["By the time we got to the theater, the movie ___ (already / start).",["had already started"]],
+        ["She was upset because she ___ (lose) her phone.",["had lost"]],
+        ["After they ___ (finish) dinner, they went for a walk.",["had finished|finished"]]]},
+    {n:"C4",k:"write",i:"Part 4 — passive voice (12–15). Transform each active sentence to passive.",
+     q:[["Someone stole my bike yesterday.","My bike was stolen yesterday."],
+        ["The committee will approve the budget.","The budget will be approved by the committee."],
+        ["They are building a new school in our neighborhood.","A new school is being built in our neighborhood."],
+        ["Scientists have discovered a new species of frog.","A new species of frog has been discovered."]]}
+   ]},
+  {L:"D",t:"Mini Project: Three Truths, One Lie",learn:[],
+   ex:[{n:"D1",k:"project",i:"Write 4 sentences about your past, present or hypothetical life. Three must be true and one must be a lie. Each sentence must use a different grammar structure from Sets 1–4.",x:""}]}
+ ]}
+
+);
+/* ===== SETS 6–10 ===== */
+DATA.push(
+
+{n:6,t:"To Do or Doing: The Great Verb Debate",s:"Infinitive vs. gerund (verb patterns)",grp:"Grammar core",tags:"gerund infinitive stop remember forget try regret verb patterns",
+ sec:[
+  {L:"A",t:"Infinitive vs. gerund – what's the difference?",
+   learn:[
+    {b:"p",x:"Some verbs are followed by a gerund (-ing form), some by a to-infinitive, and some by both — sometimes with a change in meaning."},
+    {b:"table",h:["Pattern","Example"],r:[
+      ["Verb + gerund","I enjoy swimming."],
+      ["Verb + to-infinitive","I want to swim."],
+      ["Verb + gerund or infinitive (same meaning)","I like swimming. / I like to swim."],
+      ["Verb + gerund or infinitive (different meaning)","I stopped smoking (gave up) vs. I stopped to smoke (paused in order to smoke)."]]},
+    {b:"table",h:["Verb + gerund (always)","Verb + to-infinitive (always)","Both (different meaning)"],r:[
+      ["enjoy, avoid, finish, mind, suggest, practice, consider","want, need, decide, hope, plan, offer, promise","stop, remember, forget, try, regret, go on, mean"]]}
+   ],
+   ex:[
+    {n:"A1",k:"gap",i:"Complete each sentence with the gerund (-ing) or to-infinitive form of the verb in parentheses.",
+     q:[["I enjoy ___ (read) academic articles.",["reading"]],
+        ["She wants ___ (become) a doctor.",["to become"]],
+        ["He avoided ___ (answer) the question.",["answering"]],
+        ["They decided ___ (postpone) the meeting.",["to postpone"]],
+        ["Would you mind ___ (close) the window?",["closing"]],
+        ["I promise ___ (help) you with your project.",["to help"]],
+        ["She suggested ___ (go) to the museum.",["going"]],
+        ["He needs ___ (improve) his writing skills.",["to improve"]]]},
+    {n:"A2",k:"write",i:"Complete each sentence with a logical ending using the correct verb pattern.",
+     q:[["I enjoy …","I enjoy listening to podcasts on my way to work."],
+        ["She wants …","She wants to study abroad next year."],
+        ["He avoided …","He avoided mentioning the delay in his report."],
+        ["They decided …","They decided to hire two more analysts."],
+        ["Would you mind …","Would you mind repeating the last question?"],
+        ["I promise …","I promise to send the file before midnight."],
+        ["She suggested …","She suggested meeting an hour earlier."],
+        ["He needs …","He needs to practise speaking every day."]]}
+   ]},
+  {L:"B",t:"Common errors: stop to do vs. stop doing",
+   learn:[
+    {b:"p",x:"This is one of the most common C1 errors. The meaning changes completely."},
+    {b:"table",h:["Pattern","Meaning","Example"],r:[
+      ["stop + gerund","Quit / discontinue an activity","I stopped smoking. (I quit — no more cigarettes)"],
+      ["stop + to-infinitive","Stop in order to do something else","I stopped to smoke. (I paused what I was doing to have a cigarette)"]]},
+    {b:"trick",x:"stop doing = STOP the activity · stop to do = STOP something else TO DO the activity"},
+    {b:"table",h:["Verb","+ gerund","+ to-infinitive"],r:[
+      ["remember","I remember locking the door. (a memory of doing it)","I remembered to lock the door. (I didn't forget)"],
+      ["forget","I'll never forget meeting her. (memory)","I forgot to call him. (didn't remember to do it)"],
+      ["try","Try pressing the button. (experiment — does it work?)","I tried to open the window. (attempt — maybe failed)"],
+      ["regret","I regret saying that. (sorry about something I did)","I regret to inform you… (formal — sorry about bad news)"]]}
+   ],
+   ex:[
+    {n:"B1",k:"gap",i:"Complete each sentence with the gerund (-ing) or to-infinitive form.",
+     q:[["I stopped ___ (drink) coffee because it was affecting my sleep. (quit)",["drinking"]],
+        ["I stopped ___ (drink) coffee on my way to work. (stopped in order to drink)",["to drink"]],
+        ["I remember ___ (meet) her at a conference last year.",["meeting"]],
+        ["Please remember ___ (lock) the door when you leave.",["to lock"]],
+        ["I'll never forget ___ (see) the ocean for the first time.",["seeing"]],
+        ["I forgot ___ (buy) milk, so I have to go back to the store.",["to buy"]],
+        ["Try ___ (restart) the computer. That might fix the problem.",["restarting"]],
+        ["She tried ___ (open) the jar, but it was too tight.",["to open"]],
+        ["I regret ___ (tell) him the secret. He told everyone.",["telling"]],
+        ["We regret ___ (inform) you that your application was not accepted.",["to inform"]]]},
+    {n:"B2",k:"open",i:"Write two sentences for each verb — one with a gerund, one with a to-infinitive.",
+     q:[["stop — gerund (quit an activity)","I stopped checking my phone before bed."],
+        ["stop — to-infinitive (stop in order to do something)","On the way home I stopped to buy bread."],
+        ["remember — gerund (memory of a past action)","I remember handing in that assignment late."],
+        ["remember — to-infinitive (not forget to do something)","Remember to attach your CV to the email."],
+        ["try — gerund (experiment)","Try studying in the morning; you may focus better."],
+        ["try — to-infinitive (attempt)","I tried to explain the rule, but I ran out of time."]]}
+   ]},
+  {L:"C",t:"Write sentences using different verb patterns",learn:[],
+   ex:[
+    {n:"C1",k:"study",i:"Study the models.",h:["Pattern","Model sentence"],r:[
+      ["enjoy + gerund","I enjoy reading academic journals."],
+      ["want + to-infinitive","I want to improve my English fluency."],
+      ["avoid + gerund","Good writers avoid using vague language."],
+      ["decide + to-infinitive","She decided to apply for the scholarship."],
+      ["mind + gerund","Do you mind repeating that?"],
+      ["promise + to-infinitive","I promise to submit the report on time."],
+      ["stop + gerund (quit)","He stopped eating junk food for health reasons."],
+      ["stop + to-infinitive (in order to)","She stopped to check her notes before speaking."],
+      ["remember + gerund (memory)","I remember reading that article last month."],
+      ["remember + to-infinitive (not forget)","Remember to cite all your sources."]]},
+    {n:"C2",k:"open",i:"Write sentences using your own ideas.",
+     q:[["enjoy + gerund",""],["want + to-infinitive",""],["avoid + gerund",""],["decide + to-infinitive",""],["mind + gerund",""],
+        ["promise + to-infinitive",""],["stop + gerund (quit)",""],["stop + to-infinitive (in order to)",""],["remember + gerund (memory)",""],["remember + to-infinitive (not forget)",""]]}
+   ]},
+  {L:"D",t:"Mini Project: The \"Stop Doing vs. Stop to Do\" Comic Strip",learn:[],
+   ex:[{n:"D1",k:"project",i:"Draw a simple 4-panel comic strip showing the difference between stop doing and stop to do. Then write two captions — one with stop + gerund and one with stop + to-infinitive.",
+        x:"Challenge: write a short paragraph (6–8 sentences) about a habit you changed or a goal you have. Use at least 5 different verb patterns from this set and underline each one."}]}
+ ]},
+
+{n:7,t:"Say More with Less: Ellipsis",s:"Ellipsis — leaving out repeated words",grp:"Grammar core",tags:"ellipsis auxiliary comparison than to omission",
+ sec:[
+  {L:"A",t:"Ellipsis – what is it?",
+   learn:[
+    {b:"p",x:"Ellipsis means leaving out words that are clearly understood from context. It makes your English sound more natural, fluent and near-native."},
+    {b:"eg",x:["Without ellipsis: She speaks Spanish, and she also speaks French. → With ellipsis: She speaks Spanish, and also French.",
+              "Without ellipsis: I wanted to go, but I couldn't go. → With ellipsis: I wanted to go, but I couldn't."]},
+    {b:"table",h:["Type","Without ellipsis","With ellipsis"],r:[
+      ["After auxiliary verbs","He hasn't finished, but she has finished.","He hasn't finished, but she has."],
+      ["In comparisons","She is smarter than he is smart.","She is smarter than he is."],
+      ["In clauses with to","I don't want to go, but I have to go.","I don't want to go, but I have to."]]},
+    {b:"note",x:"Ellipsis avoids repetition, sounds fluent, and is common in academic writing and formal speech."}
+   ],
+   ex:[
+    {n:"A1",k:"write",i:"What words are implied (left out) in each sentence?",
+     q:[["She can speak French, and her brother can too.","speak French"],
+        ["I haven't seen the movie, but my sister has.","seen the movie"],
+        ["He works harder than she does.","works (hard)"],
+        ["I don't want to argue, but I might have to.","argue"],
+        ["Some students passed the exam; others didn't.","pass the exam"]]},
+    {n:"A2",k:"write",i:"Complete each sentence using ellipsis (leave out the repeated words).",
+     q:[["A: Have you finished the report?  B: Not yet, but I … soon.","will soon."],
+        ["She didn't attend the meeting, but her colleague …","did."],
+        ["I thought he would call, but he …","didn't."],
+        ["He is more experienced than she …","is."],
+        ["They wanted to leave early, so they …","did."],
+        ["I don't know the answer, but the teacher …","does."]]}
+   ]},
+  {L:"B",t:"Ellipsis in comparisons and clauses",
+   learn:[
+    {b:"p",x:"Comparisons are a perfect place for ellipsis. You can leave out repeated verbs or whole phrases after than or as."},
+    {b:"table",h:["Without ellipsis","With ellipsis"],r:[
+      ["She runs faster than he runs.","She runs faster than he does. (or than him — informal)"],
+      ["You are as talented as she is talented.","You are as talented as she is."],
+      ["He spent more money than he had planned to spend.","He spent more money than he had planned to."],
+      ["I wanted to go, but I forgot to go.","I wanted to go, but I forgot to."],
+      ["She asked me to help, and I agreed to help.","She asked me to help, and I agreed to."]]}
+   ],
+   ex:[
+    {n:"B1",k:"write",i:"Rewrite each sentence using ellipsis to avoid repetition.",
+     q:[["He speaks English better than she speaks English.","He speaks English better than she does."],
+        ["I haven't read the book, but she has read the book.","I haven't read the book, but she has."],
+        ["She is more qualified than he is qualified.","She is more qualified than he is."],
+        ["They wanted to leave, but they were told not to leave.","They wanted to leave, but they were told not to."],
+        ["I can't solve this problem, but my friend can solve this problem.","I can't solve this problem, but my friend can."],
+        ["He spends more time studying than she spends studying.","He spends more time studying than she does."]]},
+    {n:"B2",k:"open",i:"Complete with your own ideas.",
+     q:[["My best friend is … than I …","My best friend is far more patient than I am."],
+        ["… studies harder than anyone else in school …","My cousin studies harder than anyone else in school does."],
+        ["I can't … as well as I … when I was younger.","I can't concentrate as well as I could when I was younger."],
+        ["I know more about … than …","I know more about photography than my brother does."],
+        ["I didn't enjoy … as much as …","I didn't enjoy the sequel as much as I did the original."]]}
+   ]},
+  {L:"C",t:"Mini Project: The Text Message Challenge",learn:[],
+   ex:[{n:"C1",k:"project",i:"You are texting a friend who is very impatient and hates long messages. Rewrite a full conversation using ellipsis (leaving out repeated words) to make it shorter and faster.",
+        x:"Challenge: write a short dialogue (8–10 lines) between two people using at least 4 examples of ellipsis. Underline each one.  Example — A: Have you finished your homework? B: Not yet, but I will soon. A: I haven't either. B: We should work together."}]}
+ ]},
+
+{n:8,t:"Who, Which, Where – and the Comma That Changes Everything",s:"Nonrestrictive modifiers (which, who, where — extra info)",grp:"Grammar core",tags:"relative clause nonrestrictive restrictive comma which who that where",
+ sec:[
+  {L:"A",t:"Nonrestrictive modifiers – what are they?",
+   learn:[
+    {b:"p",x:"A modifier adds information about a noun. When the information is extra (not essential to identify the noun), it is nonrestrictive and takes commas."},
+    {b:"eg",x:["Restrictive (no commas — essential): The students who studied passed the exam. (Only the students who studied passed.)",
+              "Nonrestrictive (commas — extra): The students, who studied hard, passed the exam. (All of them studied and all passed.)"]},
+    {b:"table",h:["","Restrictive (no commas)","Nonrestrictive (commas)"],r:[
+      ["Meaning","Essential to identify the noun","Extra information — noun already identified"],
+      ["Commas","No commas","Commas around the clause"],
+      ["That vs. which","Use that (or who for people)","Use which (things) or who (people)"],
+      ["Example","The book that is on the table is mine.","The book, which is on the table, is mine."]]},
+    {b:"trick",x:"If you can remove the clause and the sentence still makes sense, use commas (nonrestrictive)."}
+   ],
+   ex:[
+    {n:"A1",k:"pick",i:"Choose R (restrictive — no commas) or N (nonrestrictive — commas).",
+     o:[["R","Restrictive"],["N","Nonrestrictive"]],
+     q:[["The car that is parked in the driveway belongs to my brother.","R"],
+        ["Paris, which is the capital of France, is a beautiful city.","N"],
+        ["Students who arrive late will not be admitted.","R"],
+        ["The Eiffel Tower, which was built in 1889, is made of iron.","N"],
+        ["The woman who lives next door is a doctor.","R"],
+        ["My mother, who is a doctor, works at the local hospital.","N"]]},
+    {n:"A2",k:"write",i:"Add commas to the nonrestrictive sentences. If the sentence is restrictive, write \"no commas\".",
+     q:[["My brother who lives in Chicago is visiting next week. (I have more than one brother)","no commas"],
+        ["My brother who lives in Chicago is visiting next week. (I have only one brother)","My brother, who lives in Chicago, is visiting next week."],
+        ["The museum that opens at 10am is very popular.","no commas"],
+        ["The Louvre which is in Paris is the world's largest art museum.","The Louvre, which is in Paris, is the world's largest art museum."],
+        ["People who exercise regularly live longer.","no commas"],
+        ["Dr. Smith who wrote the book will be speaking at the conference.","Dr. Smith, who wrote the book, will be speaking at the conference."]]}
+   ]},
+  {L:"B",t:"Commas with nonrestrictive elements – the rules",
+   learn:[
+    {b:"table",h:["Rule","Example"],r:[
+      ["Use commas around nonrestrictive clauses","The conference, which was held in Berlin, was a success."],
+      ["Do NOT use commas with restrictive clauses","The conference that was held in Berlin was a success."],
+      ["Use which for nonrestrictive (things)","My laptop, which is three years old, still works well."],
+      ["Use that for restrictive (things)","The laptop that is on the desk is mine."],
+      ["Use who for people (both types)","The teacher, who is very kind, helped me. / The teacher who helped me is kind."],
+      ["Use where for places","My hometown, where I grew up, is very small."]]}
+   ],
+   ex:[
+    {n:"B1",k:"gap",i:"Complete each sentence with that, which or who.",
+     q:[["The book ___ I borrowed from the library is overdue.",["that"]],
+        ["My car, ___ is 10 years old, still runs perfectly.",["which"]],
+        ["The student ___ won the scholarship is from Brazil.",["who"]],
+        ["Paris, ___ is known as the City of Light, attracts millions of tourists.",["which"]],
+        ["The information ___ you need is on the website.",["that"]],
+        ["My grandfather, ___ is 85 years old, still walks every day.",["who"]]]},
+    {n:"B2",k:"open",i:"For each topic, write two sentences — one restrictive (no commas) and one nonrestrictive (commas).",
+     q:[["A teacher — restrictive (which teacher? essential)","The teacher who taught me phonetics is retiring."],
+        ["A teacher — nonrestrictive (extra info)","Mr Alves, who taught me phonetics, is retiring."],
+        ["A city — restrictive (which city? essential)","The city that hosted the summit is on the coast."],
+        ["A city — nonrestrictive (extra info)","Curitiba, which is known for its parks, hosted the summit."]]}
+   ]},
+  {L:"C",t:"Mini Project: The \"Comma or No Comma?\" Meme Challenge",learn:[],
+   ex:[{n:"C1",k:"project",i:"Create a funny meme or tweet showing how adding or removing a comma completely changes the meaning of a sentence. Use nonrestrictive modifiers (with commas) or restrictive modifiers (no commas) to make your point.",
+        x:"Challenge: write a short paragraph (6–8 sentences) describing a person, a place or an object that matters to you. Use at least 3 nonrestrictive modifiers and underline each one."}]}
+ ]},
+
+{n:9,t:"Connecting Ideas with Style: Purpose & Contrast",s:"Advanced connectives — purpose + contrast",grp:"Grammar core",tags:"connectives so that in order that lest whereas while albeit notwithstanding",
+ sec:[
+  {L:"A",t:"Advanced connectives – purpose",
+   learn:[
+    {b:"p",x:"Purpose connectives explain why someone does something, or what goal an action serves."},
+    {b:"table",h:["Connective","Meaning","Formality","Example"],r:[
+      ["so that","in order to achieve a result","neutral","She studies hard so that she can pass the exam."],
+      ["in order that","same as so that — more formal","formal","The government invested in education in order that future generations would benefit."],
+      ["lest","to prevent something bad (= because otherwise)","very formal / literary","He wore a heavy coat lest he catch a cold."]]},
+    {b:"note",x:"lest is always followed by a subjunctive verb or should: She spoke quietly lest anyone hear her (no -s on hear)."}
+   ],
+   ex:[
+    {n:"A1",k:"gap",i:"Complete each sentence with so that, in order that or lest.",
+     q:[["I left a note ___ she would know where I went.",["so that|in order that"]],
+        ["She saved her work every few minutes ___ she lose it during a power outage.",["lest"]],
+        ["The company implemented new safety protocols ___ employees would feel more secure.",["so that|in order that"]],
+        ["He double-checked the address ___ he might get lost.",["lest"]],
+        ["The professor provided detailed feedback ___ students could improve their writing.",["so that|in order that"]],
+        ["She whispered ___ anyone overhear her conversation.",["lest"]]]},
+    {n:"A2",k:"open",i:"Complete each sentence with your own idea.",
+     q:[["I study English every day so that …","so that I can work abroad one day."],
+        ["The school installed new computers in order that …","in order that every student could access the online library."],
+        ["She set an alarm lest …","lest she oversleep on the morning of the exam."],
+        ["We left early so that …","so that we would beat the traffic."],
+        ["The company reduced prices in order that …","in order that more families could afford the service."],
+        ["He wrote down the instructions lest …","lest he forget a step during the presentation."]]}
+   ]},
+  {L:"B",t:"Advanced connectives – contrast",
+   learn:[
+    {b:"table",h:["Connective","Meaning","Formality","Example"],r:[
+      ["whereas","shows a clear difference between two things","neutral / formal","She prefers coffee, whereas he prefers tea."],
+      ["while","same as whereas — also means 'at the same time'","neutral","While the first study found positive results, the second found none."],
+      ["albeit","although / even though (a concession)","formal","The solution was effective, albeit expensive."],
+      ["notwithstanding","despite / in spite of","very formal / legal","Notwithstanding the challenges, the project was completed on time."]]},
+    {b:"note",x:"Word order: albeit usually comes before an adjective or adverb (…albeit slowly). notwithstanding can come before or after its object (Notwithstanding the rain / The rain notwithstanding)."}
+   ],
+   ex:[
+    {n:"B1",k:"gap",i:"Complete each sentence with whereas, while, albeit or notwithstanding.",
+     q:[["___ some students prefer group work, others prefer to study alone.",["whereas|while"]],
+        ["The experiment was successful, ___ with some minor errors.",["albeit"]],
+        ["___ the difficulties, the team managed to finish the project on time.",["notwithstanding"]],
+        ["The first chapter is very theoretical, ___ the second is more practical.",["whereas|while"]],
+        ["She accepted the job offer, ___ the low salary.",["notwithstanding"]],
+        ["___ the critics were harsh, the movie was a box office success.",["while|whereas"]]]},
+    {n:"B2",k:"open",i:"Complete each sentence with your own idea.",
+     q:[["Whereas some people prefer living in the city, …","others find the countryside far less stressful."],
+        ["While online learning offers flexibility, …","it demands a great deal of self-discipline."],
+        ["The presentation was well-organized, albeit …","albeit a little too long."],
+        ["Notwithstanding the lack of funding, …","the research team published three papers."],
+        ["My first attempt was unsuccessful, whereas …","whereas my second went surprisingly well."],
+        ["The solution was simple, albeit …","albeit unpopular with the staff."]]}
+   ]},
+  {L:"C",t:"Mini Project: The \"Purpose or Contrast?\" Debate Cards",learn:[],
+   ex:[{n:"C1",k:"project",i:"Create 4 debate cards, each with a sentence starter that uses an advanced connective (purpose or contrast). With a partner, complete each card with a logical ending. Your partner must guess which type of connective you used before completing the sentence.",
+        x:"Challenge: write a short academic paragraph (6–8 sentences) about a current issue (education, technology, environment). Use at least 4 different connectives from this set and underline each one."}]}
+ ]},
+
+{n:10,t:"Grammar Smackdown: Putting It All Together",s:"Integrated review — infinitive/gerund, ellipsis, nonrestrictive modifiers, connectives",grp:"Review",tags:"review integrated gerund ellipsis nonrestrictive connectives quiz",
+ sec:[
+  {L:"A",t:"What are we reviewing?",
+   learn:[
+    {b:"table",h:["Set","Topic"],r:[
+      ["6","Infinitive vs. gerund (stop to do vs. stop doing, remember, forget, try, regret)"],
+      ["7","Ellipsis (leaving out repeated words in comparisons and clauses)"],
+      ["8","Nonrestrictive modifiers (which, who, where — extra info with commas)"],
+      ["9","Advanced connectives — purpose (so that, in order that, lest) and contrast (whereas, while, albeit, notwithstanding)"]]}
+   ],
+   ex:[
+    {n:"A1",k:"pick",i:"Quick warm-up. Choose the set each sentence belongs to.",
+     o:[["6","Set 6"],["7","Set 7"],["8","Set 8"],["9","Set 9"]],
+     q:[["I stopped smoking last year. (meaning: quit)","6"],
+        ["She speaks Spanish, and her brother does too.","7"],
+        ["Paris, which is the capital of France, is a beautiful city.","8"],
+        ["He studied hard so that he could pass the exam.","9"],
+        ["I remember locking the door before I left.","6"],
+        ["He wanted to attend, but he couldn't.","7"],
+        ["Notwithstanding the difficulties, the project succeeded.","9"],
+        ["The teacher, who is very kind, helped me after class.","8"]]}
+   ]},
+  {L:"B",t:"Sentence combining",
+   learn:[{b:"p",x:"Combine the short sentences into one complex sentence using the grammar topic indicated."}],
+   ex:[
+    {n:"B1",k:"write",i:"Combine each group into one sentence.",
+     q:[["stop + to-infinitive (purpose): She was driving to work. She stopped. She wanted to buy coffee.","While driving to work, she stopped to buy coffee."],
+        ["ellipsis: I have finished my homework. My sister has not finished her homework.","I have finished my homework, but my sister hasn't."],
+        ["nonrestrictive modifier (which): The book is on the table. The book belongs to my professor.","The book, which is on the table, belongs to my professor."],
+        ["contrast connective (whereas): Online courses offer flexibility. Traditional classes offer face-to-face interaction.","Online courses offer flexibility, whereas traditional classes offer face-to-face interaction."],
+        ["purpose connective (so that): She saved her work every few minutes. She wanted to avoid losing it.","She saved her work every few minutes so that she would not lose it."],
+        ["ellipsis (after to): I wanted to attend the meeting. I was not able to attend the meeting.","I wanted to attend the meeting, but I wasn't able to."],
+        ["nonrestrictive modifier (who): Dr. Martinez is my advisor. Dr. Martinez has published over 50 articles.","Dr. Martinez, who has published over 50 articles, is my advisor."],
+        ["contrast connective (albeit): The solution was effective. It was expensive.","The solution was effective, albeit expensive."]]}
+   ]},
+  {L:"C",t:"20-item mixed quiz",learn:[],
+   ex:[
+    {n:"C1",k:"gap",i:"Part 1 — infinitive vs. gerund (1–5). Choose the correct form of the verb in parentheses.",
+     q:[["I enjoy ___ (read) academic articles in my free time.",["reading"]],
+        ["She stopped ___ (buy) coffee on her way to work. (she stopped in order to buy coffee)",["to buy"]],
+        ["I remember ___ (meet) her at a conference last year.",["meeting"]],
+        ["Please remember ___ (lock) the door when you leave.",["to lock"]],
+        ["He tried ___ (open) the window, but it was stuck.",["to open"]]]},
+    {n:"C2",k:"write",i:"Part 2 — ellipsis (6–10). Rewrite each sentence leaving out the repeated words.",
+     q:[["She can speak French, and her brother can speak French too.","She can speak French, and her brother can too."],
+        ["I haven't seen the movie, but my sister has seen the movie.","I haven't seen the movie, but my sister has."],
+        ["He works harder than she works.","He works harder than she does."],
+        ["I wanted to go, but I forgot to go.","I wanted to go, but I forgot to."],
+        ["Some students passed the exam; others did not pass the exam.","Some students passed the exam; others didn't."]]},
+    {n:"C3",k:"write",i:"Part 3 — nonrestrictive modifiers (11–14). Add commas where needed, or write \"no commas\".",
+     q:[["My brother who lives in Chicago is a doctor. (I have more than one brother)","no commas"],
+        ["The Eiffel Tower which was built in 1889 is made of iron.","The Eiffel Tower, which was built in 1889, is made of iron."],
+        ["Students who arrive late will not be admitted.","no commas"],
+        ["My mother who is a doctor works at the local hospital. (I have only one mother)","My mother, who is a doctor, works at the local hospital."]]},
+    {n:"C4",k:"gap",i:"Part 4 — advanced connectives (15–20). Use: so that · in order that · lest · whereas · while · albeit · notwithstanding.",
+     q:[["She wore a heavy coat ___ she catch a cold.",["lest"]],
+        ["___ some people prefer city life, others prefer the countryside.",["whereas|while"]],
+        ["The presentation was well-organized, ___ a bit too long.",["albeit"]],
+        ["The university increased scholarships ___ more students could attend.",["so that|in order that"]],
+        ["___ the initial resistance, the new policy was eventually adopted.",["notwithstanding"]],
+        ["___ the first study found positive results, the second found none.",["while|whereas"]]]},
+    {n:"C5",k:"open",i:"Challenge — rewrite the paragraph below to make it more sophisticated. Use at least ONE example of each: infinitive/gerund, ellipsis, a nonrestrictive modifier, and an advanced connective.  Original: \"She wanted to learn Spanish. She stopped working on weekends. She used that time to study. She also practiced every day. Her friend did not practice every day. Her friend did not improve as quickly. The method was effective. It was also time-consuming.\"",
+     q:[["Your rewritten paragraph","Wanting to learn Spanish, she stopped working at weekends so that she could study, and she practised every day, whereas her friend did not. Her friend, who studied only occasionally, did not improve as quickly. The method, albeit time-consuming, was effective."]]}
+   ]},
+  {L:"D",t:"Mini Project: The \"Grammar Detective\" Error Hunt",
+   learn:[{b:"p",x:"Below is a short paragraph written by a student. It contains 8 errors from Sets 6–9. Find and correct all 8."},
+          {b:"eg",x:["I enjoy to read about environmental issues. Last year, I stopped to use plastic bags completely, and I felt good about it. My friend who lives in another city, she is also passionate about the environment. Whereas I prefer reducing waste, but she focuses on planting trees. She saved her money lest she could donate to a reforestation project. The project, which was organized by a local NGO, was very successful. I wanted to join the project, but I couldn't. I didn't have time. My friend did have time. She joined."]}],
+   ex:[{n:"D1",k:"write",i:"Write the corrected paragraph.",
+        q:[["Your corrected version","I enjoy reading about environmental issues. Last year, I stopped using plastic bags completely, and I felt good about it. My friend, who lives in another city, is also passionate about the environment. Whereas I prefer reducing waste, she focuses on planting trees. She saved her money so that she could donate to a reforestation project. The project, which was organized by a local NGO, was very successful. I wanted to join the project, but I couldn't, because I didn't have time. My friend did, and she joined."]]}]}
+ ]}
+
+);
+/* ===== SETS 11–14 ===== */
+DATA.push(
+
+{n:11,t:"A, An, The, or Nothing: The Article Adventure",s:"Article issues — a/an vs. the vs. zero article",grp:"Grammar core",tags:"articles a an the zero article general specific",
+ sec:[
+  {L:"A",t:"Article review – three choices",
+   learn:[
+    {b:"table",h:["Article","Use","Example"],r:[
+      ["a / an","First mention / non-specific / one of many","I read a book last week. (any book)"],
+      ["the","Second mention / specific / already known to the listener","The book was very interesting. (the one I just mentioned)"],
+      ["zero article","General plural or uncountable nouns","Books are expensive. / Water is essential for life."]]},
+    {b:"note",x:"Most common error: using the for general statements."},
+    {b:"table",h:["Correct","Incorrect"],r:[
+      ["Dogs are loyal animals. (dogs in general)","The dogs are loyal animals. (sounds like specific dogs)"],
+      ["Life is beautiful. (life in general)","The life is beautiful. (sounds like a specific life)"]]},
+    {b:"trick",x:"In these exercises, type a dash (–) when the correct answer is the zero article."}
+   ],
+   ex:[
+    {n:"A1",k:"gap",i:"Complete each sentence with a, an, the — or a dash (–) for the zero article.",
+     q:[["___ sun rises in ___ east.",["the","the"]],
+        ["She wants to become ___ engineer.",["an"]],
+        ["___ dogs need regular exercise to stay healthy.",["-|–|—|zero|"]],
+        ["I saw ___ interesting movie last night. ___ movie was about climate change.",["an","the"]],
+        ["___ honesty is ___ important quality in a leader.",["-|–|—|zero|","an"]],
+        ["___ water in this bottle is very cold.",["the"]],
+        ["___ happiness comes from within.",["-|–|—|zero|"]],
+        ["He is ___ best student in ___ class.",["the","the"]]]},
+    {n:"A2",k:"pick",i:"Is the noun phrase general or specific?",
+     o:[["G","General"],["S","Specific"]],
+     q:[["Cats are independent animals.","G"],
+        ["The cats in my neighborhood are very friendly.","S"],
+        ["Education is the key to success.","G"],
+        ["The education I received at this school was excellent.","S"],
+        ["Life has many challenges.","G"],
+        ["The life of a doctor is very demanding.","S"],
+        ["Coffee keeps me awake in the morning.","G"],
+        ["The coffee you made this morning was delicious.","S"]]}
+   ]},
+  {L:"B",t:"General vs. specific reference – the key distinction",
+   learn:[
+    {b:"p",x:"General = all members of a category (zero article or a/an). Specific = one particular member (usually the)."},
+    {b:"table",h:["General (zero article)","Specific (the)"],r:[
+      ["Technology has changed the world.","The technology used in this device is outdated."],
+      ["Students should study regularly.","The students in this class are very motivated."],
+      ["Happiness is hard to define.","The happiness I felt that day was unforgettable."]]},
+    {b:"note",x:"Special case — general with singular count nouns: A dog is a loyal companion (any dog) is also correct, though Dogs are loyal companions is more common."}
+   ],
+   ex:[
+    {n:"B1",k:"gap",i:"Controlled practice. Complete with a/an, the, or a dash (–) for zero article.",
+     q:[["___ French is a beautiful language. (general)",["-|–|—|zero|"]],
+        ["___ French I learned in high school was very basic. (specific)",["the"]],
+        ["___ failure is sometimes necessary for growth. (general)",["-|–|—|zero|"]],
+        ["___ failure of the project was due to poor planning. (specific)",["the"]],
+        ["___ money doesn't guarantee happiness. (general)",["-|–|—|zero|"]],
+        ["___ money you lent me will be repaid next week. (specific)",["the"]],
+        ["___ air pollution is a serious problem in many cities. (general)",["-|–|—|zero|"]],
+        ["___ air pollution caused by factories is harmful to health. (specific)",["the"]]]},
+    {n:"B2",k:"open",i:"Write two sentences for each topic — one general, one specific.",
+     q:[["Education — general","Education shapes the way a society thinks."],
+        ["Education — specific","The education I received in that programme changed my career."],
+        ["Social media — general","Social media has transformed political debate."],
+        ["Social media — specific","The post that my colleague shared last night went viral."],
+        ["Success — general","Success rarely arrives as quickly as people expect."],
+        ["Success — specific","The success of the pilot project surprised the whole department."]]}
+   ]},
+  {L:"C",t:"Correct the article errors",learn:[],
+   ex:[
+    {n:"C1",k:"write",i:"Each sentence has one article error (missing, extra or wrong). Write the corrected sentence.",
+     q:[["The life is full of unexpected surprises.","Life is full of unexpected surprises."],
+        ["She is a best teacher I have ever had.","She is the best teacher I have ever had."],
+        ["I need an advice about my career path.","I need advice about my career path."],
+        ["The dogs are more loyal than cats. (speaking generally)","Dogs are more loyal than cats."],
+        ["He went to the university to study engineering. (university as an institution)","He went to university to study engineering."],
+        ["The honesty is the best policy.","Honesty is the best policy."]]}
+   ]},
+  {L:"D",t:"Mini Project: The \"Article Fixer\" Social Media Post",learn:[],
+   ex:[{n:"D1",k:"project",i:"You are a grammar influencer. Create a short, funny post (an Instagram caption or a tweet) that teaches your followers how to avoid one common article mistake.",x:""}]}
+ ]},
+
+{n:12,t:"You Can't Count Everything: Tricky Nouns",s:"Count vs. noncount nouns (advanced)",grp:"Grammar core",tags:"count noncount uncountable advice information feedback research evidence quantifiers",
+ sec:[
+  {L:"A",t:"Count vs. noncount – what's the difference?",
+   learn:[
+    {b:"table",h:["Count nouns","Noncount nouns"],r:[
+      ["Can be counted (one book, two books)","Cannot be counted"],
+      ["Have a plural form (-s/-es)","No plural form"],
+      ["Use a/an or the","Use the or some (not a/an)"],
+      ["Use many / fewer / number of","Use much / less / amount of"],
+      ["a chair, chairs · a dollar, dollars · an idea, ideas · a fact, facts","furniture · money · information · evidence"]]},
+    {b:"note",x:"The most common C1+ error: using a/an or a plural form with noncount nouns. ✗ I need an advice. → ✓ I need some advice / a piece of advice."}
+   ],
+   ex:[
+    {n:"A1",k:"pick",i:"Count or noncount?",
+     o:[["C","Count"],["N","Noncount"]],
+     q:[["book","C"],["water","N"],["information","N"],["student","C"],["advice","N"],
+        ["furniture","N"],["idea","C"],["research","N"],["news","N"],["evidence","N"]]},
+    {n:"A2",k:"gap",i:"Complete each sentence with the correct form of the noun in parentheses. Use a/an, some, or a dash (–) where no article is needed.",
+     q:[["I need ___ (information) about the scholarship program.",["some information|information"]],
+        ["She gave me ___ (advice) that changed my perspective.",["a piece of advice|some advice"]],
+        ["They conducted several ___ (research) projects last year.",["research"]],
+        ["We have ___ (evidence) that supports our theory.",["evidence|some evidence"]],
+        ["He shared ___ (idea) that was very creative.",["an idea"]],
+        ["The teacher provided ___ (feedback) on my essay.",["feedback|some feedback"]],
+        ["I bought ___ (furniture) for my new apartment.",["some furniture|furniture"]],
+        ["She received ___ (news) that made her very happy.",["some news|news"]]]}
+   ]},
+  {L:"B",t:"Tricky nouns – always noncount at C1+",
+   learn:[
+    {b:"p",x:"These nouns are always noncount in standard academic English. They never take a/an and never have a plural -s."},
+    {b:"table",h:["Noun","Correct use","Incorrect use"],r:[
+      ["advice","She gave me some advice.","an advice / advices"],
+      ["information","I need this information.","an information / informations"],
+      ["feedback","The feedback was useful.","a feedback / feedbacks"],
+      ["research","They conducted research.","a research / researches (use a study / studies)"],
+      ["evidence","There is evidence.","an evidence / evidences"],
+      ["progress","She made progress.","a progress / progresses"],
+      ["equipment","The equipment is new.","an equipment / equipments"]]},
+    {b:"trick",x:"To make them countable, add a quantifier: a piece of advice · a piece of information · a body of research · a piece of evidence"}
+   ],
+   ex:[
+    {n:"B1",k:"write",i:"Each sentence has an error with a tricky noncount noun. Write the corrected sentence.",
+     q:[["I need an advice about my career path.","I need some advice about my career path."],
+        ["She gave me several informations about the university.","She gave me several pieces of information about the university."],
+        ["The teacher provided a very useful feedback.","The teacher provided very useful feedback."],
+        ["They published a new research on climate change.","They published new research on climate change."],
+        ["There is an evidence that supports this theory.","There is evidence that supports this theory."]]},
+    {n:"B2",k:"gap",i:"Complete with the correct quantifier: a piece of · some · a body of · several pieces of",
+     q:[["Could you give me ___ advice about my resume?",["some|a piece of"]],
+        ["She shared ___ information that was very helpful.",["a piece of|some"]],
+        ["The detective found ___ evidence at the crime scene.",["some|a piece of"]],
+        ["Over the years, he built ___ research on the topic.",["a body of"]],
+        ["I received ___ feedback from three different reviewers.",["several pieces of"]]]}
+   ]},
+  {L:"C",t:"Write sentences using count/noncount nouns correctly",learn:[],
+   ex:[
+    {n:"C1",k:"open",i:"Write sentences. Include at least 3 different tricky noncount nouns (advice, information, feedback, research, evidence, knowledge, progress, equipment).",
+     q:[["count noun — singular with a/an","An idea came to me halfway through the lecture."],
+        ["count noun — plural","Three students volunteered to present first."],
+        ["noncount noun — general, zero article","Evidence matters more than opinion in an academic essay."],
+        ["noncount noun — specific, with the","The feedback I got from my supervisor was blunt but useful."],
+        ["tricky noncount noun — correct use","She has made remarkable progress this semester."],
+        ["making a noncount noun countable","He gave me one piece of advice I have never forgotten."]]}
+   ]},
+  {L:"D",t:"Mini Project: My Life in Quantifiers",learn:[],
+   ex:[{n:"D1",k:"project",i:"Write 6 short sentences about your life using quantifiers with count and noncount nouns. Some must be true; some must be false. Your classmates guess which are which.",x:""}]}
+ ]},
+
+{n:13,t:"The Preposition Puzzle: In Which, To Whom, About Which",s:"Prepositions after relative pronouns",grp:"Grammar core",tags:"preposition relative pronoun whom which formal academic style",
+ sec:[
+  {L:"A",t:"Prepositions after relative pronouns – what are they?",
+   learn:[
+    {b:"p",x:"In formal academic writing, prepositions often come before relative pronouns (which, whom, whose) instead of at the end of the sentence."},
+    {b:"table",h:["Informal (preposition at end)","Formal (preposition before the relative pronoun)"],r:[
+      ["The report which I referred to was helpful.","The report to which I referred was helpful."],
+      ["The professor who I spoke to is on leave.","The professor to whom I spoke is on leave."],
+      ["The topic which we argued about was controversial.","The topic about which we argued was controversial."],
+      ["The company which she works for is global.","The company for which she works is global."]]},
+    {b:"table",h:["Preposition","Use with","Example"],r:[
+      ["in which","place or time","The university in which I studied is famous."],
+      ["to whom","person (indirect object)","The candidate to whom we offered the job accepted."],
+      ["about which","topic of discussion","The issue about which we disagreed was resolved."],
+      ["for which","reason or purpose","The reason for which she left is unclear."],
+      ["with whom","person (accompaniment)","The colleague with whom I worked is excellent."],
+      ["of which","possession (things)","The book the cover of which is red is mine."]]},
+    {b:"note",x:"In modern English, ending a sentence with a preposition is perfectly acceptable. The formal structure is optional — use it to sound more academic."}
+   ],
+   ex:[
+    {n:"A1",k:"match",i:"Match each informal sentence to its formal equivalent.",
+     o:[["A","The professor with whom I spoke was kind."],["B","The idea about which we argued was interesting."],["C","The school to which I applied is excellent."],["D","The company for which she works is global."]],
+     q:[["The school which I applied to is excellent.","C"],
+        ["The professor who I spoke with was kind.","A"],
+        ["The idea which we argued about was interesting.","B"],
+        ["The company which she works for is global.","D"]]},
+    {n:"A2",k:"gap",i:"Complete each sentence with the correct preposition + relative pronoun.",
+     q:[["The report ___ I referred was very detailed. (to + which)",["to which"]],
+        ["The committee ___ the proposal was submitted approved it. (to + whom)",["to whom"]],
+        ["The topic ___ she wrote her thesis is fascinating. (about + which)",["about which|on which"]],
+        ["The reasons ___ he decided to resign are personal. (for + which)",["for which"]],
+        ["The colleagues ___ I collaborate are highly skilled. (with + whom)",["with whom"]],
+        ["The journal ___ my article was published is well-known. (in + which)",["in which"]]]}
+   ]},
+  {L:"B",t:"Formal vs. informal alternatives",
+   learn:[
+    {b:"table",h:["Situation","Informal (everyday)","Formal (academic)"],r:[
+      ["Ending with a preposition","This is the book I told you about.","This is the book about which I told you."],
+      ["Using who as object","The person who I called didn't answer.","The person whom I called didn't answer."],
+      ["Using that instead of which","The room that she works in is small.","The room in which she works is small."],
+      ["Omitting the relative pronoun","The school I applied to is good.","The school to which I applied is good."]]}
+   ],
+   ex:[
+    {n:"B1",k:"write",i:"Rewrite each informal sentence in formal style (preposition + relative pronoun).",
+     q:[["The company which she works for is based in London.","The company for which she works is based in London."],
+        ["The professor who I spoke to was very helpful.","The professor to whom I spoke was very helpful."],
+        ["The topic which they disagreed about was complex.","The topic about which they disagreed was complex."],
+        ["The university that she graduated from is prestigious.","The university from which she graduated is prestigious."],
+        ["The person who I sent the email to hasn't replied.","The person to whom I sent the email hasn't replied."]]},
+    {n:"B2",k:"open",i:"Write two sentences about the same idea — one informal, one formal.",
+     q:[["A teacher who helped you — informal","The teacher I learned the most from has just retired."],
+        ["A teacher who helped you — formal","The teacher from whom I learned the most has just retired."],
+        ["A book that influenced you — informal","This is the book I got all my ideas from."],
+        ["A book that influenced you — formal","This is the book from which I got all my ideas."]]}
+   ]},
+  {L:"C",t:"Rewrite in formal style",learn:[],
+   ex:[
+    {n:"C1",k:"write",i:"Rewrite each sentence in formal style, moving the preposition before the relative pronoun.",
+     q:[["The journal which my article was published in has a high impact factor.","The journal in which my article was published has a high impact factor."],
+        ["The candidate who we offered the position to accepted immediately.","The candidate to whom we offered the position accepted immediately."],
+        ["The theory which most of their research is based on has been criticized.","The theory on which most of their research is based has been criticized."],
+        ["The colleagues who I work with every day are very supportive.","The colleagues with whom I work every day are very supportive."],
+        ["The conference which I presented at was held in Berlin.","The conference at which I presented was held in Berlin."],
+        ["The professor who I learned the most from is retiring this year.","The professor from whom I learned the most is retiring this year."]]}
+   ]},
+  {L:"D",t:"Mini Project: The \"20 Questions\" Grammar Clue Game",learn:[],
+   ex:[{n:"D1",k:"project",i:"Your team thinks of a person, place or thing. Give clues using preposition + relative pronoun structures (with which, in which, to whom, about which, from which, for which). The other teams must guess what you are describing.",x:""}]}
+ ]},
+
+{n:14,t:"Grammar Battle: Review Showdown",s:"Integrated review — articles, count/noncount, prepositions after relatives",grp:"Review",tags:"review articles count noncount prepositions relative error correction",
+ sec:[
+  {L:"A",t:"What are we reviewing?",
+   learn:[
+    {b:"table",h:["Set","Topic"],r:[
+      ["11","Article issues (a/an vs. the vs. zero — general vs. specific reference)"],
+      ["12","Count vs. noncount nouns (advice, information, feedback, research, evidence)"],
+      ["13","Prepositions after relative pronouns (in which, to whom, about which)"]]}
+   ],
+   ex:[
+    {n:"A1",k:"pick",i:"Quick warm-up. Choose the set each sentence belongs to. (Two sentences are carried over from earlier sets — mark them \"Other\".)",
+     o:[["11","Set 11"],["12","Set 12"],["13","Set 13"],["X","Other"]],
+     q:[["Life is full of unexpected surprises.","11"],
+        ["She gave me a piece of advice that changed my perspective.","12"],
+        ["The university in which I studied is famous for research.","13"],
+        ["Information is power in the digital age.","12"],
+        ["The candidate to whom we offered the job accepted immediately.","13"],
+        ["The water in this bottle is very cold.","11"],
+        ["Notwithstanding the difficulties, the project succeeded.","X"],
+        ["The teacher, who is very kind, helped me after class.","X"]]}
+   ]},
+  {L:"B",t:"Mixed error correction",learn:[],
+   ex:[
+    {n:"B1",k:"write",i:"Each sentence has one error from Sets 11–13. Write the corrected sentence.",
+     q:[["The life is beautiful if you know where to look.","Life is beautiful if you know where to look."],
+        ["She gave me an advice that helped me a lot.","She gave me a piece of advice that helped me a lot."],
+        ["The school whom I applied to is excellent. (rewrite in formal style)","The school to which I applied is excellent."],
+        ["I need informations about the scholarship program.","I need information about the scholarship program."],
+        ["The professor to who I spoke was very kind.","The professor to whom I spoke was very kind."],
+        ["The dogs are loyal animals.","Dogs are loyal animals."],
+        ["The research which the study was based was flawed.","The research on which the study was based was flawed."],
+        ["She has a deep knowledge about ancient history.","She has a deep knowledge of ancient history."],
+        ["The company which she works is global.","The company for which she works is global."],
+        ["I received a very useful feedback from my professor.","I received very useful feedback from my professor."]]}
+   ]},
+  {L:"C",t:"Error correction paragraph",
+   learn:[{b:"p",x:"Find and correct 10 errors in the paragraph below."},
+          {b:"eg",x:["(1) The education is one of most important factors in determining a person's future success. (2) Students who receive quality education are more likely to get good jobs. (3) However, the information that students learn in school is not always useful for real life. (4) Many graduates say that they needed an advice about career planning, but they didn't receive it. (5) The research on this topic has shown that students who participate in internships have better outcomes. (6) The company in which a student interns can provide valuable experience. (7) There is also evidence suggesting that soft skills are as important as technical knowledge. (8) Unfortunately, the school which many students graduate from do not emphasize these skills. (9) The feedback from employers often highlights lack of communication abilities. (10) Preparing young people for the workforce should be the priority of the education system."]}],
+   ex:[
+    {n:"C1",k:"write",i:"Write the corrected paragraph.",
+     q:[["Your corrected version","Education is one of the most important factors in determining a person's future success. Students who receive a quality education are more likely to get good jobs. However, the information that students learn in school is not always useful for real life. Many graduates say that they needed advice about career planning, but they didn't receive it. Research on this topic has shown that students who participate in internships have better outcomes. The company in which a student interns can provide valuable experience. There is also evidence suggesting that soft skills are as important as technical knowledge. Unfortunately, the schools from which many students graduate do not emphasize these skills. The feedback from employers often highlights a lack of communication abilities. Preparing young people for the workforce should be a priority of the education system."]]}
+   ]},
+  {L:"D",t:"Mini Project: The Grammar Relay Race",learn:[],
+   ex:[{n:"D1",k:"project",i:"Teams compete in a fast-paced relay. Each team member runs to the board, corrects one grammar error from Sets 11–13 (articles, count/noncount nouns, or prepositions after relative pronouns), then runs back and tags the next teammate. The first team to correct all sentences wins.",x:""}]}
+ ]}
+
+);
+/* ===== SETS 15–17 ===== */
+DATA.push(
+
+{n:15,t:"The Power of 'That': Emphasis & Formality",s:"That at the beginning of a sentence (That + clause + verb)",grp:"Grammar core",tags:"that clause emphasis formality academic subject clause",
+ sec:[
+  {L:"A",t:"That at the beginning – what is it?",
+   learn:[
+    {b:"p",x:"In formal academic English, you can begin a sentence with That + clause to emphasize a fact, opinion or conclusion."},
+    {b:"eg",x:["Normal: Honesty is the best policy. → Emphatic: That honesty is the best policy is widely accepted.",
+              "Normal: The company failed due to poor management. → Emphatic: That the company failed due to poor management is clear to all."]},
+    {b:"formula",x:"THAT + FULL CLAUSE + MAIN VERB (+ COMPLEMENT)"},
+    {b:"table",h:["Part","Example"],r:[
+      ["That","That"],
+      ["Clause (subject + verb)","the earth revolves around the sun"],
+      ["Main verb","is"],
+      ["Complement","a scientific fact."]]},
+    {b:"eg",x:["Complete sentence: That the earth revolves around the sun is a scientific fact."]}
+   ],
+   ex:[
+    {n:"A1",k:"gap",i:"Each sentence begins with a That + clause. Type the MAIN verb of the sentence.",
+     q:[["That she passed the exam surprised everyone.  Main verb: ___",["surprised"]],
+        ["That the project was completed on time is a testament to the team's hard work.  Main verb: ___",["is"]],
+        ["That he made the decision without consulting anyone seems irresponsible.  Main verb: ___",["seems"]],
+        ["That the evidence was overlooked may explain the wrongful conviction.  Main verb: ___",["may explain|explain"]],
+        ["That we need to address climate change is undeniable.  Main verb: ___",["is"]]]},
+    {n:"A2",k:"write",i:"Complete each sentence with a logical ending.",
+     q:[["That she was promoted after only six months …","surprised no one who had seen her work."],
+        ["That the company ignored the warning signs …","is now impossible to deny."],
+        ["That students are under more pressure than ever before …","is widely accepted by educators."],
+        ["That the two studies reached opposite conclusions …","suggests a flaw in the methodology."],
+        ["That technology has changed the way we communicate …","seems obvious to anyone over thirty."]]}
+   ]},
+  {L:"B",t:"Emphasis and formality – why use this structure?",
+   learn:[
+    {b:"p",x:"Starting a sentence with That makes your writing more formal (academic papers, legal documents, editorials), more emphatic (it draws attention to the main idea) and more objective (it presents a claim before evaluating it)."},
+    {b:"table",h:["Normal (less formal)","With That (more formal / emphatic)"],r:[
+      ["It is clear that she made a mistake.","That she made a mistake is clear."],
+      ["Everyone agrees that education is important.","That education is important is agreed by everyone."],
+      ["I believe that the policy should change.","That the policy should change is my belief."]]},
+    {b:"note",x:"Any main verb is possible — is, seems, appears, remains, suggests, indicates, has been proven, is widely accepted, and so on."}
+   ],
+   ex:[
+    {n:"B1",k:"write",i:"Rewrite each sentence so it begins with That + clause.  Model: It is obvious that she is qualified for the job. → That she is qualified for the job is obvious.",
+     q:[["It is well known that exercise improves mental health.","That exercise improves mental health is well known."],
+        ["It seems clear that the government needs to act.","That the government needs to act seems clear."],
+        ["It is widely accepted that climate change is caused by human activity.","That climate change is caused by human activity is widely accepted."],
+        ["It is unfortunate that the event was cancelled.","That the event was cancelled is unfortunate."]]},
+    {n:"B2",k:"gap",i:"Complete each sentence with a main verb from the box: is · seems · remains · has been proven · is widely accepted · is undeniable",
+     q:[["That the earth is round ___ a fact.",["is"]],
+        ["That the company will recover from its losses ___ uncertain.",["remains|seems"]],
+        ["That regular exercise benefits health ___ by numerous studies.",["has been proven"]],
+        ["That we will need to adapt to new technologies ___.",["is undeniable|is widely accepted"]],
+        ["That the cause of the fire was electrical ___ under investigation.",["remains"]]]}
+   ]},
+  {L:"C",t:"Write sentences starting with That + clause",learn:[],
+   ex:[
+    {n:"C1",k:"study",i:"Study the models.",h:["Pattern","Model sentence"],r:[
+      ["That + clause + is + adjective","That she finished the thesis in three months is impressive."],
+      ["That + clause + seems + adjective","That the two theories are incompatible seems obvious."],
+      ["That + clause + remains + adjective","That the outcome will be positive remains uncertain."],
+      ["That + clause + has been proven","That smoking causes cancer has been proven beyond doubt."],
+      ["That + clause + is + noun phrase","That honesty is the best policy is a common saying."],
+      ["That + clause + is + past participle","That the proposal was rejected is widely believed."]]},
+    {n:"C2",k:"open",i:"Write sentences starting with That + clause. Use academic topics: education, technology, environment, social issues, research, history.",
+     q:[["that + clause + is + adjective",""],["that + clause + seems + adjective",""],["that + clause + remains + adjective",""],
+        ["that + clause + has been proven / is widely accepted",""],["that + clause + is + noun phrase",""],["that + clause + your choice of verb",""]]}
+   ]},
+  {L:"D",t:"Mini Project: The \"Three Truths About Me\" Manifesto",learn:[],
+   ex:[{n:"D1",k:"project",i:"Write three sentences about yourself — each starting with That — that reveal something true about your beliefs, experiences or realizations. They can be serious, funny, or a mix. Read them to a partner, who guesses which one matters most to you.",x:""}]}
+ ]},
+
+{n:16,t:"Glue for Your Ideas: Connectors That Connect",s:"Connectors — addition + exemplification",grp:"Grammar core",tags:"connectors furthermore moreover in addition not only but also for instance for example to illustrate namely",
+ sec:[
+  {L:"A",t:"Connectors for addition",
+   learn:[
+    {b:"p",x:"Addition connectors add another idea that supports or extends the previous one. They signal: I am adding more information."},
+    {b:"table",h:["Connector","Position","Formality","Example"],r:[
+      ["furthermore","beginning of sentence (+ comma)","formal","The policy is costly. Furthermore, it is ineffective."],
+      ["moreover","beginning of sentence (+ comma)","formal","The study has limitations. Moreover, the sample size was small."],
+      ["in addition","beginning of sentence (+ comma)","neutral / formal","She is an excellent researcher. In addition, she is a gifted teacher."],
+      ["not only… but also","connects two ideas within one sentence","neutral / formal","She is not only intelligent but also hardworking."]]},
+    {b:"trick",x:"If you start a sentence with Not only, invert the subject and verb: Not only is she intelligent, but she is also hardworking."}
+   ],
+   ex:[
+    {n:"A1",k:"gap",i:"Complete each sentence with the correct addition connector: furthermore · moreover · in addition · not only … but also",
+     q:[["The new software is user-friendly. ___, it is affordable.",["furthermore|moreover|in addition"]],
+        ["She ___ speaks three languages fluently ___ has a degree in linguistics.",["not only","but also"]],
+        ["The company reduced its carbon emissions. ___, it implemented a recycling program.",["in addition|furthermore|moreover"]],
+        ["The research was well-designed. ___, the findings were replicated in multiple studies.",["moreover|furthermore|in addition"]],
+        ["He ___ wrote the book ___ illustrated the cover himself.",["not only","but also"]],
+        ["The hotel is located near the airport. ___, it offers free shuttle service.",["in addition|furthermore|moreover"]]]},
+    {n:"A2",k:"write",i:"Complete each sentence with your own idea.",
+     q:[["Exercise improves physical health. Furthermore, …","it reduces stress and improves sleep quality."],
+        ["The university has excellent professors. In addition, …","it offers generous research funding to undergraduates."],
+        ["Public transport in this city is cheap. Moreover, …","it runs until well after midnight."],
+        ["Not only … but also … (write your own sentence)","Not only did the team meet the deadline, but they also cut costs."],
+        ["Learning a second language opens career doors. In addition, …","it changes the way you understand your own language."]]}
+   ]},
+  {L:"B",t:"Connectors for exemplification",
+   learn:[
+    {b:"p",x:"Exemplification connectors introduce examples that illustrate or support a general statement."},
+    {b:"table",h:["Connector","Position","Formality","Example"],r:[
+      ["for instance","beginning of sentence (+ comma)","neutral","Many countries have banned single-use plastics. For instance, Canada introduced a ban in 2022."],
+      ["for example","beginning of sentence (+ comma)","neutral","Some animals are nocturnal. For example, owls hunt at night."],
+      ["to illustrate","beginning of sentence (+ comma)","formal","The problem is widespread. To illustrate, consider the case of…"],
+      ["namely","within the sentence","formal","There is one major issue, namely the lack of funding."]]},
+    {b:"trick",x:"namely introduces a specific example or list, and often follows a general noun: Three students were late, namely Maria, John and Ahmed."}
+   ],
+   ex:[
+    {n:"B1",k:"gap",i:"Complete each sentence with the correct exemplification connector: for instance · for example · to illustrate · namely",
+     q:[["Many European cities have excellent public transportation. ___, Amsterdam is known for its tram system.",["for instance|for example|to illustrate"]],
+        ["One factor contributed to the project's success, ___ effective communication.",["namely"]],
+        ["The consequences of climate change are already visible. ___, rising sea levels have displaced coastal communities.",["for example|for instance|to illustrate"]],
+        ["There is one skill every leader needs, ___ the ability to listen.",["namely"]],
+        ["Some animals use camouflage to survive. ___, the chameleon changes its color to match its surroundings.",["for example|for instance|to illustrate"]],
+        ["The solution requires three things, ___ time, money and patience.",["namely"]]]},
+    {n:"B2",k:"write",i:"Complete each sentence with your own example.",
+     q:[["Many famous scientists faced criticism before their work was accepted. For instance, …","Barry Marshall had to infect himself to prove that bacteria cause ulcers."],
+        ["Some countries have successfully reduced air pollution. To illustrate, …","London's low-emission zone cut roadside nitrogen dioxide by almost half."],
+        ["There are several benefits to learning a new language, namely …","better memory, wider job prospects and easier travel."],
+        ["Technology has changed the way we communicate. For example, …","a voice note now replaces what used to be a two-page letter."],
+        ["Certain habits can improve productivity, such as …","planning the next day before you close your laptop."]]}
+   ]},
+  {L:"C",t:"Write 2 short paragraphs (1 addition, 1 exemplification)",
+   learn:[
+    {b:"p",x:"Model paragraph 1 (addition connectors): Online education offers several advantages over traditional classroom learning. First, it provides flexibility for students who work or have family responsibilities. Furthermore, online courses are often more affordable than in-person programs. In addition, students can access recorded lectures at any time, allowing them to review difficult concepts. Not only does online learning save commuting time, but it also allows students to study from anywhere in the world."},
+    {b:"p",x:"Model paragraph 2 (exemplification connectors): Many companies have adopted environmentally friendly practices in recent years. For instance, several major corporations have committed to reducing their plastic packaging. To illustrate, one large retailer eliminated all single-use plastic bags from its stores. Other businesses have invested in renewable energy. For example, a well-known tech company powers its headquarters entirely with solar panels. These changes, namely the reduction of waste and carbon emissions, demonstrate a growing commitment to sustainability."}
+   ],
+   ex:[
+    {n:"C1",k:"open",i:"Paragraph 1 — addition connectors (6–8 sentences). Use at least 3 different addition connectors. Topics: the advantages of learning a second language · reasons to invest in public transportation · benefits of regular exercise · qualities of a good leader.",
+     q:[["Your addition paragraph",""]]},
+    {n:"C2",k:"open",i:"Paragraph 2 — exemplification connectors (6–8 sentences). Use at least 3 different exemplification connectors. Topics: successful people who overcame failure · cities with excellent public transportation · innovations that changed the world · environmental problems in your country.",
+     q:[["Your exemplification paragraph",""]]}
+   ]},
+  {L:"D",t:"Mini Project: The \"Someone Who Changed Me\" Tribute",learn:[],
+   ex:[{n:"D1",k:"project",i:"Think of one person who has influenced your life positively. Write a short tribute paragraph (6–8 sentences). Use addition connectors to add more reasons why they matter, and exemplification connectors to give specific examples of what they did.",x:""}]}
+ ]},
+
+{n:17,t:"Mistakes to Mastery: Timed Review Challenge",s:"Mixed review + timed error correction",grp:"Review",tags:"review timed error correction multiple choice sets 1-16",
+ sec:[
+  {L:"A",t:"What are we reviewing?",
+   learn:[
+    {b:"table",h:["Sets","Topic"],r:[
+      ["1–4","Conditionals, mixed conditionals, past perfect, passive voice"],
+      ["6–9","Infinitive/gerund, ellipsis, nonrestrictive modifiers, advanced connectives"],
+      ["11–13","Articles, count/noncount nouns, prepositions after relative pronouns"],
+      ["15","That at the beginning of a sentence"],
+      ["16","Connectors (addition + exemplification)"]]}
+   ],
+   ex:[
+    {n:"A1",k:"pick",i:"Choose the set each sentence belongs to.",
+     o:[["2","Set 2"],["6","Set 6"],["12","Set 12"],["13","Set 13"],["15","Set 15"],["16","Set 16"]],
+     q:[["That the project was completed on time is impressive.","15"],
+        ["She stopped to buy coffee on her way to work.","6"],
+        ["The professor to whom I spoke was very helpful.","13"],
+        ["Not only did she finish the report, but she also revised it.","16"],
+        ["Information is power in the digital age.","12"],
+        ["If I had studied medicine, I would be a doctor now.","2"]]}
+   ]},
+  {L:"B",t:"Timed error correction",
+   learn:[{b:"note",x:"Give yourself 20 minutes for B1. Each sentence has one error from Sets 1–16."}],
+   ex:[
+    {n:"B1",k:"write",i:"Find and correct the error in each sentence.",
+     q:[["That she is qualified for the position it is obvious to everyone.","That she is qualified for the position is obvious to everyone."],
+        ["The study was well-designed, moreover it had a small sample size.","The study was well-designed; however, it had a small sample size."],
+        ["She gave me an advice that changed my perspective on life.","She gave me a piece of advice that changed my perspective on life."],
+        ["If I would have known about the meeting, I would have attended.","If I had known about the meeting, I would have attended."],
+        ["The company which she works for is based in London. (rewrite in formal style)","The company for which she works is based in London."],
+        ["The life is full of unexpected challenges and surprises.","Life is full of unexpected challenges and surprises."],
+        ["She wanted to attend the conference, but she wasn't able to attend. (use ellipsis)","She wanted to attend the conference, but she wasn't able to."],
+        ["Not only she speaks Spanish, but she also speaks French.","Not only does she speak Spanish, but she also speaks French."],
+        ["The experiment was successful, albeit it was expensive.","The experiment was successful, albeit expensive."],
+        ["I need informations about the scholarship program before I apply.","I need information about the scholarship program before I apply."],
+        ["That the earth revolves around the sun. (complete the sentence)","That the earth revolves around the sun is a scientific fact."],
+        ["My brother who lives in Chicago is a doctor. (assume one brother — add commas)","My brother, who lives in Chicago, is a doctor."],
+        ["The teacher provided a feedback that helped me improve my essay.","The teacher provided feedback that helped me improve my essay."],
+        ["She locked the door before she left, lest someone will break in.","She locked the door before she left, lest someone break in."],
+        ["The research which the study was based on was flawed. (rewrite in formal style)","The research on which the study was based was flawed."]]},
+    {n:"B2",k:"mcq",i:"Select the best option.",
+     q:[["___ the project was completed on time impressed everyone.",["That","What"],0,"That + clause works as the subject of impressed."],
+        ["She stopped ___ coffee on her way to work this morning.",["to buy","buying"],0,"She paused in order to buy coffee — purpose, so to-infinitive."],
+        ["The professor ___ I spoke was very kind.",["to who","to whom"],1,"After a preposition, use whom."],
+        ["___ did she finish the report, but she also revised it.",["Not only","Only then"],0,"Not only … but also, with inversion."],
+        ["If I had studied medicine, I ___ a doctor now.",["would be","would have been"],0,"Mixed conditional: past condition, present result."],
+        ["The company ___ she works is based in London. (formal style)",["for which","which for"],0,"The preposition comes before the relative pronoun."],
+        ["___ is full of unexpected challenges.",["Life","The life"],0,"General reference takes the zero article."],
+        ["She wanted to attend the conference, but she wasn't able ___.",["to","to attend"],0,"Ellipsis: the repeated verb is left out after to."],
+        ["Not only ___ Spanish, but she also speaks French.",["she speaks","does she speak"],1,"Sentence-initial Not only forces subject–verb inversion."],
+        ["The experiment was successful, ___ expensive.",["albeit","albeit it was"],0,"albeit is followed directly by an adjective."],
+        ["I need ___ about the scholarship program.",["an information","some information"],1,"information is noncount."],
+        ["___ the earth revolves around the sun is a scientific fact.",["That","What"],0,"That introduces a fact clause used as the subject."]]}
+   ]},
+  {L:"C",t:"Mini Project: The Grammar Chain Story",learn:[],
+   ex:[{n:"C1",k:"project",i:"The class writes one collective story, one sentence at a time. Each student writes a sentence, folds the paper so the next person cannot see it, and passes it on. At the end, the story is unfolded and read aloud. The twist: each sentence must include a specific grammar structure from Sets 1–17.",
+        x:"Challenge (optional): write 5 original sentences, each with one hidden error from Sets 1–16. Exchange with a partner. Can they find all 5 in under 10 minutes?"}]}
+ ]}
+
+);
+/* ===== SETS 18–25 ===== */
+DATA.push(
+
+{n:18,t:"Grammar in Action: The Advanced Paragraph",s:"Grammar in context — the advanced academic paragraph",grp:"Skills & writing",tags:"academic paragraph grammar in context analysis writing",
+ sec:[
+  {L:"A",t:"Grammar in context – why it matters",
+   learn:[
+    {b:"p",x:"You have learned 17 sets of grammar structures. Grammar is not just for exercises — it helps you write clear, precise, sophisticated academic paragraphs. In this set you will read an advanced paragraph, identify the structures in it, and then write your own."},
+    {b:"p",x:"Read the paragraph below twice. First for meaning. Second to notice the grammar."},
+    {b:"eg",x:["That artificial intelligence is transforming the workplace is undeniable. Not only does AI automate routine tasks, but it also creates new opportunities for innovation. However, the impact of AI is not uniform across all sectors. Whereas tech companies have embraced AI rapidly, traditional industries have been slower to adapt. This disparity may lead to significant economic consequences, namely job displacement in certain fields. To illustrate, a recent study found that administrative roles are particularly vulnerable to automation. Nevertheless, researchers suggest that AI will also generate new roles that do not yet exist. The key to navigating this transition, it seems, is education and reskilling. Workers who acquire digital competencies are more likely to thrive. That proactive adaptation is essential is a lesson from previous industrial revolutions. Notwithstanding the challenges, the potential benefits of AI – increased efficiency, reduced errors, and enhanced creativity – are too significant to ignore."]}
+   ],
+   ex:[
+    {n:"A1",k:"write",i:"Find an example of each structure in the paragraph above. The first one is done for you.",
+     q:[["That at the beginning of a sentence (Set 15)","That artificial intelligence is transforming the workplace is undeniable."],
+        ["Not only… but also with inversion (Set 16)","Not only does AI automate routine tasks, but it also creates new opportunities for innovation."],
+        ["Contrast connective — whereas (Set 9)","Whereas tech companies have embraced AI rapidly, traditional industries have been slower to adapt."],
+        ["Hedging (may, might, seems, suggests)","This disparity may lead to significant economic consequences. / researchers suggest that…"],
+        ["Exemplification connector — to illustrate (Set 16)","To illustrate, a recent study found that administrative roles are particularly vulnerable to automation."],
+        ["Nonrestrictive element with commas (Set 8)","The key to navigating this transition, it seems, is education and reskilling."],
+        ["Contrast connective — notwithstanding (Set 9)","Notwithstanding the challenges, the potential benefits of AI are too significant to ignore."],
+        ["Count/noncount noun (Set 12)","education and reskilling · enhanced creativity — all noncount."],
+        ["Ellipsis (Set 7)","Not present in this paragraph."],
+        ["Preposition + relative pronoun (Set 13)","Not present in this paragraph — Workers who acquire digital competencies has no preposition."],
+        ["Passive voice (Set 4)","Not present in this paragraph — every main verb is active."],
+        ["Conditional (Sets 1–2)","Not present in this paragraph."]]}
+   ]},
+  {L:"B",t:"Write your own academic paragraph",
+   learn:[{b:"p",x:"Now write an academic paragraph that uses at least 8 different target structures from Sets 1–17."}],
+   ex:[
+    {n:"B1",k:"open",i:"Plan your paragraph. Topics: the impact of social media on mental health · solutions to climate change · the advantages and disadvantages of remote work · the importance of lifelong learning · a challenge facing your generation.",
+     q:[["My topic",""],["Structures I plan to use (list at least 8)",""]]},
+    {n:"B2",k:"open",i:"Write one academic paragraph (8–12 sentences) on your chosen topic. Use at least 8 different target structures from Sets 1–17 and underline or label them.",
+     q:[["Your paragraph",""]]}
+   ]},
+  {L:"C",t:"Mini Project: My \"Before & After\" Paragraph",learn:[],
+   ex:[{n:"C1",k:"project",i:"Write two short paragraphs about the same topic. The first is simple (no special grammar). The second is an improved version using at least 6 different grammar structures from Sets 1–17.",x:""}]}
+ ]},
+
+{n:19,t:"Speak to Persuade: Academic Debate Basics",s:"Academic debate simulation",grp:"Skills & writing",tags:"debate argumentation rebuttal opening statement speaking evidence",
+ sec:[
+  {L:"A",t:"What is an academic debate?",
+   learn:[
+    {b:"p",x:"An academic debate is a structured discussion where two sides argue for or against a proposition. Unlike a casual argument, it uses evidence (facts, data, expert opinions), logical reasoning, and a structured format. You are not trying to \"win\" — you are practising clear, evidence-based argumentation."},
+    {b:"table",h:["Part","Time","What you do"],r:[
+      ["Opening statement","1 minute","State your position clearly. Give 2 reasons with evidence."],
+      ["Rebuttal","1 minute","Respond to your opponent's argument. Point out a weakness or offer a counter-example."],
+      ["Closing statement (optional)","30 seconds","Summarize your strongest point."]]},
+    {b:"eg",x:["Sample opening statement — FOR the motion \"Schools should ban smartphones in class\": I believe that schools should ban smartphones in class for two main reasons. First, smartphones are a major distraction. A study of 500 students found that test scores were 15% higher in classrooms where phones were prohibited. Second, smartphones can negatively affect mental health. Researchers have shown that excessive screen time is linked to anxiety and sleep problems. For these reasons, a ban on smartphones would improve both academic performance and student well-being."]}
+   ],
+   ex:[
+    {n:"A1",k:"write",i:"Answer these questions about the sample opening statement above.",
+     q:[["What is the speaker's position?","Schools should ban smartphones in class (FOR the motion)."],
+        ["What is the first reason?","Smartphones are a major distraction."],
+        ["What evidence supports the first reason?","A study of 500 students found test scores were 15% higher where phones were prohibited."],
+        ["What is the second reason?","Smartphones can negatively affect mental health."],
+        ["What evidence supports the second reason?","Researchers have linked excessive screen time to anxiety and sleep problems."]]},
+    {n:"A2",k:"open",i:"Choose a debate motion: social media does more harm than good · university education should be free for all students · remote work is better than working in an office · the benefits of artificial intelligence outweigh the risks · governments should ban single-use plastics immediately.",
+     q:[["My chosen motion",""],["My position (FOR or AGAINST)",""]]}
+   ]},
+  {L:"B",t:"Prepare your opening statement (1 minute)",
+   learn:[
+    {b:"p",x:"A 1-minute opening statement is roughly 120–150 words. It needs: a clear position (I believe that… / I argue that…), two reasons (First… / Second…), evidence for each reason (a study, statistic or example), and a concluding sentence (For these reasons… / Therefore…)."}
+   ],
+   ex:[
+    {n:"B1",k:"open",i:"Outline your opening statement.",
+     q:[["Position — I believe that / I argue that…",""],["Reason 1 — First,…",""],["Evidence for reason 1 — For example / A study found that…",""],
+        ["Reason 2 — Second,…",""],["Evidence for reason 2 — Research shows / To illustrate…",""],["Conclusion — Therefore / For these reasons,…",""]]},
+    {n:"B2",k:"open",i:"Write your complete opening statement (120–150 words / 5–7 sentences).",q:[["Your opening statement",""]]}
+   ]},
+  {L:"C",t:"Prepare your rebuttal (1 minute)",
+   learn:[
+    {b:"p",x:"A rebuttal responds to your opponent's argument. You don't need to attack everything — one weak point is enough."},
+    {b:"table",h:["Strategy","Example"],r:[
+      ["Question the evidence","The study mentioned only looked at 500 students, which is a small sample size."],
+      ["Offer a counter-example","While some students may be distracted, others use phones for educational purposes, such as dictionaries."],
+      ["Point out a missing perspective","The argument ignores that a ban does not teach students self-control."],
+      ["Use a logical weakness","Correlation does not equal causation. Less screen time might not be the cause of better grades."]]},
+    {b:"note",x:"Structure of a rebuttal (3–5 sentences): 1) acknowledge (optional) — My opponent makes a fair point about… 2) state the weakness — However, the evidence is not convincing because… 3) offer your counter-point — In fact, research shows that… 4) conclude — Therefore, my position remains stronger."}
+   ],
+   ex:[
+    {n:"C1",k:"open",i:"Anticipate your opponent's argument. If you are FOR the motion, what might the AGAINST side say — and vice versa?",
+     q:[["My position (FOR / AGAINST)",""],["Possible opponent argument #1",""],["Possible opponent argument #2",""],["The argument I will rebut",""]]},
+    {n:"C2",k:"open",i:"Write your rebuttal (3–5 sentences / 60–90 words) responding to your opponent's likely argument.",q:[["Your rebuttal",""]]}
+   ]},
+  {L:"D",t:"Present to your partner",
+   learn:[
+    {b:"note",x:"Before you speak: practise your opening statement aloud twice · time yourself (aim for 55–65 seconds) · practise your rebuttal aloud twice · time yourself · write keywords on a small card (do not read full sentences)."},
+    {b:"p",x:"Round 1 — opening statements: Student A presents (1 min) while Student B listens without interrupting, then swap. Round 2 — rebuttals: Student A presents (1 min), then Student B."}
+   ],
+   ex:[
+    {n:"D1",k:"open",i:"Feedback for your partner.",q:[["One thing that was strong",""],["One suggestion for improvement",""]]}
+   ]},
+  {L:"E",t:"Mini Project: The \"Roommate Court\" Debate",learn:[],
+   ex:[{n:"E1",k:"project",i:"You and a partner are roommates sharing an apartment. One of you feels the chore situation is unfair; the other thinks everything is fine. Have a short debate (6–8 lines total) about one household chore. Step 1: choose a chore dispute. Step 2: decide who is Prosecution (wants change) and who is Defense. Step 3: write a short script where each person speaks 3–4 times. Step 4: perform for the class, which votes on who won.",x:""}]}
+ ]},
+
+{n:20,t:"Write with Respect: Formal Emails That Work",s:"Formal email / letter response",grp:"Skills & writing",tags:"formal email letter register inquiry application salutation",
+ sec:[
+  {L:"A",t:"What is a formal email/letter?",
+   learn:[
+    {b:"p",x:"A formal email or letter is used for professional and academic situations: university applications, scholarship inquiries, job applications, requests for information, letters of complaint or recommendation."},
+    {b:"table",h:["Informal (to a friend)","Formal (to a university)"],r:[
+      ["Hey Professor,","Dear Professor Smith,"],
+      ["I'm writing about…","I am writing to inquire about…"],
+      ["Can you…?","I would appreciate it if you could…"],
+      ["Thanks!","Thank you for your time and consideration."],
+      ["Best,","Yours sincerely,"]]},
+    {b:"table",h:["Feature","What it means","Example"],r:[
+      ["Salutation","Formal greeting","Dear Dr. Johnson, / To the Admissions Committee,"],
+      ["Subject line","States the purpose clearly","Subject: Inquiry Regarding Master's Program in Economics"],
+      ["Polite request language","Uses modals and conditionals","I would like to request… / I would be grateful if…"],
+      ["Formal vocabulary","Avoids contractions and slang","I am writing to inquire… (not I'm writing to ask)"],
+      ["Closing","Formal sign-off","Yours sincerely, / Yours faithfully,"],
+      ["Signature","Full name and contact","Maria Santos (maria.santos@email.com)"]]}
+   ],
+   ex:[
+    {n:"A1",k:"write",i:"Rewrite each informal sentence in formal style.",
+     q:[["Hey, can you send me the application form?","I would be grateful if you could send me the application form."],
+        ["Thanks for your help. I really appreciate it.","Thank you very much for your assistance, which I greatly appreciate."],
+        ["I'm writing to ask about the scholarship.","I am writing to inquire about the scholarship."],
+        ["Can you tell me when the deadline is?","Could you please inform me of the application deadline?"],
+        ["Sorry to bother you, but I need some info.","I apologise for any inconvenience, but I would appreciate some further information."]]}
+   ]},
+  {L:"B",t:"Analyze a prompt",
+   learn:[
+    {b:"p",x:"Before writing, analyze the prompt to understand who you are writing to (audience), why you are writing (purpose), and what information you need to include (content)."},
+    {b:"p",x:"Prompt 1 — University application inquiry: You are interested in applying to the Master's in Environmental Science programme at Greenfield University. The website lists basic information, but you need more details about the application requirements, specifically the statement of purpose and letters of recommendation. Write a formal email to the Admissions Office requesting this information."},
+    {b:"p",x:"Prompt 2 — Scholarship inquiry: You have been accepted to a university abroad but cannot afford the tuition. You have found a scholarship offered by a foundation that supports international students. The website states that you must demonstrate financial need and academic excellence. Write a formal letter to the Scholarship Committee requesting an application form and asking about the required documents."}
+   ],
+   ex:[
+    {n:"B1",k:"open",i:"Answer these questions for ONE prompt (choose 1 or 2).",
+     q:[["Which prompt did you choose? (1 or 2)",""],["Who is the recipient? (name/title)",""],["What is your purpose? (1 sentence)",""],
+        ["What specific information do you need? (2–3 items)",""],["What tone should you use? (formal / semi-formal / informal)",""]]},
+    {n:"B2",k:"open",i:"Based on your chosen prompt, brainstorm what you will write.",
+     q:[["Subject line",""],["Salutation",""],["Opening sentence (introduce yourself and your purpose)",""],
+        ["Specific request #1",""],["Specific request #2",""],["Polite closing sentence",""],["Closing salutation",""]]}
+   ]},
+  {L:"C",t:"Write a formal email/letter (150–200 words)",
+   learn:[
+    {b:"p",x:"Model response for Prompt 1 — Subject: Inquiry Regarding Master's in Environmental Science – Application Requirements. Dear Admissions Committee, I am writing to inquire about the application requirements for the Master's in Environmental Science programme at Greenfield University for the Fall 2025 semester. I have reviewed the information on your website; however, I would appreciate further clarification regarding two specific requirements. First, could you please provide more details about the statement of purpose? Specifically, I would like to know if there is a required word count or any particular prompts that applicants must address. Second, I would be grateful if you could clarify the letters of recommendation requirement. How many letters are required, and should they be submitted directly by the referees or through the online application portal? I would also appreciate information about any upcoming information sessions for prospective students. Thank you very much for your time and assistance. I look forward to your response. Yours sincerely, Maria Santos."},
+    {b:"note",x:"Checklist: clear subject line · formal salutation (Dear + title + last name) · introduction (who you are + why you are writing) · specific request #1 · specific request #2 · polite closing sentence · formal closing · full name and contact information · 150–200 words."}
+   ],
+   ex:[
+    {n:"C1",k:"open",i:"Write a formal email or letter (150–200 words) responding to the prompt you chose in B1.",q:[["Your formal email / letter",""]]}
+   ]},
+  {L:"D",t:"Mini Project: My \"Real-Life\" Formal Email",learn:[],
+   ex:[{n:"D1",k:"project",i:"Think of a real situation where you might need to write a formal email — or invent a realistic one. Write it (150–200 words) using the structure and language from this set. If appropriate, you can actually send it (with teacher approval).",x:""}]}
+ ]},
+
+{n:21,t:"Listen, Read, Write: The Integrated Challenge",s:"Extended integrated task — synthesize reading + listening",grp:"Skills & writing",tags:"integrated task summary response reading listening synthesis TOEFL IELTS",
+ sec:[
+  {L:"A",t:"What is an integrated task?",
+   learn:[
+    {b:"p",x:"In many proficiency exams (TOEFL, IELTS, Cambridge), you must combine information from two sources: a reading passage and a listening passage. You do not give your opinion — you synthesize what you read and heard."},
+    {b:"table",h:["Type","What you do"],r:[
+      ["Summary + response","Summarize the main points from both sources. Explain how they relate (agree, disagree, or add information)."],
+      ["Compare and contrast","Show how the listening challenges, supports, or adds to the reading."]]}
+   ],
+   ex:[
+    {n:"A1",k:"match",i:"Match each phrase to its function.",
+     o:[["A","Showing agreement"],["B","Showing addition"],["C","Showing disagreement"],["D","Showing similarity"]],
+     q:[["The reading argues that… However, the lecturer disagrees because…","C"],
+        ["Both the reading and the lecture indicate that…","D"],
+        ["The lecturer expands on the reading by adding that…","B"],
+        ["The speaker supports the author's point by explaining that…","A"]]}
+   ]},
+  {L:"B",t:"Read the article",
+   learn:[
+    {b:"p",x:"The Rise of Remote Work — Remote work, once considered a temporary solution during the pandemic, has become a permanent fixture in many industries. According to a 2024 global survey, 42% of employees now work remotely at least part of the time, compared to only 6% in 2019. Proponents argue that remote work offers significant benefits. First, it eliminates commuting, saving the average employee 54 minutes per day. This time can be redirected toward family, exercise, or professional development. Second, remote work allows companies to hire talent from anywhere, increasing diversity and access to specialized skills. Finally, studies suggest that remote workers are often more productive than their in-office counterparts, primarily due to fewer distractions and greater autonomy. However, critics point to challenges such as feelings of isolation, difficulty collaborating, and the blurring of work-life boundaries."}
+   ],
+   ex:[
+    {n:"B1",k:"write",i:"Note the key points of the reading.",
+     q:[["Main argument of the reading","Remote work has become permanent and offers significant benefits, though critics note real challenges."],
+        ["Benefit #1","It eliminates commuting — about 54 minutes a day saved per employee."],
+        ["Benefit #2","Companies can hire talent from anywhere, increasing diversity and access to specialized skills."],
+        ["Benefit #3","Remote workers are often more productive, thanks to fewer distractions and greater autonomy."]]}
+   ]},
+  {L:"C",t:"Listen to the lecture",
+   learn:[{b:"note",x:"Your teacher will read aloud the lecture \"Challenges of Remote Work – A Different Perspective\" twice. Listen carefully and take notes."}],
+   ex:[
+    {n:"C1",k:"open",i:"Note the key points of the lecture.",
+     q:[["Main argument of the lecture",""],["Challenge #1",""],["Challenge #2",""],["Challenge #3",""]]}
+   ]},
+  {L:"D",t:"Synthesize reading + listening",
+   learn:[
+    {b:"p",x:"Task: summarize the main points of the reading and the lecture. Then explain how the lecture relates to the reading (challenges it, adds information, offers solutions)."},
+    {b:"table",h:["Paragraph","Content","Approx. length"],r:[
+      ["Paragraph 1","Summarize the reading (3 benefits of remote work)","75–100 words"],
+      ["Paragraph 2","Summarize the lecture (3 challenges + solutions)","75–100 words"],
+      ["Paragraph 3","Explain the relationship (adds information / offers balance)","50–75 words"]]}
+   ],
+   ex:[
+    {n:"D1",k:"open",i:"Write your summary + response (200–250 words).",q:[["Your synthesis",""]]}
+   ]},
+  {L:"E",t:"Mini Project: The \"For or Against\" Quick Debate",learn:[],
+   ex:[{n:"E1",k:"project",i:"Your teacher announces a debate motion. The class divides into FOR and AGAINST. Teams take turns giving one short argument (one sentence each). No repeats allowed. The first team that cannot come up with a new argument loses.",x:""}]}
+ ]},
+
+{n:22,t:"Think Global, Act Local: The Global Citizen Challenge",s:"Life journal — the global citizen challenge",grp:"Skills & writing",tags:"global citizen life journal reflective writing paragraph values issue",
+ sec:[
+  {L:"A",t:"What is a global citizen?",
+   learn:[
+    {b:"p",x:"A global citizen understands that we are all connected (economically, socially, environmentally), cares about issues beyond their own country, and takes responsibility for making the world better."},
+    {b:"trick",x:"A global citizen is not a perfect person. It is someone who tries to learn, act and grow."}
+   ],
+   ex:[
+    {n:"A1",k:"open",i:"Which of these issues interest you most? Climate change · poverty and inequality · access to education · mental health awareness · gender equality · plastic pollution · refugee crisis · deforestation · digital privacy · food waste.",
+     q:[["The issues I care about most",""],["Another global issue I care about",""]]},
+    {n:"A2",k:"open",i:"Choose your focus. Answer in notes, not full sentences.",
+     q:[["What global issue do you want to write about?",""],["Why is this issue important to you?",""],
+        ["What is one fact or statistic about this issue?",""],["What is one small action you already take (or could take)?",""],
+        ["What is one thing you want to learn more about?",""]]}
+   ]},
+  {L:"B",t:"Write one paragraph describing a global issue + your role",
+   learn:[
+    {b:"p",x:"Write one paragraph (8–12 sentences) that describes a global issue (facts, causes, effects), explains your connection to it (why you care), and states your role (what you already do or plan to do). Tone: reflective, honest, not preachy. You do not need to solve the problem — just show awareness and personal connection."},
+    {b:"p",x:"Model paragraph — One global issue that concerns me deeply is plastic pollution in the ocean. Every year, an estimated 11 million metric tons of plastic enter the marine environment, harming sea turtles, birds and other wildlife. This issue is personal to me because I grew up near the beach, and I have watched the coastline change over the years. I no longer see the same abundance of marine life that I remember as a child. While I cannot solve the entire crisis, I have taken small steps to reduce my own plastic use. I carry a reusable water bottle, refuse single-use straws, and bring my own bags to the grocery store. I also try to educate my friends by sharing documentaries about ocean pollution. My role is not to be perfect but to be consistent. If millions of people make these small changes, the collective impact could be significant. That is the kind of global citizen I want to be — not someone who solves everything, but someone who does not look away."},
+    {b:"table",h:["Element","Example from the model"],r:[
+      ["Global issue","plastic pollution in the ocean"],
+      ["Fact / statistic","11 million metric tons of plastic enter the ocean each year"],
+      ["Personal connection","I grew up near the beach"],
+      ["Small actions already taken","reusable water bottle, no straws, own bags"],
+      ["Role (realistic)","not perfect but consistent"]]},
+    {b:"note",x:"Structure: sentences 1–2 introduce the issue · 3–4 give a fact or example · 5–6 explain your personal connection · 7–9 describe small actions · 10–11 state your realistic role and a concluding thought."}
+   ],
+   ex:[
+    {n:"B1",k:"open",i:"Write one paragraph (8–12 sentences / 150–200 words) about a global issue and your role.",q:[["Your paragraph",""]]}
+   ]},
+  {L:"C",t:"Mini Project: The \"Global Citizen\" Poster",learn:[],
+   ex:[{n:"C1",k:"project",i:"Create a poster (on paper or digital) showing one global issue you care about, why it matters (facts, effects), one small action you or others can take, and a slogan or call to action.",x:""}]}
+ ]},
+
+{n:23,t:"The Mini-Me of Your Research: Abstract Writing",s:"Abstract writing — the mini-me of your research",grp:"Skills & writing",tags:"abstract research summary five sentences method result conclusion",
+ sec:[
+  {L:"A",t:"What on earth is an abstract?",
+   learn:[
+    {b:"p",x:"An abstract is a tiny summary of a research paper, essay or project. It comes at the beginning, but you write it last. Think of it as a movie trailer for your writing: here's what I did, why I did it, how I did it, and what I found out."},
+    {b:"note",x:"Why care? Your teacher might ask for one before reading your essay. University applications sometimes ask for an abstract of a project. And it saves people time — they can decide whether to read the whole thing."}
+   ],
+   ex:[
+    {n:"A1",k:"match",i:"Match each movie trailer line to what it represents in an abstract.",
+     o:[["A","Method (how)"],["B","Result (what I found)"],["C","Problem / context (why)"],["D","Action (what I did)"]],
+     q:[["\"In a world where coffee doesn't exist…\"","C"],
+        ["\"One student decided to investigate.\"","D"],
+        ["\"She surveyed 100 tired teenagers.\"","A"],
+        ["\"Turns out, coffee is essential for math homework.\"","B"]]},
+    {n:"A2",k:"open",i:"Complete this silly abstract with your own ideas. No research required — have fun with it. Topic: a study on whether pineapple belongs on pizza.",
+     q:[["This study investigated the controversial question of whether pineapple … (belongs / does not belong) on pizza.",""],
+        ["The researcher surveyed … (number) pizza lovers of various ages.",""],
+        ["Results showed that … % of participants strongly … (loved / hated) pineapple on pizza, while others argued that … (funny reason).",""],
+        ["The findings suggest that pineapple on pizza is … (conclusion).",""],
+        ["Further research is needed to determine … (something ridiculous).",""]]}
+   ]},
+  {L:"B",t:"The secret recipe for an abstract",
+   learn:[
+    {b:"p",x:"A good abstract has exactly 5 sentences (for a short school project). No more. No less."},
+    {b:"table",h:["Sentence","What it does","Example"],r:[
+      ["1","Background / problem (why this topic?)","Many students struggle to wake up for early classes."],
+      ["2","Goal / purpose (what did you want to find out?)","This study examined whether listening to upbeat music in the morning improves alertness."],
+      ["3","Method (what did you actually do?)","Twenty students listened to pop music for 10 minutes each morning over one week."],
+      ["4","Result (what did you find?)","Participants reported feeling 35% more awake, though two fell back asleep."],
+      ["5","Conclusion (so what?)","Upbeat music may be a simple, low-cost tool for morning alertness — unless you are a heavy sleeper."]]}
+   ],
+   ex:[
+    {n:"B1",k:"pick",i:"Read the abstract \"Does social media make us unhappy?\" and label each sentence 1–5.",
+     o:[["1","1 Background"],["2","2 Goal"],["3","3 Method"],["4","4 Result"],["5","5 Conclusion"]],
+     q:[["(a) Many teenagers report feeling anxious after using social media for long periods.","1"],
+        ["(b) This study explored whether limiting screen time to one hour per day reduces feelings of sadness and envy.","2"],
+        ["(c) Thirty participants reduced their social media use to one hour daily for two weeks and completed a daily mood log.","3"],
+        ["(d) Results showed a 40% decrease in self-reported anxiety, although three participants admitted they secretly used Instagram under the blankets.","4"],
+        ["(e) Limiting social media use may improve adolescent mental health — but only if you actually stick to the limit.","5"]]}
+   ]},
+  {L:"C",t:"Write your own funny abstract (150 words max)",
+   learn:[{b:"note",x:"Challenge — draw your abstract: a one-panel comic showing the problem, the crazy method, the silly result and the conclusion, all in one drawing."}],
+   ex:[{n:"C1",k:"open",i:"Write a short, silly abstract about a completely made-up research study. The topic can be ridiculous; the goal is to practise the 5-sentence structure without stress.",q:[["Your abstract",""]]}]},
+  {L:"D",t:"Mini Project: The \"Emoji Abstract\" Challenge",learn:[],
+   ex:[{n:"D1",k:"project",i:"Use emojis to represent each of the 5 sentences of your abstract from Part C. Display your emoji abstract in the classroom; your classmates try to guess which one is yours.",x:""}]}
+ ]},
+
+{n:24,t:"Persuade with Purpose: The Opinion Editorial",s:"Opinion editorial — formal register, persuasion",grp:"Skills & writing",tags:"op-ed opinion editorial persuasion formal register thesis counter-argument",
+ sec:[
+  {L:"A",t:"What is an opinion editorial?",
+   learn:[
+    {b:"p",x:"An opinion editorial (\"op-ed\") is a short persuasive essay published in newspapers, magazines or online platforms. It argues for a specific position using formal register (no slang, no contractions), logical reasoning, and persuasive language that is not aggressive. You are not just stating an opinion — you are convincing the reader."}
+   ],
+   ex:[
+    {n:"A1",k:"write",i:"Rewrite each informal sentence in a formal register suitable for an op-ed.",
+     q:[["I think social media is bad for kids.","There is growing reason to believe that social media harms young people."],
+        ["The government should do something about pollution, like, now.","The government must take immediate action to address pollution."],
+        ["It's not fair that some people can't go to college.","It is unjust that access to higher education remains beyond the reach of many."],
+        ["We need to fix the school system – it's a mess.","The education system requires urgent and comprehensive reform."]]},
+    {n:"A2",k:"write",i:"Complete each sentence with a persuasive ending.",
+     q:[["If we do not address climate change immediately, …","the costs of inaction will fall on a generation that had no say in the decision."],
+        ["Every student deserves access to quality education; therefore, …","funding must be distributed according to need, not postcode."],
+        ["Critics may argue that renewable energy is too expensive. However, …","the long-term cost of fossil fuel dependence is far higher."],
+        ["The evidence is clear: …","policies that delay reform simply transfer the burden to the future."]]}
+   ]},
+  {L:"B",t:"Structure of an opinion editorial",
+   learn:[
+    {b:"table",h:["Part","Content","Length"],r:[
+      ["Introduction","Hook + thesis statement (your position)","2–3 sentences"],
+      ["Body paragraph 1","First reason + evidence/example","3–4 sentences"],
+      ["Body paragraph 2","Second reason + evidence/example","3–4 sentences"],
+      ["Counter-argument + rebuttal","Acknowledge the other side + explain why you are still right","2–3 sentences"],
+      ["Conclusion","Restate thesis + call to action or final thought","2–3 sentences"]]},
+    {b:"p",x:"Why Schools Should Teach Financial Literacy — (1) Every year, thousands of young adults graduate from high school without knowing how to budget, save, or invest. (2) This lack of financial knowledge leads to debt, stress, and missed opportunities. (3) Schools must add financial literacy to their core curriculum. (4) First, understanding money management is essential for independence. (5) A 2023 study found that students who took a financial literacy course were 40% less likely to accumulate credit card debt in college. (6) Second, financial education reduces inequality. (7) Students from lower-income families often have no one to teach them about banking, taxes, or saving for retirement. (8) Some argue that parents should teach these skills at home. (9) However, not all parents have the time, knowledge, or resources to do so. (10) Schools must fill this gap. (11) Teaching financial literacy is not optional – it is a necessity. (12) Our children's financial futures depend on it."}
+   ],
+   ex:[
+    {n:"B1",k:"write",i:"Label each part of the op-ed above with its line numbers.",
+     q:[["Introduction (hook + thesis)","1–3"],["Reason 1","4–5"],["Reason 2","6–7"],["Counter-argument + rebuttal","8–10"],["Conclusion","11–12"]]}
+   ]},
+  {L:"C",t:"Write a short opinion editorial (150–200 words)",
+   learn:[{b:"note",x:"Challenge (optional): research a real newspaper or online platform that accepts op-eds from students (e.g. The Guardian – Young Commentators, Teen Ink) and submit yours."}],
+   ex:[
+    {n:"C1",k:"open",i:"Choose a topic and a position. Should social media be banned for users under 16? · Should university education be free for all? · Should single-use plastics be banned? · Is remote work better than working in an office? · Should schools start later in the morning?",
+     q:[["My topic",""],["My position (FOR or AGAINST)",""]]},
+    {n:"C2",k:"open",i:"Outline your op-ed.",
+     q:[["Hook (1 sentence)",""],["Thesis (your position)",""],["Reason 1",""],["Evidence for reason 1",""],["Reason 2",""],
+        ["Evidence for reason 2",""],["Counter-argument (what the other side says)",""],["Rebuttal (why you are still right)",""],["Conclusion (restate + call to action)",""]]},
+    {n:"C3",k:"open",i:"Write your complete opinion editorial (150–200 words / 10–14 sentences). Use formal register and the persuasive connectives from Set 9.",q:[["Your op-ed",""]]}
+   ]},
+  {L:"D",t:"Mini Project: The Op-Ed Guessing Games",learn:[],
+   ex:[{n:"D1",k:"project",i:"Game 1 — Old vs. New: can you tell which op-ed was written recently and which was written 10+ years ago? Game 2 — Who Wrote It?: can you match an op-ed to the famous person who wrote it?",x:""}]}
+ ]},
+
+{n:25,t:"The Time Capsule: Letter to My Future Self",s:"Life journal — letter to future self + values & decision-making",grp:"Skills & writing",tags:"letter future self values reflection time capsule final project",
+ sec:[
+  {L:"A",t:"Why write a letter to your future self?",
+   learn:[
+    {b:"p",x:"A letter to your future self is a time capsule of who you are now. It helps you clarify your values (what matters most to you), set intentions (who you want to become) and practise self-compassion (understanding that you will grow and change)."}
+   ],
+   ex:[
+    {n:"A1",k:"open",i:"Think about your future self. Answer these questions in notes.",
+     q:[["Where do you hope to be in 3–5 years? (city, job, study, living situation)",""],
+        ["What skills or qualities do you want to have developed by then?",""],
+        ["What challenges do you think you might face?",""],
+        ["What advice would your current self give to your future self?",""],
+        ["What do you want to remind your future self not to forget?",""]]}
+   ]},
+  {L:"B",t:"Identify your 5 core values",
+   learn:[
+    {b:"p",x:"Values are the principles that guide your decisions. Knowing your values helps you make choices that feel right."},
+    {b:"table",h:["","","",""],r:[
+      ["Honesty","Creativity","Responsibility","Humility"],
+      ["Kindness","Independence","Freedom","Generosity"],
+      ["Courage","Loyalty","Family","Ambition"],
+      ["Justice","Curiosity","Friendship","Peace"],
+      ["Respect","Patience","Learning","Spirituality"]]}
+   ],
+   ex:[
+    {n:"B1",k:"open",i:"Choose your top 5 values from the list above, and add 2 of your own.",
+     q:[["My top 5 values",""],["My own values (not on the list)",""]]},
+    {n:"B2",k:"open",i:"For each of your top 5 values, write 1–2 sentences: what does this value mean to you, and why is it important?",
+     q:[["Value 1",""],["Value 2",""],["Value 3",""],["Value 4",""],["Value 5",""]]}
+   ]},
+  {L:"C",t:"Write a letter to your future self (300 words)",
+   learn:[
+    {b:"table",h:["Paragraph","Content"],r:[
+      ["Paragraph 1","Greeting + where you are now (age, study, work, feelings)"],
+      ["Paragraph 2","Your hopes and dreams for the future (3–5 years from now)"],
+      ["Paragraph 3","Your core values and why they matter to you"],
+      ["Paragraph 4","Advice, reminders and encouragement"]]},
+    {b:"p",x:"Model letter — Dear Future Me, Right now, I am 22 years old, finishing my English course, and applying for university. I feel excited but also nervous about the future. I am not sure exactly what I want to study, but I know I want to do something that helps people. In five years, I hope to be working in a career that feels meaningful. I hope I have travelled to at least two new countries and improved my English to a C2 level. I hope I have made friends who challenge me to grow. My five core values are honesty, kindness, curiosity, responsibility and courage. Honesty means telling the truth even when it is hard. Kindness means treating others the way I want to be treated. Curiosity means never stopping learning. Responsibility means owning my mistakes. Courage means doing what is right even when I am afraid. My advice to you is this: do not compare your path to anyone else's. Take time to rest without feeling guilty. Remember why you started. And please, do not forget to call Mum and Dad. With love and hope, Me (age 22)."}
+   ],
+   ex:[
+    {n:"C1",k:"open",i:"Write your letter (approximately 300 words / 3–4 paragraphs).",q:[["Your letter",""]]}
+   ]},
+  {L:"D",t:"Reflection",learn:[],
+   ex:[
+    {n:"D1",k:"open",i:"Answer these questions in complete sentences.",
+     q:[["Looking back at the beginning of this course, how has your English improved?",""],
+        ["What is one grammar topic that you struggled with but now understand better?",""],
+        ["What is one skill (writing, speaking, listening, grammar) you still want to improve?",""],
+        ["What advice would you give to a student starting Advanced 4 next semester?",""],
+        ["What are you most proud of from this course?",""]]}
+   ]},
+  {L:"E",t:"Final Project: The Graduation Time Capsule Ceremony",
+   learn:[{b:"trick",x:"Grammar is a tool, not a destination — keep using it. Your English will keep growing, especially if you read, write and speak every week. You have learned more than you think: look back at Set 1 if you forget."}],
+   ex:[{n:"E1",k:"project",i:"This is your final project for Advanced 4. 1) Write your letter (from Part C) on special paper or print it nicely. 2) Seal it in an envelope labelled with your name and the date you should open it. 3) Take part in the class ceremony where the letters are collected in a Time Capsule box.",
+        x:"\"The future depends on what you do today.\" — Mahatma Gandhi"}]}
+ ]}
+
+);
+/* ===== MODEL-ANSWER OVERLAY =====
+   Fills model answers for open-ended exercises that shipped without them.
+   Genuinely personal tasks (Set 21 C1 lecture notes, Set 22 A1/A2, Set 25)
+   are intentionally left without a model — the button hides itself there. */
+(function(){
+var M={
+
+"6.C2":[
+ "I enjoy walking through the market on Saturday mornings.",
+ "I want to finish my dissertation before December.",
+ "I avoid checking email after nine at night.",
+ "We decided to postpone the trip until the rain stopped.",
+ "Would you mind holding the door for a second?",
+ "I promise to reply before the end of the day.",
+ "She stopped buying bottled water last year.",
+ "He stopped to answer a call halfway through his run.",
+ "I remember signing the contract, but I can't find it anywhere.",
+ "Remember to bring your ID to the exam."],
+
+"15.C2":[
+ "That so many students abandon their studies in the first year is alarming.",
+ "That technology outpaces regulation seems inevitable.",
+ "That the policy will be renewed remains unclear.",
+ "That vaccines prevent disease has been proven beyond reasonable doubt.",
+ "That access to clean water is a right is a principle few would dispute.",
+ "That the report was buried suggests the findings were inconvenient."],
+
+"16.C1":[
+ "Learning a second language brings advantages that go far beyond travel. First, it opens career doors: employers increasingly value staff who can negotiate in more than one language. Furthermore, bilingual speakers show measurable cognitive benefits, including stronger working memory and, in later life, slower cognitive decline. In addition, learning another language teaches you a great deal about your own, because you begin to notice grammar you had always used unconsciously. Not only does it widen the range of people you can talk to, but it also widens the range of ideas you can reach, since much of what is written is never translated. Moreover, the discipline of daily study builds patience that transfers to everything else."],
+
+"16.C2":[
+ "A number of cities have proved that heavy traffic is a policy choice rather than a fact of life. For instance, Amsterdam rebuilt its road network around cyclists after a decade of protest in the 1970s. To illustrate, more than a third of the city's daily journeys are now made by bicycle. Other cities have gone further and restricted cars outright. For example, Pontevedra in Spain pedestrianised its centre and has since recorded no traffic deaths at all. The measures that made the difference, namely dedicated infrastructure, lower speed limits and reliable public transport, were unglamorous but decisive."],
+
+"18.B1":[
+ "The impact of social media on mental health.",
+ "That + clause (15) · not only… but also with inversion (16) · whereas (9) · notwithstanding (9) · to illustrate (16) · nonrestrictive which clause (8) · preposition + relative pronoun (13) · passive voice (4) · noncount noun — evidence (12) · mixed conditional (2)."],
+
+"18.B2":[
+ "That social media has reshaped adolescent life is beyond dispute. Not only does it structure how young people meet, but it also structures how they compare themselves with one another. Whereas earlier generations left school comparisons at the school gate, today's teenagers carry them home in their pockets. The evidence, which continues to accumulate, points to a modest but consistent association between heavy use and reported anxiety. To illustrate, several longitudinal studies have found that adolescents in the highest usage quartile report lower life satisfaction. The mechanism about which researchers still disagree is causation: if the relationship had been established clearly, policy would already have changed. Notwithstanding this uncertainty, schools have been urged to act. Some argue that phones should be banned outright, albeit at the cost of teaching self-regulation. That a balance must be found is widely accepted; what that balance looks like remains contested."],
+
+"19.A2":[
+ "Social media does more harm than good.",
+ "AGAINST — I will argue that the harms are real but outweighed by the benefits."],
+
+"19.B1":[
+ "I argue that social media does more good than harm for young people.",
+ "First, it gives isolated young people access to communities they cannot find where they live.",
+ "A 2023 survey found that a majority of LGBTQ+ teenagers said online spaces were where they first felt accepted.",
+ "Second, it has become a genuine route into paid work.",
+ "Research on freelancers in the creative industries shows that most find the majority of their clients through social platforms.",
+ "Therefore, the sensible response is better regulation and digital literacy, not condemnation."],
+
+"19.B2":[
+ "I argue that social media does more good than harm for young people. First, it gives isolated young people access to communities they cannot find where they live. A 2023 survey found that a majority of LGBTQ+ teenagers said online spaces were where they first felt accepted, and that sense of belonging is protective rather than damaging. Second, social media has become a genuine route into paid work. Research on freelancers in the creative industries shows that most find the majority of their clients through social platforms, which particularly benefits people who have no professional network to inherit. I do not deny the risks: comparison and harassment are real. However, those risks arise from design choices that can be regulated, whereas the benefits are structural. For these reasons, the answer is better regulation and digital literacy, not condemnation."],
+
+"19.C1":[
+ "AGAINST",
+ "Heavy use is linked to rising rates of anxiety and sleep problems among adolescents.",
+ "Algorithmic feeds are engineered to be addictive, so talking about free 'choice' is misleading.",
+ "I will rebut the first argument — the claimed link between use and anxiety."],
+
+"19.C2":[
+ "My opponent makes a fair point about rising adolescent anxiety. However, the evidence is correlational, and correlation does not establish causation: anxious teenagers may simply spend more time online rather than becoming anxious because of it. In fact, the largest recent meta-analysis found effect sizes so small that they were comparable to trivial lifestyle variables. The argument therefore identifies a real worry but attributes it to the wrong cause. Therefore, my position remains stronger."],
+
+"19.D1":[
+ "Your evidence was specific and you named the source, which made the second reason much harder to dismiss.",
+ "You ran about fifteen seconds over time. Cutting the second example would leave room for a stronger closing line."],
+
+"20.B1":[
+ "Prompt 1.",
+ "The Admissions Office / Admissions Committee, Greenfield University.",
+ "To request clarification of two application requirements for the Master's in Environmental Science.",
+ "Word count and prompts for the statement of purpose; the number of recommendation letters and how they are submitted; dates of information sessions.",
+ "Formal."],
+
+"20.B2":[
+ "Subject: Inquiry Regarding Master's in Environmental Science – Application Requirements",
+ "Dear Admissions Committee,",
+ "I am writing to inquire about the application requirements for the Master's in Environmental Science programme, to which I intend to apply for the Fall intake.",
+ "Could you please clarify whether the statement of purpose has a required word count or set prompts that applicants must address?",
+ "I would be grateful if you could confirm how many letters of recommendation are required, and whether referees should submit them directly.",
+ "Thank you very much for your time and assistance; I look forward to your response.",
+ "Yours sincerely, [full name] · [email address]"],
+
+"20.C1":[
+ "Subject: Request for Scholarship Application Form and Required Documents\n\nDear Scholarship Committee,\n\nI am writing to request an application form for the International Students Scholarship and to ask for clarification regarding the supporting documents.\n\nI have recently been accepted to the MSc in Public Health at Northfield University, beginning in September. While I am delighted to have been offered a place, the tuition fees are beyond what my family is able to fund, and your scholarship would make it possible for me to take up the offer.\n\nFirst, could you please indicate how the application form should be obtained, and whether it must be submitted electronically or by post? Second, I would be grateful if you could specify which documents are accepted as evidence of financial need, and whether translated documents require official certification.\n\nI would also appreciate confirmation of the closing date for this year's round.\n\nThank you very much for your time and consideration. I look forward to your reply.\n\nYours sincerely,\n[Name] · [email] · [telephone]"],
+
+"21.D1":[
+ "The reading argues that remote work has become a permanent feature of the labour market, and it identifies three benefits. It eliminates commuting, saving the average employee almost an hour a day; it allows employers to recruit regardless of location, widening both diversity and the pool of specialist skills; and it is associated with higher productivity, which the article attributes to fewer interruptions and greater autonomy.\n\nThe lecture does not dispute these findings, but it draws attention to costs the article treats only in passing. The speaker highlights isolation and the loss of informal contact, the difficulty of collaborating on complex or creative work when colleagues never share a room, and the collapse of the boundary between working hours and private life. For each, the lecturer proposes practical mitigation rather than a return to the office: structured check-ins, periodic in-person sessions for collaborative tasks, and explicit norms about availability.\n\nThe lecture therefore complements rather than contradicts the reading. Whereas the article measures what remote work saves, the lecture asks what it quietly costs, and it suggests that hybrid arrangements capture most of the benefits while limiting the damage."],
+
+"22.B1":[
+ "The global issue that troubles me most is food waste. Roughly a third of all the food produced for human consumption is never eaten, and if that waste were a country, its emissions would rank third in the world. What makes it painful is that the waste sits alongside hunger: we are not short of food, we are short of systems that move it to the right place in time. This issue is personal because I grew up in a household where nothing was thrown away — leftovers became the next day's lunch, and stale bread became something else entirely. When I moved out, I was shocked at how easily a bag of vegetables could rot at the back of my own fridge. I have started planning meals before I shop, freezing anything I will not use in time, and taking the surplus from family gatherings to a neighbour rather than the bin. None of this solves the problem. My role is not to be the person who wastes nothing, but the person who notices — and if enough of us notice, the demand for better systems follows."],
+
+"23.A2":[
+ "does not belong",
+ "247",
+ "68% … hated … it violates the sacred balance of savoury and sweet",
+ "a delicious choice that society is not yet ready to admit it enjoys",
+ "whether a hot dog is a sandwich"],
+
+"23.C1":[
+ "Students frequently claim that they study better with background music, yet nobody appears to define \"better\". This study examined whether listening to heavy metal while revising vocabulary improves recall. Fifteen volunteers memorised twenty new words, half in silence and half accompanied by a playlist chosen by the researcher's flatmate. Recall was 22% lower in the metal condition, although participants rated the experience as significantly more enjoyable and three requested the playlist afterwards. Heavy metal may therefore be an excellent motivational tool and a poor study aid — a distinction future researchers are encouraged to respect."],
+
+"24.C1":[
+ "Should schools start later in the morning?",
+ "FOR — I will argue that secondary schools should begin no earlier than nine o'clock."],
+
+"24.C2":[
+ "We would not ask an adult to sit an examination at four in the morning.",
+ "Secondary schools should start no earlier than nine o'clock.",
+ "Adolescent biology, not laziness, makes early starts harmful.",
+ "During puberty the body clock shifts by roughly two hours, so a teenager who cannot sleep before midnight is not being difficult.",
+ "Later starts produce measurable improvements.",
+ "When Seattle schools moved the bell from 7:50 to 8:45, students gained an average of 34 minutes of sleep a night and grades rose.",
+ "Critics reply that later starts inconvenience working parents and squeeze after-school activities.",
+ "That is a scheduling problem, and scheduling problems have solutions; chronic sleep deprivation during brain development does not.",
+ "If we are serious about attainment, we could begin by letting students sleep."],
+
+"24.C3":[
+ "We would not ask an adult to sit an examination at four in the morning. Yet by requiring teenagers to be alert at half past eight, that is broadly what we do. Secondary schools should start no earlier than nine o'clock.\n\nThe reason is biology rather than indulgence. During adolescence the circadian rhythm shifts by around two hours, which means that a teenager who cannot fall asleep before midnight is not being difficult; they are being fifteen. Waking them at half past six removes sleep that cannot be recovered at the weekend.\n\nThe effects of correcting this are measurable. When schools in Seattle moved their start time from 7:50 to 8:45, students gained an average of thirty-four minutes of sleep a night, attendance improved, and grades rose.\n\nCritics reply that later starts inconvenience working parents and squeeze after-school activities. The objection is fair, but it describes a scheduling problem, and scheduling problems have solutions. Chronic sleep deprivation during the years in which the brain is still developing does not.\n\nIf we are serious about attainment, we could begin by letting students sleep."]
+
+};
+DATA.forEach(function(s){s.sec.forEach(function(sec){sec.ex.forEach(function(e){
+  var m=M[s.n+'.'+e.n]; if(!m) return;
+  e.q.forEach(function(q,i){ if(m[i]&&!q[1]) q[1]=m[i]; });
+});});});
+})();
+
+
+/* ══════════ STORAGE ══════════ */
+var KEY='adv4-v1';
+var ST={ans:{},done:{}};
+function load(){try{var r=localStorage.getItem(KEY);if(r){var p=JSON.parse(r);ST.ans=p.ans||{};ST.done=p.done||{};}}catch(e){}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(ST));}catch(e){}}
+load();
+function aget(k){return ST.ans[k]||'';}
+function aset(k,v){if(v===''){delete ST.ans[k];}else{ST.ans[k]=v;}save();}
+function mark(k,v){if(v){ST.done[k]=1;}else{delete ST.done[k];}save();}
+
+/* ══════════ HELPERS ══════════ */
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function norm(s){
+  return String(s==null?'':s).toLowerCase()
+    .replace(/[\u2018\u2019\u02bc]/g,"'").replace(/[\u201c\u201d]/g,'"')
+    .replace(/[\u2013\u2014\u2212]/g,'-')
+    .replace(/[.,;:!?"()\[\]]/g,'').replace(/'/g,'')
+    .replace(/\s+/g,' ').trim();
+}
+function hit(val,key){
+  var alts=String(key).split('|');
+  var v=norm(val);
+  for(var i=0;i<alts.length;i++){
+    var a=norm(alts[i]);
+    if(a===v) return true;
+    if(a==='-'&&(v===''||v==='-'||v==='zero'||v==='no article')) return true;
+    if(a===''&&v==='') return true;
+  }
+  return false;
+}
+function loose(val,key){
+  if(hit(val,key)) return true;
+  var v=norm(val).replace(/^(the|a|an)\s+/,''), k=norm(String(key).split('|')[0]).replace(/^(the|a|an)\s+/,'');
+  if(!v) return false;
+  if(v===k) return true;
+  /* accept if the answer contains the model's distinctive core, e.g. "no commas" */
+  if(k.length<18&&v.indexOf(k)>-1) return true;
+  return false;
+}
+function exKey(set,ex){return 's'+set+'.'+ex;}
+function itKey(set,ex,i,g){return 's'+set+'.'+ex+'.'+i+(g==null?'':'.'+g);}
+
+function exCount(s){var c=0;s.sec.forEach(function(x){c+=x.ex.length;});return c;}
+function exDone(s){var c=0;s.sec.forEach(function(x){x.ex.forEach(function(e){if(ST.done[exKey(s.n,e.n)])c++;});});return c;}
+
+/* ══════════ SIDEBAR ══════════ */
+var GROUPS=['Grammar core','Review','Skills & writing'];
+function buildSide(){
+  var h='<button class="slink" data-go="home"><span class="num">◆</span><span class="ttl">All sets</span></button>';
+  GROUPS.forEach(function(g){
+    h+='<h4 data-grp="'+esc(g)+'">'+esc(g)+'</h4>';
+    DATA.filter(function(s){return s.grp===g;}).forEach(function(s){
+      h+='<button class="slink" data-go="'+s.n+'" data-find="'+esc((s.n+' '+s.t+' '+s.s+' '+s.tags).toLowerCase())+'">'+
+         '<span class="num">'+s.n+'</span><span class="ttl">'+esc(s.t)+'</span><span class="pip" data-pip="'+s.n+'"></span></button>';
+    });
+  });
+  document.getElementById('side').innerHTML=h;
+}
+function paintPips(){
+  DATA.forEach(function(s){
+    var el=document.querySelector('[data-pip="'+s.n+'"]');if(!el)return;
+    var d=exDone(s),t=exCount(s);
+    el.className='pip'+(d===0?'':(d>=t?' full':' part'));
+    el.title=d+' of '+t+' activities done';
+  });
+}
+
+/* ══════════ LEARN BLOCKS ══════════ */
+function learnHTML(bs){
+  if(!bs||!bs.length) return '';
+  var h='<div class="learn">';
+  bs.forEach(function(b){
+    if(b.b==='p') h+='<p>'+esc(b.x)+'</p>';
+    else if(b.b==='formula') h+='<div class="formula">'+esc(b.x)+'</div>';
+    else if(b.b==='trick') h+='<div class="trick">'+esc(b.x)+'</div>';
+    else if(b.b==='note') h+='<div class="note">'+esc(b.x)+'</div>';
+    else if(b.b==='eg'){h+='<div class="egs">';b.x.forEach(function(e){h+='<div>'+esc(e)+'</div>';});h+='</div>';}
+    else if(b.b==='table'){
+      h+='<div class="tblwrap"><table><thead><tr>';
+      b.h.forEach(function(c){h+='<th>'+esc(c)+'</th>';});
+      h+='</tr></thead><tbody>';
+      b.r.forEach(function(row){h+='<tr>';row.forEach(function(c){h+='<td>'+esc(c)+'</td>';});h+='</tr>';});
+      h+='</tbody></table></div>';
+    }
+  });
+  return h+'</div>';
+}
+
+/* ══════════ EXERCISE RENDERERS ══════════ */
+function gapRow(set,e,i,q){
+  var parts=String(q[0]).split('___'), h='<div class="q">';
+  for(var g=0;g<parts.length;g++){
+    h+=esc(parts[g]);
+    if(g<parts.length-1){
+      var k=itKey(set,e.n,i,g);
+      h+='<input class="txt gapi" data-k="'+k+'" data-a="'+esc(q[1][g]||'')+'" value="'+esc(aget(k))+'" autocomplete="off" spellcheck="false">';
+    }
+  }
+  return h+'</div><div class="why"></div>';
+}
+function exHTML(set,e){
+  var done=!!ST.done[exKey(set,e.n)];
+  var h='<section class="ex'+(done?' done':'')+'" id="ex-'+set+'-'+e.n+'" data-ex="'+e.n+'" data-set="'+set+'" data-kind="'+e.k+'">'+
+        '<div class="exhead"><span class="exno">'+esc(e.n)+'</span><span class="exi">'+esc(e.i)+'</span></div>';
+
+  if(e.k==='study'){
+    h+='<div class="tblwrap" style="margin-top:.9rem"><table><thead><tr>';
+    e.h.forEach(function(c){h+='<th>'+esc(c)+'</th>';});
+    h+='</tr></thead><tbody>';
+    e.r.forEach(function(r){h+='<tr>';r.forEach(function(c){h+='<td>'+esc(c)+'</td>';});h+='</tr>';});
+    h+='</tbody></table></div>';
+    h+='<div class="row"><button class="btn ghost" data-act="tick">'+(done?'Done ✓':'Mark as read')+'</button></div></section>';
+    return h;
+  }
+  if(e.k==='project'){
+    var k=itKey(set,e.n,0);
+    h+='<div class="project">'+esc(e.i)+(e.x?'<div class="extra">'+esc(e.x)+'</div>':'')+'</div>'+
+       '<textarea class="txt" rows="5" data-k="'+k+'" placeholder="Draft it here — your text is saved on this device.">'+esc(aget(k))+'</textarea><div class="saved"></div>'+
+       '<div class="row"><button class="btn ghost" data-act="tick">'+(done?'Done ✓':'Mark as done')+'</button></div></section>';
+    return h;
+  }
+
+  h+='<div class="items">';
+  e.q.forEach(function(q,i){
+    var k=itKey(set,e.n,i);
+    h+='<div class="item" data-i="'+i+'"><span class="idx">'+(i+1)+'.</span><div class="body">';
+    if(e.k==='gap'){ h+=gapRow(set,e,i,q); }
+    else if(e.k==='pick'){
+      h+='<div class="q">'+esc(q[0])+'</div><div class="opts" data-a="'+esc(q[1])+'">';
+      e.o.forEach(function(o){
+        h+='<button class="opt'+(aget(k)===o[0]?' sel':'')+'" data-k="'+k+'" data-v="'+esc(o[0])+'">'+esc(o[1])+'</button>';
+      });
+      h+='</div><div class="why"></div>';
+    }
+    else if(e.k==='mcq'){
+      h+='<div class="q">'+esc(q[0])+'</div><div class="opts" data-a="'+q[2]+'">';
+      q[1].forEach(function(o,j){
+        h+='<button class="opt'+(aget(k)===String(j)?' sel':'')+'" data-k="'+k+'" data-v="'+j+'">'+esc(o)+'</button>';
+      });
+      h+='</div><div class="why" data-txt="'+esc(q[3]||'')+'"></div>';
+    }
+    else if(e.k==='match'){
+      h+='<div class="q">'+esc(q[0])+'</div><select class="txt" data-k="'+k+'" data-a="'+esc(q[1])+'"><option value="">— choose —</option>';
+      e.o.forEach(function(o){
+        h+='<option value="'+esc(o[0])+'"'+(aget(k)===o[0]?' selected':'')+'>'+esc(o[0])+'. '+esc(o[1])+'</option>';
+      });
+      h+='</select><div class="why"></div>';
+    }
+    else { /* write | open */
+      h+='<div class="q">'+esc(q[0])+'</div>'+
+         '<textarea class="txt" rows="'+(e.k==='open'?3:2)+'" data-k="'+k+'" data-a="'+esc(q[1]||'')+'" placeholder="Your answer…">'+esc(aget(k))+'</textarea>'+
+         '<div class="saved"></div>'+
+         (q[1]?'<div class="model"><b>Model answer</b>'+esc(q[1])+'</div>':'');
+    }
+    h+='</div></div>';
+  });
+  h+='</div><div class="row">';
+  h=h.replace('<div class="items">', e.q.length<2?'<div class="items one">':'<div class="items">');
+  if(e.k==='gap'||e.k==='pick'||e.k==='mcq'||e.k==='match') h+='<button class="btn primary" data-act="check">Check answers</button><button class="btn ghost" data-act="show">Show answers</button>';
+  else if(e.k==='write') h+='<button class="btn primary" data-act="check">Check answers</button><button class="btn ghost" data-act="show">Show model answers</button>';
+  else {
+    h+='<button class="btn primary" data-act="tick">'+(done?'Done ✓':'Mark as done')+'</button>';
+    if(e.q.some(function(q){return q[1]&&String(q[1]).trim();}))
+      h+='<button class="btn ghost" data-act="show">Show model answers</button>';
+  }
+  h+='<button class="btn ghost" data-act="clear">Clear</button><span class="score"></span></div></section>';
+  return h;
+}
+
+/* ══════════ VIEWS ══════════ */
+var cur='home';
+function renderHome(){
+  var totalD=0,totalT=0;
+  DATA.forEach(function(s){totalD+=exDone(s);totalT+=exCount(s);});
+  var h='<div class="home"><span class="eyebrow">Advanced 4 · C1</span>'+
+    '<h1>The whole booklet,<br><span>one screen.</span></h1>'+
+    '<p class="lede">Twenty-five sets: grammar explanations, self-checking practice, and space to draft every writing task. Your answers stay on this device.</p>'+
+    '<div class="bar" style="max-width:420px"><i style="width:'+(totalT?Math.round(totalD/totalT*100):0)+'%"></i></div>'+
+    '<div class="barlabel" style="max-width:420px"><span>'+totalD+' of '+totalT+' activities completed</span><span>'+(totalT?Math.round(totalD/totalT*100):0)+'%</span></div>'+
+    '<div class="grid" id="grid">';
+  DATA.forEach(function(s){
+    var d=exDone(s),t=exCount(s);
+    h+='<button class="tile" data-go="'+s.n+'" data-find="'+esc((s.n+' '+s.t+' '+s.s+' '+s.tags).toLowerCase())+'">'+
+       '<span class="n">SET '+s.n+'</span><h3>'+esc(s.t)+'</h3><p>'+esc(s.s)+'</p>'+
+       '<span class="mini"><i style="width:'+(t?Math.round(d/t*100):0)+'%"></i></span></button>';
+  });
+  h+='</div><div class="foot">Companion to <em>Natural Speech Advanced 4</em> — Phil Young\'s English School. '+
+     'Explanations and practice items follow the printed Student\'s Booklet; answer keys and model answers were written for this study tool. '+
+     'For use by students enrolled in the course.</div></div>';
+  document.getElementById('main').innerHTML=h;
+}
+function renderSet(n){
+  var s=DATA.filter(function(x){return x.n===n;})[0]; if(!s) return renderHome();
+  var d=exDone(s),t=exCount(s);
+  var h='<div class="shead"><span class="eyebrow">Set '+s.n+' · '+esc(s.grp)+'</span>'+
+        '<h1>'+esc(s.t)+'</h1><div class="sub">'+esc(s.s)+'</div>'+
+        '<div class="bar"><i style="width:'+(t?Math.round(d/t*100):0)+'%"></i></div>'+
+        '<div class="barlabel"><span>'+d+' of '+t+' activities completed</span><span>'+(t?Math.round(d/t*100):0)+'%</span></div></div>';
+  s.sec.forEach(function(sec){
+    h+='<section class="sec"><h2><span class="tag">'+esc(sec.L)+'</span>'+esc(sec.t)+'</h2>';
+    h+=learnHTML(sec.learn);
+    sec.ex.forEach(function(e){h+=exHTML(s.n,e);});
+    h+='</section>';
+  });
+  var pv=DATA.filter(function(x){return x.n===n-1;})[0], nx=DATA.filter(function(x){return x.n===n+1;})[0];
+  h+='<div class="pager">'+
+     (pv?'<button data-go="'+pv.n+'"><small>← Set '+pv.n+'</small>'+esc(pv.t)+'</button>':'<button disabled><small>Start</small>First set</button>')+
+     (nx?'<button class="nx" data-go="'+nx.n+'"><small>Set '+nx.n+' →</small>'+esc(nx.t)+'</button>':'<button class="nx" disabled><small>End</small>You made it 🎓</button>')+
+     '</div>';
+  document.getElementById('main').innerHTML=h;
+}
+function chrome(){
+  var pv=document.getElementById('prev'), nx=document.getElementById('next'), lb=document.getElementById('setnav');
+  var n=cur==='home'?0:+cur;
+  pv.disabled=!(n>1); nx.disabled=!(n>0&&n<25);
+  if(n){var s=DATA.filter(function(x){return x.n===n;})[0];lb.innerHTML='<b>SET '+n+'</b>'+esc(s?s.t:'');}
+  else lb.textContent='';
+}
+function go(v){
+  cur=v;
+  if(v==='home'){renderHome();location.hash='';}
+  else{renderSet(+v);location.hash='set'+v;}
+  window.scrollTo(0,0);
+  document.querySelectorAll('.slink').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-go')===String(v));});
+  paintPips();
+  chrome();
+  closeSide();
+}
+
+/* ══════════ CHECKING ══════════ */
+function setScore(card,right,total,reveal){
+  var sp=card.querySelector('.score');
+  if(sp){sp.textContent=reveal?('answers shown — '+right+' / '+total):(right+' / '+total+' correct');
+         sp.className='score'+(reveal?'':(right===total?' good':(right>0?' part':'')));}
+  if(reveal) return;                       /* revealing answers does not earn progress */
+  var k=exKey(card.getAttribute('data-set'),card.getAttribute('data-ex'));
+  var ok=right===total&&total>0;
+  mark(k,ok); card.classList.toggle('done',ok); paintPips();
+}
+function check(card,reveal){
+  var kind=card.getAttribute('data-kind'), right=0, total=0;
+  if(kind==='gap'){
+    card.querySelectorAll('input.gapi').forEach(function(inp){
+      total++;
+      var good=hit(inp.value,inp.getAttribute('data-a'));
+      if(reveal&&!good){inp.value=String(inp.getAttribute('data-a')).split('|')[0].replace(/^-$/,'–');aset(inp.getAttribute('data-k'),inp.value);good=true;}
+      inp.classList.remove('ok','no');inp.classList.add(good?'ok':'no');
+      if(good)right++;
+    });
+  } else if(kind==='pick'||kind==='mcq'){
+    card.querySelectorAll('.opts').forEach(function(box){
+      total++;
+      var ans=box.getAttribute('data-a'), got=null;
+      box.querySelectorAll('.opt').forEach(function(b){if(b.classList.contains('sel'))got=b.getAttribute('data-v');});
+      var good=String(got)===String(ans);
+      box.querySelectorAll('.opt').forEach(function(b){
+        b.classList.remove('good','bad','reveal');
+        if(b.classList.contains('sel'))b.classList.add(good?'good':'bad');
+        if((reveal||!good)&&b.getAttribute('data-v')===String(ans)&&!b.classList.contains('sel'))b.classList.add('reveal');
+      });
+      var why=box.parentNode.querySelector('.why');
+      if(why){var t=why.getAttribute('data-txt');if(t){why.innerHTML='<b>Why:</b> '+esc(t);why.classList.add('show');}}
+      if(good)right++;
+    });
+  } else if(kind==='match'){
+    card.querySelectorAll('select.txt').forEach(function(sel){
+      total++;
+      var good=sel.value===sel.getAttribute('data-a');
+      if(reveal&&!good){sel.value=sel.getAttribute('data-a');aset(sel.getAttribute('data-k'),sel.value);good=true;}
+      sel.classList.remove('ok','no');sel.classList.add(good?'ok':'no');
+      if(good)right++;
+    });
+  } else if(kind==='write'){
+    card.querySelectorAll('textarea.txt').forEach(function(ta){
+      total++;
+      var good=loose(ta.value,ta.getAttribute('data-a'));
+      ta.classList.remove('ok','no');ta.classList.add(good?'ok':'no');
+      var m=ta.parentNode.querySelector('.model');
+      if(m&&(!good||reveal))m.classList.add('show');
+      if(good)right++;
+    });
+  }
+  setScore(card,right,total,reveal);
+}
+
+/* ══════════ EVENTS ══════════ */
+document.addEventListener('click',function(ev){
+  var t=ev.target;
+
+  var goer=t.closest('[data-go]');
+  if(goer){go(goer.getAttribute('data-go'));return;}
+
+  if(t.classList&&t.classList.contains('opt')){
+    var box=t.parentNode;
+    box.querySelectorAll('.opt').forEach(function(b){b.classList.remove('sel','good','bad','reveal');});
+    t.classList.add('sel');
+    aset(t.getAttribute('data-k'),t.getAttribute('data-v'));
+    return;
+  }
+
+  var act=t.getAttribute&&t.getAttribute('data-act');
+  if(!act) return;
+  var card=t.closest('.ex');
+  if(act==='check') check(card,false);
+  else if(act==='show'){
+    if(card.getAttribute('data-kind')==='open'||card.getAttribute('data-kind')==='project'){
+      card.querySelectorAll('.model').forEach(function(m){m.classList.add('show');});
+    } else check(card,true);
+  }
+  else if(act==='tick'){
+    var k=exKey(card.getAttribute('data-set'),card.getAttribute('data-ex'));
+    var now=!card.classList.contains('done');
+    mark(k,now);card.classList.toggle('done',now);paintPips();
+    t.textContent=now?'Done ✓':(card.getAttribute('data-kind')==='study'?'Mark as read':'Mark as done');
+  }
+  else if(act==='clear'){
+    card.querySelectorAll('input.gapi,textarea.txt,select.txt').forEach(function(f){
+      f.value='';f.classList.remove('ok','no');aset(f.getAttribute('data-k'),'');
+    });
+    card.querySelectorAll('.opt').forEach(function(b){b.classList.remove('sel','good','bad','reveal');aset(b.getAttribute('data-k'),'');});
+    card.querySelectorAll('.model,.why').forEach(function(m){m.classList.remove('show');});
+    var sp=card.querySelector('.score');if(sp){sp.textContent='';sp.className='score';}
+    mark(exKey(card.getAttribute('data-set'),card.getAttribute('data-ex')),false);
+    card.classList.remove('done');paintPips();
+  }
+});
+
+document.addEventListener('input',function(ev){
+  var f=ev.target;
+  if(!f.getAttribute||!f.getAttribute('data-k')) return;
+  aset(f.getAttribute('data-k'),f.value);
+  f.classList.remove('ok','no');
+  var s=f.parentNode.querySelector('.saved');
+  if(s){s.textContent='Saved';clearTimeout(f._t);f._t=setTimeout(function(){s.textContent='';},1200);}
+});
+document.addEventListener('change',function(ev){
+  var f=ev.target;
+  if(f.tagName==='SELECT'&&f.getAttribute('data-k')) aset(f.getAttribute('data-k'),f.value);
+});
+
+/* search */
+document.getElementById('q').addEventListener('input',function(){
+  var v=this.value.trim().toLowerCase();
+  document.querySelectorAll('.slink[data-find]').forEach(function(b){
+    b.classList.toggle('hide', v!==''&&b.getAttribute('data-find').indexOf(v)<0);
+  });
+  document.querySelectorAll('.side h4').forEach(function(hh){
+    var any=false,el=hh.nextElementSibling;
+    while(el&&el.tagName!=='H4'){if(el.classList.contains('slink')&&!el.classList.contains('hide'))any=true;el=el.nextElementSibling;}
+    hh.classList.toggle('hide',!any);
+  });
+  document.querySelectorAll('#grid .tile').forEach(function(b){
+    b.classList.toggle('hide', v!==''&&b.getAttribute('data-find').indexOf(v)<0);
+  });
+});
+
+/* chrome */
+function closeSide(){document.getElementById('side').classList.remove('open');document.getElementById('scrim').classList.remove('on');}
+document.getElementById('burger').addEventListener('click',function(){
+  document.getElementById('side').classList.toggle('open');
+  document.getElementById('scrim').classList.toggle('on');
+});
+document.getElementById('scrim').addEventListener('click',closeSide);
+document.getElementById('print').addEventListener('click',function(){window.print();});
+document.getElementById('prev').addEventListener('click',function(){if(cur!=='home'&&+cur>1)go(+cur-1);});
+document.getElementById('next').addEventListener('click',function(){if(cur!=='home'&&+cur<25)go(+cur+1);});
+document.getElementById('theme').addEventListener('click',function(){
+  var r=document.documentElement,dark=r.getAttribute('data-theme')==='dark';
+  r.setAttribute('data-theme',dark?'light':'dark');
+  this.textContent=dark?'☾':'☀';
+  try{localStorage.setItem('gh-theme',dark?'light':'dark');}catch(e){}
+});
+(function(){
+  try{if(localStorage.getItem('gh-theme')==='dark'){document.documentElement.setAttribute('data-theme','dark');document.getElementById('theme').textContent='☀';}}catch(e){}
+})();
+window.addEventListener('keydown',function(e){
+  if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA'||e.target.tagName==='SELECT') return;
+  if(cur==='home') return;
+  if(e.key==='ArrowRight'&&+cur<25) go(+cur+1);
+  if(e.key==='ArrowLeft'&&+cur>1) go(+cur-1);
+});
+window.addEventListener('hashchange',function(){
+  var m=/^#set(\d+)$/.exec(location.hash);
+  var v=m?m[1]:'home';
+  if(String(cur)!==String(v)) go(v);
+});
+
+/* boot */
+DATA.sort(function(a,b){return a.n-b.n;});
+buildSide();
+var m0=/^#set(\d+)$/.exec(location.hash);
+go(m0?m0[1]:'home');
+</script>
+</body>
+</html>
