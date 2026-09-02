@@ -4,75 +4,85 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TOEFL Error Correction · Advanced Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#0b0d10;--surface:#13161b;--surface2:#1c2029;--text:#eef0f4;--muted:#7b8391;--border:#252a35;
-  --teal:#2dd4bf;--teal-mid:rgba(45,212,191,0.12);--radius:16px;
-}
-html[data-theme="light"]{
-  --bg:#f0f2f5;--surface:#ffffff;--surface2:#f7f8fa;--text:#111318;--muted:#5b6270;--border:#dde1e8;
-  --teal-mid:rgba(45,212,191,0.08);
-}
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh;display:flex;flex-direction:column}
-.topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 28px;border-bottom:1px solid var(--border)}
-.back-link{display:flex;align-items:center;gap:7px;color:var(--muted);text-decoration:none;font-size:13px;font-weight:500}
-.back-link:hover{color:var(--teal)}
-.back-link svg{width:15px;height:15px}
-.hub-badge{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--teal);background:var(--teal-mid);border:1px solid rgba(45,212,191,.2);border-radius:6px;padding:3px 9px}
-.theme-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:5px 10px;cursor:pointer;color:var(--muted);font-size:14px}
-.theme-btn:hover{border-color:var(--teal)}
-.hero{text-align:center;padding:52px 28px 34px}
-.hero h1{font-size:36px;font-weight:800;letter-spacing:-.02em;margin-bottom:14px}
-.hero h1 span{color:var(--teal)}
-.hero p{font-size:16px;color:var(--muted);max-width:620px;margin:0 auto;line-height:1.65}
-.section{max-width:900px;margin:0 auto;padding:0 28px 40px;width:100%}
-.section-hd{display:flex;align-items:baseline;gap:10px;margin-bottom:22px;padding-bottom:12px;border-bottom:1px solid var(--border)}
-.section-hd h2{font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
-.section-hd p{font-size:13px;color:var(--muted)}
-.rows{display:flex;flex-direction:column;gap:10px}
-.row{display:flex;align-items:center;gap:16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;text-decoration:none;color:inherit;transition:border-color .2s,transform .15s}
-a.row:hover{border-color:var(--teal);transform:translateX(3px)}
-.row.soon{opacity:.5}
-.num{font-size:19px;font-weight:800;color:var(--teal);min-width:26px}
-.row.soon .num{color:var(--muted)}
-.txt{flex:1}
-.txt h3{font-size:16px;font-weight:700;margin-bottom:3px}
-.txt p{font-size:13px;color:var(--muted);line-height:1.55}
-.tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:3px 9px;border-radius:5px;border:1px solid var(--border);color:var(--muted);background:var(--surface2);white-space:nowrap}
-.tag.live{border-color:rgba(45,212,191,.3);color:var(--teal);background:var(--teal-mid)}
-.note{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:10px;padding:16px 20px;font-size:13.5px;color:var(--muted);line-height:1.65;margin-bottom:26px}
-.note b{color:var(--text)}
-footer{margin-top:auto;padding:20px 28px;border-top:1px solid var(--border);font-size:12px;color:var(--muted);text-align:center}
-footer a{color:var(--muted);text-decoration:none}
-footer a:hover{color:var(--teal)}
-@media(max-width:560px){.hero h1{font-size:28px}.row{padding:14px 16px;gap:12px}}
+  :root{
+    --bg:#0c0e12;--surface:#15171c;--surface2:#1b1e25;--text:#eef0f2;--muted:#8b929c;--border:#262932;
+    --violet:#a78bfa;--violet-deep:#1c1433;--violet-line:rgba(167,139,250,0.35);
+    --key-accent:#f0c75e;--key-deep:#2a2206;--radius:18px;
+  }
+  :root[data-theme="light"]{
+    --bg:#f4f1ea;--surface:#ffffff;--surface2:#faf8f3;--text:#1a1815;--muted:#6b6660;--border:#e2ddd2;
+    --violet:#7c3aed;--violet-deep:#ede9fe;--violet-line:rgba(124,58,237,0.3);
+    --key-accent:#b8860b;--key-deep:#fbf2dc;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;
+    display:flex;flex-direction:column;align-items:center;line-height:1.65;transition:background .3s,color .3s}
+  .theme-toggle{position:fixed;top:1.25rem;right:1.25rem;z-index:10;width:42px;height:42px;border-radius:50%;
+    border:1px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;display:flex;
+    align-items:center;justify-content:center;font-size:1.1rem;transition:all .2s}
+  .theme-toggle:hover{border-color:var(--text);color:var(--text);transform:scale(1.06)}
+  .wrap{width:100%;max-width:980px;padding:4.5rem 1.5rem 4rem}
+  .back-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.8rem;font-weight:500;color:var(--muted);
+    text-decoration:none;margin-bottom:2.5rem;transition:color .2s}
+  .back-link:hover{color:var(--violet)}
+  .eyebrow{font-size:.72rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:1.1rem}
+  h1{font-family:'Fraunces',serif;font-weight:700;font-optical-sizing:auto;font-size:clamp(2.4rem,6vw,4rem);
+    line-height:1.05;letter-spacing:-1.5px;margin-bottom:.9rem}
+  h1 .accent{background:linear-gradient(90deg,var(--violet),#38bdf8);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{color:var(--muted);font-size:1.05rem;max-width:560px;font-weight:300;line-height:1.7;margin-bottom:2.5rem}
+  .note{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--violet);
+    border-radius:12px;padding:1.1rem 1.3rem;font-size:.88rem;color:var(--muted);font-weight:300;line-height:1.75;margin-bottom:2.5rem}
+  .note b{color:var(--text);font-weight:600}
+  .class-header{display:flex;align-items:center;gap:.9rem;margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:1px solid var(--border)}
+  .class-badge{font-size:.7rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:.25rem .75rem;
+    border-radius:100px;background:var(--violet-deep);color:var(--violet);border:1px solid var(--violet-line)}
+  .class-title{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:600;letter-spacing:-.3px}
+  .test-count{color:var(--muted);font-size:.85rem;margin-left:auto}
+  .rows{display:flex;flex-direction:column;gap:.75rem}
+  .row{display:flex;align-items:center;gap:1rem;background:var(--surface);border:1px solid var(--border);
+    border-radius:14px;padding:1.1rem 1.3rem;text-decoration:none;color:inherit;position:relative;overflow:hidden;
+    transition:transform .2s,border-color .2s,box-shadow .2s}
+  .row::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--violet);
+    transform:scaleX(0);transform-origin:left;transition:transform .3s}
+  a.row:hover{transform:translateY(-3px);border-color:var(--violet);box-shadow:0 10px 30px rgba(0,0,0,.15)}
+  a.row:hover::before{transform:scaleX(1)}
+  .row.soon{opacity:.45}
+  .num{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:700;color:var(--violet);min-width:26px}
+  .row.soon .num{color:var(--muted)}
+  .txt{flex:1}
+  .txt h3{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;letter-spacing:-.2px;margin-bottom:.2rem}
+  .txt p{font-size:.85rem;color:var(--muted);font-weight:300;line-height:1.6}
+  .tag{font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;padding:.15rem .6rem;
+    border-radius:100px;border:1px solid var(--border);color:var(--muted);background:var(--surface2);white-space:nowrap}
+  .tag.live{border-color:var(--violet-line);color:var(--violet);background:var(--violet-deep)}
+  footer{margin-top:auto;padding:2.5rem 1.5rem;font-size:.78rem;color:var(--muted);text-align:center}
+  footer a{color:var(--muted);text-decoration:none}
+  footer a:hover{color:var(--violet)}
+  @media(max-width:600px){.row{padding:1rem;gap:.8rem}.test-count{display:none}}
 </style>
 </head>
 <body>
 
-<div class="topbar">
-  <a class="back-link" href="../index.html">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-    Advanced Hub
-  </a>
-  <span class="hub-badge">Error Correction</span>
-  <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">☀️</button>
-</div>
+<button class="theme-toggle" id="theme-btn" onclick="toggleTheme()" title="Toggle light/dark mode">🌙</button>
 
-<div class="hero">
-  <h1>TOEFL <span>Error Correction</span></h1>
-  <p>Ten pages, one grammar family each. Every page explains the patterns that cause the error, then drills them with thirty exercises — answerable on screen with instant feedback, or printable as a blank worksheet and a separate answer key.</p>
-</div>
+<div class="wrap">
+  <a class="back-link" href="../index.html">← Advanced Hub</a>
+  <p class="eyebrow">Phil Young’s English School</p>
+  <h1>TOEFL <span class="accent">Error Correction</span></h1>
+  <p class="lede">Ten sheets, one grammar family each. Every sheet explains the patterns that cause the error, then drills them with thirty exercises — answerable on screen with instant feedback, or printable as a blank worksheet and a separate answer key.</p>
 
-<div class="section">
   <div class="note">
     <b>How to use these.</b> Each page opens with the patterns, written as wrong/right pairs. Work through those on the board, then set the exercises: Set A trains recognition, Set B uses the four-underlined-parts format from Structure &amp; Written Expression, and Set C asks students to produce the correction themselves. Progress saves in the browser, so a student can stop and come back.
   </div>
 
-  <div class="section-hd">
-    <h2>The ten families</h2>
-    <p>In the order errors appear most often in student writing</p>
+  <div class="class-header">
+    <span class="class-badge">Advanced</span>
+    <span class="class-title">The ten families</span>
+    <span class="test-count">3 of 10 ready</span>
   </div>
 
   <div class="rows">
@@ -139,9 +149,9 @@ function toggleTheme(){
   const next=html.getAttribute('data-theme')==='light'?'dark':'light';
   html.setAttribute('data-theme',next);
   document.getElementById('theme-btn').textContent=next==='light'?'☀️':'🌙';
-  try{localStorage.setItem('adv-theme',next)}catch(e){}
+  try{localStorage.setItem('toefl-theme',next)}catch(e){}
 }
-try{const t=localStorage.getItem('adv-theme');if(t){document.documentElement.setAttribute('data-theme',t);document.getElementById('theme-btn').textContent=t==='light'?'☀️':'🌙';}}catch(e){}
+try{const t=localStorage.getItem('toefl-theme');if(t){document.documentElement.setAttribute('data-theme',t);document.getElementById('theme-btn').textContent=t==='light'?'☀️':'🌙';}}catch(e){}
 </script>
 </body>
 </html>
