@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pronoun Reference and Agreement · TOEFL Error Correction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0d10; --surface:#13161b; --surface-2:#1c2029;
+  --ink:#eef0f4; --muted:#7b8391; --line:#252a35;
+  --accent:#2dd4bf; --accent-soft:rgba(45,212,191,.12);
+  --good:#2dd4bf; --good-soft:rgba(45,212,191,.14);
+  --bad:#f87171; --bad-soft:rgba(248,113,113,.14);
+  --radius:12px;
+}
+html[data-theme="light"]{
+  --bg:#f0f2f5; --surface:#ffffff; --surface-2:#f7f8fa;
+  --ink:#111318; --muted:#5b6270; --line:#dde1e8;
+  --accent:#0f9e8e; --accent-soft:rgba(45,212,191,.10);
+  --good:#0f9e8e; --good-soft:rgba(45,212,191,.14);
+  --bad:#c0392b; --bad-soft:rgba(192,57,43,.10);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px 90px}
+h1,h2,h3{font-family:'Playfair Display',Georgia,serif;font-weight:700;line-height:1.15;margin:0}
+a{color:var(--accent)}
+
+/* header */
+header{border-bottom:1px solid var(--line);background:var(--surface);position:sticky;top:0;z-index:20}
+.bar{max-width:820px;margin:0 auto;padding:12px 20px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.crumb{font-size:.82rem;color:var(--muted);margin-right:auto}
+.crumb a{color:var(--muted);text-decoration:none}
+.crumb a:hover{color:var(--accent)}
+button{font-family:inherit;font-size:.85rem;cursor:pointer;border:1px solid var(--line);background:var(--surface-2);color:var(--ink);padding:7px 13px;border-radius:var(--radius)}
+button:hover{border-color:var(--accent)}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.hero{padding:44px 0 26px}
+.hero h1{font-size:2.5rem}
+.hero p{color:var(--muted);max-width:60ch;margin:14px 0 0}
+
+/* progress */
+.progress{position:sticky;top:53px;z-index:15;background:var(--bg);padding:10px 0;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px;font-size:.85rem}
+.track{flex:1;height:6px;background:var(--surface-2);border-radius:99px;overflow:hidden}
+.fill{height:100%;width:0;background:var(--accent);transition:width .3s}
+
+section{margin-top:44px}
+section > h2{font-size:1.6rem;padding-bottom:8px;border-bottom:2px solid var(--accent)}
+.lede{color:var(--muted);margin:10px 0 0}
+
+/* patterns */
+.pat{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);margin-top:14px;overflow:hidden}
+.pat > summary{padding:13px 16px;cursor:pointer;font-weight:700;list-style:none;display:flex;gap:10px;align-items:baseline}
+.pat > summary::-webkit-details-marker{display:none}
+.pat > summary::before{content:"+";color:var(--accent);font-weight:700}
+.pat[open] > summary::before{content:"–"}
+.pat .body{padding:0 16px 16px;border-top:1px solid var(--line)}
+.ex{margin:12px 0;padding-left:26px;position:relative}
+.ex.no::before{content:"✗";position:absolute;left:0;color:var(--bad);font-weight:700}
+.ex.yes::before{content:"✓";position:absolute;left:0;color:var(--good);font-weight:700}
+.ex.no{color:var(--muted)}
+.why{font-size:.92rem;color:var(--muted);margin-top:10px}
+b.k{color:var(--accent)}
+
+/* exercises */
+.q{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:14px 16px;margin-top:12px;display:grid;grid-template-columns:34px 1fr;gap:4px 12px}
+.n{font-family:'Playfair Display',serif;font-weight:700;color:var(--muted);font-size:1.05rem}
+.stem{font-size:1.02rem}
+.opts{grid-column:2;display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.opt{border:1px solid var(--line);background:var(--surface-2);padding:6px 14px;border-radius:99px;font-size:.95rem}
+.opt.picked{border-color:var(--accent)}
+.opt.right{background:var(--good-soft);border-color:var(--good);color:var(--good);font-weight:700}
+.opt.wrong{background:var(--bad-soft);border-color:var(--bad);color:var(--bad);text-decoration:line-through}
+.seg{border-bottom:2px solid var(--muted);cursor:pointer;padding:1px 2px}
+.seg sup{color:var(--accent);font-weight:700;font-size:.7em;border:none}
+.seg:hover{background:var(--accent-soft)}
+.seg.right{background:var(--good-soft);border-color:var(--good)}
+.seg.wrong{background:var(--bad-soft);border-color:var(--bad)}
+.type-row{grid-column:2;display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+input[type=text]{font-family:inherit;font-size:.95rem;padding:7px 11px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface-2);color:var(--ink);width:190px}
+input:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+input.right{border-color:var(--good);background:var(--good-soft)}
+input.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.strike{color:var(--bad);text-decoration:line-through}
+select{font-family:inherit;font-size:.95rem;padding:7px 9px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface-2);color:var(--ink);max-width:100%}
+select:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+select.right{border-color:var(--good)}
+select.wrong{border-color:var(--bad)}
+.cprint,.pkey{display:none}
+.fb{grid-column:2;margin-top:10px;padding:10px 12px;border-radius:var(--radius);font-size:.93rem;display:none}
+.fb.show{display:block}
+.fb.ok{background:var(--good-soft);color:var(--good)}
+.fb.no{background:var(--bad-soft);color:var(--bad)}
+.fb b{display:block;color:var(--ink);margin-bottom:2px}
+.instr{color:var(--muted);font-size:.92rem;font-style:italic;margin:14px 0 0}
+.score{margin-top:26px;padding:16px;border:1px solid var(--accent);border-radius:var(--radius);background:var(--accent-soft);text-align:center;display:none}
+.score.show{display:block}
+.score strong{font-family:'Playfair Display',serif;font-size:1.5rem}
+
+/* print-only pieces */
+.print-opts,.rule,.keyblock,.printhead{display:none}
+
+@media print{
+  @page{margin:15mm}
+  html[data-theme]{--bg:#fff;--surface:#fff;--surface-2:#fff;--ink:#000;--muted:#444;--line:#bbb;--accent:#000;--accent-soft:#fff;--good:#000;--good-soft:#fff;--bad:#000;--bad-soft:#fff}
+  body{font-size:11.5pt}
+  header,.progress,.hero p,.score,.fb,.opts,.type-row,.instr-screen{display:none!important}
+  .wrap{max-width:none;padding:0}
+  .printhead{display:block;border-bottom:1px solid #000;padding-bottom:6px;margin-bottom:14px;font-size:.9rem}
+  .q{border:none;padding:6px 0;break-inside:avoid;page-break-inside:avoid}
+  .pat{border:none;padding:0;break-inside:avoid}
+  .pat .body{display:block!important;border:none;padding:0 0 0 16px}
+  .pat > summary{padding:8px 0 0}
+  .pat > summary::before{content:"■";font-size:.6em}
+  .print-opts{display:inline;color:#000}
+  .rule{display:block;border-bottom:1px solid #999;height:20px;margin-top:6px}
+  .cprint{display:block;margin-top:5px;font-size:10pt;color:#333}
+  .pkey{display:block;font-size:10pt;margin:8px 0 14px;padding:8px 10px;border:1px solid #999;columns:2;column-gap:22px}
+  .pkey b{display:block;columns:1;margin-bottom:3px}
+  .pkey span{display:block;break-inside:avoid}
+  .seg{cursor:default}
+  section{margin-top:20px;break-before:auto}
+  section > h2{font-size:1.25rem}
+  body.print-key .keyblock{display:block;break-before:page}
+  body.print-key .rule{display:none}
+  body.print-blank .patterns{display:none}
+}
+</style>
+</head>
+<body class="print-blank">
+
+<header>
+  <div class="bar">
+    <span class="crumb"><a href="../index.html">Advanced Hub</a> · <a href="./index.html">TOEFL Error Correction</a> · 3 of 10</span>
+    <button id="theme">Light mode</button>
+    <button id="pw">Print worksheet</button>
+    <button id="pk">Print answer key</button>
+    <button id="reset">Start over</button>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="printhead">Pronoun Reference and Agreement · TOEFL Error Correction · Name: ______________________  Date: __________</div>
+
+  <div class="hero">
+    <h1>Pronoun reference and agreement</h1>
+    <p>Half of these errors are agreement, which a rule can settle. The other half are reference — a pronoun that points at two nouns, or at none, or at an idea with no noun behind it. Those cost marks in writing rather than in Structure, and they are repaired by rewriting, not by swapping a word. Twelve patterns below, then thirty exercises.</p>
+  </div>
+
+  <div class="progress">
+    <span id="ptext">0 of 30 answered</span>
+    <div class="track"><div class="fill" id="pfill"></div></div>
+    <span id="pscore"></span>
+  </div>
+
+  <section class="patterns">
+    <h2>The twelve patterns</h2>
+    <p class="lede">Every pronoun owes the reader one noun, named earlier, that it can only be.</p>
+
+    <details class="pat"><summary>1 · Number agreement with the antecedent</summary><div class="body">
+      <div class="ex no">The committee released <span class="strike">their</span> report on Friday.</div>
+      <div class="ex yes">The committee released <b>its</b> report on Friday.</div>
+      <p class="why">A pronoun copies the number of the noun it replaces. Collective nouns — <i>committee, company, government, team, jury</i> — are singular in American English and take <i>it</i> and <i>its</i>. Inconsistency inside one sentence is the giveaway: if a later clause says <i>it recommended</i>, the earlier <i>their</i> is the error.</p>
+    </div></details>
+
+    <details class="pat"><summary>2 · Indefinite pronouns as antecedents</summary><div class="body">
+      <div class="ex no">Every department has revised <span class="strike">their</span> guidelines.</div>
+      <div class="ex yes">Every department has revised <b>its</b> guidelines. · <b>All departments</b> have revised <b>their</b> guidelines.</div>
+      <p class="why"><i>Each, every, either, neither, one, everyone, somebody, nobody, anyone</i> are singular and take singular pronouns.<br><br>With a person of unstated gender, general written English now widely accepts <i>everyone brought <b>their</b> laptop</i>, but TOEFL error-identification items still mark it wrong and expect <i>his or her</i> — or, better, a rewrite in the plural, which avoids the argument entirely. Items on this page follow the test convention; teach the rewrite as the safe habit.</p>
+    </div></details>
+
+    <details class="pat"><summary>3 · Ambiguous reference</summary><div class="body">
+      <div class="ex no">When Marta met Sofia, <span class="strike">she</span> had just returned from Lisbon.</div>
+      <div class="ex yes">When Marta met <b>Sofia</b>, <b>Sofia</b> had just returned from Lisbon.</div>
+      <p class="why">If two nouns of the same number and gender come before the pronoun, the reader cannot choose between them. Grammar alone will not fix this — the repair is to repeat the noun or to restructure the sentence. Watch for it after <i>when, after, because</i> and in any sentence naming two people or two studies.</p>
+    </div></details>
+
+    <details class="pat"><summary>4 · Vague this, that, which and it</summary><div class="body">
+      <div class="ex no">The results contradicted the hypothesis, <span class="strike">which</span> surprised the research team.</div>
+      <div class="ex yes">The results contradicted the hypothesis, <b>a finding that</b> surprised the research team.</div>
+      <p class="why">A pronoun should point at a noun, not at a whole clause. When the reference is an idea rather than a thing, supply the noun: <i>a finding, a change, a decision, a result</i>. The test is whether you can say <i>this what?</i> and answer with a word from the sentence.</p>
+    </div></details>
+
+    <details class="pat"><summary>5 · A possessive cannot be an antecedent</summary><div class="body">
+      <div class="ex no">In <span class="strike">Chomsky's</span> early work, <span class="strike">he</span> argues that syntax is innate.</div>
+      <div class="ex yes">In his early work, <b>Chomsky</b> argues that syntax is innate.</div>
+      <p class="why"><i>Chomsky's</i> is a modifier, not a noun in the sentence, so there is nothing for <i>he</i> to refer back to. Swap them: name the person in the main clause and let the possessive be the pronoun. This turns up constantly in student writing about sources.</p>
+    </div></details>
+
+    <details class="pat"><summary>6 · Subject and object forms</summary><div class="body">
+      <div class="ex no">The award was shared between my colleague and <span class="strike">I</span>.</div>
+      <div class="ex yes">The award was shared between my colleague and <b>me</b>. · <b>She and I</b> submitted the proposal.</div>
+      <p class="why">Delete the other person and the ear decides: <i>between … me</i>, not <i>between … I</i>. After any preposition the object form is required. After <i>than</i> and <i>as</i>, choose by completing the thought: <i>She is taller than <b>I</b> (am)</i> but <i>They chose her rather than <b>me</b></i>.</p>
+    </div></details>
+
+    <details class="pat"><summary>7 · Who, whom, which, that</summary><div class="body">
+      <div class="ex no">The candidate <span class="strike">who</span> the committee interviewed has withdrawn.</div>
+      <div class="ex yes">The candidate <b>whom</b> the committee interviewed has withdrawn. · The candidate <b>who</b> was interviewed has withdrawn.</div>
+      <p class="why">Answer the clause with <i>he</i> or <i>him</i>: <i>the committee interviewed him</i> gives <i>whom</i>; <i>he was interviewed</i> gives <i>who</i>. Use <i>who</i> for people and <i>which</i> for things; <i>that</i> works for either but only in a clause with no commas. With commas the clause is extra information and takes <i>which</i> or <i>who</i>: <i>The report, <b>which</b> ran to 200 pages, arrived late.</i></p>
+    </div></details>
+
+    <details class="pat"><summary>8 · Reflexives and reciprocals</summary><div class="body">
+      <div class="ex no">She asked my colleague and <span class="strike">myself</span> to prepare the summary.</div>
+      <div class="ex yes">She asked my colleague and <b>me</b> to prepare the summary. · I prepared it <b>myself</b>.</div>
+      <p class="why">A reflexive needs its own subject earlier in the same clause. <i>Myself</i> is not a polite <i>me</i>. It is correct only when the subject acts on itself (<i>I taught <b>myself</b></i>) or for emphasis (<i>the director <b>herself</b> reviewed the figures</i>). <i>Each other</i> covers two, <i>one another</i> covers more.</p>
+    </div></details>
+
+    <details class="pat"><summary>9 · Possessives against contractions</summary><div class="body">
+      <div class="ex no">The organisation lost much of <span class="strike">it's</span> funding.</div>
+      <div class="ex yes">The organisation lost much of <b>its</b> funding. · <b>It's</b> clear that funding fell.</div>
+      <p class="why">Expand the apostrophe form and read it back: <i>it is, they are, who is</i>. If the expansion is nonsense, the possessive is needed. The pairs to drill are <i>its / it's</i>, <i>their / there / they're</i>, <i>whose / who's</i> and <i>your / you're</i>. Possessive pronouns never take an apostrophe.</p>
+    </div></details>
+
+    <details class="pat"><summary>10 · Shifts in person</summary><div class="body">
+      <div class="ex no">If a student wishes to appeal, <span class="strike">you</span> must submit the form within ten days.</div>
+      <div class="ex yes">If a student wishes to appeal, <b>he or she</b> must submit the form within ten days. · If <b>students</b> wish to appeal, <b>they</b> must submit the form.</div>
+      <p class="why">Do not drift between <i>one</i>, <i>you</i>, <i>we</i> and <i>a student</i> inside a passage. Whichever you begin with, keep it. This is a writing-score problem as much as a grammar one: <i>you</i> is also too informal for TOEFL essays, so a plural rewrite usually solves both at once.</p>
+    </div></details>
+
+    <details class="pat"><summary>11 · Relative clauses do not need a second pronoun</summary><div class="body">
+      <div class="ex no">The article that I mentioned <span class="strike">it</span> earlier has been translated.</div>
+      <div class="ex yes">The article that I mentioned earlier has been translated.</div>
+      <p class="why">The relative pronoun already does the work of the object, so a second pronoun repeats it. Common where the speaker's first language allows a resumptive pronoun, and common in the same shape with adverbs: <i>the city where I lived <span class="strike">there</span></i>.</p>
+    </div></details>
+
+    <details class="pat"><summary>12 · That and those in comparisons</summary><div class="body">
+      <div class="ex no">The population of São Paulo is larger than <span class="strike">those</span> of any other city.</div>
+      <div class="ex yes">The population of São Paulo is larger than <b>that</b> of any other city.</div>
+      <p class="why">In a comparison, <i>that</i> and <i>those</i> stand in for the repeated noun and must match its number: <i>the climate of Brazil is milder than <b>that</b> of Canada</i>; <i>the results of this trial exceeded <b>those</b> of the earlier one</i>. Leaving them out compares the wrong things: <i>the population of São Paulo is larger than any other city</i> compares a population to a city.</p>
+    </div></details>
+  </section>
+
+  <section>
+    <h2>Set A · Choose the correct form</h2>
+    <p class="instr">Questions 1–12. <span class="instr-screen">Tap the version that a careful reader could not misread.</span></p>
+    <div id="setA"></div>
+  </section>
+
+  <section>
+    <h2>Set B · Find the error</h2>
+    <p class="instr">Questions 13–22. Four parts of each sentence are underlined. <span class="instr-screen">Tap the one that is wrong.</span> Only one contains an error.</p>
+    <div id="setB"></div>
+  </section>
+
+  <section>
+    <h2>Set C · Correct the sentence</h2>
+    <p class="instr">Questions 23–30. Each sentence contains exactly one pronoun error — and at least one other pronoun that is already correct. Find the error, write the corrected verb, and name the pattern behind it. <span class="instr-screen">Both parts must be right to score.</span></p>
+    <div id="setC"></div>
+  </section>
+
+  <div class="score" id="scorebox"></div>
+
+  <div class="keyblock">
+    <h2>Answer key</h2>
+    <div id="key"></div>
+  </div>
+</div>
+
+<script>
+const A=[
+ {s:["The company announced that ","would relocate its headquarters to Lisbon."],o:["it","they"],a:0,w:"<i>Company</i> is singular in American English, and the later <i>its</i> in the same sentence already commits it to <i>it</i>."},
+ {s:["Each of the participating schools must submit ","enrolment figures by March."],o:["its","their"],a:0,w:"<i>Each</i> is singular. The plural <i>schools</i> sits inside a prepositional phrase and is not the antecedent."},
+ {s:["When Marta met Sofia at the conference, ","had just returned from Lisbon."],o:["she","Sofia"],a:1,w:"Two women, one pronoun: no rule can decide which. The repair is to repeat the name, not to change the pronoun."},
+ {s:["The results contradicted the hypothesis, ","surprised the entire research team."],o:["a finding that","which"],a:0,w:"<i>Which</i> here points at a whole clause rather than a noun. Supplying a noun \u2014 <i>a finding, a change, a result</i> \u2014 fixes the reference."},
+ {s:["In Chomsky's early work, ","argues that syntax is largely innate."],o:["he","Chomsky"],a:1,w:"<i>Chomsky's</i> is a possessive modifier, so it cannot serve as the antecedent for <i>he</i>. Name him in the main clause instead."},
+ {s:["The award was shared between my colleague and ","."],o:["I","me"],a:1,w:"After a preposition the object form is required. Delete <i>my colleague and</i> and the ear settles it."},
+ {s:["The student ","the committee selected has withdrawn from the programme."],o:["whom","who"],a:0,w:"Answer the clause: <i>the committee selected him</i>. An object answer gives <i>whom</i>."},
+ {s:["The two researchers congratulated ","on the outcome of the trial."],o:["each other","themselves"],a:0,w:"They congratulated one another, not each his own self. <i>Themselves</i> would mean each praised only himself."},
+ {s:["The theory has lost much of ","influence over the past decade."],o:["its","it's"],a:0,w:"Expand the apostrophe form and it reads <i>it is influence</i>. Possessive pronouns never take an apostrophe."},
+ {s:["If one wishes to succeed in graduate study, ","must learn to read critically."],o:["you","one"],a:1,w:"The sentence began with <i>one</i>, so it must continue with <i>one</i>. Switching to <i>you</i> mid-sentence is a shift in person."},
+ {s:["The article that she recommended ","available in the university library."],o:["was not","it was not"],a:0,w:"<i>That</i> already stands for the article inside the clause, so a second pronoun repeats it."},
+ {s:["The climate of Brazil is milder than ","of Canada."],o:["that","it"],a:0,w:"<i>That</i> stands in for the repeated noun <i>the climate</i>. Without it the sentence compares a climate to a country."}
+];
+const B=[
+ {p:[["Every one of",1],[" the participating universities ",0],["has revised",1],[" ",0],["their",1],[" admissions policy ",0],["in recent years",1]],a:2,f:"its",w:"<i>Every one of</i> is singular, and <i>has revised</i> in the same sentence has already treated it that way."},
+ {p:[["When",1],[" the technician spoke to the supervisor, ",0],["he",1],[" admitted that the error ",0],["had gone",1],[" unnoticed ",0],["for weeks",1]],a:1,f:"the supervisor (or the technician) \u2014 name the person",w:"Two men precede the pronoun and nothing distinguishes them. The sentence must repeat the name."},
+ {p:[["In ",0],["Darwin's",1],[" notebooks, ",0],["he",1],[" records ",0],["the moment",1],[" when the mechanism of selection ",0],["became",1],[" clear to him",0]],a:1,f:"Darwin",w:"A possessive modifier cannot be an antecedent. Reverse them: <i>In his notebooks, Darwin records\u2026</i>"},
+ {p:[["Between",1],[" you and ",0],["I",1],[", the revised proposal ",0],["seems",1],[" weaker ",0],["than the original",1]],a:1,f:"me",w:"<i>Between</i> is a preposition and takes the object form."},
+ {p:[["The candidate ",0],["who",1],[" the search committee ",0],["interviewed",1],[" last week ",0],["has withdrawn",1],[" ",0],["her",1],[" application",0]],a:0,f:"whom",w:"The committee interviewed <i>her</i>, so the object form <i>whom</i> is required."},
+ {p:[["The director ",0],["herself",1],[" reviewed the figures, but she ",0],["asked",1],[" my assistant and ",0],["myself",1],[" to ",0],["verify",1],[" them",0]],a:2,f:"me",w:"<i>Myself</i> needs <i>I</i> as the subject of its own clause. Here the subject is <i>she</i>. The emphatic <i>herself</i> is correct."},
+ {p:[["The institute has ",0],["increased",1],[" ",0],["it's",1],[" research output ",0],["substantially",1],[" ",0],["since",1],[" the merger",0]],a:1,f:"its",w:"<i>It's</i> expands to <i>it is</i>, which is nonsense here."},
+ {p:[["If a student",1],[" wishes to appeal a grade, ",0],["you",1],[" must submit ",0],["the form",1],[" within ",0],["ten days",1]],a:1,f:"he or she (or rewrite in the plural)",w:"The sentence started with <i>a student</i> and must stay there. Rewriting as <i>if students wish\u2026 they must</i> is the cleaner fix."},
+ {p:[["The novel ",0],["that",1],[" I mentioned ",0],["it",1],[" earlier ",0],["has been",1],[" translated into ",0],["nine languages",1]],a:1,f:"(delete it)",w:"<i>That</i> is already the object of <i>mentioned</i>, so <i>it</i> repeats the same role."},
+ {p:[["The economy of Argentina recovered ",0],["more quickly",1],[" than ",0],["those",1],[" of ",0],["its",1],[" neighbours ",0],["did",1]],a:1,f:"that",w:"The stand-in pronoun replaces the singular <i>the economy</i>, so it must be <i>that</i>."}
+];
+const PAT=["","Number agreement with the antecedent","Indefinite pronouns as antecedents","Ambiguous reference",
+ "Vague this, that, which and it","A possessive cannot be an antecedent","Subject and object forms",
+ "Who, whom, which, that","Reflexives and reciprocals","Possessives against contractions",
+ "Shifts in person","No second pronoun in a relative clause","That and those in comparisons"];
+const C=[
+ {t:"The committee released their report on Friday, and it recommended three changes to the policy.",x:"their",a:["its"],p:1,
+  w:"The later <i>it recommended</i> is the clue: the sentence has already treated <i>committee</i> as singular, then contradicts itself."},
+ {t:"Every department has revised their guidelines, though the university has not changed its overall policy.",x:"their",a:["its"],p:2,
+  w:"<i>Every department</i> is singular, and <i>has revised</i> agrees with it correctly. <i>Its overall policy</i> is already right."},
+ {t:"In Piaget's most influential study, he claims that children construct knowledge in identifiable stages.",x:"he",a:["piaget"],p:5,
+  w:"A possessive modifier cannot be an antecedent. Write <i>In his most influential study, Piaget claims\u2026</i>"},
+ {t:"The scholarship was divided equally between my roommate and I, although she had applied a month before me.",x:"I",a:["me"],p:6,
+  w:"<i>Between</i> takes the object form. The sentence uses <i>before me</i> correctly later, which is the inconsistency to notice."},
+ {t:"The applicants who the panel shortlisted will be notified by email, and those who were rejected will receive a letter.",x:"who the panel shortlisted",a:["whom","whom the panel shortlisted"],p:7,
+  w:"The panel shortlisted <i>them</i>, so the first clause needs <i>whom</i>. The second <i>who</i> is correct because it is the subject of <i>were rejected</i>."},
+ {t:"My supervisor asked my colleague and myself to prepare the summary, although she had already drafted it herself.",x:"myself",a:["me"],p:8,
+  w:"The subject of the clause is <i>my supervisor</i>, not <i>I</i>, so <i>myself</i> has nothing to reflect. The emphatic <i>herself</i> at the end is correct."},
+ {t:"The organisation lost much of it's funding after the scandal, but its reputation recovered within two years.",x:"it's",a:["its"],p:9,
+  w:"<i>It is funding</i> is nonsense. The second <i>its</i> in the same sentence is spelled correctly."},
+ {t:"The population of S\u00e3o Paulo is far larger than those of any other Brazilian city.",x:"those",a:["that"],p:12,
+  w:"The stand-in replaces the singular <i>the population</i>. Dropping it altogether would compare a population to a city."}
+];
+
+let ans={},total=30;
+const $=id=>document.getElementById(id);
+const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+
+function save(){try{localStorage.setItem("toefl-pronoun",JSON.stringify(ans))}catch(e){}}
+function load(){try{ans=JSON.parse(localStorage.getItem("toefl-pronoun")||"{}")}catch(e){ans={}}}
+
+function build(){
+  let h="";
+  A.forEach((q,i)=>{const n=i+1;
+    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${q.s[0]}<span class="print-opts">( ${q.o[0]} / ${q.o[1]} )</span><span class="blank">_______</span> ${q.s[1]}</div>
+    <div class="opts">${q.o.map((o,j)=>`<button class="opt" data-q="${n}" data-i="${j}">${o}</button>`).join("")}</div>
+    <div class="fb" id="fb${n}"></div></div>`;});
+  $("setA").innerHTML=h;
+
+  h="";
+  B.forEach((q,i)=>{const n=i+13;let li=0;
+    const body=q.p.map(([t,u])=>u?`<span class="seg" data-q="${n}" data-i="${li}">${t}<sup>${"ABCD"[li++]}</sup></span>`:esc(t)).join("");
+    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${body}.</div><div class="fb" id="fb${n}"></div></div>`;});
+  $("setB").innerHTML=h;
+
+  h=`<div class="pkey"><b>Pattern reference</b>${PAT.slice(1).map((t,j)=>`<span>${j+1}. ${t}</span>`).join("")}</div>`;
+  const sel=PAT.slice(1).map((t,j)=>`<option value="${j+1}">${j+1} &middot; ${t}</option>`).join("");
+  C.forEach((q,i)=>{const n=i+23;
+    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${esc(q.t)}</div>
+    <div class="type-row"><input type="text" id="in${n}" data-q="${n}" placeholder="corrected pronoun" autocomplete="off" spellcheck="false">
+    <select id="sel${n}"><option value="">which pattern?</option>${sel}</select>
+    <button class="opt" data-check="${n}">Check</button></div>
+    <div class="cprint">Correction: ______________________________ &nbsp; Pattern no.: ______</div><div class="fb" id="fb${n}"></div></div>`;});
+  $("setC").innerHTML=h;
+
+  $("key").innerHTML=[...A.map((q,i)=>[i+1,q.o[q.a],q.w]),...B.map((q,i)=>[i+13,"("+"ABCD"[q.a]+") → "+q.f,q.w]),...C.map((q,i)=>[i+23,`<i>${q.x}</i> &rarr; <b>${q.a[0]}</b> &middot; pattern ${q.p} (${PAT[q.p]})`,q.w])]
+    .map(([n,a,w])=>`<p><b>${n}.</b> ${a} — ${w}</p>`).join("");
+}
+
+function mark(n,ok,extra){
+  const f=$("fb"+n);f.className="fb show "+(ok?"ok":"no");
+  const q=(n<13?A[n-1]:n<23?B[n-13]:C[n-23]);
+  f.innerHTML=`<b>${ok?"Correct":"Not correct"}</b>${extra||""}${q.w}`;
+  ans[n]=ok;save();update();
+}
+function update(){
+  const done=Object.keys(ans).length,right=Object.values(ans).filter(Boolean).length;
+  $("ptext").textContent=done+" of "+total+" answered";
+  $("pfill").style.width=(done/total*100)+"%";
+  $("pscore").textContent=done?right+" right":"";
+  const sb=$("scorebox");
+  if(done===total){sb.className="score show";sb.innerHTML=`<strong>${right} / 30</strong><br>${right>=27?"Exam-ready on this point.":right>=21?"Solid. Reread the patterns behind the items you missed.":"Work back through the twelve patterns, then reset and try again."}`;}
+  else sb.className="score";
+}
+
+document.addEventListener("click",e=>{
+  const o=e.target.closest(".opt[data-q]");
+  if(o){const n=+o.dataset.q,i=+o.dataset.i,q=A[n-1];
+    document.querySelectorAll(`.opt[data-q="${n}"]`).forEach(b=>{b.className="opt";b.disabled=true});
+    o.classList.add(i===q.a?"right":"wrong");
+    if(i!==q.a)document.querySelector(`.opt[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");
+    mark(n,i===q.a);return;}
+
+  const s=e.target.closest(".seg");
+  if(s){const n=+s.dataset.q,i=+s.dataset.i,q=B[n-13];
+    document.querySelectorAll(`.seg[data-q="${n}"]`).forEach(x=>x.style.pointerEvents="none");
+    s.classList.add(i===q.a?"right":"wrong");
+    if(i!==q.a)document.querySelector(`.seg[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");
+    mark(n,i===q.a,`Correction: <b>${"ABCD"[q.a]} → ${q.f}</b>. `);return;}
+
+  const c=e.target.closest("[data-check]");
+  if(c){check(+c.dataset.check);}
+});
+document.addEventListener("keydown",e=>{
+  if(e.key==="Enter"&&e.target.dataset.q&&e.target.tagName==="INPUT")check(+e.target.dataset.q);
+});
+function check(n){
+  const el=$("in"+n),sl=$("sel"+n),q=C[n-23];
+  const v=el.value.trim().toLowerCase().replace(/\s+/g," ").replace(/[.,;]$/,"");
+  if(!v||!sl.value){const f=$("fb"+n);f.className="fb show no";f.innerHTML="<b>Not yet</b>Type the corrected verb and choose a pattern before checking.";return;}
+  const vOk=q.a.some(a=>a.toLowerCase()===v),pOk=+sl.value===q.p,ok=vOk&&pOk;
+  el.className=vOk?"right":"wrong";sl.className=pOk?"right":"wrong";
+  el.disabled=true;sl.disabled=true;
+  let lead="";
+  if(vOk&&!pOk)lead=`The verb is right. The pattern is <b>${q.p} &middot; ${PAT[q.p]}</b>. `;
+  else if(!vOk&&pOk)lead=`Right pattern. The error is <i>${q.x}</i> &rarr; <b>${q.a[0]}</b>. `;
+  else if(!ok)lead=`The error is <i>${q.x}</i> &rarr; <b>${q.a[0]}</b>, pattern <b>${q.p} &middot; ${PAT[q.p]}</b>. `;
+  mark(n,ok,lead);
+}
+
+$("theme").onclick=()=>{
+  const d=document.documentElement.dataset.theme==="dark";
+  const t=d?"light":"dark";
+  document.documentElement.dataset.theme=t;
+  $("theme").textContent=t==="dark"?"Light mode":"Dark mode";
+  try{localStorage.setItem("toefl-theme",t)}catch(e){}
+};
+$("pw").onclick=()=>{document.body.className="print-blank";document.querySelectorAll(".pat").forEach(p=>p.open=false);print();};
+$("pk").onclick=()=>{document.body.className="print-key";document.querySelectorAll(".pat").forEach(p=>p.open=true);print();};
+$("reset").onclick=()=>{ans={};save();location.reload();};
+
+(function(){
+  try{const t=localStorage.getItem("toefl-theme");if(t){document.documentElement.dataset.theme=t;$("theme").textContent=t==="dark"?"Light mode":"Dark mode";}}catch(e){}
+  load();build();
+  Object.keys(ans).forEach(n=>{ // replay locked state
+    n=+n;
+    if(n<13){const q=A[n-1];document.querySelectorAll(`.opt[data-q="${n}"]`).forEach(b=>b.disabled=true);
+      document.querySelector(`.opt[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");}
+    else if(n<23){const q=B[n-13];document.querySelectorAll(`.seg[data-q="${n}"]`).forEach(x=>x.style.pointerEvents="none");
+      document.querySelector(`.seg[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");}
+    else{const q=C[n-23],el=$("in"+n),sl=$("sel"+n);el.value=q.a[0];sl.value=q.p;el.disabled=true;sl.disabled=true;el.className=sl.className=ans[n]?"right":"wrong";}
+    const f=$("fb"+n),q=(n<13?A[n-1]:n<23?B[n-13]:C[n-23]);
+    f.className="fb show "+(ans[n]?"ok":"no");f.innerHTML=`<b>${ans[n]?"Correct":"Not correct"}</b>${q.w}`;
+  });
+  update();
+})();
+</script>
+</body>
+</html>
