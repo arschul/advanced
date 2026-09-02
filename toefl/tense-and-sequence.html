@@ -6,150 +6,197 @@
 <title>Verb Tense and Sequence · TOEFL Error Correction</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#0b0d10; --surface:#13161b; --surface-2:#1c2029;
-  --ink:#eef0f4; --muted:#7b8391; --line:#252a35;
-  --accent:#2dd4bf; --accent-soft:rgba(45,212,191,.12);
-  --good:#2dd4bf; --good-soft:rgba(45,212,191,.14);
-  --bad:#f87171; --bad-soft:rgba(248,113,113,.14);
-  --radius:12px;
-}
-html[data-theme="light"]{
-  --bg:#f0f2f5; --surface:#ffffff; --surface-2:#f7f8fa;
-  --ink:#111318; --muted:#5b6270; --line:#dde1e8;
-  --accent:#0f9e8e; --accent-soft:rgba(45,212,191,.10);
-  --good:#0f9e8e; --good-soft:rgba(45,212,191,.14);
-  --bad:#c0392b; --bad-soft:rgba(192,57,43,.10);
-}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
-.wrap{max-width:820px;margin:0 auto;padding:0 20px 90px}
-h1,h2,h3{font-family:'Playfair Display',Georgia,serif;font-weight:700;line-height:1.15;margin:0}
-a{color:var(--accent)}
+  :root{
+    --bg:#0c0e12;--surface:#15171c;--surface-2:#1b1e25;--ink:#eef0f2;--muted:#8b929c;--line:#262932;
+    --violet:#a78bfa;--violet-deep:#1c1433;--violet-line:rgba(167,139,250,0.35);
+    --accent:#a78bfa;--accent-soft:#1c1433;
+    --key-accent:#f0c75e;--key-deep:#2a2206;--key-line:rgba(240,199,94,0.25);
+    --good:#4ade80;--good-soft:rgba(74,222,128,0.12);--good-line:rgba(74,222,128,0.35);
+    --bad:#f87171;--bad-soft:rgba(248,113,113,0.12);--bad-line:rgba(248,113,113,0.35);
+    --radius:14px;
+  }
+  :root[data-theme="light"]{
+    --bg:#f4f1ea;--surface:#ffffff;--surface-2:#faf8f3;--ink:#1a1815;--muted:#6b6660;--line:#e2ddd2;
+    --violet:#7c3aed;--violet-deep:#ede9fe;--violet-line:rgba(124,58,237,0.3);
+    --accent:#7c3aed;--accent-soft:#ede9fe;
+    --key-accent:#b8860b;--key-deep:#fbf2dc;--key-line:rgba(184,134,11,0.3);
+    --good:#15803d;--good-soft:#dcfce7;--good-line:rgba(21,128,61,0.3);
+    --bad:#b91c1c;--bad-soft:#fee2e2;--bad-line:rgba(185,28,28,0.3);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;
+    line-height:1.65;font-weight:400;transition:background .3s,color .3s;-webkit-font-smoothing:antialiased}
+  .wrap{width:100%;max-width:860px;margin:0 auto;padding:4.5rem 1.5rem 5rem}
 
-/* header */
-header{border-bottom:1px solid var(--line);background:var(--surface);position:sticky;top:0;z-index:20}
-.bar{max-width:820px;margin:0 auto;padding:12px 20px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.crumb{font-size:.82rem;color:var(--muted);margin-right:auto}
-.crumb a{color:var(--muted);text-decoration:none}
-.crumb a:hover{color:var(--accent)}
-button{font-family:inherit;font-size:.85rem;cursor:pointer;border:1px solid var(--line);background:var(--surface-2);color:var(--ink);padding:7px 13px;border-radius:var(--radius)}
-button:hover{border-color:var(--accent)}
-button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .theme-toggle{position:fixed;top:1.25rem;right:1.25rem;z-index:30;width:42px;height:42px;
+    border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--muted);
+    cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:all .2s}
+  .theme-toggle:hover{border-color:var(--ink);color:var(--ink);transform:scale(1.06)}
 
-.hero{padding:44px 0 26px}
-.hero h1{font-size:2.5rem}
-.hero p{color:var(--muted);max-width:60ch;margin:14px 0 0}
+  .back-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.8rem;font-weight:500;
+    color:var(--muted);text-decoration:none;margin-bottom:2.5rem;transition:color .2s}
+  .back-link:hover{color:var(--violet)}
+  .eyebrow{font-size:.72rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);
+    font-weight:500;margin-bottom:1.1rem}
+  h1,h2,h3,.pat>summary,.n,.score strong{font-family:'Fraunces',Georgia,serif;font-optical-sizing:auto}
+  h1{font-weight:700;font-size:clamp(2.2rem,5.5vw,3.4rem);line-height:1.05;letter-spacing:-1.5px;margin-bottom:.9rem}
+  h1 .accent{background:linear-gradient(90deg,var(--violet),#38bdf8);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{color:var(--muted);font-size:1.02rem;font-weight:300;line-height:1.75;max-width:58ch;margin-bottom:2rem}
 
-/* progress */
-.progress{position:sticky;top:53px;z-index:15;background:var(--bg);padding:10px 0;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px;font-size:.85rem}
-.track{flex:1;height:6px;background:var(--surface-2);border-radius:99px;overflow:hidden}
-.fill{height:100%;width:0;background:var(--accent);transition:width .3s}
+  .actions{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2.5rem}
+  .btn{font-family:inherit;font-size:.75rem;font-weight:600;letter-spacing:.3px;padding:.45rem .9rem;
+    border-radius:8px;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block}
+  .btn-view{background:var(--violet-deep);color:var(--violet);border:1px solid var(--violet-line)}
+  .btn-view:hover{background:var(--violet);color:#fff}
+  .btn-key{background:var(--key-deep);color:var(--key-accent);border:1px solid var(--key-line)}
+  .btn-key:hover{background:var(--key-accent);color:#1a1815}
+  .btn-dl{background:transparent;color:var(--muted);border:1px solid var(--line)}
+  .btn-dl:hover{border-color:var(--muted);color:var(--ink)}
 
-section{margin-top:44px}
-section > h2{font-size:1.6rem;padding-bottom:8px;border-bottom:2px solid var(--accent)}
-.lede{color:var(--muted);margin:10px 0 0}
+  .progress{position:sticky;top:0;z-index:20;background:var(--bg);padding:.85rem 0;
+    border-bottom:1px solid var(--line);display:flex;align-items:center;gap:.9rem;font-size:.78rem;color:var(--muted)}
+  .track{flex:1;height:4px;background:var(--surface-2);border-radius:100px;overflow:hidden}
+  .fill{height:100%;width:0;background:linear-gradient(90deg,var(--violet),#38bdf8);transition:width .35s}
 
-/* patterns */
-.pat{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);margin-top:14px;overflow:hidden}
-.pat > summary{padding:13px 16px;cursor:pointer;font-weight:700;list-style:none;display:flex;gap:10px;align-items:baseline}
-.pat > summary::-webkit-details-marker{display:none}
-.pat > summary::before{content:"+";color:var(--accent);font-weight:700}
-.pat[open] > summary::before{content:"–"}
-.pat .body{padding:0 16px 16px;border-top:1px solid var(--line)}
-.ex{margin:12px 0;padding-left:26px;position:relative}
-.ex.no::before{content:"✗";position:absolute;left:0;color:var(--bad);font-weight:700}
-.ex.yes::before{content:"✓";position:absolute;left:0;color:var(--good);font-weight:700}
-.ex.no{color:var(--muted)}
-.why{font-size:.92rem;color:var(--muted);margin-top:10px}
-b.k{color:var(--accent)}
+  section{margin-top:3rem}
+  section>h2{font-size:1.5rem;font-weight:600;letter-spacing:-.3px;padding-bottom:.75rem;
+    border-bottom:1px solid var(--line);display:flex;align-items:center;gap:.7rem}
+  section>h2::before{content:"";width:9px;height:9px;border-radius:3px;background:var(--violet);flex:none}
+  .keyblock h2::before{background:var(--key-accent)}
+  .instr{color:var(--muted);font-size:.85rem;font-weight:300;margin-top:1rem;line-height:1.7}
 
-/* exercises */
-.q{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:14px 16px;margin-top:12px;display:grid;grid-template-columns:34px 1fr;gap:4px 12px}
-.n{font-family:'Playfair Display',serif;font-weight:700;color:var(--muted);font-size:1.05rem}
-.stem{font-size:1.02rem}
-.opts{grid-column:2;display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-.opt{border:1px solid var(--line);background:var(--surface-2);padding:6px 14px;border-radius:99px;font-size:.95rem}
-.opt.picked{border-color:var(--accent)}
-.opt.right{background:var(--good-soft);border-color:var(--good);color:var(--good);font-weight:700}
-.opt.wrong{background:var(--bad-soft);border-color:var(--bad);color:var(--bad);text-decoration:line-through}
-.seg{border-bottom:2px solid var(--muted);cursor:pointer;padding:1px 2px}
-.seg sup{color:var(--accent);font-weight:700;font-size:.7em;border:none}
-.seg:hover{background:var(--accent-soft)}
-.seg.right{background:var(--good-soft);border-color:var(--good)}
-.seg.wrong{background:var(--bad-soft);border-color:var(--bad)}
-.type-row{grid-column:2;display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
-input[type=text]{font-family:inherit;font-size:.95rem;padding:7px 11px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface-2);color:var(--ink);width:190px}
-input:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
-input.right{border-color:var(--good);background:var(--good-soft)}
-input.wrong{border-color:var(--bad);background:var(--bad-soft)}
-.strike{color:var(--bad);text-decoration:line-through}
-select{font-family:inherit;font-size:.95rem;padding:7px 9px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface-2);color:var(--ink);max-width:100%}
-select:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
-select.right{border-color:var(--good)}
-select.wrong{border-color:var(--bad)}
-.cprint,.pkey{display:none}
-.fb{grid-column:2;margin-top:10px;padding:10px 12px;border-radius:var(--radius);font-size:.93rem;display:none}
-.fb.show{display:block}
-.fb.ok{background:var(--good-soft);color:var(--good)}
-.fb.no{background:var(--bad-soft);color:var(--bad)}
-.fb b{display:block;color:var(--ink);margin-bottom:2px}
-.instr{color:var(--muted);font-size:.92rem;font-style:italic;margin:14px 0 0}
-.score{margin-top:26px;padding:16px;border:1px solid var(--accent);border-radius:var(--radius);background:var(--accent-soft);text-align:center;display:none}
-.score.show{display:block}
-.score strong{font-family:'Playfair Display',serif;font-size:1.5rem}
+  /* pattern cards */
+  .pat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    margin-top:.9rem;position:relative;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+  .pat::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--violet);
+    transform:scaleX(0);transform-origin:left;transition:transform .3s;z-index:1}
+  .pat[open]{border-color:var(--violet-line)}
+  .pat[open]::before,.pat:hover::before{transform:scaleX(1)}
+  .pat>summary{padding:1rem 1.2rem;cursor:pointer;font-size:1rem;font-weight:600;letter-spacing:-.2px;
+    list-style:none;display:flex;gap:.7rem;align-items:baseline}
+  .pat>summary::-webkit-details-marker{display:none}
+  .pat>summary::before{content:"+";color:var(--violet);font-weight:600;font-family:'DM Sans',sans-serif}
+  .pat[open]>summary::before{content:"–"}
+  .pat .body{padding:0 1.2rem 1.2rem;border-top:1px solid var(--line);margin-top:0}
+  .ex{margin:.85rem 0;padding-left:1.6rem;position:relative;font-size:.95rem}
+  .ex.no::before{content:"✗";position:absolute;left:0;color:var(--bad);font-weight:700}
+  .ex.yes::before{content:"✓";position:absolute;left:0;color:var(--good);font-weight:700}
+  .ex.no{color:var(--muted)}
+  .why{font-size:.88rem;color:var(--muted);font-weight:300;line-height:1.75;margin-top:.8rem}
+  b.k{color:var(--violet)}
+  .strike{color:var(--bad);text-decoration:line-through}
 
-/* print-only pieces */
-.print-opts,.rule,.keyblock,.printhead{display:none}
+  /* question cards */
+  .q{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:1.1rem 1.2rem;margin-top:.75rem;display:grid;grid-template-columns:30px 1fr;gap:.2rem .9rem;
+    position:relative;overflow:hidden;transition:border-color .2s}
+  .q::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--violet);
+    transform:scaleX(0);transform-origin:left;transition:transform .3s}
+  .q:hover::before{transform:scaleX(1)}
+  .n{font-weight:600;color:var(--muted);font-size:1rem;line-height:1.6}
+  .stem{font-size:1rem;line-height:1.7}
+  .opts{grid-column:2;display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.8rem}
+  .opt{font-family:inherit;font-size:.82rem;font-weight:600;letter-spacing:.3px;padding:.35rem .9rem;
+    border-radius:100px;cursor:pointer;background:var(--surface-2);color:var(--ink);
+    border:1px solid var(--line);transition:all .2s}
+  .opt:hover{border-color:var(--violet);color:var(--violet)}
+  .opt:disabled{cursor:default}
+  .opt.right{background:var(--good-soft);border-color:var(--good-line);color:var(--good)}
+  .opt.wrong{background:var(--bad-soft);border-color:var(--bad-line);color:var(--bad);text-decoration:line-through}
+  .seg{border-bottom:2px solid var(--muted);cursor:pointer;padding:1px 2px;transition:background .2s}
+  .seg sup{color:var(--violet);font-weight:700;font-size:.66em;border:none;margin-left:1px}
+  .seg:hover{background:var(--violet-deep)}
+  .seg.right{background:var(--good-soft);border-color:var(--good)}
+  .seg.wrong{background:var(--bad-soft);border-color:var(--bad)}
+  .type-row{grid-column:2;display:flex;gap:.5rem;margin-top:.8rem;flex-wrap:wrap}
+  input[type=text],select{font-family:inherit;font-size:.85rem;padding:.4rem .7rem;border-radius:8px;
+    background:var(--surface-2);color:var(--ink);border:1px solid var(--line);max-width:100%}
+  input[type=text]{width:180px}
+  input:focus-visible,select:focus-visible,.opt:focus-visible,.btn:focus-visible,.theme-toggle:focus-visible,.seg:focus-visible{outline:2px solid var(--violet);outline-offset:2px}
+  input.right,select.right{border-color:var(--good-line);background:var(--good-soft)}
+  input.wrong,select.wrong{border-color:var(--bad-line);background:var(--bad-soft)}
+  .fb{grid-column:2;margin-top:.8rem;padding:.7rem .9rem;border-radius:10px;font-size:.86rem;
+    font-weight:300;line-height:1.7;display:none}
+  .fb.show{display:block}
+  .fb.ok{background:var(--good-soft);border:1px solid var(--good-line);color:var(--muted)}
+  .fb.no{background:var(--bad-soft);border:1px solid var(--bad-line);color:var(--muted)}
+  .fb b{display:block;margin-bottom:.15rem;font-weight:600}
+  .fb.ok b{color:var(--good)}
+  .fb.no b{color:var(--bad)}
 
-@media print{
-  @page{margin:15mm}
-  html[data-theme]{--bg:#fff;--surface:#fff;--surface-2:#fff;--ink:#000;--muted:#444;--line:#bbb;--accent:#000;--accent-soft:#fff;--good:#000;--good-soft:#fff;--bad:#000;--bad-soft:#fff}
-  body{font-size:11.5pt}
-  header,.progress,.hero p,.score,.fb,.opts,.type-row,.instr-screen{display:none!important}
-  .wrap{max-width:none;padding:0}
-  .printhead{display:block;border-bottom:1px solid #000;padding-bottom:6px;margin-bottom:14px;font-size:.9rem}
-  .q{border:none;padding:6px 0;break-inside:avoid;page-break-inside:avoid}
-  .pat{border:none;padding:0;break-inside:avoid}
-  .pat .body{display:block!important;border:none;padding:0 0 0 16px}
-  .pat > summary{padding:8px 0 0}
-  .pat > summary::before{content:"■";font-size:.6em}
-  .print-opts{display:inline;color:#000}
-  .rule{display:block;border-bottom:1px solid #999;height:20px;margin-top:6px}
-  .cprint{display:block;margin-top:5px;font-size:10pt;color:#333}
-  .pkey{display:block;font-size:10pt;margin:8px 0 14px;padding:8px 10px;border:1px solid #999;columns:2;column-gap:22px}
-  .pkey b{display:block;columns:1;margin-bottom:3px}
-  .pkey span{display:block;break-inside:avoid}
-  .seg{cursor:default}
-  section{margin-top:20px;break-before:auto}
-  section > h2{font-size:1.25rem}
-  body.print-key .keyblock{display:block;break-before:page}
-  body.print-key .rule{display:none}
-  body.print-blank .patterns{display:none}
-}
+  .score{margin-top:2rem;padding:1.5rem;border:1px solid var(--violet-line);border-radius:18px;
+    background:var(--violet-deep);text-align:center;display:none}
+  .score.show{display:block}
+  .score strong{font-size:2rem;font-weight:700;letter-spacing:-1px;display:block;margin-bottom:.3rem;color:var(--violet)}
+  .keyblock{margin-top:3rem}
+  .keyblock p{font-size:.88rem;font-weight:300;color:var(--muted);margin-top:.7rem;line-height:1.7}
+  .keyblock p b:first-child{color:var(--key-accent)}
+  footer{padding:2.5rem 1.5rem;color:var(--muted);font-size:.78rem;text-align:center;border-top:1px solid var(--line);margin-top:3rem}
+  footer a{color:var(--muted);text-decoration:none}
+  footer a:hover{color:var(--violet)}
+
+  .print-opts,.rule,.keyblock,.printhead,.cprint,.pkey{display:none}
+
+  @media(max-width:600px){
+    .wrap{padding:3.5rem 1.1rem 4rem}
+    .q{grid-template-columns:24px 1fr;padding:1rem}
+    input[type=text]{width:100%}
+  }
+
+  @media print{
+    @page{margin:15mm}
+    :root,:root[data-theme]{--bg:#fff;--surface:#fff;--surface-2:#fff;--ink:#000;--muted:#333;--line:#bbb;
+      --violet:#000;--violet-deep:#fff;--violet-line:#bbb;--accent:#000;--accent-soft:#fff;
+      --key-accent:#000;--key-deep:#fff;--key-line:#bbb;
+      --good:#000;--good-soft:#fff;--good-line:#bbb;--bad:#000;--bad-soft:#fff;--bad-line:#bbb}
+    body{font-size:11.5pt;line-height:1.5}
+    .theme-toggle,.back-link,.eyebrow,.actions,.progress,.lede,.score,.fb,.opts,.type-row,.instr-screen,footer{display:none!important}
+    .wrap{max-width:none;padding:0}
+    h1{font-size:1.6rem;letter-spacing:-.5px;margin-bottom:.4rem}
+    h1 .accent{color:#000;-webkit-text-fill-color:#000;background:none}
+    .printhead{display:block;border-bottom:1px solid #000;padding-bottom:6px;margin-bottom:14px;font-size:.9rem}
+    .q{border:none;padding:6px 0;margin:0;break-inside:avoid;page-break-inside:avoid}
+    .q::before,.pat::before{display:none}
+    .pat{border:none;border-radius:0;margin:0}
+    .pat .body{display:block!important;border:none;padding:0 0 0 1.2rem}
+    .pat>summary{padding:8px 0 0}
+    .pat>summary::before{content:"■";font-size:.55em}
+    .print-opts{display:inline;color:#000}
+    .rule{display:block;border-bottom:1px solid #999;height:20px;margin-top:6px}
+    .cprint{display:block;margin-top:5px;font-size:10pt;color:#333}
+    .pkey{display:block;font-size:10pt;margin:8px 0 14px;padding:8px 10px;border:1px solid #999;columns:2;column-gap:22px}
+    .pkey b{display:block;columns:1;margin-bottom:3px}
+    .pkey span{display:block;break-inside:avoid}
+    .seg{cursor:default}
+    section{margin-top:18px}
+    section>h2{font-size:1.2rem;border-bottom:1px solid #000}
+    section>h2::before{display:none}
+    body.print-key .keyblock{display:block;break-before:page}
+    body.print-key .rule{display:none}
+    body.print-blank .patterns{display:none}
+  }
 </style>
 </head>
 <body class="print-blank">
 
-<header>
-  <div class="bar">
-    <span class="crumb"><a href="../index.html">Advanced Hub</a> · <a href="./index.html">TOEFL Error Correction</a> · 2 of 10</span>
-    <button id="theme">Light mode</button>
-    <button id="pw">Print worksheet</button>
-    <button id="pk">Print answer key</button>
-    <button id="reset">Start over</button>
-  </div>
-</header>
+<button class="theme-toggle" id="theme" title="Toggle light/dark mode">🌙</button>
 
 <div class="wrap">
 
   <div class="printhead">Verb Tense and Sequence · TOEFL Error Correction · Name: ______________________  Date: __________</div>
 
   <div class="hero">
-    <h1>Verb tense and sequence</h1>
-    <p>Choosing a tense is rarely the problem. Holding two tenses in the right relationship is — which event came first, what a time marker commits you to, what happens to a tense when it is reported. Twelve patterns below, then thirty exercises: choose the form, find the error, correct and classify.</p>
+    <a class="back-link" href="./index.html">← TOEFL Error Correction</a>
+    <p class="eyebrow">Phil Young’s English School · Sheet 2 of 10</p>
+    <h1>Verb tense and <span class="accent">sequence</span></h1>
+    <p class="lede">Choosing a tense is rarely the problem. Holding two tenses in the right relationship is — which event came first, what a time marker commits you to, what happens to a tense when it is reported. Twelve patterns below, then thirty exercises: choose the form, find the error, correct and classify.</p>
+    <div class="actions">
+      <button class="btn btn-view" id="pw">Print worksheet</button>
+      <button class="btn btn-key" id="pk">Print answer key</button>
+      <button class="btn btn-dl" id="reset">Start over</button>
+    </div>
   </div>
 
   <div class="progress">
@@ -201,7 +248,7 @@ select.wrong{border-color:var(--bad)}
     <details class="pat"><summary>7 · Wish, if only, would rather, it's time</summary><div class="body">
       <div class="ex no">I wish I <span class="strike">would have</span> accepted the offer last spring.</div>
       <div class="ex yes">I wish I <b>had accepted</b> the offer last spring. · I wish I <b>had</b> more time now.</div>
-      <p class="why">Regret about the past takes the past perfect; a wish about the present takes the simple past. <i>Wish + would</i> is reserved for complaints about other people's behaviour: <i>I wish he <b>would stop</b> interrupting.</i> The same past-for-present logic drives <i>if only</i>, <i>would rather you came</i> and <i>it's time we left</i>.</p>
+      <p class="why">Regret about the past takes the past perfect; a wish about the present takes the simple past. <i>Wish + would</i> is reserved for complaints about other people's behavior: <i>I wish he <b>would stop</b> interrupting.</i> The same past-for-present logic drives <i>if only</i>, <i>would rather you came</i> and <i>it's time we left</i>.</p>
     </div></details>
 
     <details class="pat"><summary>8 · Perfect continuous for duration</summary><div class="body">
@@ -262,9 +309,11 @@ select.wrong{border-color:var(--bad)}
   </div>
 </div>
 
+<footer>Part of the <a href="./index.html">TOEFL Error Correction</a> section · <a href="../index.html">Advanced Hub</a> · Phil Young’s English School</footer>
+
 <script>
 const A=[
- {s:["By the time the committee arrived at the centre where the trial was running, the participants ","already left the building."],o:["have","had"],a:1,w:"Two past events: the leaving came first, so it takes <i>had</i> + past participle. <i>Arrived</i> and <i>was running</i> are both correct as later or simultaneous events."},
+ {s:["By the time the committee arrived at the center where the trial was running, the participants ","already left the building."],o:["have","had"],a:1,w:"Two past events: the leaving came first, so it takes <i>had</i> + past participle. <i>Arrived</i> and <i>was running</i> are both correct as later or simultaneous events."},
  {s:["The company that now employs more than two thousand people ","its headquarters to Singapore in 2019."],o:["has moved","moved"],a:1,w:"<i>In 2019</i> is finished time and rules out the present perfect. <i>Employs</i> is a present fact about now and is correct."},
  {s:["Researchers who work at the institute ","for a vaccine since the outbreak began three years ago."],o:["are searching","have been searching"],a:1,w:"An activity running from a past point up to now, with duration in focus. <i>Began</i> is correct because the <i>since</i>-clause takes the simple past."},
  {s:["We will begin the experiment that the ministry approved as soon as the equipment ","from the supplier that promised early delivery."],o:["arrives","will arrive"],a:0,w:"After <i>as soon as</i>, future meaning takes a present form. The main clause keeps <i>will begin</i>, which is why that verb is correct."},
@@ -284,7 +333,7 @@ const B=[
  {p:[["We ",0],["will inform",1],[" every applicant who ",0],["submits",1],[" the form on time as soon as we ",0],["will receive",1],[" confirmation from the laboratory that ",0],["processes",1],[" the samples",0]],a:2,f:"receive",w:"After <i>as soon as</i>, use a present form. The main clause correctly keeps <i>will inform</i>, which is why the first underlined verb is right."},
  {p:[["If she ",0],["would have",1],[" studied the manual that the manufacturer ",0],["supplied",1],[", she ",0],["would not have damaged",1],[" the equipment that the department ",0],["had purchased",1],[" that spring",0]],a:0,f:"had",w:"<i>Would</i> never appears in the <i>if</i>-clause. The result clause is already in the correct third-conditional form."},
  {p:[["He ",0],["has been working",1],[" at the institute ",0],["since three years",1],[", although he ",0],["applied",1],[" for a post abroad last month and plans to leave once his contract ",0],["expires",1]],a:1,f:"for three years",w:"<i>Three years</i> is a length of time and takes <i>for</i>. <i>Since</i> would need a starting point such as <i>2023</i>."},
- {p:[["I ",0],["wish",1],[" I ",0],["would have",1],[" accepted the offer that the university ",0],["made",1],[" last spring, because the post that replaced it ",0],["pays",1],[" far less",0]],a:1,f:"had",w:"Regret about the past takes <i>wish</i> + past perfect. <i>Wish + would</i> is only for complaints about someone else's behaviour."},
+ {p:[["I ",0],["wish",1],[" I ",0],["would have",1],[" accepted the offer that the university ",0],["made",1],[" last spring, because the post that replaced it ",0],["pays",1],[" far less",0]],a:1,f:"had",w:"Regret about the past takes <i>wish</i> + past perfect. <i>Wish + would</i> is only for complaints about someone else's behavior."},
  {p:[["She ",0],["is knowing",1],[" the material well enough to ",0],["teach",1],[" it to students who ",0],["have already completed",1],[" the introductory course, but she still ",0],["lacks",1],[" confidence",0]],a:0,f:"knows",w:"<i>Know</i> is stative and cannot take the continuous. <i>Lacks</i> is a second stative verb in the same sentence, handled correctly."},
  {p:[["By 2035 the region ",0],["will lose",1],[" nearly half of the glaciers that geologists ",0],["have monitored",1],[" since 1970, unless emissions ",0],["fall",1],[" faster than current models ",0],["predict",1]],a:0,f:"will have lost",w:"<i>By 2035</i> demands the future perfect. <i>Fall</i> is correct because a present form follows <i>unless</i>."},
  {p:[["The narrator ",0],["describes",1],[" his childhood in vivid detail, ",0],["recalls",1],[" the summers he ",0],["spent",1],[" by the sea, and then ",0],["shifted",1],[" abruptly to the years he spent abroad",0]],a:3,f:"shifts",w:"The passage is in the literary present, as two verbs have already established. <i>Spent</i> is correct because the summers really are in the past."}
@@ -300,7 +349,7 @@ const C=[
   w:"The destroying came first, and <i>already</i> confirms it. <i>Had requested</i> shows the sentence can use the past perfect correctly \u2014 it just fails to where it matters."},
  {t:"She said that she will send the revised manuscript that the editor requested as soon as her co-author approved the final section.",x:"will send",a:["would send","would"],p:4,
   w:"<i>Said</i> forces the backshift to <i>would send</i>. <i>Approved</i> is already correct: it is the backshifted present form after <i>as soon as</i>."},
- {t:"The department is offering that course since 2018, and enrolment has grown every semester since the university introduced the scholarship.",x:"is offering",a:["has been offering","has offered"],p:8,
+ {t:"The department is offering that course since 2018, and enrollment has grown every semester since the university introduced the scholarship.",x:"is offering",a:["has been offering","has offered"],p:8,
   w:"<i>Since 2018</i> runs up to the present, so the verb must be perfect \u2014 exactly as <i>has grown</i> already is in the second clause."},
  {t:"If the committee had reviewed the proposal that the team submitted in June, the project would start last September and the funding would not have lapsed.",x:"would start",a:["would have started"],p:6,
   w:"<i>Had reviewed</i> sets up a third conditional and <i>would not have lapsed</i> follows it correctly. Only the first result verb breaks the pattern."},
@@ -339,7 +388,7 @@ function build(){
     h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${esc(q.t)}</div>
     <div class="type-row"><input type="text" id="in${n}" data-q="${n}" placeholder="corrected verb" autocomplete="off" spellcheck="false">
     <select id="sel${n}"><option value="">which pattern?</option>${sel}</select>
-    <button class="opt" data-check="${n}">Check</button></div>
+    <button class="opt btn-check" data-check="${n}">Check</button></div>
     <div class="cprint">Correction: ______________________________ &nbsp; Pattern no.: ______</div><div class="fb" id="fb${n}"></div></div>`;});
   $("setC").innerHTML=h;
 
@@ -402,7 +451,7 @@ $("theme").onclick=()=>{
   const d=document.documentElement.dataset.theme==="dark";
   const t=d?"light":"dark";
   document.documentElement.dataset.theme=t;
-  $("theme").textContent=t==="dark"?"Light mode":"Dark mode";
+  $("theme").textContent=t==="dark"?"🌙":"☀️";
   try{localStorage.setItem("toefl-theme",t)}catch(e){}
 };
 $("pw").onclick=()=>{document.body.className="print-blank";document.querySelectorAll(".pat").forEach(p=>p.open=false);print();};
@@ -410,7 +459,7 @@ $("pk").onclick=()=>{document.body.className="print-key";document.querySelectorA
 $("reset").onclick=()=>{ans={};save();location.reload();};
 
 (function(){
-  try{const t=localStorage.getItem("toefl-theme");if(t){document.documentElement.dataset.theme=t;$("theme").textContent=t==="dark"?"Light mode":"Dark mode";}}catch(e){}
+  try{const t=localStorage.getItem("toefl-theme");if(t){document.documentElement.dataset.theme=t;$("theme").textContent=t==="dark"?"🌙":"☀️";}}catch(e){}
   load();build();
   Object.keys(ans).forEach(n=>{ // replay locked state
     n=+n;
