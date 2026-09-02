@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verb Tense and Sequence · TOEFL Error Correction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0d10; --surface:#13161b; --surface-2:#1c2029;
+  --ink:#eef0f4; --muted:#7b8391; --line:#252a35;
+  --accent:#2dd4bf; --accent-soft:rgba(45,212,191,.12);
+  --good:#2dd4bf; --good-soft:rgba(45,212,191,.14);
+  --bad:#f87171; --bad-soft:rgba(248,113,113,.14);
+  --radius:12px;
+}
+html[data-theme="light"]{
+  --bg:#f0f2f5; --surface:#ffffff; --surface-2:#f7f8fa;
+  --ink:#111318; --muted:#5b6270; --line:#dde1e8;
+  --accent:#0f9e8e; --accent-soft:rgba(45,212,191,.10);
+  --good:#0f9e8e; --good-soft:rgba(45,212,191,.14);
+  --bad:#c0392b; --bad-soft:rgba(192,57,43,.10);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px 90px}
+h1,h2,h3{font-family:'Playfair Display',Georgia,serif;font-weight:700;line-height:1.15;margin:0}
+a{color:var(--accent)}
+
+/* header */
+header{border-bottom:1px solid var(--line);background:var(--surface);position:sticky;top:0;z-index:20}
+.bar{max-width:820px;margin:0 auto;padding:12px 20px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.crumb{font-size:.82rem;color:var(--muted);margin-right:auto}
+.crumb a{color:var(--muted);text-decoration:none}
+.crumb a:hover{color:var(--accent)}
+button{font-family:inherit;font-size:.85rem;cursor:pointer;border:1px solid var(--line);background:var(--surface-2);color:var(--ink);padding:7px 13px;border-radius:var(--radius)}
+button:hover{border-color:var(--accent)}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.hero{padding:44px 0 26px}
+.hero h1{font-size:2.5rem}
+.hero p{color:var(--muted);max-width:60ch;margin:14px 0 0}
+
+/* progress */
+.progress{position:sticky;top:53px;z-index:15;background:var(--bg);padding:10px 0;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px;font-size:.85rem}
+.track{flex:1;height:6px;background:var(--surface-2);border-radius:99px;overflow:hidden}
+.fill{height:100%;width:0;background:var(--accent);transition:width .3s}
+
+section{margin-top:44px}
+section > h2{font-size:1.6rem;padding-bottom:8px;border-bottom:2px solid var(--accent)}
+.lede{color:var(--muted);margin:10px 0 0}
+
+/* patterns */
+.pat{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);margin-top:14px;overflow:hidden}
+.pat > summary{padding:13px 16px;cursor:pointer;font-weight:700;list-style:none;display:flex;gap:10px;align-items:baseline}
+.pat > summary::-webkit-details-marker{display:none}
+.pat > summary::before{content:"+";color:var(--accent);font-weight:700}
+.pat[open] > summary::before{content:"–"}
+.pat .body{padding:0 16px 16px;border-top:1px solid var(--line)}
+.ex{margin:12px 0;padding-left:26px;position:relative}
+.ex.no::before{content:"✗";position:absolute;left:0;color:var(--bad);font-weight:700}
+.ex.yes::before{content:"✓";position:absolute;left:0;color:var(--good);font-weight:700}
+.ex.no{color:var(--muted)}
+.why{font-size:.92rem;color:var(--muted);margin-top:10px}
+b.k{color:var(--accent)}
+
+/* exercises */
+.q{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:14px 16px;margin-top:12px;display:grid;grid-template-columns:34px 1fr;gap:4px 12px}
+.n{font-family:'Playfair Display',serif;font-weight:700;color:var(--muted);font-size:1.05rem}
+.stem{font-size:1.02rem}
+.opts{grid-column:2;display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.opt{border:1px solid var(--line);background:var(--surface-2);padding:6px 14px;border-radius:99px;font-size:.95rem}
+.opt.picked{border-color:var(--accent)}
+.opt.right{background:var(--good-soft);border-color:var(--good);color:var(--good);font-weight:700}
+.opt.wrong{background:var(--bad-soft);border-color:var(--bad);color:var(--bad);text-decoration:line-through}
+.seg{border-bottom:2px solid var(--muted);cursor:pointer;padding:1px 2px}
+.seg sup{color:var(--accent);font-weight:700;font-size:.7em;border:none}
+.seg:hover{background:var(--accent-soft)}
+.seg.right{background:var(--good-soft);border-color:var(--good)}
+.seg.wrong{background:var(--bad-soft);border-color:var(--bad)}
+.type-row{grid-column:2;display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+input[type=text]{font-family:inherit;font-size:.95rem;padding:7px 11px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface-2);color:var(--ink);width:190px}
+input:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+input.right{border-color:var(--good);background:var(--good-soft)}
+input.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.strike{color:var(--bad);text-decoration:line-through}
+select{font-family:inherit;font-size:.95rem;padding:7px 9px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface-2);color:var(--ink);max-width:100%}
+select:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+select.right{border-color:var(--good)}
+select.wrong{border-color:var(--bad)}
+.cprint,.pkey{display:none}
+.fb{grid-column:2;margin-top:10px;padding:10px 12px;border-radius:var(--radius);font-size:.93rem;display:none}
+.fb.show{display:block}
+.fb.ok{background:var(--good-soft);color:var(--good)}
+.fb.no{background:var(--bad-soft);color:var(--bad)}
+.fb b{display:block;color:var(--ink);margin-bottom:2px}
+.instr{color:var(--muted);font-size:.92rem;font-style:italic;margin:14px 0 0}
+.score{margin-top:26px;padding:16px;border:1px solid var(--accent);border-radius:var(--radius);background:var(--accent-soft);text-align:center;display:none}
+.score.show{display:block}
+.score strong{font-family:'Playfair Display',serif;font-size:1.5rem}
+
+/* print-only pieces */
+.print-opts,.rule,.keyblock,.printhead{display:none}
+
+@media print{
+  @page{margin:15mm}
+  html[data-theme]{--bg:#fff;--surface:#fff;--surface-2:#fff;--ink:#000;--muted:#444;--line:#bbb;--accent:#000;--accent-soft:#fff;--good:#000;--good-soft:#fff;--bad:#000;--bad-soft:#fff}
+  body{font-size:11.5pt}
+  header,.progress,.hero p,.score,.fb,.opts,.type-row,.instr-screen{display:none!important}
+  .wrap{max-width:none;padding:0}
+  .printhead{display:block;border-bottom:1px solid #000;padding-bottom:6px;margin-bottom:14px;font-size:.9rem}
+  .q{border:none;padding:6px 0;break-inside:avoid;page-break-inside:avoid}
+  .pat{border:none;padding:0;break-inside:avoid}
+  .pat .body{display:block!important;border:none;padding:0 0 0 16px}
+  .pat > summary{padding:8px 0 0}
+  .pat > summary::before{content:"■";font-size:.6em}
+  .print-opts{display:inline;color:#000}
+  .rule{display:block;border-bottom:1px solid #999;height:20px;margin-top:6px}
+  .cprint{display:block;margin-top:5px;font-size:10pt;color:#333}
+  .pkey{display:block;font-size:10pt;margin:8px 0 14px;padding:8px 10px;border:1px solid #999;columns:2;column-gap:22px}
+  .pkey b{display:block;columns:1;margin-bottom:3px}
+  .pkey span{display:block;break-inside:avoid}
+  .seg{cursor:default}
+  section{margin-top:20px;break-before:auto}
+  section > h2{font-size:1.25rem}
+  body.print-key .keyblock{display:block;break-before:page}
+  body.print-key .rule{display:none}
+  body.print-blank .patterns{display:none}
+}
+</style>
+</head>
+<body class="print-blank">
+
+<header>
+  <div class="bar">
+    <span class="crumb"><a href="../index.html">Advanced Hub</a> · <a href="./index.html">TOEFL Error Correction</a> · 2 of 10</span>
+    <button id="theme">Light mode</button>
+    <button id="pw">Print worksheet</button>
+    <button id="pk">Print answer key</button>
+    <button id="reset">Start over</button>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="printhead">Verb Tense and Sequence · TOEFL Error Correction · Name: ______________________  Date: __________</div>
+
+  <div class="hero">
+    <h1>Verb tense and sequence</h1>
+    <p>Choosing a tense is rarely the problem. Holding two tenses in the right relationship is — which event came first, what a time marker commits you to, what happens to a tense when it is reported. Twelve patterns below, then thirty exercises: choose the form, find the error, correct and classify.</p>
+  </div>
+
+  <div class="progress">
+    <span id="ptext">0 of 30 answered</span>
+    <div class="track"><div class="fill" id="pfill"></div></div>
+    <span id="pscore"></span>
+  </div>
+
+  <section class="patterns">
+    <h2>The twelve patterns</h2>
+    <p class="lede">Fix the timeline first, then choose the forms that express it.</p>
+
+    <details class="pat"><summary>1 · Present perfect or simple past</summary><div class="body">
+      <div class="ex no">The treatment <span class="strike">has been discovered</span> in 2018.</div>
+      <div class="ex yes">The treatment <b>was discovered</b> in 2018. · The treatment <b>has been</b> in use for eight years.</div>
+      <p class="why">A finished time expression — <i>in 2018, yesterday, last month, two years ago, during the war</i> — forces the simple past. The present perfect needs time that is unfinished or unstated: <i>recently, so far, already, yet, ever, never, since, this year</i>.</p>
+    </div></details>
+
+    <details class="pat"><summary>2 · Since and for</summary><div class="body">
+      <div class="ex no">He has worked here <span class="strike">since</span> three years.</div>
+      <div class="ex yes">He has worked here <b>for</b> three years. · He has worked here <b>since</b> 2023.</div>
+      <p class="why"><i>For</i> takes a length of time, <i>since</i> takes the point it started. <i>Since</i> also introduces a clause in the simple past while the main verb stays perfect: <i>Since she <b>joined</b> the department, output <b>has doubled</b>.</i></p>
+    </div></details>
+
+    <details class="pat"><summary>3 · Past perfect for the earlier of two past events</summary><div class="body">
+      <div class="ex no">By the time the auditors arrived, the manager <span class="strike">destroyed</span> the files.</div>
+      <div class="ex yes">By the time the auditors arrived, the manager <b>had destroyed</b> the files.</div>
+      <p class="why">Two past events, one clearly first: the earlier one takes <i>had</i> + past participle. Triggered by <i>by the time, before, after, already, until then, previously</i>. Where the order is obvious from the sequence alone, the simple past is enough: <i>She opened the door and walked out.</i></p>
+    </div></details>
+
+    <details class="pat"><summary>4 · Backshift in reported speech</summary><div class="body">
+      <div class="ex no">She said that she <span class="strike">will send</span> the manuscript.</div>
+      <div class="ex yes">She said that she <b>would send</b> the manuscript. · He told us he <b>had finished</b>.</div>
+      <p class="why">After a past reporting verb, each tense moves one step back: <i>present → past, past → past perfect, will → would, can → could, must → had to</i>. Time words shift too: <i>tomorrow → the following day, now → then, yesterday → the day before</i>. A permanent truth may stay unshifted: <i>He said that water <b>boils</b> at 100°C.</i></p>
+    </div></details>
+
+    <details class="pat"><summary>5 · Present forms after time conjunctions</summary><div class="body">
+      <div class="ex no">We will inform you as soon as we <span class="strike">will receive</span> confirmation.</div>
+      <div class="ex yes">We will inform you as soon as we <b>receive</b> confirmation.</div>
+      <p class="why">After <i>when, as soon as, before, after, until, once, by the time</i>, future meaning is carried by a present form. Use the present perfect for a completed step: <i>Once you <b>have submitted</b> the form, you will receive a code.</i> The exception is <i>when</i> meaning <i>at what time</i> in a direct or indirect question, which does take <i>will</i>.</p>
+    </div></details>
+
+    <details class="pat"><summary>6 · Conditional sequences</summary><div class="body">
+      <div class="ex no">If she <span class="strike">would have</span> studied the manual, she would not have damaged the equipment.</div>
+      <div class="ex yes">If she <b>had</b> studied the manual, she <b>would not have damaged</b> the equipment.</div>
+      <p class="why">The three pairs TOEFL tests: <i>if + present → will</i>; <i>if + past → would</i>; <i>if + had done → would have done</i>. <i>Would</i> never appears in the <i>if</i>-clause. Watch for mixed conditionals, where a past condition has a present result: <i>If they <b>had invested</b> earlier, the company <b>would be</b> profitable now.</i></p>
+    </div></details>
+
+    <details class="pat"><summary>7 · Wish, if only, would rather, it's time</summary><div class="body">
+      <div class="ex no">I wish I <span class="strike">would have</span> accepted the offer last spring.</div>
+      <div class="ex yes">I wish I <b>had accepted</b> the offer last spring. · I wish I <b>had</b> more time now.</div>
+      <p class="why">Regret about the past takes the past perfect; a wish about the present takes the simple past. <i>Wish + would</i> is reserved for complaints about other people's behaviour: <i>I wish he <b>would stop</b> interrupting.</i> The same past-for-present logic drives <i>if only</i>, <i>would rather you came</i> and <i>it's time we left</i>.</p>
+    </div></details>
+
+    <details class="pat"><summary>8 · Perfect continuous for duration</summary><div class="body">
+      <div class="ex no">The department <span class="strike">is offering</span> the course since 2018.</div>
+      <div class="ex yes">The department <b>has been offering</b> the course since 2018.</div>
+      <p class="why">Use the perfect continuous when an activity ran up to now and the duration matters. Use the plain perfect when the result matters or the amount is counted: <i>She <b>has written</b> three chapters</i> (result) against <i>She <b>has been writing</b> all morning</i> (duration).</p>
+    </div></details>
+
+    <details class="pat"><summary>9 · Stative verbs take simple forms</summary><div class="body">
+      <div class="ex no">She <span class="strike">is knowing</span> the material well. · The university <span class="strike">is owning</span> several buildings.</div>
+      <div class="ex yes">She <b>knows</b> the material well. · The university <b>owns</b> several buildings.</div>
+      <p class="why">Verbs of thinking, feeling, possession and perception avoid the continuous: <i>know, believe, understand, own, belong, contain, consist, seem, appear, prefer, need, resemble</i>. A few change meaning rather than break the rule: <i>I <b>am thinking</b> about it</i> (activity) against <i>I <b>think</b> it is wrong</i> (opinion).</p>
+    </div></details>
+
+    <details class="pat"><summary>10 · Future perfect and future continuous</summary><div class="body">
+      <div class="ex no">By 2035 the region <span class="strike">will lose</span> half of its glaciers.</div>
+      <div class="ex yes">By 2035 the region <b>will have lost</b> half of its glaciers.</div>
+      <p class="why"><i>By</i> + a future point calls for the future perfect: the action is complete before that moment. The future continuous marks something in progress then: <i>This time next week we <b>will be presenting</b> the results.</i> Keep both apart from <i>going to</i> for present evidence and intention, and <i>will</i> for a decision made as you speak.</p>
+    </div></details>
+
+    <details class="pat"><summary>11 · Used to, would, be used to</summary><div class="body">
+      <div class="ex no">Workers <span class="strike">were used to receive</span> their wages in cash.</div>
+      <div class="ex yes">Workers <b>used to receive</b> their wages in cash. · Workers <b>are used to receiving</b> their wages in cash.</div>
+      <p class="why">Three separate structures. <i>Used to</i> + base form is a discontinued past habit or state. <i>Be used to</i> + -ing means <i>accustomed to</i> and works in any tense. <i>Would</i> + base form also narrates repeated past actions, but not past states: <i>She would walk to school</i> is fine, <i>she would live there</i> is not.</p>
+    </div></details>
+
+    <details class="pat"><summary>12 · Consistency within a passage</summary><div class="body">
+      <div class="ex no">The narrator describes his childhood, recalls the summers by the sea, and then <span class="strike">shifted</span> to his adult life.</div>
+      <div class="ex yes">The narrator <b>describes</b> his childhood, <b>recalls</b> the summers by the sea, and then <b>shifts</b> to his adult life.</div>
+      <p class="why">Do not change tense mid-passage unless the time frame really changes. Two conventions matter for TOEFL writing: plots, arguments and what a text says are described in the present (<i>the study <b>argues</b>, the novel <b>opens</b></i>), while what researchers did and found is reported in the past (<i>Kuhn <b>surveyed</b> 400 cases</i>).</p>
+    </div></details>
+  </section>
+
+
+  <section>
+    <h2>Set A · Choose the correct form</h2>
+    <p class="instr">Questions 1–12. <span class="instr-screen">Tap the form that fits the timeline.</span></p>
+    <div id="setA"></div>
+  </section>
+
+  <section>
+    <h2>Set B · Find the error</h2>
+    <p class="instr">Questions 13–22. Four parts of each sentence are underlined. <span class="instr-screen">Tap the one that is wrong.</span> Only one contains an error.</p>
+    <div id="setB"></div>
+  </section>
+
+  <section>
+    <h2>Set C · Correct the sentence</h2>
+    <p class="instr">Questions 23–30. Each sentence contains exactly one verb form that is wrong — and at least one other verb that is already correct. Find the error, write the corrected verb, and name the pattern behind it. <span class="instr-screen">Both parts must be right to score.</span></p>
+    <div id="setC"></div>
+  </section>
+
+  <div class="score" id="scorebox"></div>
+
+  <div class="keyblock">
+    <h2>Answer key</h2>
+    <div id="key"></div>
+  </div>
+</div>
+
+<script>
+const A=[
+ {s:["By the time the inspection committee arrived, the participants ","already left the building."],o:["have","had"],a:1,w:"Two past events: the leaving came first, so it takes <i>had</i> + past participle. <i>By the time</i> is the signal."},
+ {s:["The company ","its headquarters to Singapore in 2019."],o:["has moved","moved"],a:1,w:"<i>In 2019</i> is finished time and rules out the present perfect."},
+ {s:["Researchers ","for a vaccine since the outbreak began."],o:["are searching","have been searching"],a:1,w:"An activity running from a past point up to now, with the duration in focus: present perfect continuous."},
+ {s:["We will begin the experiment as soon as the equipment ","from the supplier."],o:["arrives","will arrive"],a:0,w:"After <i>as soon as</i>, future meaning is carried by a present form. The main clause keeps <i>will</i>."},
+ {s:["If the results had been published earlier, the debate ","very differently."],o:["would develop","would have developed"],a:1,w:"<i>Had been published</i> sets up a third conditional, so the result clause takes <i>would have</i> + past participle."},
+ {s:["She wishes she ","more time to prepare for tomorrow's presentation."],o:["had","had had"],a:0,w:"A wish about the present takes the simple past. <i>Had had</i> would place the regret in the past."},
+ {s:["This container ","a chemical that must be handled carefully."],o:["contains","is containing"],a:0,w:"<i>Contain</i> is stative and does not take the continuous."},
+ {s:["By the end of next year, the team ","the third phase of the study."],o:["will complete","will have completed"],a:1,w:"<i>By</i> + a future point calls for the future perfect: finished before that moment."},
+ {s:["He told the interviewer that he ","in Curitiba for ten years."],o:["has lived","had lived"],a:1,w:"After the past reporting verb <i>told</i>, the present perfect shifts back to the past perfect."},
+ {s:["When I was a child, we ","spend every summer at my grandmother's house."],o:["used to","were used to"],a:0,w:"<i>Used to</i> + base form is a discontinued past habit. <i>Be used to</i> means <i>accustomed to</i> and would need <i>spending</i>."},
+ {s:["The novel opens in Dublin, where the protagonist ","through the city for a single day."],o:["wanders","wandered"],a:0,w:"What happens inside a text is described in the present, and <i>opens</i> has already set that frame."},
+ {s:["I ","this author since I read her first novel."],o:["have known","have been knowing"],a:0,w:"<i>Know</i> is stative, so even with <i>since</i> it takes the plain present perfect rather than the continuous."}
+];
+const B=[
+ {p:[["The researchers ",0],["have published",1],[" their findings ",0],["last March",1],[", but the data ",0],["were not made",1],[" available ",0],["until this year",1]],a:0,f:"published",w:"<i>Last March</i> is finished time, so the simple past is required."},
+ {p:[["By the time the fire brigade ",0],["arrived",1],[", the flames ",0],["have spread",1],[" to ",0],["the adjoining",1],[" building and ",0],["destroyed",1],[" two floors",0]],a:1,f:"had spread",w:"The spreading happened before the brigade arrived, so it takes the past perfect."},
+ {p:[["The professor ",0],["explained",1],[" that the experiment ",0],["will be",1],[" repeated ",0],["the following",1],[" week if the results ",0],["proved",1],[" inconclusive",0]],a:1,f:"would be",w:"After a past reporting verb, <i>will</i> becomes <i>would</i>. Note that <i>the following</i> is already the correctly shifted form of <i>next</i>."},
+ {p:[["We ",0],["will inform",1],[" you as soon as we ",0],["will receive",1],[" confirmation ",0],["from",1],[" the laboratory ",0],["in Berlin",1]],a:1,f:"receive",w:"After <i>as soon as</i>, use a present form. The main clause keeps <i>will</i>, which is why the first underlined verb is correct."},
+ {p:[["If she ",0],["would have",1],[" studied the manual more carefully, she ",0],["would not have damaged",1],[" the equipment ",0],["during",1],[" the ",0],["first",1],[" trial",0]],a:0,f:"had",w:"<i>Would</i> never appears in the <i>if</i>-clause of a conditional."},
+ {p:[["He ",0],["has been working",1],[" at the institute ",0],["since",1],[" three years, ",0],["although",1],[" he ",0],["plans",1],[" to leave next month",0]],a:1,f:"for",w:"<i>Three years</i> is a length of time, so it takes <i>for</i>. <i>Since</i> would need a starting point such as <i>2023</i>."},
+ {p:[["I ",0],["wish",1],[" I ",0],["would have",1],[" accepted the offer ",0],["when",1],[" it ",0],["was made",1],[" last spring",0]],a:1,f:"had",w:"Regret about the past takes <i>wish</i> + past perfect. <i>Wish + would</i> is only for complaints about someone else's behaviour."},
+ {p:[["She ",0],["is knowing",1],[" the material ",0],["well enough",1],[" to ",0],["teach",1],[" it, ",0],["but",1],[" she lacks confidence",0]],a:0,f:"knows",w:"<i>Know</i> is stative and cannot take the continuous."},
+ {p:[["By 2035 the region ",0],["will lose",1],[" nearly half of its glaciers ",0],["unless",1],[" emissions ",0],["are reduced",1],[" ",0],["significantly",1]],a:0,f:"will have lost",w:"<i>By 2035</i> demands the future perfect. <i>Are reduced</i> is correct because a present form follows <i>unless</i>."},
+ {p:[["The narrator ",0],["describes",1],[" his childhood in vivid detail, ",0],["recalls",1],[" the summers he spent by the sea, and then ",0],["shifted",1],[" abruptly to ",0],["his",1],[" adult life",0]],a:2,f:"shifts",w:"The passage is in the literary present. Nothing in the time frame changes, so the tense must not either."}
+];
+const PAT=["","Present perfect or simple past","Since and for","Past perfect for the earlier past event",
+ "Backshift in reported speech","Present forms after time conjunctions","Conditional sequences",
+ "Wish, if only, would rather","Perfect continuous for duration","Stative verbs take simple forms",
+ "Future perfect and future continuous","Used to, would, be used to","Consistency within a passage"];
+const C=[
+ {t:"The article that was published last week claims that the treatment has been discovered in 2018.",x:"has been discovered",a:["was discovered","was"],p:1,
+  w:"<i>In 2018</i> is finished time. <i>Was published</i> and <i>claims</i> are both already correct \u2014 the second because what a text says is reported in the present."},
+ {t:"When the auditors finally reached the office, the manager already destroyed most of the relevant files.",x:"destroyed",a:["had destroyed","had"],p:3,
+  w:"The destroying came first, and <i>already</i> confirms it. <i>Reached</i> is correct as the later of the two events."},
+ {t:"She said that she will send the revised manuscript as soon as her co-author approved the final section.",x:"will send",a:["would send","would"],p:4,
+  w:"<i>Said</i> forces the backshift to <i>would send</i>. <i>Approved</i> is already correct: it is the backshifted present form that follows <i>as soon as</i>."},
+ {t:"The department is offering that course since 2018, and enrolment has grown every semester.",x:"is offering",a:["has been offering","has offered"],p:8,
+  w:"<i>Since 2018</i> runs up to the present, so the verb must be perfect. <i>Has grown</i> is already correct."},
+ {t:"If the committee had reviewed the proposal on time, the project would start last September.",x:"would start",a:["would have started"],p:6,
+  w:"<i>Had reviewed</i> sets up a third conditional and <i>last September</i> is past, so the result clause needs <i>would have</i> + past participle."},
+ {t:"Many students who graduate this year wish they chose a different major when they enrolled.",x:"chose",a:["had chosen"],p:7,
+  w:"The regret is about a past decision, so <i>wish</i> takes the past perfect. <i>Enrolled</i> is correct because it states the past fact directly rather than the wish."},
+ {t:"The building belongs to the university, which is owning several other properties in the district.",x:"is owning",a:["owns"],p:9,
+  w:"<i>Own</i> is stative. <i>Belongs</i> is the clue: the sentence handles one stative verb correctly and the other not."},
+ {t:"Before the reform, workers were used to receive their wages in cash, and many still prefer it.",x:"were used to receive",a:["used to receive","used to"],p:11,
+  w:"A discontinued past habit takes <i>used to</i> + base form. <i>Be used to</i> means <i>accustomed to</i> and would require <i>receiving</i>. <i>Prefer</i> is correct as a stative present."}
+];
+
+let ans={},total=30;
+const $=id=>document.getElementById(id);
+const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+
+function save(){try{localStorage.setItem("toefl-tense",JSON.stringify(ans))}catch(e){}}
+function load(){try{ans=JSON.parse(localStorage.getItem("toefl-tense")||"{}")}catch(e){ans={}}}
+
+function build(){
+  let h="";
+  A.forEach((q,i)=>{const n=i+1;
+    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${q.s[0]}<span class="print-opts">( ${q.o[0]} / ${q.o[1]} )</span><span class="blank">_______</span> ${q.s[1]}</div>
+    <div class="opts">${q.o.map((o,j)=>`<button class="opt" data-q="${n}" data-i="${j}">${o}</button>`).join("")}</div>
+    <div class="fb" id="fb${n}"></div></div>`;});
+  $("setA").innerHTML=h;
+
+  h="";
+  B.forEach((q,i)=>{const n=i+13;let li=0;
+    const body=q.p.map(([t,u])=>u?`<span class="seg" data-q="${n}" data-i="${li}">${t}<sup>${"ABCD"[li++]}</sup></span>`:esc(t)).join("");
+    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${body}.</div><div class="fb" id="fb${n}"></div></div>`;});
+  $("setB").innerHTML=h;
+
+  h=`<div class="pkey"><b>Pattern reference</b>${PAT.slice(1).map((t,j)=>`<span>${j+1}. ${t}</span>`).join("")}</div>`;
+  const sel=PAT.slice(1).map((t,j)=>`<option value="${j+1}">${j+1} &middot; ${t}</option>`).join("");
+  C.forEach((q,i)=>{const n=i+23;
+    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${esc(q.t)}</div>
+    <div class="type-row"><input type="text" id="in${n}" data-q="${n}" placeholder="corrected verb" autocomplete="off" spellcheck="false">
+    <select id="sel${n}"><option value="">which pattern?</option>${sel}</select>
+    <button class="opt" data-check="${n}">Check</button></div>
+    <div class="cprint">Correction: ______________________________ &nbsp; Pattern no.: ______</div><div class="fb" id="fb${n}"></div></div>`;});
+  $("setC").innerHTML=h;
+
+  $("key").innerHTML=[...A.map((q,i)=>[i+1,q.o[q.a],q.w]),...B.map((q,i)=>[i+13,"("+"ABCD"[q.a]+") → "+q.f,q.w]),...C.map((q,i)=>[i+23,`<i>${q.x}</i> &rarr; <b>${q.a[0]}</b> &middot; pattern ${q.p} (${PAT[q.p]})`,q.w])]
+    .map(([n,a,w])=>`<p><b>${n}.</b> ${a} — ${w}</p>`).join("");
+}
+
+function mark(n,ok,extra){
+  const f=$("fb"+n);f.className="fb show "+(ok?"ok":"no");
+  const q=(n<13?A[n-1]:n<23?B[n-13]:C[n-23]);
+  f.innerHTML=`<b>${ok?"Correct":"Not correct"}</b>${extra||""}${q.w}`;
+  ans[n]=ok;save();update();
+}
+function update(){
+  const done=Object.keys(ans).length,right=Object.values(ans).filter(Boolean).length;
+  $("ptext").textContent=done+" of "+total+" answered";
+  $("pfill").style.width=(done/total*100)+"%";
+  $("pscore").textContent=done?right+" right":"";
+  const sb=$("scorebox");
+  if(done===total){sb.className="score show";sb.innerHTML=`<strong>${right} / 30</strong><br>${right>=27?"Exam-ready on this point.":right>=21?"Solid. Reread the patterns behind the items you missed.":"Work back through the twelve patterns, then reset and try again."}`;}
+  else sb.className="score";
+}
+
+document.addEventListener("click",e=>{
+  const o=e.target.closest(".opt[data-q]");
+  if(o){const n=+o.dataset.q,i=+o.dataset.i,q=A[n-1];
+    document.querySelectorAll(`.opt[data-q="${n}"]`).forEach(b=>{b.className="opt";b.disabled=true});
+    o.classList.add(i===q.a?"right":"wrong");
+    if(i!==q.a)document.querySelector(`.opt[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");
+    mark(n,i===q.a);return;}
+
+  const s=e.target.closest(".seg");
+  if(s){const n=+s.dataset.q,i=+s.dataset.i,q=B[n-13];
+    document.querySelectorAll(`.seg[data-q="${n}"]`).forEach(x=>x.style.pointerEvents="none");
+    s.classList.add(i===q.a?"right":"wrong");
+    if(i!==q.a)document.querySelector(`.seg[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");
+    mark(n,i===q.a,`Correction: <b>${"ABCD"[q.a]} → ${q.f}</b>. `);return;}
+
+  const c=e.target.closest("[data-check]");
+  if(c){check(+c.dataset.check);}
+});
+document.addEventListener("keydown",e=>{
+  if(e.key==="Enter"&&e.target.dataset.q&&e.target.tagName==="INPUT")check(+e.target.dataset.q);
+});
+function check(n){
+  const el=$("in"+n),sl=$("sel"+n),q=C[n-23];
+  const v=el.value.trim().toLowerCase().replace(/\s+/g," ").replace(/[.,;]$/,"");
+  if(!v||!sl.value){const f=$("fb"+n);f.className="fb show no";f.innerHTML="<b>Not yet</b>Type the corrected verb and choose a pattern before checking.";return;}
+  const vOk=q.a.some(a=>a.toLowerCase()===v),pOk=+sl.value===q.p,ok=vOk&&pOk;
+  el.className=vOk?"right":"wrong";sl.className=pOk?"right":"wrong";
+  el.disabled=true;sl.disabled=true;
+  let lead="";
+  if(vOk&&!pOk)lead=`The verb is right. The pattern is <b>${q.p} &middot; ${PAT[q.p]}</b>. `;
+  else if(!vOk&&pOk)lead=`Right pattern. The error is <i>${q.x}</i> &rarr; <b>${q.a[0]}</b>. `;
+  else if(!ok)lead=`The error is <i>${q.x}</i> &rarr; <b>${q.a[0]}</b>, pattern <b>${q.p} &middot; ${PAT[q.p]}</b>. `;
+  mark(n,ok,lead);
+}
+
+$("theme").onclick=()=>{
+  const d=document.documentElement.dataset.theme==="dark";
+  const t=d?"light":"dark";
+  document.documentElement.dataset.theme=t;
+  $("theme").textContent=t==="dark"?"Light mode":"Dark mode";
+  try{localStorage.setItem("toefl-theme",t)}catch(e){}
+};
+$("pw").onclick=()=>{document.body.className="print-blank";document.querySelectorAll(".pat").forEach(p=>p.open=false);print();};
+$("pk").onclick=()=>{document.body.className="print-key";document.querySelectorAll(".pat").forEach(p=>p.open=true);print();};
+$("reset").onclick=()=>{ans={};save();location.reload();};
+
+(function(){
+  try{const t=localStorage.getItem("toefl-theme");if(t){document.documentElement.dataset.theme=t;$("theme").textContent=t==="dark"?"Light mode":"Dark mode";}}catch(e){}
+  load();build();
+  Object.keys(ans).forEach(n=>{ // replay locked state
+    n=+n;
+    if(n<13){const q=A[n-1];document.querySelectorAll(`.opt[data-q="${n}"]`).forEach(b=>b.disabled=true);
+      document.querySelector(`.opt[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");}
+    else if(n<23){const q=B[n-13];document.querySelectorAll(`.seg[data-q="${n}"]`).forEach(x=>x.style.pointerEvents="none");
+      document.querySelector(`.seg[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");}
+    else{const q=C[n-23],el=$("in"+n),sl=$("sel"+n);el.value=q.a[0];sl.value=q.p;el.disabled=true;sl.disabled=true;el.className=sl.className=ans[n]?"right":"wrong";}
+    const f=$("fb"+n),q=(n<13?A[n-1]:n<23?B[n-13]:C[n-23]);
+    f.className="fb show "+(ans[n]?"ok":"no");f.innerHTML=`<b>${ans[n]?"Correct":"Not correct"}</b>${q.w}`;
+  });
+  update();
+})();
+</script>
+</body>
+</html>
