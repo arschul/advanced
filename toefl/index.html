@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TOEFL Error Correction · Advanced Hub</title>
+<style>
+:root{
+  --bg:#0b0d10;--surface:#13161b;--surface2:#1c2029;--text:#eef0f4;--muted:#7b8391;--border:#252a35;
+  --teal:#2dd4bf;--teal-mid:rgba(45,212,191,0.12);--radius:16px;
+}
+html[data-theme="light"]{
+  --bg:#f0f2f5;--surface:#ffffff;--surface2:#f7f8fa;--text:#111318;--muted:#5b6270;--border:#dde1e8;
+  --teal-mid:rgba(45,212,191,0.08);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh;display:flex;flex-direction:column}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 28px;border-bottom:1px solid var(--border)}
+.back-link{display:flex;align-items:center;gap:7px;color:var(--muted);text-decoration:none;font-size:13px;font-weight:500}
+.back-link:hover{color:var(--teal)}
+.back-link svg{width:15px;height:15px}
+.hub-badge{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--teal);background:var(--teal-mid);border:1px solid rgba(45,212,191,.2);border-radius:6px;padding:3px 9px}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:5px 10px;cursor:pointer;color:var(--muted);font-size:14px}
+.theme-btn:hover{border-color:var(--teal)}
+.hero{text-align:center;padding:52px 28px 34px}
+.hero h1{font-size:36px;font-weight:800;letter-spacing:-.02em;margin-bottom:14px}
+.hero h1 span{color:var(--teal)}
+.hero p{font-size:16px;color:var(--muted);max-width:620px;margin:0 auto;line-height:1.65}
+.section{max-width:900px;margin:0 auto;padding:0 28px 40px;width:100%}
+.section-hd{display:flex;align-items:baseline;gap:10px;margin-bottom:22px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.section-hd h2{font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.section-hd p{font-size:13px;color:var(--muted)}
+.rows{display:flex;flex-direction:column;gap:10px}
+.row{display:flex;align-items:center;gap:16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;text-decoration:none;color:inherit;transition:border-color .2s,transform .15s}
+a.row:hover{border-color:var(--teal);transform:translateX(3px)}
+.row.soon{opacity:.5}
+.num{font-size:19px;font-weight:800;color:var(--teal);min-width:26px}
+.row.soon .num{color:var(--muted)}
+.txt{flex:1}
+.txt h3{font-size:16px;font-weight:700;margin-bottom:3px}
+.txt p{font-size:13px;color:var(--muted);line-height:1.55}
+.tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:3px 9px;border-radius:5px;border:1px solid var(--border);color:var(--muted);background:var(--surface2);white-space:nowrap}
+.tag.live{border-color:rgba(45,212,191,.3);color:var(--teal);background:var(--teal-mid)}
+.note{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:10px;padding:16px 20px;font-size:13.5px;color:var(--muted);line-height:1.65;margin-bottom:26px}
+.note b{color:var(--text)}
+footer{margin-top:auto;padding:20px 28px;border-top:1px solid var(--border);font-size:12px;color:var(--muted);text-align:center}
+footer a{color:var(--muted);text-decoration:none}
+footer a:hover{color:var(--teal)}
+@media(max-width:560px){.hero h1{font-size:28px}.row{padding:14px 16px;gap:12px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="back-link" href="../index.html">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    Advanced Hub
+  </a>
+  <span class="hub-badge">Error Correction</span>
+  <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">☀️</button>
+</div>
+
+<div class="hero">
+  <h1>TOEFL <span>Error Correction</span></h1>
+  <p>Ten pages, one grammar family each. Every page explains the patterns that cause the error, then drills them with thirty exercises — answerable on screen with instant feedback, or printable as a blank worksheet and a separate answer key.</p>
+</div>
+
+<div class="section">
+  <div class="note">
+    <b>How to use these.</b> Each page opens with the patterns, written as wrong/right pairs. Work through those on the board, then set the exercises: Set A trains recognition, Set B uses the four-underlined-parts format from Structure &amp; Written Expression, and Set C asks students to produce the correction themselves. Progress saves in the browser, so a student can stop and come back.
+  </div>
+
+  <div class="section-hd">
+    <h2>The ten families</h2>
+    <p>In the order errors appear most often in student writing</p>
+  </div>
+
+  <div class="rows">
+    <a class="row" href="./subject-verb-agreement.html">
+      <span class="num">1</span>
+      <span class="txt"><h3>Subject–verb agreement</h3><p>Intervening phrases, quantifiers, inversion, collective and irregular nouns, clause subjects.</p></span>
+      <span class="tag live">30 exercises</span>
+    </a>
+    <div class="row soon">
+      <span class="num">2</span>
+      <span class="txt"><h3>Verb tense and sequence of tenses</h3><p>Perfect vs simple past, tense backshift in reported speech, time markers that fix a tense.</p></span>
+      <span class="tag">Planned</span>
+    </div>
+    <div class="row soon">
+      <span class="num">3</span>
+      <span class="txt"><h3>Pronoun reference and agreement</h3><p>Ambiguous <i>it</i> and <i>this</i>, number agreement with antecedents, reflexives, relative pronoun choice.</p></span>
+      <span class="tag">Planned</span>
+    </div>
+    <div class="row soon">
+      <span class="num">4</span>
+      <span class="txt"><h3>Articles, determiners and countability</h3><p>Zero article with generics, <i>the</i> with superlatives and unique reference, much/many, few/little.</p></span>
+      <span class="tag">Planned</span>
+    </div>
+    <div class="row soon">
+      <span class="num">5</span>
+      <span class="txt"><h3>Prepositions and dependent prepositions</h3><p>Verb, noun and adjective + preposition pairs, prepositions of time and place, phrasal verb errors.</p></span>
+      <span class="tag">Planned</span>
+    </div>
+    <div class="row soon">
+      <span class="num">6</span>
+      <span class="txt"><h3>Parallel structure</h3><p>Lists, comparisons and correlative pairs that must balance in form.</p></span>
+      <span class="tag">Planned</span>
+    </div>
+    <div class="row soon">
+      <span class="num">7</span>
+      <span class="txt"><h3>Word form</h3><p>Noun for adjective, adjective for adverb, and the suffix families TOEFL tests repeatedly.</p></span>
+      <span class="tag">Planned</span>
+    </div>
+    <div class="row soon">
+      <span class="num">8</span>
+      <span class="txt"><h3>Modifiers and comparison</h3><p>Misplaced and dangling modifiers, comparative and superlative forms, double comparatives.</p></span>
+      <span class="tag">Planned</span>
+    </div>
+    <div class="row soon">
+      <span class="num">9</span>
+      <span class="txt"><h3>Sentence boundaries</h3><p>Fragments, run-ons, comma splices, and the connectors that repair each one.</p></span>
+      <span class="tag">Planned</span>
+    </div>
+    <div class="row soon">
+      <span class="num">10</span>
+      <span class="txt"><h3>Word order, inversion and redundancy</h3><p>Adverb placement, embedded questions, inversion after negatives, and wordiness in essays.</p></span>
+      <span class="tag">Planned</span>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Part of <a href="../index.html">Advanced Hub</a> · <a href="https://arschul.github.io/">arschul.github.io</a> · Phil Young's English School
+</footer>
+
+<script>
+function toggleTheme(){
+  const html=document.documentElement;
+  const next=html.getAttribute('data-theme')==='light'?'dark':'light';
+  html.setAttribute('data-theme',next);
+  document.getElementById('theme-btn').textContent=next==='light'?'☀️':'🌙';
+  try{localStorage.setItem('adv-theme',next)}catch(e){}
+}
+try{const t=localStorage.getItem('adv-theme');if(t){document.documentElement.setAttribute('data-theme',t);document.getElementById('theme-btn').textContent=t==='light'?'☀️':'🌙';}}catch(e){}
+</script>
+</body>
+</html>
