@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prepositions and Dependent Prepositions · TOEFL Error Correction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0e12;--surface:#15171c;--surface-2:#1b1e25;--ink:#eef0f2;--muted:#8b929c;--line:#262932;
+    --violet:#a78bfa;--violet-deep:#1c1433;--violet-line:rgba(167,139,250,0.35);
+    --accent:#a78bfa;--accent-soft:#1c1433;
+    --key-accent:#f0c75e;--key-deep:#2a2206;--key-line:rgba(240,199,94,0.25);
+    --good:#4ade80;--good-soft:rgba(74,222,128,0.12);--good-line:rgba(74,222,128,0.35);
+    --bad:#f87171;--bad-soft:rgba(248,113,113,0.12);--bad-line:rgba(248,113,113,0.35);
+    --radius:14px;
+  }
+  :root[data-theme="light"]{
+    --bg:#f4f1ea;--surface:#ffffff;--surface-2:#faf8f3;--ink:#1a1815;--muted:#6b6660;--line:#e2ddd2;
+    --violet:#7c3aed;--violet-deep:#ede9fe;--violet-line:rgba(124,58,237,0.3);
+    --accent:#7c3aed;--accent-soft:#ede9fe;
+    --key-accent:#b8860b;--key-deep:#fbf2dc;--key-line:rgba(184,134,11,0.3);
+    --good:#15803d;--good-soft:#dcfce7;--good-line:rgba(21,128,61,0.3);
+    --bad:#b91c1c;--bad-soft:#fee2e2;--bad-line:rgba(185,28,28,0.3);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;
+    line-height:1.65;font-weight:400;transition:background .3s,color .3s;-webkit-font-smoothing:antialiased}
+  .wrap{width:100%;max-width:860px;margin:0 auto;padding:4.5rem 1.5rem 5rem}
+
+  .theme-toggle{position:fixed;top:1.25rem;right:1.25rem;z-index:30;width:42px;height:42px;
+    border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--muted);
+    cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:all .2s}
+  .theme-toggle:hover{border-color:var(--ink);color:var(--ink);transform:scale(1.06)}
+
+  .back-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.8rem;font-weight:500;
+    color:var(--muted);text-decoration:none;margin-bottom:2.5rem;transition:color .2s}
+  .back-link:hover{color:var(--violet)}
+  .eyebrow{font-size:.72rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);
+    font-weight:500;margin-bottom:1.1rem}
+  h1,h2,h3,.pat>summary,.n,.score strong{font-family:'Fraunces',Georgia,serif;font-optical-sizing:auto}
+  h1{font-weight:700;font-size:clamp(2.2rem,5.5vw,3.4rem);line-height:1.05;letter-spacing:-1.5px;margin-bottom:.9rem}
+  h1 .accent{background:linear-gradient(90deg,var(--violet),#38bdf8);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{color:var(--muted);font-size:1.02rem;font-weight:300;line-height:1.75;max-width:58ch;margin-bottom:2rem}
+
+  .actions{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2.5rem}
+  .btn{font-family:inherit;font-size:.75rem;font-weight:600;letter-spacing:.3px;padding:.45rem .9rem;
+    border-radius:8px;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block}
+  .btn-view{background:var(--violet-deep);color:var(--violet);border:1px solid var(--violet-line)}
+  .btn-view:hover{background:var(--violet);color:#fff}
+  .btn-key{background:var(--key-deep);color:var(--key-accent);border:1px solid var(--key-line)}
+  .btn-key:hover{background:var(--key-accent);color:#1a1815}
+  .btn-dl{background:transparent;color:var(--muted);border:1px solid var(--line)}
+  .btn-dl:hover{border-color:var(--muted);color:var(--ink)}
+
+  .progress{position:sticky;top:0;z-index:20;background:var(--bg);padding:.85rem 0;
+    border-bottom:1px solid var(--line);display:flex;align-items:center;gap:.9rem;font-size:.78rem;color:var(--muted)}
+  .track{flex:1;height:4px;background:var(--surface-2);border-radius:100px;overflow:hidden}
+  .fill{height:100%;width:0;background:linear-gradient(90deg,var(--violet),#38bdf8);transition:width .35s}
+
+  section{margin-top:3rem}
+  section>h2{font-size:1.5rem;font-weight:600;letter-spacing:-.3px;padding-bottom:.75rem;
+    border-bottom:1px solid var(--line);display:flex;align-items:center;gap:.7rem}
+  section>h2::before{content:"";width:9px;height:9px;border-radius:3px;background:var(--violet);flex:none}
+  .keyblock h2::before{background:var(--key-accent)}
+  .instr{color:var(--muted);font-size:.85rem;font-weight:300;margin-top:1rem;line-height:1.7}
+
+  /* pattern cards */
+  .pat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    margin-top:.9rem;position:relative;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+  .pat::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--violet);
+    transform:scaleX(0);transform-origin:left;transition:transform .3s;z-index:1}
+  .pat[open]{border-color:var(--violet-line)}
+  .pat[open]::before,.pat:hover::before{transform:scaleX(1)}
+  .pat>summary{padding:1rem 1.2rem;cursor:pointer;font-size:1rem;font-weight:600;letter-spacing:-.2px;
+    list-style:none;display:flex;gap:.7rem;align-items:baseline}
+  .pat>summary::-webkit-details-marker{display:none}
+  .pat>summary::before{content:"+";color:var(--violet);font-weight:600;font-family:'DM Sans',sans-serif}
+  .pat[open]>summary::before{content:"–"}
+  .pat .body{padding:0 1.2rem 1.2rem;border-top:1px solid var(--line);margin-top:0}
+  .ex{margin:.85rem 0;padding-left:1.6rem;position:relative;font-size:.95rem}
+  .ex.no::before{content:"✗";position:absolute;left:0;color:var(--bad);font-weight:700}
+  .ex.yes::before{content:"✓";position:absolute;left:0;color:var(--good);font-weight:700}
+  .ex.no{color:var(--muted)}
+  .why{font-size:.88rem;color:var(--muted);font-weight:300;line-height:1.75;margin-top:.8rem}
+  b.k{color:var(--violet)}
+  .strike{color:var(--bad);text-decoration:line-through}
+
+  /* question cards */
+  .q{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:1.1rem 1.2rem;margin-top:.75rem;display:grid;grid-template-columns:30px 1fr;gap:.2rem .9rem;
+    position:relative;overflow:hidden;transition:border-color .2s}
+  .q::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--violet);
+    transform:scaleX(0);transform-origin:left;transition:transform .3s}
+  .q:hover::before{transform:scaleX(1)}
+  .n{font-weight:600;color:var(--muted);font-size:1rem;line-height:1.6}
+  .stem{font-size:1rem;line-height:1.7}
+  .opts{grid-column:2;display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.8rem}
+  .opt{font-family:inherit;font-size:.82rem;font-weight:600;letter-spacing:.3px;padding:.35rem .9rem;
+    border-radius:100px;cursor:pointer;background:var(--surface-2);color:var(--ink);
+    border:1px solid var(--line);transition:all .2s}
+  .opt:hover{border-color:var(--violet);color:var(--violet)}
+  .opt:disabled{cursor:default}
+  .opt.right{background:var(--good-soft);border-color:var(--good-line);color:var(--good)}
+  .opt.wrong{background:var(--bad-soft);border-color:var(--bad-line);color:var(--bad);text-decoration:line-through}
+  .seg{border-bottom:2px solid var(--muted);cursor:pointer;padding:1px 2px;transition:background .2s}
+  .seg sup{color:var(--violet);font-weight:700;font-size:.66em;border:none;margin-left:1px}
+  .seg:hover{background:var(--violet-deep)}
+  .seg.right{background:var(--good-soft);border-color:var(--good)}
+  .seg.wrong{background:var(--bad-soft);border-color:var(--bad)}
+  .type-row{grid-column:2;display:flex;gap:.5rem;margin-top:.8rem;flex-wrap:wrap}
+  input[type=text],select{font-family:inherit;font-size:.85rem;padding:.4rem .7rem;border-radius:8px;
+    background:var(--surface-2);color:var(--ink);border:1px solid var(--line);max-width:100%}
+  input[type=text]{width:180px}
+  input:focus-visible,select:focus-visible,.opt:focus-visible,.btn:focus-visible,.theme-toggle:focus-visible,.seg:focus-visible{outline:2px solid var(--violet);outline-offset:2px}
+  input.right,select.right{border-color:var(--good-line);background:var(--good-soft)}
+  input.wrong,select.wrong{border-color:var(--bad-line);background:var(--bad-soft)}
+  .fb{grid-column:2;margin-top:.8rem;padding:.7rem .9rem;border-radius:10px;font-size:.86rem;
+    font-weight:300;line-height:1.7;display:none}
+  .fb.show{display:block}
+  .fb.ok{background:var(--good-soft);border:1px solid var(--good-line);color:var(--muted)}
+  .fb.no{background:var(--bad-soft);border:1px solid var(--bad-line);color:var(--muted)}
+  .fb b{display:block;margin-bottom:.15rem;font-weight:600}
+  .fb.ok b{color:var(--good)}
+  .fb.no b{color:var(--bad)}
+
+  .score{margin-top:2rem;padding:1.5rem;border:1px solid var(--violet-line);border-radius:18px;
+    background:var(--violet-deep);text-align:center;display:none}
+  .score.show{display:block}
+  .score strong{font-size:2rem;font-weight:700;letter-spacing:-1px;display:block;margin-bottom:.3rem;color:var(--violet)}
+  .keyblock{margin-top:3rem}
+  .keyblock p{font-size:.88rem;font-weight:300;color:var(--muted);margin-top:.7rem;line-height:1.7}
+  .keyblock p b:first-child{color:var(--key-accent)}
+  footer{padding:2.5rem 1.5rem;color:var(--muted);font-size:.78rem;text-align:center;border-top:1px solid var(--line);margin-top:3rem}
+  footer a{color:var(--muted);text-decoration:none}
+  footer a:hover{color:var(--violet)}
+
+  .print-opts,.rule,.keyblock,.printhead,.cprint,.pkey{display:none}
+
+  @media(max-width:600px){
+    .wrap{padding:3.5rem 1.1rem 4rem}
+    .q{grid-template-columns:24px 1fr;padding:1rem}
+    input[type=text]{width:100%}
+  }
+
+  @media print{
+    @page{margin:15mm}
+    :root,:root[data-theme]{--bg:#fff;--surface:#fff;--surface-2:#fff;--ink:#000;--muted:#333;--line:#bbb;
+      --violet:#000;--violet-deep:#fff;--violet-line:#bbb;--accent:#000;--accent-soft:#fff;
+      --key-accent:#000;--key-deep:#fff;--key-line:#bbb;
+      --good:#000;--good-soft:#fff;--good-line:#bbb;--bad:#000;--bad-soft:#fff;--bad-line:#bbb}
+    body{font-size:11.5pt;line-height:1.5}
+    .theme-toggle,.back-link,.eyebrow,.actions,.progress,.lede,.score,.fb,.opts,.type-row,.instr-screen,footer{display:none!important}
+    .wrap{max-width:none;padding:0}
+    h1{font-size:1.6rem;letter-spacing:-.5px;margin-bottom:.4rem}
+    h1 .accent{color:#000;-webkit-text-fill-color:#000;background:none}
+    .printhead{display:block;border-bottom:1px solid #000;padding-bottom:6px;margin-bottom:14px;font-size:.9rem}
+    .q{border:none;padding:6px 0;margin:0;break-inside:avoid;page-break-inside:avoid}
+    .q::before,.pat::before{display:none}
+    .pat{border:none;border-radius:0;margin:0}
+    .pat .body{display:block!important;border:none;padding:0 0 0 1.2rem}
+    .pat>summary{padding:8px 0 0}
+    .pat>summary::before{content:"■";font-size:.55em}
+    .print-opts{display:inline;color:#000}
+    .rule{display:block;border-bottom:1px solid #999;height:20px;margin-top:6px}
+    .cprint{display:block;margin-top:5px;font-size:10pt;color:#333}
+    .pkey{display:block;font-size:10pt;margin:8px 0 14px;padding:8px 10px;border:1px solid #999;columns:2;column-gap:22px}
+    .pkey b{display:block;columns:1;margin-bottom:3px}
+    .pkey span{display:block;break-inside:avoid}
+    .seg{cursor:default}
+    section{margin-top:18px}
+    section>h2{font-size:1.2rem;border-bottom:1px solid #000}
+    section>h2::before{display:none}
+    body.print-key .keyblock{display:block;break-before:page}
+    body.print-key .rule{display:none}
+    body.print-blank .patterns{display:none}
+  }
+</style>
+</head>
+<body class="print-blank">
+
+<button class="theme-toggle" id="theme" title="Toggle light/dark mode">🌙</button>
+
+<div class="wrap">
+
+  <div class="printhead">Prepositions and Dependent Prepositions · TOEFL Error Correction · Name: ______________________  Date: __________</div>
+
+  <div class="hero">
+    <a class="back-link" href="./index.html">← TOEFL Error Correction</a>
+    <p class="eyebrow">Phil Young’s English School · Sheet 5 of 10</p>
+    <h1>Prepositions and dependent <span class="accent">prepositions</span></h1>
+    <p class="lede">Almost nothing here can be reasoned out. A verb, an adjective or a noun simply owns its preposition, and the pair has to be learned whole — which is why this family rewards drilling more than any other on the list. Twelve patterns below, then thirty exercises.</p>
+    <div class="actions">
+      <button class="btn btn-view" id="pw">Print worksheet</button>
+      <button class="btn btn-key" id="pk">Print answer key</button>
+      <button class="btn btn-dl" id="reset">Start over</button>
+    </div>
+  </div>
+
+  <div class="progress">
+    <span id="ptext">0 of 30 answered</span>
+    <div class="track"><div class="fill" id="pfill"></div></div>
+    <span id="pscore"></span>
+  </div>
+
+  <section class="patterns">
+    <h2>The twelve patterns</h2>
+    <p class="lede">Most of these are not rules. They are pairs, and pairs have to be learned as pairs.</p>
+
+    <details class="pat"><summary>1 · Verb + preposition pairs</summary><div class="body">
+      <div class="ex no">The outcome depends <span class="strike">of</span> the resources the department allocates.</div>
+      <div class="ex yes">The outcome depends <b>on</b> the resources the department allocates.</div>
+      <p class="why">The pairs TOEFL returns to: <i>depend on, consist of, result in, result from, account for, focus on, rely on, refer to, contribute to, apply for, apply to, insist on, object to, succeed in, participate in, comply with, deal with, cope with, benefit from</i>. Learn the verb and its preposition as one unit, because the preposition rarely translates.</p>
+    </div></details>
+
+    <details class="pat"><summary>2 · Verbs that take no preposition at all</summary><div class="body">
+      <div class="ex no">The panel discussed <span class="strike">about</span> the proposal and entered <span class="strike">into</span> the hall.</div>
+      <div class="ex yes">The panel <b>discussed</b> the proposal and <b>entered</b> the hall.</div>
+      <p class="why">These take a direct object with nothing between: <i>discuss, enter, approach, answer, attend, emphasize, mention, lack, resemble, marry, reach, request, join, contact</i>. The extra preposition comes straight from Portuguese and is the most common single error in this family. Note the contrast with <i>enter into an agreement</i>, which is a fixed phrase with a different meaning.</p>
+    </div></details>
+
+    <details class="pat"><summary>3 · Adjective + preposition</summary><div class="body">
+      <div class="ex no">She is responsible <span class="strike">of</span> the reports and capable <span class="strike">to solve</span> the problem.</div>
+      <div class="ex yes">She is responsible <b>for</b> the reports and capable <b>of solving</b> the problem.</div>
+      <p class="why">Fixed pairs again: <i>interested in, capable of, responsible for, similar to, different from, aware of, concerned about, dependent on, familiar with, satisfied with, opposed to, accustomed to, superior to</i>. Whatever follows the preposition must be a noun or a gerund, never an infinitive.</p>
+    </div></details>
+
+    <details class="pat"><summary>4 · Noun + preposition</summary><div class="body">
+      <div class="ex no">The article reports a sharp decline <span class="strike">of</span> enrollment.</div>
+      <div class="ex yes">The article reports a sharp decline <b>in</b> enrollment. · a solution <b>to</b> the problem</div>
+      <p class="why">Movement in a quantity takes <i>in</i>: <i>an increase in, a decline in, a rise in, a reduction in, a change in</i>. Others to memorize: <i>a solution to, a reason for, an effect on, an influence on, research on, an answer to, a demand for, an approach to</i>.</p>
+    </div></details>
+
+    <details class="pat"><summary>5 · In, on and at for time</summary><div class="body">
+      <div class="ex no">The conference will take place <span class="strike">at</span> March.</div>
+      <div class="ex yes">The conference will take place <b>in</b> March, <b>on</b> a Monday, <b>at</b> nine in the morning.</div>
+      <p class="why">Widest to narrowest. <i>In</i> for years, months, seasons, centuries and parts of the day: <i>in 2019, in March, in the morning</i>. <i>On</i> for days and dates: <i>on Monday, on March 3</i>. <i>At</i> for clock times and two fixed exceptions: <i>at night, at the weekend</i>. No preposition at all before <i>last, next, this, every</i>: <i>last March</i>, not <i>in last March</i>.</p>
+    </div></details>
+
+    <details class="pat"><summary>6 · In, on and at for place</summary><div class="body">
+      <div class="ex no">The office is located <span class="strike">at</span> the fourth floor.</div>
+      <div class="ex yes">The office is located <b>on</b> the fourth floor <b>of</b> a building <b>in</b> the city center.</div>
+      <p class="why"><i>In</i> for enclosed spaces and areas: <i>in the building, in Curitiba, in a car</i>. <i>On</i> for surfaces, floors, streets and transport lines: <i>on the third floor, on the wall, on a bus</i>. <i>At</i> for points and addresses: <i>at the corner, at 40 Rua XV, at the station</i>.</p>
+    </div></details>
+
+    <details class="pat"><summary>7 · For, since, during, by and until</summary><div class="body">
+      <div class="ex no">He has worked here <span class="strike">during</span> three years and must reply <span class="strike">until</span> Friday.</div>
+      <div class="ex yes">He has worked here <b>for</b> three years and must reply <b>by</b> Friday.</div>
+      <p class="why"><i>For</i> takes a length of time, <i>since</i> takes a starting point, <i>during</i> takes a named period rather than a number: <i>during the war</i>, not <i>during three years</i>. <i>By</i> means at or before a deadline; <i>until</i> means the state continues up to that point. <i>Submit it by Friday</i> and <i>wait until Friday</i> say different things.</p>
+    </div></details>
+
+    <details class="pat"><summary>8 · Between and among</summary><div class="body">
+      <div class="ex no">The prize was shared <span class="strike">between</span> the six researchers who contributed.</div>
+      <div class="ex yes">The prize was shared <b>among</b> the six researchers. · The difference <b>between</b> the two methods is small.</div>
+      <p class="why"><i>Between</i> for two, or for items considered individually and named. <i>Among</i> for an undifferentiated group of three or more. Keep the pairs intact too: <i>between X and Y</i>, never <i>between X to Y</i>; and <i>from 1990 to 2005</i>, never <i>from 1990 until 2005</i> in a date range.</p>
+    </div></details>
+
+    <details class="pat"><summary>9 · A preposition is followed by a gerund</summary><div class="body">
+      <div class="ex no">The students look forward <span class="strike">to receive</span> the results.</div>
+      <div class="ex yes">The students look forward <b>to receiving</b> the results. · <b>before submitting</b>, <b>instead of waiting</b>, <b>capable of solving</b></div>
+      <p class="why">Anything after a preposition is a noun or a gerund. The trap is the expressions where <i>to</i> is a preposition and not an infinitive marker: <i>look forward to, be used to, get used to, object to, be accustomed to, in addition to, be committed to</i>. Test it by substituting a noun \u2014 <i>look forward to the results</i> works, so the gerund is right.</p>
+    </div></details>
+
+    <details class="pat"><summary>10 · Different from, compared with, according to</summary><div class="body">
+      <div class="ex no">The findings are quite different <span class="strike">than</span> those the earlier study reported.</div>
+      <div class="ex yes">The findings are quite different <b>from</b> those the earlier study reported.</div>
+      <p class="why"><i>Different from</i> is the form TOEFL expects, though <i>different than</i> is common in spoken American English. Others in the comparison family: <i>compared with</i> or <i>compared to</i>, <i>in contrast to</i>, <i>similar to</i>, <i>according to</i> (never <i>according with</i>), <i>the same as</i> (never <i>the same than</i>).</p>
+    </div></details>
+
+    <details class="pat"><summary>11 · Phrasal verbs and their particles</summary><div class="body">
+      <div class="ex no">The team carried <span class="strike">on</span> the experiment the ministry approved.</div>
+      <div class="ex yes">The team carried <b>out</b> the experiment. · They <b>carried on</b> working despite the delay.</div>
+      <p class="why">The particle carries the meaning, so swapping it changes the verb entirely: <i>carry out</i> is to perform, <i>carry on</i> is to continue. Others worth drilling: <i>point out, bring up, put off, set up, take on, look into, come across, turn down</i>. Separable ones split around a pronoun: <i>put it off</i>, never <i>put off it</i>.</p>
+    </div></details>
+
+    <details class="pat"><summary>12 · Fixed phrases</summary><div class="body">
+      <div class="ex no"><span class="strike">In the contrary</span>, the second experiment produced the opposite result.</div>
+      <div class="ex yes"><b>On the contrary</b>, the second experiment produced the opposite result.</div>
+      <p class="why">These have no logic to derive; they are memorized whole: <i>in my opinion, in general, in fact, in addition, in particular, in contrast, on the whole, on the contrary, on the other hand, on purpose, on behalf of, at least, at first, at present, by contrast, by chance, for example</i>. Note that <i>on the contrary</i> corrects a statement while <i>on the other hand</i> introduces a different side \u2014 they are not interchangeable.</p>
+    </div></details>
+  </section>
+
+  <section>
+    <h2>Set A · Choose the correct form</h2>
+    <p class="instr">Questions 1–12. <span class="instr-screen">Tap the preposition that the word in front of it requires.</span></p>
+    <div id="setA"></div>
+  </section>
+
+  <section>
+    <h2>Set B · Find the error</h2>
+    <p class="instr">Questions 13–22. Four parts of each sentence are underlined. <span class="instr-screen">Tap the one that is wrong.</span> Only one contains an error.</p>
+    <div id="setB"></div>
+  </section>
+
+  <section>
+    <h2>Set C · Correct the sentence</h2>
+    <p class="instr">Questions 23–30. Each sentence contains exactly one preposition error — and at least one other preposition that is already correct. Find the error, write the correction, and name the pattern behind it. <span class="instr-screen">Both parts must be right to score.</span></p>
+    <div id="setC"></div>
+  </section>
+
+  <div class="score" id="scorebox"></div>
+
+  <div class="keyblock">
+    <h2>Answer key</h2>
+    <div id="key"></div>
+  </div>
+</div>
+
+<footer>Part of the <a href="./index.html">TOEFL Error Correction</a> section · <a href="../index.html">Advanced Hub</a> · Phil Young’s English School</footer>
+
+<script>
+const A=[
+ {s:["The success of the program depends ","the funding that the ministry approves at the start of each year."],o:["on","of"],a:0,w:"<i>Depend</i> pairs with <i>on</i>. The preposition is fixed to the verb and does not translate from Portuguese."},
+ {s:["At the next meeting the committee will discuss ","that the department raised before the deadline expired."],o:["about the concerns","the concerns"],a:1,w:"<i>Discuss</i> takes a direct object with nothing between. The same holds for <i>enter, mention, emphasize, approach</i>."},
+ {s:["She is responsible ","the reports that the auditors review whenever the accounts are closed."],o:["of","for"],a:1,w:"The fixed pair is <i>responsible for</i>. <i>Capable</i> would take <i>of</i>, and <i>aware</i> would take <i>of</i> as well \u2014 each adjective keeps its own preposition."},
+ {s:["The study found a sharp increase ","the number of applications that the office processed last spring."],o:["of","in"],a:1,w:"Movement in a quantity takes <i>in</i>: <i>an increase in, a decline in, a rise in</i>."},
+ {s:["The agreement was signed ","March, shortly after the ministers concluded talks that had lasted a year."],o:["in","on"],a:0,w:"<i>In</i> covers months, years and seasons; <i>on</i> is for days and dates."},
+ {s:["The laboratory is located ","the third floor of the building that the university renovated last year."],o:["in","on"],a:1,w:"Floors take <i>on</i>, like other surfaces and levels. <i>In</i> would be right for the building itself."},
+ {s:["The revised report must be submitted ","Friday, or the committee will reject the application you prepared."],o:["until","by"],a:1,w:"<i>By</i> means at or before a deadline. <i>Until</i> would mean the submitting continues up to Friday, which is not the sense here."},
+ {s:["The remaining funds were divided ","the four departments that had applied before the fiscal year closed."],o:["between","among"],a:1,w:"<i>Among</i> covers an undifferentiated group of three or more. <i>Between</i> would fit two, or items named individually."},
+ {s:["She left the office without ","the message that her assistant had prepared for the director."],o:["to read","reading"],a:1,w:"A preposition is followed by a noun or a gerund, never an infinitive."},
+ {s:["The results of this trial are quite different ","those that the earlier study reported in its appendix."],o:["than","from"],a:1,w:"<i>Different from</i> is the form TOEFL expects, though <i>different than</i> is common in speech."},
+ {s:["The team carried ","the experiment that the ministry had approved before the funding expired."],o:["out","on"],a:0,w:"<i>Carry out</i> means to perform; <i>carry on</i> means to continue. The particle carries the meaning."},
+ {s:["","my opinion, the argument that the author develops in the second chapter is the weakest in the book."],o:["On","In"],a:1,w:"<i>In my opinion</i> is fixed. <i>On</i> belongs to <i>on the whole, on the contrary, on the other hand</i>."}
+];
+const B=[
+ {p:[["The outcome ",0],["depends of",1],[" the resources that the department allocates and ",0],["on the deadlines",1],[" that the ministry sets ",0],["at the start",1],[" of ",0],["each term",1]],a:0,f:"depends on",w:"<i>Depend</i> pairs with <i>on</i>, as the second underlined phrase already shows \u2014 the sentence uses the right preposition once and the wrong one once."},
+ {p:[["The panel ",0],["discussed about",1],[" the proposal ",0],["for two hours",1],[" before it ",0],["agreed on",1],[" the changes that the author ",0],["had suggested",1]],a:0,f:"discussed",w:"<i>Discuss</i> takes a direct object. <i>Agreed on</i> is correct because <i>agree</i> does take a preposition."},
+ {p:[["She is ",0],["capable to solve",1],[" problems that others avoid, and she is ",0],["interested in",1],[" the methods ",0],["that the institute",1],[" developed ",0],["in the 1990s",1]],a:0,f:"capable of solving",w:"<i>Capable of</i>, and a preposition takes a gerund rather than an infinitive. <i>Interested in</i> is already right."},
+ {p:[["The article reports a sharp ",0],["decline of",1],[" enrollment, although it offers no ",0],["solution to",1],[" the problem that administrators ",0],["have faced",1],[" ",0],["since 2019",1]],a:0,f:"decline in",w:"A change in quantity takes <i>in</i>. <i>Solution to</i> and <i>since 2019</i> are both correct pairings."},
+ {p:[["The conference will take place ",0],["at March",1],[", ",0],["on a Monday",1],[" that the organizers ",0],["chose",1],[" because the hotels are cheaper ",0],["in the spring",1]],a:0,f:"in March",w:"Months take <i>in</i>. <i>On a Monday</i> and <i>in the spring</i> are both correct, which is what makes the first one easy to miss."},
+ {p:[["The office is located ",0],["at the fourth floor",1],[" of the building ",0],["on Rua XV",1],[" that the university ",0],["bought",1],[" ",0],["last year",1]],a:0,f:"on the fourth floor",w:"Floors take <i>on</i>. <i>On Rua XV</i> is correct for a street, and <i>last year</i> correctly takes no preposition at all."},
+ {p:[["He has worked ",0],["at the institute",1],[" ",0],["during three years",1],[", although he ",0],["applied for",1],[" a post abroad when his contract ",0],["was renewed",1]],a:1,f:"for three years",w:"A length of time takes <i>for</i>. <i>During</i> needs a named period such as <i>during the war</i>."},
+ {p:[["The prize was shared ",0],["between",1],[" the six researchers who had ",0],["contributed to",1],[" the study that the journal ",0],["published",1],[" ",0],["in April",1]],a:0,f:"among",w:"Six people form an undifferentiated group, which takes <i>among</i>. <i>Contributed to</i> is the correct fixed pair."},
+ {p:[["The students ",0],["look forward to receive",1],[" the results that the examiners ",0],["will release",1],[" ",0],["once",1],[" the board ",0],["has met",1]],a:0,f:"look forward to receiving",w:"In <i>look forward to</i> the <i>to</i> is a preposition, so a gerund follows. Substitute a noun to test it: <i>look forward to the results</i>."},
+ {p:[["",0],["In the contrary",1],[", the second experiment ",0],["produced",1],[" results that ",0],["contradicted",1],[" everything the first trial ",0],["had shown",1]],a:0,f:"On the contrary",w:"The fixed phrase is <i>on the contrary</i>, which corrects a previous statement. <i>On the other hand</i> would introduce a different side instead."}
+];
+const PAT=["","Verb + preposition pairs","Verbs that take no preposition","Adjective + preposition",
+ "Noun + preposition","In, on and at for time","In, on and at for place",
+ "For, since, during, by and until","Between and among","A preposition is followed by a gerund",
+ "Different from, compared with, according to","Phrasal verbs and their particles","Fixed phrases"];
+const C=[
+ {t:"The conclusion depends of the data that the team collected during the second phase of the study.",x:"depends of",a:["depends on","on"],p:1,
+  w:"<i>Depend on</i> is the fixed pair. <i>During the second phase</i> is correct because that is a named period rather than a number of years."},
+ {t:"The board discussed about the merger for three hours before it approved the terms that the lawyers had drafted.",x:"discussed about",a:["discussed"],p:2,
+  w:"<i>Discuss</i> takes a direct object. <i>For three hours</i> is the correct pairing for a length of time."},
+ {t:"The department is responsible of the training that new employees receive during their first month at the institute.",x:"responsible of",a:["responsible for","for"],p:3,
+  w:"<i>Responsible for</i> is fixed. Each adjective keeps its own preposition, so <i>capable</i> would take <i>of</i> and <i>aware</i> would too."},
+ {t:"The report notes a steady increase of enrollment but offers no explanation for the change that it describes.",x:"increase of",a:["increase in","in"],p:4,
+  w:"A change in quantity takes <i>in</i>. <i>Explanation for</i> is already the correct noun pairing."},
+ {t:"The ceremony will be held at June, on a date that the university has not yet announced to the students.",x:"at",a:["in"],p:5,
+  w:"Months take <i>in</i>. <i>On a date</i> is correct, which is the inconsistency worth noticing."},
+ {t:"She has lived in Curitiba during ten years and has taught at the same school since 2019.",x:"during",a:["for"],p:7,
+  w:"A number of years takes <i>for</i>. <i>Since 2019</i> is correct because that is a starting point."},
+ {t:"The committee looks forward to receive the revised manuscript that the author promised before the end of the term.",x:"to receive",a:["to receiving","receiving"],p:9,
+  w:"In <i>look forward to</i> the <i>to</i> is a preposition, so it takes a gerund."},
+ {t:"The findings of this trial are quite different than those that the earlier study reported in its appendix.",x:"than",a:["from"],p:10,
+  w:"<i>Different from</i> is the form TOEFL expects. <i>Different than</i> is common in spoken American English but is marked wrong on the test."}
+];
+
+let ans={},total=30;
+const $=id=>document.getElementById(id);
+const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+
+function save(){try{localStorage.setItem("toefl-prepositions",JSON.stringify(ans))}catch(e){}}
+function load(){try{ans=JSON.parse(localStorage.getItem("toefl-prepositions")||"{}")}catch(e){ans={}}}
+
+function build(){
+  let h="";
+  A.forEach((q,i)=>{const n=i+1;
+    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${q.s[0]}<span class="print-opts">( ${q.o[0]} / ${q.o[1]} )</span><span class="blank">_______</span> ${q.s[1]}</div>
+    <div class="opts">${q.o.map((o,j)=>`<button class="opt" data-q="${n}" data-i="${j}">${o}</button>`).join("")}</div>
+    <div class="fb" id="fb${n}"></div></div>`;});
+  $("setA").innerHTML=h;
+
+  h="";
+  B.forEach((q,i)=>{const n=i+13;let li=0;
+    const body=q.p.map(([t,u])=>u?`<span class="seg" data-q="${n}" data-i="${li}">${t}<sup>${"ABCD"[li++]}</sup></span>`:esc(t)).join("");
+    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${body}.</div><div class="fb" id="fb${n}"></div></div>`;});
+  $("setB").innerHTML=h;
+
+  h=`<div class="pkey"><b>Pattern reference</b>${PAT.slice(1).map((t,j)=>`<span>${j+1}. ${t}</span>`).join("")}</div>`;
+  const sel=PAT.slice(1).map((t,j)=>`<option value="${j+1}">${j+1} &middot; ${t}</option>`).join("");
+  C.forEach((q,i)=>{const n=i+23;
+    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${esc(q.t)}</div>
+    <div class="type-row"><input type="text" id="in${n}" data-q="${n}" placeholder="correction" autocomplete="off" spellcheck="false">
+    <select id="sel${n}"><option value="">which pattern?</option>${sel}</select>
+    <button class="opt btn-check" data-check="${n}">Check</button></div>
+    <div class="cprint">Correction: ______________________________ &nbsp; Pattern no.: ______</div><div class="fb" id="fb${n}"></div></div>`;});
+  $("setC").innerHTML=h;
+
+  $("key").innerHTML=[...A.map((q,i)=>[i+1,q.o[q.a],q.w]),...B.map((q,i)=>[i+13,"("+"ABCD"[q.a]+") → "+q.f,q.w]),...C.map((q,i)=>[i+23,`<i>${q.x}</i> &rarr; <b>${q.a[0]}</b> &middot; pattern ${q.p} (${PAT[q.p]})`,q.w])]
+    .map(([n,a,w])=>`<p><b>${n}.</b> ${a} — ${w}</p>`).join("");
+}
+
+function mark(n,ok,extra){
+  const f=$("fb"+n);f.className="fb show "+(ok?"ok":"no");
+  const q=(n<13?A[n-1]:n<23?B[n-13]:C[n-23]);
+  f.innerHTML=`<b>${ok?"Correct":"Not correct"}</b>${extra||""}${q.w}`;
+  ans[n]=ok;save();update();
+}
+function update(){
+  const done=Object.keys(ans).length,right=Object.values(ans).filter(Boolean).length;
+  $("ptext").textContent=done+" of "+total+" answered";
+  $("pfill").style.width=(done/total*100)+"%";
+  $("pscore").textContent=done?right+" right":"";
+  const sb=$("scorebox");
+  if(done===total){sb.className="score show";sb.innerHTML=`<strong>${right} / 30</strong><br>${right>=27?"Exam-ready on this point.":right>=21?"Solid. Reread the patterns behind the items you missed.":"Work back through the twelve patterns, then reset and try again."}`;}
+  else sb.className="score";
+}
+
+document.addEventListener("click",e=>{
+  const o=e.target.closest(".opt[data-q]");
+  if(o){const n=+o.dataset.q,i=+o.dataset.i,q=A[n-1];
+    document.querySelectorAll(`.opt[data-q="${n}"]`).forEach(b=>{b.className="opt";b.disabled=true});
+    o.classList.add(i===q.a?"right":"wrong");
+    if(i!==q.a)document.querySelector(`.opt[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");
+    mark(n,i===q.a);return;}
+
+  const s=e.target.closest(".seg");
+  if(s){const n=+s.dataset.q,i=+s.dataset.i,q=B[n-13];
+    document.querySelectorAll(`.seg[data-q="${n}"]`).forEach(x=>x.style.pointerEvents="none");
+    s.classList.add(i===q.a?"right":"wrong");
+    if(i!==q.a)document.querySelector(`.seg[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");
+    mark(n,i===q.a,`Correction: <b>${"ABCD"[q.a]} → ${q.f}</b>. `);return;}
+
+  const c=e.target.closest("[data-check]");
+  if(c){check(+c.dataset.check);}
+});
+document.addEventListener("keydown",e=>{
+  if(e.key==="Enter"&&e.target.dataset.q&&e.target.tagName==="INPUT")check(+e.target.dataset.q);
+});
+function check(n){
+  const el=$("in"+n),sl=$("sel"+n),q=C[n-23];
+  const v=el.value.trim().toLowerCase().replace(/\s+/g," ").replace(/[.,;]$/,"");
+  if(!v||!sl.value){const f=$("fb"+n);f.className="fb show no";f.innerHTML="<b>Not yet</b>Type the corrected verb and choose a pattern before checking.";return;}
+  const vOk=q.a.some(a=>a.toLowerCase()===v),pOk=+sl.value===q.p,ok=vOk&&pOk;
+  el.className=vOk?"right":"wrong";sl.className=pOk?"right":"wrong";
+  el.disabled=true;sl.disabled=true;
+  let lead="";
+  if(vOk&&!pOk)lead=`The verb is right. The pattern is <b>${q.p} &middot; ${PAT[q.p]}</b>. `;
+  else if(!vOk&&pOk)lead=`Right pattern. The error is <i>${q.x}</i> &rarr; <b>${q.a[0]}</b>. `;
+  else if(!ok)lead=`The error is <i>${q.x}</i> &rarr; <b>${q.a[0]}</b>, pattern <b>${q.p} &middot; ${PAT[q.p]}</b>. `;
+  mark(n,ok,lead);
+}
+
+$("theme").onclick=()=>{
+  const d=document.documentElement.dataset.theme==="dark";
+  const t=d?"light":"dark";
+  document.documentElement.dataset.theme=t;
+  $("theme").textContent=t==="dark"?"🌙":"☀️";
+  try{localStorage.setItem("toefl-theme",t)}catch(e){}
+};
+$("pw").onclick=()=>{document.body.className="print-blank";document.querySelectorAll(".pat").forEach(p=>p.open=false);print();};
+$("pk").onclick=()=>{document.body.className="print-key";document.querySelectorAll(".pat").forEach(p=>p.open=true);print();};
+$("reset").onclick=()=>{ans={};save();location.reload();};
+
+(function(){
+  try{const t=localStorage.getItem("toefl-theme");if(t){document.documentElement.dataset.theme=t;$("theme").textContent=t==="dark"?"🌙":"☀️";}}catch(e){}
+  load();build();
+  Object.keys(ans).forEach(n=>{ // replay locked state
+    n=+n;
+    if(n<13){const q=A[n-1];document.querySelectorAll(`.opt[data-q="${n}"]`).forEach(b=>b.disabled=true);
+      document.querySelector(`.opt[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");}
+    else if(n<23){const q=B[n-13];document.querySelectorAll(`.seg[data-q="${n}"]`).forEach(x=>x.style.pointerEvents="none");
+      document.querySelector(`.seg[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");}
+    else{const q=C[n-23],el=$("in"+n),sl=$("sel"+n);el.value=q.a[0];sl.value=q.p;el.disabled=true;sl.disabled=true;el.className=sl.className=ans[n]?"right":"wrong";}
+    const f=$("fb"+n),q=(n<13?A[n-1]:n<23?B[n-13]:C[n-23]);
+    f.className="fb show "+(ans[n]?"ok":"no");f.innerHTML=`<b>${ans[n]?"Correct":"Not correct"}</b>${q.w}`;
+  });
+  update();
+})();
+</script>
+</body>
+</html>
