@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Articles, Determiners and Countability · TOEFL Error Correction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0e12;--surface:#15171c;--surface-2:#1b1e25;--ink:#eef0f2;--muted:#8b929c;--line:#262932;
+    --violet:#a78bfa;--violet-deep:#1c1433;--violet-line:rgba(167,139,250,0.35);
+    --accent:#a78bfa;--accent-soft:#1c1433;
+    --key-accent:#f0c75e;--key-deep:#2a2206;--key-line:rgba(240,199,94,0.25);
+    --good:#4ade80;--good-soft:rgba(74,222,128,0.12);--good-line:rgba(74,222,128,0.35);
+    --bad:#f87171;--bad-soft:rgba(248,113,113,0.12);--bad-line:rgba(248,113,113,0.35);
+    --radius:14px;
+  }
+  :root[data-theme="light"]{
+    --bg:#f4f1ea;--surface:#ffffff;--surface-2:#faf8f3;--ink:#1a1815;--muted:#6b6660;--line:#e2ddd2;
+    --violet:#7c3aed;--violet-deep:#ede9fe;--violet-line:rgba(124,58,237,0.3);
+    --accent:#7c3aed;--accent-soft:#ede9fe;
+    --key-accent:#b8860b;--key-deep:#fbf2dc;--key-line:rgba(184,134,11,0.3);
+    --good:#15803d;--good-soft:#dcfce7;--good-line:rgba(21,128,61,0.3);
+    --bad:#b91c1c;--bad-soft:#fee2e2;--bad-line:rgba(185,28,28,0.3);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;
+    line-height:1.65;font-weight:400;transition:background .3s,color .3s;-webkit-font-smoothing:antialiased}
+  .wrap{width:100%;max-width:860px;margin:0 auto;padding:4.5rem 1.5rem 5rem}
+
+  .theme-toggle{position:fixed;top:1.25rem;right:1.25rem;z-index:30;width:42px;height:42px;
+    border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--muted);
+    cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:all .2s}
+  .theme-toggle:hover{border-color:var(--ink);color:var(--ink);transform:scale(1.06)}
+
+  .back-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.8rem;font-weight:500;
+    color:var(--muted);text-decoration:none;margin-bottom:2.5rem;transition:color .2s}
+  .back-link:hover{color:var(--violet)}
+  .eyebrow{font-size:.72rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);
+    font-weight:500;margin-bottom:1.1rem}
+  h1,h2,h3,.pat>summary,.n,.score strong{font-family:'Fraunces',Georgia,serif;font-optical-sizing:auto}
+  h1{font-weight:700;font-size:clamp(2.2rem,5.5vw,3.4rem);line-height:1.05;letter-spacing:-1.5px;margin-bottom:.9rem}
+  h1 .accent{background:linear-gradient(90deg,var(--violet),#38bdf8);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{color:var(--muted);font-size:1.02rem;font-weight:300;line-height:1.75;max-width:58ch;margin-bottom:2rem}
+
+  .actions{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2.5rem}
+  .btn{font-family:inherit;font-size:.75rem;font-weight:600;letter-spacing:.3px;padding:.45rem .9rem;
+    border-radius:8px;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block}
+  .btn-view{background:var(--violet-deep);color:var(--violet);border:1px solid var(--violet-line)}
+  .btn-view:hover{background:var(--violet);color:#fff}
+  .btn-key{background:var(--key-deep);color:var(--key-accent);border:1px solid var(--key-line)}
+  .btn-key:hover{background:var(--key-accent);color:#1a1815}
+  .btn-dl{background:transparent;color:var(--muted);border:1px solid var(--line)}
+  .btn-dl:hover{border-color:var(--muted);color:var(--ink)}
+
+  .progress{position:sticky;top:0;z-index:20;background:var(--bg);padding:.85rem 0;
+    border-bottom:1px solid var(--line);display:flex;align-items:center;gap:.9rem;font-size:.78rem;color:var(--muted)}
+  .track{flex:1;height:4px;background:var(--surface-2);border-radius:100px;overflow:hidden}
+  .fill{height:100%;width:0;background:linear-gradient(90deg,var(--violet),#38bdf8);transition:width .35s}
+
+  section{margin-top:3rem}
+  section>h2{font-size:1.5rem;font-weight:600;letter-spacing:-.3px;padding-bottom:.75rem;
+    border-bottom:1px solid var(--line);display:flex;align-items:center;gap:.7rem}
+  section>h2::before{content:"";width:9px;height:9px;border-radius:3px;background:var(--violet);flex:none}
+  .keyblock h2::before{background:var(--key-accent)}
+  .instr{color:var(--muted);font-size:.85rem;font-weight:300;margin-top:1rem;line-height:1.7}
+
+  /* pattern cards */
+  .pat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    margin-top:.9rem;position:relative;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+  .pat::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--violet);
+    transform:scaleX(0);transform-origin:left;transition:transform .3s;z-index:1}
+  .pat[open]{border-color:var(--violet-line)}
+  .pat[open]::before,.pat:hover::before{transform:scaleX(1)}
+  .pat>summary{padding:1rem 1.2rem;cursor:pointer;font-size:1rem;font-weight:600;letter-spacing:-.2px;
+    list-style:none;display:flex;gap:.7rem;align-items:baseline}
+  .pat>summary::-webkit-details-marker{display:none}
+  .pat>summary::before{content:"+";color:var(--violet);font-weight:600;font-family:'DM Sans',sans-serif}
+  .pat[open]>summary::before{content:"–"}
+  .pat .body{padding:0 1.2rem 1.2rem;border-top:1px solid var(--line);margin-top:0}
+  .ex{margin:.85rem 0;padding-left:1.6rem;position:relative;font-size:.95rem}
+  .ex.no::before{content:"✗";position:absolute;left:0;color:var(--bad);font-weight:700}
+  .ex.yes::before{content:"✓";position:absolute;left:0;color:var(--good);font-weight:700}
+  .ex.no{color:var(--muted)}
+  .why{font-size:.88rem;color:var(--muted);font-weight:300;line-height:1.75;margin-top:.8rem}
+  b.k{color:var(--violet)}
+  .strike{color:var(--bad);text-decoration:line-through}
+
+  /* question cards */
+  .q{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:1.1rem 1.2rem;margin-top:.75rem;display:grid;grid-template-columns:30px 1fr;gap:.2rem .9rem;
+    position:relative;overflow:hidden;transition:border-color .2s}
+  .q::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--violet);
+    transform:scaleX(0);transform-origin:left;transition:transform .3s}
+  .q:hover::before{transform:scaleX(1)}
+  .n{font-weight:600;color:var(--muted);font-size:1rem;line-height:1.6}
+  .stem{font-size:1rem;line-height:1.7}
+  .opts{grid-column:2;display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.8rem}
+  .opt{font-family:inherit;font-size:.82rem;font-weight:600;letter-spacing:.3px;padding:.35rem .9rem;
+    border-radius:100px;cursor:pointer;background:var(--surface-2);color:var(--ink);
+    border:1px solid var(--line);transition:all .2s}
+  .opt:hover{border-color:var(--violet);color:var(--violet)}
+  .opt:disabled{cursor:default}
+  .opt.right{background:var(--good-soft);border-color:var(--good-line);color:var(--good)}
+  .opt.wrong{background:var(--bad-soft);border-color:var(--bad-line);color:var(--bad);text-decoration:line-through}
+  .seg{border-bottom:2px solid var(--muted);cursor:pointer;padding:1px 2px;transition:background .2s}
+  .seg sup{color:var(--violet);font-weight:700;font-size:.66em;border:none;margin-left:1px}
+  .seg:hover{background:var(--violet-deep)}
+  .seg.right{background:var(--good-soft);border-color:var(--good)}
+  .seg.wrong{background:var(--bad-soft);border-color:var(--bad)}
+  .type-row{grid-column:2;display:flex;gap:.5rem;margin-top:.8rem;flex-wrap:wrap}
+  input[type=text],select{font-family:inherit;font-size:.85rem;padding:.4rem .7rem;border-radius:8px;
+    background:var(--surface-2);color:var(--ink);border:1px solid var(--line);max-width:100%}
+  input[type=text]{width:180px}
+  input:focus-visible,select:focus-visible,.opt:focus-visible,.btn:focus-visible,.theme-toggle:focus-visible,.seg:focus-visible{outline:2px solid var(--violet);outline-offset:2px}
+  input.right,select.right{border-color:var(--good-line);background:var(--good-soft)}
+  input.wrong,select.wrong{border-color:var(--bad-line);background:var(--bad-soft)}
+  .fb{grid-column:2;margin-top:.8rem;padding:.7rem .9rem;border-radius:10px;font-size:.86rem;
+    font-weight:300;line-height:1.7;display:none}
+  .fb.show{display:block}
+  .fb.ok{background:var(--good-soft);border:1px solid var(--good-line);color:var(--muted)}
+  .fb.no{background:var(--bad-soft);border:1px solid var(--bad-line);color:var(--muted)}
+  .fb b{display:block;margin-bottom:.15rem;font-weight:600}
+  .fb.ok b{color:var(--good)}
+  .fb.no b{color:var(--bad)}
+
+  .score{margin-top:2rem;padding:1.5rem;border:1px solid var(--violet-line);border-radius:18px;
+    background:var(--violet-deep);text-align:center;display:none}
+  .score.show{display:block}
+  .score strong{font-size:2rem;font-weight:700;letter-spacing:-1px;display:block;margin-bottom:.3rem;color:var(--violet)}
+  .keyblock{margin-top:3rem}
+  .keyblock p{font-size:.88rem;font-weight:300;color:var(--muted);margin-top:.7rem;line-height:1.7}
+  .keyblock p b:first-child{color:var(--key-accent)}
+  footer{padding:2.5rem 1.5rem;color:var(--muted);font-size:.78rem;text-align:center;border-top:1px solid var(--line);margin-top:3rem}
+  footer a{color:var(--muted);text-decoration:none}
+  footer a:hover{color:var(--violet)}
+
+  .print-opts,.rule,.keyblock,.printhead,.cprint,.pkey{display:none}
+
+  @media(max-width:600px){
+    .wrap{padding:3.5rem 1.1rem 4rem}
+    .q{grid-template-columns:24px 1fr;padding:1rem}
+    input[type=text]{width:100%}
+  }
+
+  @media print{
+    @page{margin:15mm}
+    :root,:root[data-theme]{--bg:#fff;--surface:#fff;--surface-2:#fff;--ink:#000;--muted:#333;--line:#bbb;
+      --violet:#000;--violet-deep:#fff;--violet-line:#bbb;--accent:#000;--accent-soft:#fff;
+      --key-accent:#000;--key-deep:#fff;--key-line:#bbb;
+      --good:#000;--good-soft:#fff;--good-line:#bbb;--bad:#000;--bad-soft:#fff;--bad-line:#bbb}
+    body{font-size:11.5pt;line-height:1.5}
+    .theme-toggle,.back-link,.eyebrow,.actions,.progress,.lede,.score,.fb,.opts,.type-row,.instr-screen,footer{display:none!important}
+    .wrap{max-width:none;padding:0}
+    h1{font-size:1.6rem;letter-spacing:-.5px;margin-bottom:.4rem}
+    h1 .accent{color:#000;-webkit-text-fill-color:#000;background:none}
+    .printhead{display:block;border-bottom:1px solid #000;padding-bottom:6px;margin-bottom:14px;font-size:.9rem}
+    .q{border:none;padding:6px 0;margin:0;break-inside:avoid;page-break-inside:avoid}
+    .q::before,.pat::before{display:none}
+    .pat{border:none;border-radius:0;margin:0}
+    .pat .body{display:block!important;border:none;padding:0 0 0 1.2rem}
+    .pat>summary{padding:8px 0 0}
+    .pat>summary::before{content:"■";font-size:.55em}
+    .print-opts{display:inline;color:#000}
+    .rule{display:block;border-bottom:1px solid #999;height:20px;margin-top:6px}
+    .cprint{display:block;margin-top:5px;font-size:10pt;color:#333}
+    .pkey{display:block;font-size:10pt;margin:8px 0 14px;padding:8px 10px;border:1px solid #999;columns:2;column-gap:22px}
+    .pkey b{display:block;columns:1;margin-bottom:3px}
+    .pkey span{display:block;break-inside:avoid}
+    .seg{cursor:default}
+    section{margin-top:18px}
+    section>h2{font-size:1.2rem;border-bottom:1px solid #000}
+    section>h2::before{display:none}
+    body.print-key .keyblock{display:block;break-before:page}
+    body.print-key .rule{display:none}
+    body.print-blank .patterns{display:none}
+  }
+</style>
+</head>
+<body class="print-blank">
+
+<button class="theme-toggle" id="theme" title="Toggle light/dark mode">🌙</button>
+
+<div class="wrap">
+
+  <div class="printhead">Articles, Determiners and Countability · TOEFL Error Correction · Name: ______________________  Date: __________</div>
+
+  <div class="hero">
+    <a class="back-link" href="./index.html">← TOEFL Error Correction</a>
+    <p class="eyebrow">Phil Young’s English School · Sheet 4 of 10</p>
+    <h1>Articles, determiners and <span class="accent">countability</span></h1>
+    <p class="lede">English asks a question before every noun that many languages never ask: is this one of many, or a substance? Get that wrong and the article, the plural and the quantifier all go wrong together. Twelve patterns below, then thirty exercises.</p>
+    <div class="actions">
+      <button class="btn btn-view" id="pw">Print worksheet</button>
+      <button class="btn btn-key" id="pk">Print answer key</button>
+      <button class="btn btn-dl" id="reset">Start over</button>
+    </div>
+  </div>
+
+  <div class="progress">
+    <span id="ptext">0 of 30 answered</span>
+    <div class="track"><div class="fill" id="pfill"></div></div>
+    <span id="pscore"></span>
+  </div>
+
+  <section class="patterns">
+    <h2>The twelve patterns</h2>
+    <p class="lede">Decide what kind of noun you have before you decide which word goes in front of it.</p>
+
+    <details class="pat"><summary>1 · Uncountable nouns take no plural and no <i>a</i></summary><div class="body">
+      <div class="ex no">The professor gave us several <span class="strike">advices</span>. · They ordered <span class="strike">a new equipment</span>.</div>
+      <div class="ex yes">The professor gave us a great deal of <b>advice</b>. · They ordered <b>new equipment</b>.</div>
+      <p class="why">The list to drill, because English treats these as substances rather than objects: <i>advice, information, equipment, research, evidence, furniture, homework, luggage, machinery, money, news, progress, traffic, vocabulary, work, knowledge, feedback, training</i>. None takes <i>-s</i> and none takes <i>a</i>. Portuguese counts several of them, which is why they surface constantly in Brazilian students' writing.</p>
+    </div></details>
+
+    <details class="pat"><summary>2 · Counting an uncountable noun</summary><div class="body">
+      <div class="ex no">She gave me <span class="strike">three advices</span> about the application.</div>
+      <div class="ex yes">She gave me <b>three pieces of advice</b> about the application.</div>
+      <p class="why">Use a partitive when you need a number: <i>a piece of advice, an item of furniture, a bit of research, a body of evidence, a great deal of information, two loaves of bread</i>. Vaguer quantities work directly: <i>much advice, a lot of information, some evidence, little progress</i>.</p>
+    </div></details>
+
+    <details class="pat"><summary>3 · A or an goes by sound, not by letter</summary><div class="body">
+      <div class="ex no">She completed <span class="strike">a</span> MBA and waited <span class="strike">a</span> hour for the results.</div>
+      <div class="ex yes">She completed <b>an</b> MBA and waited <b>an</b> hour for the results. · <b>a</b> university, <b>a</b> European partner, <b>a</b> one-way street</div>
+      <p class="why">Say the next word aloud. <i>MBA</i> starts with the sound "em", <i>hour</i> with a vowel, so both take <i>an</i>. <i>University</i> starts with a "yoo" sound and <i>one</i> with a "w" sound, so both take <i>a</i> despite their spelling.</p>
+    </div></details>
+
+    <details class="pat"><summary>4 · First mention and later mention</summary><div class="body">
+      <div class="ex no">A student submitted a proposal, and <span class="strike">a</span> proposal has already been reviewed.</div>
+      <div class="ex yes">A student submitted a proposal, and <b>the</b> proposal has already been reviewed.</div>
+      <p class="why">Introduce with <i>a</i> or <i>an</i>, refer back with <i>the</i>. Once the reader knows which one you mean — because you said so, or because the situation makes it obvious — the article becomes <i>the</i> and stays there.</p>
+    </div></details>
+
+    <details class="pat"><summary>5 · The with unique reference</summary><div class="body">
+      <div class="ex no">This is <span class="strike">a third</span> time the committee has rejected the application.</div>
+      <div class="ex yes">This is <b>the third</b> time the committee has rejected the application.</div>
+      <p class="why">Anything that can only be one thing takes <i>the</i>: superlatives (<i>the best</i>), ordinals (<i>the first, the third</i>), and <i>the same, the only, the next, the last, the main, the entire</i>. Also the singular unique nouns: <i>the sun, the government, the internet, the environment</i>.</p>
+    </div></details>
+
+    <details class="pat"><summary>6 · Zero article for general statements</summary><div class="body">
+      <div class="ex no"><span class="strike">The good roads</span> are essential to any exporting economy.</div>
+      <div class="ex yes"><b>Good roads</b> are essential to any exporting economy. · <b>Governments</b> should invest in <b>education</b>.</div>
+      <p class="why">When you mean a category in general, use a plural or an uncountable noun with no article at all. Adding <i>the</i> narrows it to a specific set the reader is supposed to recognize — which is why <i>the students need support</i> and <i>students need support</i> say different things. This is the single most common article error in TOEFL essays.</p>
+    </div></details>
+
+    <details class="pat"><summary>7 · The when a modifier specifies which</summary><div class="body">
+      <div class="ex no"><span class="strike">Price</span> of oil rose after the ministry announced the tariffs.</div>
+      <div class="ex yes"><b>The price</b> of oil rose after the ministry announced the tariffs. · <b>The students who arrived late</b> missed the briefing.</div>
+      <p class="why">The mirror image of pattern 6. An <i>of</i>-phrase or a defining relative clause pins the noun down to a particular one, and a pinned-down noun takes <i>the</i>. Compare general <i>oil prices rose</i> with specific <i>the price of oil rose</i>.</p>
+    </div></details>
+
+    <details class="pat"><summary>8 · Much, many, fewer, less, amount, number</summary><div class="body">
+      <div class="ex no"><span class="strike">Less</span> students applied, and the <span class="strike">amount</span> of applications fell.</div>
+      <div class="ex yes"><b>Fewer</b> students applied, and the <b>number</b> of applications fell.</div>
+      <p class="why">Countable plurals take <i>many, fewer, a number of</i>; uncountables take <i>much, less, an amount of</i>. Test it by asking whether you could count the noun one by one: <i>fewer students</i> but <i>less funding</i>, <i>the number of errors</i> but <i>the amount of evidence</i>.</p>
+    </div></details>
+
+    <details class="pat"><summary>9 · A few and few, a little and little</summary><div class="body">
+      <div class="ex no">She has <span class="strike">a few</span> friends in the city, so she rarely goes out.</div>
+      <div class="ex yes">She has <b>few</b> friends in the city, so she rarely goes out. · She has <b>a few</b> friends there, so she goes out often.</div>
+      <p class="why">Dropping the article reverses the meaning. <i>A few</i> and <i>a little</i> are positive — some, enough. <i>Few</i> and <i>little</i> are negative — hardly any, not enough. The rest of the sentence usually tells you which the writer meant, and that is what TOEFL items test.</p>
+    </div></details>
+
+    <details class="pat"><summary>10 · Place names and institutions</summary><div class="body">
+      <div class="ex no">He returned from <span class="strike">the Peru</span> and went straight to <span class="strike">the university</span> to register.</div>
+      <div class="ex yes">He returned from <b>Peru</b> and went straight to <b>the university</b> nearest his home.</div>
+      <p class="why">No <i>the</i> with most countries, cities, states, lakes, single mountains or continents: <i>Brazil, Curitiba, Lake Titicaca, Mount Everest</i>. Use <i>the</i> with plurals and political unions: <i>the United States, the Netherlands, the Philippines</i>, and with rivers, seas, deserts and ranges: <i>the Amazon, the Andes, the Sahara</i>. Institutions used for their purpose take no article — <i>at school, in class, at work</i> — though American English keeps it in <i>in the hospital</i>.</p>
+    </div></details>
+
+    <details class="pat"><summary>11 · Determiners fix the noun's number</summary><div class="body">
+      <div class="ex no"><span class="strike">Every students</span> must complete the modules. · <span class="strike">Both proposal</span> were rejected.</div>
+      <div class="ex yes"><b>Every student</b> must complete the modules. · <b>Both proposals</b> were rejected.</div>
+      <p class="why">Singular noun after <i>each, every, either, neither, another</i>. Plural noun after <i>both, several, many, few, all</i> and after <i>one of</i>. <i>All</i> and <i>most</i> also take uncountables directly: <i>most research, all evidence</i>.</p>
+    </div></details>
+
+    <details class="pat"><summary>12 · Other, another, the other</summary><div class="body">
+      <div class="ex no">One candidate withdrew and <span class="strike">the another</span> declined the offer.</div>
+      <div class="ex yes">One candidate withdrew and <b>the other</b> declined the offer. · One withdrew and <b>another</b> may follow.</div>
+      <p class="why"><i>Another</i> already contains <i>an</i>, so it never follows <i>the</i>. Use <i>another</i> for one more of many, <i>the other</i> for the remaining one of two, <i>the others</i> for all the rest, and bare <i>other</i> before a plural: <i>other studies disagree</i>. Two determiners never stack: not <i>the my report</i>, not <i>a some evidence</i>.</p>
+    </div></details>
+  </section>
+
+  <section>
+    <h2>Set A · Choose the correct form</h2>
+    <p class="instr">Questions 1–12. <span class="instr-screen">Tap the version that fits the noun.</span></p>
+    <div id="setA"></div>
+  </section>
+
+  <section>
+    <h2>Set B · Find the error</h2>
+    <p class="instr">Questions 13–22. Four parts of each sentence are underlined. <span class="instr-screen">Tap the one that is wrong.</span> Only one contains an error.</p>
+    <div id="setB"></div>
+  </section>
+
+  <section>
+    <h2>Set C · Correct the sentence</h2>
+    <p class="instr">Questions 23–30. Each sentence contains exactly one article, determiner or countability error — and at least one other noun phrase that is already correct. Find the error, write the correction, and name the pattern behind it. <span class="instr-screen">Both parts must be right to score.</span></p>
+    <div id="setC"></div>
+  </section>
+
+  <div class="score" id="scorebox"></div>
+
+  <div class="keyblock">
+    <h2>Answer key</h2>
+    <div id="key"></div>
+  </div>
+</div>
+
+<footer>Part of the <a href="./index.html">TOEFL Error Correction</a> section · <a href="../index.html">Advanced Hub</a> · Phil Young’s English School</footer>
+
+<script>
+const A=[
+ {s:["Before the interns submitted their proposals, the supervisor gave them ","that the department had prepared."],o:["several advices","a great deal of advice"],a:1,w:"<i>Advice</i> is uncountable: no <i>-s</i>, no <i>a</i>. To count it you need a partitive \u2014 <i>three pieces of advice</i>."},
+ {s:["Researchers who join the project cannot begin until ","that the ministry ordered finally arrives."],o:["the equipments","the equipment"],a:1,w:"<i>Equipment</i> is uncountable however many machines are meant. <i>Arrives</i> is singular for the same reason."},
+ {s:["She completed ","MBA before she applied for the post that required an advanced degree."],o:["a","an"],a:1,w:"The article follows sound, not spelling. <i>MBA</i> begins with the sound \u201cem\u201d, so it takes <i>an</i> \u2014 while <i>a university</i> keeps <i>a</i>."},
+ {s:["A student submitted a proposal last week, and ","proposal has already been reviewed by two committees."],o:["a","the"],a:1,w:"First mention takes <i>a</i>, later mention takes <i>the</i>. The reader now knows which proposal is meant."},
+ {s:["This is ","time that the committee has rejected an application from the department."],o:["a third","the third"],a:1,w:"Ordinals point to one position only, so they take <i>the</i> \u2014 as do superlatives and <i>the same, the only, the last</i>."},
+ {s:["","are essential to any economy that depends on the exports it ships by road."],o:["The good roads","Good roads"],a:1,w:"A general category takes a bare plural. <i>The good roads</i> would mean a particular set the reader is expected to recognize."},
+ {s:["","of oil rose sharply after the ministry announced the tariffs that importers had feared."],o:["Price","The price"],a:1,w:"The <i>of</i>-phrase pins the noun down to one particular price, and a specified noun takes <i>the</i>. Compare general <i>oil prices rose</i>."},
+ {s:["Enrollment fell this year, and the department received ","applications than it had budgeted for."],o:["less","fewer"],a:1,w:"<i>Applications</i> can be counted one by one, so it takes <i>fewer</i>. <i>Less</i> belongs with uncountables such as <i>funding</i>."},
+ {s:["She has ","friends in the city, so she rarely goes out when the weekend arrives."],o:["a few","few"],a:1,w:"Dropping the article reverses the meaning. <i>So she rarely goes out</i> forces the negative <i>few</i> \u2014 hardly any. <i>A few</i> would mean enough."},
+ {s:["Children who live in the village walk to ","every morning before the buses reach the main road."],o:["school","the school"],a:0,w:"An institution used for its purpose takes no article: <i>at school, in class, at work</i>. <i>The school</i> would point at the building itself."},
+ {s:["","of the two proposals was accepted, although the committee praised the research behind both."],o:["Neither","None"],a:0,w:"<i>Neither</i> covers exactly two; <i>none</i> covers three or more. <i>Both</i> later in the sentence confirms there are two."},
+ {s:["One candidate withdrew before the interviews began, and ","decided not to attend at all."],o:["other","another"],a:1,w:"Bare <i>other</i> cannot stand alone before a verb. <i>Another</i> means one more of several; <i>the other</i> would mean the remaining one of exactly two."}
+];
+const B=[
+ {p:[["The committee gave ",0],["the applicants",1],[" ",0],["several advices",1],[" about ",0],["the documents",1],[" that the office requires and ",0],["the deadlines",1],[" that it enforces",0]],a:1,f:"a great deal of advice",w:"<i>Advice</i> is uncountable. The three other noun phrases are all correctly specified by the clauses that follow them."},
+ {p:[["The researchers cannot repeat ",0],["the experiment",1],[" until they receive ",0],["a new equipment",1],[" and ",0],["the funding",1],[" that ",0],["the ministry",1],[" approved last year",0]],a:1,f:"new equipment",w:"<i>Equipment</i> takes neither <i>a</i> nor <i>-s</i>. <i>The funding</i> is correct because the relative clause specifies which funding."},
+ {p:[["She spent ",0],["an hour",1],[" reading ",0],["a article",1],[" that ",0],["a colleague",1],[" had recommended when they met at ",0],["the conference",1],[" in Lisbon",0]],a:1,f:"an article",w:"<i>Article</i> begins with a vowel sound. <i>An hour</i> is correct because the <i>h</i> is silent."},
+ {p:[["The price of housing has risen faster than ",0],["the wages",1],[" that most workers earn, which explains why ",0],["fewer families",1],[" now buy ",0],["the homes",1],[" that ",0],["the developers",1],[" build",0]],a:2,f:"homes",w:"Homes in general take no article here \u2014 the relative clause after it modifies <i>developers</i>, not the noun. <i>The wages that most workers earn</i> is correctly specified."},
+ {p:[["",0],["Less students",1],[" applied this year than ",0],["the department",1],[" expected, although ",0],["the number",1],[" of ",0],["international candidates",1],[" who inquired increased",0]],a:0,f:"Fewer students",w:"<i>Students</i> is countable, so it takes <i>fewer</i>. <i>The number of</i> is the correct pairing for a countable noun \u2014 <i>the amount of</i> would not be."},
+ {p:[["She has ",0],["a few",1],[" friends in ",0],["the city",1],[", so she rarely leaves ",0],["the apartment",1],[" that ",0],["her employer",1],[" rents for her",0]],a:0,f:"few",w:"<i>So she rarely leaves</i> signals scarcity, which needs the negative <i>few</i>. The three <i>the</i> phrases are all specified by context or by a clause."},
+ {p:[["",0],["Every students",1],[" who enrolled in ",0],["the program",1],[" must complete ",0],["the modules",1],[" that ",0],["the department",1],[" lists in the handbook",0]],a:0,f:"Every student",w:"<i>Every</i> takes a singular noun. The other three take <i>the</i> correctly because each is specified by a following clause or by shared context."},
+ {p:[["",0],["The United States",1],[" and ",0],["the Brazil",1],[" signed ",0],["an agreement",1],[" that ",0],["the ministers",1],[" had negotiated over several months",0]],a:1,f:"Brazil",w:"Single-word country names take no article. <i>The United States</i> keeps <i>the</i> because it is a plural political union."},
+ {p:[["The team collected ",0],["a lot of informations",1],[" from ",0],["the archives",1],[" that ",0],["the library",1],[" had digitized before ",0],["the fire",1],[" destroyed the building",0]],a:0,f:"a lot of information",w:"<i>Information</i> has no plural. <i>A lot of</i> is correct with it \u2014 only the <i>-s</i> is wrong."},
+ {p:[["",0],["One proposal",1],[" was accepted and ",0],["the another",1],[" was returned to ",0],["the department",1],[" that had submitted ",0],["the documents",1],[" in March",0]],a:1,f:"the other",w:"<i>Another</i> already contains <i>an</i>, so <i>the another</i> stacks two determiners. With exactly two items the second is <i>the other</i>."}
+];
+const PAT=["","Uncountable nouns take no plural and no a","Counting an uncountable noun","A or an goes by sound",
+ "First mention and later mention","The with unique reference","Zero article for general statements",
+ "The when a modifier specifies which","Much, many, fewer, less, amount, number","A few and few, a little and little",
+ "Place names and institutions","Determiners fix the noun's number","Other, another, the other"];
+const C=[
+ {t:"The supervisor offered the interns a great deal of advices about the reports that the department publishes each quarter.",x:"advices",a:["advice"],p:1,
+  w:"<i>Advice</i> has no plural. <i>A great deal of</i> is already the correct quantifier for an uncountable noun \u2014 only the <i>-s</i> is wrong."},
+ {t:"Researchers who join the institute receive a training that the department designed for newcomers who lack laboratory experience.",x:"a training",a:["training"],p:1,
+  w:"<i>Training</i> is uncountable and takes no <i>a</i>. <i>Laboratory experience</i> at the end is correctly left bare."},
+ {t:"She waited an hour for a answer that never came from the office that had promised one before the deadline.",x:"a answer",a:["an answer","an"],p:3,
+  w:"<i>Answer</i> begins with a vowel sound. <i>An hour</i> is already correct because the <i>h</i> is silent \u2014 the sentence gets the rule right once and wrong once."},
+ {t:"The governments should invest in education if they want the economies that depend on exports to grow.",x:"The governments",a:["governments"],p:6,
+  w:"A general category takes a bare plural. <i>The economies</i> is correct because the relative clause specifies which economies."},
+ {t:"Less people attended the lecture than the organizers had expected, although the number of registrations was unusually high.",x:"Less",a:["fewer"],p:8,
+  w:"<i>People</i> is countable. <i>The number of registrations</i> is already the correct countable pairing."},
+ {t:"Every students who completed the course received a certificate that the university issues each June.",x:"Every students",a:["every student","student"],p:11,
+  w:"<i>Every</i> takes a singular noun, and <i>received</i> has already treated the subject as one unit at a time."},
+ {t:"He returned from the Peru last month and immediately began the report that the committee had requested in April.",x:"the Peru",a:["peru"],p:10,
+  w:"Single-word country names take no article. <i>The report</i> is correct because the relative clause specifies which report."},
+ {t:"One of the applicants withdrew before the interviews, and the another accepted a position at a rival firm.",x:"the another",a:["the other"],p:12,
+  w:"<i>Another</i> cannot follow <i>the</i>. With two candidates in view the second is <i>the other</i>."}
+];
+
+let ans={},total=30;
+const $=id=>document.getElementById(id);
+const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+
+function save(){try{localStorage.setItem("toefl-articles",JSON.stringify(ans))}catch(e){}}
+function load(){try{ans=JSON.parse(localStorage.getItem("toefl-articles")||"{}")}catch(e){ans={}}}
+
+function build(){
+  let h="";
+  A.forEach((q,i)=>{const n=i+1;
+    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${q.s[0]}<span class="print-opts">( ${q.o[0]} / ${q.o[1]} )</span><span class="blank">_______</span> ${q.s[1]}</div>
+    <div class="opts">${q.o.map((o,j)=>`<button class="opt" data-q="${n}" data-i="${j}">${o}</button>`).join("")}</div>
+    <div class="fb" id="fb${n}"></div></div>`;});
+  $("setA").innerHTML=h;
+
+  h="";
+  B.forEach((q,i)=>{const n=i+13;let li=0;
+    const body=q.p.map(([t,u])=>u?`<span class="seg" data-q="${n}" data-i="${li}">${t}<sup>${"ABCD"[li++]}</sup></span>`:esc(t)).join("");
+    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${body}.</div><div class="fb" id="fb${n}"></div></div>`;});
+  $("setB").innerHTML=h;
+
+  h=`<div class="pkey"><b>Pattern reference</b>${PAT.slice(1).map((t,j)=>`<span>${j+1}. ${t}</span>`).join("")}</div>`;
+  const sel=PAT.slice(1).map((t,j)=>`<option value="${j+1}">${j+1} &middot; ${t}</option>`).join("");
+  C.forEach((q,i)=>{const n=i+23;
+    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${esc(q.t)}</div>
+    <div class="type-row"><input type="text" id="in${n}" data-q="${n}" placeholder="correction" autocomplete="off" spellcheck="false">
+    <select id="sel${n}"><option value="">which pattern?</option>${sel}</select>
+    <button class="opt btn-check" data-check="${n}">Check</button></div>
+    <div class="cprint">Correction: ______________________________ &nbsp; Pattern no.: ______</div><div class="fb" id="fb${n}"></div></div>`;});
+  $("setC").innerHTML=h;
+
+  $("key").innerHTML=[...A.map((q,i)=>[i+1,q.o[q.a],q.w]),...B.map((q,i)=>[i+13,"("+"ABCD"[q.a]+") → "+q.f,q.w]),...C.map((q,i)=>[i+23,`<i>${q.x}</i> &rarr; <b>${q.a[0]}</b> &middot; pattern ${q.p} (${PAT[q.p]})`,q.w])]
+    .map(([n,a,w])=>`<p><b>${n}.</b> ${a} — ${w}</p>`).join("");
+}
+
+function mark(n,ok,extra){
+  const f=$("fb"+n);f.className="fb show "+(ok?"ok":"no");
+  const q=(n<13?A[n-1]:n<23?B[n-13]:C[n-23]);
+  f.innerHTML=`<b>${ok?"Correct":"Not correct"}</b>${extra||""}${q.w}`;
+  ans[n]=ok;save();update();
+}
+function update(){
+  const done=Object.keys(ans).length,right=Object.values(ans).filter(Boolean).length;
+  $("ptext").textContent=done+" of "+total+" answered";
+  $("pfill").style.width=(done/total*100)+"%";
+  $("pscore").textContent=done?right+" right":"";
+  const sb=$("scorebox");
+  if(done===total){sb.className="score show";sb.innerHTML=`<strong>${right} / 30</strong><br>${right>=27?"Exam-ready on this point.":right>=21?"Solid. Reread the patterns behind the items you missed.":"Work back through the twelve patterns, then reset and try again."}`;}
+  else sb.className="score";
+}
+
+document.addEventListener("click",e=>{
+  const o=e.target.closest(".opt[data-q]");
+  if(o){const n=+o.dataset.q,i=+o.dataset.i,q=A[n-1];
+    document.querySelectorAll(`.opt[data-q="${n}"]`).forEach(b=>{b.className="opt";b.disabled=true});
+    o.classList.add(i===q.a?"right":"wrong");
+    if(i!==q.a)document.querySelector(`.opt[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");
+    mark(n,i===q.a);return;}
+
+  const s=e.target.closest(".seg");
+  if(s){const n=+s.dataset.q,i=+s.dataset.i,q=B[n-13];
+    document.querySelectorAll(`.seg[data-q="${n}"]`).forEach(x=>x.style.pointerEvents="none");
+    s.classList.add(i===q.a?"right":"wrong");
+    if(i!==q.a)document.querySelector(`.seg[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");
+    mark(n,i===q.a,`Correction: <b>${"ABCD"[q.a]} → ${q.f}</b>. `);return;}
+
+  const c=e.target.closest("[data-check]");
+  if(c){check(+c.dataset.check);}
+});
+document.addEventListener("keydown",e=>{
+  if(e.key==="Enter"&&e.target.dataset.q&&e.target.tagName==="INPUT")check(+e.target.dataset.q);
+});
+function check(n){
+  const el=$("in"+n),sl=$("sel"+n),q=C[n-23];
+  const v=el.value.trim().toLowerCase().replace(/\s+/g," ").replace(/[.,;]$/,"");
+  if(!v||!sl.value){const f=$("fb"+n);f.className="fb show no";f.innerHTML="<b>Not yet</b>Type the corrected verb and choose a pattern before checking.";return;}
+  const vOk=q.a.some(a=>a.toLowerCase()===v),pOk=+sl.value===q.p,ok=vOk&&pOk;
+  el.className=vOk?"right":"wrong";sl.className=pOk?"right":"wrong";
+  el.disabled=true;sl.disabled=true;
+  let lead="";
+  if(vOk&&!pOk)lead=`The verb is right. The pattern is <b>${q.p} &middot; ${PAT[q.p]}</b>. `;
+  else if(!vOk&&pOk)lead=`Right pattern. The error is <i>${q.x}</i> &rarr; <b>${q.a[0]}</b>. `;
+  else if(!ok)lead=`The error is <i>${q.x}</i> &rarr; <b>${q.a[0]}</b>, pattern <b>${q.p} &middot; ${PAT[q.p]}</b>. `;
+  mark(n,ok,lead);
+}
+
+$("theme").onclick=()=>{
+  const d=document.documentElement.dataset.theme==="dark";
+  const t=d?"light":"dark";
+  document.documentElement.dataset.theme=t;
+  $("theme").textContent=t==="dark"?"🌙":"☀️";
+  try{localStorage.setItem("toefl-theme",t)}catch(e){}
+};
+$("pw").onclick=()=>{document.body.className="print-blank";document.querySelectorAll(".pat").forEach(p=>p.open=false);print();};
+$("pk").onclick=()=>{document.body.className="print-key";document.querySelectorAll(".pat").forEach(p=>p.open=true);print();};
+$("reset").onclick=()=>{ans={};save();location.reload();};
+
+(function(){
+  try{const t=localStorage.getItem("toefl-theme");if(t){document.documentElement.dataset.theme=t;$("theme").textContent=t==="dark"?"🌙":"☀️";}}catch(e){}
+  load();build();
+  Object.keys(ans).forEach(n=>{ // replay locked state
+    n=+n;
+    if(n<13){const q=A[n-1];document.querySelectorAll(`.opt[data-q="${n}"]`).forEach(b=>b.disabled=true);
+      document.querySelector(`.opt[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");}
+    else if(n<23){const q=B[n-13];document.querySelectorAll(`.seg[data-q="${n}"]`).forEach(x=>x.style.pointerEvents="none");
+      document.querySelector(`.seg[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");}
+    else{const q=C[n-23],el=$("in"+n),sl=$("sel"+n);el.value=q.a[0];sl.value=q.p;el.disabled=true;sl.disabled=true;el.className=sl.className=ans[n]?"right":"wrong";}
+    const f=$("fb"+n),q=(n<13?A[n-1]:n<23?B[n-13]:C[n-23]);
+    f.className="fb show "+(ans[n]?"ok":"no");f.innerHTML=`<b>${ans[n]?"Correct":"Not correct"}</b>${q.w}`;
+  });
+  update();
+})();
+</script>
+</body>
+</html>
