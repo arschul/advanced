@@ -86,6 +86,11 @@ input:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 input.right{border-color:var(--good);background:var(--good-soft)}
 input.wrong{border-color:var(--bad);background:var(--bad-soft)}
 .strike{color:var(--bad);text-decoration:line-through}
+select{font-family:inherit;font-size:.95rem;padding:7px 9px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface-2);color:var(--ink);max-width:100%}
+select:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+select.right{border-color:var(--good)}
+select.wrong{border-color:var(--bad)}
+.cprint,.pkey{display:none}
 .fb{grid-column:2;margin-top:10px;padding:10px 12px;border-radius:var(--radius);font-size:.93rem;display:none}
 .fb.show{display:block}
 .fb.ok{background:var(--good-soft);color:var(--good)}
@@ -113,6 +118,10 @@ input.wrong{border-color:var(--bad);background:var(--bad-soft)}
   .pat > summary::before{content:"■";font-size:.6em}
   .print-opts{display:inline;color:#000}
   .rule{display:block;border-bottom:1px solid #999;height:20px;margin-top:6px}
+  .cprint{display:block;margin-top:5px;font-size:10pt;color:#333}
+  .pkey{display:block;font-size:10pt;margin:8px 0 14px;padding:8px 10px;border:1px solid #999;columns:2;column-gap:22px}
+  .pkey b{display:block;columns:1;margin-bottom:3px}
+  .pkey span{display:block;break-inside:avoid}
   .seg{cursor:default}
   section{margin-top:20px;break-before:auto}
   section > h2{font-size:1.25rem}
@@ -240,7 +249,7 @@ input.wrong{border-color:var(--bad);background:var(--bad-soft)}
 
   <section>
     <h2>Set C · Correct the sentence</h2>
-    <p class="instr">Questions 23–30. The crossed-out verb is wrong. <span class="instr-screen">Type the correct form.</span></p>
+    <p class="instr">Questions 23–30. Each sentence contains exactly one verb that does not agree with its subject — and at least one other verb that is already correct. Find the error, write the corrected verb, and name the pattern behind it. <span class="instr-screen">Both parts must be right to score.</span></p>
     <div id="setC"></div>
   </section>
 
@@ -279,23 +288,35 @@ const B=[
  {p:[["Twenty percent of the budget ",0],["are allocated",1],[" to research, ",0],["while",1],[" the remaining funds ",0],["cover",1],[" ",0],["administrative costs",1]],a:0,f:"is allocated",w:"With percentages the noun after <i>of</i> decides: <i>budget</i> is singular."},
  {p:[["The criteria for admission ",0],["was announced",1],[" last week, and ",0],["they",1],[" ",0],["differ",1],[" ",0],["substantially",1],[" from last year's",0]],a:0,f:"were announced",w:"<i>Criteria</i> is the plural of <i>criterion</i>. The later <i>they differ</i> confirms the plural."}
 ];
+const PAT=["","Words between the subject and the verb","Along with, as well as, together with","Each, every, either, neither, one of",
+ "Neither\u2026nor, either\u2026or, not only\u2026but also","A number of / the number of","Fractions, percentages, most of, half of",
+ "There is / there are and inversion","-s singular nouns; plural-only nouns","Irregular and Latin plurals","Uncountable nouns",
+ "Gerund, infinitive and clause subjects; measurements","Relative clauses and collective nouns"];
 const C=[
- {b:"The quality of the essays submitted this term ",x:"have",e:" improved dramatically.",a:["has"],w:"The subject is <i>quality</i>, not <i>essays</i>."},
- {b:"Each student and teacher ",x:"were",e:" given a copy of the schedule.",a:["was"],w:"<i>Each</i> overrides the compound subject and forces a singular verb."},
- {b:"There ",x:"is",e:" many reasons to doubt the conclusion.",a:["are"],w:"The subject <i>reasons</i> follows the verb."},
- {b:"Not only the manager but also the employees ",x:"was",e:" informed of the merger.",a:["were"],w:"The verb agrees with the nearer subject, <i>the employees</i>."},
- {b:"The police ",x:"was",e:" called after the alarm went off.",a:["were"],w:"<i>Police</i> is a plural-only noun, like <i>people</i> and <i>cattle</i>."},
- {b:"Swimming in cold water ",x:"improve",e:" circulation and reduce inflammation.",a:["improves"],w:"A gerund subject is singular."},
- {b:"Half of the books in the collection ",x:"was",e:" donated by alumni.",a:["were"],w:"With <i>half of</i> the noun after <i>of</i> decides, and <i>books</i> is plural."},
- {b:"The data collected during the trial ",x:"suggests",e:" that the treatment is effective.",a:["suggest"],w:"In academic and TOEFL writing <i>data</i> is the plural of <i>datum</i> and takes a plural verb."}
+ {t:"The set of instructions that accompanies the equipment were printed in three languages.",x:"were printed",a:["was","was printed"],p:1,
+  w:"The subject is <i>set</i>, not <i>instructions</i>. <i>Accompanies</i> is already correct because its subject inside the relative clause is also <i>set</i>."},
+ {t:"Among the documents recovered from the archive was several letters written by the founder.",x:"was",a:["were"],p:7,
+  w:"The fronted phrase pushes the subject after the verb. The subject is <i>letters</i>."},
+ {t:"The committee that reviews grant applications have decided to postpone its next meeting.",x:"have decided",a:["has","has decided"],p:12,
+  w:"<i>Committee</i> is singular in American English, and the later <i>its</i> confirms it. <i>Reviews</i> is already correct for the same reason."},
+ {t:"Neither the findings reported in 2019 nor the analysis published last year support the original hypothesis.",x:"support",a:["supports"],p:4,
+  w:"The verb agrees with the nearer subject, <i>the analysis</i>. Reverse the two and <i>support</i> would be right."},
+ {t:"Statistics on student performance is collected annually, though the university rarely publishes them.",x:"is collected",a:["are","are collected"],p:8,
+  w:"Here <i>statistics</i> means the figures, not the field, so it is plural \u2014 and the later <i>them</i> proves it. Only <i>statistics is a required course</i> would be singular."},
+ {t:"The criteria that the committee has adopted was published in the handbook last month.",x:"was published",a:["were","were published"],p:9,
+  w:"<i>Criteria</i> is the plural of <i>criterion</i>. <i>Has adopted</i> is already correct because its subject is <i>the committee</i>."},
+ {t:"Every one of the phenomena that have been documented since 1990 remain unexplained.",x:"remain",a:["remains"],p:3,
+  w:"<i>Every one of</i> is singular. <i>Have been documented</i> is already correct because inside the relative clause the verb agrees with <i>phenomena</i>."},
+ {t:"Learning a second language and studying abroad broadens a student's perspective considerably.",x:"broadens",a:["broaden"],p:11,
+  w:"Two gerund phrases joined by <i>and</i> form a plural compound subject. A single gerund would take <i>broadens</i>."}
 ];
 
 let ans={},total=30;
 const $=id=>document.getElementById(id);
 const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
 
-function save(){try{localStorage.setItem("toefl-sva",JSON.stringify(ans))}catch(e){}}
-function load(){try{ans=JSON.parse(localStorage.getItem("toefl-sva")||"{}")}catch(e){ans={}}}
+function save(){try{localStorage.setItem("toefl-sva-v2",JSON.stringify(ans))}catch(e){}}
+function load(){try{ans=JSON.parse(localStorage.getItem("toefl-sva-v2")||"{}")}catch(e){ans={}}}
 
 function build(){
   let h="";
@@ -311,14 +332,17 @@ function build(){
     h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${body}.</div><div class="fb" id="fb${n}"></div></div>`;});
   $("setB").innerHTML=h;
 
-  h="";
+  h=`<div class="pkey"><b>Pattern reference</b>${PAT.slice(1).map((t,j)=>`<span>${j+1}. ${t}</span>`).join("")}</div>`;
+  const sel=PAT.slice(1).map((t,j)=>`<option value="${j+1}">${j+1} &middot; ${t}</option>`).join("");
   C.forEach((q,i)=>{const n=i+23;
-    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${q.b}<span class="strike">${q.x}</span>${q.e}</div>
-    <div class="type-row"><input type="text" id="in${n}" data-q="${n}" placeholder="correct form" autocomplete="off" spellcheck="false"><button class="opt" data-check="${n}">Check</button></div>
-    <div class="rule"></div><div class="fb" id="fb${n}"></div></div>`;});
+    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${esc(q.t)}</div>
+    <div class="type-row"><input type="text" id="in${n}" data-q="${n}" placeholder="corrected verb" autocomplete="off" spellcheck="false">
+    <select id="sel${n}"><option value="">which pattern?</option>${sel}</select>
+    <button class="opt" data-check="${n}">Check</button></div>
+    <div class="cprint">Correction: ______________________________ &nbsp; Pattern no.: ______</div><div class="fb" id="fb${n}"></div></div>`;});
   $("setC").innerHTML=h;
 
-  $("key").innerHTML=[...A.map((q,i)=>[i+1,q.o[q.a],q.w]),...B.map((q,i)=>[i+13,"("+"ABCD"[q.a]+") → "+q.f,q.w]),...C.map((q,i)=>[i+23,q.a[0],q.w])]
+  $("key").innerHTML=[...A.map((q,i)=>[i+1,q.o[q.a],q.w]),...B.map((q,i)=>[i+13,"("+"ABCD"[q.a]+") → "+q.f,q.w]),...C.map((q,i)=>[i+23,`<i>${q.x}</i> &rarr; <b>${q.a[0]}</b> &middot; pattern ${q.p} (${PAT[q.p]})`,q.w])]
     .map(([n,a,w])=>`<p><b>${n}.</b> ${a} — ${w}</p>`).join("");
 }
 
@@ -360,12 +384,17 @@ document.addEventListener("keydown",e=>{
   if(e.key==="Enter"&&e.target.dataset.q&&e.target.tagName==="INPUT")check(+e.target.dataset.q);
 });
 function check(n){
-  const el=$("in"+n),q=C[n-23];
-  const v=el.value.trim().toLowerCase().replace(/\s+/g," ");
-  if(!v)return;
-  const ok=q.a.some(a=>a.toLowerCase()===v);
-  el.className=ok?"right":"wrong";el.disabled=true;
-  mark(n,ok,ok?"":`Correct form: <b>${q.a[0]}</b>. `);
+  const el=$("in"+n),sl=$("sel"+n),q=C[n-23];
+  const v=el.value.trim().toLowerCase().replace(/\s+/g," ").replace(/[.,;]$/,"");
+  if(!v||!sl.value){const f=$("fb"+n);f.className="fb show no";f.innerHTML="<b>Not yet</b>Type the corrected verb and choose a pattern before checking.";return;}
+  const vOk=q.a.some(a=>a.toLowerCase()===v),pOk=+sl.value===q.p,ok=vOk&&pOk;
+  el.className=vOk?"right":"wrong";sl.className=pOk?"right":"wrong";
+  el.disabled=true;sl.disabled=true;
+  let lead="";
+  if(vOk&&!pOk)lead=`The verb is right. The pattern is <b>${q.p} &middot; ${PAT[q.p]}</b>. `;
+  else if(!vOk&&pOk)lead=`Right pattern. The error is <i>${q.x}</i> &rarr; <b>${q.a[0]}</b>. `;
+  else if(!ok)lead=`The error is <i>${q.x}</i> &rarr; <b>${q.a[0]}</b>, pattern <b>${q.p} &middot; ${PAT[q.p]}</b>. `;
+  mark(n,ok,lead);
 }
 
 $("theme").onclick=()=>{
@@ -388,7 +417,7 @@ $("reset").onclick=()=>{ans={};save();location.reload();};
       document.querySelector(`.opt[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");}
     else if(n<23){const q=B[n-13];document.querySelectorAll(`.seg[data-q="${n}"]`).forEach(x=>x.style.pointerEvents="none");
       document.querySelector(`.seg[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");}
-    else{const q=C[n-23],el=$("in"+n);el.value=q.a[0];el.disabled=true;el.className=ans[n]?"right":"wrong";}
+    else{const q=C[n-23],el=$("in"+n),sl=$("sel"+n);el.value=q.a[0];sl.value=q.p;el.disabled=true;sl.disabled=true;el.className=sl.className=ans[n]?"right":"wrong";}
     const f=$("fb"+n),q=(n<13?A[n-1]:n<23?B[n-13]:C[n-23]);
     f.className="fb show "+(ans[n]?"ok":"no");f.innerHTML=`<b>${ans[n]?"Correct":"Not correct"}</b>${q.w}`;
   });
