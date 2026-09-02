@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Subject–Verb Agreement · TOEFL Error Correction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0d10; --surface:#13161b; --surface-2:#1c2029;
+  --ink:#eef0f4; --muted:#7b8391; --line:#252a35;
+  --accent:#2dd4bf; --accent-soft:rgba(45,212,191,.12);
+  --good:#2dd4bf; --good-soft:rgba(45,212,191,.14);
+  --bad:#f87171; --bad-soft:rgba(248,113,113,.14);
+  --radius:12px;
+}
+html[data-theme="light"]{
+  --bg:#f0f2f5; --surface:#ffffff; --surface-2:#f7f8fa;
+  --ink:#111318; --muted:#5b6270; --line:#dde1e8;
+  --accent:#0f9e8e; --accent-soft:rgba(45,212,191,.10);
+  --good:#0f9e8e; --good-soft:rgba(45,212,191,.14);
+  --bad:#c0392b; --bad-soft:rgba(192,57,43,.10);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px 90px}
+h1,h2,h3{font-family:'Playfair Display',Georgia,serif;font-weight:700;line-height:1.15;margin:0}
+a{color:var(--accent)}
+
+/* header */
+header{border-bottom:1px solid var(--line);background:var(--surface);position:sticky;top:0;z-index:20}
+.bar{max-width:820px;margin:0 auto;padding:12px 20px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.crumb{font-size:.82rem;color:var(--muted);margin-right:auto}
+.crumb a{color:var(--muted);text-decoration:none}
+.crumb a:hover{color:var(--accent)}
+button{font-family:inherit;font-size:.85rem;cursor:pointer;border:1px solid var(--line);background:var(--surface-2);color:var(--ink);padding:7px 13px;border-radius:var(--radius)}
+button:hover{border-color:var(--accent)}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.hero{padding:44px 0 26px}
+.hero h1{font-size:2.5rem}
+.hero p{color:var(--muted);max-width:60ch;margin:14px 0 0}
+
+/* progress */
+.progress{position:sticky;top:53px;z-index:15;background:var(--bg);padding:10px 0;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px;font-size:.85rem}
+.track{flex:1;height:6px;background:var(--surface-2);border-radius:99px;overflow:hidden}
+.fill{height:100%;width:0;background:var(--accent);transition:width .3s}
+
+section{margin-top:44px}
+section > h2{font-size:1.6rem;padding-bottom:8px;border-bottom:2px solid var(--accent)}
+.lede{color:var(--muted);margin:10px 0 0}
+
+/* patterns */
+.pat{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);margin-top:14px;overflow:hidden}
+.pat > summary{padding:13px 16px;cursor:pointer;font-weight:700;list-style:none;display:flex;gap:10px;align-items:baseline}
+.pat > summary::-webkit-details-marker{display:none}
+.pat > summary::before{content:"+";color:var(--accent);font-weight:700}
+.pat[open] > summary::before{content:"–"}
+.pat .body{padding:0 16px 16px;border-top:1px solid var(--line)}
+.ex{margin:12px 0;padding-left:26px;position:relative}
+.ex.no::before{content:"✗";position:absolute;left:0;color:var(--bad);font-weight:700}
+.ex.yes::before{content:"✓";position:absolute;left:0;color:var(--good);font-weight:700}
+.ex.no{color:var(--muted)}
+.why{font-size:.92rem;color:var(--muted);margin-top:10px}
+b.k{color:var(--accent)}
+
+/* exercises */
+.q{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:14px 16px;margin-top:12px;display:grid;grid-template-columns:34px 1fr;gap:4px 12px}
+.n{font-family:'Playfair Display',serif;font-weight:700;color:var(--muted);font-size:1.05rem}
+.stem{font-size:1.02rem}
+.opts{grid-column:2;display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.opt{border:1px solid var(--line);background:var(--surface-2);padding:6px 14px;border-radius:99px;font-size:.95rem}
+.opt.picked{border-color:var(--accent)}
+.opt.right{background:var(--good-soft);border-color:var(--good);color:var(--good);font-weight:700}
+.opt.wrong{background:var(--bad-soft);border-color:var(--bad);color:var(--bad);text-decoration:line-through}
+.seg{border-bottom:2px solid var(--muted);cursor:pointer;padding:1px 2px}
+.seg sup{color:var(--accent);font-weight:700;font-size:.7em;border:none}
+.seg:hover{background:var(--accent-soft)}
+.seg.right{background:var(--good-soft);border-color:var(--good)}
+.seg.wrong{background:var(--bad-soft);border-color:var(--bad)}
+.type-row{grid-column:2;display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+input[type=text]{font-family:inherit;font-size:.95rem;padding:7px 11px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface-2);color:var(--ink);width:190px}
+input:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+input.right{border-color:var(--good);background:var(--good-soft)}
+input.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.strike{color:var(--bad);text-decoration:line-through}
+.fb{grid-column:2;margin-top:10px;padding:10px 12px;border-radius:var(--radius);font-size:.93rem;display:none}
+.fb.show{display:block}
+.fb.ok{background:var(--good-soft);color:var(--good)}
+.fb.no{background:var(--bad-soft);color:var(--bad)}
+.fb b{display:block;color:var(--ink);margin-bottom:2px}
+.instr{color:var(--muted);font-size:.92rem;font-style:italic;margin:14px 0 0}
+.score{margin-top:26px;padding:16px;border:1px solid var(--accent);border-radius:var(--radius);background:var(--accent-soft);text-align:center;display:none}
+.score.show{display:block}
+.score strong{font-family:'Playfair Display',serif;font-size:1.5rem}
+
+/* print-only pieces */
+.print-opts,.rule,.keyblock,.printhead{display:none}
+
+@media print{
+  @page{margin:15mm}
+  html[data-theme]{--bg:#fff;--surface:#fff;--surface-2:#fff;--ink:#000;--muted:#444;--line:#bbb;--accent:#000;--accent-soft:#fff;--good:#000;--good-soft:#fff;--bad:#000;--bad-soft:#fff}
+  body{font-size:11.5pt}
+  header,.progress,.hero p,.score,.fb,.opts,.type-row,.instr-screen{display:none!important}
+  .wrap{max-width:none;padding:0}
+  .printhead{display:block;border-bottom:1px solid #000;padding-bottom:6px;margin-bottom:14px;font-size:.9rem}
+  .q{border:none;padding:6px 0;break-inside:avoid;page-break-inside:avoid}
+  .pat{border:none;padding:0;break-inside:avoid}
+  .pat .body{display:block!important;border:none;padding:0 0 0 16px}
+  .pat > summary{padding:8px 0 0}
+  .pat > summary::before{content:"■";font-size:.6em}
+  .print-opts{display:inline;color:#000}
+  .rule{display:block;border-bottom:1px solid #999;height:20px;margin-top:6px}
+  .seg{cursor:default}
+  section{margin-top:20px;break-before:auto}
+  section > h2{font-size:1.25rem}
+  body.print-key .keyblock{display:block;break-before:page}
+  body.print-key .rule{display:none}
+  body.print-blank .patterns{display:none}
+}
+</style>
+</head>
+<body class="print-blank">
+
+<header>
+  <div class="bar">
+    <span class="crumb"><a href="../index.html">Advanced Hub</a> · <a href="./index.html">TOEFL Error Correction</a> · 1 of 10</span>
+    <button id="theme">Light mode</button>
+    <button id="pw">Print worksheet</button>
+    <button id="pk">Print answer key</button>
+    <button id="reset">Start over</button>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="printhead">Subject–Verb Agreement · TOEFL Error Correction · Name: ______________________  Date: __________</div>
+
+  <div class="hero">
+    <h1>Subject–verb agreement</h1>
+    <p>The single most frequent grammar error in TOEFL writing and the most heavily tested point in error-identification questions. Twelve patterns below, then thirty exercises: choose the verb, find the error, correct the sentence.</p>
+  </div>
+
+  <div class="progress">
+    <span id="ptext">0 of 30 answered</span>
+    <div class="track"><div class="fill" id="pfill"></div></div>
+    <span id="pscore"></span>
+  </div>
+
+  <section class="patterns">
+    <h2>The twelve patterns</h2>
+    <p class="lede">Find the real subject, strip everything else away, then match the verb to it.</p>
+
+    <details class="pat"><summary>1 · Words between the subject and the verb</summary><div class="body">
+      <div class="ex no">The <b class="k">list</b> of participants <span class="strike">have</span> been posted.</div>
+      <div class="ex yes">The <b class="k">list</b> of participants <b>has</b> been posted.</div>
+      <p class="why">A prepositional phrase (<i>of participants</i>, <i>in the reports</i>, <i>from the archives</i>) can never contain the subject. Cross it out and the verb becomes obvious. This is the pattern TOEFL tests most often.</p>
+    </div></details>
+
+    <details class="pat"><summary>2 · Along with, as well as, together with, in addition to</summary><div class="body">
+      <div class="ex no">The <b class="k">director</b>, along with several board members, <span class="strike">were</span> present.</div>
+      <div class="ex yes">The <b class="k">director</b>, along with several board members, <b>was</b> present.</div>
+      <p class="why">These phrases add information, not subjects. Only <i>and</i> creates a compound subject. Commas around the phrase are a reliable signal.</p>
+    </div></details>
+
+    <details class="pat"><summary>3 · Each, every, either, neither, one of</summary><div class="body">
+      <div class="ex no">Each of the proposals <span class="strike">were</span> reviewed twice.</div>
+      <div class="ex yes">Each of the proposals <b>was</b> reviewed twice.</div>
+      <p class="why">These determiners are singular even when followed by a plural <i>of</i>-phrase. <i>Each student and teacher was given a copy</i> — <i>each</i> also overrides the <i>and</i> rule.</p>
+    </div></details>
+
+    <details class="pat"><summary>4 · Neither…nor, either…or, not only…but also</summary><div class="body">
+      <div class="ex no">Neither the professor nor her <b class="k">assistants</b> <span class="strike">was</span> available.</div>
+      <div class="ex yes">Neither the professor nor her <b class="k">assistants</b> <b>were</b> available.</div>
+      <p class="why">The verb agrees with whichever subject sits closer to it. Reverse the order and the verb changes: <i>Neither her assistants nor the professor was available.</i></p>
+    </div></details>
+
+    <details class="pat"><summary>5 · A number of / the number of</summary><div class="body">
+      <div class="ex no">A number of students <span class="strike">is</span> waiting outside.</div>
+      <div class="ex yes">A number of students <b>are</b> waiting outside. · The number of students <b>is</b> falling.</div>
+      <p class="why"><i>A number of</i> means <i>many</i> and is plural. <i>The number of</i> names a single figure and is singular.</p>
+    </div></details>
+
+    <details class="pat"><summary>6 · Fractions, percentages, most of, some of, half of</summary><div class="body">
+      <div class="ex no">Two-thirds of the sample <span class="strike">were</span> contaminated.</div>
+      <div class="ex yes">Two-thirds of the <b class="k">sample</b> <b>was</b> contaminated. · Two-thirds of the <b class="k">samples</b> <b>were</b> contaminated.</div>
+      <p class="why">The opposite of pattern 1: with quantity expressions, the noun after <i>of</i> does decide the verb. The same applies to <i>most of</i>, <i>some of</i>, <i>half of</i>, <i>all of</i>, <i>none of</i> and percentages.</p>
+    </div></details>
+
+    <details class="pat"><summary>7 · There is / there are and other inversions</summary><div class="body">
+      <div class="ex no">There <span class="strike">has been</span> several attempts to replicate the study.</div>
+      <div class="ex yes">There <b>have been</b> several <b class="k">attempts</b> to replicate the study.</div>
+      <p class="why">In <i>there</i> and <i>here</i> sentences the subject follows the verb. The same happens after fronted phrases: <i>Among the findings <b>were</b> two anomalies.</i></p>
+    </div></details>
+
+    <details class="pat"><summary>8 · Nouns ending in -s that are singular; plural-only nouns</summary><div class="body">
+      <div class="ex no">Statistics <span class="strike">are</span> a required course. · The police <span class="strike">was</span> called.</div>
+      <div class="ex yes">Statistics <b>is</b> a required course. · The police <b>were</b> called.</div>
+      <p class="why">Singular despite the -s: <i>economics, mathematics, physics, politics, statistics</i> (the field), <i>news, ethics, measles</i>. Always plural: <i>police, people, cattle, scissors, trousers</i>. Note the split: <i>statistics on emissions <b>are</b> published</i> = the figures.</p>
+    </div></details>
+
+    <details class="pat"><summary>9 · Irregular and Latin plurals</summary><div class="body">
+      <div class="ex no">The criteria for selection <span class="strike">was</span> announced last week.</div>
+      <div class="ex yes">The <b class="k">criteria</b> for selection <b>were</b> announced. · The <b class="k">criterion</b> <b>was</b> announced.</div>
+      <p class="why">Plural forms TOEFL reuses constantly: <i>criteria, phenomena, data, media, analyses, hypotheses, theses</i>. Their singulars: <i>criterion, phenomenon, datum, medium, analysis, hypothesis, thesis</i>.</p>
+    </div></details>
+
+    <details class="pat"><summary>10 · Uncountable nouns that look plural in meaning</summary><div class="body">
+      <div class="ex no">The evidence from the two studies <span class="strike">contradict</span> each other.</div>
+      <div class="ex yes">The <b class="k">evidence</b> from the two studies <b>contradicts</b> the earlier findings.</div>
+      <p class="why"><i>Evidence, research, information, advice, equipment, knowledge, progress, feedback</i> take singular verbs no matter how much is meant. They also cannot take <i>a</i> or a plural -s.</p>
+    </div></details>
+
+    <details class="pat"><summary>11 · Gerund, infinitive and clause subjects; measurements</summary><div class="body">
+      <div class="ex no">Swimming in cold water <span class="strike">improve</span> circulation. · Twenty miles <span class="strike">are</span> too far.</div>
+      <div class="ex yes">Swimming in cold water <b>improves</b> circulation. · What surprised the reviewers <b>was</b> the conclusions.</div>
+      <p class="why">Gerunds, infinitives and noun clauses are singular. So are amounts of time, money and distance treated as one unit: <i>Ten years <b>is</b> a long wait.</i> In <i>what</i>-clauses the verb agrees with the clause, not with the plural complement.</p>
+    </div></details>
+
+    <details class="pat"><summary>12 · Relative clauses and collective nouns</summary><div class="body">
+      <div class="ex no">One of the theories that <span class="strike">has</span> shaped linguistics <span class="strike">were</span> developed in 1957.</div>
+      <div class="ex yes">One of the <b class="k">theories</b> that <b>have</b> shaped linguistics <b>was</b> developed in 1957.</div>
+      <p class="why">Inside the relative clause the verb agrees with the antecedent (<i>theories</i>); the main verb agrees with <i>one</i>. Collective nouns — <i>committee, team, government, faculty, staff</i> — take singular verbs in the American English TOEFL expects: <i>The committee <b>was</b> unable to decide.</i></p>
+    </div></details>
+  </section>
+
+  <section>
+    <h2>Set A · Choose the correct verb</h2>
+    <p class="instr">Questions 1–12. <span class="instr-screen">Tap the form that fits.</span></p>
+    <div id="setA"></div>
+  </section>
+
+  <section>
+    <h2>Set B · Find the error</h2>
+    <p class="instr">Questions 13–22. Four parts of each sentence are underlined. <span class="instr-screen">Tap the one that is wrong.</span> Only one contains an error.</p>
+    <div id="setB"></div>
+  </section>
+
+  <section>
+    <h2>Set C · Correct the sentence</h2>
+    <p class="instr">Questions 23–30. The crossed-out verb is wrong. <span class="instr-screen">Type the correct form.</span></p>
+    <div id="setC"></div>
+  </section>
+
+  <div class="score" id="scorebox"></div>
+
+  <div class="keyblock">
+    <h2>Answer key</h2>
+    <div id="key"></div>
+  </div>
+</div>
+
+<script>
+const A=[
+ {s:["The list of participants ","been posted outside the lecture hall."],o:["has","have"],a:0,w:"Subject is <i>list</i>. <i>Of participants</i> is a prepositional phrase and cannot hold the subject."},
+ {s:["Each of the proposals submitted by the committees ","reviewed twice before the deadline."],o:["was","were"],a:0,w:"<i>Each</i> is singular even before a plural <i>of</i>-phrase."},
+ {s:["A number of students ","still waiting for their results."],o:["is","are"],a:1,w:"<i>A number of</i> means <i>many</i> and takes a plural verb. <i>The number of students is falling</i> would be singular."},
+ {s:["Neither the professor nor her assistants ","able to explain the discrepancy."],o:["was","were"],a:1,w:"With <i>neither…nor</i> the verb agrees with the nearer subject: <i>assistants</i>."},
+ {s:["Economics ","often described as a dismal science."],o:["is","are"],a:0,w:"Names of academic fields ending in -s are singular: <i>economics, physics, mathematics, politics</i>."},
+ {s:["Twenty miles ","too far to walk in a single afternoon."],o:["is","are"],a:0,w:"A distance treated as one unit takes a singular verb, like amounts of money and periods of time."},
+ {s:["There ","to be several inconsistencies in the data set."],o:["seems","seem"],a:1,w:"After <i>there</i> the subject follows the verb. The subject is <i>inconsistencies</i>."},
+ {s:["What surprised the reviewers most ","the vague conclusions."],o:["was","were"],a:0,w:"A <i>what</i>-clause subject is singular. The plural complement after the verb does not change it."},
+ {s:["The research team ","every Tuesday morning to review progress."],o:["meets","meet"],a:0,w:"Collective nouns — <i>team, committee, government, staff</i> — take singular verbs in American English, which is the standard TOEFL follows."},
+ {s:["Two-thirds of the sample ","contaminated before the analysis began."],o:["was","were"],a:0,w:"With fractions the noun after <i>of</i> decides. <i>Sample</i> is singular. <i>Two-thirds of the samples were</i> would be plural."},
+ {s:["Mathematics and physics ","required for admission to the program."],o:["is","are"],a:1,w:"Two separate fields joined by <i>and</i> form a plural compound subject, despite the -s on each."},
+ {s:["The director, along with several board members, ","present at the hearing."],o:["was","were"],a:0,w:"<i>Along with</i> adds information, not a subject. Only <i>and</i> creates a compound subject."}
+];
+const B=[
+ {p:[["The number of applications ",0],["have increased",1],[" sharply since the university ",0],["lowered",1],[" its fees, ",0],["which",1],[" surprised ",0],["the admissions staff",1]],a:0,f:"has increased",w:"<i>The number of</i> is singular: <i>the number … has increased</i>. Compare <i>a number of applications have increased</i>."},
+ {p:[["Every",1],[" one of the samples ",0],["were tested",1],[" twice ",0],["before",1],[" the results were ",0],["released",1]],a:1,f:"was tested",w:"<i>Every one of</i> is singular, so the verb must be <i>was tested</i>."},
+ {p:[["Neither",1],[" the students nor the instructor ",0],["were aware",1],[" that the exam ",0],["had been",1],[" ",0],["postponed",1]],a:1,f:"was aware",w:"The nearer subject is <i>the instructor</i>, so the verb is singular."},
+ {p:[["Statistics",1],[" ",0],["are",1],[" a required course for psychology majors, ",0],["although",1],[" many students find it ",0],["difficult to master",1]],a:1,f:"is",w:"<i>Statistics</i> as a field of study is singular. The later pronoun <i>it</i> confirms it. Only <i>the statistics</i> meaning figures would be plural."},
+ {p:[["There has been",1],[" several attempts to replicate the study, but ",0],["researchers",1],[" have not ",0],["succeeded",1],[" in ",0],["reproducing",1],[" the results",0]],a:0,f:"There have been",w:"The subject follows the verb in <i>there</i> sentences: <i>attempts</i> is plural."},
+ {p:[["One of the most influential theories ",0],["that",1],[" ",0],["have shaped",1],[" modern linguistics ",0],["were developed",1],[" ",0],["in the 1950s",1]],a:2,f:"was developed",w:"The main subject is <i>one</i>, so the main verb is singular. <i>Have shaped</i> is correct because inside the relative clause the verb agrees with <i>theories</i>."},
+ {p:[["The evidence ",0],["presented",1],[" by the two witnesses ",0],["contradict",1],[" the forensic report, ",0],["which",1],[" ",0],["makes",1],[" the case difficult",0]],a:1,f:"contradicts",w:"<i>Evidence</i> is uncountable and takes a singular verb, however many sources it comes from."},
+ {p:[["Each of",1],[" the researchers ",0],["have",1],[" a separate laboratory, ",0],["although",1],[" they ",0],["share",1],[" the main equipment",0]],a:1,f:"has",w:"<i>Each of</i> is singular. <i>They share</i> is fine because its subject is the plural pronoun."},
+ {p:[["Twenty percent of the budget ",0],["are allocated",1],[" to research, ",0],["while",1],[" the remaining funds ",0],["cover",1],[" ",0],["administrative costs",1]],a:0,f:"is allocated",w:"With percentages the noun after <i>of</i> decides: <i>budget</i> is singular."},
+ {p:[["The criteria for admission ",0],["was announced",1],[" last week, and ",0],["they",1],[" ",0],["differ",1],[" ",0],["substantially",1],[" from last year's",0]],a:0,f:"were announced",w:"<i>Criteria</i> is the plural of <i>criterion</i>. The later <i>they differ</i> confirms the plural."}
+];
+const C=[
+ {b:"The quality of the essays submitted this term ",x:"have",e:" improved dramatically.",a:["has"],w:"The subject is <i>quality</i>, not <i>essays</i>."},
+ {b:"Each student and teacher ",x:"were",e:" given a copy of the schedule.",a:["was"],w:"<i>Each</i> overrides the compound subject and forces a singular verb."},
+ {b:"There ",x:"is",e:" many reasons to doubt the conclusion.",a:["are"],w:"The subject <i>reasons</i> follows the verb."},
+ {b:"Not only the manager but also the employees ",x:"was",e:" informed of the merger.",a:["were"],w:"The verb agrees with the nearer subject, <i>the employees</i>."},
+ {b:"The police ",x:"was",e:" called after the alarm went off.",a:["were"],w:"<i>Police</i> is a plural-only noun, like <i>people</i> and <i>cattle</i>."},
+ {b:"Swimming in cold water ",x:"improve",e:" circulation and reduce inflammation.",a:["improves"],w:"A gerund subject is singular."},
+ {b:"Half of the books in the collection ",x:"was",e:" donated by alumni.",a:["were"],w:"With <i>half of</i> the noun after <i>of</i> decides, and <i>books</i> is plural."},
+ {b:"The data collected during the trial ",x:"suggests",e:" that the treatment is effective.",a:["suggest"],w:"In academic and TOEFL writing <i>data</i> is the plural of <i>datum</i> and takes a plural verb."}
+];
+
+let ans={},total=30;
+const $=id=>document.getElementById(id);
+const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+
+function save(){try{localStorage.setItem("toefl-sva",JSON.stringify(ans))}catch(e){}}
+function load(){try{ans=JSON.parse(localStorage.getItem("toefl-sva")||"{}")}catch(e){ans={}}}
+
+function build(){
+  let h="";
+  A.forEach((q,i)=>{const n=i+1;
+    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${q.s[0]}<span class="print-opts">( ${q.o[0]} / ${q.o[1]} )</span><span class="blank">_______</span> ${q.s[1]}</div>
+    <div class="opts">${q.o.map((o,j)=>`<button class="opt" data-q="${n}" data-i="${j}">${o}</button>`).join("")}</div>
+    <div class="fb" id="fb${n}"></div></div>`;});
+  $("setA").innerHTML=h;
+
+  h="";
+  B.forEach((q,i)=>{const n=i+13;let li=0;
+    const body=q.p.map(([t,u])=>u?`<span class="seg" data-q="${n}" data-i="${li}">${t}<sup>${"ABCD"[li++]}</sup></span>`:esc(t)).join("");
+    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${body}.</div><div class="fb" id="fb${n}"></div></div>`;});
+  $("setB").innerHTML=h;
+
+  h="";
+  C.forEach((q,i)=>{const n=i+23;
+    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${q.b}<span class="strike">${q.x}</span>${q.e}</div>
+    <div class="type-row"><input type="text" id="in${n}" data-q="${n}" placeholder="correct form" autocomplete="off" spellcheck="false"><button class="opt" data-check="${n}">Check</button></div>
+    <div class="rule"></div><div class="fb" id="fb${n}"></div></div>`;});
+  $("setC").innerHTML=h;
+
+  $("key").innerHTML=[...A.map((q,i)=>[i+1,q.o[q.a],q.w]),...B.map((q,i)=>[i+13,"("+"ABCD"[q.a]+") → "+q.f,q.w]),...C.map((q,i)=>[i+23,q.a[0],q.w])]
+    .map(([n,a,w])=>`<p><b>${n}.</b> ${a} — ${w}</p>`).join("");
+}
+
+function mark(n,ok,extra){
+  const f=$("fb"+n);f.className="fb show "+(ok?"ok":"no");
+  const q=(n<13?A[n-1]:n<23?B[n-13]:C[n-23]);
+  f.innerHTML=`<b>${ok?"Correct":"Not correct"}</b>${extra||""}${q.w}`;
+  ans[n]=ok;save();update();
+}
+function update(){
+  const done=Object.keys(ans).length,right=Object.values(ans).filter(Boolean).length;
+  $("ptext").textContent=done+" of "+total+" answered";
+  $("pfill").style.width=(done/total*100)+"%";
+  $("pscore").textContent=done?right+" right":"";
+  const sb=$("scorebox");
+  if(done===total){sb.className="score show";sb.innerHTML=`<strong>${right} / 30</strong><br>${right>=27?"Exam-ready on this point.":right>=21?"Solid. Reread the patterns behind the items you missed.":"Work back through the twelve patterns, then reset and try again."}`;}
+  else sb.className="score";
+}
+
+document.addEventListener("click",e=>{
+  const o=e.target.closest(".opt[data-q]");
+  if(o){const n=+o.dataset.q,i=+o.dataset.i,q=A[n-1];
+    document.querySelectorAll(`.opt[data-q="${n}"]`).forEach(b=>{b.className="opt";b.disabled=true});
+    o.classList.add(i===q.a?"right":"wrong");
+    if(i!==q.a)document.querySelector(`.opt[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");
+    mark(n,i===q.a);return;}
+
+  const s=e.target.closest(".seg");
+  if(s){const n=+s.dataset.q,i=+s.dataset.i,q=B[n-13];
+    document.querySelectorAll(`.seg[data-q="${n}"]`).forEach(x=>x.style.pointerEvents="none");
+    s.classList.add(i===q.a?"right":"wrong");
+    if(i!==q.a)document.querySelector(`.seg[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");
+    mark(n,i===q.a,`Correction: <b>${"ABCD"[q.a]} → ${q.f}</b>. `);return;}
+
+  const c=e.target.closest("[data-check]");
+  if(c){check(+c.dataset.check);}
+});
+document.addEventListener("keydown",e=>{
+  if(e.key==="Enter"&&e.target.dataset.q&&e.target.tagName==="INPUT")check(+e.target.dataset.q);
+});
+function check(n){
+  const el=$("in"+n),q=C[n-23];
+  const v=el.value.trim().toLowerCase().replace(/\s+/g," ");
+  if(!v)return;
+  const ok=q.a.some(a=>a.toLowerCase()===v);
+  el.className=ok?"right":"wrong";el.disabled=true;
+  mark(n,ok,ok?"":`Correct form: <b>${q.a[0]}</b>. `);
+}
+
+$("theme").onclick=()=>{
+  const d=document.documentElement.dataset.theme==="dark";
+  const t=d?"light":"dark";
+  document.documentElement.dataset.theme=t;
+  $("theme").textContent=t==="dark"?"Light mode":"Dark mode";
+  try{localStorage.setItem("toefl-theme",t)}catch(e){}
+};
+$("pw").onclick=()=>{document.body.className="print-blank";document.querySelectorAll(".pat").forEach(p=>p.open=false);print();};
+$("pk").onclick=()=>{document.body.className="print-key";document.querySelectorAll(".pat").forEach(p=>p.open=true);print();};
+$("reset").onclick=()=>{ans={};save();location.reload();};
+
+(function(){
+  try{const t=localStorage.getItem("toefl-theme");if(t){document.documentElement.dataset.theme=t;$("theme").textContent=t==="dark"?"Light mode":"Dark mode";}}catch(e){}
+  load();build();
+  Object.keys(ans).forEach(n=>{ // replay locked state
+    n=+n;
+    if(n<13){const q=A[n-1];document.querySelectorAll(`.opt[data-q="${n}"]`).forEach(b=>b.disabled=true);
+      document.querySelector(`.opt[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");}
+    else if(n<23){const q=B[n-13];document.querySelectorAll(`.seg[data-q="${n}"]`).forEach(x=>x.style.pointerEvents="none");
+      document.querySelector(`.seg[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");}
+    else{const q=C[n-23],el=$("in"+n);el.value=q.a[0];el.disabled=true;el.className=ans[n]?"right":"wrong";}
+    const f=$("fb"+n),q=(n<13?A[n-1]:n<23?B[n-13]:C[n-23]);
+    f.className="fb show "+(ans[n]?"ok":"no");f.innerHTML=`<b>${ans[n]?"Correct":"Not correct"}</b>${q.w}`;
+  });
+  update();
+})();
+</script>
+</body>
+</html>
