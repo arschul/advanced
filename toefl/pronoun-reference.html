@@ -316,18 +316,18 @@
 
 <script>
 const A=[
- {s:["The company that acquired the smaller firm last year announced that ","would relocate its headquarters to Lisbon."],o:["it","they"],a:0,w:"<i>Company</i> is singular, and the <i>its</i> later in the same sentence has already committed the sentence to <i>it</i>."},
- {s:["Each of the schools that joined the network must submit ","enrollment figures before the auditors begin their review."],o:["its","their"],a:0,w:"<i>Each</i> is singular. The plural <i>schools</i> sits inside a prepositional phrase, and <i>their review</i> is correct because its antecedent is <i>the auditors</i>."},
- {s:["When Marta met Sofia at the conference that the institute organized, ","had just returned from Lisbon."],o:["she","Sofia"],a:1,w:"Two women, one pronoun, no rule to decide between them. The repair is to repeat the name rather than change the pronoun."},
- {s:["The results that the second team obtained contradicted the hypothesis, ","surprised everyone who had funded the project."],o:["a finding that","which"],a:0,w:"<i>Which</i> here points at a whole clause rather than a noun. Supplying a noun \u2014 <i>a finding, a result, a change</i> \u2014 fixes the reference."},
- {s:["In Chomsky's early work, which many linguists still cite, ","argues that syntax is largely innate."],o:["he","Chomsky"],a:1,w:"<i>Chomsky's</i> is a possessive modifier and cannot be an antecedent. Name him in the main clause and let the possessive be the pronoun."},
- {s:["The award that the foundation created was shared between the colleague who trained me and ","."],o:["I","me"],a:1,w:"After a preposition the object form is required. The <i>me</i> in <i>who trained me</i> is already correct \u2014 the sentence gets it right once and wrong once."},
- {s:["The student ","the committee selected has withdrawn from the program that she had hoped to join."],o:["whom","who"],a:0,w:"Answer the clause: <i>the committee selected her</i>. An object answer gives <i>whom</i>."},
- {s:["The two researchers who had competed for the same grant congratulated ","when the results were announced."],o:["each other","themselves"],a:0,w:"They congratulated one another. <i>Themselves</i> would mean each praised only himself."},
- {s:["The theory that dominated the field for decades has lost much of ","influence since the new data appeared."],o:["its","it's"],a:0,w:"Expand the apostrophe form and it reads <i>it is influence</i>. Possessive pronouns never take an apostrophe."},
- {s:["If one wishes to succeed in the graduate program that the department runs, ","must learn to read critically."],o:["you","one"],a:1,w:"The sentence began with <i>one</i> and must continue with <i>one</i>. Switching to <i>you</i> mid-sentence is a shift in person."},
- {s:["The article that she recommended when we met last term ","available in the library that holds the older journals."],o:["was not","it was not"],a:0,w:"<i>That</i> already stands for the article inside the clause, so a second pronoun repeats the same role."},
- {s:["The climate of Brazil, which the report describes in detail, is milder than ","of Canada."],o:["that","it"],a:0,w:"<i>That</i> stands in for the repeated noun <i>the climate</i>. Without it the sentence compares a climate to a country."}
+ {s:["The company that acquired the smaller firm last year announced that ","would relocate its headquarters to Lisbon."],o:["it","them","he","they"],a:0,w:"<i>Company</i> is singular, and the <i>its</i> later in the same sentence has already committed the sentence to <i>it</i>."},
+ {s:["Each of the schools that joined the network must submit ","enrollment figures before the auditors begin their review."],o:["them","their","its","his or her"],a:2,w:"<i>Each</i> is singular. The plural <i>schools</i> sits inside a prepositional phrase, and <i>their review</i> is correct because its antecedent is <i>the auditors</i>."},
+ {s:["When Marta met Sofia at the conference that the institute organized, ","had just returned from Lisbon."],o:["Sofia","they","she","her"],a:0,w:"Two women, one pronoun, no rule to decide between them. The repair is to repeat the name rather than change the pronoun."},
+ {s:["The results that the second team obtained contradicted the hypothesis, ","surprised everyone who had funded the project."],o:["which","a finding that","that","this"],a:1,w:"<i>Which</i> here points at a whole clause rather than a noun. Supplying a noun — <i>a finding, a result, a change</i> — fixes the reference."},
+ {s:["In Chomsky's early work, which many linguists still cite, ","argues that syntax is largely innate."],o:["him","they","he","Chomsky"],a:3,w:"<i>Chomsky's</i> is a possessive modifier and cannot be an antecedent. Name him in the main clause and let the possessive be the pronoun."},
+ {s:["The award that the foundation created was shared between the colleague who trained me and ","."],o:["me","myself","mine","I"],a:0,w:"After a preposition the object form is required. The <i>me</i> in <i>who trained me</i> is already correct — the sentence gets it right once and wrong once."},
+ {s:["The student ","the committee selected has withdrawn from the program that she had hoped to join."],o:["whose","whom","who","which"],a:1,w:"Answer the clause: <i>the committee selected her</i>. An object answer gives <i>whom</i>."},
+ {s:["The two researchers who had competed for the same grant congratulated ","when the results were announced."],o:["themselves","each other","them","himself"],a:1,w:"They congratulated one another. <i>Themselves</i> would mean each praised only himself."},
+ {s:["The theory that dominated the field for decades has lost much of ","influence since the new data appeared."],o:["it's","its","its'","their"],a:1,w:"Expand the apostrophe form and it reads <i>it is influence</i>. Possessive pronouns never take an apostrophe."},
+ {s:["If one wishes to succeed in the graduate program that the department runs, ","must learn to read critically."],o:["they","he","you","one"],a:3,w:"The sentence began with <i>one</i> and must continue with <i>one</i>. Switching to <i>you</i> mid-sentence is a shift in person."},
+ {s:["The article that she recommended when we met last term ","available in the library that holds the older journals."],o:["was not","which was not","that it was not","it was not"],a:0,w:"<i>That</i> already stands for the article inside the clause, so a second pronoun repeats the same role."},
+ {s:["The climate of Brazil, which the report describes in detail, is milder than ","of Canada."],o:["this","it","that","those"],a:2,w:"<i>That</i> stands in for the repeated noun <i>the climate</i>. Without it the sentence compares a climate to a country."}
 ];
 const B=[
  {p:[["Every one of the participating universities ",0],["has revised",1],[" ",0],["their",1],[" admissions policy since the ministry published ",0],["its",1],[" guidelines, and each now ",0],["reviews",1],[" applications differently",0]],a:1,f:"its",w:"<i>Every one of</i> is singular, as <i>has revised</i> and <i>reviews</i> both show. <i>Its guidelines</i> is correct because that antecedent is <i>the ministry</i>."},
@@ -378,7 +378,7 @@ function load(){try{const d=JSON.parse(localStorage.getItem("toefl-pronoun-v2")|
 function build(){
   let h="";
   A.forEach((q,i)=>{const n=i+1;
-    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${q.s[0]}<span class="print-opts">( ${q.o[0]} / ${q.o[1]} )</span><span class="blank">_______</span> ${q.s[1]}</div>
+    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${q.s[0]}<span class="print-opts">( ${q.o.join(" / ")} )</span><span class="blank">_______</span> ${q.s[1]}</div>
     <div class="opts">${q.o.map((o,j)=>`<button class="opt" data-q="${n}" data-i="${j}">${o}</button>`).join("")}</div>
     <div class="fb" id="fb${n}"></div></div>`;});
   $("setA").innerHTML=h;
