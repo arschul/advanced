@@ -316,18 +316,18 @@
 
 <script>
 const A=[
- {s:["The technicians who calibrated the instrument recorded the readings ","before the trial began."],o:["careful","carefully"],a:1,w:"The word modifies <i>recorded</i>, a verb, so it needs the adverb. <i>Careful readings</i> would modify a noun and take no <i>-ly</i>."},
- {s:["The results that the second team obtained seem ",", although the sample was unusually small."],o:["conclusive","conclusively"],a:0,w:"After a linking verb the word describes the subject, not the action. Substitute <i>are</i> to test it: <i>the results are conclusive</i>."},
- {s:["The ministry announced measures intended to stimulate ","growth in the regions that exports had bypassed."],o:["economy","economic"],a:1,w:"A word sitting directly in front of a noun usually has to be an adjective, and a matching adjective exists here."},
- {s:["","of the data took three months longer than the committee had budgeted for."],o:["The analyze","The analysis"],a:1,w:"Only a noun can follow <i>the</i>. The noun form of <i>analyze</i> is irregular, like <i>decide / decision</i> and <i>succeed / success</i>."},
- {s:["Students who sat through the entire lecture said they were ","by the argument that the speaker developed."],o:["confusing","confused"],a:1,w:"<i>-ed</i> describes the person who has the feeling; <i>-ing</i> describes the thing that causes it. The argument was confusing; the students were confused."},
- {s:["The board praised the ","with which the staff handled the transition that followed the merger."],o:["efficient","efficiency"],a:1,w:"<i>The</i> requires a noun. The noun built from <i>efficient</i> takes <i>-cy</i>."},
- {s:["The proposal that the department submitted was more ","than anyone on the panel had expected."],o:["persuasion","persuasive"],a:1,w:"<i>More</i> is followed by an adjective. <i>Persuasion</i> is the noun and cannot fill that slot."},
- {s:["The new regulations are intended to ","the protections that workers won in the 1990s."],o:["strength","strengthen"],a:1,w:"After <i>to</i> the slot needs a verb, and the verb is built with <i>-en</i>."},
- {s:["The delay did not ","the outcome, though it postponed the announcement by two weeks."],o:["effect","affect"],a:1,w:"<i>Affect</i> is the verb, <i>effect</i> the noun. <i>The delay had no effect on the outcome</i> would use the noun."},
- {s:["The committee had ","begun its review when the ministry withdrew the funding it had promised."],o:["hard","hardly"],a:1,w:"<i>Hardly</i> means almost not; <i>hard</i> means with effort. They are not the adverb and adjective of the same word."},
- {s:["","in graduate study requires more than the talent that most candidates bring to the interview."],o:["Succeed","Success"],a:1,w:"A subject slot needs a noun or a gerund. <i>Succeeding in graduate study requires\u2026</i> would work equally well."},
- {s:["The ministry approved a ","plan that the previous administration had drafted before the election."],o:["five-years","five-year"],a:1,w:"A noun modifying another noun loses its plural. The plural returns when it stands alone: <i>the plan runs for five years</i>."}
+ {s:["The technicians who calibrated the instrument recorded the readings ","before the trial began."],o:["carefully","carefulness","more careful","careful"],a:0,w:"The word modifies <i>recorded</i>, a verb, so it needs the adverb. <i>Careful readings</i> would modify a noun and take no <i>-ly</i>."},
+ {s:["The results that the second team obtained seem ",", although the sample was unusually small."],o:["conclusiveness","conclusive","conclusively","conclusion"],a:1,w:"After a linking verb the word describes the subject, not the action. Substitute <i>are</i> to test it: <i>the results are conclusive</i>."},
+ {s:["The ministry announced measures intended to stimulate ","growth in the regions that exports had bypassed."],o:["economical","economically","economy","economic"],a:3,w:"A word sitting directly in front of a noun usually has to be an adjective, and a matching adjective exists here."},
+ {s:["","of the data took three months longer than the committee had budgeted for."],o:["The analyze","The analysis","The analytic","The analyzing"],a:1,w:"Only a noun can follow <i>the</i>. The noun form of <i>analyze</i> is irregular, like <i>decide / decision</i> and <i>succeed / success</i>."},
+ {s:["Students who sat through the entire lecture said they were ","by the argument that the speaker developed."],o:["confuse","confusion","confusing","confused"],a:3,w:"<i>-ed</i> describes the person who has the feeling; <i>-ing</i> describes the thing that causes it. The argument was confusing; the students were confused."},
+ {s:["The board praised the ","with which the staff handled the transition that followed the merger."],o:["efficiency","efficiently","efficientness","efficient"],a:0,w:"<i>The</i> requires a noun. The noun built from <i>efficient</i> takes <i>-cy</i>."},
+ {s:["The proposal that the department submitted was more ","than anyone on the panel had expected."],o:["persuaded","persuasion","persuasive","persuasively"],a:2,w:"<i>More</i> is followed by an adjective. <i>Persuasion</i> is the noun and cannot fill that slot."},
+ {s:["The new regulations are intended to ","the protections that workers won in the 1990s."],o:["strength","strengthen","strong","strongly"],a:1,w:"After <i>to</i> the slot needs a verb, and the verb is built with <i>-en</i>."},
+ {s:["The delay did not ","the outcome, though it postponed the announcement by two weeks."],o:["effect","affect","effective","affection"],a:1,w:"<i>Affect</i> is the verb, <i>effect</i> the noun. <i>The delay had no effect on the outcome</i> would use the noun."},
+ {s:["The committee had ","begun its review when the ministry withdrew the funding it had promised."],o:["harder","hardness","hard","hardly"],a:3,w:"<i>Hardly</i> means almost not; <i>hard</i> means with effort. They are not the adverb and adjective of the same word."},
+ {s:["","in graduate study requires more than the talent that most candidates bring to the interview."],o:["Success","Successful","Successfully","Succeed"],a:0,w:"A subject slot needs a noun or a gerund. <i>Succeeding in graduate study requires…</i> would work equally well."},
+ {s:["The ministry approved a ","plan that the previous administration had drafted before the election."],o:["fifth-year","five-years","five-year","five years'"],a:2,w:"A noun modifying another noun loses its plural. The plural returns when it stands alone: <i>the plan runs for five years</i>."}
 ];
 const B=[
  {p:[["The technicians who ",0],["calibrated",1],[" the instrument ",0],["recorded",1],[" the readings ",0],["careful",1],[" and reported them to the supervisor who ",0],["had requested",1],[" them",0]],a:2,f:"carefully",w:"The word modifies <i>recorded</i>, so it takes the adverb form. All three verbs around it are correct."},
@@ -378,7 +378,7 @@ function load(){try{const d=JSON.parse(localStorage.getItem("toefl-wordform-v2")
 function build(){
   let h="";
   A.forEach((q,i)=>{const n=i+1;
-    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${q.s[0]}<span class="print-opts">( ${q.o[0]} / ${q.o[1]} )</span><span class="blank">_______</span> ${q.s[1]}</div>
+    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${q.s[0]}<span class="print-opts">( ${q.o.join(" / ")} )</span><span class="blank">_______</span> ${q.s[1]}</div>
     <div class="opts">${q.o.map((o,j)=>`<button class="opt" data-q="${n}" data-i="${j}">${o}</button>`).join("")}</div>
     <div class="fb" id="fb${n}"></div></div>`;});
   $("setA").innerHTML=h;
