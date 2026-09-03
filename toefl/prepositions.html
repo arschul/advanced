@@ -316,18 +316,18 @@
 
 <script>
 const A=[
- {s:["The success of the program depends ","the funding that the ministry approves at the start of each year."],o:["on","of"],a:0,w:"<i>Depend</i> pairs with <i>on</i>. The preposition is fixed to the verb and does not translate from Portuguese."},
- {s:["At the next meeting the committee will discuss ","that the department raised before the deadline expired."],o:["about the concerns","the concerns"],a:1,w:"<i>Discuss</i> takes a direct object with nothing between. The same holds for <i>enter, mention, emphasize, approach</i>."},
- {s:["She is responsible ","the reports that the auditors review whenever the accounts are closed."],o:["of","for"],a:1,w:"The fixed pair is <i>responsible for</i>. <i>Capable</i> would take <i>of</i>, and <i>aware</i> would take <i>of</i> as well \u2014 each adjective keeps its own preposition."},
- {s:["The study found a sharp increase ","the number of applications that the office processed last spring."],o:["of","in"],a:1,w:"Movement in a quantity takes <i>in</i>: <i>an increase in, a decline in, a rise in</i>."},
- {s:["The agreement was signed ","March, shortly after the ministers concluded talks that had lasted a year."],o:["in","on"],a:0,w:"<i>In</i> covers months, years and seasons; <i>on</i> is for days and dates."},
- {s:["The laboratory is located ","the third floor of the building that the university renovated last year."],o:["in","on"],a:1,w:"Floors take <i>on</i>, like other surfaces and levels. <i>In</i> would be right for the building itself."},
- {s:["The revised report must be submitted ","Friday, or the committee will reject the application you prepared."],o:["until","by"],a:1,w:"<i>By</i> means at or before a deadline. <i>Until</i> would mean the submitting continues up to Friday, which is not the sense here."},
- {s:["The remaining funds were divided ","the four departments that had applied before the fiscal year closed."],o:["between","among"],a:1,w:"<i>Among</i> covers an undifferentiated group of three or more. <i>Between</i> would fit two, or items named individually."},
- {s:["She left the office without ","the message that her assistant had prepared for the director."],o:["to read","reading"],a:1,w:"A preposition is followed by a noun or a gerund, never an infinitive."},
- {s:["The results of this trial are quite different ","those that the earlier study reported in its appendix."],o:["than","from"],a:1,w:"<i>Different from</i> is the form TOEFL expects, though <i>different than</i> is common in speech."},
- {s:["The team carried ","the experiment that the ministry had approved before the funding expired."],o:["out","on"],a:0,w:"<i>Carry out</i> means to perform; <i>carry on</i> means to continue. The particle carries the meaning."},
- {s:["","my opinion, the argument that the author develops in the second chapter is the weakest in the book."],o:["On","In"],a:1,w:"<i>In my opinion</i> is fixed. <i>On</i> belongs to <i>on the whole, on the contrary, on the other hand</i>."}
+ {s:["The success of the program depends ","the funding that the ministry approves at the start of each year."],o:["to","on","of","in"],a:1,w:"<i>Depend</i> pairs with <i>on</i>. The preposition is fixed to the verb and does not translate from Portuguese."},
+ {s:["At the next meeting the committee will discuss ","that the department raised before the deadline expired."],o:["the concerns","of the concerns","on the concerns","about the concerns"],a:0,w:"<i>Discuss</i> takes a direct object with nothing between. The same holds for <i>enter, mention, emphasize, approach</i>."},
+ {s:["She is responsible ","the reports that the auditors review whenever the accounts are closed."],o:["of","for","to","with"],a:1,w:"The fixed pair is <i>responsible for</i>. <i>Capable</i> would take <i>of</i>, and <i>aware</i> would take <i>of</i> as well — each adjective keeps its own preposition."},
+ {s:["The study found a sharp increase ","the number of applications that the office processed last spring."],o:["on","to","of","in"],a:3,w:"Movement in a quantity takes <i>in</i>: <i>an increase in, a decline in, a rise in</i>."},
+ {s:["The agreement was signed ","March, shortly after the ministers concluded talks that had lasted a year."],o:["in","on","at","by"],a:0,w:"<i>In</i> covers months, years and seasons; <i>on</i> is for days and dates."},
+ {s:["The laboratory is located ","the third floor of the building that the university renovated last year."],o:["to","in","on","at"],a:2,w:"Floors take <i>on</i>, like other surfaces and levels. <i>In</i> would be right for the building itself."},
+ {s:["The revised report must be submitted ","Friday, or the committee will reject the application you prepared."],o:["by","till","for","until"],a:0,w:"<i>By</i> means at or before a deadline. <i>Until</i> would mean the submitting continues up to Friday, which is not the sense here."},
+ {s:["The remaining funds were divided ","the four departments that had applied before the fiscal year closed."],o:["in between","across","between","among"],a:3,w:"<i>Among</i> covers an undifferentiated group of three or more. <i>Between</i> would fit two, or items named individually."},
+ {s:["She left the office without ","the message that her assistant had prepared for the director."],o:["read","to reading","to read","reading"],a:3,w:"A preposition is followed by a noun or a gerund, never an infinitive."},
+ {s:["The results of this trial are quite different ","those that the earlier study reported in its appendix."],o:["than","from","to","as"],a:1,w:"<i>Different from</i> is the form TOEFL expects, though <i>different than</i> is common in speech."},
+ {s:["The team carried ","the experiment that the ministry had approved before the funding expired."],o:["up","out","on","off"],a:1,w:"<i>Carry out</i> means to perform; <i>carry on</i> means to continue. The particle carries the meaning."},
+ {s:["","my opinion, the argument that the author develops in the second chapter is the weakest in the book."],o:["In","At","By","On"],a:0,w:"<i>In my opinion</i> is fixed. <i>On</i> belongs to <i>on the whole, on the contrary, on the other hand</i>."}
 ];
 const B=[
  {p:[["The outcome ",0],["depends of",1],[" the resources that the department allocates and ",0],["on the deadlines",1],[" that the ministry sets ",0],["at the start",1],[" of ",0],["each term",1]],a:0,f:"depends on",w:"<i>Depend</i> pairs with <i>on</i>, as the second underlined phrase already shows \u2014 the sentence uses the right preposition once and the wrong one once."},
@@ -378,7 +378,7 @@ function load(){try{const d=JSON.parse(localStorage.getItem("toefl-prepositions-
 function build(){
   let h="";
   A.forEach((q,i)=>{const n=i+1;
-    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${q.s[0]}<span class="print-opts">( ${q.o[0]} / ${q.o[1]} )</span><span class="blank">_______</span> ${q.s[1]}</div>
+    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${q.s[0]}<span class="print-opts">( ${q.o.join(" / ")} )</span><span class="blank">_______</span> ${q.s[1]}</div>
     <div class="opts">${q.o.map((o,j)=>`<button class="opt" data-q="${n}" data-i="${j}">${o}</button>`).join("")}</div>
     <div class="fb" id="fb${n}"></div></div>`;});
   $("setA").innerHTML=h;
