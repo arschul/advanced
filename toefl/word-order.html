@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Word Order, Inversion and Redundancy · TOEFL Error Correction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0e12;--surface:#15171c;--surface-2:#1b1e25;--ink:#eef0f2;--muted:#8b929c;--line:#262932;
+    --violet:#a78bfa;--violet-deep:#1c1433;--violet-line:rgba(167,139,250,0.35);
+    --accent:#a78bfa;--accent-soft:#1c1433;
+    --key-accent:#f0c75e;--key-deep:#2a2206;--key-line:rgba(240,199,94,0.25);
+    --good:#4ade80;--good-soft:rgba(74,222,128,0.12);--good-line:rgba(74,222,128,0.35);
+    --bad:#f87171;--bad-soft:rgba(248,113,113,0.12);--bad-line:rgba(248,113,113,0.35);
+    --radius:14px;
+  }
+  :root[data-theme="light"]{
+    --bg:#f4f1ea;--surface:#ffffff;--surface-2:#faf8f3;--ink:#1a1815;--muted:#6b6660;--line:#e2ddd2;
+    --violet:#7c3aed;--violet-deep:#ede9fe;--violet-line:rgba(124,58,237,0.3);
+    --accent:#7c3aed;--accent-soft:#ede9fe;
+    --key-accent:#b8860b;--key-deep:#fbf2dc;--key-line:rgba(184,134,11,0.3);
+    --good:#15803d;--good-soft:#dcfce7;--good-line:rgba(21,128,61,0.3);
+    --bad:#b91c1c;--bad-soft:#fee2e2;--bad-line:rgba(185,28,28,0.3);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;
+    line-height:1.65;font-weight:400;transition:background .3s,color .3s;-webkit-font-smoothing:antialiased}
+  .wrap{width:100%;max-width:860px;margin:0 auto;padding:4.5rem 1.5rem 5rem}
+
+  .theme-toggle{position:fixed;top:1.25rem;right:1.25rem;z-index:30;width:42px;height:42px;
+    border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--muted);
+    cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:all .2s}
+  .theme-toggle:hover{border-color:var(--ink);color:var(--ink);transform:scale(1.06)}
+
+  .back-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.8rem;font-weight:500;
+    color:var(--muted);text-decoration:none;margin-bottom:2.5rem;transition:color .2s}
+  .back-link:hover{color:var(--violet)}
+  .eyebrow{font-size:.72rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);
+    font-weight:500;margin-bottom:1.1rem}
+  h1,h2,h3,.pat>summary,.n,.score strong{font-family:'Fraunces',Georgia,serif;font-optical-sizing:auto}
+  h1{font-weight:700;font-size:clamp(2.2rem,5.5vw,3.4rem);line-height:1.05;letter-spacing:-1.5px;margin-bottom:.9rem}
+  h1 .accent{background:linear-gradient(90deg,var(--violet),#38bdf8);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{color:var(--muted);font-size:1.02rem;font-weight:300;line-height:1.75;max-width:58ch;margin-bottom:2rem}
+
+  .actions{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2.5rem}
+  .btn{font-family:inherit;font-size:.75rem;font-weight:600;letter-spacing:.3px;padding:.45rem .9rem;
+    border-radius:8px;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block}
+  .btn-view{background:var(--violet-deep);color:var(--violet);border:1px solid var(--violet-line)}
+  .btn-view:hover{background:var(--violet);color:#fff}
+  .btn-key{background:var(--key-deep);color:var(--key-accent);border:1px solid var(--key-line)}
+  .btn-key:hover{background:var(--key-accent);color:#1a1815}
+  .btn-dl{background:transparent;color:var(--muted);border:1px solid var(--line)}
+  .btn-dl:hover{border-color:var(--muted);color:var(--ink)}
+
+  .progress{position:sticky;top:0;z-index:20;background:var(--bg);padding:.85rem 0;
+    border-bottom:1px solid var(--line);display:flex;align-items:center;gap:.9rem;font-size:.78rem;color:var(--muted)}
+  .track{flex:1;height:4px;background:var(--surface-2);border-radius:100px;overflow:hidden}
+  .fill{height:100%;width:0;background:linear-gradient(90deg,var(--violet),#38bdf8);transition:width .35s}
+
+  section{margin-top:3rem}
+  section>h2{font-size:1.5rem;font-weight:600;letter-spacing:-.3px;padding-bottom:.75rem;
+    border-bottom:1px solid var(--line);display:flex;align-items:center;gap:.7rem}
+  section>h2::before{content:"";width:9px;height:9px;border-radius:3px;background:var(--violet);flex:none}
+  .keyblock h2::before{background:var(--key-accent)}
+  .instr{color:var(--muted);font-size:.85rem;font-weight:300;margin-top:1rem;line-height:1.7}
+
+  /* pattern cards */
+  .pat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    margin-top:.9rem;position:relative;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+  .pat::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--violet);
+    transform:scaleX(0);transform-origin:left;transition:transform .3s;z-index:1}
+  .pat[open]{border-color:var(--violet-line)}
+  .pat[open]::before,.pat:hover::before{transform:scaleX(1)}
+  .pat>summary{padding:1rem 1.2rem;cursor:pointer;font-size:1rem;font-weight:600;letter-spacing:-.2px;
+    list-style:none;display:flex;gap:.7rem;align-items:baseline}
+  .pat>summary::-webkit-details-marker{display:none}
+  .pat>summary::before{content:"+";color:var(--violet);font-weight:600;font-family:'DM Sans',sans-serif}
+  .pat[open]>summary::before{content:"–"}
+  .pat .body{padding:0 1.2rem 1.2rem;border-top:1px solid var(--line);margin-top:0}
+  .ex{margin:.85rem 0;padding-left:1.6rem;position:relative;font-size:.95rem}
+  .ex.no::before{content:"✗";position:absolute;left:0;color:var(--bad);font-weight:700}
+  .ex.yes::before{content:"✓";position:absolute;left:0;color:var(--good);font-weight:700}
+  .ex.no{color:var(--muted)}
+  .why{font-size:.88rem;color:var(--muted);font-weight:300;line-height:1.75;margin-top:.8rem}
+  b.k{color:var(--violet)}
+  .strike{color:var(--bad);text-decoration:line-through}
+
+  /* question cards */
+  .q{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:1.1rem 1.2rem;margin-top:.75rem;display:grid;grid-template-columns:30px 1fr;gap:.2rem .9rem;
+    position:relative;overflow:hidden;transition:border-color .2s}
+  .q::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--violet);
+    transform:scaleX(0);transform-origin:left;transition:transform .3s}
+  .q:hover::before{transform:scaleX(1)}
+  .n{font-weight:600;color:var(--muted);font-size:1rem;line-height:1.6}
+  .stem{font-size:1rem;line-height:1.7}
+  .opts{grid-column:2;display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.8rem}
+  .opt{font-family:inherit;font-size:.82rem;font-weight:600;letter-spacing:.3px;padding:.35rem .9rem;
+    border-radius:100px;cursor:pointer;background:var(--surface-2);color:var(--ink);
+    border:1px solid var(--line);transition:all .2s}
+  .opt:hover{border-color:var(--violet);color:var(--violet)}
+  .opt:disabled{cursor:default}
+  .opt.right{background:var(--good-soft);border-color:var(--good-line);color:var(--good)}
+  .opt.wrong{background:var(--bad-soft);border-color:var(--bad-line);color:var(--bad);text-decoration:line-through}
+  .seg{border-bottom:2px solid var(--muted);cursor:pointer;padding:1px 2px;transition:background .2s}
+  .seg sup{color:var(--violet);font-weight:700;font-size:.66em;border:none;margin-left:1px}
+  .seg:hover{background:var(--violet-deep)}
+  .seg.right{background:var(--good-soft);border-color:var(--good)}
+  .seg.wrong{background:var(--bad-soft);border-color:var(--bad)}
+  .type-row{grid-column:2;display:flex;gap:.5rem;margin-top:.8rem;flex-wrap:wrap}
+  input[type=text],select{font-family:inherit;font-size:.85rem;padding:.4rem .7rem;border-radius:8px;
+    background:var(--surface-2);color:var(--ink);border:1px solid var(--line);max-width:100%}
+  input[type=text]{width:180px}
+  input:focus-visible,select:focus-visible,.opt:focus-visible,.btn:focus-visible,.theme-toggle:focus-visible,.seg:focus-visible{outline:2px solid var(--violet);outline-offset:2px}
+  input.right,select.right{border-color:var(--good-line);background:var(--good-soft)}
+  input.wrong,select.wrong{border-color:var(--bad-line);background:var(--bad-soft)}
+  .fb{grid-column:2;margin-top:.8rem;padding:.7rem .9rem;border-radius:10px;font-size:.86rem;
+    font-weight:300;line-height:1.7;display:none}
+  .fb.show{display:block}
+  .fb.ok{background:var(--good-soft);border:1px solid var(--good-line);color:var(--muted)}
+  .fb.no{background:var(--bad-soft);border:1px solid var(--bad-line);color:var(--muted)}
+  .fb b{display:block;margin-bottom:.15rem;font-weight:600}
+  .fb.ok b{color:var(--good)}
+  .fb.no b{color:var(--bad)}
+
+  .score{margin-top:2rem;padding:1.5rem;border:1px solid var(--violet-line);border-radius:18px;
+    background:var(--violet-deep);text-align:center;display:none}
+  .score.show{display:block}
+  .score strong{font-size:2rem;font-weight:700;letter-spacing:-1px;display:block;margin-bottom:.3rem;color:var(--violet)}
+  .keyblock{margin-top:3rem}
+  .keyblock p{font-size:.88rem;font-weight:300;color:var(--muted);margin-top:.7rem;line-height:1.7}
+  .keyblock p b:first-child{color:var(--key-accent)}
+  footer{padding:2.5rem 1.5rem;color:var(--muted);font-size:.78rem;text-align:center;border-top:1px solid var(--line);margin-top:3rem}
+  footer a{color:var(--muted);text-decoration:none}
+  footer a:hover{color:var(--violet)}
+
+  .print-opts,.rule,.keyblock,.printhead,.cprint,.pkey{display:none}
+
+  @media(max-width:600px){
+    .wrap{padding:3.5rem 1.1rem 4rem}
+    .q{grid-template-columns:24px 1fr;padding:1rem}
+    input[type=text]{width:100%}
+  }
+
+  @media print{
+    @page{margin:15mm}
+    :root,:root[data-theme]{--bg:#fff;--surface:#fff;--surface-2:#fff;--ink:#000;--muted:#333;--line:#bbb;
+      --violet:#000;--violet-deep:#fff;--violet-line:#bbb;--accent:#000;--accent-soft:#fff;
+      --key-accent:#000;--key-deep:#fff;--key-line:#bbb;
+      --good:#000;--good-soft:#fff;--good-line:#bbb;--bad:#000;--bad-soft:#fff;--bad-line:#bbb}
+    body{font-size:11.5pt;line-height:1.5}
+    .theme-toggle,.back-link,.eyebrow,.actions,.progress,.lede,.score,.fb,.opts,.type-row,.instr-screen,footer{display:none!important}
+    .wrap{max-width:none;padding:0}
+    h1{font-size:1.6rem;letter-spacing:-.5px;margin-bottom:.4rem}
+    h1 .accent{color:#000;-webkit-text-fill-color:#000;background:none}
+    .printhead{display:block;border-bottom:1px solid #000;padding-bottom:6px;margin-bottom:14px;font-size:.9rem}
+    .q{border:none;padding:6px 0;margin:0;break-inside:avoid;page-break-inside:avoid}
+    .q::before,.pat::before{display:none}
+    .pat{border:none;border-radius:0;margin:0}
+    .pat .body{display:block!important;border:none;padding:0 0 0 1.2rem}
+    .pat>summary{padding:8px 0 0}
+    .pat>summary::before{content:"■";font-size:.55em}
+    .print-opts{display:inline;color:#000}
+    .rule{display:block;border-bottom:1px solid #999;height:20px;margin-top:6px}
+    .cprint{display:block;margin-top:5px;font-size:10pt;color:#333}
+    .pkey{display:block;font-size:10pt;margin:8px 0 14px;padding:8px 10px;border:1px solid #999;columns:2;column-gap:22px}
+    .pkey b{display:block;columns:1;margin-bottom:3px}
+    .pkey span{display:block;break-inside:avoid}
+    .seg{cursor:default}
+    section{margin-top:18px}
+    section>h2{font-size:1.2rem;border-bottom:1px solid #000}
+    section>h2::before{display:none}
+    body.print-key .keyblock{display:block;break-before:page}
+    body.print-key .rule{display:none}
+    body.print-blank .patterns{display:none}
+  }
+</style>
+</head>
+<body class="print-blank">
+
+<button class="theme-toggle" id="theme" title="Toggle light/dark mode">🌙</button>
+
+<div class="wrap">
+
+  <div class="printhead">Word Order, Inversion and Redundancy · TOEFL Error Correction · Name: ______________________  Date: __________</div>
+
+  <div class="hero">
+    <a class="back-link" href="./index.html">← TOEFL Error Correction</a>
+    <p class="eyebrow">Phil Young’s English School · Sheet 10 of 10</p>
+    <h1>Word order, inversion and <span class="accent">redundancy</span></h1>
+    <p class="lede">Two opposite problems in one family. English fixes its word order more tightly than Portuguese does — and then deliberately reverses it in a handful of structures that have to be learned as a set. The last patterns turn to what should come out of a sentence rather than where it goes. Twelve patterns below, then thirty exercises.</p>
+    <div class="actions">
+      <button class="btn btn-view" id="pw">Print worksheet</button>
+      <button class="btn btn-key" id="pk">Print answer key</button>
+      <button class="btn btn-dl" id="reset">Start over</button>
+    </div>
+  </div>
+
+  <div class="progress">
+    <span id="ptext">0 of 30 answered</span>
+    <div class="track"><div class="fill" id="pfill"></div></div>
+    <span id="pscore"></span>
+  </div>
+
+  <section class="patterns">
+    <h2>The twelve patterns</h2>
+    <p class="lede">English fixes its word order more tightly than Portuguese does — and then reverses it in a handful of structures that have to be learned as a set.</p>
+
+    <details class="pat"><summary>1 · Order of adverbials: manner, place, time</summary><div class="body">
+      <div class="ex no">The technicians examined the samples <span class="strike">yesterday carefully in the laboratory</span>.</div>
+      <div class="ex yes">The technicians examined the samples <b>carefully in the laboratory yesterday</b>.</div>
+      <p class="why">When several adverbials pile up after a verb, English orders them manner, then place, then time. Time can also move to the front of the sentence for emphasis — <i>Yesterday the technicians examined the samples carefully</i> — but it does not belong in the middle of the run.</p>
+    </div></details>
+
+    <details class="pat"><summary>2 · Embedded questions keep statement order</summary><div class="body">
+      <div class="ex no">The committee has not decided <span class="strike">where will the conference be held</span>.</div>
+      <div class="ex yes">The committee has not decided <b>where the conference will be held</b>.</div>
+      <p class="why">Once a question is folded inside a larger sentence it stops being a question and takes subject-before-verb order, with no <i>do</i>, <i>does</i> or <i>did</i>. This applies after <i>know, wonder, decide, explain, ask, tell me, I'm not sure</i>. The clue is that the sentence as a whole is a statement, whatever the question word suggests.</p>
+    </div></details>
+
+    <details class="pat"><summary>3 · Pronoun objects sit inside separable phrasal verbs</summary><div class="body">
+      <div class="ex no">The committee <span class="strike">put off it</span> until the next fiscal year.</div>
+      <div class="ex yes">The committee <b>put it off</b> until the next fiscal year. · The committee <b>put off the decision</b>.</div>
+      <p class="why">With separable phrasal verbs a full noun phrase can go either side of the particle, but a pronoun must go between the verb and the particle. Same for <i>turn it down, bring it up, carry it out, set it up, point it out</i>. Inseparable verbs never split at all: <i>deal with it</i>, never <i>deal it with</i>.</p>
+    </div></details>
+
+    <details class="pat"><summary>4 · Inversion after a fronted negative</summary><div class="body">
+      <div class="ex no"><span class="strike">Never before the university has seen</span> such a drop in applications.</div>
+      <div class="ex yes"><b>Never before has the university seen</b> such a drop in applications.</div>
+      <p class="why">Put a negative or near-negative adverbial first and the subject and auxiliary swap places, exactly as in a question. The triggers: <i>never, rarely, seldom, hardly, scarcely, no sooner, not until, at no time, under no circumstances, little</i>. If there is no auxiliary, <i>do / does / did</i> appears to carry the inversion.</p>
+    </div></details>
+
+    <details class="pat"><summary>5 · Inversion after fronted <i>only</i></summary><div class="body">
+      <div class="ex no">Only after the auditors filed their report <span class="strike">the committee approved</span> the budget.</div>
+      <div class="ex yes">Only after the auditors filed their report <b>did the committee approve</b> the budget.</div>
+      <p class="why">Same rule as pattern 4: <i>only then, only after, only when, only by, only in this way, not only</i>. The inversion falls on the main clause, not on the clause inside the <i>only</i> phrase — <i>the auditors filed</i> stays in normal order and <i>did the committee approve</i> inverts.</p>
+    </div></details>
+
+    <details class="pat"><summary>6 · Conditionals without <i>if</i></summary><div class="body">
+      <div class="ex no"><span class="strike">The director had known</span> about the delay, the team would have rescheduled.</div>
+      <div class="ex yes"><b>Had the director known</b> about the delay, the team would have rescheduled.</div>
+      <p class="why">Drop <i>if</i> and invert instead: <i>Had she known</i>, <i>Were it not for the funding</i>, <i>Should you require assistance</i>. Only these three forms work this way. Note that without either <i>if</i> or the inversion, the sentence becomes a comma splice — which is how the error usually presents itself.</p>
+    </div></details>
+
+    <details class="pat"><summary>7 · So, such, neither and nor</summary><div class="body">
+      <div class="ex no"><span class="strike">So convincing the argument was</span> that no one objected.</div>
+      <div class="ex yes"><b>So convincing was the argument</b> that no one objected. · <b>Neither did the panel</b> raise any question.</div>
+      <p class="why">A fronted <i>so</i> + adjective or <i>such</i> + noun inverts what follows: <i>So difficult was the exam that…</i>, <i>Such was the delay that…</i>. <i>Neither</i> and <i>nor</i> invert too when they open a clause: <i>Neither did she attend</i>, <i>nor was the report filed</i>. Contrast the short agreement forms, which invert as well: <i>So do I</i>, <i>Neither do I</i>.</p>
+    </div></details>
+
+    <details class="pat"><summary>8 · Fronted place expressions</summary><div class="body">
+      <div class="ex no">Among the documents the archivists recovered <span class="strike">several letters were</span>.</div>
+      <div class="ex yes">Among the documents the archivists recovered <b>were several letters</b>. · <b>On the table lay</b> the revised draft.</div>
+      <p class="why">When a phrase of place opens the sentence and the verb is <i>be</i>, <i>lie</i>, <i>stand</i>, <i>sit</i> or <i>come</i>, the subject follows the verb. This is the same structure as <i>there is</i> and <i>here comes</i>, and the risk is the same: the verb must agree with the subject that comes after it, not with anything in the fronted phrase.</p>
+    </div></details>
+
+    <details class="pat"><summary>9 · One subject per clause</summary><div class="body">
+      <div class="ex no">The professor who supervised the project <span class="strike">she presented</span> the findings in June.</div>
+      <div class="ex yes">The professor who supervised the project <b>presented</b> the findings in June.</div>
+      <p class="why">A pronoun cannot repeat a subject that has already been named. The error appears most often after a long relative clause, when the writer has lost track of the subject and restates it. Delete the pronoun — the noun phrase at the front is the subject.</p>
+    </div></details>
+
+    <details class="pat"><summary>10 · Redundant pairs</summary><div class="body">
+      <div class="ex no">The delegation <span class="strike">returned back</span> to the capital.</div>
+      <div class="ex yes">The delegation <b>returned</b> to the capital.</div>
+      <p class="why">One word already contains the other's meaning: <i>return back, repeat again, advance forward, rise up, join together, new innovation, past history, final outcome, basic fundamentals, free gift, close proximity, personal opinion</i>. Also <i>the reason is because</i>, which should be <i>the reason is that</i> or simply <i>because</i>.</p>
+    </div></details>
+
+    <details class="pat"><summary>11 · Wordy phrases that a single word replaces</summary><div class="body">
+      <div class="ex no"><span class="strike">Due to the fact that</span> the funding was withdrawn, two courses were canceled.</div>
+      <div class="ex yes"><b>Because</b> the funding was withdrawn, two courses were canceled.</div>
+      <p class="why">The swaps worth memorizing: <i>due to the fact that</i> → <i>because</i>, <i>at this point in time</i> → <i>now</i>, <i>in the event that</i> → <i>if</i>, <i>in spite of the fact that</i> → <i>although</i>, <i>for the purpose of</i> → <i>to</i>, <i>a large number of</i> → <i>many</i>. Also collapse empty openers: <i>There are many people who believe</i> becomes <i>Many people believe</i>. Length does not raise a writing score; density does.</p>
+    </div></details>
+
+    <details class="pat"><summary>12 · One negative per clause</summary><div class="body">
+      <div class="ex no">The auditors <span class="strike">did not find hardly any</span> evidence of irregularity.</div>
+      <div class="ex yes">The auditors <b>found hardly any</b> evidence of irregularity. · The auditors <b>did not find any</b> evidence.</div>
+      <p class="why"><i>Hardly, scarcely, barely</i> and <i>rarely</i> are already negative, so pairing them with <i>not</i> doubles the negation. The same applies to <i>not … nothing</i> and <i>without … no</i>. Keep one negative and let it do the work.</p>
+    </div></details>
+  </section>
+
+  <section>
+    <h2>Set A · Choose the correct form</h2>
+    <p class="instr">Questions 1–12. <span class="instr-screen">Tap the version with the words in the right order.</span></p>
+    <div id="setA"></div>
+  </section>
+
+  <section>
+    <h2>Set B · Find the error</h2>
+    <p class="instr">Questions 13–22. Four parts of each sentence are underlined. <span class="instr-screen">Tap the one that is wrong.</span> Only one contains an error.</p>
+    <div id="setB"></div>
+  </section>
+
+  <section>
+    <h2>Set C · Correct the sentence</h2>
+    <p class="instr">Questions 23–30. Each sentence contains exactly one error of order or redundancy — and at least one other structure that is already correct. Find the error, write the correction, and name the pattern behind it. <span class="instr-screen">Both parts must be right to score.</span></p>
+    <div id="setC"></div>
+  </section>
+
+  <div class="score" id="scorebox"></div>
+
+  <div class="keyblock">
+    <h2>Answer key</h2>
+    <div id="key"></div>
+  </div>
+</div>
+
+<footer>Part of the <a href="./index.html">TOEFL Error Correction</a> section · <a href="../index.html">Advanced Hub</a> · Phil Young’s English School</footer>
+
+<script>
+const A=[
+ {s:["The technicians examined the samples ","that the ministry had sent in March."],o:["yesterday carefully in the laboratory","carefully in the laboratory yesterday"],a:1,w:"Adverbials after a verb run manner, then place, then time. Time can move to the front of the sentence, but not into the middle of the run."},
+ {s:["The committee has not yet decided ","or who will chair the opening session."],o:["where will the conference be held","where the conference will be held"],a:1,w:"A question folded inside a statement keeps subject-before-verb order. <i>Who will chair</i> is already correct because <i>who</i> is the subject there."},
+ {s:["The committee reviewed the proposal twice and then ","until the next fiscal year began."],o:["put off it","put it off"],a:1,w:"A pronoun object must sit between the verb and the particle. A full noun phrase could go either side: <i>put off the decision</i>."},
+ {s:["Never before ","such a sharp decline in the applications that it receives each spring."],o:["the department has recorded","has the department recorded"],a:1,w:"A fronted negative swaps the subject and the auxiliary, exactly as in a question."},
+ {s:["Only after the auditors filed their report ","the revised budget that the finance office had prepared."],o:["the committee approved","did the committee approve"],a:1,w:"The inversion falls on the main clause. <i>The auditors filed</i> stays in normal order because it sits inside the <i>only</i> phrase."},
+ {s:["","known about the delay, the team would have rescheduled the trial."],o:["The director had","Had the director"],a:1,w:"Dropping <i>if</i> requires the inversion. Without either one the sentence becomes a comma splice, which is how this error usually shows itself."},
+ {s:["So convincing ","that the panel approved the proposal without discussion."],o:["the argument was","was the argument"],a:1,w:"A fronted <i>so</i> + adjective inverts what follows, like <i>Such was the delay that\u2026</i>"},
+ {s:["Among the documents that the archivists recovered last year ","addressed to the founder of the institute."],o:["several letters were","were several letters"],a:1,w:"When a place expression opens the sentence and the verb is <i>be</i>, the subject follows the verb \u2014 and the verb agrees with that subject, not with the fronted phrase."},
+ {s:["The professor who supervised the project for three years ","the findings at the conference in June."],o:["she presented","presented"],a:1,w:"A pronoun cannot repeat a subject already named. The error appears most often after a long relative clause, when the writer has lost track of the subject."},
+ {s:["The delegation ","to the capital after the negotiations collapsed in the second week."],o:["returned back","returned"],a:1,w:"<i>Return</i> already contains the idea of <i>back</i>. The same doubling produces <i>repeat again</i>, <i>advance forward</i> and <i>new innovation</i>."},
+ {s:["","the funding was withdrawn, the department canceled two courses and reduced its staff."],o:["Due to the fact that","Because"],a:1,w:"Six words doing one word's work. Length does not raise a writing score; density does."},
+ {s:["The auditors ","any evidence of irregularity in the accounts that the office had kept."],o:["did not find hardly","found hardly"],a:1,w:"<i>Hardly</i> is already negative, so adding <i>not</i> doubles the negation. <i>Did not find any</i> would also work."}
+];
+const B=[
+ {p:[["The technicians ",0],["examined",1],[" the samples ",0],["yesterday carefully in the laboratory",1],[" that the university ",0],["had renovated",1],[" ",0],["last spring",1]],a:1,f:"carefully in the laboratory yesterday",w:"Manner, then place, then time. The two other time expressions in the sentence are correctly placed."},
+ {p:[["The committee has not yet decided ",0],["when it will meet",1],[", ",0],["who will chair",1],[" the session or ",0],["where will the conference be held",1],[", although the venue ",0],["has been booked",1]],a:2,f:"where the conference will be held",w:"Two embedded questions in the same sentence are already in statement order. Only the third reverts to question order."},
+ {p:[["The committee ",0],["put off it",1],[" until the next fiscal year, ",0],["reviewed",1],[" the budget again in March and ",0],["approved",1],[" the revisions that the office ",0],["had drafted",1]],a:0,f:"put it off",w:"A pronoun object goes between the verb and the particle."},
+ {p:[["The department ",0],["has recorded",1],[" ",0],["a steady decline",1],[" in applications ",0],["since 2019",1],[", and ",0],["never before the university has seen",1],[" such a drop",0]],a:3,f:"never before has the university seen",w:"A fronted negative inverts the subject and the auxiliary."},
+ {p:[["Only after the auditors filed their report ",0],["the committee approved",1],[" the revised budget ",0],["that the finance office",1],[" ",0],["had prepared",1],[" ",0],["the previous month",1]],a:0,f:"did the committee approve",w:"The main clause inverts. The clause inside the <i>only</i> phrase keeps normal order, which is why <i>the auditors filed</i> is correct."},
+ {p:[["",0],["The director had known",1],[" about the delay, the team ",0],["would have rescheduled",1],[" ",0],["the trial",1],[" that the ministry ",0],["had funded",1]],a:0,f:"Had the director known",w:"Without <i>if</i> the clause must invert. As written, a comma joins two independent clauses."},
+ {p:[["The panel ",0],["approved",1],[" the proposal ",0],["without discussion",1],[", ",0],["so convincing the argument was",1],[" that no member ",0],["raised",1],[" an objection",0]],a:2,f:"so convincing was the argument",w:"A fronted <i>so</i> + adjective inverts what follows."},
+ {p:[["The professor ",0],["who supervised",1],[" the project ",0],["she presented",1],[" the findings at the conference that the institute ",0],["hosted",1],[" ",0],["in June",1]],a:1,f:"presented",w:"The subject has already been named, so the pronoun repeats it."},
+ {p:[["The delegation ",0],["left",1],[" the capital in March, ",0],["negotiated",1],[" for six weeks and then ",0],["returned back",1],[" to resume the talks that ",0],["had stalled",1]],a:2,f:"returned",w:"<i>Return</i> already means to come back."},
+ {p:[["",0],["Due to the fact that",1],[" the funding was withdrawn, the department ",0],["canceled",1],[" two courses and ",0],["reduced",1],[" the staff that it ",0],["had hired",1],[" in 2019",0]],a:0,f:"Because",w:"One word replaces six without losing anything."}
+];
+const PAT=["","Order of adverbials: manner, place, time","Embedded questions keep statement order","Pronoun objects sit inside separable phrasal verbs",
+ "Inversion after a fronted negative","Inversion after fronted only","Conditionals without if",
+ "So, such, neither and nor","Fronted place expressions","One subject per clause",
+ "Redundant pairs","Wordy phrases that a single word replaces","One negative per clause"];
+const C=[
+ {t:"The committee has not yet decided when it will meet or where will the conference be held.",x:"where will the conference be held",a:["where the conference will be held"],p:2,
+  w:"An embedded question keeps statement order. <i>When it will meet</i> earlier in the sentence is the same structure done correctly."},
+ {t:"The department has recorded a steady decline since 2019, and never before the university has seen such a drop in applications.",x:"never before the university has seen",a:["never before has the university seen"],p:4,
+  w:"A fronted negative swaps the subject and the auxiliary."},
+ {t:"Only after the auditors filed their report the committee approved the revised budget that the office had prepared.",x:"the committee approved",a:["did the committee approve"],p:5,
+  w:"The main clause inverts; the clause inside the <i>only</i> phrase does not, which is why <i>the auditors filed</i> is correct."},
+ {t:"The director had known about the delay, the team would have rescheduled the trial that the ministry had funded.",x:"The director had known",a:["had the director known"],p:6,
+  w:"Without <i>if</i>, the clause must invert. As written, a comma joins two independent clauses."},
+ {t:"The professor who supervised the project for three years she presented the findings at the conference in June.",x:"she presented",a:["presented"],p:9,
+  w:"The subject is already named. The pronoun repeats it, which happens most often after a long relative clause."},
+ {t:"The delegation returned back to the capital after the negotiations that had lasted six weeks finally collapsed.",x:"returned back",a:["returned"],p:10,
+  w:"<i>Return</i> already contains <i>back</i>."},
+ {t:"Due to the fact that the funding was withdrawn, the department canceled two courses in the spring.",x:"Due to the fact that",a:["because"],p:11,
+  w:"Six words doing one word's work."},
+ {t:"The auditors did not find hardly any evidence of irregularity in the accounts that the office had kept.",x:"did not find hardly any",a:["found hardly any","did not find any"],p:12,
+  w:"<i>Hardly</i> is already negative. Keep one negative and let it do the work."}
+];
+
+let ans={},total=30;
+const $=id=>document.getElementById(id);
+const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+
+function save(){try{localStorage.setItem("toefl-wordorder",JSON.stringify(ans))}catch(e){}}
+function load(){try{ans=JSON.parse(localStorage.getItem("toefl-wordorder")||"{}")}catch(e){ans={}}}
+
+function build(){
+  let h="";
+  A.forEach((q,i)=>{const n=i+1;
+    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${q.s[0]}<span class="print-opts">( ${q.o[0]} / ${q.o[1]} )</span><span class="blank">_______</span> ${q.s[1]}</div>
+    <div class="opts">${q.o.map((o,j)=>`<button class="opt" data-q="${n}" data-i="${j}">${o}</button>`).join("")}</div>
+    <div class="fb" id="fb${n}"></div></div>`;});
+  $("setA").innerHTML=h;
+
+  h="";
+  B.forEach((q,i)=>{const n=i+13;let li=0;
+    const body=q.p.map(([t,u])=>u?`<span class="seg" data-q="${n}" data-i="${li}">${t}<sup>${"ABCD"[li++]}</sup></span>`:esc(t)).join("");
+    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${body}.</div><div class="fb" id="fb${n}"></div></div>`;});
+  $("setB").innerHTML=h;
+
+  h=`<div class="pkey"><b>Pattern reference</b>${PAT.slice(1).map((t,j)=>`<span>${j+1}. ${t}</span>`).join("")}</div>`;
+  const sel=PAT.slice(1).map((t,j)=>`<option value="${j+1}">${j+1} &middot; ${t}</option>`).join("");
+  C.forEach((q,i)=>{const n=i+23;
+    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${esc(q.t)}</div>
+    <div class="type-row"><input type="text" id="in${n}" data-q="${n}" placeholder="correction" autocomplete="off" spellcheck="false">
+    <select id="sel${n}"><option value="">which pattern?</option>${sel}</select>
+    <button class="opt btn-check" data-check="${n}">Check</button></div>
+    <div class="cprint">Correction: ______________________________ &nbsp; Pattern no.: ______</div><div class="fb" id="fb${n}"></div></div>`;});
+  $("setC").innerHTML=h;
+
+  $("key").innerHTML=[...A.map((q,i)=>[i+1,q.o[q.a],q.w]),...B.map((q,i)=>[i+13,"("+"ABCD"[q.a]+") → "+q.f,q.w]),...C.map((q,i)=>[i+23,`<i>${q.x}</i> &rarr; <b>${q.a[0]}</b> &middot; pattern ${q.p} (${PAT[q.p]})`,q.w])]
+    .map(([n,a,w])=>`<p><b>${n}.</b> ${a} — ${w}</p>`).join("");
+}
+
+function mark(n,ok,extra){
+  const f=$("fb"+n);f.className="fb show "+(ok?"ok":"no");
+  const q=(n<13?A[n-1]:n<23?B[n-13]:C[n-23]);
+  f.innerHTML=`<b>${ok?"Correct":"Not correct"}</b>${extra||""}${q.w}`;
+  ans[n]=ok;save();update();
+}
+function update(){
+  const done=Object.keys(ans).length,right=Object.values(ans).filter(Boolean).length;
+  $("ptext").textContent=done+" of "+total+" answered";
+  $("pfill").style.width=(done/total*100)+"%";
+  $("pscore").textContent=done?right+" right":"";
+  const sb=$("scorebox");
+  if(done===total){sb.className="score show";sb.innerHTML=`<strong>${right} / 30</strong><br>${right>=27?"Exam-ready on this point.":right>=21?"Solid. Reread the patterns behind the items you missed.":"Work back through the twelve patterns, then reset and try again."}`;}
+  else sb.className="score";
+}
+
+document.addEventListener("click",e=>{
+  const o=e.target.closest(".opt[data-q]");
+  if(o){const n=+o.dataset.q,i=+o.dataset.i,q=A[n-1];
+    document.querySelectorAll(`.opt[data-q="${n}"]`).forEach(b=>{b.className="opt";b.disabled=true});
+    o.classList.add(i===q.a?"right":"wrong");
+    if(i!==q.a)document.querySelector(`.opt[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");
+    mark(n,i===q.a);return;}
+
+  const s=e.target.closest(".seg");
+  if(s){const n=+s.dataset.q,i=+s.dataset.i,q=B[n-13];
+    document.querySelectorAll(`.seg[data-q="${n}"]`).forEach(x=>x.style.pointerEvents="none");
+    s.classList.add(i===q.a?"right":"wrong");
+    if(i!==q.a)document.querySelector(`.seg[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");
+    mark(n,i===q.a,`Correction: <b>${"ABCD"[q.a]} → ${q.f}</b>. `);return;}
+
+  const c=e.target.closest("[data-check]");
+  if(c){check(+c.dataset.check);}
+});
+document.addEventListener("keydown",e=>{
+  if(e.key==="Enter"&&e.target.dataset.q&&e.target.tagName==="INPUT")check(+e.target.dataset.q);
+});
+function check(n){
+  const el=$("in"+n),sl=$("sel"+n),q=C[n-23];
+  const v=el.value.trim().toLowerCase().replace(/\s+/g," ").replace(/[.,;]$/,"");
+  if(!v||!sl.value){const f=$("fb"+n);f.className="fb show no";f.innerHTML="<b>Not yet</b>Type the corrected verb and choose a pattern before checking.";return;}
+  const vOk=q.a.some(a=>a.toLowerCase()===v),pOk=+sl.value===q.p,ok=vOk&&pOk;
+  el.className=vOk?"right":"wrong";sl.className=pOk?"right":"wrong";
+  el.disabled=true;sl.disabled=true;
+  let lead="";
+  if(vOk&&!pOk)lead=`The verb is right. The pattern is <b>${q.p} &middot; ${PAT[q.p]}</b>. `;
+  else if(!vOk&&pOk)lead=`Right pattern. The error is <i>${q.x}</i> &rarr; <b>${q.a[0]}</b>. `;
+  else if(!ok)lead=`The error is <i>${q.x}</i> &rarr; <b>${q.a[0]}</b>, pattern <b>${q.p} &middot; ${PAT[q.p]}</b>. `;
+  mark(n,ok,lead);
+}
+
+$("theme").onclick=()=>{
+  const d=document.documentElement.dataset.theme==="dark";
+  const t=d?"light":"dark";
+  document.documentElement.dataset.theme=t;
+  $("theme").textContent=t==="dark"?"🌙":"☀️";
+  try{localStorage.setItem("toefl-theme",t)}catch(e){}
+};
+$("pw").onclick=()=>{document.body.className="print-blank";document.querySelectorAll(".pat").forEach(p=>p.open=false);print();};
+$("pk").onclick=()=>{document.body.className="print-key";document.querySelectorAll(".pat").forEach(p=>p.open=true);print();};
+$("reset").onclick=()=>{ans={};save();location.reload();};
+
+(function(){
+  try{const t=localStorage.getItem("toefl-theme");if(t){document.documentElement.dataset.theme=t;$("theme").textContent=t==="dark"?"🌙":"☀️";}}catch(e){}
+  load();build();
+  Object.keys(ans).forEach(n=>{ // replay locked state
+    n=+n;
+    if(n<13){const q=A[n-1];document.querySelectorAll(`.opt[data-q="${n}"]`).forEach(b=>b.disabled=true);
+      document.querySelector(`.opt[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");}
+    else if(n<23){const q=B[n-13];document.querySelectorAll(`.seg[data-q="${n}"]`).forEach(x=>x.style.pointerEvents="none");
+      document.querySelector(`.seg[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");}
+    else{const q=C[n-23],el=$("in"+n),sl=$("sel"+n);el.value=q.a[0];sl.value=q.p;el.disabled=true;sl.disabled=true;el.className=sl.className=ans[n]?"right":"wrong";}
+    const f=$("fb"+n),q=(n<13?A[n-1]:n<23?B[n-13]:C[n-23]);
+    f.className="fb show "+(ans[n]?"ok":"no");f.innerHTML=`<b>${ans[n]?"Correct":"Not correct"}</b>${q.w}`;
+  });
+  update();
+})();
+</script>
+</body>
+</html>
