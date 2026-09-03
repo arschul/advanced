@@ -209,6 +209,11 @@
     border-radius:100px;padding:.1rem .55rem;white-space:nowrap}
   .fam{font-size:.7rem;color:var(--muted);letter-spacing:.03em}
   .qhead{grid-column:2;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;margin-bottom:.45rem}
+  /* .qhead occupies column 2 explicitly, so every later child must too —
+     otherwise auto-placement drops .stem into the 30px number column */
+  .q>.stem,.q>.cprint{grid-column:2}
+  .q>.type-row{align-items:flex-start}
+  .q>.opts{align-items:flex-start}
   .empty{color:var(--muted);font-size:.9rem;font-weight:300;padding:2rem 0;text-align:center}
   #quiz{margin-top:1rem}
   .quizhead{display:flex;align-items:center;gap:.9rem;margin-bottom:1.1rem;padding-bottom:.75rem;border-bottom:1px solid var(--line)}
@@ -404,7 +409,7 @@ function render(){
   $("prog").style.display=quiz.filter(x=>x.set!=="c").length?"flex":"none";
   $("scorebox").className="score";
   update();
-  $("quiz").scrollIntoView({behavior:"smooth",block:"start"});
+  if($("quiz").scrollIntoView) $("quiz").scrollIntoView({behavior:"smooth",block:"start"});
 }
 $("build").onclick=render;
 
