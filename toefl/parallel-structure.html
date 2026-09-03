@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parallel Structure · TOEFL Error Correction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0e12;--surface:#15171c;--surface-2:#1b1e25;--ink:#eef0f2;--muted:#8b929c;--line:#262932;
+    --violet:#a78bfa;--violet-deep:#1c1433;--violet-line:rgba(167,139,250,0.35);
+    --accent:#a78bfa;--accent-soft:#1c1433;
+    --key-accent:#f0c75e;--key-deep:#2a2206;--key-line:rgba(240,199,94,0.25);
+    --good:#4ade80;--good-soft:rgba(74,222,128,0.12);--good-line:rgba(74,222,128,0.35);
+    --bad:#f87171;--bad-soft:rgba(248,113,113,0.12);--bad-line:rgba(248,113,113,0.35);
+    --radius:14px;
+  }
+  :root[data-theme="light"]{
+    --bg:#f4f1ea;--surface:#ffffff;--surface-2:#faf8f3;--ink:#1a1815;--muted:#6b6660;--line:#e2ddd2;
+    --violet:#7c3aed;--violet-deep:#ede9fe;--violet-line:rgba(124,58,237,0.3);
+    --accent:#7c3aed;--accent-soft:#ede9fe;
+    --key-accent:#b8860b;--key-deep:#fbf2dc;--key-line:rgba(184,134,11,0.3);
+    --good:#15803d;--good-soft:#dcfce7;--good-line:rgba(21,128,61,0.3);
+    --bad:#b91c1c;--bad-soft:#fee2e2;--bad-line:rgba(185,28,28,0.3);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;
+    line-height:1.65;font-weight:400;transition:background .3s,color .3s;-webkit-font-smoothing:antialiased}
+  .wrap{width:100%;max-width:860px;margin:0 auto;padding:4.5rem 1.5rem 5rem}
+
+  .theme-toggle{position:fixed;top:1.25rem;right:1.25rem;z-index:30;width:42px;height:42px;
+    border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--muted);
+    cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:all .2s}
+  .theme-toggle:hover{border-color:var(--ink);color:var(--ink);transform:scale(1.06)}
+
+  .back-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.8rem;font-weight:500;
+    color:var(--muted);text-decoration:none;margin-bottom:2.5rem;transition:color .2s}
+  .back-link:hover{color:var(--violet)}
+  .eyebrow{font-size:.72rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);
+    font-weight:500;margin-bottom:1.1rem}
+  h1,h2,h3,.pat>summary,.n,.score strong{font-family:'Fraunces',Georgia,serif;font-optical-sizing:auto}
+  h1{font-weight:700;font-size:clamp(2.2rem,5.5vw,3.4rem);line-height:1.05;letter-spacing:-1.5px;margin-bottom:.9rem}
+  h1 .accent{background:linear-gradient(90deg,var(--violet),#38bdf8);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{color:var(--muted);font-size:1.02rem;font-weight:300;line-height:1.75;max-width:58ch;margin-bottom:2rem}
+
+  .actions{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2.5rem}
+  .btn{font-family:inherit;font-size:.75rem;font-weight:600;letter-spacing:.3px;padding:.45rem .9rem;
+    border-radius:8px;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block}
+  .btn-view{background:var(--violet-deep);color:var(--violet);border:1px solid var(--violet-line)}
+  .btn-view:hover{background:var(--violet);color:#fff}
+  .btn-key{background:var(--key-deep);color:var(--key-accent);border:1px solid var(--key-line)}
+  .btn-key:hover{background:var(--key-accent);color:#1a1815}
+  .btn-dl{background:transparent;color:var(--muted);border:1px solid var(--line)}
+  .btn-dl:hover{border-color:var(--muted);color:var(--ink)}
+
+  .progress{position:sticky;top:0;z-index:20;background:var(--bg);padding:.85rem 0;
+    border-bottom:1px solid var(--line);display:flex;align-items:center;gap:.9rem;font-size:.78rem;color:var(--muted)}
+  .track{flex:1;height:4px;background:var(--surface-2);border-radius:100px;overflow:hidden}
+  .fill{height:100%;width:0;background:linear-gradient(90deg,var(--violet),#38bdf8);transition:width .35s}
+
+  section{margin-top:3rem}
+  section>h2{font-size:1.5rem;font-weight:600;letter-spacing:-.3px;padding-bottom:.75rem;
+    border-bottom:1px solid var(--line);display:flex;align-items:center;gap:.7rem}
+  section>h2::before{content:"";width:9px;height:9px;border-radius:3px;background:var(--violet);flex:none}
+  .keyblock h2::before{background:var(--key-accent)}
+  .instr{color:var(--muted);font-size:.85rem;font-weight:300;margin-top:1rem;line-height:1.7}
+
+  /* pattern cards */
+  .pat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    margin-top:.9rem;position:relative;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+  .pat::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--violet);
+    transform:scaleX(0);transform-origin:left;transition:transform .3s;z-index:1}
+  .pat[open]{border-color:var(--violet-line)}
+  .pat[open]::before,.pat:hover::before{transform:scaleX(1)}
+  .pat>summary{padding:1rem 1.2rem;cursor:pointer;font-size:1rem;font-weight:600;letter-spacing:-.2px;
+    list-style:none;display:flex;gap:.7rem;align-items:baseline}
+  .pat>summary::-webkit-details-marker{display:none}
+  .pat>summary::before{content:"+";color:var(--violet);font-weight:600;font-family:'DM Sans',sans-serif}
+  .pat[open]>summary::before{content:"–"}
+  .pat .body{padding:0 1.2rem 1.2rem;border-top:1px solid var(--line);margin-top:0}
+  .ex{margin:.85rem 0;padding-left:1.6rem;position:relative;font-size:.95rem}
+  .ex.no::before{content:"✗";position:absolute;left:0;color:var(--bad);font-weight:700}
+  .ex.yes::before{content:"✓";position:absolute;left:0;color:var(--good);font-weight:700}
+  .ex.no{color:var(--muted)}
+  .why{font-size:.88rem;color:var(--muted);font-weight:300;line-height:1.75;margin-top:.8rem}
+  b.k{color:var(--violet)}
+  .strike{color:var(--bad);text-decoration:line-through}
+
+  /* question cards */
+  .q{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:1.1rem 1.2rem;margin-top:.75rem;display:grid;grid-template-columns:30px 1fr;gap:.2rem .9rem;
+    position:relative;overflow:hidden;transition:border-color .2s}
+  .q::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--violet);
+    transform:scaleX(0);transform-origin:left;transition:transform .3s}
+  .q:hover::before{transform:scaleX(1)}
+  .n{font-weight:600;color:var(--muted);font-size:1rem;line-height:1.6}
+  .stem{font-size:1rem;line-height:1.7}
+  .opts{grid-column:2;display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.8rem}
+  .opt{font-family:inherit;font-size:.82rem;font-weight:600;letter-spacing:.3px;padding:.35rem .9rem;
+    border-radius:100px;cursor:pointer;background:var(--surface-2);color:var(--ink);
+    border:1px solid var(--line);transition:all .2s}
+  .opt:hover{border-color:var(--violet);color:var(--violet)}
+  .opt:disabled{cursor:default}
+  .opt.right{background:var(--good-soft);border-color:var(--good-line);color:var(--good)}
+  .opt.wrong{background:var(--bad-soft);border-color:var(--bad-line);color:var(--bad);text-decoration:line-through}
+  .seg{border-bottom:2px solid var(--muted);cursor:pointer;padding:1px 2px;transition:background .2s}
+  .seg sup{color:var(--violet);font-weight:700;font-size:.66em;border:none;margin-left:1px}
+  .seg:hover{background:var(--violet-deep)}
+  .seg.right{background:var(--good-soft);border-color:var(--good)}
+  .seg.wrong{background:var(--bad-soft);border-color:var(--bad)}
+  .type-row{grid-column:2;display:flex;gap:.5rem;margin-top:.8rem;flex-wrap:wrap}
+  input[type=text],select{font-family:inherit;font-size:.85rem;padding:.4rem .7rem;border-radius:8px;
+    background:var(--surface-2);color:var(--ink);border:1px solid var(--line);max-width:100%}
+  input[type=text]{width:180px}
+  input:focus-visible,select:focus-visible,.opt:focus-visible,.btn:focus-visible,.theme-toggle:focus-visible,.seg:focus-visible{outline:2px solid var(--violet);outline-offset:2px}
+  input.right,select.right{border-color:var(--good-line);background:var(--good-soft)}
+  input.wrong,select.wrong{border-color:var(--bad-line);background:var(--bad-soft)}
+  .fb{grid-column:2;margin-top:.8rem;padding:.7rem .9rem;border-radius:10px;font-size:.86rem;
+    font-weight:300;line-height:1.7;display:none}
+  .fb.show{display:block}
+  .fb.ok{background:var(--good-soft);border:1px solid var(--good-line);color:var(--muted)}
+  .fb.no{background:var(--bad-soft);border:1px solid var(--bad-line);color:var(--muted)}
+  .fb b{display:block;margin-bottom:.15rem;font-weight:600}
+  .fb.ok b{color:var(--good)}
+  .fb.no b{color:var(--bad)}
+
+  .score{margin-top:2rem;padding:1.5rem;border:1px solid var(--violet-line);border-radius:18px;
+    background:var(--violet-deep);text-align:center;display:none}
+  .score.show{display:block}
+  .score strong{font-size:2rem;font-weight:700;letter-spacing:-1px;display:block;margin-bottom:.3rem;color:var(--violet)}
+  .keyblock{margin-top:3rem}
+  .keyblock p{font-size:.88rem;font-weight:300;color:var(--muted);margin-top:.7rem;line-height:1.7}
+  .keyblock p b:first-child{color:var(--key-accent)}
+  footer{padding:2.5rem 1.5rem;color:var(--muted);font-size:.78rem;text-align:center;border-top:1px solid var(--line);margin-top:3rem}
+  footer a{color:var(--muted);text-decoration:none}
+  footer a:hover{color:var(--violet)}
+
+  .print-opts,.rule,.keyblock,.printhead,.cprint,.pkey{display:none}
+
+  @media(max-width:600px){
+    .wrap{padding:3.5rem 1.1rem 4rem}
+    .q{grid-template-columns:24px 1fr;padding:1rem}
+    input[type=text]{width:100%}
+  }
+
+  @media print{
+    @page{margin:15mm}
+    :root,:root[data-theme]{--bg:#fff;--surface:#fff;--surface-2:#fff;--ink:#000;--muted:#333;--line:#bbb;
+      --violet:#000;--violet-deep:#fff;--violet-line:#bbb;--accent:#000;--accent-soft:#fff;
+      --key-accent:#000;--key-deep:#fff;--key-line:#bbb;
+      --good:#000;--good-soft:#fff;--good-line:#bbb;--bad:#000;--bad-soft:#fff;--bad-line:#bbb}
+    body{font-size:11.5pt;line-height:1.5}
+    .theme-toggle,.back-link,.eyebrow,.actions,.progress,.lede,.score,.fb,.opts,.type-row,.instr-screen,footer{display:none!important}
+    .wrap{max-width:none;padding:0}
+    h1{font-size:1.6rem;letter-spacing:-.5px;margin-bottom:.4rem}
+    h1 .accent{color:#000;-webkit-text-fill-color:#000;background:none}
+    .printhead{display:block;border-bottom:1px solid #000;padding-bottom:6px;margin-bottom:14px;font-size:.9rem}
+    .q{border:none;padding:6px 0;margin:0;break-inside:avoid;page-break-inside:avoid}
+    .q::before,.pat::before{display:none}
+    .pat{border:none;border-radius:0;margin:0}
+    .pat .body{display:block!important;border:none;padding:0 0 0 1.2rem}
+    .pat>summary{padding:8px 0 0}
+    .pat>summary::before{content:"■";font-size:.55em}
+    .print-opts{display:inline;color:#000}
+    .rule{display:block;border-bottom:1px solid #999;height:20px;margin-top:6px}
+    .cprint{display:block;margin-top:5px;font-size:10pt;color:#333}
+    .pkey{display:block;font-size:10pt;margin:8px 0 14px;padding:8px 10px;border:1px solid #999;columns:2;column-gap:22px}
+    .pkey b{display:block;columns:1;margin-bottom:3px}
+    .pkey span{display:block;break-inside:avoid}
+    .seg{cursor:default}
+    section{margin-top:18px}
+    section>h2{font-size:1.2rem;border-bottom:1px solid #000}
+    section>h2::before{display:none}
+    body.print-key .keyblock{display:block;break-before:page}
+    body.print-key .rule{display:none}
+    body.print-blank .patterns{display:none}
+  }
+</style>
+</head>
+<body class="print-blank">
+
+<button class="theme-toggle" id="theme" title="Toggle light/dark mode">🌙</button>
+
+<div class="wrap">
+
+  <div class="printhead">Parallel Structure · TOEFL Error Correction · Name: ______________________  Date: __________</div>
+
+  <div class="hero">
+    <a class="back-link" href="./index.html">← TOEFL Error Correction</a>
+    <p class="eyebrow">Phil Young’s English School · Sheet 6 of 10</p>
+    <h1>Parallel <span class="accent">structure</span></h1>
+    <p class="lede">This is the family students rarely get taught and graders notice immediately. Nothing here is about knowing a rule — it is about finishing a sentence in the shape you started it. Twelve patterns below, then thirty exercises.</p>
+    <div class="actions">
+      <button class="btn btn-view" id="pw">Print worksheet</button>
+      <button class="btn btn-key" id="pk">Print answer key</button>
+      <button class="btn btn-dl" id="reset">Start over</button>
+    </div>
+  </div>
+
+  <div class="progress">
+    <span id="ptext">0 of 30 answered</span>
+    <div class="track"><div class="fill" id="pfill"></div></div>
+    <span id="pscore"></span>
+  </div>
+
+  <section class="patterns">
+    <h2>The twelve patterns</h2>
+    <p class="lede">Whatever grammatical shape the first item takes, every item after it has to take the same one.</p>
+
+    <details class="pat"><summary>1 · Items in a series take the same form</summary><div class="body">
+      <div class="ex no">The program teaches employees to operate the machinery, to record results and <span class="strike">monitoring</span> the safety systems.</div>
+      <div class="ex yes">The program teaches employees <b>to operate</b> the machinery, <b>to record</b> results and <b>to monitor</b> the safety systems.</div>
+      <p class="why">Read the first item, then try each later item in the same slot. If <i>the program teaches employees monitoring</i> sounds wrong on its own, the item is not parallel. The error is almost always in the last element, because that is where writers lose the thread — so check the last one first.</p>
+    </div></details>
+
+    <details class="pat"><summary>2 · Correlative pairs take matching forms</summary><div class="body">
+      <div class="ex no">impressed not only by the originality but also <span class="strike">the budget</span></div>
+      <div class="ex yes">impressed <b>not only by the originality</b> but <b>also by the budget</b></div>
+      <p class="why">Whatever follows the first half must match what follows the second: <i>both…and, either…or, neither…nor, not only…but also, whether…or</i>. Cover the first half and read the second alone — if it needs a word the first half supplied, the pair is unbalanced.</p>
+    </div></details>
+
+    <details class="pat"><summary>3 · Gerunds and infinitives do not mix</summary><div class="body">
+      <div class="ex no">She spends her weekends <span class="strike">to paint</span> watercolors, hiking and reading.</div>
+      <div class="ex yes">She spends her weekends <b>painting</b> watercolors, <b>hiking</b> and <b>reading</b>.</div>
+      <p class="why">A series is either all gerunds or all infinitives. Which one you need is decided by the word in front of the series, not by preference: <i>enjoys reading</i> and <i>hopes to read</i> are both fixed, and the whole list follows whichever the governing word demands.</p>
+    </div></details>
+
+    <details class="pat"><summary>4 · Repeat the marker or drop it every time</summary><div class="body">
+      <div class="ex no">encourages participants to read widely, to write regularly and <span class="strike">participate</span> in seminars</div>
+      <div class="ex yes">encourages participants <b>to read</b> widely, <b>to write</b> regularly and <b>to participate</b> in seminars · encourages participants <b>to read</b> widely, <b>write</b> regularly and <b>participate</b> in seminars</div>
+      <p class="why">Both versions above are correct. What is not allowed is repeating <i>to</i> for some items and dropping it for others. The same all-or-nothing rule governs a repeated article, auxiliary or preposition across a list.</p>
+    </div></details>
+
+    <details class="pat"><summary>5 · Active and passive should not alternate</summary><div class="body">
+      <div class="ex no">The documents were collected, were catalogued and <span class="strike">volunteers digitized them</span>.</div>
+      <div class="ex yes">The documents <b>were collected</b>, <b>catalogued</b> and <b>digitized</b> before the archive closed.</div>
+      <p class="why">Switching voice mid-series changes the subject halfway through and breaks the line the reader is following. Pick the voice that suits the whole sentence and keep it. The giveaway is a new subject appearing inside what should be a list of verbs.</p>
+    </div></details>
+
+    <details class="pat"><summary>6 · Word class must match</summary><div class="body">
+      <div class="ex no">a director who was experienced, articulate and <span class="strike">who communicates well</span></div>
+      <div class="ex yes">a director who was <b>experienced</b>, <b>articulate</b> and <b>communicative</b></div>
+      <p class="why">Adjectives pair with adjectives, nouns with nouns, clauses with clauses. Swapping a clause into a list of adjectives is the most common version, and it usually means an adjective exists that the writer did not reach for: <i>reliability</i> for <i>because she was reliable</i>, <i>communicative</i> for <i>who communicates well</i>.</p>
+    </div></details>
+
+    <details class="pat"><summary>7 · Repeat the clause marker</summary><div class="body">
+      <div class="ex no">The study concludes that the treatment works and <span class="strike">the effect persists</span> for six months.</div>
+      <div class="ex yes">The study concludes <b>that</b> the treatment works and <b>that</b> the effect persists for six months.</div>
+      <p class="why">When two or more clauses hang from the same verb, each needs its own <i>that</i>, or the reader briefly parses the second clause as a new main sentence. The same applies to <i>who</i>, <i>which</i> and <i>whether</i> in a series of clauses.</p>
+    </div></details>
+
+    <details class="pat"><summary>8 · Put the correlative next to what it governs</summary><div class="body">
+      <div class="ex no">The policy <span class="strike">not only changes</span> the requirements but also the deadlines.</div>
+      <div class="ex yes">The policy <b>changes not only the requirements but also the deadlines</b>.</div>
+      <p class="why">The wrong version promises a second verb and never supplies one. Place each half of the pair immediately before the elements being joined: if you are joining two nouns, both halves sit in front of nouns; if you are joining two verbs, both sit in front of verbs.</p>
+    </div></details>
+
+    <details class="pat"><summary>9 · Comparisons compare like with like</summary><div class="body">
+      <div class="ex no">The climate of southern Brazil is milder than <span class="strike">Canada</span>.</div>
+      <div class="ex yes">The climate of southern Brazil is milder than <b>that of Canada</b>. · The results exceeded <b>those of</b> the earlier trial.</div>
+      <p class="why">The faulty version compares a climate to a country. Supply <i>that of</i> for a singular noun and <i>those of</i> for a plural one, or repeat the noun. The same logic governs <i>like</i> and <i>unlike</i>: <i>unlike the earlier study, this one surveyed 400 cases</i>, not <i>unlike the earlier study, the sample was larger</i>.</p>
+    </div></details>
+
+    <details class="pat"><summary>10 · Prefer X to Y, rather than, as well as</summary><div class="body">
+      <div class="ex no">Most students prefer working in groups <span class="strike">than studying</span> alone.</div>
+      <div class="ex yes">Most students prefer working in groups <b>to studying</b> alone. · They chose to wait <b>rather than</b> to withdraw.</div>
+      <p class="why"><i>Prefer</i> pairs with <i>to</i>, never with <i>than</i>: <i>prefer X to Y</i> or <i>would rather X than Y</i>. Whatever sits on both sides of <i>rather than</i>, <i>as well as</i> and <i>instead of</i> must also match in form, since those phrases join two elements exactly as <i>and</i> does.</p>
+    </div></details>
+
+    <details class="pat"><summary>11 · A shared word must fit both halves</summary><div class="body">
+      <div class="ex no">She has always been <span class="strike">interested and committed to</span> the project.</div>
+      <div class="ex yes">She has always been <b>interested in and committed to</b> the project.</div>
+      <p class="why">Two halves can share a word only if both halves actually take it. <i>Interested</i> needs <i>in</i>, so it cannot borrow the <i>to</i> that belongs to <i>committed</i>. The same trap appears with verb forms: <i>has never and will never accept</i> is faulty because <i>has never accept</i> is not English — write <i>has never accepted and will never accept</i>.</p>
+    </div></details>
+
+    <details class="pat"><summary>12 · Lists after a colon or <i>the following</i></summary><div class="body">
+      <div class="ex no">The application must include the following: a transcript, two letters and <span class="strike">you should write a personal statement</span>.</div>
+      <div class="ex yes">The application must include the following: <b>a transcript</b>, <b>two letters of reference</b> and <b>a personal statement</b>.</div>
+      <p class="why">Everything after a colon or after <i>the following</i> belongs to one list and takes one form. This matters most in the writing tasks, where a list that starts with noun phrases and drifts into full sentences reads as carelessness even when every individual item is grammatical.</p>
+    </div></details>
+  </section>
+
+  <section>
+    <h2>Set A · Choose the correct form</h2>
+    <p class="instr">Questions 1–12. <span class="instr-screen">Tap the version that matches the shape the sentence already set.</span></p>
+    <div id="setA"></div>
+  </section>
+
+  <section>
+    <h2>Set B · Find the error</h2>
+    <p class="instr">Questions 13–22. Four parts of each sentence are underlined. <span class="instr-screen">Tap the one that is wrong.</span> Only one contains an error.</p>
+    <div id="setB"></div>
+  </section>
+
+  <section>
+    <h2>Set C · Correct the sentence</h2>
+    <p class="instr">Questions 23–30. Each sentence contains exactly one element that breaks the parallel — and at least two others that are already correctly matched. Find the error, write the correction, and name the pattern behind it. <span class="instr-screen">Both parts must be right to score.</span></p>
+    <div id="setC"></div>
+  </section>
+
+  <div class="score" id="scorebox"></div>
+
+  <div class="keyblock">
+    <h2>Answer key</h2>
+    <div id="key"></div>
+  </div>
+</div>
+
+<footer>Part of the <a href="./index.html">TOEFL Error Correction</a> section · <a href="../index.html">Advanced Hub</a> · Phil Young’s English School</footer>
+
+<script>
+const A=[
+ {s:["The internship requires students to attend weekly seminars, to submit monthly reports and ","before the term ends."],o:["presenting their findings","to present their findings"],a:1,w:"The first two items set the pattern with <i>to</i> + base form, so the third must match. Dropping <i>to</i> from all three would also work \u2014 what is not allowed is doing it twice and then stopping."},
+ {s:["The committee was impressed not only by the originality of the research but also ","that the team met despite the funding cuts."],o:["by the deadlines","the deadlines"],a:0,w:"Cover <i>not only</i> and read the rest alone. Because the first half supplied <i>by</i>, the second half needs its own."},
+ {s:["She enjoys reading academic articles, attending the conferences that her department funds and ","with colleagues who work abroad."],o:["to correspond","corresponding"],a:1,w:"<i>Enjoys</i> governs the whole series and takes gerunds. A series is either all gerunds or all infinitives, never a mix."},
+ {s:["The samples were collected in June, analyzed in the weeks that followed and ","in the facility that the university built."],o:["the technicians stored them","stored"],a:1,w:"The series is passive throughout. Introducing a new subject halfway breaks the line the reader is following."},
+ {s:["The board wanted a director who was experienced, articulate and ","enough to manage a department of forty."],o:["communicates well","organized"],a:1,w:"Adjectives pair with adjectives. A verb phrase cannot join a list of adjectives, however sensible its meaning."},
+ {s:["The report states that the funding has been cut and ","the deadline will be extended by six months."],o:["that","which"],a:0,w:"Two clauses hanging from the same verb each need their own <i>that</i>. Without it the second clause reads briefly as a new sentence."},
+ {s:["The program encourages participants to read widely, to write regularly and ","in the seminars that meet each Thursday."],o:["participate","to participate"],a:1,w:"Repeat the marker every time or drop it every time. Here the first two items carry <i>to</i>, so the third must as well."},
+ {s:["The new policy ","but also the deadlines that the office enforces each term."],o:["not only changes the requirements","changes not only the requirements"],a:1,w:"The pair joins two nouns, so both halves must sit in front of nouns. Placing <i>not only</i> before the verb promises a second verb that never arrives."},
+ {s:["The climate of southern Brazil is far milder than ","which surprises visitors who expect uniform heat."],o:["Canada,","that of Canada,"],a:1,w:"Without <i>that of</i> the sentence compares a climate to a country. Use <i>that of</i> for a singular noun and <i>those of</i> for a plural one."},
+ {s:["Most graduate students prefer working in small groups ","alone in the library that closes at ten."],o:["than studying","to studying"],a:1,w:"<i>Prefer</i> pairs with <i>to</i>. <i>Than</i> belongs with <i>would rather</i>: <i>would rather work in groups than study alone</i>."},
+ {s:["She has always been ","the project that the institute launched when the funding was finally approved."],o:["interested in and committed to","interested and committed to"],a:0,w:"Two halves can share a word only if both take it. <i>Interested</i> needs <i>in</i> and cannot borrow the <i>to</i> that belongs to <i>committed</i>."},
+ {s:["The application must include the following: a transcript, two letters of reference and ","."],o:["you should write a personal statement","a personal statement"],a:1,w:"Everything after <i>the following</i> belongs to one list and takes one form. A full clause cannot join a list of noun phrases."}
+];
+const B=[
+ {p:[["The training program teaches employees ",0],["monitoring the safety systems",1],[", ",0],["to operate",1],[" the machinery and ",0],["to record",1],[" the results that the plant ",0],["requires",1],[" each shift",0]],a:0,f:"to monitor the safety systems",w:"The two later items set the pattern with <i>to</i> + base form. Test the odd one alone: <i>teaches employees monitoring</i> does not stand."},
+ {p:[["The committee was impressed ",0],["not only by the originality",1],[" of the design ",0],["but also the budget",1],[" that ",0],["the architects",1],[" ",0],["proposed",1],[" for the second phase",0]],a:1,f:"but also by the budget",w:"The first half supplied <i>by</i>, so the second half needs its own. Read the second half alone and the missing preposition is audible."},
+ {p:[["She spends her weekends ",0],["to paint watercolors",1],[", ",0],["hiking",1],[" in the mountains and ",0],["reading",1],[" the novels that her sister ",0],["keeps recommending",1]],a:0,f:"painting watercolors",w:"<i>Spends her weekends</i> governs gerunds, as the two later items show. A series cannot mix gerunds with infinitives."},
+ {p:[["The staff ",0],["collected",1],[" the documents, ",0],["they were catalogued",1],[" during the spring and volunteers ",0],["digitized",1],[" them before the archive ",0],["closed",1],[" for renovation",0]],a:1,f:"catalogued them",w:"The series is active on either side of the middle item. Switching to the passive changes the subject halfway through the list."},
+ {p:[["The board wanted a director who was ",0],["experienced",1],[", ",0],["articulate",1],[" and ",0],["who communicates well",1],[" with the staff that she ",0],["would eventually manage",1]],a:2,f:"communicative",w:"A relative clause cannot join a list of adjectives. The adjective the writer needed already exists."},
+ {p:[["The study ",0],["concludes that",1],[" the treatment ",0],["reduces",1],[" inflammation, ",0],["that it shortens",1],[" recovery and ",0],["the effect persists",1],[" for six months",0]],a:3,f:"that the effect persists",w:"Three clauses hang from <i>concludes</i>. The first two carry <i>that</i>, so the third must as well."},
+ {p:[["The new policy ",0],["not only changes the requirements",1],[" ",0],["but also the deadlines",1],[" that ",0],["the office",1],[" ",0],["enforces",1],[" each term",0]],a:0,f:"changes not only the requirements",w:"The pair joins two nouns, so <i>not only</i> must sit in front of a noun. As written it promises a second verb."},
+ {p:[["The climate of southern Brazil ",0],["is far milder",1],[" ",0],["than Canada",1],[", although visitors who ",0],["expect",1],[" uniform heat ",0],["are often surprised",1],[" by the winters",0]],a:1,f:"than that of Canada",w:"As written the sentence compares a climate to a country. <i>That of</i> supplies the missing noun."},
+ {p:[["Most graduate students ",0],["prefer",1],[" ",0],["working",1],[" in small groups that meet weekly ",0],["than studying",1],[" alone in the library that ",0],["closes",1],[" at ten",0]],a:2,f:"to studying",w:"<i>Prefer</i> pairs with <i>to</i>. The gerunds on both sides are already correctly matched \u2014 only the joining word is wrong."},
+ {p:[["She ",0],["has always been",1],[" ",0],["interested and committed to",1],[" the project that the institute ",0],["launched",1],[" when the funding ",0],["was approved",1]],a:1,f:"interested in and committed to",w:"<i>Interested</i> takes <i>in</i> and cannot share the <i>to</i> that belongs to <i>committed</i>."}
+];
+const PAT=["","Items in a series take the same form","Correlative pairs take matching forms","Gerunds and infinitives do not mix",
+ "Repeat the marker or drop it every time","Active and passive should not alternate","Word class must match",
+ "Repeat the clause marker","Put the correlative next to what it governs","Comparisons compare like with like",
+ "Prefer X to Y, rather than, as well as","A shared word must fit both halves","Lists after a colon or the following"];
+const C=[
+ {t:"The internship requires students to attend weekly seminars, to submit monthly reports and presenting their findings before the term ends.",x:"presenting their findings",a:["to present their findings","to present"],p:1,
+  w:"The first two items carry <i>to</i>, so the third must as well. Dropping <i>to</i> from all three would be equally correct."},
+ {t:"The panel praised the project not only for its originality but also its feasibility, which the engineers had demonstrated in the first trial.",x:"but also its feasibility",a:["but also for its feasibility","for its feasibility"],p:2,
+  w:"The first half of the pair supplied <i>for</i>, so the second half needs its own. Read the second half alone to hear the gap."},
+ {t:"He devoted the year to learning Portuguese, to teaching evening classes and to travel through the south of Brazil.",x:"to travel",a:["to traveling","traveling"],p:3,
+  w:"Here <i>to</i> is a preposition, as the first two items show, so it takes a gerund. The parallel is <i>to learning, to teaching, to traveling</i>."},
+ {t:"The proposal was drafted in March, revised by the committee in April and the board approved it in May.",x:"the board approved it",a:["approved"],p:5,
+  w:"The series is passive on both sides of the last item. Introducing a new subject at the end breaks the list."},
+ {t:"The candidate was praised for her intelligence, her diligence and because she was reliable throughout the trial period.",x:"because she was reliable",a:["her reliability","reliability"],p:6,
+  w:"Two noun phrases set the pattern, so the third item must be a noun phrase too."},
+ {t:"The memo explains that the office will close for renovation and the staff will work remotely until the building reopens.",x:"and the staff",a:["and that the staff","that the staff"],p:7,
+  w:"Both clauses hang from <i>explains</i>, so each needs its own <i>that</i>."},
+ {t:"The population of Curitiba is considerably smaller than Rio, though its metropolitan area has grown steadily since 1990.",x:"than Rio",a:["than that of rio","that of rio"],p:9,
+  w:"As written the sentence compares a population to a city. <i>That of</i> supplies the noun being compared."},
+ {t:"The department has never and will never accept applications that arrive after the published deadline.",x:"has never and will never accept",a:["has never accepted and will never accept","has never accepted"],p:11,
+  w:"The two halves cannot share <i>accept</i>, because <i>has never accept</i> is not English. Each half needs its own verb form."}
+];
+
+let ans={},total=30;
+const $=id=>document.getElementById(id);
+const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+
+function save(){try{localStorage.setItem("toefl-parallel",JSON.stringify(ans))}catch(e){}}
+function load(){try{ans=JSON.parse(localStorage.getItem("toefl-parallel")||"{}")}catch(e){ans={}}}
+
+function build(){
+  let h="";
+  A.forEach((q,i)=>{const n=i+1;
+    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${q.s[0]}<span class="print-opts">( ${q.o[0]} / ${q.o[1]} )</span><span class="blank">_______</span> ${q.s[1]}</div>
+    <div class="opts">${q.o.map((o,j)=>`<button class="opt" data-q="${n}" data-i="${j}">${o}</button>`).join("")}</div>
+    <div class="fb" id="fb${n}"></div></div>`;});
+  $("setA").innerHTML=h;
+
+  h="";
+  B.forEach((q,i)=>{const n=i+13;let li=0;
+    const body=q.p.map(([t,u])=>u?`<span class="seg" data-q="${n}" data-i="${li}">${t}<sup>${"ABCD"[li++]}</sup></span>`:esc(t)).join("");
+    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${body}.</div><div class="fb" id="fb${n}"></div></div>`;});
+  $("setB").innerHTML=h;
+
+  h=`<div class="pkey"><b>Pattern reference</b>${PAT.slice(1).map((t,j)=>`<span>${j+1}. ${t}</span>`).join("")}</div>`;
+  const sel=PAT.slice(1).map((t,j)=>`<option value="${j+1}">${j+1} &middot; ${t}</option>`).join("");
+  C.forEach((q,i)=>{const n=i+23;
+    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${esc(q.t)}</div>
+    <div class="type-row"><input type="text" id="in${n}" data-q="${n}" placeholder="correction" autocomplete="off" spellcheck="false">
+    <select id="sel${n}"><option value="">which pattern?</option>${sel}</select>
+    <button class="opt btn-check" data-check="${n}">Check</button></div>
+    <div class="cprint">Correction: ______________________________ &nbsp; Pattern no.: ______</div><div class="fb" id="fb${n}"></div></div>`;});
+  $("setC").innerHTML=h;
+
+  $("key").innerHTML=[...A.map((q,i)=>[i+1,q.o[q.a],q.w]),...B.map((q,i)=>[i+13,"("+"ABCD"[q.a]+") → "+q.f,q.w]),...C.map((q,i)=>[i+23,`<i>${q.x}</i> &rarr; <b>${q.a[0]}</b> &middot; pattern ${q.p} (${PAT[q.p]})`,q.w])]
+    .map(([n,a,w])=>`<p><b>${n}.</b> ${a} — ${w}</p>`).join("");
+}
+
+function mark(n,ok,extra){
+  const f=$("fb"+n);f.className="fb show "+(ok?"ok":"no");
+  const q=(n<13?A[n-1]:n<23?B[n-13]:C[n-23]);
+  f.innerHTML=`<b>${ok?"Correct":"Not correct"}</b>${extra||""}${q.w}`;
+  ans[n]=ok;save();update();
+}
+function update(){
+  const done=Object.keys(ans).length,right=Object.values(ans).filter(Boolean).length;
+  $("ptext").textContent=done+" of "+total+" answered";
+  $("pfill").style.width=(done/total*100)+"%";
+  $("pscore").textContent=done?right+" right":"";
+  const sb=$("scorebox");
+  if(done===total){sb.className="score show";sb.innerHTML=`<strong>${right} / 30</strong><br>${right>=27?"Exam-ready on this point.":right>=21?"Solid. Reread the patterns behind the items you missed.":"Work back through the twelve patterns, then reset and try again."}`;}
+  else sb.className="score";
+}
+
+document.addEventListener("click",e=>{
+  const o=e.target.closest(".opt[data-q]");
+  if(o){const n=+o.dataset.q,i=+o.dataset.i,q=A[n-1];
+    document.querySelectorAll(`.opt[data-q="${n}"]`).forEach(b=>{b.className="opt";b.disabled=true});
+    o.classList.add(i===q.a?"right":"wrong");
+    if(i!==q.a)document.querySelector(`.opt[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");
+    mark(n,i===q.a);return;}
+
+  const s=e.target.closest(".seg");
+  if(s){const n=+s.dataset.q,i=+s.dataset.i,q=B[n-13];
+    document.querySelectorAll(`.seg[data-q="${n}"]`).forEach(x=>x.style.pointerEvents="none");
+    s.classList.add(i===q.a?"right":"wrong");
+    if(i!==q.a)document.querySelector(`.seg[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");
+    mark(n,i===q.a,`Correction: <b>${"ABCD"[q.a]} → ${q.f}</b>. `);return;}
+
+  const c=e.target.closest("[data-check]");
+  if(c){check(+c.dataset.check);}
+});
+document.addEventListener("keydown",e=>{
+  if(e.key==="Enter"&&e.target.dataset.q&&e.target.tagName==="INPUT")check(+e.target.dataset.q);
+});
+function check(n){
+  const el=$("in"+n),sl=$("sel"+n),q=C[n-23];
+  const v=el.value.trim().toLowerCase().replace(/\s+/g," ").replace(/[.,;]$/,"");
+  if(!v||!sl.value){const f=$("fb"+n);f.className="fb show no";f.innerHTML="<b>Not yet</b>Type the corrected verb and choose a pattern before checking.";return;}
+  const vOk=q.a.some(a=>a.toLowerCase()===v),pOk=+sl.value===q.p,ok=vOk&&pOk;
+  el.className=vOk?"right":"wrong";sl.className=pOk?"right":"wrong";
+  el.disabled=true;sl.disabled=true;
+  let lead="";
+  if(vOk&&!pOk)lead=`The verb is right. The pattern is <b>${q.p} &middot; ${PAT[q.p]}</b>. `;
+  else if(!vOk&&pOk)lead=`Right pattern. The error is <i>${q.x}</i> &rarr; <b>${q.a[0]}</b>. `;
+  else if(!ok)lead=`The error is <i>${q.x}</i> &rarr; <b>${q.a[0]}</b>, pattern <b>${q.p} &middot; ${PAT[q.p]}</b>. `;
+  mark(n,ok,lead);
+}
+
+$("theme").onclick=()=>{
+  const d=document.documentElement.dataset.theme==="dark";
+  const t=d?"light":"dark";
+  document.documentElement.dataset.theme=t;
+  $("theme").textContent=t==="dark"?"🌙":"☀️";
+  try{localStorage.setItem("toefl-theme",t)}catch(e){}
+};
+$("pw").onclick=()=>{document.body.className="print-blank";document.querySelectorAll(".pat").forEach(p=>p.open=false);print();};
+$("pk").onclick=()=>{document.body.className="print-key";document.querySelectorAll(".pat").forEach(p=>p.open=true);print();};
+$("reset").onclick=()=>{ans={};save();location.reload();};
+
+(function(){
+  try{const t=localStorage.getItem("toefl-theme");if(t){document.documentElement.dataset.theme=t;$("theme").textContent=t==="dark"?"🌙":"☀️";}}catch(e){}
+  load();build();
+  Object.keys(ans).forEach(n=>{ // replay locked state
+    n=+n;
+    if(n<13){const q=A[n-1];document.querySelectorAll(`.opt[data-q="${n}"]`).forEach(b=>b.disabled=true);
+      document.querySelector(`.opt[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");}
+    else if(n<23){const q=B[n-13];document.querySelectorAll(`.seg[data-q="${n}"]`).forEach(x=>x.style.pointerEvents="none");
+      document.querySelector(`.seg[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");}
+    else{const q=C[n-23],el=$("in"+n),sl=$("sel"+n);el.value=q.a[0];sl.value=q.p;el.disabled=true;sl.disabled=true;el.className=sl.className=ans[n]?"right":"wrong";}
+    const f=$("fb"+n),q=(n<13?A[n-1]:n<23?B[n-13]:C[n-23]);
+    f.className="fb show "+(ans[n]?"ok":"no");f.innerHTML=`<b>${ans[n]?"Correct":"Not correct"}</b>${q.w}`;
+  });
+  update();
+})();
+</script>
+</body>
+</html>
