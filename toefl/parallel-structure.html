@@ -87,6 +87,10 @@
   .why{font-size:.88rem;color:var(--muted);font-weight:300;line-height:1.75;margin-top:.8rem}
   b.k{color:var(--violet)}
   .strike{color:var(--bad);text-decoration:line-through}
+  .corr{margin:.35rem 0 .55rem;font-size:.97rem;line-height:1.75;color:var(--ink);font-weight:400}
+  .corr b{color:var(--good);font-weight:700}
+  .patname{font-size:.72rem;text-transform:uppercase;letter-spacing:.09em;color:var(--violet);
+    font-weight:600;margin-bottom:.45rem}
 
   /* question cards */
   .q{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
@@ -296,7 +300,7 @@
 
   <section>
     <h2>Set C · Correct the sentence</h2>
-    <p class="instr">Questions 23–30. Each sentence contains exactly one element that breaks the parallel — and at least two others that are already correctly matched. Find the error, write the correction, and name the pattern behind it. <span class="instr-screen">Both parts must be right to score.</span></p>
+    <p class="instr">Questions 23–30. Each sentence contains exactly one element that breaks the parallel — and at least two others that are already correctly matched. Find the error, write the correction, and name the pattern behind it. <span class="instr-screen">Write your version in your notebook, then reveal the correction and compare.</span></p>
     <div id="setC"></div>
   </section>
 
@@ -360,12 +364,16 @@ const C=[
   w:"The two halves cannot share <i>accept</i>, because <i>has never accept</i> is not English. Each half needs its own verb form."}
 ];
 
-let ans={},total=30;
+const _PA=[7, 2, 10, 0, 5, 11, 3, 8, 1, 6, 9, 4],_PB=[6, 3, 9, 1, 7, 4, 0, 8, 2, 5],_PC=[2, 5, 0, 7, 3, 6, 1, 4];
+[[A,_PA],[B,_PB],[C,_PC]].forEach(function(pair){var arr=pair[0],p=pair[1],c=arr.slice();
+  p.forEach(function(src,dst){arr[dst]=c[src];});});
+
+let ans={},rev={},total=22;
 const $=id=>document.getElementById(id);
 const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
 
-function save(){try{localStorage.setItem("toefl-parallel",JSON.stringify(ans))}catch(e){}}
-function load(){try{ans=JSON.parse(localStorage.getItem("toefl-parallel")||"{}")}catch(e){ans={}}}
+function save(){try{localStorage.setItem("toefl-parallel-v2",JSON.stringify({a:ans,r:rev}))}catch(e){}}
+function load(){try{const d=JSON.parse(localStorage.getItem("toefl-parallel-v2")||"{}");ans=d.a||{};rev=d.r||{};}catch(e){ans={};rev={};}}
 
 function build(){
   let h="";
@@ -382,13 +390,11 @@ function build(){
   $("setB").innerHTML=h;
 
   h=`<div class="pkey"><b>Pattern reference</b>${PAT.slice(1).map((t,j)=>`<span>${j+1}. ${t}</span>`).join("")}</div>`;
-  const sel=PAT.slice(1).map((t,j)=>`<option value="${j+1}">${j+1} &middot; ${t}</option>`).join("");
   C.forEach((q,i)=>{const n=i+23;
     h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${esc(q.t)}</div>
-    <div class="type-row"><input type="text" id="in${n}" data-q="${n}" placeholder="correction" autocomplete="off" spellcheck="false">
-    <select id="sel${n}"><option value="">which pattern?</option>${sel}</select>
-    <button class="opt btn-check" data-check="${n}">Check</button></div>
-    <div class="cprint">Correction: ______________________________ &nbsp; Pattern no.: ______</div><div class="fb" id="fb${n}"></div></div>`;});
+    <div class="type-row"><button class="opt btn-reveal" data-reveal="${n}">Reveal the correction</button></div>
+    <div class="cprint">Your correction: ______________________________ &nbsp; Pattern no.: ______</div>
+    <div class="fb" id="fb${n}"></div></div>`;});
   $("setC").innerHTML=h;
 
   $("key").innerHTML=[...A.map((q,i)=>[i+1,q.o[q.a],q.w]),...B.map((q,i)=>[i+13,"("+"ABCD"[q.a]+") → "+q.f,q.w]),...C.map((q,i)=>[i+23,`<i>${q.x}</i> &rarr; <b>${q.a[0]}</b> &middot; pattern ${q.p} (${PAT[q.p]})`,q.w])]
@@ -407,7 +413,7 @@ function update(){
   $("pfill").style.width=(done/total*100)+"%";
   $("pscore").textContent=done?right+" right":"";
   const sb=$("scorebox");
-  if(done===total){sb.className="score show";sb.innerHTML=`<strong>${right} / 30</strong><br>${right>=27?"Exam-ready on this point.":right>=21?"Solid. Reread the patterns behind the items you missed.":"Work back through the twelve patterns, then reset and try again."}`;}
+  if(done===total){sb.className="score show";sb.innerHTML=`<strong>${right} / 22</strong><br>${right>=20?"Exam-ready on this family.":right>=16?"Solid. Reread the patterns behind the items you missed.":"Work back through the twelve patterns, then reset and try again."}<br><span style="font-size:.85rem;color:var(--muted)">Sets A and B are scored. Set C is for written practice.</span>`;}
   else sb.className="score";
 }
 
@@ -426,25 +432,31 @@ document.addEventListener("click",e=>{
     if(i!==q.a)document.querySelector(`.seg[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");
     mark(n,i===q.a,`Correction: <b>${"ABCD"[q.a]} → ${q.f}</b>. `);return;}
 
-  const c=e.target.closest("[data-check]");
-  if(c){check(+c.dataset.check);}
+  const r=e.target.closest("[data-reveal]");
+  if(r){reveal(+r.dataset.reveal);}
 });
-document.addEventListener("keydown",e=>{
-  if(e.key==="Enter"&&e.target.dataset.q&&e.target.tagName==="INPUT")check(+e.target.dataset.q);
-});
-function check(n){
-  const el=$("in"+n),sl=$("sel"+n),q=C[n-23];
-  const v=el.value.trim().toLowerCase().replace(/\s+/g," ").replace(/[.,;]$/,"");
-  if(!v||!sl.value){const f=$("fb"+n);f.className="fb show no";f.innerHTML="<b>Not yet</b>Type the corrected verb and choose a pattern before checking.";return;}
-  const vOk=q.a.some(a=>a.toLowerCase()===v),pOk=+sl.value===q.p,ok=vOk&&pOk;
-  el.className=vOk?"right":"wrong";sl.className=pOk?"right":"wrong";
-  el.disabled=true;sl.disabled=true;
-  let lead="";
-  if(vOk&&!pOk)lead=`The verb is right. The pattern is <b>${q.p} &middot; ${PAT[q.p]}</b>. `;
-  else if(!vOk&&pOk)lead=`Right pattern. The error is <i>${q.x}</i> &rarr; <b>${q.a[0]}</b>. `;
-  else if(!ok)lead=`The error is <i>${q.x}</i> &rarr; <b>${q.a[0]}</b>, pattern <b>${q.p} &middot; ${PAT[q.p]}</b>. `;
-  mark(n,ok,lead);
+const PROPER={piaget:"Piaget",peru:"Peru",rio:"Rio",march:"March",april:"April",chinese:"Chinese",english:"English"};
+function corrRe(x){
+  const e=x.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
+  const a=/\w/.test(x[0])?"\\b":"", b=/\w/.test(x[x.length-1])?"\\b":"";
+  return new RegExp(a+e+b);
 }
+function corrected(q){
+  const m=q.t.match(corrRe(q.x)), i=m.index;
+  let r=q.a[0].replace(/[a-z\u00e0-\u00ff]+/g,w=>PROPER[w]||w);
+  if(i===0||/[.!?]\s+$/.test(q.t.slice(0,i))) r=r.charAt(0).toUpperCase()+r.slice(1);
+  return [esc(q.t.slice(0,i)), r, esc(q.t.slice(i+m[0].length))];
+}
+function reveal(n){
+  const q=C[n-23], p=corrected(q), f=$("fb"+n);
+  f.className="fb show ok";
+  f.innerHTML=`<b>Corrected</b><p class="corr">${p[0]}<b>${esc(p[1])}</b>${p[2]}</p>`
+    +`<p class="patname">Pattern ${q.p} &middot; ${PAT[q.p]}</p>${q.w}`;
+  const b=document.querySelector(`[data-reveal="${n}"]`);
+  if(b){b.textContent="Revealed";b.disabled=true;}
+  rev[n]=1; save();
+}
+
 
 $("theme").onclick=()=>{
   const d=document.documentElement.dataset.theme==="dark";
@@ -460,16 +472,16 @@ $("reset").onclick=()=>{ans={};save();location.reload();};
 (function(){
   try{const t=localStorage.getItem("toefl-theme");if(t){document.documentElement.dataset.theme=t;$("theme").textContent=t==="dark"?"🌙":"☀️";}}catch(e){}
   load();build();
-  Object.keys(ans).forEach(n=>{ // replay locked state
+  Object.keys(ans).forEach(n=>{
     n=+n;
     if(n<13){const q=A[n-1];document.querySelectorAll(`.opt[data-q="${n}"]`).forEach(b=>b.disabled=true);
       document.querySelector(`.opt[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");}
-    else if(n<23){const q=B[n-13];document.querySelectorAll(`.seg[data-q="${n}"]`).forEach(x=>x.style.pointerEvents="none");
+    else{const q=B[n-13];document.querySelectorAll(`.seg[data-q="${n}"]`).forEach(x=>x.style.pointerEvents="none");
       document.querySelector(`.seg[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");}
-    else{const q=C[n-23],el=$("in"+n),sl=$("sel"+n);el.value=q.a[0];sl.value=q.p;el.disabled=true;sl.disabled=true;el.className=sl.className=ans[n]?"right":"wrong";}
-    const f=$("fb"+n),q=(n<13?A[n-1]:n<23?B[n-13]:C[n-23]);
+    const f=$("fb"+n),q=(n<13?A[n-1]:B[n-13]);
     f.className="fb show "+(ans[n]?"ok":"no");f.innerHTML=`<b>${ans[n]?"Correct":"Not correct"}</b>${q.w}`;
   });
+  Object.keys(rev).forEach(n=>reveal(+n));
   update();
 })();
 </script>
