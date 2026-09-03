@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sentence Boundaries · TOEFL Error Correction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0e12;--surface:#15171c;--surface-2:#1b1e25;--ink:#eef0f2;--muted:#8b929c;--line:#262932;
+    --violet:#a78bfa;--violet-deep:#1c1433;--violet-line:rgba(167,139,250,0.35);
+    --accent:#a78bfa;--accent-soft:#1c1433;
+    --key-accent:#f0c75e;--key-deep:#2a2206;--key-line:rgba(240,199,94,0.25);
+    --good:#4ade80;--good-soft:rgba(74,222,128,0.12);--good-line:rgba(74,222,128,0.35);
+    --bad:#f87171;--bad-soft:rgba(248,113,113,0.12);--bad-line:rgba(248,113,113,0.35);
+    --radius:14px;
+  }
+  :root[data-theme="light"]{
+    --bg:#f4f1ea;--surface:#ffffff;--surface-2:#faf8f3;--ink:#1a1815;--muted:#6b6660;--line:#e2ddd2;
+    --violet:#7c3aed;--violet-deep:#ede9fe;--violet-line:rgba(124,58,237,0.3);
+    --accent:#7c3aed;--accent-soft:#ede9fe;
+    --key-accent:#b8860b;--key-deep:#fbf2dc;--key-line:rgba(184,134,11,0.3);
+    --good:#15803d;--good-soft:#dcfce7;--good-line:rgba(21,128,61,0.3);
+    --bad:#b91c1c;--bad-soft:#fee2e2;--bad-line:rgba(185,28,28,0.3);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;
+    line-height:1.65;font-weight:400;transition:background .3s,color .3s;-webkit-font-smoothing:antialiased}
+  .wrap{width:100%;max-width:860px;margin:0 auto;padding:4.5rem 1.5rem 5rem}
+
+  .theme-toggle{position:fixed;top:1.25rem;right:1.25rem;z-index:30;width:42px;height:42px;
+    border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--muted);
+    cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:all .2s}
+  .theme-toggle:hover{border-color:var(--ink);color:var(--ink);transform:scale(1.06)}
+
+  .back-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.8rem;font-weight:500;
+    color:var(--muted);text-decoration:none;margin-bottom:2.5rem;transition:color .2s}
+  .back-link:hover{color:var(--violet)}
+  .eyebrow{font-size:.72rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);
+    font-weight:500;margin-bottom:1.1rem}
+  h1,h2,h3,.pat>summary,.n,.score strong{font-family:'Fraunces',Georgia,serif;font-optical-sizing:auto}
+  h1{font-weight:700;font-size:clamp(2.2rem,5.5vw,3.4rem);line-height:1.05;letter-spacing:-1.5px;margin-bottom:.9rem}
+  h1 .accent{background:linear-gradient(90deg,var(--violet),#38bdf8);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{color:var(--muted);font-size:1.02rem;font-weight:300;line-height:1.75;max-width:58ch;margin-bottom:2rem}
+
+  .actions{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2.5rem}
+  .btn{font-family:inherit;font-size:.75rem;font-weight:600;letter-spacing:.3px;padding:.45rem .9rem;
+    border-radius:8px;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block}
+  .btn-view{background:var(--violet-deep);color:var(--violet);border:1px solid var(--violet-line)}
+  .btn-view:hover{background:var(--violet);color:#fff}
+  .btn-key{background:var(--key-deep);color:var(--key-accent);border:1px solid var(--key-line)}
+  .btn-key:hover{background:var(--key-accent);color:#1a1815}
+  .btn-dl{background:transparent;color:var(--muted);border:1px solid var(--line)}
+  .btn-dl:hover{border-color:var(--muted);color:var(--ink)}
+
+  .progress{position:sticky;top:0;z-index:20;background:var(--bg);padding:.85rem 0;
+    border-bottom:1px solid var(--line);display:flex;align-items:center;gap:.9rem;font-size:.78rem;color:var(--muted)}
+  .track{flex:1;height:4px;background:var(--surface-2);border-radius:100px;overflow:hidden}
+  .fill{height:100%;width:0;background:linear-gradient(90deg,var(--violet),#38bdf8);transition:width .35s}
+
+  section{margin-top:3rem}
+  section>h2{font-size:1.5rem;font-weight:600;letter-spacing:-.3px;padding-bottom:.75rem;
+    border-bottom:1px solid var(--line);display:flex;align-items:center;gap:.7rem}
+  section>h2::before{content:"";width:9px;height:9px;border-radius:3px;background:var(--violet);flex:none}
+  .keyblock h2::before{background:var(--key-accent)}
+  .instr{color:var(--muted);font-size:.85rem;font-weight:300;margin-top:1rem;line-height:1.7}
+
+  /* pattern cards */
+  .pat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    margin-top:.9rem;position:relative;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+  .pat::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--violet);
+    transform:scaleX(0);transform-origin:left;transition:transform .3s;z-index:1}
+  .pat[open]{border-color:var(--violet-line)}
+  .pat[open]::before,.pat:hover::before{transform:scaleX(1)}
+  .pat>summary{padding:1rem 1.2rem;cursor:pointer;font-size:1rem;font-weight:600;letter-spacing:-.2px;
+    list-style:none;display:flex;gap:.7rem;align-items:baseline}
+  .pat>summary::-webkit-details-marker{display:none}
+  .pat>summary::before{content:"+";color:var(--violet);font-weight:600;font-family:'DM Sans',sans-serif}
+  .pat[open]>summary::before{content:"–"}
+  .pat .body{padding:0 1.2rem 1.2rem;border-top:1px solid var(--line);margin-top:0}
+  .ex{margin:.85rem 0;padding-left:1.6rem;position:relative;font-size:.95rem}
+  .ex.no::before{content:"✗";position:absolute;left:0;color:var(--bad);font-weight:700}
+  .ex.yes::before{content:"✓";position:absolute;left:0;color:var(--good);font-weight:700}
+  .ex.no{color:var(--muted)}
+  .why{font-size:.88rem;color:var(--muted);font-weight:300;line-height:1.75;margin-top:.8rem}
+  b.k{color:var(--violet)}
+  .strike{color:var(--bad);text-decoration:line-through}
+
+  /* question cards */
+  .q{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:1.1rem 1.2rem;margin-top:.75rem;display:grid;grid-template-columns:30px 1fr;gap:.2rem .9rem;
+    position:relative;overflow:hidden;transition:border-color .2s}
+  .q::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--violet);
+    transform:scaleX(0);transform-origin:left;transition:transform .3s}
+  .q:hover::before{transform:scaleX(1)}
+  .n{font-weight:600;color:var(--muted);font-size:1rem;line-height:1.6}
+  .stem{font-size:1rem;line-height:1.7}
+  .opts{grid-column:2;display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.8rem}
+  .opt{font-family:inherit;font-size:.82rem;font-weight:600;letter-spacing:.3px;padding:.35rem .9rem;
+    border-radius:100px;cursor:pointer;background:var(--surface-2);color:var(--ink);
+    border:1px solid var(--line);transition:all .2s}
+  .opt:hover{border-color:var(--violet);color:var(--violet)}
+  .opt:disabled{cursor:default}
+  .opt.right{background:var(--good-soft);border-color:var(--good-line);color:var(--good)}
+  .opt.wrong{background:var(--bad-soft);border-color:var(--bad-line);color:var(--bad);text-decoration:line-through}
+  .seg{border-bottom:2px solid var(--muted);cursor:pointer;padding:1px 2px;transition:background .2s}
+  .seg sup{color:var(--violet);font-weight:700;font-size:.66em;border:none;margin-left:1px}
+  .seg:hover{background:var(--violet-deep)}
+  .seg.right{background:var(--good-soft);border-color:var(--good)}
+  .seg.wrong{background:var(--bad-soft);border-color:var(--bad)}
+  .type-row{grid-column:2;display:flex;gap:.5rem;margin-top:.8rem;flex-wrap:wrap}
+  input[type=text],select{font-family:inherit;font-size:.85rem;padding:.4rem .7rem;border-radius:8px;
+    background:var(--surface-2);color:var(--ink);border:1px solid var(--line);max-width:100%}
+  input[type=text]{width:180px}
+  input:focus-visible,select:focus-visible,.opt:focus-visible,.btn:focus-visible,.theme-toggle:focus-visible,.seg:focus-visible{outline:2px solid var(--violet);outline-offset:2px}
+  input.right,select.right{border-color:var(--good-line);background:var(--good-soft)}
+  input.wrong,select.wrong{border-color:var(--bad-line);background:var(--bad-soft)}
+  .fb{grid-column:2;margin-top:.8rem;padding:.7rem .9rem;border-radius:10px;font-size:.86rem;
+    font-weight:300;line-height:1.7;display:none}
+  .fb.show{display:block}
+  .fb.ok{background:var(--good-soft);border:1px solid var(--good-line);color:var(--muted)}
+  .fb.no{background:var(--bad-soft);border:1px solid var(--bad-line);color:var(--muted)}
+  .fb b{display:block;margin-bottom:.15rem;font-weight:600}
+  .fb.ok b{color:var(--good)}
+  .fb.no b{color:var(--bad)}
+
+  .score{margin-top:2rem;padding:1.5rem;border:1px solid var(--violet-line);border-radius:18px;
+    background:var(--violet-deep);text-align:center;display:none}
+  .score.show{display:block}
+  .score strong{font-size:2rem;font-weight:700;letter-spacing:-1px;display:block;margin-bottom:.3rem;color:var(--violet)}
+  .keyblock{margin-top:3rem}
+  .keyblock p{font-size:.88rem;font-weight:300;color:var(--muted);margin-top:.7rem;line-height:1.7}
+  .keyblock p b:first-child{color:var(--key-accent)}
+  footer{padding:2.5rem 1.5rem;color:var(--muted);font-size:.78rem;text-align:center;border-top:1px solid var(--line);margin-top:3rem}
+  footer a{color:var(--muted);text-decoration:none}
+  footer a:hover{color:var(--violet)}
+
+  .print-opts,.rule,.keyblock,.printhead,.cprint,.pkey{display:none}
+
+  @media(max-width:600px){
+    .wrap{padding:3.5rem 1.1rem 4rem}
+    .q{grid-template-columns:24px 1fr;padding:1rem}
+    input[type=text]{width:100%}
+  }
+
+  @media print{
+    @page{margin:15mm}
+    :root,:root[data-theme]{--bg:#fff;--surface:#fff;--surface-2:#fff;--ink:#000;--muted:#333;--line:#bbb;
+      --violet:#000;--violet-deep:#fff;--violet-line:#bbb;--accent:#000;--accent-soft:#fff;
+      --key-accent:#000;--key-deep:#fff;--key-line:#bbb;
+      --good:#000;--good-soft:#fff;--good-line:#bbb;--bad:#000;--bad-soft:#fff;--bad-line:#bbb}
+    body{font-size:11.5pt;line-height:1.5}
+    .theme-toggle,.back-link,.eyebrow,.actions,.progress,.lede,.score,.fb,.opts,.type-row,.instr-screen,footer{display:none!important}
+    .wrap{max-width:none;padding:0}
+    h1{font-size:1.6rem;letter-spacing:-.5px;margin-bottom:.4rem}
+    h1 .accent{color:#000;-webkit-text-fill-color:#000;background:none}
+    .printhead{display:block;border-bottom:1px solid #000;padding-bottom:6px;margin-bottom:14px;font-size:.9rem}
+    .q{border:none;padding:6px 0;margin:0;break-inside:avoid;page-break-inside:avoid}
+    .q::before,.pat::before{display:none}
+    .pat{border:none;border-radius:0;margin:0}
+    .pat .body{display:block!important;border:none;padding:0 0 0 1.2rem}
+    .pat>summary{padding:8px 0 0}
+    .pat>summary::before{content:"■";font-size:.55em}
+    .print-opts{display:inline;color:#000}
+    .rule{display:block;border-bottom:1px solid #999;height:20px;margin-top:6px}
+    .cprint{display:block;margin-top:5px;font-size:10pt;color:#333}
+    .pkey{display:block;font-size:10pt;margin:8px 0 14px;padding:8px 10px;border:1px solid #999;columns:2;column-gap:22px}
+    .pkey b{display:block;columns:1;margin-bottom:3px}
+    .pkey span{display:block;break-inside:avoid}
+    .seg{cursor:default}
+    section{margin-top:18px}
+    section>h2{font-size:1.2rem;border-bottom:1px solid #000}
+    section>h2::before{display:none}
+    body.print-key .keyblock{display:block;break-before:page}
+    body.print-key .rule{display:none}
+    body.print-blank .patterns{display:none}
+  }
+</style>
+</head>
+<body class="print-blank">
+
+<button class="theme-toggle" id="theme" title="Toggle light/dark mode">🌙</button>
+
+<div class="wrap">
+
+  <div class="printhead">Sentence Boundaries · TOEFL Error Correction · Name: ______________________  Date: __________</div>
+
+  <div class="hero">
+    <a class="back-link" href="./index.html">← TOEFL Error Correction</a>
+    <p class="eyebrow">Phil Young’s English School · Sheet 9 of 10</p>
+    <h1>Sentence <span class="accent">boundaries</span></h1>
+    <p class="lede">Where one sentence stops and the next begins, and what has to sit in the gap. Fragments, run-ons and comma splices cost marks in the writing tasks more than anywhere else, because a rater sees them before reading the argument. Twelve patterns below, then thirty exercises.</p>
+    <div class="actions">
+      <button class="btn btn-view" id="pw">Print worksheet</button>
+      <button class="btn btn-key" id="pk">Print answer key</button>
+      <button class="btn btn-dl" id="reset">Start over</button>
+    </div>
+  </div>
+
+  <div class="progress">
+    <span id="ptext">0 of 30 answered</span>
+    <div class="track"><div class="fill" id="pfill"></div></div>
+    <span id="pscore"></span>
+  </div>
+
+  <section class="patterns">
+    <h2>The twelve patterns</h2>
+    <p class="lede">One independent clause is a sentence. Two of them need something between them, and a comma is not enough.</p>
+
+    <details class="pat"><summary>1 · Fragment: a subordinate clause alone</summary><div class="body">
+      <div class="ex no"><span class="strike">Because the auditors had not filed their report.</span> The committee postponed the vote.</div>
+      <div class="ex yes"><b>Because the auditors had not filed their report,</b> the committee postponed the vote.</div>
+      <p class="why">A clause opening with <i>because, although, while, since, if, when, after, unless, whereas</i> cannot stand alone, however long it is. Attach it to the main clause with a comma when it comes first, and with nothing at all when it comes second: <i>The committee postponed the vote because the report was late.</i></p>
+    </div></details>
+
+    <details class="pat"><summary>2 · Fragment: an -ing phrase with no main verb</summary><div class="body">
+      <div class="ex no">The proposal stalled. <span class="strike">The members meeting every Tuesday but reaching no decision.</span></div>
+      <div class="ex yes">The proposal stalled. <b>The members met</b> every Tuesday but reached no decision.</div>
+      <p class="why">A participle is not a verb. <i>The members meeting</i> has a subject and something that looks like a predicate, which is exactly why the error survives proofreading. Ask what the subject actually does: if the only candidate ends in <i>-ing</i> with no <i>is</i>, <i>was</i> or <i>were</i> in front of it, the sentence has no verb.</p>
+    </div></details>
+
+    <details class="pat"><summary>3 · Fragment: a relative clause alone</summary><div class="body">
+      <div class="ex no">The ministry withdrew the funding in March. <span class="strike">Which explains the drop in enrollment.</span></div>
+      <div class="ex yes">The ministry withdrew the funding in March, <b>which explains</b> the drop in enrollment.</div>
+      <p class="why">A clause beginning <i>which, who, that</i> or <i>whose</i> belongs to the noun or clause before it, so it cannot start a new sentence. Replace the period with a comma. Where the reference is to a whole clause rather than a noun, supplying a noun is better still: <i>a decision that explains the drop</i>.</p>
+    </div></details>
+
+    <details class="pat"><summary>4 · Fragment: an example or appositive alone</summary><div class="body">
+      <div class="ex no">Several departments reduced their staff. <span class="strike">For example, the school of design.</span></div>
+      <div class="ex yes">Several departments reduced their staff \u2014 <b>the school of design lost four positions</b>.</div>
+      <p class="why">Openers like <i>for example, such as, especially, including, particularly</i> introduce a phrase, not a sentence, so what follows still needs its own subject and verb. Either give it one, or attach the phrase to the sentence before it with a comma or a dash.</p>
+    </div></details>
+
+    <details class="pat"><summary>5 · Run-on: two clauses with nothing between them</summary><div class="body">
+      <div class="ex no">The equipment did not arrive <span class="strike">the team could not begin</span> until September.</div>
+      <div class="ex yes">The equipment did not arrive, <b>so the team could not begin</b> until September.</div>
+      <p class="why">Two complete clauses running together with no punctuation. Length is not the test \u2014 a long sentence can be perfectly built and a short one can be fused. Find every subject-and-verb pair, then check that something separates each pair from the next.</p>
+    </div></details>
+
+    <details class="pat"><summary>6 · Comma splice</summary><div class="body">
+      <div class="ex no">The deadline was extended by two weeks<span class="strike">, the department</span> still missed it.</div>
+      <div class="ex yes">The deadline was extended by two weeks, <b>but the department</b> still missed it. · The deadline was extended<b>;</b> the department still missed it.</div>
+      <p class="why">The most common boundary error in student writing, because a comma feels like enough. It is not. Four repairs are available: add a coordinating conjunction, change the comma to a semicolon, break into two sentences, or subordinate one clause. Which you choose depends on how closely the two ideas are linked.</p>
+    </div></details>
+
+    <details class="pat"><summary>7 · Repair with a comma and a coordinator</summary><div class="body">
+      <div class="ex no">The ministry approved the funding in April<span class="strike">, however</span> the equipment did not arrive.</div>
+      <div class="ex yes">The ministry approved the funding in April, <b>but</b> the equipment did not arrive.</div>
+      <p class="why">Only seven words can join two independent clauses after a comma: <i>for, and, nor, but, or, yet, so</i>. Nothing else works in that slot. If the word you want is not on that list, you need a different repair.</p>
+    </div></details>
+
+    <details class="pat"><summary>8 · Repair with a semicolon</summary><div class="body">
+      <div class="ex no">The results were inconclusive<span class="strike">, however,</span> the team repeated the trial.</div>
+      <div class="ex yes">The results were inconclusive<b>; however,</b> the team repeated the trial.</div>
+      <p class="why">A semicolon joins two clauses that are closely related, with no conjunction needed. When a linking adverb follows it, the punctuation is fixed: semicolon before, comma after. The same adverb can also open a fresh sentence \u2014 <i>The results were inconclusive. However, the team repeated the trial.</i></p>
+    </div></details>
+
+    <details class="pat"><summary>9 · Linking adverbs are not conjunctions</summary><div class="body">
+      <div class="ex no">The sample was enlarged, <span class="strike">therefore</span> the trial was repeated.</div>
+      <div class="ex yes">The sample was enlarged, <b>so</b> the trial was repeated. · The sample was enlarged<b>; therefore,</b> the trial was repeated.</div>
+      <p class="why"><i>However, therefore, moreover, nevertheless, furthermore, consequently, thus, otherwise, instead</i> are adverbs. They comment on the relationship between two clauses but cannot join them, so a comma in front of one produces a splice. This is the single most frequent version of the comma splice in academic writing, because the vocabulary is academic and the punctuation looks deliberate.</p>
+    </div></details>
+
+    <details class="pat"><summary>10 · Repair by subordinating</summary><div class="body">
+      <div class="ex no">The auditors filed their report in June<span class="strike">, the committee</span> approved the budget.</div>
+      <div class="ex yes"><b>After the auditors filed their report in June,</b> the committee approved the budget.</div>
+      <p class="why">Often the best repair, because it says how the two ideas relate rather than merely separating them. Turning one clause into a dependent one with <i>after, because, although, since, when, while</i> also varies the sentence rhythm, which raters notice in the writing tasks.</p>
+    </div></details>
+
+    <details class="pat"><summary>11 · One connector per join</summary><div class="body">
+      <div class="ex no"><span class="strike">Although</span> the ministry approved the funding, <span class="strike">but</span> the equipment did not arrive.</div>
+      <div class="ex yes"><b>Although</b> the ministry approved the funding, the equipment did not arrive. · The ministry approved the funding, <b>but</b> the equipment did not arrive.</div>
+      <p class="why">English uses one connector where Portuguese allows a pair. <i>Although … but</i>, <i>because … so</i> and <i>despite … however</i> are all doubled. Pick the subordinator or the coordinator and delete the other. This is among the most reliable markers of a Portuguese-speaking writer.</p>
+    </div></details>
+
+    <details class="pat"><summary>12 · No comma before a shared subject</summary><div class="body">
+      <div class="ex no">The committee met on Friday<span class="strike">, and</span> approved the budget.</div>
+      <div class="ex yes">The committee met on Friday <b>and approved</b> the budget. · The committee met on Friday, <b>and it approved</b> the budget.</div>
+      <p class="why">A comma before <i>and</i> signals that a second independent clause is coming. If the second half has no subject of its own it is a compound predicate, not a clause, and the comma is wrong. Check what follows the conjunction: a bare verb means no comma.</p>
+    </div></details>
+  </section>
+
+  <section>
+    <h2>Set A · Choose the correct form</h2>
+    <p class="instr">Questions 1–12. <span class="instr-screen">Tap the version that leaves two clauses properly joined.</span></p>
+    <div id="setA"></div>
+  </section>
+
+  <section>
+    <h2>Set B · Find the error</h2>
+    <p class="instr">Questions 13–22. Four parts of each sentence are underlined. <span class="instr-screen">Tap the one that is wrong.</span> Only one contains an error.</p>
+    <div id="setB"></div>
+  </section>
+
+  <section>
+    <h2>Set C · Correct the sentence</h2>
+    <p class="instr">Questions 23–30. Each sentence contains exactly one boundary error — and at least one other join that is already correct. Find the error, write the correction, and name the pattern behind it. <span class="instr-screen">Both parts must be right to score.</span></p>
+    <div id="setC"></div>
+  </section>
+
+  <div class="score" id="scorebox"></div>
+
+  <div class="keyblock">
+    <h2>Answer key</h2>
+    <div id="key"></div>
+  </div>
+</div>
+
+<footer>Part of the <a href="./index.html">TOEFL Error Correction</a> section · <a href="../index.html">Advanced Hub</a> · Phil Young’s English School</footer>
+
+<script>
+const A=[
+ {s:["","the committee postponed the vote until the auditors could complete their review."],o:["Because the report had not been filed.","Because the report had not been filed,"],a:1,w:"A <i>because</i> clause cannot stand alone however long it is. When it comes first, a comma attaches it to the main clause."},
+ {s:["The proposal stalled in committee, where the members ","every Tuesday without reaching a decision."],o:["meeting","met"],a:1,w:"A participle is not a verb. The clause needs a finite verb, and nothing in front of <i>meeting</i> supplies one."},
+ {s:["The ministry withdrew the funding in March","the drop in enrollment that the department reported in July."],o:[". Which explains",", which explains"],a:1,w:"A <i>which</i> clause belongs to what precedes it and cannot open a new sentence."},
+ {s:["Several departments have reduced their staff this year. ",""],o:["For example, the languages faculty.","For example, the languages faculty lost four positions."],a:1,w:"<i>For example</i> introduces a phrase, not a sentence. What follows still needs a subject and a verb of its own."},
+ {s:["The experiment failed twice","team requested additional funding from the ministry in the following quarter."],o:[". The"," the"],a:0,w:"Two complete clauses were running together with nothing between them. Length is not the test \u2014 find each subject-and-verb pair and check what separates them."},
+ {s:["The deadline was extended by two weeks",""],o:[", the department still missed it.","; the department still missed it."],a:1,w:"A comma alone cannot join two independent clauses. A semicolon can, and so would <i>, but</i>."},
+ {s:["The ministry approved the funding in April, ","the equipment did not arrive until September."],o:["however","but"],a:1,w:"Only <i>for, and, nor, but, or, yet, so</i> can follow a comma between two clauses. <i>However</i> is an adverb and produces a splice."},
+ {s:["The results were inconclusive","the team repeated the trial under stricter conditions."],o:[", however,","; however,"],a:1,w:"When a linking adverb joins two clauses the punctuation is fixed: semicolon before, comma after."},
+ {s:["The sample was enlarged before the second round, ","the trial was repeated under the revised protocol."],o:["therefore","so"],a:1,w:"<i>So</i> is a coordinator and works after a comma. <i>Therefore</i> is an adverb and would need a semicolon."},
+ {s:["","the committee approved the revised budget without further discussion."],o:["The auditors filed their report in June,","After the auditors filed their report in June,"],a:1,w:"Subordinating says how the two ideas relate. Without <i>after</i>, the comma joins two independent clauses and splices them."},
+ {s:["Although the ministry approved the funding in April, ","did not arrive until September."],o:["but the equipment","the equipment"],a:1,w:"<i>Although</i> has already made the join. English uses one connector where Portuguese allows a pair."},
+ {s:["The committee met on Friday ","the budget that the finance office had prepared."],o:[", and approved","and approved"],a:1,w:"The second half has no subject of its own, so it is a compound predicate rather than a clause. A bare verb after <i>and</i> means no comma."}
+];
+const B=[
+ {p:[["Because the auditors had not filed the ",0],["report. The committee",1],[" ",0],["postponed",1],[" the vote ",0],["that the chair",1],[" ",0],["had scheduled",1],[" for Friday",0]],a:0,f:"report, the committee",w:"The opening clause is subordinate and cannot stand as a sentence. The three verbs after it are all correctly formed."},
+ {p:[["The proposal ",0],["stalled",1],[" in committee. ",0],["The members meeting",1],[" every Tuesday but ",0],["reaching",1],[" no decision that the ministry ",0],["would accept",1]],a:1,f:"The members met",w:"A participle is not a verb, so the second sentence has no predicate. <i>Reaching</i> is correct once the first verb is fixed, because it is joined by <i>but</i>."},
+ {p:[["The ministry ",0],["withdrew",1],[" the funding in March, ",0],["which forced",1],[" the department ",0],["to cancel",1],[" two courses. ",0],["Which explains",1],[" the drop in enrollment",0]],a:3,f:"courses, which explains",w:"The first <i>which</i> clause is correctly attached with a comma. The second has been cut loose as its own sentence."},
+ {p:[["The ministry ",0],["approved",1],[" the funding in April, ",0],["but the equipment",1],[" did not ",0],["arrive the team could not begin",1],[" the trial ",0],["until September",1]],a:2,f:"arrive, so the team could not begin",w:"Two clauses run together with nothing between them. <i>But the equipment</i> earlier in the sentence shows the join done correctly."},
+ {p:[["The deadline ",0],["was extended",1],[" by ",0],["two weeks, the department",1],[" still ",0],["failed to submit",1],[" the proposal that the reviewers ",0],["had requested",1]],a:1,f:"two weeks, but the department",w:"A comma alone cannot join two independent clauses. A semicolon or a coordinator would repair it."},
+ {p:[["The department ",0],["enlarged",1],[" the sample, ",0],["repeated",1],[" the trial and ",0],["revised",1],[" the protocol, ",0],["however the results remained",1],[" inconclusive",0]],a:3,f:"; however, the results remained",w:"<i>However</i> is an adverb and cannot join clauses after a comma. The three verbs before it form a correct compound predicate."},
+ {p:[["Although the ministry approved the funding in ",0],["April, but the equipment",1],[" ",0],["did not arrive",1],[" until September, ",0],["which delayed",1],[" the trial by ",0],["two quarters",1]],a:0,f:"April, the equipment",w:"<i>Although</i> has already made the join, so <i>but</i> doubles it. Delete whichever connector you do not need."},
+ {p:[["The committee ",0],["met",1],[" ",0],["on Friday",1],[" ",0],[", and approved",1],[" the budget that the finance office ",0],["had prepared",1],[" the previous month",0]],a:2,f:"and approved",w:"The second half has no subject, so it is a compound predicate. A comma before <i>and</i> would promise a second clause."},
+ {p:[["Several departments ",0],["reduced",1],[" their staff last year, ",0],["and enrollment fell",1],[" ",0],["across the faculty",1],[". ",0],["For example, the school of design",1],[".",0]],a:3,f:"For example, the school of design lost four positions",w:"<i>For example</i> introduces a phrase, so the fragment still needs a verb. The comma before <i>and</i> is correct because a full clause follows it."},
+ {p:[["The auditors filed their report ",0],["in June, the committee",1],[" ",0],["approved",1],[" the revised budget ",0],["without further discussion",1],[" at ",0],["its next meeting",1]],a:0,f:"in June, and the committee",w:"Two independent clauses joined by a comma alone. Subordinating the first with <i>after</i> would work equally well."}
+];
+const PAT=["","Fragment: a subordinate clause alone","Fragment: an -ing phrase with no main verb","Fragment: a relative clause alone",
+ "Fragment: an example or appositive alone","Run-on: two clauses with nothing between them","Comma splice",
+ "Repair with a comma and a coordinator","Repair with a semicolon","Linking adverbs are not conjunctions",
+ "Repair by subordinating","One connector per join","No comma before a shared subject"];
+const C=[
+ {t:"Because the auditors had not filed their report. The committee postponed the vote until the following month.",x:"report. The committee",a:["report, the committee"],p:1,
+  w:"A <i>because</i> clause cannot stand alone. A comma attaches it to the main clause that follows."},
+ {t:"The proposal stalled in committee. The members meeting every Tuesday but reaching no decision that the ministry would accept.",x:"The members meeting",a:["the members met"],p:2,
+  w:"A participle is not a verb, so the second sentence has no predicate."},
+ {t:"The ministry withdrew the funding in March. Which explains the drop in enrollment that the department reported in July.",x:"March. Which explains",a:["march, which explains"],p:3,
+  w:"A <i>which</i> clause belongs to what precedes it and cannot open a sentence."},
+ {t:"The ministry approved the funding in April, but the equipment did not arrive the team could not begin until September.",x:"arrive the team",a:["arrive, so the team","arrive; the team"],p:5,
+  w:"Two clauses run together with nothing between them. <i>But the equipment</i> earlier shows the join made correctly."},
+ {t:"The deadline was extended by two weeks, the department still failed to submit the proposal that the reviewers had requested.",x:"weeks, the department",a:["weeks, but the department","weeks; the department"],p:6,
+  w:"A comma alone cannot join two independent clauses."},
+ {t:"The department enlarged the sample and repeated the trial, however the results remained inconclusive.",x:"trial, however",a:["trial; however"],p:9,
+  w:"<i>However</i> is an adverb, not a conjunction. The <i>and</i> earlier in the sentence joins a compound predicate correctly."},
+ {t:"Although the ministry approved the funding in April, but the equipment did not arrive until September.",x:"April, but the equipment",a:["april, the equipment"],p:11,
+  w:"<i>Although</i> has already made the join. Keep one connector and delete the other."},
+ {t:"The committee met on Friday, and approved the budget that the finance office had prepared the previous month.",x:", and approved",a:["and approved"],p:12,
+  w:"The second half has no subject of its own, so no comma belongs before <i>and</i>."}
+];
+
+let ans={},total=30;
+const $=id=>document.getElementById(id);
+const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+
+function save(){try{localStorage.setItem("toefl-boundaries",JSON.stringify(ans))}catch(e){}}
+function load(){try{ans=JSON.parse(localStorage.getItem("toefl-boundaries")||"{}")}catch(e){ans={}}}
+
+function build(){
+  let h="";
+  A.forEach((q,i)=>{const n=i+1;
+    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${q.s[0]}<span class="print-opts">( ${q.o[0]} / ${q.o[1]} )</span><span class="blank">_______</span> ${q.s[1]}</div>
+    <div class="opts">${q.o.map((o,j)=>`<button class="opt" data-q="${n}" data-i="${j}">${o}</button>`).join("")}</div>
+    <div class="fb" id="fb${n}"></div></div>`;});
+  $("setA").innerHTML=h;
+
+  h="";
+  B.forEach((q,i)=>{const n=i+13;let li=0;
+    const body=q.p.map(([t,u])=>u?`<span class="seg" data-q="${n}" data-i="${li}">${t}<sup>${"ABCD"[li++]}</sup></span>`:esc(t)).join("");
+    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${body}.</div><div class="fb" id="fb${n}"></div></div>`;});
+  $("setB").innerHTML=h;
+
+  h=`<div class="pkey"><b>Pattern reference</b>${PAT.slice(1).map((t,j)=>`<span>${j+1}. ${t}</span>`).join("")}</div>`;
+  const sel=PAT.slice(1).map((t,j)=>`<option value="${j+1}">${j+1} &middot; ${t}</option>`).join("");
+  C.forEach((q,i)=>{const n=i+23;
+    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${esc(q.t)}</div>
+    <div class="type-row"><input type="text" id="in${n}" data-q="${n}" placeholder="correction" autocomplete="off" spellcheck="false">
+    <select id="sel${n}"><option value="">which pattern?</option>${sel}</select>
+    <button class="opt btn-check" data-check="${n}">Check</button></div>
+    <div class="cprint">Correction: ______________________________ &nbsp; Pattern no.: ______</div><div class="fb" id="fb${n}"></div></div>`;});
+  $("setC").innerHTML=h;
+
+  $("key").innerHTML=[...A.map((q,i)=>[i+1,q.o[q.a],q.w]),...B.map((q,i)=>[i+13,"("+"ABCD"[q.a]+") → "+q.f,q.w]),...C.map((q,i)=>[i+23,`<i>${q.x}</i> &rarr; <b>${q.a[0]}</b> &middot; pattern ${q.p} (${PAT[q.p]})`,q.w])]
+    .map(([n,a,w])=>`<p><b>${n}.</b> ${a} — ${w}</p>`).join("");
+}
+
+function mark(n,ok,extra){
+  const f=$("fb"+n);f.className="fb show "+(ok?"ok":"no");
+  const q=(n<13?A[n-1]:n<23?B[n-13]:C[n-23]);
+  f.innerHTML=`<b>${ok?"Correct":"Not correct"}</b>${extra||""}${q.w}`;
+  ans[n]=ok;save();update();
+}
+function update(){
+  const done=Object.keys(ans).length,right=Object.values(ans).filter(Boolean).length;
+  $("ptext").textContent=done+" of "+total+" answered";
+  $("pfill").style.width=(done/total*100)+"%";
+  $("pscore").textContent=done?right+" right":"";
+  const sb=$("scorebox");
+  if(done===total){sb.className="score show";sb.innerHTML=`<strong>${right} / 30</strong><br>${right>=27?"Exam-ready on this point.":right>=21?"Solid. Reread the patterns behind the items you missed.":"Work back through the twelve patterns, then reset and try again."}`;}
+  else sb.className="score";
+}
+
+document.addEventListener("click",e=>{
+  const o=e.target.closest(".opt[data-q]");
+  if(o){const n=+o.dataset.q,i=+o.dataset.i,q=A[n-1];
+    document.querySelectorAll(`.opt[data-q="${n}"]`).forEach(b=>{b.className="opt";b.disabled=true});
+    o.classList.add(i===q.a?"right":"wrong");
+    if(i!==q.a)document.querySelector(`.opt[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");
+    mark(n,i===q.a);return;}
+
+  const s=e.target.closest(".seg");
+  if(s){const n=+s.dataset.q,i=+s.dataset.i,q=B[n-13];
+    document.querySelectorAll(`.seg[data-q="${n}"]`).forEach(x=>x.style.pointerEvents="none");
+    s.classList.add(i===q.a?"right":"wrong");
+    if(i!==q.a)document.querySelector(`.seg[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");
+    mark(n,i===q.a,`Correction: <b>${"ABCD"[q.a]} → ${q.f}</b>. `);return;}
+
+  const c=e.target.closest("[data-check]");
+  if(c){check(+c.dataset.check);}
+});
+document.addEventListener("keydown",e=>{
+  if(e.key==="Enter"&&e.target.dataset.q&&e.target.tagName==="INPUT")check(+e.target.dataset.q);
+});
+function check(n){
+  const el=$("in"+n),sl=$("sel"+n),q=C[n-23];
+  const v=el.value.trim().toLowerCase().replace(/\s+/g," ").replace(/[.,;]$/,"");
+  if(!v||!sl.value){const f=$("fb"+n);f.className="fb show no";f.innerHTML="<b>Not yet</b>Type the corrected verb and choose a pattern before checking.";return;}
+  const vOk=q.a.some(a=>a.toLowerCase()===v),pOk=+sl.value===q.p,ok=vOk&&pOk;
+  el.className=vOk?"right":"wrong";sl.className=pOk?"right":"wrong";
+  el.disabled=true;sl.disabled=true;
+  let lead="";
+  if(vOk&&!pOk)lead=`The verb is right. The pattern is <b>${q.p} &middot; ${PAT[q.p]}</b>. `;
+  else if(!vOk&&pOk)lead=`Right pattern. The error is <i>${q.x}</i> &rarr; <b>${q.a[0]}</b>. `;
+  else if(!ok)lead=`The error is <i>${q.x}</i> &rarr; <b>${q.a[0]}</b>, pattern <b>${q.p} &middot; ${PAT[q.p]}</b>. `;
+  mark(n,ok,lead);
+}
+
+$("theme").onclick=()=>{
+  const d=document.documentElement.dataset.theme==="dark";
+  const t=d?"light":"dark";
+  document.documentElement.dataset.theme=t;
+  $("theme").textContent=t==="dark"?"🌙":"☀️";
+  try{localStorage.setItem("toefl-theme",t)}catch(e){}
+};
+$("pw").onclick=()=>{document.body.className="print-blank";document.querySelectorAll(".pat").forEach(p=>p.open=false);print();};
+$("pk").onclick=()=>{document.body.className="print-key";document.querySelectorAll(".pat").forEach(p=>p.open=true);print();};
+$("reset").onclick=()=>{ans={};save();location.reload();};
+
+(function(){
+  try{const t=localStorage.getItem("toefl-theme");if(t){document.documentElement.dataset.theme=t;$("theme").textContent=t==="dark"?"🌙":"☀️";}}catch(e){}
+  load();build();
+  Object.keys(ans).forEach(n=>{ // replay locked state
+    n=+n;
+    if(n<13){const q=A[n-1];document.querySelectorAll(`.opt[data-q="${n}"]`).forEach(b=>b.disabled=true);
+      document.querySelector(`.opt[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");}
+    else if(n<23){const q=B[n-13];document.querySelectorAll(`.seg[data-q="${n}"]`).forEach(x=>x.style.pointerEvents="none");
+      document.querySelector(`.seg[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");}
+    else{const q=C[n-23],el=$("in"+n),sl=$("sel"+n);el.value=q.a[0];sl.value=q.p;el.disabled=true;sl.disabled=true;el.className=sl.className=ans[n]?"right":"wrong";}
+    const f=$("fb"+n),q=(n<13?A[n-1]:n<23?B[n-13]:C[n-23]);
+    f.className="fb show "+(ans[n]?"ok":"no");f.innerHTML=`<b>${ans[n]?"Correct":"Not correct"}</b>${q.w}`;
+  });
+  update();
+})();
+</script>
+</body>
+</html>
