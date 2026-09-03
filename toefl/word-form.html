@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Word Form · TOEFL Error Correction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0e12;--surface:#15171c;--surface-2:#1b1e25;--ink:#eef0f2;--muted:#8b929c;--line:#262932;
+    --violet:#a78bfa;--violet-deep:#1c1433;--violet-line:rgba(167,139,250,0.35);
+    --accent:#a78bfa;--accent-soft:#1c1433;
+    --key-accent:#f0c75e;--key-deep:#2a2206;--key-line:rgba(240,199,94,0.25);
+    --good:#4ade80;--good-soft:rgba(74,222,128,0.12);--good-line:rgba(74,222,128,0.35);
+    --bad:#f87171;--bad-soft:rgba(248,113,113,0.12);--bad-line:rgba(248,113,113,0.35);
+    --radius:14px;
+  }
+  :root[data-theme="light"]{
+    --bg:#f4f1ea;--surface:#ffffff;--surface-2:#faf8f3;--ink:#1a1815;--muted:#6b6660;--line:#e2ddd2;
+    --violet:#7c3aed;--violet-deep:#ede9fe;--violet-line:rgba(124,58,237,0.3);
+    --accent:#7c3aed;--accent-soft:#ede9fe;
+    --key-accent:#b8860b;--key-deep:#fbf2dc;--key-line:rgba(184,134,11,0.3);
+    --good:#15803d;--good-soft:#dcfce7;--good-line:rgba(21,128,61,0.3);
+    --bad:#b91c1c;--bad-soft:#fee2e2;--bad-line:rgba(185,28,28,0.3);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;
+    line-height:1.65;font-weight:400;transition:background .3s,color .3s;-webkit-font-smoothing:antialiased}
+  .wrap{width:100%;max-width:860px;margin:0 auto;padding:4.5rem 1.5rem 5rem}
+
+  .theme-toggle{position:fixed;top:1.25rem;right:1.25rem;z-index:30;width:42px;height:42px;
+    border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--muted);
+    cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:all .2s}
+  .theme-toggle:hover{border-color:var(--ink);color:var(--ink);transform:scale(1.06)}
+
+  .back-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.8rem;font-weight:500;
+    color:var(--muted);text-decoration:none;margin-bottom:2.5rem;transition:color .2s}
+  .back-link:hover{color:var(--violet)}
+  .eyebrow{font-size:.72rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);
+    font-weight:500;margin-bottom:1.1rem}
+  h1,h2,h3,.pat>summary,.n,.score strong{font-family:'Fraunces',Georgia,serif;font-optical-sizing:auto}
+  h1{font-weight:700;font-size:clamp(2.2rem,5.5vw,3.4rem);line-height:1.05;letter-spacing:-1.5px;margin-bottom:.9rem}
+  h1 .accent{background:linear-gradient(90deg,var(--violet),#38bdf8);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{color:var(--muted);font-size:1.02rem;font-weight:300;line-height:1.75;max-width:58ch;margin-bottom:2rem}
+
+  .actions{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2.5rem}
+  .btn{font-family:inherit;font-size:.75rem;font-weight:600;letter-spacing:.3px;padding:.45rem .9rem;
+    border-radius:8px;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block}
+  .btn-view{background:var(--violet-deep);color:var(--violet);border:1px solid var(--violet-line)}
+  .btn-view:hover{background:var(--violet);color:#fff}
+  .btn-key{background:var(--key-deep);color:var(--key-accent);border:1px solid var(--key-line)}
+  .btn-key:hover{background:var(--key-accent);color:#1a1815}
+  .btn-dl{background:transparent;color:var(--muted);border:1px solid var(--line)}
+  .btn-dl:hover{border-color:var(--muted);color:var(--ink)}
+
+  .progress{position:sticky;top:0;z-index:20;background:var(--bg);padding:.85rem 0;
+    border-bottom:1px solid var(--line);display:flex;align-items:center;gap:.9rem;font-size:.78rem;color:var(--muted)}
+  .track{flex:1;height:4px;background:var(--surface-2);border-radius:100px;overflow:hidden}
+  .fill{height:100%;width:0;background:linear-gradient(90deg,var(--violet),#38bdf8);transition:width .35s}
+
+  section{margin-top:3rem}
+  section>h2{font-size:1.5rem;font-weight:600;letter-spacing:-.3px;padding-bottom:.75rem;
+    border-bottom:1px solid var(--line);display:flex;align-items:center;gap:.7rem}
+  section>h2::before{content:"";width:9px;height:9px;border-radius:3px;background:var(--violet);flex:none}
+  .keyblock h2::before{background:var(--key-accent)}
+  .instr{color:var(--muted);font-size:.85rem;font-weight:300;margin-top:1rem;line-height:1.7}
+
+  /* pattern cards */
+  .pat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    margin-top:.9rem;position:relative;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+  .pat::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--violet);
+    transform:scaleX(0);transform-origin:left;transition:transform .3s;z-index:1}
+  .pat[open]{border-color:var(--violet-line)}
+  .pat[open]::before,.pat:hover::before{transform:scaleX(1)}
+  .pat>summary{padding:1rem 1.2rem;cursor:pointer;font-size:1rem;font-weight:600;letter-spacing:-.2px;
+    list-style:none;display:flex;gap:.7rem;align-items:baseline}
+  .pat>summary::-webkit-details-marker{display:none}
+  .pat>summary::before{content:"+";color:var(--violet);font-weight:600;font-family:'DM Sans',sans-serif}
+  .pat[open]>summary::before{content:"–"}
+  .pat .body{padding:0 1.2rem 1.2rem;border-top:1px solid var(--line);margin-top:0}
+  .ex{margin:.85rem 0;padding-left:1.6rem;position:relative;font-size:.95rem}
+  .ex.no::before{content:"✗";position:absolute;left:0;color:var(--bad);font-weight:700}
+  .ex.yes::before{content:"✓";position:absolute;left:0;color:var(--good);font-weight:700}
+  .ex.no{color:var(--muted)}
+  .why{font-size:.88rem;color:var(--muted);font-weight:300;line-height:1.75;margin-top:.8rem}
+  b.k{color:var(--violet)}
+  .strike{color:var(--bad);text-decoration:line-through}
+
+  /* question cards */
+  .q{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:1.1rem 1.2rem;margin-top:.75rem;display:grid;grid-template-columns:30px 1fr;gap:.2rem .9rem;
+    position:relative;overflow:hidden;transition:border-color .2s}
+  .q::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--violet);
+    transform:scaleX(0);transform-origin:left;transition:transform .3s}
+  .q:hover::before{transform:scaleX(1)}
+  .n{font-weight:600;color:var(--muted);font-size:1rem;line-height:1.6}
+  .stem{font-size:1rem;line-height:1.7}
+  .opts{grid-column:2;display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.8rem}
+  .opt{font-family:inherit;font-size:.82rem;font-weight:600;letter-spacing:.3px;padding:.35rem .9rem;
+    border-radius:100px;cursor:pointer;background:var(--surface-2);color:var(--ink);
+    border:1px solid var(--line);transition:all .2s}
+  .opt:hover{border-color:var(--violet);color:var(--violet)}
+  .opt:disabled{cursor:default}
+  .opt.right{background:var(--good-soft);border-color:var(--good-line);color:var(--good)}
+  .opt.wrong{background:var(--bad-soft);border-color:var(--bad-line);color:var(--bad);text-decoration:line-through}
+  .seg{border-bottom:2px solid var(--muted);cursor:pointer;padding:1px 2px;transition:background .2s}
+  .seg sup{color:var(--violet);font-weight:700;font-size:.66em;border:none;margin-left:1px}
+  .seg:hover{background:var(--violet-deep)}
+  .seg.right{background:var(--good-soft);border-color:var(--good)}
+  .seg.wrong{background:var(--bad-soft);border-color:var(--bad)}
+  .type-row{grid-column:2;display:flex;gap:.5rem;margin-top:.8rem;flex-wrap:wrap}
+  input[type=text],select{font-family:inherit;font-size:.85rem;padding:.4rem .7rem;border-radius:8px;
+    background:var(--surface-2);color:var(--ink);border:1px solid var(--line);max-width:100%}
+  input[type=text]{width:180px}
+  input:focus-visible,select:focus-visible,.opt:focus-visible,.btn:focus-visible,.theme-toggle:focus-visible,.seg:focus-visible{outline:2px solid var(--violet);outline-offset:2px}
+  input.right,select.right{border-color:var(--good-line);background:var(--good-soft)}
+  input.wrong,select.wrong{border-color:var(--bad-line);background:var(--bad-soft)}
+  .fb{grid-column:2;margin-top:.8rem;padding:.7rem .9rem;border-radius:10px;font-size:.86rem;
+    font-weight:300;line-height:1.7;display:none}
+  .fb.show{display:block}
+  .fb.ok{background:var(--good-soft);border:1px solid var(--good-line);color:var(--muted)}
+  .fb.no{background:var(--bad-soft);border:1px solid var(--bad-line);color:var(--muted)}
+  .fb b{display:block;margin-bottom:.15rem;font-weight:600}
+  .fb.ok b{color:var(--good)}
+  .fb.no b{color:var(--bad)}
+
+  .score{margin-top:2rem;padding:1.5rem;border:1px solid var(--violet-line);border-radius:18px;
+    background:var(--violet-deep);text-align:center;display:none}
+  .score.show{display:block}
+  .score strong{font-size:2rem;font-weight:700;letter-spacing:-1px;display:block;margin-bottom:.3rem;color:var(--violet)}
+  .keyblock{margin-top:3rem}
+  .keyblock p{font-size:.88rem;font-weight:300;color:var(--muted);margin-top:.7rem;line-height:1.7}
+  .keyblock p b:first-child{color:var(--key-accent)}
+  footer{padding:2.5rem 1.5rem;color:var(--muted);font-size:.78rem;text-align:center;border-top:1px solid var(--line);margin-top:3rem}
+  footer a{color:var(--muted);text-decoration:none}
+  footer a:hover{color:var(--violet)}
+
+  .print-opts,.rule,.keyblock,.printhead,.cprint,.pkey{display:none}
+
+  @media(max-width:600px){
+    .wrap{padding:3.5rem 1.1rem 4rem}
+    .q{grid-template-columns:24px 1fr;padding:1rem}
+    input[type=text]{width:100%}
+  }
+
+  @media print{
+    @page{margin:15mm}
+    :root,:root[data-theme]{--bg:#fff;--surface:#fff;--surface-2:#fff;--ink:#000;--muted:#333;--line:#bbb;
+      --violet:#000;--violet-deep:#fff;--violet-line:#bbb;--accent:#000;--accent-soft:#fff;
+      --key-accent:#000;--key-deep:#fff;--key-line:#bbb;
+      --good:#000;--good-soft:#fff;--good-line:#bbb;--bad:#000;--bad-soft:#fff;--bad-line:#bbb}
+    body{font-size:11.5pt;line-height:1.5}
+    .theme-toggle,.back-link,.eyebrow,.actions,.progress,.lede,.score,.fb,.opts,.type-row,.instr-screen,footer{display:none!important}
+    .wrap{max-width:none;padding:0}
+    h1{font-size:1.6rem;letter-spacing:-.5px;margin-bottom:.4rem}
+    h1 .accent{color:#000;-webkit-text-fill-color:#000;background:none}
+    .printhead{display:block;border-bottom:1px solid #000;padding-bottom:6px;margin-bottom:14px;font-size:.9rem}
+    .q{border:none;padding:6px 0;margin:0;break-inside:avoid;page-break-inside:avoid}
+    .q::before,.pat::before{display:none}
+    .pat{border:none;border-radius:0;margin:0}
+    .pat .body{display:block!important;border:none;padding:0 0 0 1.2rem}
+    .pat>summary{padding:8px 0 0}
+    .pat>summary::before{content:"■";font-size:.55em}
+    .print-opts{display:inline;color:#000}
+    .rule{display:block;border-bottom:1px solid #999;height:20px;margin-top:6px}
+    .cprint{display:block;margin-top:5px;font-size:10pt;color:#333}
+    .pkey{display:block;font-size:10pt;margin:8px 0 14px;padding:8px 10px;border:1px solid #999;columns:2;column-gap:22px}
+    .pkey b{display:block;columns:1;margin-bottom:3px}
+    .pkey span{display:block;break-inside:avoid}
+    .seg{cursor:default}
+    section{margin-top:18px}
+    section>h2{font-size:1.2rem;border-bottom:1px solid #000}
+    section>h2::before{display:none}
+    body.print-key .keyblock{display:block;break-before:page}
+    body.print-key .rule{display:none}
+    body.print-blank .patterns{display:none}
+  }
+</style>
+</head>
+<body class="print-blank">
+
+<button class="theme-toggle" id="theme" title="Toggle light/dark mode">🌙</button>
+
+<div class="wrap">
+
+  <div class="printhead">Word Form · TOEFL Error Correction · Name: ______________________  Date: __________</div>
+
+  <div class="hero">
+    <a class="back-link" href="./index.html">← TOEFL Error Correction</a>
+    <p class="eyebrow">Phil Young’s English School · Sheet 7 of 10</p>
+    <h1>Word <span class="accent">form</span></h1>
+    <p class="lede">These errors are not about vocabulary. The student knows the word and picks the wrong ending for the slot it has to fill — which is why error-identification items lean on this family so heavily. Twelve patterns below, then thirty exercises.</p>
+    <div class="actions">
+      <button class="btn btn-view" id="pw">Print worksheet</button>
+      <button class="btn btn-key" id="pk">Print answer key</button>
+      <button class="btn btn-dl" id="reset">Start over</button>
+    </div>
+  </div>
+
+  <div class="progress">
+    <span id="ptext">0 of 30 answered</span>
+    <div class="track"><div class="fill" id="pfill"></div></div>
+    <span id="pscore"></span>
+  </div>
+
+  <section class="patterns">
+    <h2>The twelve patterns</h2>
+    <p class="lede">The word is right. The ending is not. Ask what job the slot needs done, then build the form that does it.</p>
+
+    <details class="pat"><summary>1 · Adjective or adverb</summary><div class="body">
+      <div class="ex no">The technicians recorded the readings <span class="strike">careful</span>.</div>
+      <div class="ex yes">The technicians recorded the readings <b>carefully</b>. · They took <b>careful</b> readings.</div>
+      <p class="why">An adjective describes a noun; an adverb describes a verb, an adjective or another adverb. Find what the word is actually modifying. <i>Careful readings</i> modifies a noun, so no <i>-ly</i>; <i>recorded carefully</i> modifies a verb, so <i>-ly</i> is required.</p>
+    </div></details>
+
+    <details class="pat"><summary>2 · Adjective after linking verbs</summary><div class="body">
+      <div class="ex no">The results seem <span class="strike">conclusively</span>.</div>
+      <div class="ex yes">The results seem <b>conclusive</b>. · The evidence looks <b>strong</b> and the argument sounds <b>reasonable</b>.</div>
+      <p class="why">After <i>be, seem, appear, become, remain, look, sound, feel, taste, smell, prove</i> the word describes the subject, not the action, so it stays an adjective. Test by substituting <i>is</i>: if <i>the results are conclusive</i> works, the adjective is right.</p>
+    </div></details>
+
+    <details class="pat"><summary>3 · Noun where an adjective is needed</summary><div class="body">
+      <div class="ex no">measures intended to stimulate <span class="strike">economy</span> growth</div>
+      <div class="ex yes">measures intended to stimulate <b>economic</b> growth · the <b>economy</b> of the region</div>
+      <p class="why">A word sitting directly in front of a noun usually has to be an adjective. The trap is that some nouns can modify other nouns (<i>government policy, research funding</i>), so students assume all of them can. When a matching adjective exists — <i>economic, political, industrial, cultural</i> — that adjective is the one the slot wants.</p>
+    </div></details>
+
+    <details class="pat"><summary>4 · Noun or verb form</summary><div class="body">
+      <div class="ex no"><span class="strike">The analyze</span> of the data took three months.</div>
+      <div class="ex yes"><b>The analysis</b> of the data took three months. · They will <b>analyze</b> the data in March.</div>
+      <p class="why">After <i>the, a, this, its</i> or any other determiner, only a noun can follow. Pairs worth drilling because the noun is irregular: <i>analyze / analysis, decide / decision, describe / description, succeed / success, prove / proof, choose / choice, lose / loss, believe / belief</i>.</p>
+    </div></details>
+
+    <details class="pat"><summary>5 · -ed and -ing adjectives</summary><div class="body">
+      <div class="ex no">The students found the conclusion <span class="strike">confused</span>.</div>
+      <div class="ex yes">The students found the conclusion <b>confusing</b>. · The students were <b>confused</b> by the conclusion.</div>
+      <p class="why"><i>-ing</i> describes the thing that causes the feeling; <i>-ed</i> describes the person who has it. A lecture is <i>boring</i>, an audience is <i>bored</i>. The full set: <i>interesting/interested, confusing/confused, surprising/surprised, tiring/tired, frustrating/frustrated, worrying/worried</i>.</p>
+    </div></details>
+
+    <details class="pat"><summary>6 · Noun suffixes</summary><div class="body">
+      <div class="ex no">praised the <span class="strike">efficient</span> with which the staff handled the merger</div>
+      <div class="ex yes">praised the <b>efficiency</b> with which the staff handled the merger</div>
+      <p class="why">The endings that build nouns: <i>-tion</i> (protection), <i>-ment</i> (agreement), <i>-ance / -ence</i> (resistance, independence), <i>-ity</i> (complexity), <i>-ness</i> (awareness), <i>-ship</i> (leadership), <i>-cy</i> (efficiency), <i>-al</i> (approval), <i>-ure</i> (failure).</p>
+    </div></details>
+
+    <details class="pat"><summary>7 · Adjective suffixes</summary><div class="body">
+      <div class="ex no">The proposal was more <span class="strike">persuasion</span> than anyone expected.</div>
+      <div class="ex yes">The proposal was more <b>persuasive</b> than anyone expected.</div>
+      <p class="why">The endings that build adjectives: <i>-al</i> (national), <i>-ive</i> (persuasive), <i>-ous</i> (dangerous), <i>-ful</i> (successful), <i>-less</i> (harmless), <i>-able / -ible</i> (reliable, responsible), <i>-ic</i> (economic), <i>-ent / -ant</i> (dependent, significant). After <i>more, very, quite, too</i> and after a linking verb, an adjective is what belongs.</p>
+    </div></details>
+
+    <details class="pat"><summary>8 · Verb-forming suffixes</summary><div class="body">
+      <div class="ex no">regulations intended to <span class="strike">strength</span> the protections workers won</div>
+      <div class="ex yes">regulations intended to <b>strengthen</b> the protections workers won</div>
+      <p class="why">The endings that build verbs: <i>-en</i> (strengthen, widen, shorten), <i>-ize</i> (modernize, prioritize), <i>-ify</i> (simplify, clarify), <i>-ate</i> (differentiate). After <i>to</i>, after a modal, or in any main-verb slot, the noun form cannot stand in.</p>
+    </div></details>
+
+    <details class="pat"><summary>9 · Confusable pairs</summary><div class="body">
+      <div class="ex no">The delay did not <span class="strike">effect</span> the outcome.</div>
+      <div class="ex yes">The delay did not <b>affect</b> the outcome. · The delay had no <b>effect</b> on the outcome.</div>
+      <p class="why"><i>Affect</i> is nearly always the verb, <i>effect</i> nearly always the noun. Others that turn up: <i>advice</i> (noun) / <i>advise</i> (verb), <i>rise</i> (no object) / <i>raise</i> (takes one), <i>economic</i> (of the economy) / <i>economical</i> (thrifty), <i>historic</i> (momentous) / <i>historical</i> (of the past), <i>sensible</i> (reasonable) / <i>sensitive</i> (easily affected).</p>
+    </div></details>
+
+    <details class="pat"><summary>10 · Adverbs that break the -ly rule</summary><div class="body">
+      <div class="ex no">The committee had <span class="strike">hard</span> begun its review when the funding was withdrawn.</div>
+      <div class="ex yes">The committee had <b>hardly</b> begun its review. · The committee worked <b>hard</b> on the review.</div>
+      <p class="why">Some pairs look related and are not. <i>Hard</i> means with effort, <i>hardly</i> means almost not. <i>Late</i> means not on time, <i>lately</i> means recently. <i>Near</i> is close by, <i>nearly</i> is almost. Note also that <i>good</i> is only an adjective — the adverb is <i>well</i> — and that <i>friendly, likely, lively</i> end in <i>-ly</i> but are adjectives.</p>
+    </div></details>
+
+    <details class="pat"><summary>11 · The slot decides the form</summary><div class="body">
+      <div class="ex no"><span class="strike">To success</span> in graduate study requires more than talent.</div>
+      <div class="ex yes"><b>Success</b> in graduate study requires more than talent. · <b>Succeeding</b> in graduate study requires more than talent.</div>
+      <p class="why">A subject must be a noun or a gerund. Work through the slots in order: after a determiner, a noun; after <i>be</i> or <i>seem</i>, an adjective; modifying a verb, an adverb; in the subject or object slot, a noun. Identify the slot before you pick the ending.</p>
+    </div></details>
+
+    <details class="pat"><summary>12 · Noun modifiers stay singular</summary><div class="body">
+      <div class="ex no">The ministry approved a <span class="strike">five-years</span> plan.</div>
+      <div class="ex yes">The ministry approved a <b>five-year</b> plan. · The plan runs for <b>five years</b>.</div>
+      <p class="why">A noun used to modify another noun loses its plural: <i>a two-hour meeting, a ten-page report, a three-day conference</i>. The plural returns as soon as the noun stands on its own again. The hyphen is a reliable signal that the singular is required.</p>
+    </div></details>
+  </section>
+
+  <section>
+    <h2>Set A · Choose the correct form</h2>
+    <p class="instr">Questions 1–12. <span class="instr-screen">Tap the form that the slot requires.</span></p>
+    <div id="setA"></div>
+  </section>
+
+  <section>
+    <h2>Set B · Find the error</h2>
+    <p class="instr">Questions 13–22. Four parts of each sentence are underlined. <span class="instr-screen">Tap the one that is wrong.</span> Only one contains an error.</p>
+    <div id="setB"></div>
+  </section>
+
+  <section>
+    <h2>Set C · Correct the sentence</h2>
+    <p class="instr">Questions 23–30. Each sentence contains exactly one word in the wrong form — and at least one other word doing the same job correctly. Find the error, write the correction, and name the pattern behind it. <span class="instr-screen">Both parts must be right to score.</span></p>
+    <div id="setC"></div>
+  </section>
+
+  <div class="score" id="scorebox"></div>
+
+  <div class="keyblock">
+    <h2>Answer key</h2>
+    <div id="key"></div>
+  </div>
+</div>
+
+<footer>Part of the <a href="./index.html">TOEFL Error Correction</a> section · <a href="../index.html">Advanced Hub</a> · Phil Young’s English School</footer>
+
+<script>
+const A=[
+ {s:["The technicians who calibrated the instrument recorded the readings ","before the trial began."],o:["careful","carefully"],a:1,w:"The word modifies <i>recorded</i>, a verb, so it needs the adverb. <i>Careful readings</i> would modify a noun and take no <i>-ly</i>."},
+ {s:["The results that the second team obtained seem ",", although the sample was unusually small."],o:["conclusive","conclusively"],a:0,w:"After a linking verb the word describes the subject, not the action. Substitute <i>are</i> to test it: <i>the results are conclusive</i>."},
+ {s:["The ministry announced measures intended to stimulate ","growth in the regions that exports had bypassed."],o:["economy","economic"],a:1,w:"A word sitting directly in front of a noun usually has to be an adjective, and a matching adjective exists here."},
+ {s:["","of the data took three months longer than the committee had budgeted for."],o:["The analyze","The analysis"],a:1,w:"Only a noun can follow <i>the</i>. The noun form of <i>analyze</i> is irregular, like <i>decide / decision</i> and <i>succeed / success</i>."},
+ {s:["Students who sat through the entire lecture said they were ","by the argument that the speaker developed."],o:["confusing","confused"],a:1,w:"<i>-ed</i> describes the person who has the feeling; <i>-ing</i> describes the thing that causes it. The argument was confusing; the students were confused."},
+ {s:["The board praised the ","with which the staff handled the transition that followed the merger."],o:["efficient","efficiency"],a:1,w:"<i>The</i> requires a noun. The noun built from <i>efficient</i> takes <i>-cy</i>."},
+ {s:["The proposal that the department submitted was more ","than anyone on the panel had expected."],o:["persuasion","persuasive"],a:1,w:"<i>More</i> is followed by an adjective. <i>Persuasion</i> is the noun and cannot fill that slot."},
+ {s:["The new regulations are intended to ","the protections that workers won in the 1990s."],o:["strength","strengthen"],a:1,w:"After <i>to</i> the slot needs a verb, and the verb is built with <i>-en</i>."},
+ {s:["The delay did not ","the outcome, though it postponed the announcement by two weeks."],o:["effect","affect"],a:1,w:"<i>Affect</i> is the verb, <i>effect</i> the noun. <i>The delay had no effect on the outcome</i> would use the noun."},
+ {s:["The committee had ","begun its review when the ministry withdrew the funding it had promised."],o:["hard","hardly"],a:1,w:"<i>Hardly</i> means almost not; <i>hard</i> means with effort. They are not the adverb and adjective of the same word."},
+ {s:["","in graduate study requires more than the talent that most candidates bring to the interview."],o:["Succeed","Success"],a:1,w:"A subject slot needs a noun or a gerund. <i>Succeeding in graduate study requires\u2026</i> would work equally well."},
+ {s:["The ministry approved a ","plan that the previous administration had drafted before the election."],o:["five-years","five-year"],a:1,w:"A noun modifying another noun loses its plural. The plural returns when it stands alone: <i>the plan runs for five years</i>."}
+];
+const B=[
+ {p:[["The technicians who ",0],["calibrated",1],[" the instrument ",0],["recorded",1],[" the readings ",0],["careful",1],[" and reported them to the supervisor who ",0],["had requested",1],[" them",0]],a:2,f:"carefully",w:"The word modifies <i>recorded</i>, so it takes the adverb form. All three verbs around it are correct."},
+ {p:[["The results ",0],["seem conclusively",1],[", although the sample ",0],["was small",1],[" and the researchers who ",0],["collected",1],[" it ",0],["acknowledged",1],[" the limitation",0]],a:0,f:"seem conclusive",w:"After a linking verb the word describes the subject. <i>Was small</i> in the same sentence shows the pattern handled correctly."},
+ {p:[["The ministry ",0],["announced",1],[" measures intended to stimulate ",0],["economy growth",1],[" in the regions that exports ",0],["had bypassed",1],[" during ",0],["the last decade",1]],a:1,f:"economic growth",w:"A noun directly in front of another noun should be an adjective where one exists."},
+ {p:[["",0],["The analyze",1],[" of the data took three months longer than the committee ",0],["had budgeted",1],[", which ",0],["delayed",1],[" the report that the ministry ",0],["expected",1],[" in June",0]],a:0,f:"The analysis",w:"Only a noun can follow <i>the</i>. The three verbs later in the sentence are all correctly formed."},
+ {p:[["The students who ",0],["attended",1],[" the entire lecture found the argument ",0],["difficult",1],[", the examples ",0],["helpful",1],[" and the conclusion ",0],["confused",1]],a:3,f:"confusing",w:"The conclusion causes the feeling, so it takes <i>-ing</i>. The students would be <i>confused</i>."},
+ {p:[["The board praised the staff for ",0],["the speed",1],[" of the transition, ",0],["the clarity",1],[" of the memo and ",0],["the efficient",1],[" with which the merger ",0],["was handled",1]],a:2,f:"the efficiency",w:"Two correctly formed nouns set the pattern before the third item breaks it."},
+ {p:[["The regulations that Congress ",0],["passed",1],[" are intended ",0],["to strength",1],[" the protections that workers ",0],["won",1],[" in the 1990s and ",0],["to simplify",1],[" the appeals process",0]],a:1,f:"to strengthen",w:"After <i>to</i> the slot needs a verb. <i>To simplify</i> later in the sentence is the same structure done correctly."},
+ {p:[["The delay that the storm ",0],["caused",1],[" ",0],["postponed",1],[" the announcement by two weeks but ",0],["did not effect",1],[" the outcome that the analysts ",0],["had predicted",1]],a:2,f:"did not affect",w:"<i>Affect</i> is the verb. <i>Effect</i> would need a determiner in front of it: <i>had no effect on</i>."},
+ {p:[["The committee ",0],["had hard begun",1],[" its review when the ministry ",0],["withdrew",1],[" the funding that the department ",0],["had counted on",1],[" ",0],["since January",1]],a:0,f:"had hardly begun",w:"<i>Hardly</i> means almost not. <i>Hard</i> would mean with effort, which contradicts the rest of the sentence."},
+ {p:[["The ministry ",0],["approved",1],[" ",0],["a five-years plan",1],[" that the previous administration ",0],["had drafted",1],[" before the election that ",0],["changed",1],[" the majority",0]],a:1,f:"a five-year plan",w:"A noun modifying another noun drops its plural, and the hyphen signals it."}
+];
+const PAT=["","Adjective or adverb","Adjective after linking verbs","Noun where an adjective is needed",
+ "Noun or verb form","-ed and -ing adjectives","Noun suffixes",
+ "Adjective suffixes","Verb-forming suffixes","Confusable pairs",
+ "Adverbs that break the -ly rule","The slot decides the form","Noun modifiers stay singular"];
+const C=[
+ {t:"The technicians recorded the readings careful before the trial began and reported the anomaly immediately to the supervisor.",x:"careful",a:["carefully"],p:1,
+  w:"The word modifies <i>recorded</i>. <i>Immediately</i> later in the sentence is the same job done correctly."},
+ {t:"The findings appear conclusively, though the researchers who collected the data honestly describe the sample as small.",x:"conclusively",a:["conclusive"],p:2,
+  w:"After <i>appear</i> the word describes the subject, so it stays an adjective. <i>Honestly</i> is correct because it modifies a verb."},
+ {t:"The analyze of the samples took longer than the committee expected, which delayed the publication of the results.",x:"analyze",a:["analysis"],p:4,
+  w:"Only a noun can follow <i>the</i>. <i>The publication</i> at the end is the same structure done correctly."},
+ {t:"The students found the lecture interesting, the handouts useful and the final example confused.",x:"confused",a:["confusing"],p:5,
+  w:"The example causes the feeling, so it takes <i>-ing</i>. <i>Interesting</i> earlier in the list is the same choice made correctly."},
+ {t:"The proposal was more persuasion than the panel had expected, largely because the figures were presented clearly.",x:"persuasion",a:["persuasive"],p:7,
+  w:"<i>More</i> is followed by an adjective. <i>Clearly</i> is correct because it modifies <i>presented</i>."},
+ {t:"The storm delayed the announcement by two weeks but did not effect the outcome that the analysts had predicted.",x:"effect",a:["affect"],p:9,
+  w:"<i>Affect</i> is the verb form. As a noun it would need a determiner: <i>had no effect on the outcome</i>."},
+ {t:"To success in graduate study requires more than the talent that most candidates bring to the interview.",x:"To success",a:["success","succeeding"],p:11,
+  w:"A subject must be a noun or a gerund. Either <i>Success</i> or <i>Succeeding</i> fills the slot."},
+ {t:"The ministry approved a five-years plan that the previous administration had drafted over eighteen months.",x:"five-years",a:["five-year"],p:12,
+  w:"A noun modifying another noun loses its plural. <i>Eighteen months</i> keeps its plural because it stands alone."}
+];
+
+let ans={},total=30;
+const $=id=>document.getElementById(id);
+const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+
+function save(){try{localStorage.setItem("toefl-wordform",JSON.stringify(ans))}catch(e){}}
+function load(){try{ans=JSON.parse(localStorage.getItem("toefl-wordform")||"{}")}catch(e){ans={}}}
+
+function build(){
+  let h="";
+  A.forEach((q,i)=>{const n=i+1;
+    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${q.s[0]}<span class="print-opts">( ${q.o[0]} / ${q.o[1]} )</span><span class="blank">_______</span> ${q.s[1]}</div>
+    <div class="opts">${q.o.map((o,j)=>`<button class="opt" data-q="${n}" data-i="${j}">${o}</button>`).join("")}</div>
+    <div class="fb" id="fb${n}"></div></div>`;});
+  $("setA").innerHTML=h;
+
+  h="";
+  B.forEach((q,i)=>{const n=i+13;let li=0;
+    const body=q.p.map(([t,u])=>u?`<span class="seg" data-q="${n}" data-i="${li}">${t}<sup>${"ABCD"[li++]}</sup></span>`:esc(t)).join("");
+    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${body}.</div><div class="fb" id="fb${n}"></div></div>`;});
+  $("setB").innerHTML=h;
+
+  h=`<div class="pkey"><b>Pattern reference</b>${PAT.slice(1).map((t,j)=>`<span>${j+1}. ${t}</span>`).join("")}</div>`;
+  const sel=PAT.slice(1).map((t,j)=>`<option value="${j+1}">${j+1} &middot; ${t}</option>`).join("");
+  C.forEach((q,i)=>{const n=i+23;
+    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${esc(q.t)}</div>
+    <div class="type-row"><input type="text" id="in${n}" data-q="${n}" placeholder="correction" autocomplete="off" spellcheck="false">
+    <select id="sel${n}"><option value="">which pattern?</option>${sel}</select>
+    <button class="opt btn-check" data-check="${n}">Check</button></div>
+    <div class="cprint">Correction: ______________________________ &nbsp; Pattern no.: ______</div><div class="fb" id="fb${n}"></div></div>`;});
+  $("setC").innerHTML=h;
+
+  $("key").innerHTML=[...A.map((q,i)=>[i+1,q.o[q.a],q.w]),...B.map((q,i)=>[i+13,"("+"ABCD"[q.a]+") → "+q.f,q.w]),...C.map((q,i)=>[i+23,`<i>${q.x}</i> &rarr; <b>${q.a[0]}</b> &middot; pattern ${q.p} (${PAT[q.p]})`,q.w])]
+    .map(([n,a,w])=>`<p><b>${n}.</b> ${a} — ${w}</p>`).join("");
+}
+
+function mark(n,ok,extra){
+  const f=$("fb"+n);f.className="fb show "+(ok?"ok":"no");
+  const q=(n<13?A[n-1]:n<23?B[n-13]:C[n-23]);
+  f.innerHTML=`<b>${ok?"Correct":"Not correct"}</b>${extra||""}${q.w}`;
+  ans[n]=ok;save();update();
+}
+function update(){
+  const done=Object.keys(ans).length,right=Object.values(ans).filter(Boolean).length;
+  $("ptext").textContent=done+" of "+total+" answered";
+  $("pfill").style.width=(done/total*100)+"%";
+  $("pscore").textContent=done?right+" right":"";
+  const sb=$("scorebox");
+  if(done===total){sb.className="score show";sb.innerHTML=`<strong>${right} / 30</strong><br>${right>=27?"Exam-ready on this point.":right>=21?"Solid. Reread the patterns behind the items you missed.":"Work back through the twelve patterns, then reset and try again."}`;}
+  else sb.className="score";
+}
+
+document.addEventListener("click",e=>{
+  const o=e.target.closest(".opt[data-q]");
+  if(o){const n=+o.dataset.q,i=+o.dataset.i,q=A[n-1];
+    document.querySelectorAll(`.opt[data-q="${n}"]`).forEach(b=>{b.className="opt";b.disabled=true});
+    o.classList.add(i===q.a?"right":"wrong");
+    if(i!==q.a)document.querySelector(`.opt[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");
+    mark(n,i===q.a);return;}
+
+  const s=e.target.closest(".seg");
+  if(s){const n=+s.dataset.q,i=+s.dataset.i,q=B[n-13];
+    document.querySelectorAll(`.seg[data-q="${n}"]`).forEach(x=>x.style.pointerEvents="none");
+    s.classList.add(i===q.a?"right":"wrong");
+    if(i!==q.a)document.querySelector(`.seg[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");
+    mark(n,i===q.a,`Correction: <b>${"ABCD"[q.a]} → ${q.f}</b>. `);return;}
+
+  const c=e.target.closest("[data-check]");
+  if(c){check(+c.dataset.check);}
+});
+document.addEventListener("keydown",e=>{
+  if(e.key==="Enter"&&e.target.dataset.q&&e.target.tagName==="INPUT")check(+e.target.dataset.q);
+});
+function check(n){
+  const el=$("in"+n),sl=$("sel"+n),q=C[n-23];
+  const v=el.value.trim().toLowerCase().replace(/\s+/g," ").replace(/[.,;]$/,"");
+  if(!v||!sl.value){const f=$("fb"+n);f.className="fb show no";f.innerHTML="<b>Not yet</b>Type the corrected verb and choose a pattern before checking.";return;}
+  const vOk=q.a.some(a=>a.toLowerCase()===v),pOk=+sl.value===q.p,ok=vOk&&pOk;
+  el.className=vOk?"right":"wrong";sl.className=pOk?"right":"wrong";
+  el.disabled=true;sl.disabled=true;
+  let lead="";
+  if(vOk&&!pOk)lead=`The verb is right. The pattern is <b>${q.p} &middot; ${PAT[q.p]}</b>. `;
+  else if(!vOk&&pOk)lead=`Right pattern. The error is <i>${q.x}</i> &rarr; <b>${q.a[0]}</b>. `;
+  else if(!ok)lead=`The error is <i>${q.x}</i> &rarr; <b>${q.a[0]}</b>, pattern <b>${q.p} &middot; ${PAT[q.p]}</b>. `;
+  mark(n,ok,lead);
+}
+
+$("theme").onclick=()=>{
+  const d=document.documentElement.dataset.theme==="dark";
+  const t=d?"light":"dark";
+  document.documentElement.dataset.theme=t;
+  $("theme").textContent=t==="dark"?"🌙":"☀️";
+  try{localStorage.setItem("toefl-theme",t)}catch(e){}
+};
+$("pw").onclick=()=>{document.body.className="print-blank";document.querySelectorAll(".pat").forEach(p=>p.open=false);print();};
+$("pk").onclick=()=>{document.body.className="print-key";document.querySelectorAll(".pat").forEach(p=>p.open=true);print();};
+$("reset").onclick=()=>{ans={};save();location.reload();};
+
+(function(){
+  try{const t=localStorage.getItem("toefl-theme");if(t){document.documentElement.dataset.theme=t;$("theme").textContent=t==="dark"?"🌙":"☀️";}}catch(e){}
+  load();build();
+  Object.keys(ans).forEach(n=>{ // replay locked state
+    n=+n;
+    if(n<13){const q=A[n-1];document.querySelectorAll(`.opt[data-q="${n}"]`).forEach(b=>b.disabled=true);
+      document.querySelector(`.opt[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");}
+    else if(n<23){const q=B[n-13];document.querySelectorAll(`.seg[data-q="${n}"]`).forEach(x=>x.style.pointerEvents="none");
+      document.querySelector(`.seg[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");}
+    else{const q=C[n-23],el=$("in"+n),sl=$("sel"+n);el.value=q.a[0];sl.value=q.p;el.disabled=true;sl.disabled=true;el.className=sl.className=ans[n]?"right":"wrong";}
+    const f=$("fb"+n),q=(n<13?A[n-1]:n<23?B[n-13]:C[n-23]);
+    f.className="fb show "+(ans[n]?"ok":"no");f.innerHTML=`<b>${ans[n]?"Correct":"Not correct"}</b>${q.w}`;
+  });
+  update();
+})();
+</script>
+</body>
+</html>
