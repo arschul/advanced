@@ -320,7 +320,7 @@ window.VOCAB.technology = {
       word: "phishing", pos: "n",
       def: "Fraud that tricks people into giving up passwords or bank details.",
       colls: ["a phishing email", "fall for a phishing scam", "phishing attempt"],
-      ex: "The message imitated the payroll system closely enough that two people fell for it.",
+      ex: "The phishing email imitated the payroll system closely enough that two people fell for it.",
       note: "Deliberately misspelled fishing; targeted versions are called spear phishing.",
       pitfall: "Pronounced exactly like fishing. Uncountable — say a phishing email, not *a phishing*.",
       family: "",
