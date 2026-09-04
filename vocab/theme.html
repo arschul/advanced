@@ -374,7 +374,7 @@ function matches(it){
     if(!has) return false;
   }
   if(query){
-    var hay = [it.word, it.def, it.ex, it.note, it.pitfall, it.family, (it.colls || []).join(' ')].join(' ').toLowerCase();
+    var hay = [it.word, it.def, it.ex, it.note, it.pitfall, it.family, (it.colls || []).join(' '), it.contrast ? it.contrast.good + ' ' + it.contrast.why : ''].join(' ').toLowerCase();
     if(hay.indexOf(query) < 0) return false;
   }
   return true;
@@ -446,6 +446,8 @@ function cardFor(it){
   if(it.note) html += '<div class="row"><div class="lbl">Usage</div><div class="val">' + esc(it.note) + '</div></div>';
   if(it.pitfall) html += '<div class="row pit"><div class="lbl">Watch out</div><div class="val">' + esc(it.pitfall) + '</div></div>';
   if(it.family) html += '<div class="row"><div class="lbl">Word family</div><div class="val">' + esc(it.family) + '</div></div>';
+  if(it.contrast) html += '<div class="row"><div class="lbl">Say this</div><div class="val">' +
+    esc(it.contrast.good) + ' <span style="color:var(--muted)">not</span> ' + esc(it.contrast.bad) + '</div></div>';
   if((it.tags || []).length) html += '<div class="tags">' +
     it.tags.map(function(t){ return '<span class="tag">' + esc(t) + '</span>'; }).join('') + '</div>';
   body.innerHTML = html;
@@ -727,7 +729,8 @@ var TYPES = [
   {id: 'coll', label: 'Collocation', on: true},
   {id: 'def',  label: 'Definition',  on: true},
   {id: 'form', label: 'Word form',   on: true},
-  {id: 'ctx',  label: 'In context',  on: true}
+  {id: 'ctx',  label: 'In context',  on: true},
+  {id: 'reg',  label: 'Register',     on: true}
 ];
 var setLen = 12, score = 0, answered = 0, total = 0;
 
@@ -788,6 +791,12 @@ function makeQ(type, it, p){
     return {type: 'In context', prompt: b2, answer: it.word,
       options: shuffle(distractors(it, p, 3).concat([it.word])),
       note: it.def};
+  }
+  if(type === 'reg'){
+    if(!it.contrast || !it.contrast.good || !it.contrast.bad) return null;
+    return {type: 'Register', prompt: 'Which is the natural phrasing?', answer: it.contrast.good,
+      options: shuffle([it.contrast.good, it.contrast.bad]),
+      note: it.contrast.why};
   }
   if(type === 'form'){
     var fam = parseFamily(it.family);
