@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C1 Vocabulary · Advanced Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0e12;--surface:#15171c;--surface2:#1b1e25;--text:#eef0f2;--muted:#8b929c;--border:#262932;
+    --violet:#a78bfa;--violet-deep:#1c1433;--violet-line:rgba(167,139,250,0.35);
+    --key-accent:#f0c75e;--key-deep:#2a2206;--radius:18px;
+  }
+  :root[data-theme="light"]{
+    --bg:#f4f1ea;--surface:#ffffff;--surface2:#faf8f3;--text:#1a1815;--muted:#6b6660;--border:#e2ddd2;
+    --violet:#7c3aed;--violet-deep:#ede9fe;--violet-line:rgba(124,58,237,0.3);
+    --key-accent:#b8860b;--key-deep:#fbf2dc;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;
+    display:flex;flex-direction:column;align-items:center;line-height:1.65;transition:background .3s,color .3s}
+  .theme-toggle{position:fixed;top:1.25rem;right:1.25rem;z-index:10;width:42px;height:42px;border-radius:50%;
+    border:1px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;display:flex;
+    align-items:center;justify-content:center;font-size:1.1rem;transition:all .2s}
+  .theme-toggle:hover{border-color:var(--text);color:var(--text);transform:scale(1.06)}
+  .wrap{width:100%;max-width:980px;padding:4.5rem 1.5rem 4rem}
+  .back-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.8rem;font-weight:500;color:var(--muted);
+    text-decoration:none;margin-bottom:2.5rem;transition:color .2s}
+  .back-link:hover{color:var(--violet)}
+  .eyebrow{font-size:.72rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:1.1rem}
+  h1{font-family:'Fraunces',serif;font-weight:700;font-optical-sizing:auto;font-size:clamp(2.4rem,6vw,4rem);
+    line-height:1.05;letter-spacing:-1.5px;margin-bottom:.9rem}
+  h1 .accent{background:linear-gradient(90deg,var(--violet),#38bdf8);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{color:var(--muted);font-size:1.05rem;max-width:580px;font-weight:300;line-height:1.7;margin-bottom:2.2rem}
+  .note{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--violet);
+    border-radius:12px;padding:1.1rem 1.3rem;font-size:.88rem;color:var(--muted);font-weight:300;line-height:1.75;margin-bottom:2.5rem}
+  .note b{color:var(--text);font-weight:600}
+
+  .search{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:12px;
+    padding:.75rem 1rem;color:var(--text);font-family:inherit;font-size:.95rem;margin-bottom:2rem}
+  .search:focus{outline:none;border-color:var(--violet)}
+  .results{margin-bottom:2.5rem;display:none}
+  .results.show{display:block}
+  .hit{display:block;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:.8rem 1rem;
+    margin-bottom:.5rem;text-decoration:none;color:inherit;transition:border-color .18s}
+  .hit:hover{border-color:var(--violet)}
+  .hit .hw{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600}
+  .hit .hd{font-size:.85rem;color:var(--muted);font-weight:300}
+  .hit .ht{font-size:.68rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--violet)}
+
+  .section-hd{display:flex;align-items:baseline;gap:.8rem;margin-bottom:1.2rem;padding-bottom:.7rem;border-bottom:1px solid var(--border)}
+  .section-hd h2{font-family:'Fraunces',serif;font-size:1.35rem;font-weight:600}
+  .section-hd span{font-size:.8rem;color:var(--muted);font-weight:300}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(272px,1fr));gap:.9rem;margin-bottom:3rem}
+  .tcard{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--border);
+    border-radius:14px;padding:1.15rem 1.25rem;text-decoration:none;color:inherit;transition:border-color .2s,transform .15s}
+  .tcard:hover{border-color:var(--violet);transform:translateY(-2px)}
+  .tcard.pending{opacity:.45;cursor:default}
+  .tcard.pending:hover{border-color:var(--border);transform:none}
+  .tcard .ic{font-size:1.4rem;margin-bottom:.6rem;line-height:1}
+  .tcard h3{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:600;margin-bottom:.3rem}
+  .tcard p{font-size:.83rem;color:var(--muted);font-weight:300;line-height:1.6;flex:1;margin-bottom:.9rem}
+  .tcard .foot{display:flex;align-items:center;justify-content:space-between;font-size:.75rem;color:var(--muted)}
+  .tcard .n{color:var(--violet);font-weight:600}
+  .tcard .stars{color:var(--key-accent)}
+  footer{width:100%;max-width:980px;padding:1.5rem;border-top:1px solid var(--border);font-size:.78rem;
+    color:var(--muted);text-align:center;font-weight:300}
+  footer a{color:var(--muted)}
+  @media(max-width:600px){.wrap{padding:3.5rem 1.1rem 3rem}}
+</style>
+</head>
+<body>
+
+<button class="theme-toggle" id="themeBtn" aria-label="Switch theme">🌙</button>
+
+<div class="wrap">
+  <a class="back-link" href="../index.html">← Advanced Hub</a>
+  <div class="eyebrow">B2 → C1 · Resources</div>
+  <h1>C1 <span class="accent">Vocabulary</span></h1>
+  <p class="lede">Thematic word lists at C1, built for teaching rather than memorizing: every entry carries collocations, a usage note and the error Brazilian learners actually make.</p>
+
+  <div class="note">
+    Open a theme to study the list, star what your group needs, or switch to <b>board mode</b> for whole-class work — the word appears large, the definition and example stay hidden until you reveal them. Audio is on every entry; pick the voice you want under <b>🔊</b>.
+  </div>
+
+  <input class="search" id="search" type="search" placeholder="Search every published theme — words, notes, false friends…" autocomplete="off">
+  <div class="results" id="results"></div>
+
+  <div class="section-hd"><h2>Themes</h2><span>40 words each</span></div>
+  <div class="grid" id="grid"></div>
+</div>
+
+<footer>
+  Part of the <a href="../index.html">Advanced Hub</a> · Phil Young's English School · Curitiba
+</footer>
+
+<script>
+var themeBtn = document.getElementById('themeBtn');
+function setTheme(t){
+  document.documentElement.setAttribute('data-theme', t);
+  themeBtn.textContent = t === 'light' ? '☀️' : '🌙';
+  localStorage.setItem('vocab-theme', t);
+}
+setTheme(localStorage.getItem('vocab-theme') === 'light' ? 'light' : 'dark');
+themeBtn.addEventListener('click', function(){
+  setTheme(document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+});
+
+var THEMES = [
+  {slug:'work',        title:'Work & Employment',   icon:'💼', blurb:'Hiring, leaving, pay, workplace culture and industrial relations.', live:true},
+  {slug:'technology',  title:'Technology & AI',     icon:'🖥️', blurb:'Systems, security, artificial intelligence and life online.', live:true},
+  {slug:'environment', title:'Environment',         icon:'🌍', blurb:'Climate, energy, conservation and the language of policy debate.'},
+  {slug:'health',      title:'Health & Medicine',   icon:'🩺', blurb:'Treatment, public health, wellbeing and the body under strain.'},
+  {slug:'education',   title:'Education',           icon:'🎓', blurb:'Schooling, assessment, access and the arguments about all three.'},
+  {slug:'crime',       title:'Crime & Justice',     icon:'⚖️', blurb:'Offenses, courts, sentencing and the vocabulary of punishment.'},
+  {slug:'media',       title:'Media & Information', icon:'📡', blurb:'Journalism, platforms, persuasion and how claims travel.'},
+  {slug:'economy',     title:'Economy & Money',     icon:'📈', blurb:'Markets, inequality, personal finance and economic reporting.'},
+  {slug:'urban',       title:'Urban Life',          icon:'🏙️', blurb:'Cities, housing, transport and how people live close together.'},
+  {slug:'science',     title:'Science & Research',  icon:'🔬', blurb:'Method, evidence, publication and talking about uncertainty.'},
+  {slug:'arts',        title:'Arts & Culture',      icon:'🎭', blurb:'Criticism, taste, performance and describing what a work does.'},
+  {slug:'society',     title:'Society & Politics',  icon:'🗳️', blurb:'Power, rights, demographics and the shape of public argument.'}
+];
+
+var grid = document.getElementById('grid');
+THEMES.forEach(function(t){
+  var live = !!t.live;
+  var el = document.createElement(live ? 'a' : 'div');
+  el.className = 'tcard' + (live ? '' : ' pending');
+  if(live) el.href = 'theme.html#' + t.slug;
+  var stars = 0;
+  try{ stars = (JSON.parse(localStorage.getItem('vocab-star-' + t.slug) || '[]')).length; }catch(e){ stars = 0; }
+  el.innerHTML =
+    '<div class="ic">' + t.icon + '</div>' +
+    '<h3>' + t.title + '</h3>' +
+    '<p>' + t.blurb + '</p>' +
+    '<div class="foot">' +
+      (live ? '<span class="n">40 words</span>' : '<span>In preparation</span>') +
+      (stars ? '<span class="stars">★ ' + stars + '</span>' : '<span></span>') +
+    '</div>';
+  grid.appendChild(el);
+});
+
+/* ── cross-theme search: loads every live data file once ───── */
+var LIVE = THEMES.filter(function(t){ return t.live; });
+var loaded = 0;
+LIVE.forEach(function(t){
+  var s = document.createElement('script');
+  s.src = 'data/' + t.slug + '.js';
+  s.onload = s.onerror = function(){ loaded++; };
+  document.head.appendChild(s);
+});
+
+function esc(s){
+  return String(s).replace(/[&<>"]/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];
+  });
+}
+
+document.getElementById('search').addEventListener('input', function(e){
+  var q = e.target.value.trim().toLowerCase();
+  var box = document.getElementById('results');
+  if(q.length < 2){ box.classList.remove('show'); box.innerHTML = ''; return; }
+  var hits = [];
+  LIVE.forEach(function(t){
+    var data = (window.VOCAB || {})[t.slug];
+    if(!data) return;
+    data.items.forEach(function(it){
+      var hay = [it.word, it.def, it.ex, it.note, it.pitfall, it.family, (it.colls || []).join(' ')].join(' ').toLowerCase();
+      if(hay.indexOf(q) >= 0) hits.push({it: it, theme: data.title, slug: t.slug});
+    });
+  });
+  if(!hits.length){
+    box.innerHTML = '<div class="hit"><span class="hd">No match in the published themes.</span></div>';
+    box.classList.add('show');
+    return;
+  }
+  box.innerHTML = hits.slice(0, 24).map(function(h){
+    return '<a class="hit" href="theme.html#' + h.slug + '/' + encodeURIComponent(h.it.word) + '">' +
+      '<div class="ht">' + esc(h.theme) + '</div>' +
+      '<div class="hw">' + esc(h.it.word) + ' <span class="hd">· ' + esc(h.it.pos) + '</span></div>' +
+      '<div class="hd">' + esc(h.it.def) + '</div></a>';
+  }).join('');
+  box.classList.add('show');
+});
+</script>
+</body>
+</html>
