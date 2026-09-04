@@ -14,7 +14,8 @@ window.VOCAB.technology = {
       note: "Increasingly used as a shorthand for automated decision-making in general.",
       pitfall: "Spelling: algo-rithm, with th. Stress on the first syllable.",
       family: "algorithmic (adj)",
-      tags: ["tech"]
+      tags: ["tech"],
+      contrast: {good: "the recommendation algorithm", bad: "the recommendation algoritm", why: "Spelling: algo-rithm."}
     },
     {
       word: "automation", pos: "n",
@@ -24,7 +25,8 @@ window.VOCAB.technology = {
       note: "Uncountable. The verb is automate.",
       pitfall: "Not *automatize* or *automatization* — those exist but sound wrong to native ears. Use automate / automation.",
       family: "automate (v) · automated (adj)",
-      tags: ["tech"]
+      tags: ["tech"],
+      contrast: {good: "automate the process", bad: "automatize the process", why: "The verb is automate."}
     },
     {
       word: "encryption", pos: "n",
@@ -34,7 +36,8 @@ window.VOCAB.technology = {
       note: "The opposite process is decryption.",
       pitfall: "Uncountable. The verb is encrypt, not *encryptate*.",
       family: "encrypt (v) · encrypted (adj)",
-      tags: ["tech"]
+      tags: ["tech"],
+      contrast: {good: "encrypt the message", bad: "encryptate the message", why: "The verb is encrypt."}
     },
     {
       word: "data breach", pos: "n",
@@ -44,7 +47,8 @@ window.VOCAB.technology = {
       note: "Companies suffer or disclose breaches; attackers cause them.",
       pitfall: "Leak suggests carelessness; breach suggests something was broken into. Choose deliberately.",
       family: "breach (v)",
-      tags: ["tech"]
+      tags: ["tech"],
+      contrast: {good: "suffered a data breach", bad: "suffered a data break", why: "The term is breach."}
     },
     {
       word: "surveillance", pos: "n",
@@ -54,7 +58,8 @@ window.VOCAB.technology = {
       note: "Formal and slightly ominous; monitoring is the neutral word.",
       pitfall: "Pronounced /sərˈveɪləns/ — no v sound in the middle. Not related to vigilance, which means alertness.",
       family: "surveil (v)",
-      tags: ["formal", "tech"]
+      tags: ["formal", "tech"],
+      contrast: {good: "kept under surveillance", bad: "kept under vigilance", why: "Vigilance means alertness, not observation."}
     },
     {
       word: "bandwidth", pos: "n",
@@ -64,7 +69,8 @@ window.VOCAB.technology = {
       note: "The figurative sense is now common in professional speech.",
       pitfall: "Uncountable in both senses. The figurative use is informal — avoid it in academic writing.",
       family: "",
-      tags: ["tech", "figurative"]
+      tags: ["tech", "figurative"],
+      contrast: {good: "limited bandwidth", bad: "limited bandwidths", why: "Uncountable in both senses."}
     },
     {
       word: "glitch", pos: "n",
@@ -74,7 +80,8 @@ window.VOCAB.technology = {
       note: "Countable and informal; suggests something brief rather than serious.",
       pitfall: "A bug is a flaw in the code; a glitch is a passing malfunction. They aren't interchangeable.",
       family: "glitchy (adj)",
-      tags: ["informal", "tech"]
+      tags: ["informal", "tech"],
+      contrast: {good: "the site had a glitch", bad: "the site had glitch", why: "Countable \u2014 it needs an article."}
     },
     {
       word: "obsolete", pos: "adj",
@@ -84,7 +91,8 @@ window.VOCAB.technology = {
       note: "Render obsolete is the standard formal collocation.",
       pitfall: "Say become obsolete, not *get obsolete*. Stress: OB-so-lete.",
       family: "obsolescence (n)",
-      tags: ["formal"]
+      tags: ["formal"],
+      contrast: {good: "the format became obsolete", bad: "the format got obsolete", why: "Become or be rendered obsolete."}
     },
     {
       word: "interface", pos: "n",
@@ -94,7 +102,8 @@ window.VOCAB.technology = {
       note: "Also a verb meaning to connect or communicate with.",
       pitfall: "As a verb it takes with: the app interfaces with the school database.",
       family: "interface (v)",
-      tags: ["tech"]
+      tags: ["tech"],
+      contrast: {good: "interfaces with the database", bad: "interfaces to the database", why: "As a verb it takes with."}
     },
     {
       word: "seamless", pos: "adj",
@@ -104,7 +113,8 @@ window.VOCAB.technology = {
       note: "Marketing language, but standard in technical writing about systems.",
       pitfall: "From seam (a join in cloth) — nothing to do with seem. Watch the spelling.",
       family: "seamlessly (adv)",
-      tags: ["tech", "figurative"]
+      tags: ["tech", "figurative"],
+      contrast: {good: "a seamless transition", bad: "a seemless transition", why: "From seam, a join in cloth."}
     },
     {
       word: "scalable", pos: "adj",
@@ -114,7 +124,8 @@ window.VOCAB.technology = {
       note: "The verb scale is used intransitively: it doesn't scale.",
       pitfall: "Scale up means grow; scale back means reduce. Don't mix them up.",
       family: "scale (v) · scalability (n)",
-      tags: ["tech", "business"]
+      tags: ["tech", "business"],
+      contrast: {good: "a scalable solution", bad: "a scalable up solution", why: "Scalable is the adjective; scale up is the verb phrase."}
     },
     {
       word: "disruptive", pos: "adj",
@@ -124,7 +135,8 @@ window.VOCAB.technology = {
       note: "Positive in business writing, negative everywhere else.",
       pitfall: "The same word describes a badly behaved student. In Portuguese, disruptivo has drifted toward the positive sense only.",
       family: "disrupt (v) · disruption (n)",
-      tags: ["business", "tech"]
+      tags: ["business", "tech"],
+      contrast: {good: "a disruptive technology", bad: "a disrupt technology", why: "Disruptive is the adjective."}
     },
     {
       word: "prototype", pos: "n",
@@ -134,7 +146,8 @@ window.VOCAB.technology = {
       note: "Also a verb: to prototype.",
       pitfall: "A prototype works, at least partly. A mock-up only looks right.",
       family: "prototype (v) · prototyping (n)",
-      tags: ["tech"]
+      tags: ["tech"],
+      contrast: {good: "built a working prototype", bad: "built a working prototyping", why: "Prototype is the noun."}
     },
     {
       word: "deploy", pos: "v",
@@ -144,7 +157,8 @@ window.VOCAB.technology = {
       note: "Originally military — troops are deployed too.",
       pitfall: "In software, deploy means release into use, not merely install on a machine.",
       family: "deployment (n)",
-      tags: ["tech"]
+      tags: ["tech"],
+      contrast: {good: "deploy the update", bad: "deploy with the update", why: "Deploy takes a direct object."}
     },
     {
       word: "legacy system", pos: "n",
@@ -154,7 +168,8 @@ window.VOCAB.technology = {
       note: "Neutral to negative in tech, unlike legacy elsewhere, which suggests something valuable inherited.",
       pitfall: "A legacy system isn't a prestigious one. The connotation is a burden inherited from the past.",
       family: "",
-      tags: ["tech"]
+      tags: ["tech"],
+      contrast: {good: "stuck with a legacy system", bad: "proud of its legacy system", why: "A legacy system is an inherited burden, not an asset."}
     },
     {
       word: "open-source", pos: "adj",
@@ -164,7 +179,8 @@ window.VOCAB.technology = {
       note: "Hyphenated before a noun, two words after a verb.",
       pitfall: "Open source doesn't automatically mean free of charge, and free software is a distinct movement.",
       family: "",
-      tags: ["tech"]
+      tags: ["tech"],
+      contrast: {good: "open-source software", bad: "open source software", why: "Hyphenate before a noun."}
     },
     {
       word: "proprietary", pos: "adj",
@@ -174,7 +190,8 @@ window.VOCAB.technology = {
       note: "The direct opposite of open-source in most sentences.",
       pitfall: "False friend risk: Portuguese proprietário means owner, which is proprietor in English. Proprietary describes the thing owned, not the person.",
       family: "proprietor (n)",
-      tags: ["formal", "tech"]
+      tags: ["formal", "tech"],
+      contrast: {good: "proprietary software", bad: "proprietor software", why: "A proprietor is the owner; proprietary describes the thing owned."}
     },
     {
       word: "cutting-edge", pos: "adj",
@@ -184,7 +201,8 @@ window.VOCAB.technology = {
       note: "State-of-the-art is a close synonym; bleeding-edge means advanced and still unreliable.",
       pitfall: "Hyphenated as an adjective, but no hyphen in the noun phrase: at the cutting edge.",
       family: "",
-      tags: ["figurative"]
+      tags: ["figurative"],
+      contrast: {good: "at the cutting edge of research", bad: "at the cutting-edge of research", why: "No hyphen in the noun phrase."}
     },
     {
       word: "roll out", pos: "v",
@@ -194,7 +212,8 @@ window.VOCAB.technology = {
       note: "Noun is one word: rollout.",
       pitfall: "Verb is two words, noun is one. A staged release is a rollout; you roll it out.",
       family: "rollout (n)",
-      tags: ["tech", "business"]
+      tags: ["tech", "business"],
+      contrast: {good: "a phased rollout", bad: "a phased roll out", why: "The noun is one word; the verb is two."}
     },
     {
       word: "downtime", pos: "n",
@@ -204,7 +223,8 @@ window.VOCAB.technology = {
       note: "Two senses: system failure, and personal rest. Context separates them cleanly.",
       pitfall: "Uncountable. Opposite in the technical sense is uptime.",
       family: "",
-      tags: ["tech"]
+      tags: ["tech"],
+      contrast: {good: "minimize downtime", bad: "minimize the downtimes", why: "Uncountable."}
     },
     {
       word: "machine learning", pos: "n",
@@ -214,7 +234,8 @@ window.VOCAB.technology = {
       note: "A subfield of artificial intelligence, not a synonym for it.",
       pitfall: "Uncountable and takes no article: research in machine learning, not *in the machine learning*.",
       family: "",
-      tags: ["tech", "academic"]
+      tags: ["tech", "academic"],
+      contrast: {good: "research in machine learning", bad: "research in the machine learning", why: "No article with this uncountable field name."}
     },
     {
       word: "training data", pos: "n",
@@ -224,7 +245,8 @@ window.VOCAB.technology = {
       note: "Train something on something is the fixed pattern.",
       pitfall: "Data is uncountable in normal use: the data is biased, not *are biased*, in most modern writing.",
       family: "train (v)",
-      tags: ["tech"]
+      tags: ["tech"],
+      contrast: {good: "trained on biased data", bad: "trained with biased data", why: "Train something on data."}
     },
     {
       word: "hallucinate", pos: "v",
@@ -234,7 +256,8 @@ window.VOCAB.technology = {
       note: "A recent technical sense borrowed from psychology, now standard in the field.",
       pitfall: "The system hallucinates the content; the content doesn't hallucinate. Noun: hallucination.",
       family: "hallucination (n)",
-      tags: ["tech"]
+      tags: ["tech"],
+      contrast: {good: "the model hallucinated a citation", bad: "the citation hallucinated", why: "The system hallucinates the content, not the reverse."}
     },
     {
       word: "algorithmic bias", pos: "n",
@@ -244,7 +267,8 @@ window.VOCAB.technology = {
       note: "Bias against a group, bias toward an outcome, bias in favor of something.",
       pitfall: "Bias is uncountable when general, countable when specific: a bias toward recent data.",
       family: "biased (adj)",
-      tags: ["tech", "academic"]
+      tags: ["tech", "academic"],
+      contrast: {good: "bias against applicants", bad: "bias to applicants", why: "Bias against a group, bias toward an outcome."}
     },
     {
       word: "black box", pos: "n",
@@ -254,7 +278,8 @@ window.VOCAB.technology = {
       note: "Also the flight recorder on an aircraft — a different metaphor entirely.",
       pitfall: "Hyphenate before a noun: a black-box system.",
       family: "",
-      tags: ["figurative", "tech"]
+      tags: ["figurative", "tech"],
+      contrast: {good: "a black-box model", bad: "a black box model", why: "Hyphenate before a noun."}
     },
     {
       word: "prompt", pos: "n",
@@ -264,7 +289,8 @@ window.VOCAB.technology = {
       note: "Also a verb in this sense, and an old teaching word for cueing a student.",
       pitfall: "False friend: Portuguese pronto means ready. English prompt as an adjective means punctual — a prompt reply.",
       family: "prompt (v) · promptly (adv)",
-      tags: ["tech"]
+      tags: ["tech"],
+      contrast: {good: "a prompt reply", bad: "a pronto reply", why: "Pronto means ready; prompt means punctual."}
     },
     {
       word: "generative", pos: "adj",
@@ -274,7 +300,8 @@ window.VOCAB.technology = {
       note: "Distinguishes newer systems from earlier predictive or classifying ones.",
       pitfall: "Not a synonym for AI in general. A spam filter is AI but not generative.",
       family: "generate (v) · generation (n)",
-      tags: ["tech"]
+      tags: ["tech"],
+      contrast: {good: "generative tools write text", bad: "a spam filter is a generative tool", why: "Not all AI is generative \u2014 classifiers are not."}
     },
     {
       word: "deepfake", pos: "n",
@@ -284,7 +311,8 @@ window.VOCAB.technology = {
       note: "Countable, one word, no capital letter.",
       pitfall: "A deepfake imitates a specific real person. AI-generated images of imaginary people are not deepfakes.",
       family: "",
-      tags: ["tech"]
+      tags: ["tech"],
+      contrast: {good: "a deepfake of the mayor", bad: "a deepfake of an invented person", why: "A deepfake imitates a specific real person."}
     },
     {
       word: "misinformation", pos: "n",
@@ -294,7 +322,8 @@ window.VOCAB.technology = {
       note: "Disinformation is the deliberate version.",
       pitfall: "Intent is the whole difference. Uncountable: *misinformations* is wrong.",
       family: "misinform (v)",
-      tags: ["academic", "formal"]
+      tags: ["academic", "formal"],
+      contrast: {good: "spread misinformation", bad: "spread misinformations", why: "Uncountable."}
     },
     {
       word: "digital footprint", pos: "n",
@@ -304,7 +333,8 @@ window.VOCAB.technology = {
       note: "Verbs follow the metaphor: leave, trace, erase.",
       pitfall: "Distinct from carbon footprint, which is about emissions. Don't blend the two.",
       family: "",
-      tags: ["figurative", "tech"]
+      tags: ["figurative", "tech"],
+      contrast: {good: "left a large digital footprint", bad: "left a large carbon footprint online", why: "Carbon footprint is emissions; digital footprint is data."}
     },
     {
       word: "opt out", pos: "v",
@@ -314,7 +344,8 @@ window.VOCAB.technology = {
       note: "The opposite is opt in. Adjective and noun are hyphenated: an opt-out clause.",
       pitfall: "Always with of: opt out of the scheme, never *opt out from*.",
       family: "opt-out (n, adj) · opt in (v)",
-      tags: ["tech", "formal"]
+      tags: ["tech", "formal"],
+      contrast: {good: "opt out of tracking", bad: "opt out from tracking", why: "Opt out always takes of."}
     },
     {
       word: "phishing", pos: "n",
@@ -324,7 +355,8 @@ window.VOCAB.technology = {
       note: "Deliberately misspelled fishing; targeted versions are called spear phishing.",
       pitfall: "Pronounced exactly like fishing. Uncountable — say a phishing email, not *a phishing*.",
       family: "",
-      tags: ["tech"]
+      tags: ["tech"],
+      contrast: {good: "a phishing email", bad: "a fishing email", why: "Deliberately spelled with ph."}
     },
     {
       word: "malware", pos: "n",
@@ -334,7 +366,8 @@ window.VOCAB.technology = {
       note: "Covers viruses, ransomware, spyware and more.",
       pitfall: "Uncountable, like software: a piece of malware, never *a malware*.",
       family: "",
-      tags: ["tech"]
+      tags: ["tech"],
+      contrast: {good: "a piece of malware", bad: "a malware", why: "Uncountable, like software."}
     },
     {
       word: "streamline", pos: "v",
@@ -344,7 +377,8 @@ window.VOCAB.technology = {
       note: "From aerodynamics — the image is reducing drag.",
       pitfall: "Nothing to do with streaming video. Different word, different root.",
       family: "streamlined (adj)",
-      tags: ["business", "figurative"]
+      tags: ["business", "figurative"],
+      contrast: {good: "streamlined the workflow", bad: "streamed the workflow", why: "Streamline means simplify; stream is unrelated."}
     },
     {
       word: "tech-savvy", pos: "adj",
@@ -354,7 +388,8 @@ window.VOCAB.technology = {
       note: "Savvy alone works as an adjective and a noun.",
       pitfall: "Informal. In formal writing prefer digitally literate.",
       family: "savvy (adj, n)",
-      tags: ["informal"]
+      tags: ["informal"],
+      contrast: {good: "tech-savvy users", bad: "tech savvy users", why: "Hyphenate the compound before a noun."}
     },
     {
       word: "early adopter", pos: "n",
@@ -364,7 +399,8 @@ window.VOCAB.technology = {
       note: "From diffusion of innovations theory, alongside laggards and the early majority.",
       pitfall: "Adopt, not *adapt*. Adopt means take up; adapt means change to fit.",
       family: "adopt (v) · adoption (n)",
-      tags: ["business", "academic"]
+      tags: ["business", "academic"],
+      contrast: {good: "early adopters of the platform", bad: "early adapters of the platform", why: "Adopt means take up; adapt means change to fit."}
     },
     {
       word: "planned obsolescence", pos: "n",
@@ -374,7 +410,8 @@ window.VOCAB.technology = {
       note: "Built-in obsolescence means the same thing.",
       pitfall: "Spelling: obsolescence, with -sc-. Uncountable.",
       family: "obsolete (adj)",
-      tags: ["formal", "academic"]
+      tags: ["formal", "academic"],
+      contrast: {good: "planned obsolescence", bad: "planned obsolescense", why: "Spelling: -scence."}
     },
     {
       word: "content moderation", pos: "n",
@@ -384,7 +421,8 @@ window.VOCAB.technology = {
       note: "A moderator is the person; moderation is the process.",
       pitfall: "Moderation also means restraint, as in drink in moderation. Two unrelated senses.",
       family: "moderate (v) · moderator (n)",
-      tags: ["tech", "formal"]
+      tags: ["tech", "formal"],
+      contrast: {good: "the platform's moderation policy", bad: "the platform's moderator policy", why: "Moderation is the process; a moderator is the person."}
     },
     {
       word: "digital detox", pos: "n",
@@ -394,7 +432,8 @@ window.VOCAB.technology = {
       note: "Countable, mildly journalistic; the same metaphor as a dietary detox.",
       pitfall: "Detox from something, not *detox of*.",
       family: "detox (v)",
-      tags: ["informal", "figurative"]
+      tags: ["informal", "figurative"],
+      contrast: {good: "a detox from social media", bad: "a detox of social media", why: "Detox takes from."}
     },
     {
       word: "screen time", pos: "n",
@@ -404,7 +443,8 @@ window.VOCAB.technology = {
       note: "Two words as a noun; increasingly a metric people track.",
       pitfall: "Uncountable: three hours of screen time, not *three screen times*.",
       family: "",
-      tags: ["informal"]
+      tags: ["informal"],
+      contrast: {good: "three hours of screen time", bad: "three screen times", why: "Uncountable."}
     }
   ]
 };
