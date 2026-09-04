@@ -79,6 +79,9 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .mini-card .mi-icon{font-size:20px;margin-bottom:8px}
 .mini-card h4{font-size:14px;font-weight:700;margin-bottom:4px}
 .mini-card p{font-size:12px;color:var(--muted);line-height:1.5}
+.mini-card.live{opacity:1;text-decoration:none;color:inherit;display:block;transition:border-color .2s,transform .15s}
+.mini-card.live:hover{border-color:var(--teal);transform:translateY(-2px)}
+.mini-card .mc-go{display:block;font-size:12px;font-weight:600;color:var(--teal);margin-top:10px}
 
 /* ── FOOTER ─────────────────────────────────────────────────────── */
 footer{margin-top:auto;padding:20px 28px;border-top:1px solid var(--border);font-size:12px;color:var(--muted);text-align:center}
@@ -337,11 +340,12 @@ footer a:hover{color:var(--teal)}
     <p>Standalone materials and references</p>
   </div>
   <div class="mini-cards">
-    <div class="mini-card">
+    <a class="mini-card live" href="vocab/">
       <div class="mi-icon">📋</div>
       <h4>C1 Vocabulary Lists</h4>
       <p>Thematic word lists at C1 level with collocations and usage notes.</p>
-    </div>
+      <span class="mc-go">2 of 12 themes · 80 words</span>
+    </a>
     <div class="mini-card">
       <div class="mi-icon">📰</div>
       <h4>Authentic Reading Bank</h4>
