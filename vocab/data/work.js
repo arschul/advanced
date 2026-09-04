@@ -14,7 +14,8 @@ window.VOCAB.work = {
       note: "Formal and written — contracts, job ads, annual reports. In speech, say pay or salary.",
       pitfall: "Not *renumeration*. The stem is munus (gift), not number.",
       family: "remunerate (v) · remunerative (adj)",
-      tags: ["formal", "business"]
+      tags: ["formal", "business"],
+      contrast: {good: "the remuneration package", bad: "the renumeration package", why: "Spelling: remuneration, from munus, not from number."}
     },
     {
       word: "severance", pos: "n",
@@ -24,7 +25,8 @@ window.VOCAB.work = {
       note: "Almost always with pay or package. The verb sever is used separately: sever ties.",
       pitfall: "Portuguese indenização is not indemnity here — indemnity is insurance language. Use severance pay.",
       family: "sever (v)",
-      tags: ["business", "formal"]
+      tags: ["business", "formal"],
+      contrast: {good: "six months' severance pay", bad: "six months' indemnity", why: "Indeniza\u00e7\u00e3o is severance pay; indemnity is insurance language."}
     },
     {
       word: "lay off", pos: "v",
@@ -34,7 +36,8 @@ window.VOCAB.work = {
       note: "Noun is one word: layoff. British English prefers make redundant / redundancy.",
       pitfall: "Not the same as fire. Being laid off says nothing about your performance; being fired does.",
       family: "layoff (n)",
-      tags: ["business"]
+      tags: ["business"],
+      contrast: {good: "two hundred workers were laid off", bad: "two hundred workers were fired when the contract ended", why: "Fired implies performance; laid off means the job ended."}
     },
     {
       word: "attrition", pos: "n",
@@ -44,7 +47,8 @@ window.VOCAB.work = {
       note: "Also used of war and of student dropout rates.",
       pitfall: "False friend: Portuguese atrito means friction or conflict. Attrition is wearing away, not an argument.",
       family: "",
-      tags: ["business", "formal"]
+      tags: ["business", "formal"],
+      contrast: {good: "reduced through natural attrition", bad: "reduced through natural friction", why: "Atrito is friction; attrition is gradual loss of staff."}
     },
     {
       word: "onboarding", pos: "n",
@@ -54,7 +58,8 @@ window.VOCAB.work = {
       note: "Corporate register. In everyday speech: getting someone up to speed.",
       pitfall: "Learners often reach for integration, which sounds sociological. Onboarding is the workplace term.",
       family: "onboard (v)",
-      tags: ["business"]
+      tags: ["business"],
+      contrast: {good: "the onboarding process", bad: "the integration process for new hires", why: "Onboarding is the workplace term."}
     },
     {
       word: "retention", pos: "n",
@@ -64,7 +69,8 @@ window.VOCAB.work = {
       note: "Pairs with recruitment: recruitment and retention is a fixed phrase.",
       pitfall: "Retention of information is a different sense. In HR contexts it always means keeping people.",
       family: "retain (v)",
-      tags: ["business"]
+      tags: ["business"],
+      contrast: {good: "staff retention improved", bad: "staff retentions improved", why: "Uncountable."}
     },
     {
       word: "headhunt", pos: "v",
@@ -74,7 +80,8 @@ window.VOCAB.work = {
       note: "Usually passive. The person who does it is a headhunter or recruiter.",
       pitfall: "Don't say *I headhunted a new job*. You are headhunted; you don't headhunt yourself.",
       family: "headhunter (n) · headhunting (n)",
-      tags: ["business"]
+      tags: ["business"],
+      contrast: {good: "he was headhunted by a rival", bad: "he headhunted a new job", why: "You are headhunted; you don't headhunt yourself."}
     },
     {
       word: "headcount", pos: "n",
@@ -84,7 +91,8 @@ window.VOCAB.work = {
       note: "Treated as a resource, not a group of people — hence freeze and budget.",
       pitfall: "Uncountable in this sense: *headcounts* is wrong. Say the headcount is 200.",
       family: "",
-      tags: ["business"]
+      tags: ["business"],
+      contrast: {good: "the headcount is 200", bad: "the headcounts are 200", why: "Uncountable in this sense."}
     },
     {
       word: "appraisal", pos: "n",
@@ -94,7 +102,8 @@ window.VOCAB.work = {
       note: "American English more often says performance review. Appraisal also means valuing property.",
       pitfall: "Not the same as praise. An appraisal can be critical.",
       family: "appraise (v)",
-      tags: ["business", "formal"]
+      tags: ["business", "formal"],
+      contrast: {good: "her annual appraisal", bad: "her annual praise", why: "An appraisal can be critical; praise cannot."}
     },
     {
       word: "workload", pos: "n",
@@ -104,7 +113,8 @@ window.VOCAB.work = {
       note: "Adjectives are weight metaphors: heavy, crushing, light.",
       pitfall: "Say a heavy workload, not *a big workload* or *much work to do* in formal writing.",
       family: "",
-      tags: ["business"]
+      tags: ["business"],
+      contrast: {good: "a heavy workload", bad: "a big workload", why: "Workload takes weight adjectives, not size ones."}
     },
     {
       word: "burnout", pos: "n",
@@ -114,7 +124,8 @@ window.VOCAB.work = {
       note: "Now a recognized occupational phenomenon, so it appears in formal reporting.",
       pitfall: "Uncountable: *a burnout* is wrong. The verb is two words: to burn out.",
       family: "burn out (v) · burnt out (adj)",
-      tags: ["business"]
+      tags: ["business"],
+      contrast: {good: "experienced burnout", bad: "experienced a burnout", why: "Uncountable."}
     },
     {
       word: "downsize", pos: "v",
@@ -124,7 +135,8 @@ window.VOCAB.work = {
       note: "A euphemism, and heard as one — critics use it to point at management language.",
       pitfall: "Also used of moving to a smaller house. Context decides.",
       family: "downsizing (n)",
-      tags: ["business", "euphemism"]
+      tags: ["business", "euphemism"],
+      contrast: {good: "downsize the workforce", bad: "downsize the employees", why: "You downsize a workforce, not individual people."}
     },
     {
       word: "outsource", pos: "v",
@@ -134,7 +146,8 @@ window.VOCAB.work = {
       note: "Opposite is in-house. Moving work abroad specifically is offshoring.",
       pitfall: "Portuguese terceirizar covers both outsourcing and subcontracting; in English, subcontract implies a specific contract.",
       family: "outsourcing (n)",
-      tags: ["business"]
+      tags: ["business"],
+      contrast: {good: "outsourced to a third party", bad: "outsourced for a third party", why: "Outsource takes to for who receives the work."}
     },
     {
       word: "gig economy", pos: "n",
@@ -144,7 +157,8 @@ window.VOCAB.work = {
       note: "Almost always with the. Individual jobs are gigs.",
       pitfall: "Gig originally means a single music performance — keep that image and the term makes sense.",
       family: "gig (n) · gig worker (n)",
-      tags: ["business"]
+      tags: ["business"],
+      contrast: {good: "works in the gig economy", bad: "works at the gig economy", why: "The fixed preposition is in."}
     },
     {
       word: "tenure", pos: "n",
@@ -154,7 +168,8 @@ window.VOCAB.work = {
       note: "Two senses: length of service, and the permanent academic post.",
       pitfall: "Pronounced /ˈtenjər/. It is not related to Portuguese ter.",
       family: "tenured (adj)",
-      tags: ["formal", "academic"]
+      tags: ["formal", "academic"],
+      contrast: {good: "during her tenure as director", bad: "during her tenure like director", why: "As marks the role held."}
     },
     {
       word: "incentive", pos: "n",
@@ -164,7 +179,8 @@ window.VOCAB.work = {
       note: "Followed by to + infinitive, or for + noun.",
       pitfall: "Say an incentive to work harder, not *an incentive for working harder* in careful writing.",
       family: "incentivize (v)",
-      tags: ["business"]
+      tags: ["business"],
+      contrast: {good: "an incentive to work harder", bad: "an incentive for working harder", why: "Incentive takes to plus an infinitive."}
     },
     {
       word: "perk", pos: "n",
@@ -174,7 +190,8 @@ window.VOCAB.work = {
       note: "Informal. The formal equivalent is fringe benefit.",
       pitfall: "A perk is an extra; your salary is not a perk.",
       family: "",
-      tags: ["informal", "business"]
+      tags: ["informal", "business"],
+      contrast: {good: "a perk of the job", bad: "a perk from the job", why: "Perk takes of."}
     },
     {
       word: "meritocracy", pos: "n",
@@ -184,7 +201,8 @@ window.VOCAB.work = {
       note: "Coined satirically in 1958 and still often used skeptically.",
       pitfall: "Countable in the singular with a/the; not *meritocracies* unless comparing systems.",
       family: "meritocratic (adj)",
-      tags: ["academic", "formal"]
+      tags: ["academic", "formal"],
+      contrast: {good: "a genuine meritocracy", bad: "a genuine meritocratic", why: "Meritocratic is the adjective; the noun is meritocracy."}
     },
     {
       word: "nepotism", pos: "n",
@@ -194,7 +212,8 @@ window.VOCAB.work = {
       note: "Always negative. Favoring friends specifically is cronyism.",
       pitfall: "Uncountable. Stress on the first syllable: NEP-o-tism.",
       family: "nepotistic (adj)",
-      tags: ["formal", "negative"]
+      tags: ["formal", "negative"],
+      contrast: {good: "accusations of nepotism", bad: "accusations of nepotisms", why: "Uncountable."}
     },
     {
       word: "grievance", pos: "n",
@@ -204,7 +223,8 @@ window.VOCAB.work = {
       note: "Institutional word — HR departments have grievance procedures.",
       pitfall: "Stronger and more formal than complaint. You file a grievance; you make a complaint.",
       family: "aggrieved (adj)",
-      tags: ["formal", "business"]
+      tags: ["formal", "business"],
+      contrast: {good: "filed a grievance", bad: "made a grievance", why: "Grievances are filed or raised."}
     },
     {
       word: "notice period", pos: "n",
@@ -214,7 +234,8 @@ window.VOCAB.work = {
       note: "Related fixed phrases: hand in your notice, work your notice.",
       pitfall: "Portuguese aviso prévio maps directly, but the verb is give or hand in notice — not *advise*.",
       family: "notice (n)",
-      tags: ["business"]
+      tags: ["business"],
+      contrast: {good: "handed in her notice", bad: "advised her notice", why: "You give or hand in notice."}
     },
     {
       word: "probation", pos: "n",
@@ -224,7 +245,8 @@ window.VOCAB.work = {
       note: "Adjective is probationary, not probational.",
       pitfall: "Probation also means a criminal sentence served outside prison. In a job context it is harmless.",
       family: "probationary (adj)",
-      tags: ["business"]
+      tags: ["business"],
+      contrast: {good: "on probation for three months", bad: "in probation for three months", why: "The fixed preposition is on."}
     },
     {
       word: "collective bargaining", pos: "n",
@@ -234,7 +256,8 @@ window.VOCAB.work = {
       note: "Bargaining here means negotiating, not haggling over a price.",
       pitfall: "Uncountable and unhyphenated as a noun; hyphenated before another noun: collective-bargaining rights.",
       family: "bargain (v)",
-      tags: ["formal", "business"]
+      tags: ["formal", "business"],
+      contrast: {good: "won through collective bargaining", bad: "won through collective bargainings", why: "Uncountable."}
     },
     {
       word: "walkout", pos: "n",
@@ -244,7 +267,8 @@ window.VOCAB.work = {
       note: "Shorter and more spontaneous than a full strike; verb is two words.",
       pitfall: "Also means leaving a meeting in protest. Both senses need over for the cause: walk out over pay.",
       family: "walk out (v)",
-      tags: ["business"]
+      tags: ["business"],
+      contrast: {good: "staged a walkout over pay", bad: "staged a walkout for pay", why: "Over marks the cause of the dispute."}
     },
     {
       word: "upskill", pos: "v",
@@ -254,7 +278,8 @@ window.VOCAB.work = {
       note: "Recent and firmly corporate. Reskill means training for a different job entirely.",
       pitfall: "Transitive and intransitive: you can upskill staff, or staff can upskill.",
       family: "upskilling (n) · reskill (v)",
-      tags: ["business"]
+      tags: ["business"],
+      contrast: {good: "upskill the workforce", bad: "upskill to the workforce", why: "Upskill takes a direct object."}
     },
     {
       word: "turnover", pos: "n",
@@ -264,7 +289,8 @@ window.VOCAB.work = {
       note: "Say staff turnover or employee turnover when the context isn't obvious.",
       pitfall: "In British business English, turnover also means revenue. That sense is common in Brazil — specify staff turnover to avoid confusion.",
       family: "turn over (v)",
-      tags: ["business"]
+      tags: ["business"],
+      contrast: {good: "high staff turnover", bad: "high staff turnovers", why: "Uncountable, and specify staff to avoid the revenue sense."}
     },
     {
       word: "glass ceiling", pos: "n",
@@ -274,7 +300,8 @@ window.VOCAB.work = {
       note: "Related metaphors: glass cliff, sticky floor.",
       pitfall: "Usually the glass ceiling. Verbs are physical: hit, break, shatter — not *pass*.",
       family: "",
-      tags: ["figurative"]
+      tags: ["figurative"],
+      contrast: {good: "hit the glass ceiling", bad: "passed the glass ceiling", why: "The verbs are physical: hit, break, shatter."}
     },
     {
       word: "sabbatical", pos: "n",
@@ -284,7 +311,8 @@ window.VOCAB.work = {
       note: "Standard in universities, increasingly offered elsewhere.",
       pitfall: "No article after on: she is on sabbatical, not *on a sabbatical* in that phrase.",
       family: "",
-      tags: ["academic"]
+      tags: ["academic"],
+      contrast: {good: "she is on sabbatical", bad: "she is on a sabbatical leave", why: "On sabbatical takes no article."}
     },
     {
       word: "micromanage", pos: "v",
@@ -294,7 +322,8 @@ window.VOCAB.work = {
       note: "Always critical. The person is a micromanager.",
       pitfall: "One word, no hyphen. Take care with the noun: micromanagement.",
       family: "micromanager (n) · micromanagement (n)",
-      tags: ["business", "negative"]
+      tags: ["business", "negative"],
+      contrast: {good: "micromanaged the team", bad: "micro-managed the team", why: "Written as one word."}
     },
     {
       word: "autonomy", pos: "n",
@@ -304,7 +333,8 @@ window.VOCAB.work = {
       note: "Quantified with degree, measure, or level, not with numbers.",
       pitfall: "Uncountable. Say a great deal of autonomy, not *many autonomies*.",
       family: "autonomous (adj) · autonomously (adv)",
-      tags: ["formal"]
+      tags: ["formal"],
+      contrast: {good: "a great deal of autonomy", bad: "many autonomies", why: "Uncountable."}
     },
     {
       word: "accountability", pos: "n",
@@ -314,7 +344,8 @@ window.VOCAB.work = {
       note: "Responsibility is the duty; accountability is answering for it afterward.",
       pitfall: "Portuguese has no neat equivalent, so learners overuse responsibility. Use accountable when someone must answer to someone else.",
       family: "accountable (adj)",
-      tags: ["formal", "business"]
+      tags: ["formal", "business"],
+      contrast: {good: "held accountable for the decision", bad: "held accountable of the decision", why: "Accountable takes for."}
     },
     {
       word: "morale", pos: "n",
@@ -324,7 +355,8 @@ window.VOCAB.work = {
       note: "Verbs are movement: boost, lift, dent, undermine.",
       pitfall: "Morale /məˈræl/ is group spirit; moral /ˈmɔːrəl/ is about right and wrong. Different words, different stress.",
       family: "",
-      tags: ["formal"]
+      tags: ["formal"],
+      contrast: {good: "morale was low", bad: "moral was low", why: "Morale is group spirit; moral is about right and wrong."}
     },
     {
       word: "delegate", pos: "v",
@@ -334,7 +366,8 @@ window.VOCAB.work = {
       note: "The noun delegate is a person representing others at a conference.",
       pitfall: "Stress differs: the verb is /ˈdeləɡeɪt/, the noun /ˈdeləɡət/.",
       family: "delegation (n) · delegate (n)",
-      tags: ["business"]
+      tags: ["business"],
+      contrast: {good: "delegated the task to her", bad: "delegated her the task", why: "The pattern is delegate something to someone."}
     },
     {
       word: "stakeholder", pos: "n",
@@ -344,7 +377,8 @@ window.VOCAB.work = {
       note: "Wider than shareholder, which means an owner of shares.",
       pitfall: "Don't confuse stakeholder with shareholder — every shareholder is a stakeholder, not the reverse.",
       family: "",
-      tags: ["business", "formal"]
+      tags: ["business", "formal"],
+      contrast: {good: "consult key stakeholders", bad: "consult key shareholders", why: "Shareholders own shares; stakeholders are anyone affected."}
     },
     {
       word: "red tape", pos: "n",
@@ -354,7 +388,8 @@ window.VOCAB.work = {
       note: "The verb is cut, from the image of tape tied around official documents.",
       pitfall: "Uncountable, and always negative — never *a red tape*.",
       family: "",
-      tags: ["figurative", "negative"]
+      tags: ["figurative", "negative"],
+      contrast: {good: "cut red tape", bad: "cut a red tape", why: "Uncountable."}
     },
     {
       word: "workaround", pos: "n",
@@ -364,7 +399,8 @@ window.VOCAB.work = {
       note: "Common in tech and operations; implies the real problem remains.",
       pitfall: "Noun is one word, verb is two: we found a workaround / we worked around it.",
       family: "work around (v)",
-      tags: ["business"]
+      tags: ["business"],
+      contrast: {good: "we found a workaround", bad: "we found a work around", why: "The noun is one word; the verb is two."}
     },
     {
       word: "entrepreneurial", pos: "adj",
@@ -374,7 +410,8 @@ window.VOCAB.work = {
       note: "Often used to praise employees who act like owners.",
       pitfall: "Spelling and stress: en-tre-pre-NEUR-ial. From French, so the -eur ending is not -uer.",
       family: "entrepreneur (n) · entrepreneurship (n)",
-      tags: ["business"]
+      tags: ["business"],
+      contrast: {good: "an entrepreneurial mindset", bad: "an entrepeneurial mindset", why: "Spelling: entre-pre-neur-ial."}
     },
     {
       word: "career trajectory", pos: "n",
@@ -384,7 +421,8 @@ window.VOCAB.work = {
       note: "Trajectory is a physics metaphor, so the adjectives are directional: upward, steep, flat.",
       pitfall: "Career path is the everyday equivalent; trajectory suggests momentum and is more formal.",
       family: "",
-      tags: ["formal", "figurative"]
+      tags: ["formal", "figurative"],
+      contrast: {good: "an upward trajectory", bad: "a high trajectory", why: "Trajectory takes directional adjectives."}
     },
     {
       word: "vacancy", pos: "n",
@@ -394,7 +432,8 @@ window.VOCAB.work = {
       note: "Job opening is the more common American equivalent.",
       pitfall: "Portuguese vaga covers vacancy, place, and parking space. In English a vacancy at a hotel is a free room, never a seat.",
       family: "vacant (adj)",
-      tags: ["business"]
+      tags: ["business"],
+      contrast: {good: "advertise a vacancy", bad: "advertise a vacation", why: "A vacancy is a job opening."}
     },
     {
       word: "shortlist", pos: "v",
@@ -404,7 +443,8 @@ window.VOCAB.work = {
       note: "Verb and noun, usually one word. Passive is the most common form.",
       pitfall: "You are shortlisted for a job, not *to* a job.",
       family: "shortlist (n)",
-      tags: ["business"]
+      tags: ["business"],
+      contrast: {good: "shortlisted for the role", bad: "shortlisted to the role", why: "Shortlist takes for."}
     }
   ]
 };
