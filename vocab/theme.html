@@ -730,6 +730,7 @@ var TYPES = [
   {id: 'def',  label: 'Definition',  on: true},
   {id: 'form', label: 'Word form',   on: true},
   {id: 'ctx',  label: 'In context',  on: true},
+  {id: 'prep', label: 'Preposition',  on: true},
   {id: 'reg',  label: 'Register',     on: true}
 ];
 var setLen = 12, score = 0, answered = 0, total = 0;
@@ -769,14 +770,151 @@ function parseFamily(fam){
   return out;
 }
 
+
+/* ==COLLOC-CORE-START== (pure functions; covered by the node test) */
+var STOPW = ' a an the this that these those and or but be is are was were been to of in on for with at by from into over under against about through among between toward as it its their his her your our my someone something somebody not no more most very much many '.split(' ');
+var PREPS = ['to','of','in','on','for','with','at','by','from','into','over','against','about','through','among','between','toward'];
+var COMMON_VERBS = ('cut slash boost raise reduce lower close narrow reach return deliver commit serve file issue impose scrap curb tackle combat '
+  + 'provide obtain conduct run take make give hold lose gain build break spread detect prevent enforce grant deny bring drop press '
+  + 'meet miss set launch adopt apply follow face show accept reject win award earn submit cover crack fill secure restore ease lift '
+  + 'stage draw play carry pay send install release publish trace track store share leave enter join decide replace remove keep put '
+  + 'need want find call ask tell begin start stop help work move live believe bring happen write sit stand hear let mean '
+  + 'become seem feel look turn appear suggest require allow report consider expect create speak read spend grow open walk offer '
+  + 'remember love kill teach measure treat handle collapse recover threaten protect support fund charge design monitor limit expand '
+  + 'persist rage rise fall climb emerge occur vary differ remain exist matter count depend rely lead cause affect benefit improve '
+  + 'worsen decline increase decrease double triple halve blanket suffocate accompany overtake outweigh').split(/\s+/);
+
+function clean(t){ return String(t).toLowerCase().replace(/[^a-z-]/g, ''); }
+
+// Verbs the data itself vouches for: word-family entries tagged (v), plus verb headwords.
+function verbSet(items){
+  var v = {};
+  COMMON_VERBS.forEach(function(w){ v[w] = 1; });
+  items.forEach(function(it){
+    if(it.pos === 'v') String(it.word).split(/[\s-]+/).forEach(function(t){ if(clean(t)) v[clean(t)] = 1; });
+    String(it.family || '').split('\u00b7').forEach(function(part){
+      var m = part.trim().match(/^(.+?)\s*\(v\)$/);
+      if(m) m[1].trim().split(/[\s-]+/).forEach(function(t){ if(clean(t)) v[clean(t)] = 1; });
+    });
+  });
+  return v;
+}
+
+// Split a collocation into headword tokens, candidate partner words and prepositions.
+function collocParts(coll, headword){
+  if(coll.indexOf('/') >= 0) return null;             // "generous / competitive X" makes a broken stem
+  var heads = headword.toLowerCase().split(/[\s-]+/).filter(function(h){ return h.length > 2; });
+  if(!heads.length) return null;
+  var toks = coll.split(/\s+/), headIdx = [], seen = {};
+  toks.forEach(function(t, i){
+    var c = clean(t);
+    if(!c) return;
+    heads.forEach(function(h){
+      var n = Math.min(5, h.length);
+      if(c.slice(0, n) === h.slice(0, n)){ headIdx.push(i); seen[h] = 1; }
+    });
+  });
+  if(Object.keys(seen).length < heads.length) return null;   // headword not fully present
+  var cand = [], prep = [];
+  toks.forEach(function(t, i){
+    var c = clean(t);
+    if(!c || headIdx.indexOf(i) >= 0) return;
+    if(PREPS.indexOf(c) >= 0){
+      if(headIdx.indexOf(i - 1) >= 0 || headIdx.indexOf(i + 1) >= 0) prep.push(i);
+      return;
+    }
+    if(STOPW.indexOf(c) >= 0 || c.length < 3 || c.indexOf('-') >= 0) return;
+    cand.push(i);
+  });
+  return {toks: toks, headIdx: headIdx, cand: cand, prep: prep};
+}
+
+// Only two slots are safe to test: the verb that governs the headword, and the noun it takes.
+// Modifier slots are skipped — "high turnover" and "staff turnover" are both right, so they
+// cannot be scored, and adjectives mixed with verbs made the options incoherent.
+function stemOf(w){
+  return w.replace(/(ies|es|s|ed|ing)$/, function(m){ return m === 'ies' ? 'y' : ''; });
+}
+function isVerbForm(w, VERBS){
+  if(VERBS[w]) return true;
+  var st = stemOf(w);
+  return !!(VERBS[st] || VERBS[st + 'e']);
+}
+function slotClass(word, idx, pr, it, VERBS){
+  if(/ly$/.test(word)) return null;
+  var firstHead = Math.min.apply(null, pr.headIdx);
+  // After the headword: a noun slot, unless the token is an inflected verb or a modifier.
+  if(idx > firstHead){
+    if(it.pos === 'v' || isVerbForm(word, VERBS)) return null;
+    var nextIsCand = pr.cand.indexOf(idx + 1) >= 0;   // a modifier, not the head of the phrase
+    return nextIsCand ? null : 'noun';
+  }
+  if(idx === 0 && VERBS[word] && it.pos !== 'v') return 'verb';
+  return null;
+}
+
+// Every usable partner word in a pool, tagged by slot — the distractor supply.
+function harvestCollocates(items, VERBS){
+  var out = [];
+  items.forEach(function(it){
+    (it.colls || []).forEach(function(c){
+      var pr = collocParts(c, it.word);
+      if(!pr) return;
+      pr.cand.forEach(function(i){
+        var w = clean(pr.toks[i]), cls = slotClass(w, i, pr, it, VERBS);
+        if(cls) out.push({w: w, cls: cls});
+      });
+    });
+  });
+  return out;
+}
+
+// Words already tied to this headword — never offer them as wrong answers.
+function ownWords(it){
+  var bag = {};
+  (it.colls || []).concat([it.word]).forEach(function(c){
+    String(c).split(/[\s-]+/).forEach(function(t){ var x = clean(t); if(x) bag[x] = 1; });
+  });
+  return bag;
+}
+
+function blankAt(toks, i){
+  return toks.map(function(t, j){ return j === i ? '\u2588BLANK\u2588' : t; }).join(' ');
+}
+/* ==COLLOC-CORE-END== */
+
+var COLLPOOL = [], VERBS = {};
+
 function makeQ(type, it, p){
-  if(type === 'coll'){
+  if(type === 'coll' || type === 'prep'){
     var cs = shuffle(it.colls || []);
     for(var i = 0; i < cs.length; i++){
-      var b = blankOut(cs[i], it.word);
-      if(b) return {type: 'Collocation', prompt: b, answer: it.word,
-        options: shuffle(distractors(it, p, 3).concat([it.word])),
-        note: 'Full phrase: ' + cs[i]};
+      var pr = collocParts(cs[i], it.word);
+      if(!pr) continue;
+
+      if(type === 'prep'){
+        if(!pr.prep.length) continue;
+        var pi = pr.prep[Math.floor(Math.random() * pr.prep.length)];
+        var pans = clean(pr.toks[pi]);
+        var pops = shuffle(PREPS.filter(function(x){ return x !== pans; })).slice(0, 3).concat([pans]);
+        return {type: 'Preposition', prompt: blankAt(pr.toks, pi), answer: pans,
+          options: shuffle(pops), note: 'Full phrase: ' + cs[i]};
+      }
+
+      if(!pr.cand.length) continue;
+      var ci = -1, ans = '';
+      for(var k = 0; k < pr.cand.length; k++){
+        var w = clean(pr.toks[pr.cand[k]]);
+        if(slotClass(w, pr.cand[k], pr, it, VERBS)){ ci = pr.cand[k]; ans = w; break; }
+      }
+      if(ci < 0) continue;
+      var others = (it.colls || []).filter(function(c){ return c !== cs[i]; });
+      // Typed, with the first letter shown. Multiple choice cannot work here: cut, reduce
+      // and ease all fit "______ red tape", so any plausible distractor is a second right answer.
+      return {type: 'Collocation', typed: true, placeholder: 'complete the phrase',
+        prompt: blankAt(pr.toks, ci).replace('\u2588BLANK\u2588', ans.charAt(0) + '\u2588BLANK\u2588'),
+        answer: ans,
+        note: 'Full phrase: ' + cs[i] + (others.length ? '  \u00b7  also: ' + others.join(', ') : '')};
     }
     return null;
   }
@@ -811,6 +949,8 @@ function makeQ(type, it, p){
 
 function newSet(){
   var p = pool();
+  VERBS = verbSet(ITEMS);
+  COLLPOOL = harvestCollocates(p, VERBS);
   var active = TYPES.filter(function(t){ return t.on; }).map(function(t){ return t.id; });
   if(!active.length) active = ['def'];
   var items = shuffle(p), qs = [], guard = 0;
@@ -851,7 +991,7 @@ function renderQ(q, i){
     var row = document.createElement('div');
     row.className = 'type-row';
     var inp = document.createElement('input');
-    inp.type = 'text'; inp.placeholder = 'type the form'; inp.autocomplete = 'off';
+    inp.type = 'text'; inp.placeholder = q.placeholder || 'type the form'; inp.autocomplete = 'off';
     var chk = document.createElement('button');
     chk.className = 'btn primary'; chk.textContent = 'Check';
     function check(){
