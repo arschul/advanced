@@ -141,7 +141,7 @@
   footer a{color:var(--muted);text-decoration:none}
   footer a:hover{color:var(--violet)}
 
-  .print-opts,.rule,.keyblock,.printhead,.cprint,.pkey{display:none}
+  .print-opts,.rule,.keyblock,.printhead,.cprint,.pkey,.rulesum{display:none}
 
   @media(max-width:600px){
     .wrap{padding:3.5rem 1.1rem 4rem}
@@ -170,9 +170,14 @@
     .print-opts{display:inline;color:#000}
     .rule{display:block;border-bottom:1px solid #999;height:20px;margin-top:6px}
     .cprint{display:block;margin-top:5px;font-size:10pt;color:#333}
-    .pkey{display:block;font-size:10pt;margin:8px 0 14px;padding:8px 10px;border:1px solid #999;columns:2;column-gap:22px}
-    .pkey b{display:block;columns:1;margin-bottom:3px}
-    .pkey span{display:block;break-inside:avoid}
+    body.print-blank .rulesum{display:block;break-after:page;page-break-after:always}
+    .rulesum h2{font-size:1.15rem;margin:0 0 4px;padding-bottom:5px;border-bottom:1px solid #000}
+    .rulesum .note{font-size:9pt;color:#333;margin:0 0 10px}
+    .rulesum .cols{columns:2;column-gap:20px}
+    .rulesum .rs{break-inside:avoid;page-break-inside:avoid;margin-bottom:8px;font-size:9.5pt;line-height:1.45}
+    .rulesum .rs b.t{display:block;margin-bottom:1px}
+    .rulesum .rs .ex{padding-left:0;margin:0;font-size:9.5pt;color:#000}
+    .rulesum .rs .ex::before{content:""}
     .seg{cursor:default}
     section{margin-top:18px}
     section>h2{font-size:1.2rem;border-bottom:1px solid #000}
@@ -190,6 +195,8 @@
 <div class="wrap">
 
   <div class="printhead">Modifiers and Comparison · TOEFL Error Correction · Name: ______________________  Date: __________</div>
+
+  <div class="rulesum" id="rulesum"></div>
 
   <div class="hero">
     <a class="back-link" href="./index.html">← TOEFL Error Correction</a>
@@ -472,6 +479,18 @@ $("reset").onclick=()=>{ans={};save();location.reload();};
 (function(){
   try{const t=localStorage.getItem("toefl-theme");if(t){document.documentElement.dataset.theme=t;$("theme").textContent=t==="dark"?"🌙":"☀️";}}catch(e){}
   load();build();
+  (function(){
+    const rs=$("rulesum"); if(!rs) return;
+    const cards=[...document.querySelectorAll(".pat")];
+    rs.innerHTML='<h2>Pattern reference</h2>'
+      +'<p class="note">The twelve patterns this worksheet tests, with the corrected form of each. '
+      +'Question numbers in the answer key refer back to these.</p><div class="cols">'
+      +cards.map((p,i)=>{
+        const t=p.querySelector("summary").textContent.replace(/^\s*\d+\s*[\u00b7.]\s*/,"");
+        const ex=p.querySelector(".ex.yes");
+        return '<div class="rs"><b class="t">'+(i+1)+'. '+esc(t)+'</b>'+(ex?'<div class="ex">'+ex.innerHTML+'</div>':'')+'</div>';
+      }).join("")+'</div>';
+  })();
   Object.keys(ans).forEach(n=>{
     n=+n;
     if(n<13){const q=A[n-1];document.querySelectorAll(`.opt[data-q="${n}"]`).forEach(b=>b.disabled=true);
