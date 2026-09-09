@@ -474,7 +474,7 @@ $("theme").onclick=()=>{
 };
 $("pw").onclick=()=>{document.body.className="print-blank";document.querySelectorAll(".pat").forEach(p=>p.open=false);print();};
 $("pk").onclick=()=>{document.body.className="print-key";document.querySelectorAll(".pat").forEach(p=>p.open=true);print();};
-$("reset").onclick=()=>{ans={};save();location.reload();};
+$("reset").onclick=()=>{ans={};rev={};save();location.reload();};
 
 (function(){
   try{const t=localStorage.getItem("toefl-theme");if(t){document.documentElement.dataset.theme=t;$("theme").textContent=t==="dark"?"🌙":"☀️";}}catch(e){}
