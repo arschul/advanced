@@ -228,6 +228,17 @@
     .quizhead{border-bottom:1px solid #000}
   }
 
+  .rulesum{display:none}
+  @media print{
+    body.print-blank .rulesum{display:block;break-after:page;page-break-after:always}
+    .rulesum h2{font-size:1.15rem;margin:0 0 4px;padding-bottom:5px;border-bottom:1px solid #000}
+    .rulesum .note{font-size:9pt;color:#333;margin:0 0 10px}
+    .rulesum h3{font-size:10pt;margin:10px 0 3px;break-after:avoid;page-break-after:avoid}
+    .rulesum .cols{columns:2;column-gap:20px}
+    .rulesum .rs{break-inside:avoid;page-break-inside:avoid;font-size:9pt;line-height:1.4;margin-bottom:2px}
+    .rulesum .famblock{break-inside:avoid-column}
+  }
+
 </style>
 </head>
 <body class="print-blank">
@@ -237,6 +248,8 @@
 <div class="wrap">
 
   <div class="printhead">TOEFL Error Correction · Quiz · Name: ______________________  Date: __________</div>
+
+  <div class="rulesum" id="rulesum"></div>
 
   <div class="hero">
     <a class="back-link" href="./index.html">← TOEFL Error Correction</a>
@@ -406,6 +419,18 @@ function render(){
     else a=`<b>${esc(q.rep)}</b> &middot; pattern ${q.p} (${esc(it.fam.pat[q.p])})`;
     return `<p><b>${n}.</b> ${a} &mdash; ${q.w}<br><span class="fam">${esc(it.fam.name)}</span></p>`;
   }).join("");
+  // printed reference: every family the quiz drew from, with the patterns it tests
+  const used=[]; quiz.forEach(x=>{ if(!used.includes(x.fam)) used.push(x.fam); });
+  const tested={}; quiz.forEach(x=>{ if(x.q.p){ (tested[x.fam.slug]=tested[x.fam.slug]||new Set()).add(x.q.p); } });
+  $("rulesum").innerHTML='<h2>Pattern reference</h2>'
+    +`<p class="note">The ${used.length===1?"family":"families"} this quiz draws from, with all twelve patterns of each. `
+    +`Patterns marked \u25b8 are directly tested by a question on this worksheet.</p>`
+    +used.map(f=>{
+        const t=tested[f.slug]||new Set();
+        return '<div class="famblock"><h3>'+esc(f.name)+'</h3><div class="cols">'
+          +f.pat.slice(1).map((p,i)=>`<div class="rs">${t.has(i+1)?"\u25b8 ":""}${i+1}. ${esc(p)}</div>`).join("")
+          +'</div></div>';
+      }).join("");
   $("prog").style.display=quiz.filter(x=>x.set!=="c").length?"flex":"none";
   $("scorebox").className="score";
   update();
