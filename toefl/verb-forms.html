@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verb Forms · TOEFL Error Correction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0e12;--surface:#15171c;--surface-2:#1b1e25;--ink:#eef0f2;--muted:#8b929c;--line:#262932;
+    --violet:#a78bfa;--violet-deep:#1c1433;--violet-line:rgba(167,139,250,0.35);
+    --accent:#a78bfa;--accent-soft:#1c1433;
+    --key-accent:#f0c75e;--key-deep:#2a2206;--key-line:rgba(240,199,94,0.25);
+    --good:#4ade80;--good-soft:rgba(74,222,128,0.12);--good-line:rgba(74,222,128,0.35);
+    --bad:#f87171;--bad-soft:rgba(248,113,113,0.12);--bad-line:rgba(248,113,113,0.35);
+    --radius:14px;
+  }
+  :root[data-theme="light"]{
+    --bg:#f4f1ea;--surface:#ffffff;--surface-2:#faf8f3;--ink:#1a1815;--muted:#6b6660;--line:#e2ddd2;
+    --violet:#7c3aed;--violet-deep:#ede9fe;--violet-line:rgba(124,58,237,0.3);
+    --accent:#7c3aed;--accent-soft:#ede9fe;
+    --key-accent:#b8860b;--key-deep:#fbf2dc;--key-line:rgba(184,134,11,0.3);
+    --good:#15803d;--good-soft:#dcfce7;--good-line:rgba(21,128,61,0.3);
+    --bad:#b91c1c;--bad-soft:#fee2e2;--bad-line:rgba(185,28,28,0.3);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;
+    line-height:1.65;font-weight:400;transition:background .3s,color .3s;-webkit-font-smoothing:antialiased}
+  .wrap{width:100%;max-width:860px;margin:0 auto;padding:4.5rem 1.5rem 5rem}
+
+  .theme-toggle{position:fixed;top:1.25rem;right:1.25rem;z-index:30;width:42px;height:42px;
+    border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--muted);
+    cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:all .2s}
+  .theme-toggle:hover{border-color:var(--ink);color:var(--ink);transform:scale(1.06)}
+
+  .back-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.8rem;font-weight:500;
+    color:var(--muted);text-decoration:none;margin-bottom:2.5rem;transition:color .2s}
+  .back-link:hover{color:var(--violet)}
+  .eyebrow{font-size:.72rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);
+    font-weight:500;margin-bottom:1.1rem}
+  h1,h2,h3,.pat>summary,.n,.score strong{font-family:'Fraunces',Georgia,serif;font-optical-sizing:auto}
+  h1{font-weight:700;font-size:clamp(2.2rem,5.5vw,3.4rem);line-height:1.05;letter-spacing:-1.5px;margin-bottom:.9rem}
+  h1 .accent{background:linear-gradient(90deg,var(--violet),#38bdf8);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{color:var(--muted);font-size:1.02rem;font-weight:300;line-height:1.75;max-width:58ch;margin-bottom:2rem}
+
+  .actions{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2.5rem}
+  .btn{font-family:inherit;font-size:.75rem;font-weight:600;letter-spacing:.3px;padding:.45rem .9rem;
+    border-radius:8px;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block}
+  .btn-view{background:var(--violet-deep);color:var(--violet);border:1px solid var(--violet-line)}
+  .btn-view:hover{background:var(--violet);color:#fff}
+  .btn-key{background:var(--key-deep);color:var(--key-accent);border:1px solid var(--key-line)}
+  .btn-key:hover{background:var(--key-accent);color:#1a1815}
+  .btn-dl{background:transparent;color:var(--muted);border:1px solid var(--line)}
+  .btn-dl:hover{border-color:var(--muted);color:var(--ink)}
+
+  .progress{position:sticky;top:0;z-index:20;background:var(--bg);padding:.85rem 0;
+    border-bottom:1px solid var(--line);display:flex;align-items:center;gap:.9rem;font-size:.78rem;color:var(--muted)}
+  .track{flex:1;height:4px;background:var(--surface-2);border-radius:100px;overflow:hidden}
+  .fill{height:100%;width:0;background:linear-gradient(90deg,var(--violet),#38bdf8);transition:width .35s}
+
+  section{margin-top:3rem}
+  section>h2{font-size:1.5rem;font-weight:600;letter-spacing:-.3px;padding-bottom:.75rem;
+    border-bottom:1px solid var(--line);display:flex;align-items:center;gap:.7rem}
+  section>h2::before{content:"";width:9px;height:9px;border-radius:3px;background:var(--violet);flex:none}
+  .keyblock h2::before{background:var(--key-accent)}
+  .instr{color:var(--muted);font-size:.85rem;font-weight:300;margin-top:1rem;line-height:1.7}
+
+  /* pattern cards */
+  .pat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    margin-top:.9rem;position:relative;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+  .pat::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--violet);
+    transform:scaleX(0);transform-origin:left;transition:transform .3s;z-index:1}
+  .pat[open]{border-color:var(--violet-line)}
+  .pat[open]::before,.pat:hover::before{transform:scaleX(1)}
+  .pat>summary{padding:1rem 1.2rem;cursor:pointer;font-size:1rem;font-weight:600;letter-spacing:-.2px;
+    list-style:none;display:flex;gap:.7rem;align-items:baseline}
+  .pat>summary::-webkit-details-marker{display:none}
+  .pat>summary::before{content:"+";color:var(--violet);font-weight:600;font-family:'DM Sans',sans-serif}
+  .pat[open]>summary::before{content:"–"}
+  .pat .body{padding:0 1.2rem 1.2rem;border-top:1px solid var(--line);margin-top:0}
+  .ex{margin:.85rem 0;padding-left:1.6rem;position:relative;font-size:.95rem}
+  .ex.no::before{content:"✗";position:absolute;left:0;color:var(--bad);font-weight:700}
+  .ex.yes::before{content:"✓";position:absolute;left:0;color:var(--good);font-weight:700}
+  .ex.no{color:var(--muted)}
+  .why{font-size:.88rem;color:var(--muted);font-weight:300;line-height:1.75;margin-top:.8rem}
+  b.k{color:var(--violet)}
+  .strike{color:var(--bad);text-decoration:line-through}
+  .corr{margin:.35rem 0 .55rem;font-size:.97rem;line-height:1.75;color:var(--ink);font-weight:400}
+  .corr b{color:var(--good);font-weight:700}
+  .patname{font-size:.72rem;text-transform:uppercase;letter-spacing:.09em;color:var(--violet);
+    font-weight:600;margin-bottom:.45rem}
+
+  /* question cards */
+  .q{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:1.1rem 1.2rem;margin-top:.75rem;display:grid;grid-template-columns:30px 1fr;gap:.2rem .9rem;
+    position:relative;overflow:hidden;transition:border-color .2s}
+  .q::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--violet);
+    transform:scaleX(0);transform-origin:left;transition:transform .3s}
+  .q:hover::before{transform:scaleX(1)}
+  .n{font-weight:600;color:var(--muted);font-size:1rem;line-height:1.6}
+  .stem{font-size:1rem;line-height:1.7}
+  .opts{grid-column:2;display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.8rem}
+  .opt{font-family:inherit;font-size:.82rem;font-weight:600;letter-spacing:.3px;padding:.35rem .9rem;
+    border-radius:100px;cursor:pointer;background:var(--surface-2);color:var(--ink);
+    border:1px solid var(--line);transition:all .2s}
+  .opt:hover{border-color:var(--violet);color:var(--violet)}
+  .opt:disabled{cursor:default}
+  .opt.right{background:var(--good-soft);border-color:var(--good-line);color:var(--good)}
+  .opt.wrong{background:var(--bad-soft);border-color:var(--bad-line);color:var(--bad);text-decoration:line-through}
+  .seg{border-bottom:2px solid var(--muted);cursor:pointer;padding:1px 2px;transition:background .2s}
+  .seg sup{color:var(--violet);font-weight:700;font-size:.66em;border:none;margin-left:1px}
+  .seg:hover{background:var(--violet-deep)}
+  .seg.right{background:var(--good-soft);border-color:var(--good)}
+  .seg.wrong{background:var(--bad-soft);border-color:var(--bad)}
+  .type-row{grid-column:2;display:flex;gap:.5rem;margin-top:.8rem;flex-wrap:wrap}
+  input[type=text],select{font-family:inherit;font-size:.85rem;padding:.4rem .7rem;border-radius:8px;
+    background:var(--surface-2);color:var(--ink);border:1px solid var(--line);max-width:100%}
+  input[type=text]{width:180px}
+  input:focus-visible,select:focus-visible,.opt:focus-visible,.btn:focus-visible,.theme-toggle:focus-visible,.seg:focus-visible{outline:2px solid var(--violet);outline-offset:2px}
+  input.right,select.right{border-color:var(--good-line);background:var(--good-soft)}
+  input.wrong,select.wrong{border-color:var(--bad-line);background:var(--bad-soft)}
+  .fb{grid-column:2;margin-top:.8rem;padding:.7rem .9rem;border-radius:10px;font-size:.86rem;
+    font-weight:300;line-height:1.7;display:none}
+  .fb.show{display:block}
+  .fb.ok{background:var(--good-soft);border:1px solid var(--good-line);color:var(--muted)}
+  .fb.no{background:var(--bad-soft);border:1px solid var(--bad-line);color:var(--muted)}
+  .fb b{display:block;margin-bottom:.15rem;font-weight:600}
+  .fb.ok b{color:var(--good)}
+  .fb.no b{color:var(--bad)}
+
+  .score{margin-top:2rem;padding:1.5rem;border:1px solid var(--violet-line);border-radius:18px;
+    background:var(--violet-deep);text-align:center;display:none}
+  .score.show{display:block}
+  .score strong{font-size:2rem;font-weight:700;letter-spacing:-1px;display:block;margin-bottom:.3rem;color:var(--violet)}
+  .keyblock{margin-top:3rem}
+  .keyblock p{font-size:.88rem;font-weight:300;color:var(--muted);margin-top:.7rem;line-height:1.7}
+  .keyblock p b:first-child{color:var(--key-accent)}
+  footer{padding:2.5rem 1.5rem;color:var(--muted);font-size:.78rem;text-align:center;border-top:1px solid var(--line);margin-top:3rem}
+  footer a{color:var(--muted);text-decoration:none}
+  footer a:hover{color:var(--violet)}
+
+  .print-opts,.rule,.keyblock,.printhead,.cprint,.pkey,.rulesum{display:none}
+
+  @media(max-width:600px){
+    .wrap{padding:3.5rem 1.1rem 4rem}
+    .q{grid-template-columns:24px 1fr;padding:1rem}
+    input[type=text]{width:100%}
+  }
+
+  @media print{
+    @page{margin:15mm}
+    :root,:root[data-theme]{--bg:#fff;--surface:#fff;--surface-2:#fff;--ink:#000;--muted:#333;--line:#bbb;
+      --violet:#000;--violet-deep:#fff;--violet-line:#bbb;--accent:#000;--accent-soft:#fff;
+      --key-accent:#000;--key-deep:#fff;--key-line:#bbb;
+      --good:#000;--good-soft:#fff;--good-line:#bbb;--bad:#000;--bad-soft:#fff;--bad-line:#bbb}
+    body{font-size:11.5pt;line-height:1.5}
+    .theme-toggle,.back-link,.eyebrow,.actions,.progress,.lede,.score,.fb,.opts,.type-row,.instr-screen,footer{display:none!important}
+    .wrap{max-width:none;padding:0}
+    h1{font-size:1.6rem;letter-spacing:-.5px;margin-bottom:.4rem}
+    h1 .accent{color:#000;-webkit-text-fill-color:#000;background:none}
+    .printhead{display:block;border-bottom:1px solid #000;padding-bottom:6px;margin-bottom:14px;font-size:.9rem}
+    .q{border:none;padding:6px 0;margin:0;break-inside:avoid;page-break-inside:avoid}
+    .q::before,.pat::before{display:none}
+    .pat{border:none;border-radius:0;margin:0}
+    .pat .body{display:block!important;border:none;padding:0 0 0 1.2rem}
+    .pat>summary{padding:8px 0 0}
+    .pat>summary::before{content:"■";font-size:.55em}
+    .print-opts{display:inline;color:#000}
+    .rule{display:block;border-bottom:1px solid #999;height:20px;margin-top:6px}
+    .cprint{display:block;margin-top:5px;font-size:10pt;color:#333}
+    body.print-blank .rulesum{display:block;break-after:page;page-break-after:always}
+    .rulesum h2{font-size:1.15rem;margin:0 0 4px;padding-bottom:5px;border-bottom:1px solid #000}
+    .rulesum .note{font-size:9pt;color:#333;margin:0 0 10px}
+    .rulesum .cols{columns:2;column-gap:20px}
+    .rulesum .rs{break-inside:avoid;page-break-inside:avoid;margin-bottom:8px;font-size:9.5pt;line-height:1.45}
+    .rulesum .rs b.t{display:block;margin-bottom:1px}
+    .rulesum .rs .ex{padding-left:0;margin:0;font-size:9.5pt;color:#000}
+    .rulesum .rs .ex::before{content:""}
+    .seg{cursor:default}
+    section{margin-top:18px}
+    section>h2{font-size:1.2rem;border-bottom:1px solid #000}
+    section>h2::before{display:none}
+    body.print-key .keyblock{display:block;break-before:page}
+    body.print-key .rule{display:none}
+    body.print-blank .patterns{display:none}
+  }
+</style>
+</head>
+<body class="print-blank">
+
+<button class="theme-toggle" id="theme" title="Toggle light/dark mode">🌙</button>
+
+<div class="wrap">
+
+  <div class="printhead">Verb Forms · TOEFL Error Correction · Name: ______________________  Date: __________</div>
+
+  <div class="rulesum" id="rulesum"></div>
+
+  <div class="hero">
+    <a class="back-link" href="./index.html">← TOEFL Error Correction</a>
+    <p class="eyebrow">Phil Young’s English School · Sheet 11 of 11</p>
+    <h1>Verb forms and <span class="accent">non-finite clauses</span></h1>
+    <p class="lede">Tense tells you when something happened. This sheet is about how the verb is put together: the auxiliary chains behind modals, perfects and passives, and the participles left behind when a clause loses its subject. Twelve patterns below, then thirty exercises.</p>
+    <div class="actions">
+      <button class="btn btn-view" id="pw">Print worksheet</button>
+      <button class="btn btn-key" id="pk">Print answer key</button>
+      <button class="btn btn-dl" id="reset">Start over</button>
+    </div>
+  </div>
+
+  <div class="progress">
+    <span id="ptext">0 of 30 answered</span>
+    <div class="track"><div class="fill" id="pfill"></div></div>
+    <span id="pscore"></span>
+  </div>
+
+  <section class="patterns">
+    <h2>The twelve patterns</h2>
+    <p class="lede">Every auxiliary fixes the form of the word after it. Build the chain from the left and the last word comes out right.</p>
+
+    <details class="pat"><summary>1 · Modal + base form</summary><div class="body">
+      <div class="ex no">The ministry ruled that all schools <span class="strike">must to adopt</span> the new curriculum.</div>
+      <div class="ex yes">All schools <b>must adopt</b> the new curriculum. · The schools <b>should have adopted</b> it sooner.</div>
+      <p class="why">After <i>can, could, may, might, will, would, shall, should, must</i> and <i>had better</i> the verb takes its bare form — no <i>to</i>, no <i>-s</i>, no <i>-ed</i>, no <i>-ing</i>. The modal carries the tense, so a past meaning is built with <i>have</i> plus the past participle: <i>must have adopted, should have known</i>. Note that <i>ought to, have to</i> and <i>be able to</i> keep their <i>to</i>, which is what makes the others feel unstable.</p>
+    </div></details>
+
+    <details class="pat"><summary>2 · Perfect: have + past participle</summary><div class="body">
+      <div class="ex no">The engineers had <span class="strike">went</span> over the specifications twice.</div>
+      <div class="ex yes">The engineers had <b>gone</b> over the specifications twice. · The report has <b>been written</b>.</div>
+      <p class="why"><i>Have, has</i> and <i>had</i> are followed by the past participle, never by the simple past. The irregular verbs where the two forms differ are where the error lives: <i>go / went / gone, write / wrote / written, take / took / taken, choose / chose / chosen, begin / began / begun, rise / rose / risen, break / broke / broken, drink / drank / drunk</i>. If the verb has three distinct forms, the third one is the one that follows <i>have</i>.</p>
+    </div></details>
+
+    <details class="pat"><summary>3 · Passive: be + past participle</summary><div class="body">
+      <div class="ex no">The tomb <span class="strike">was discover</span> in 1908.</div>
+      <div class="ex yes">The tomb <b>was discovered</b> in 1908. · The survey <b>is conducted</b> every spring.</div>
+      <p class="why">A passive is a form of <i>be</i> plus the past participle, and both halves have to be there. Two errors are common: leaving the verb in its base form (<i>was discover</i>) and using the <i>-ing</i> form (<i>was discovering</i>), which is active and means something quite different. Check the subject — if it is the thing done to rather than the doer, the sentence is passive and the participle is required.</p>
+    </div></details>
+
+    <details class="pat"><summary>4 · Passive with modals and perfect forms</summary><div class="body">
+      <div class="ex no">The results <span class="strike">should have been publish</span> in the spring.</div>
+      <div class="ex yes">The results <b>should have been published</b> in the spring. · The samples <b>must be kept</b> below four degrees.</div>
+      <p class="why">However long the chain of auxiliaries, each one fixes the form of the next, and the last word is always a past participle: <i>must be kept, has been sent, will have been completed, could be published</i>. Build the chain from the left: the modal takes a bare form (<i>be, have</i>), <i>have</i> takes <i>been</i>, <i>be</i> takes the participle.</p>
+    </div></details>
+
+    <details class="pat"><summary>5 · Questions and negatives take do + base form</summary><div class="body">
+      <div class="ex no">The minister <span class="strike">did not announced</span> the closure.</div>
+      <div class="ex yes">The minister <b>did not announce</b> the closure. · <b>Did</b> the committee <b>meet</b> in June?</div>
+      <p class="why"><i>Do, does</i> and <i>did</i> carry the tense, so the main verb returns to its base form. The same rule governs emphasis (<i>she does know</i>) and question tags. Where an auxiliary is already present, <i>do</i> is not used at all: <i>has not arrived</i>, not <i>does not has arrived</i>.</p>
+    </div></details>
+
+    <details class="pat"><summary>6 · Verbs that have no passive</summary><div class="body">
+      <div class="ex no">The earthquake <span class="strike">was happened</span> at dawn.</div>
+      <div class="ex yes">The earthquake <b>happened</b> at dawn. · The population <b>rose</b> sharply after 1950.</div>
+      <p class="why">A verb that takes no object cannot be turned around, so it has no passive. The ones that appear in test items: <i>happen, occur, take place, arrive, appear, disappear, exist, consist of, belong to, rise, fall, seem, remain, die</i>. Watch the pairs where one member takes an object and the other does not, since only the first has a passive: <i>rise / raise, lie / lay, fall / fell</i>.</p>
+    </div></details>
+
+    <details class="pat"><summary>7 · Make, let, help and have</summary><div class="body">
+      <div class="ex no">The director <span class="strike">made the interns to record</span> every call.</div>
+      <div class="ex yes">The director <b>made the interns record</b> every call. · She <b>had the report rewritten</b> by an editor.</div>
+      <p class="why"><i>Make, let</i> and <i>have</i> take a bare infinitive after the object; <i>help</i> takes either (<i>helped them finish</i> or <i>helped them to finish</i>). <i>Have</i> and <i>get</i> also build a causative passive when the object is a thing rather than a person: <i>have the report rewritten, get the roof repaired</i>. <i>Be made</i>, though, restores the <i>to</i>: <i>the interns were made to record every call</i>.</p>
+    </div></details>
+
+    <details class="pat"><summary>8 · Gerund or infinitive after the verb</summary><div class="body">
+      <div class="ex no">The board <span class="strike">considered to postpone</span> the vote.</div>
+      <div class="ex yes">The board <b>considered postponing</b> the vote. · The board <b>decided to postpone</b> the vote.</div>
+      <p class="why">The verb in front decides. Gerund: <i>avoid, consider, deny, delay, postpone, suggest, risk, mind, finish, enjoy, admit, recommend</i>. Infinitive: <i>decide, agree, refuse, offer, promise, manage, fail, hope, intend, expect</i>. After any preposition the gerund is the only option, which is why the <i>to</i> in <i>look forward to, object to</i> and <i>be accustomed to</i> catches people out: <i>look forward to receiving</i>, not <i>to receive</i>.</p>
+    </div></details>
+
+    <details class="pat"><summary>9 · Reduction with -ing</summary><div class="body">
+      <div class="ex no"><span class="strike">Having been reviewed</span> the applications for six weeks, the committee announced a shortlist.</div>
+      <div class="ex yes"><b>Having reviewed</b> the applications for six weeks, the committee announced a shortlist. · <b>Realizing</b> the error, the auditor withdrew the claim.</div>
+      <p class="why">When the subject of a clause matches the subject of the main clause, the clause can shed its subject and its tense: <i>after she had reviewed</i> becomes <i>having reviewed</i>. Use the <i>-ing</i> form where that subject performs the action. <i>Having</i> plus a past participle marks the earlier of two events; the plain <i>-ing</i> form marks actions that overlap. The subject still has to match — that trap is Sheet 8, pattern 1.</p>
+    </div></details>
+
+    <details class="pat"><summary>10 · Reduction with -ed</summary><div class="body">
+      <div class="ex no"><span class="strike">Writing</span> in Latin and circulated only in manuscript, the treatise reached few readers.</div>
+      <div class="ex yes"><b>Written</b> in Latin and circulated only in manuscript, the treatise reached few readers. · <b>Built</b> of limestone, the bridge survived the flood.</div>
+      <p class="why">Where the subject receives the action rather than performs it, the reduction leaves a past participle: <i>because it was written</i> becomes <i>written</i>. Ask whether the subject did it or had it done. <i>Signed in 1923, the treaty still holds.</i> A <i>being</i> can be added where the point is an event rather than a state: <i>being questioned by the police, he said nothing</i>.</p>
+    </div></details>
+
+    <details class="pat"><summary>11 · Reduced relative clauses</summary><div class="body">
+      <div class="ex no">The students <span class="strike">who sitting</span> at the back could not hear.</div>
+      <div class="ex yes">The students <b>sitting</b> at the back could not hear. · The students <b>who were sitting</b> at the back could not hear.</div>
+      <p class="why">A relative clause containing a form of <i>be</i> can drop the pronoun and the <i>be</i> together — but not one without the other: <i>the letters that were discovered</i> becomes <i>the letters discovered</i>; <i>the delegates who are meeting</i> becomes <i>the delegates meeting</i>. Where there is no <i>be</i>, an <i>-ing</i> form still works if the meaning is active: <i>people who live here</i> becomes <i>people living here</i>. What never works is a pronoun left in front of a bare participle.</p>
+    </div></details>
+
+    <details class="pat"><summary>12 · Reduced adverb clauses keep their conjunction</summary><div class="body">
+      <div class="ex no"><span class="strike">Before submitted</span> the proposal, the department consulted two committees.</div>
+      <div class="ex yes"><b>Before submitting</b> the proposal, the department consulted two committees. · <b>Although warned</b> twice, the crew continued.</div>
+      <p class="why">When an adverb clause is reduced, the conjunction stays and only the subject and the auxiliary go: <i>while she was searching</i> becomes <i>while searching</i>; <i>although they were warned</i> becomes <i>although warned</i>. Choose the participle by voice, exactly as in patterns 9 and 10. The conjunctions that allow this: <i>while, when, before, after, since, although, though, if, unless, once</i>. <i>Because</i> does not — it gives way to <i>because of</i> plus a noun, or the clause drops the conjunction altogether.</p>
+    </div></details>
+  </section>
+
+  <section>
+    <h2>Set A · Choose the correct form</h2>
+    <p class="instr">Questions 1–12. <span class="instr-screen">Tap the form the sentence requires.</span></p>
+    <div id="setA"></div>
+  </section>
+
+  <section>
+    <h2>Set B · Find the error</h2>
+    <p class="instr">Questions 13–22. Four parts of each sentence are underlined. <span class="instr-screen">Tap the one that is wrong.</span> Only one contains an error.</p>
+    <div id="setB"></div>
+  </section>
+
+  <section>
+    <h2>Set C · Correct the sentence</h2>
+    <p class="instr">Questions 23–30. Each sentence contains exactly one verb form that is wrong — and at least one other verb doing the same job correctly. Find the error, write the correction, and name the pattern behind it. <span class="instr-screen">Write your version in your notebook, then reveal the correction and compare.</span></p>
+    <div id="setC"></div>
+  </section>
+
+  <div class="score" id="scorebox"></div>
+
+  <div class="keyblock">
+    <h2>Answer key</h2>
+    <div id="key"></div>
+  </div>
+</div>
+
+<footer>Part of the <a href="./index.html">TOEFL Error Correction</a> section · <a href="../index.html">Advanced Hub</a> · Phil Young’s English School</footer>
+
+<script>
+const A=[
+ {s:["The ministry has announced that every school ", "the new curriculum before the next academic year begins."],o:["must to adopt", "must adopting", "must adopt", "must adopted"],a:2,w:"After a modal the verb takes its bare form — no <i>to</i>, no <i>-ing</i>, no <i>-ed</i>. The modal itself carries the tense."},
+ {s:["By the time the inspectors arrived, the technicians had already ", "the faulty equipment that the supplier delivered in March."],o:["went through", "go through", "gone through", "going through"],a:2,w:"<i>Had</i> is followed by the past participle. <i>Went</i> is the simple past and cannot sit after an auxiliary."},
+ {s:["The manuscript ", "in a private collection in Lisbon, where it had lain unread since 1840."],o:["was discover", "was discovered", "was discovering", "did discovered"],a:1,w:"A passive is <i>be</i> plus the past participle. <i>Was discover</i> leaves the verb in its base form, and <i>was discovering</i> is active."},
+ {s:["The findings could not ", "until a second trial had confirmed the figures that the first had produced."],o:["be publish", "have publish", "be published", "been published"],a:2,w:"After a modal, <i>be</i> stays bare and the main verb becomes a past participle: <i>could be published</i>."},
+ {s:["The committee ", "the proposal at its first meeting, although it returned to the question in May."],o:["did not approved", "does not approved", "not approved", "did not approve"],a:3,w:"<i>Did</i> carries the tense, so the main verb goes back to its base form."},
+ {s:["The collapse ", "shortly after midnight, when the last shift had already left the site."],o:["was occurred", "occurred", "were occurred", "has been occurred"],a:1,w:"<i>Occur</i> takes no object, so it has no passive at all. The same is true of <i>happen, arrive, rise, appear, exist</i> and <i>consist</i>."},
+ {s:["The supervisor made the trainees ", "the report a second time before she would agree to sign it."],o:["to rewrite", "rewriting", "rewrite", "rewritten"],a:2,w:"<i>Make, let</i> and <i>have</i> take a bare infinitive after the object. Only <i>help</i> allows both <i>help them rewrite</i> and <i>help them to rewrite</i>."},
+ {s:["The department postponed ", "the results until the statisticians had checked the second sample."],o:["to announce", "announcing", "announce", "to announcing"],a:1,w:"<i>Postpone</i> belongs to the group that takes a gerund, alongside <i>avoid, suggest, consider, deny, risk</i> and <i>delay</i>."},
+ {s:["", "the survey in under a month, the research team turned to the interviews it had planned for the spring."],o:["Having completed", "Have completed", "Having been completed", "Been completing"],a:0,w:"The team did the completing, so the reduction is active. <i>Having been completed</i> would make the team the thing completed."},
+ {s:["", "in 1923 and revised twice since, the treaty still governs the use of the river."],o:["Signing", "Having signed", "Signed", "Being signing"],a:2,w:"The treaty was signed, so the reduction is passive and the participle is the <i>-ed</i> form. <i>Signing</i> would mean the treaty signed something."},
+ {s:["The delegates ", "in the east wing were not told that the afternoon schedule had changed."],o:["who meeting", "were meeting", "which meeting", "meeting"],a:3,w:"A reduced relative drops <i>who were</i> as a pair. Either <i>who were meeting</i> or <i>meeting</i> is correct; half of each is not."},
+ {s:["While ", "the archive, the historian found three letters that had never been cataloged."],o:["searched through", "searching through", "she search through", "being searched through"],a:1,w:"A reduced adverb clause keeps its conjunction and turns the verb into a participle. The subject has to be the same in both halves — here, the historian."},
+];
+
+const B=[
+ {p:[["Candidates ", 0], ["nominated", 1], [" internally ", 0], ["must to submit", 1], [" three references before the panel ", 0], ["meets", 1], [", a requirement that the previous board ", 0], ["had waived", 1], [" for them", 0]],a:1,f:"must submit",w:"After a modal the verb is bare. <i>Nominated</i> is a correctly reduced relative and <i>had waived</i> a correctly built perfect."},
+ {p:[["The client ", 0], ["requested", 1], [" the changes only after the engineers ", 0], ["had went", 1], [" over the specifications twice, a delay that ", 0], ["postponed", 1], [" the launch the board ", 0], ["had approved", 1], [" in April", 0]],a:1,f:"had gone",w:"<i>Had</i> takes the past participle. <i>Had approved</i> in the same sentence shows the pattern handled correctly."},
+ {p:[["The restorers who ", 0], ["examined", 1], [" the fresco ", 0], ["concluded", 1], [" that it ", 0], ["had been painted", 1], [" around 1470, although it ", 0], ["was uncover", 1], [" only last year", 0]],a:3,f:"was uncovered",w:"A passive needs <i>be</i> plus the past participle. <i>Had been painted</i> earlier in the sentence is the same structure built correctly."},
+ {p:[["The samples ", 0], ["should have been sent", 1], [" to the laboratory in March, but the courier ", 0], ["was instructed", 1], [" to hold them until the paperwork ", 0], ["could be approve", 1], [", which ", 0], ["took", 1], [" a further two weeks", 0]],a:2,f:"could be approved",w:"After <i>could be</i> the verb becomes a past participle. <i>Should have been sent</i> and <i>was instructed</i> are both correct passives."},
+ {p:[["The opposition ", 0], ["did not object", 1], [" at the time, and the unions ", 0], ["had been informed", 1], [" in advance, but the minister ", 0], ["did not announced", 1], [" the closure until the press ", 0], ["had already reported", 1], [" it", 0]],a:2,f:"did not announce",w:"<i>Did</i> carries the tense, so the main verb returns to its base form. <i>Did not object</i> at the start of the sentence is the same structure done correctly."},
+ {p:[["The staff ", 0], ["found", 1], [" the rule excessive: the director ", 0], ["let the assistants", 1], [" work unsupervised but ", 0], ["made the interns to record", 1], [" every call, a practice that the board ", 0], ["reversed", 1], [" in June", 0]],a:2,f:"made the interns record",w:"<i>Make</i> takes a bare infinitive after its object, exactly as <i>let</i> does — and <i>let the assistants work</i> in the same sentence is correct."},
+ {p:[["The lawyers ", 0], ["were preparing", 1], [" the defense that the tribunal ", 0], ["had requested", 1], [" while the ministry ", 0], ["expected", 1], [" to settle privately and ", 0], ["avoided to commit", 1], [" itself in public", 0]],a:3,f:"avoided committing",w:"<i>Avoid</i> takes a gerund. <i>Expected to settle</i> is correct because <i>expect</i> takes an infinitive — the choice belongs to the verb in front."},
+ {p:[["", 0], ["Having been reviewed the applications", 1], [" for three weeks, the committee ", 0], ["announced", 1], [" a shortlist that ", 0], ["surprised", 1], [" the departments which ", 0], ["had nominated", 1], [" candidates", 0]],a:0,f:"Having reviewed the applications",w:"The committee did the reviewing, so the reduction is active. <i>Having been reviewed</i> would make the committee the thing reviewed."},
+ {p:[["", 0], ["Building of local limestone", 1], [" and ", 0], ["restored", 1], [" in the 1890s, the cathedral ", 0], ["has survived", 1], [" two earthquakes that ", 0], ["destroyed", 1], [" much of the old town", 0]],a:0,f:"Built of local limestone",w:"The cathedral was built, so the participle is passive. <i>Restored</i>, the second half of the same reduction, already shows the pattern."},
+ {p:[["The collector ", 0], ["acquired", 1], [" the letters ", 0], ["who discovered", 1], [" in the attic and ", 0], ["donated", 1], [" them to the library that ", 0], ["had cataloged", 1], [" his earlier gift", 0]],a:1,f:"discovered",w:"A reduced relative drops the pronoun and the form of <i>be</i> together: <i>the letters discovered in the attic</i>. Keeping <i>who</i> would demand the finite <i>which were discovered</i>."},
+];
+
+const PAT=["", "Modal + base form", "Perfect: have + past participle", "Passive: be + past participle", "Passive with modals and perfect forms", "Questions and negatives take do + base form", "Verbs that have no passive", "Make, let, help and have", "Gerund or infinitive after the verb", "Reduction with -ing", "Reduction with -ed", "Reduced relative clauses", "Reduced adverb clauses keep their conjunction"];
+const C=[
+ {t:"The regulations state that every vessel must to carry two independent radio systems, which the inspectors check before each voyage.",x:"must to carry",a:["must carry"],p:1,
+  w:"After a modal the verb is bare. <i>Check</i> in the relative clause is a correctly formed present."},
+ {t:"The tomb was discover in 1908 by a surveyor who had been mapping the valley for the ministry.",x:"was discover",a:["was discovered"],p:3,
+  w:"A passive is <i>be</i> plus the past participle. <i>Had been mapping</i> in the same sentence is a correctly built auxiliary chain."},
+ {t:"The results should have been publish in the spring, but the journal delayed the issue until the second trial was completed.",x:"should have been publish",a:["should have been published"],p:4,
+  w:"Every chain of auxiliaries ends in a past participle. <i>Was completed</i> at the end of the sentence is the same participle used correctly."},
+ {t:"The earthquake was happened at dawn, and the tremors that followed were felt as far away as the coast.",x:"was happened",a:["happened"],p:6,
+  w:"<i>Happen</i> takes no object and so has no passive. <i>Were felt</i> is a genuine passive, because the tremors are what people felt."},
+ {t:"The board considered to postpone the vote but decided to proceed once the auditors had confirmed the figures.",x:"considered to postpone",a:["considered postponing"],p:8,
+  w:"<i>Consider</i> takes a gerund. <i>Decided to proceed</i> is correct because <i>decide</i> takes an infinitive."},
+ {t:"Having been examined the accounts for six weeks, the inspectors reported that no money was missing.",x:"Having been examined",a:["Having examined"],p:9,
+  w:"The inspectors did the examining, so the reduction is active rather than passive."},
+ {t:"Writing in Latin and circulated only in manuscript, the treatise reached a very small readership before 1500.",x:"Writing",a:["Written"],p:10,
+  w:"The treatise was written, so the participle is passive — and <i>circulated</i>, the second half of the same reduction, already shows the pattern."},
+ {t:"The students who sitting at the back could not hear the questions that the examiner read from the card.",x:"who sitting",a:["sitting", "who were sitting"],p:11,
+  w:"A reduced relative drops <i>who were</i> as a pair. Keeping <i>who</i> requires the finite <i>were sitting</i>."},
+];
+
+const _PA=[9, 0, 10, 3, 11, 2, 4, 7, 8, 6, 1, 5],_PB=[4, 5, 7, 9, 3, 2, 8, 1, 0, 6],_PC=[7, 0, 6, 2, 5, 4, 1, 3];
+[[A,_PA],[B,_PB],[C,_PC]].forEach(function(pair){var arr=pair[0],p=pair[1],c=arr.slice();
+  p.forEach(function(src,dst){arr[dst]=c[src];});});
+
+let ans={},rev={},total=22;
+const $=id=>document.getElementById(id);
+const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+
+function save(){try{localStorage.setItem("toefl-verbforms-v2",JSON.stringify({a:ans,r:rev}))}catch(e){}}
+function load(){try{const d=JSON.parse(localStorage.getItem("toefl-verbforms-v2")||"{}");ans=d.a||{};rev=d.r||{};}catch(e){ans={};rev={};}}
+
+function build(){
+  let h="";
+  A.forEach((q,i)=>{const n=i+1;
+    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${q.s[0]}<span class="print-opts">( ${q.o.join(" / ")} )</span><span class="blank">_______</span> ${q.s[1]}</div>
+    <div class="opts">${q.o.map((o,j)=>`<button class="opt" data-q="${n}" data-i="${j}">${o}</button>`).join("")}</div>
+    <div class="fb" id="fb${n}"></div></div>`;});
+  $("setA").innerHTML=h;
+
+  h="";
+  B.forEach((q,i)=>{const n=i+13;let li=0;
+    const body=q.p.map(([t,u])=>u?`<span class="seg" data-q="${n}" data-i="${li}">${t}<sup>${"ABCD"[li++]}</sup></span>`:esc(t)).join("");
+    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${body}.</div><div class="fb" id="fb${n}"></div></div>`;});
+  $("setB").innerHTML=h;
+
+  h=`<div class="pkey"><b>Pattern reference</b>${PAT.slice(1).map((t,j)=>`<span>${j+1}. ${t}</span>`).join("")}</div>`;
+  C.forEach((q,i)=>{const n=i+23;
+    h+=`<div class="q" data-n="${n}"><div class="n">${n}</div><div class="stem">${esc(q.t)}</div>
+    <div class="type-row"><button class="opt btn-reveal" data-reveal="${n}">Reveal the correction</button></div>
+    <div class="cprint">Your correction: ______________________________ &nbsp; Pattern no.: ______</div>
+    <div class="fb" id="fb${n}"></div></div>`;});
+  $("setC").innerHTML=h;
+
+  $("key").innerHTML=[...A.map((q,i)=>[i+1,q.o[q.a],q.w]),...B.map((q,i)=>[i+13,"("+"ABCD"[q.a]+") → "+q.f,q.w]),...C.map((q,i)=>[i+23,`<i>${q.x}</i> &rarr; <b>${q.a[0]}</b> &middot; pattern ${q.p} (${PAT[q.p]})`,q.w])]
+    .map(([n,a,w])=>`<p><b>${n}.</b> ${a} — ${w}</p>`).join("");
+}
+
+function mark(n,ok,extra){
+  const f=$("fb"+n);f.className="fb show "+(ok?"ok":"no");
+  const q=(n<13?A[n-1]:n<23?B[n-13]:C[n-23]);
+  f.innerHTML=`<b>${ok?"Correct":"Not correct"}</b>${extra||""}${q.w}`;
+  ans[n]=ok;save();update();
+}
+function update(){
+  const done=Object.keys(ans).length,right=Object.values(ans).filter(Boolean).length;
+  $("ptext").textContent=done+" of "+total+" answered";
+  $("pfill").style.width=(done/total*100)+"%";
+  $("pscore").textContent=done?right+" right":"";
+  const sb=$("scorebox");
+  if(done===total){sb.className="score show";sb.innerHTML=`<strong>${right} / 22</strong><br>${right>=20?"Exam-ready on this family.":right>=16?"Solid. Reread the patterns behind the items you missed.":"Work back through the twelve patterns, then reset and try again."}<br><span style="font-size:.85rem;color:var(--muted)">Sets A and B are scored. Set C is for written practice.</span>`;}
+  else sb.className="score";
+}
+
+document.addEventListener("click",e=>{
+  const o=e.target.closest(".opt[data-q]");
+  if(o){const n=+o.dataset.q,i=+o.dataset.i,q=A[n-1];
+    document.querySelectorAll(`.opt[data-q="${n}"]`).forEach(b=>{b.className="opt";b.disabled=true});
+    o.classList.add(i===q.a?"right":"wrong");
+    if(i!==q.a)document.querySelector(`.opt[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");
+    mark(n,i===q.a);return;}
+
+  const s=e.target.closest(".seg");
+  if(s){const n=+s.dataset.q,i=+s.dataset.i,q=B[n-13];
+    document.querySelectorAll(`.seg[data-q="${n}"]`).forEach(x=>x.style.pointerEvents="none");
+    s.classList.add(i===q.a?"right":"wrong");
+    if(i!==q.a)document.querySelector(`.seg[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");
+    mark(n,i===q.a,`Correction: <b>${"ABCD"[q.a]} → ${q.f}</b>. `);return;}
+
+  const r=e.target.closest("[data-reveal]");
+  if(r){reveal(+r.dataset.reveal);}
+});
+const PROPER={piaget:"Piaget",peru:"Peru",rio:"Rio",march:"March",april:"April",chinese:"Chinese",english:"English"};
+function corrRe(x){
+  const e=x.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
+  const a=/\w/.test(x[0])?"\\b":"", b=/\w/.test(x[x.length-1])?"\\b":"";
+  return new RegExp(a+e+b);
+}
+function corrected(q){
+  const m=q.t.match(corrRe(q.x)), i=m.index;
+  let r=q.a[0].replace(/[a-z\u00e0-\u00ff]+/g,w=>PROPER[w]||w);
+  if(i===0||/[.!?]\s+$/.test(q.t.slice(0,i))) r=r.charAt(0).toUpperCase()+r.slice(1);
+  return [esc(q.t.slice(0,i)), r, esc(q.t.slice(i+m[0].length))];
+}
+function reveal(n){
+  const q=C[n-23], p=corrected(q), f=$("fb"+n);
+  f.className="fb show ok";
+  f.innerHTML=`<b>Corrected</b><p class="corr">${p[0]}<b>${esc(p[1])}</b>${p[2]}</p>`
+    +`<p class="patname">Pattern ${q.p} &middot; ${PAT[q.p]}</p>${q.w}`;
+  const b=document.querySelector(`[data-reveal="${n}"]`);
+  if(b){b.textContent="Revealed";b.disabled=true;}
+  rev[n]=1; save();
+}
+
+
+$("theme").onclick=()=>{
+  const d=document.documentElement.dataset.theme==="dark";
+  const t=d?"light":"dark";
+  document.documentElement.dataset.theme=t;
+  $("theme").textContent=t==="dark"?"🌙":"☀️";
+  try{localStorage.setItem("toefl-theme",t)}catch(e){}
+};
+$("pw").onclick=()=>{document.body.className="print-blank";document.querySelectorAll(".pat").forEach(p=>p.open=false);print();};
+$("pk").onclick=()=>{document.body.className="print-key";document.querySelectorAll(".pat").forEach(p=>p.open=true);print();};
+$("reset").onclick=()=>{ans={};rev={};save();location.reload();};
+
+(function(){
+  try{const t=localStorage.getItem("toefl-theme");if(t){document.documentElement.dataset.theme=t;$("theme").textContent=t==="dark"?"🌙":"☀️";}}catch(e){}
+  load();build();
+  (function(){
+    const rs=$("rulesum"); if(!rs) return;
+    const cards=[...document.querySelectorAll(".pat")];
+    rs.innerHTML='<h2>Pattern reference</h2>'
+      +'<p class="note">The twelve patterns this worksheet tests, with the corrected form of each. '
+      +'Question numbers in the answer key refer back to these.</p><div class="cols">'
+      +cards.map((p,i)=>{
+        const t=p.querySelector("summary").textContent.replace(/^\s*\d+\s*[\u00b7.]\s*/,"");
+        const ex=p.querySelector(".ex.yes");
+        return '<div class="rs"><b class="t">'+(i+1)+'. '+esc(t)+'</b>'+(ex?'<div class="ex">'+ex.innerHTML+'</div>':'')+'</div>';
+      }).join("")+'</div>';
+  })();
+  Object.keys(ans).forEach(n=>{
+    n=+n;
+    if(n<13){const q=A[n-1];document.querySelectorAll(`.opt[data-q="${n}"]`).forEach(b=>b.disabled=true);
+      document.querySelector(`.opt[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");}
+    else{const q=B[n-13];document.querySelectorAll(`.seg[data-q="${n}"]`).forEach(x=>x.style.pointerEvents="none");
+      document.querySelector(`.seg[data-q="${n}"][data-i="${q.a}"]`).classList.add("right");}
+    const f=$("fb"+n),q=(n<13?A[n-1]:B[n-13]);
+    f.className="fb show "+(ans[n]?"ok":"no");f.innerHTML=`<b>${ans[n]?"Correct":"Not correct"}</b>${q.w}`;
+  });
+  Object.keys(rev).forEach(n=>reveal(+n));
+  update();
+})();
+</script>
+</body>
+</html>
