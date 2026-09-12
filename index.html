@@ -3,7 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- HUBGEN:theme start -->
+  <script>
+    (function(){try{var k="arschul:theme",v=localStorage.getItem(k);
+      if(!v){var old=["hub-theme","theme","gh-theme","adv-theme","reviews-theme","worksheets-theme"];
+        for(var i=0;i<old.length;i++){var o=localStorage.getItem(old[i]);if(o){v=o;break;}}
+        v=v||"dark";localStorage.setItem(k,v);}
+      var m=(v==="system")?(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):v;
+      document.documentElement.setAttribute("data-theme",m);}catch(e){}})();
+  </script>
+<!-- HUBGEN:theme end -->
 <title>Advanced Hub · arschul</title>
+<!-- HUBGEN:head start -->
+  <meta name="description" content="B2 to C1 courses, TOEFL preparation and advanced resources.">
+  <link rel="icon" href="https://arschul.github.io/assets/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Advanced Hub">
+  <meta property="og:description" content="B2 to C1 courses, TOEFL preparation and advanced resources.">
+  <meta property="og:url" content="https://arschul.github.io/advanced/">
+  <link rel="stylesheet" href="https://arschul.github.io/assets/hub.v2.css">
+  <script defer src="https://arschul.github.io/assets/hub.v2.js"></script>
+  <style>:root{--hub-bg:var(--bg);--hub-surface:var(--surface);--hub-ink:var(--text);--hub-ink-soft:var(--muted);--hub-rule:var(--border);--hub-accent:var(--teal);--hub-radius:var(--radius);--hub-font-display:'Spectral', serif;--hub-font-ui:'Work Sans', sans-serif;}</style>
+<!-- HUBGEN:head end -->
+<style>
+  /* fallback if the shared stylesheet fails to load — structure only */
+  .hub-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(17rem,1fr));gap:1rem;}
+  .hub-card{display:flex;flex-direction:column;gap:.45rem;padding:1.1rem 1.25rem;
+    border:1px solid currentColor;border-radius:10px;text-decoration:none;color:inherit;opacity:.95;}
+  .hub-card[hidden]{display:none;}
+  .hub-card__title{margin:0;font-size:1.02rem;}
+  .hub-card__blurb{margin:0;font-size:.86rem;line-height:1.5;}
+</style>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -98,7 +130,9 @@ footer a:hover{color:var(--teal)}
 <body>
 
 <div class="topbar">
-  <a class="back-link" href="https://arschul.github.io/">
+  <!-- HUBGEN:backlink start -->
+  <a class="hub-backlink" href="https://arschul.github.io/">← Classroom Hub</a>
+<!-- HUBGEN:backlink end -->
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
       <polyline points="15 18 9 12 15 6"/>
     </svg>
@@ -369,20 +403,6 @@ footer a:hover{color:var(--teal)}
 </footer>
 
 <script>
-function toggleTheme(){
-  const html=document.documentElement;
-  const next=html.getAttribute('data-theme')==='light'?'dark':'light';
-  html.setAttribute('data-theme',next);
-  document.getElementById('theme-btn').textContent=next==='light'?'☀️':'🌙';
-  localStorage.setItem('adv-theme',next);
-}
-(function(){
-  const saved=localStorage.getItem('adv-theme');
-  if(saved==='light'){
-    document.documentElement.setAttribute('data-theme','light');
-    document.getElementById('theme-btn').textContent='☀️';
-  }
-})();
 </script>
 </body>
 </html>
