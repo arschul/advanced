@@ -1,5 +1,5 @@
 /* ===================================================================
-   ADVANCED PROJECT LAB — canonical catalogue
+   ADVANCED PROJECT LAB — canonical catalog
    Loaded by:  /advanced/project-lab.html
                /tools/teacher-dashboard/teacher-dashboard.html
    Both pages are served from arschul.github.io, so a plain
@@ -21,7 +21,7 @@ var ADVANCED_PROJECTS_META = {
    Bands are 1-4; the dashboard averages them and maps to a letter. */
 var PROJECT_RUBRIC = [
   { id: "lang",     label: "Language range & accuracy", labelPt: "Linguagem",    bands: [
-      "Relies on memorised phrases; errors block meaning.",
+      "Relies on memorized phrases; errors block meaning.",
       "Manages the task with simple language; frequent errors, meaning usually clear.",
       "Uses the target language of the project with reasonable accuracy; errors do not block meaning.",
       "Wide range, including the project's target structures used naturally; errors are rare and self-corrected." ] },
@@ -68,8 +68,8 @@ var ADVANCED_PROJECTS = [
   tags: ["invention", "startup", "pitch", "shark tank", "marketing", "logo", "product", "company", "advertising"],
   scenario: "Your team is a start-up with one product and one shot. In two weeks you present to a room of investors — your classmates and your teacher — who decide whether to fund you. They will try to find the holes in your idea, so you had better find them first.",
   deliverables: [
-    "A labelled drawing or model of the invention, with a spec sheet",
-    "Company name, logo and two brand colours",
+    "A labeled drawing or model of the invention, with a spec sheet",
+    "Company name, logo and two brand colors",
     "A twenty-word mission statement and a slogan",
     "A storyboarded and performed 60-second TV advert",
     "An honest list of three drawbacks, with your answers to them",
@@ -108,7 +108,7 @@ var ADVANCED_PROJECTS = [
       focus: "Brand language and formal register — we stand for / our mission is to / built for people who",
       steps: [
         { n: 17, text: "Name the company; check the name means nothing embarrassing in Portuguese or English" },
-        { n: 18, text: "Design the logo (hand-drawn is fine) and choose two brand colours" },
+        { n: 18, text: "Design the logo (hand-drawn is fine) and choose two brand colors" },
         { n: 19, text: "Write the mission statement in 20 words, with no cliches" },
         { n: 20, text: "Write the slogan: produce five options, keep one" },
         { n: 21, text: "Storyboard the 60-second TV advert in six frames" },
@@ -156,8 +156,8 @@ var ADVANCED_PROJECTS = [
   scenario: "Every streaming platform is chasing the same audience. Your team has spotted one that nobody serves properly. You have two weeks to design the platform, fill it, brand it, price it, and cut a trailer — then convince a room of investors that people will actually pay for it.",
   deliverables: [
     "An audience definition and a positioning line",
-    "A catalogue of eight shows with synopses, at least two of them originals",
-    "Platform name, logo and interface colour scheme",
+    "A catalog of eight shows with synopses, at least two of them originals",
+    "Platform name, logo and interface color scheme",
     "Three subscription tiers priced in reais",
     "A launch poster for the flagship show",
     "A 45-60 second trailer script, performed or recorded"
@@ -175,13 +175,13 @@ var ADVANCED_PROJECTS = [
     { id: "s2", name: "Research & Decide", hours: 1.5,
       focus: "Comparing and identifying gaps — whereas / by contrast / neither of them offers",
       steps: [
-        { n: 6, text: "Compare three real platforms on price, catalogue and who they are for" },
+        { n: 6, text: "Compare three real platforms on price, catalog and who they are for" },
         { n: 7, text: "Write one sentence per platform naming its biggest weakness" },
         { n: 8, text: "Define your audience in one sentence: age, country, what they want" },
         { n: 9, text: "Pitch two platform concepts to your own team and vote" },
         { n: 10, text: "Write the positioning line: 'X is the only place where...'" }
       ] },
-    { id: "s3", name: "Build the Catalogue", hours: 2,
+    { id: "s3", name: "Build the Catalog", hours: 2,
       focus: "Synopsis writing — present-tense narration, genre lexis, when a young widow discovers...",
       steps: [
         { n: 11, text: "Choose eight shows: at least four genres and at least two originals" },
@@ -189,13 +189,13 @@ var ADVANCED_PROJECTS = [
         { n: 13, text: "Expand your flagship original into a 60-word synopsis" },
         { n: 14, text: "Design the home screen: what does a brand-new user see first?" },
         { n: 15, text: "Decide the release model - all at once or weekly - and justify it" },
-        { n: 16, text: "Get a rival team to guess your audience from the catalogue alone" }
+        { n: 16, text: "Get a rival team to guess your audience from the catalog alone" }
       ] },
     { id: "s4", name: "Brand & Business", hours: 1.5,
       focus: "Pricing and persuasion — it works out at / for the price of a coffee / cancel any time",
       steps: [
         { n: 17, text: "Name the platform; check it is not taken and not rude in Portuguese" },
-        { n: 18, text: "Design the logo and pick the interface colour scheme" },
+        { n: 18, text: "Design the logo and pick the interface color scheme" },
         { n: 19, text: "Build three subscription tiers with prices in reais and a reason for each" },
         { n: 20, text: "Design the launch poster for your flagship show" },
         { n: 21, text: "Write the trailer script for the flagship, 45-60 seconds" },
@@ -213,13 +213,13 @@ var ADVANCED_PROJECTS = [
     { id: "s6", name: "Launch", hours: 1,
       focus: "Presenting and fielding questions — as you can see / that brings me to / let me come back to that",
       steps: [
-        { n: 28, text: "Build the launch presentation: gap, audience, catalogue, brand, tiers, risks" },
+        { n: 28, text: "Build the launch presentation: gap, audience, catalog, brand, tiers, risks" },
         { n: 29, text: "Write the 30-second elevator version" },
         { n: 30, text: "Rehearse with a timer; everyone speaks" },
         { n: 31, text: "Present live, play the trailer, and take questions" }
       ] }
   ],
-  extra: { id: "coherence", label: "Audience coherence", note: "Does every decision - catalogue, brand, price - point at the same audience?" },
+  extra: { id: "coherence", label: "Audience coherence", note: "Does every decision - catalog, brand, price - point at the same audience?" },
   phrases: ["binge-watch", "a slow burn", "critically acclaimed", "target demographic", "subscriber churn",
             "an ensemble cast", "it caters to", "what sets us apart is", "a niche audience", "on a shoestring budget",
             "licensing rights", "word of mouth", "it dropped in January", "must-see television", "a loyal following",
@@ -240,7 +240,7 @@ var ADVANCED_PROJECTS = [
   theme: "Civic & society",
   skills: ["research", "speaking", "design", "writing"],
   tags: ["city", "urban", "curitiba", "planning", "architecture", "community", "transport", "budget", "civic"],
-  scenario: "The city has given your team a real neighbourhood, a limited budget and one instruction: make it work for people under twenty-five without ruining it for everyone else. In two weeks you present to the town hall - your class - who will vote to approve or reject your plan. Three groups of residents will object. Be ready.",
+  scenario: "The city has given your team a real neighborhood, a limited budget and one instruction: make it work for people under twenty-five without ruining it for everyone else. In two weeks you present to the town hall - your class - who will vote to approve or reject your plan. Three groups of residents will object. Be ready.",
   deliverables: [
     "A defined area with an annotated before-and-after map",
     "Three named interventions with 40-word justifications each",
@@ -254,7 +254,7 @@ var ADVANCED_PROJECTS = [
       focus: "Describing places and problems — it's run-down / there's nowhere to / people avoid it because",
       steps: [
         { n: 1, text: "Read the brief; each member names a place in Curitiba they avoid, and why" },
-        { n: 2, text: "Choose one real neighbourhood, square or street to redesign" },
+        { n: 2, text: "Choose one real neighborhood, square or street to redesign" },
         { n: 3, text: "Assign roles: Mapping Lead, Transport Lead, Budget Lead, Community Lead, Presentation Lead" },
         { n: 4, text: "Agree the boundary of your area and draw it" },
         { n: 5, text: "Fill in the team contract: who does what, by when" }
@@ -314,7 +314,7 @@ var ADVANCED_PROJECTS = [
             "well-lit", "accessible", "public consultation", "at the expense of", "in the long term",
             "a knock-on effect", "residents have complained that", "with respect, that overlooks",
             "it would pay for itself within", "the site is currently", "we propose relocating"],
-  notes: "This is the longest project and the one most likely to drift. Step 9 is the hinge - three problems, no more. Step 20 (ten tokens) is the single best language generator in the catalogue; give it a full twenty minutes. Step 25 works best if you assign the three stakeholder groups yourself so nobody picks three groups who all agree with them."
+  notes: "This is the longest project and the one most likely to drift. Step 9 is the hinge - three problems, no more. Step 20 (ten tokens) is the single best language generator in the catalog; give it a full twenty minutes. Step 25 works best if you assign the three stakeholder groups yourself so nobody picks three groups who all agree with them."
 },
 
 /* ============================ 4 ================================= */
@@ -542,7 +542,7 @@ var ADVANCED_PROJECTS = [
       steps: [
         { n: 14, text: "Name the truck and test the name on someone outside your team" },
         { n: 15, text: "Design the logo" },
-        { n: 16, text: "Design the livery: what the truck looks like from twenty metres away" },
+        { n: 16, text: "Design the livery: what the truck looks like from twenty meters away" },
         { n: 17, text: "Write the slogan" },
         { n: 18, text: "Design one social media post announcing the launch" },
         { n: 19, text: "Write the 30-second radio advert script" }
@@ -568,7 +568,7 @@ var ADVANCED_PROJECTS = [
             "crispy on the outside", "our house special", "sourced locally", "takeaway", "a bargain at",
             "queue round the block", "we're parked outside", "regulars", "sold out by two",
             "it's worth the wait", "mild, medium or hot"],
-  notes: "The shortest project in the catalogue and the best one to start a group with - six hours, low stakes, everyone can access it. Step 12 (what it costs to make) is where the maths reveals that half the menus were priced at a loss; do not skip it. Step 10's 15-word limit is the language target, not decoration."
+  notes: "The shortest project in the catalog and the best one to start a group with - six hours, low stakes, everyone can access it. Step 12 (what it costs to make) is where the math reveals that half the menus were priced at a loss; do not skip it. Step 10's 15-word limit is the language target, not decoration."
 },
 
 /* ============================ 7 ================================= */
@@ -783,7 +783,7 @@ var ADVANCED_PROJECTS = [
         { n: 8, text: "Choose the one item that must survive if everything else is lost" }
       ] },
     { id: "s3", name: "Write to the Future", hours: 1.5,
-      focus: "Describing and confiding - you probably won't recognise / what we couldn't work out was",
+      focus: "Describing and confiding - you probably won't recognize / what we couldn't work out was",
       steps: [
         { n: 9, text: "Write the 30-word label for items 1 to 5" },
         { n: 10, text: "Write the 30-word label for items 6 to 10" },
@@ -842,7 +842,7 @@ var ADVANCED_PROJECTS = [
   deliverables: [
     "An editorial line in one sentence and a masthead",
     "Four reported articles of 200-250 words with verified facts",
-    "One clearly labelled opinion piece",
+    "One clearly labeled opinion piece",
     "Headlines under nine words for all five pieces",
     "A laid-out front page with standfirsts and captions",
     "A published edition plus a correction or editor's note"
@@ -873,7 +873,7 @@ var ADVANCED_PROJECTS = [
         { n: 12, text: "Write article 2" },
         { n: 13, text: "Write article 3" },
         { n: 14, text: "Write article 4" },
-        { n: 15, text: "Write the opinion piece, 200 words, clearly labelled as opinion" },
+        { n: 15, text: "Write the opinion piece, 200 words, clearly labeled as opinion" },
         { n: 16, text: "Write headlines for all five; each under nine words" },
         { n: 17, text: "Sub-edit: swap articles and fix another writer's grammar and clarity" }
       ] },
@@ -938,7 +938,7 @@ var ADVANCED_PROJECTS = [
   ],
   stages: [
     { id: "s1", name: "Brief & Team", hours: 1,
-      focus: "Describing games - the trick is to / you have to work out / it clicked when I realised",
+      focus: "Describing games - the trick is to / you have to work out / it clicked when I realized",
       steps: [
         { n: 1, text: "Read the brief; each member describes the best puzzle or game they have played" },
         { n: 2, text: "Choose a theme - no gore, and nothing that would genuinely frighten a classmate" },
@@ -1050,7 +1050,7 @@ var ADVANCED_PROJECTS = [
         { n: 13, text: "Write the three new brand values, each defined in one sentence" },
         { n: 14, text: "Write the tagline: produce five, keep one" },
         { n: 15, text: "Design the new logo, keeping one recognisable element from the old one" },
-        { n: 16, text: "Choose the new colour palette and justify it" }
+        { n: 16, text: "Choose the new color palette and justify it" }
       ] },
     { id: "s4", name: "Campaign", hours: 1.5,
       focus: "Press release register - is delighted to announce / marks a new chapter for",
