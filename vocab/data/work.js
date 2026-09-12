@@ -123,7 +123,7 @@ window.VOCAB.work = {
       ex: "Three of the five senior nurses left within a year, all citing burnout.",
       note: "Now a recognized occupational phenomenon, so it appears in formal reporting.",
       pitfall: "Uncountable: *a burnout* is wrong. The verb is two words: to burn out.",
-      family: "burn out (v) · burnt out (adj)",
+      family: "burn out (v) · burned out (adj)",
       tags: ["business"],
       contrast: {good: "experienced burnout", bad: "experienced a burnout", why: "Uncountable."}
     },
