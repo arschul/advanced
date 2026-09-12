@@ -87,7 +87,7 @@ window.VOCAB.economy = {
       word: "monetary policy", pos: "n",
       def: "Control of interest rates and money supply to manage the economy.",
       colls: ["tighten monetary policy", "loose monetary policy", "monetary tightening"],
-      ex: "Monetary policy tightened while fiscal policy loosened, and the two cancelled out.",
+      ex: "Monetary policy tightened while fiscal policy loosened, and the two canceled out.",
       note: "Tightening means raising rates; loosening means cutting them.",
       pitfall: "Monetary policy is the central bank's; fiscal policy is the government's spending and taxes.",
       family: "monetary (adj)",
