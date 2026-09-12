@@ -213,7 +213,7 @@ footer a:hover{color:var(--teal)}
     Advanced Hub
   </a>
   <div class="tabs">
-    <button class="tab on" id="tab-cat" onclick="go('cat')">Catalogue</button>
+    <button class="tab on" id="tab-cat" onclick="go('cat')">Catalog</button>
     <button class="tab" id="tab-board" onclick="go('board')">Live Board</button>
   </div>
   <div class="topbar-right">
@@ -224,7 +224,7 @@ footer a:hover{color:var(--teal)}
 
 <div class="wrap">
 
-  <!-- ══════════ CATALOGUE ══════════ -->
+  <!-- ══════════ CATALOG ══════════ -->
   <div class="view on" id="v-cat">
     <div class="page-head">
       <h1>Project <span>Lab</span></h1>
@@ -319,7 +319,7 @@ function readHash(){
   go('cat');
 }
 
-/* ═══════════════ CATALOGUE ═══════════════ */
+/* ═══════════════ CATALOG ═══════════════ */
 (function initFilters(){
   var sel=el('f-theme');
   PROJECT_THEMES.forEach(function(t){
@@ -520,7 +520,7 @@ function renderBoard(){
 
 function authForm(){
   return '<div class="auth"><h3>Sign in to see live progress</h3>'
-    + '<p>Use the same email and password as the Teacher Dashboard. The catalogue works without signing in &mdash; this is only needed for tracking.</p>'
+    + '<p>Use the same email and password as the Teacher Dashboard. The catalog works without signing in &mdash; this is only needed for tracking.</p>'
     + '<input id="bd-email" type="email" placeholder="Email" autocomplete="username">'
     + '<input id="bd-pass" type="password" placeholder="Password" autocomplete="current-password" onkeydown="if(event.key===\'Enter\')signIn()">'
     + '<button class="btn primary" onclick="signIn()" id="bd-btn">Sign in</button>'
