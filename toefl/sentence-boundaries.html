@@ -365,23 +365,23 @@ const PAT=["","Fragment: a subordinate clause alone","Fragment: an -ing phrase w
 const C=[
  {t:"Because the auditors had not filed their report. The committee postponed the vote until the following month.",x:"report. The committee",a:["report, the committee"],p:1,
   w:"A <i>because</i> clause cannot stand alone. A comma attaches it to the main clause that follows."},
- {t:"The proposal stalled in committee. The members meeting every Tuesday but reaching no decision that the ministry would accept.",x:"The members meeting",a:["the members met"],p:2,
+ {t:"The proposal stalled in committee. The members meeting every Tuesday but reaching no decision that the ministry would accept.",x:"The members meeting",a:["The members met"],p:2,
   w:"A participle is not a verb, so the second sentence has no predicate."},
- {t:"The ministry withdrew the funding in March. Which explains the drop in enrollment that the department reported in July.",x:"March. Which explains",a:["march, which explains"],p:3,
+ {t:"The ministry withdrew the funding in March. Which explains the drop in enrollment that the department reported in July.",x:"March. Which explains",a:["March, which explains"],p:3,
   w:"A <i>which</i> clause belongs to what precedes it and cannot open a sentence."},
  {t:"The ministry approved the funding in April, but the equipment did not arrive the team could not begin until September.",x:"arrive the team",a:["arrive, so the team","arrive; the team"],p:5,
   w:"Two clauses run together with nothing between them. <i>But the equipment</i> earlier shows the join made correctly."},
  {t:"The deadline was extended by two weeks, the department still failed to submit the proposal that the reviewers had requested.",x:"weeks, the department",a:["weeks, but the department","weeks; the department"],p:6,
   w:"A comma alone cannot join two independent clauses."},
- {t:"The department enlarged the sample and repeated the trial, however the results remained inconclusive.",x:"trial, however",a:["trial; however"],p:9,
+ {t:"After the first round of testing produced nothing usable and the reviewers asked for more data, the department enlarged the sample and repeated the trial, however the results remained inconclusive.",x:"trial, however",a:["trial; however"],p:9,
   w:"<i>However</i> is an adverb, not a conjunction. The <i>and</i> earlier in the sentence joins a compound predicate correctly."},
- {t:"Although the ministry approved the funding in April, but the equipment did not arrive until September.",x:"April, but the equipment",a:["april, the equipment"],p:11,
+ {t:"Although the ministry approved the funding in April, but the equipment did not arrive until September.",x:"April, but the equipment",a:["April, the equipment"],p:11,
   w:"<i>Although</i> has already made the join. Keep one connector and delete the other."},
  {t:"The committee met on Friday, and approved the budget that the finance office had prepared the previous month.",x:", and approved",a:["and approved"],p:12,
   w:"The second half has no subject of its own, so no comma belongs before <i>and</i>."}
 ];
 
-const _PA=[7, 2, 10, 0, 5, 11, 3, 8, 1, 6, 9, 4],_PB=[6, 3, 9, 1, 7, 4, 0, 8, 2, 5],_PC=[2, 5, 0, 7, 3, 6, 1, 4];
+const _PA=[1, 10, 6, 4, 8, 3, 0, 9, 11, 5, 2, 7],_PB=[4, 6, 8, 0, 2, 9, 1, 5, 3, 7],_PC=[2, 5, 0, 7, 3, 6, 1, 4];
 [[A,_PA],[B,_PB],[C,_PC]].forEach(function(pair){var arr=pair[0],p=pair[1],c=arr.slice();
   p.forEach(function(src,dst){arr[dst]=c[src];});});
 
