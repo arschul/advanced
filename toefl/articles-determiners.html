@@ -348,15 +348,15 @@ const A=[
 ];
 const B=[
  {p:[["The committee gave ",0],["the applicants",1],[" ",0],["several advices",1],[" about ",0],["the documents",1],[" that the office requires and ",0],["the deadlines",1],[" that it enforces",0]],a:1,f:"a great deal of advice",w:"<i>Advice</i> is uncountable. The three other noun phrases are all correctly specified by the clauses that follow them."},
- {p:[["The researchers cannot repeat ",0],["the experiment",1],[" until they receive ",0],["a new equipment",1],[" and ",0],["the funding",1],[" that ",0],["the ministry",1],[" approved last year",0]],a:1,f:"new equipment",w:"<i>Equipment</i> takes neither <i>a</i> nor <i>-s</i>. <i>The funding</i> is correct because the relative clause specifies which funding."},
+ {p:[["Until they receive ",0],["a new equipment",1],[" and ",0],["the funding",1],[" that ",0],["the ministry",1],[" approved last year, the researchers cannot repeat ",0],["the experiment",1],[" that failed in June",0]],a:0,f:"new equipment",w:"<i>Equipment</i> takes neither <i>a</i> nor <i>-s</i>. <i>The funding</i> is correct because the relative clause specifies which funding."},
  {p:[["She spent ",0],["an hour",1],[" reading ",0],["a article",1],[" that ",0],["a colleague",1],[" had recommended when they met at ",0],["the conference",1],[" in Lisbon",0]],a:1,f:"an article",w:"<i>Article</i> begins with a vowel sound. <i>An hour</i> is correct because the <i>h</i> is silent."},
  {p:[["The price of housing has risen faster than ",0],["the wages",1],[" that most workers earn, which explains why ",0],["fewer families",1],[" now buy ",0],["the homes",1],[" that ",0],["the developers",1],[" build",0]],a:2,f:"homes",w:"Homes in general take no article here \u2014 the relative clause after it modifies <i>developers</i>, not the noun. <i>The wages that most workers earn</i> is correctly specified."},
  {p:[["",0],["Less students",1],[" applied this year than ",0],["the department",1],[" expected, although ",0],["the number",1],[" of ",0],["international candidates",1],[" who inquired increased",0]],a:0,f:"Fewer students",w:"<i>Students</i> is countable, so it takes <i>fewer</i>. <i>The number of</i> is the correct pairing for a countable noun \u2014 <i>the amount of</i> would not be."},
- {p:[["She has ",0],["a few",1],[" friends in ",0],["the city",1],[", so she rarely leaves ",0],["the apartment",1],[" that ",0],["her employer",1],[" rents for her",0]],a:0,f:"few",w:"<i>So she rarely leaves</i> signals scarcity, which needs the negative <i>few</i>. The three <i>the</i> phrases are all specified by context or by a clause."},
- {p:[["",0],["Every students",1],[" who enrolled in ",0],["the program",1],[" must complete ",0],["the modules",1],[" that ",0],["the department",1],[" lists in the handbook",0]],a:0,f:"Every student",w:"<i>Every</i> takes a singular noun. The other three take <i>the</i> correctly because each is specified by a following clause or by shared context."},
- {p:[["",0],["The United States",1],[" and ",0],["the Brazil",1],[" signed ",0],["an agreement",1],[" that ",0],["the ministers",1],[" had negotiated over several months",0]],a:1,f:"Brazil",w:"Single-word country names take no article. <i>The United States</i> keeps <i>the</i> because it is a plural political union."},
+ {p:[["Since moving to ",0],["the city",1],[", she has rarely left ",0],["the apartment",1],[" that ",0],["her employer",1],[" rents for her, because she has ",0],["a few",1],[" friends there",0]],a:3,f:"few",w:"<i>She has rarely left the apartment</i> signals scarcity, which needs the negative <i>few</i>. The three <i>the</i> phrases are all specified by context or by a clause."},
+ {p:[["In ",0],["the program",1],[" that the faculty redesigned, ",0],["every students",1],[" who enrolled must complete ",0],["the modules",1],[" that ",0],["the department",1],[" lists in the handbook",0]],a:1,f:"every student",w:"<i>Every</i> takes a singular noun. The other three take <i>the</i> correctly because each is specified by a following clause or by shared context."},
+ {p:[["",0],["The ministers",1],[" spent several months negotiating ",0],["an agreement",1],[" that ",0],["the Brazil",1],[" and ",0],["the United States",1],[" finally signed in Geneva",0]],a:2,f:"Brazil",w:"Single-word country names take no article. <i>The United States</i> keeps <i>the</i> because it is a plural political union."},
  {p:[["The team collected ",0],["a lot of informations",1],[" from ",0],["the archives",1],[" that ",0],["the library",1],[" had digitized before ",0],["the fire",1],[" destroyed the building",0]],a:0,f:"a lot of information",w:"<i>Information</i> has no plural. <i>A lot of</i> is correct with it \u2014 only the <i>-s</i> is wrong."},
- {p:[["",0],["One proposal",1],[" was accepted and ",0],["the another",1],[" was returned to ",0],["the department",1],[" that had submitted ",0],["the documents",1],[" in March",0]],a:1,f:"the other",w:"<i>Another</i> already contains <i>an</i>, so <i>the another</i> stacks two determiners. With exactly two items the second is <i>the other</i>."}
+ {p:[["",0],["The department",1],[" that had submitted ",0],["the documents",1],[" in March learned that ",0],["one proposal",1],[" was accepted and ",0],["the another",1],[" was returned",0]],a:3,f:"the other",w:"<i>Another</i> already contains <i>an</i>, so <i>the another</i> stacks two determiners. With exactly two items the second is <i>the other</i>."}
 ];
 const PAT=["","Uncountable nouns take no plural and no a","Counting an uncountable noun","A or an goes by sound",
  "First mention and later mention","The with unique reference","Zero article for general statements",
@@ -369,19 +369,19 @@ const C=[
   w:"<i>Training</i> is uncountable and takes no <i>a</i>. <i>Laboratory experience</i> at the end is correctly left bare."},
  {t:"She waited an hour for a answer that never came from the office that had promised one before the deadline.",x:"a answer",a:["an answer","an"],p:3,
   w:"<i>Answer</i> begins with a vowel sound. <i>An hour</i> is already correct because the <i>h</i> is silent \u2014 the sentence gets the rule right once and wrong once."},
- {t:"The governments should invest in education if they want the economies that depend on exports to grow.",x:"The governments",a:["governments"],p:6,
+ {t:"The economies that depend on exports will not grow, most analysts now agree, unless the governments invest.",x:"the governments",a:["governments"],p:6,
   w:"A general category takes a bare plural. <i>The economies</i> is correct because the relative clause specifies which economies."},
- {t:"Less people attended the lecture than the organizers had expected, although the number of registrations was unusually high.",x:"Less",a:["fewer"],p:8,
+ {t:"Less people attended the lecture than the organizers had expected, although the number of registrations was unusually high.",x:"Less",a:["Fewer"],p:8,
   w:"<i>People</i> is countable. <i>The number of registrations</i> is already the correct countable pairing."},
- {t:"Every students who completed the course received a certificate that the university issues each June.",x:"Every students",a:["every student","student"],p:11,
+ {t:"Every students who completed the course received a certificate that the university issues each June.",x:"Every students",a:["Every student","student"],p:11,
   w:"<i>Every</i> takes a singular noun, and <i>received</i> has already treated the subject as one unit at a time."},
- {t:"He returned from the Peru last month and immediately began the report that the committee had requested in April.",x:"the Peru",a:["peru"],p:10,
+ {t:"He returned from the Peru last month and immediately began the report that the committee had requested in April.",x:"the Peru",a:["Peru"],p:10,
   w:"Single-word country names take no article. <i>The report</i> is correct because the relative clause specifies which report."},
  {t:"One of the applicants withdrew before the interviews, and the another accepted a position at a rival firm.",x:"the another",a:["the other"],p:12,
   w:"<i>Another</i> cannot follow <i>the</i>. With two candidates in view the second is <i>the other</i>."}
 ];
 
-const _PA=[7, 2, 10, 0, 5, 11, 3, 8, 1, 6, 9, 4],_PB=[6, 3, 9, 1, 7, 4, 0, 8, 2, 5],_PC=[0,5,1,6,7,3,2,4];
+const _PA=[9, 2, 11, 8, 0, 10, 4, 6, 3, 5, 7, 1],_PB=[6, 3, 9, 1, 7, 4, 0, 8, 2, 5],_PC=[0,5,1,6,7,3,2,4];
 [[A,_PA],[B,_PB],[C,_PC]].forEach(function(pair){var arr=pair[0],p=pair[1],c=arr.slice();
   p.forEach(function(src,dst){arr[dst]=c[src];});});
 
