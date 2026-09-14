@@ -356,7 +356,7 @@ const B=[
  {p:[["The regulations that Congress ",0],["passed",1],[" are intended ",0],["to strength",1],[" the protections that workers ",0],["won",1],[" in the 1990s and ",0],["to simplify",1],[" the appeals process",0]],a:1,f:"to strengthen",w:"After <i>to</i> the slot needs a verb. <i>To simplify</i> later in the sentence is the same structure done correctly."},
  {p:[["The delay that the storm ",0],["caused",1],[" ",0],["postponed",1],[" the announcement by two weeks but ",0],["did not effect",1],[" the outcome that the analysts ",0],["had predicted",1]],a:2,f:"did not affect",w:"<i>Affect</i> is the verb. <i>Effect</i> would need a determiner in front of it: <i>had no effect on</i>."},
  {p:[["The committee ",0],["had hard begun",1],[" its review when the ministry ",0],["withdrew",1],[" the funding that the department ",0],["had counted on",1],[" ",0],["since January",1]],a:0,f:"had hardly begun",w:"<i>Hardly</i> means almost not. <i>Hard</i> would mean with effort, which contradicts the rest of the sentence."},
- {p:[["The ministry ",0],["approved",1],[" ",0],["a five-years plan",1],[" that the previous administration ",0],["had drafted",1],[" before the election that ",0],["changed",1],[" the majority",0]],a:1,f:"a five-year plan",w:"A noun modifying another noun drops its plural, and the hyphen signals it."}
+ {p:[["The previous administration ",0],["had drafted",1],[" the proposal before the election that ",0],["changed",1],[" the majority, and the ministry finally ",0],["approved",1],[" ",0],["a five-years plan",1],[" in March",0]],a:3,f:"a five-year plan",w:"A noun modifying another noun drops its plural, and the hyphen signals it."}
 ];
 const PAT=["","Adjective or adverb","Adjective after linking verbs","Noun where an adjective is needed",
  "Noun or verb form","-ed and -ing adjectives","Noun suffixes",
@@ -365,23 +365,23 @@ const PAT=["","Adjective or adverb","Adjective after linking verbs","Noun where 
 const C=[
  {t:"The technicians recorded the readings careful before the trial began and reported the anomaly immediately to the supervisor.",x:"careful",a:["carefully"],p:1,
   w:"The word modifies <i>recorded</i>. <i>Immediately</i> later in the sentence is the same job done correctly."},
- {t:"The findings appear conclusively, though the researchers who collected the data honestly describe the sample as small.",x:"conclusively",a:["conclusive"],p:2,
+ {t:"Although the sample was small, the findings appear conclusively, and the researchers who collected the data honestly describe the limitation.",x:"conclusively",a:["conclusive"],p:2,
   w:"After <i>appear</i> the word describes the subject, so it stays an adjective. <i>Honestly</i> is correct because it modifies a verb."},
  {t:"The analyze of the samples took longer than the committee expected, which delayed the publication of the results.",x:"analyze",a:["analysis"],p:4,
   w:"Only a noun can follow <i>the</i>. <i>The publication</i> at the end is the same structure done correctly."},
  {t:"The students found the lecture interesting, the handouts useful and the final example confused.",x:"confused",a:["confusing"],p:5,
   w:"The example causes the feeling, so it takes <i>-ing</i>. <i>Interesting</i> earlier in the list is the same choice made correctly."},
- {t:"The proposal was more persuasion than the panel had expected, largely because the figures were presented clearly.",x:"persuasion",a:["persuasive"],p:7,
+ {t:"Largely because the figures were presented clearly, the proposal was more persuasion than the panel had expected.",x:"persuasion",a:["persuasive"],p:7,
   w:"<i>More</i> is followed by an adjective. <i>Clearly</i> is correct because it modifies <i>presented</i>."},
  {t:"The storm delayed the announcement by two weeks but did not effect the outcome that the analysts had predicted.",x:"effect",a:["affect"],p:9,
   w:"<i>Affect</i> is the verb form. As a noun it would need a determiner: <i>had no effect on the outcome</i>."},
- {t:"To success in graduate study requires more than the talent that most candidates bring to the interview.",x:"To success",a:["success","succeeding"],p:11,
+ {t:"To success in graduate study requires more than the talent that most candidates bring to the interview.",x:"To success",a:["Success","Succeeding"],p:11,
   w:"A subject must be a noun or a gerund. Either <i>Success</i> or <i>Succeeding</i> fills the slot."},
- {t:"The ministry approved a five-years plan that the previous administration had drafted over eighteen months.",x:"five-years",a:["five-year"],p:12,
+ {t:"The previous administration spent eighteen months drafting what the ministry finally approved as a five-years plan.",x:"five-years",a:["five-year"],p:12,
   w:"A noun modifying another noun loses its plural. <i>Eighteen months</i> keeps its plural because it stands alone."}
 ];
 
-const _PA=[7, 2, 10, 0, 5, 11, 3, 8, 1, 6, 9, 4],_PB=[6, 3, 9, 1, 7, 4, 0, 8, 2, 5],_PC=[2, 5, 0, 7, 3, 6, 1, 4];
+const _PA=[7, 10, 3, 6, 2, 8, 1, 9, 5, 11, 0, 4],_PB=[6, 3, 9, 1, 7, 4, 0, 8, 2, 5],_PC=[2, 5, 0, 7, 3, 6, 1, 4];
 [[A,_PA],[B,_PB],[C,_PC]].forEach(function(pair){var arr=pair[0],p=pair[1],c=arr.slice();
   p.forEach(function(src,dst){arr[dst]=c[src];});});
 
