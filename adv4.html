@@ -169,6 +169,9 @@ select.txt{font:inherit;font-size:.88rem;padding:.32rem .5rem;border:1px solid v
 
 .model{margin-top:.45rem;font-family:'Newsreader',Georgia,serif;font-style:italic;font-size:1rem;color:var(--brand-deep);background:var(--brand-soft);border-radius:var(--r-xs);padding:.5rem .7rem;display:none;}
 .model.show{display:block;}
+.item.rv-flash{animation:rvflash 1.2s ease;}
+@keyframes rvflash{0%{background:var(--brand-soft);}100%{background:transparent;}}
+.btn:disabled{opacity:.45;cursor:default;pointer-events:none;}
 .model b{font-family:'DM Sans',sans-serif;font-style:normal;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:.2rem;opacity:.75;}
 
 .project{background:var(--raise);border:1px solid var(--gold);border-radius:var(--r-sm);padding:1rem 1.1rem;font-size:.93rem;}
@@ -1996,6 +1999,50 @@ function gapRow(set,e,i,q){
   }
   return h+'</div><div class="why"></div>';
 }
+function nextBtn(n){return '<button class="btn ghost" data-act="next">'+nextTxt(n)+'</button>';}
+function nextTxt(left){return left?'Reveal next answer ('+left+' left)':'All answers shown';}
+/* items that have something to reveal (open items without a model answer are skipped) */
+function revealables(card){
+  var kind=card.getAttribute('data-kind');
+  return Array.prototype.filter.call(card.querySelectorAll('.item'),function(it){
+    return (kind==='open')?!!it.querySelector('.model'):true;
+  });
+}
+function paintNext(card){
+  var b=card.querySelector('[data-act="next"]');if(!b)return;
+  var all=revealables(card), left=all.filter(function(it){return !it.classList.contains('rv');}).length;
+  b.textContent=nextTxt(left); b.disabled=!left;
+  var sp=card.querySelector('.score');
+  if(sp&&left<all.length&&card.getAttribute('data-kind')!=='open'){sp.textContent=(all.length-left)+' / '+all.length+' shown';sp.className='score';}
+}
+function revealItem(card,it){
+  var kind=card.getAttribute('data-kind');
+  it.classList.add('rv');
+  if(kind==='gap'){
+    it.querySelectorAll('input.gapi').forEach(function(inp){
+      if(!hit(inp.value,inp.getAttribute('data-a'))){inp.value=String(inp.getAttribute('data-a')).split('|')[0].replace(/^-$/,'–');aset(inp.getAttribute('data-k'),inp.value);}
+      inp.classList.remove('no');inp.classList.add('ok');
+    });
+  } else if(kind==='pick'||kind==='mcq'){
+    var box=it.querySelector('.opts'), ans=box.getAttribute('data-a');
+    box.querySelectorAll('.opt').forEach(function(b){
+      b.classList.remove('good','bad','reveal');
+      var right=b.getAttribute('data-v')===String(ans);
+      if(b.classList.contains('sel'))b.classList.add(right?'good':'bad');
+      else if(right)b.classList.add('reveal');
+    });
+    var why=it.querySelector('.why');
+    if(why){var t=why.getAttribute('data-txt');if(t){why.innerHTML='<b>Why:</b> '+esc(t);why.classList.add('show');}}
+  } else if(kind==='match'){
+    var sel=it.querySelector('select.txt');
+    if(sel.value!==sel.getAttribute('data-a')){sel.value=sel.getAttribute('data-a');aset(sel.getAttribute('data-k'),sel.value);}
+    sel.classList.remove('no');sel.classList.add('ok');
+  } else {
+    var m=it.querySelector('.model');if(m)m.classList.add('show');
+  }
+  it.classList.remove('rv-flash');void it.offsetWidth;it.classList.add('rv-flash');
+  if(it.scrollIntoView)it.scrollIntoView({block:'nearest',behavior:'smooth'});
+}
 function exHTML(set,e){
   var done=!!ST.done[exKey(set,e.n)];
   var h='<section class="ex'+(done?' done':'')+'" id="ex-'+set+'-'+e.n+'" data-ex="'+e.n+'" data-set="'+set+'" data-kind="'+e.k+'">'+
@@ -2054,12 +2101,12 @@ function exHTML(set,e){
   });
   h+='</div><div class="row">';
   h=h.replace('<div class="items">', e.q.length<2?'<div class="items one">':'<div class="items">');
-  if(e.k==='gap'||e.k==='pick'||e.k==='mcq'||e.k==='match') h+='<button class="btn primary" data-act="check">Check answers</button><button class="btn ghost" data-act="show">Show answers</button>';
-  else if(e.k==='write') h+='<button class="btn primary" data-act="check">Check answers</button><button class="btn ghost" data-act="show">Show model answers</button>';
+  if(e.k==='gap'||e.k==='pick'||e.k==='mcq'||e.k==='match') h+='<button class="btn primary" data-act="check">Check answers</button>'+nextBtn(e.q.length);
+  else if(e.k==='write') h+='<button class="btn primary" data-act="check">Check answers</button>'+nextBtn(e.q.length);
   else {
     h+='<button class="btn primary" data-act="tick">'+(done?'Done ✓':'Mark as done')+'</button>';
     if(e.q.some(function(q){return q[1]&&String(q[1]).trim();}))
-      h+='<button class="btn ghost" data-act="show">Show model answers</button>';
+      h+=nextBtn(e.q.filter(function(q){return q[1]&&String(q[1]).trim();}).length);
   }
   h+='<button class="btn ghost" data-act="clear">Clear</button><span class="score"></span></div></section>';
   return h;
@@ -2200,6 +2247,11 @@ document.addEventListener('click',function(ev){
   if(!act) return;
   var card=t.closest('.ex');
   if(act==='check') check(card,false);
+  else if(act==='next'){
+    var nx=revealables(card).filter(function(it){return !it.classList.contains('rv');})[0];
+    if(nx)revealItem(card,nx);
+    paintNext(card);
+  }
   else if(act==='show'){
     if(card.getAttribute('data-kind')==='open'||card.getAttribute('data-kind')==='project'){
       card.querySelectorAll('.model').forEach(function(m){m.classList.add('show');});
@@ -2218,6 +2270,8 @@ document.addEventListener('click',function(ev){
     card.querySelectorAll('.opt').forEach(function(b){b.classList.remove('sel','good','bad','reveal');aset(b.getAttribute('data-k'),'');});
     card.querySelectorAll('.model,.why').forEach(function(m){m.classList.remove('show');});
     var sp=card.querySelector('.score');if(sp){sp.textContent='';sp.className='score';}
+    card.querySelectorAll('.item.rv').forEach(function(it){it.classList.remove('rv','rv-flash');});
+    paintNext(card);
     mark(exKey(card.getAttribute('data-set'),card.getAttribute('data-ex')),false);
     card.classList.remove('done');paintPips();
   }
