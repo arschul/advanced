@@ -172,6 +172,9 @@ select.txt{font:inherit;font-size:.88rem;padding:.32rem .5rem;border:1px solid v
 .item.rv-flash{animation:rvflash 1.2s ease;}
 @keyframes rvflash{0%{background:var(--brand-soft);}100%{background:transparent;}}
 .btn:disabled{opacity:.45;cursor:default;pointer-events:none;}
+.rvbtn{flex:none;font:inherit;font-size:.72rem;font-weight:600;background:none;border:1px solid var(--line);border-radius:100px;padding:.2rem .6rem;margin-top:.3rem;cursor:pointer;color:var(--ink-faint);}
+.rvbtn:hover{border-color:var(--brand);color:var(--brand);}
+.item.rv .rvbtn{visibility:hidden;}
 .model b{font-family:'DM Sans',sans-serif;font-style:normal;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:.2rem;opacity:.75;}
 
 .project{background:var(--raise);border:1px solid var(--gold);border-radius:var(--r-sm);padding:1rem 1.1rem;font-size:.93rem;}
@@ -2009,9 +2012,9 @@ function revealables(card){
   });
 }
 function paintNext(card){
-  var b=card.querySelector('[data-act="next"]');if(!b)return;
+  var b=card.querySelector('[data-act="next"]');
   var all=revealables(card), left=all.filter(function(it){return !it.classList.contains('rv');}).length;
-  b.textContent=nextTxt(left); b.disabled=!left;
+  if(b){b.textContent=nextTxt(left); b.disabled=!left;}
   var sp=card.querySelector('.score');
   if(sp&&left<all.length&&card.getAttribute('data-kind')!=='open'){sp.textContent=(all.length-left)+' / '+all.length+' shown';sp.className='score';}
 }
@@ -2041,7 +2044,6 @@ function revealItem(card,it){
     var m=it.querySelector('.model');if(m)m.classList.add('show');
   }
   it.classList.remove('rv-flash');void it.offsetWidth;it.classList.add('rv-flash');
-  if(it.scrollIntoView)it.scrollIntoView({block:'nearest',behavior:'smooth'});
 }
 function exHTML(set,e){
   var done=!!ST.done[exKey(set,e.n)];
@@ -2097,16 +2099,14 @@ function exHTML(set,e){
          '<div class="saved"></div>'+
          (q[1]?'<div class="model"><b>Model answer</b>'+esc(q[1])+'</div>':'');
     }
-    h+='</div></div>';
+    h+='</div>'+((e.k!=='open'||(q[1]&&String(q[1]).trim()))?'<button class="rvbtn" data-act="one" aria-label="Show answer '+(i+1)+'">Show</button>':'')+'</div>';
   });
   h+='</div><div class="row">';
   h=h.replace('<div class="items">', e.q.length<2?'<div class="items one">':'<div class="items">');
-  if(e.k==='gap'||e.k==='pick'||e.k==='mcq'||e.k==='match') h+='<button class="btn primary" data-act="check">Check answers</button>'+nextBtn(e.q.length);
-  else if(e.k==='write') h+='<button class="btn primary" data-act="check">Check answers</button>'+nextBtn(e.q.length);
+  if(e.k==='gap'||e.k==='pick'||e.k==='mcq'||e.k==='match') h+='<button class="btn primary" data-act="check">Check answers</button>';
+  else if(e.k==='write') h+='<button class="btn primary" data-act="check">Check answers</button>';
   else {
     h+='<button class="btn primary" data-act="tick">'+(done?'Done ✓':'Mark as done')+'</button>';
-    if(e.q.some(function(q){return q[1]&&String(q[1]).trim();}))
-      h+=nextBtn(e.q.filter(function(q){return q[1]&&String(q[1]).trim();}).length);
   }
   h+='<button class="btn ghost" data-act="clear">Clear</button><span class="score"></span></div></section>';
   return h;
@@ -2247,6 +2247,10 @@ document.addEventListener('click',function(ev){
   if(!act) return;
   var card=t.closest('.ex');
   if(act==='check') check(card,false);
+  else if(act==='one'){
+    revealItem(card,t.closest('.item'));
+    paintNext(card);
+  }
   else if(act==='next'){
     var nx=revealables(card).filter(function(it){return !it.classList.contains('rv');})[0];
     if(nx)revealItem(card,nx);
