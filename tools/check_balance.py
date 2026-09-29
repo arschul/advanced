@@ -1,16 +1,22 @@
 #!/usr/bin/env python3
-"""Answer-balance linter for the TOEFL error-correction sheets.
+"""Answer-balance linter for the TOEFL error-correction sheets and the TOEFL ITP Coach.
 
-Fails the build if any sheet shows a positional cue a test-wise student
-could exploit. Run before every push.
+Fails the build if any multiple-choice set shows a positional cue a test-wise
+student could exploit. Run before every push.
 
-  python3 check_balance.py [dir]
+  python3 tools/check_balance.py [repo-root]     (default: the repo this file lives in)
+
+Sheets are discovered, not listed: every toefl/*.html that defines `const A=[`.
 """
-import os, re, sys, json, collections
+import os, re, sys, json, glob, collections
 
-SHEETS = ["articles-determiners","modifiers-comparison","parallel-structure","prepositions",
-          "pronoun-reference","sentence-boundaries","subject-verb-agreement","tense-and-sequence",
-          "word-form","word-order","verb-forms"]
+def discover(toefl_dir):
+    out = []
+    for p in sorted(glob.glob(os.path.join(toefl_dir, "*.html"))):
+        src = open(p, encoding="utf-8").read()
+        if "const A=[" in src and "const B=[" in src and "const C=[" in src:
+            out.append(os.path.splitext(os.path.basename(p))[0])
+    return out
 
 RULES = dict(
     a_min=2, a_max=5,      # Set A: 12 items, each slot 2-5
@@ -89,8 +95,59 @@ def c_buckets(b):
         else: l+=1
     return e,m,l,bad
 
-def main(d="."):
+# ---------------------------------------------------------------- TOEFL ITP
+# Each displayed set of n four-option items: every slot between
+# max(1, round(n/4)-1) and ceil(n/4)+1, and no run longer than max_run.
+
+def _block(s, name, closer="\n];"):
+    i = s.find("const %s = " % name)
+    if i < 0: return None
+    return s[i:s.index(closer, i)]
+
+def _slots(n):
+    return max(1, round(n / 4) - 1), -(-n // 4) + 1
+
+def itp_sets(s):
+    """Yield (label, [answer positions]) for every set the ITP page displays."""
+    for name in ("PART_A", "STRUCTURE"):
+        b = _block(s, name)
+        if b: yield name, [int(x) for x in re.findall(r"\ba:\s*(\d)", b)]
+    b = _block(s, "PART_B", "\n};")
+    if b: yield "PART_B", [int(x) for x in re.findall(r"\ba:\s*(\d)", b)]
+    for name in ("PART_C", "READING"):
+        b = _block(s, name)
+        if not b: continue
+        for k, chunk in enumerate(re.split(r'\btitle:\s*"', b)[1:], 1):
+            yield "%s #%d" % (name, k), [int(x) for x in re.findall(r"\ba:\s*(\d)", chunk)]
+    b = _block(s, "WRITTEN")
+    if b: yield "WRITTEN", ["ABCD".index(x) for x in re.findall(r'\ba:\s*"([A-D])"', b)]
+
+def check_itp(path, fails):
+    if not os.path.exists(path): return
+    s = open(path, encoding="utf-8").read()
+    for label, ans in itp_sets(s):
+        lo, hi = _slots(len(ans))
+        dist = [ans.count(i) for i in range(4)]
+        run = longest_run(ans)
+        tag = "ok"
+        if not ans:
+            fails.append(f"toefl-itp {label}: no answers found"); tag = "FAIL"
+        elif min(dist) < lo or max(dist) > hi:
+            fails.append(f"toefl-itp {label}: slot distribution {dist} outside [{lo},{hi}]"); tag = "FAIL"
+        if run > RULES['max_run']:
+            fails.append(f"toefl-itp {label}: {run} identical answers in a row"); tag = "FAIL"
+        print(f"  {'toefl-itp':24} {label:10} {dist} run={run} {tag}")
+
+def main(root=None):
+    root = root or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    if os.path.isdir(os.path.join(root, "toefl")):
+        d = os.path.join(root, "toefl")
+    else:                       # old usage: pointed straight at the sheets folder
+        d, root = root, os.path.dirname(os.path.abspath(root))
+    SHEETS = discover(d)
     fails=[]
+    if not SHEETS:
+        fails.append("no sheets found in " + d)
     for sh in SHEETS:
         p=os.path.join(d, sh+".html")
         s=open(p,encoding='utf-8').read()
@@ -114,6 +171,7 @@ def main(d="."):
         if min(e,m,l)<RULES['c_min_bucket']:
             fails.append(f"{sh} C: error position early/mid/late = {e}/{m}/{l}"); tag="FAIL"
         print(f"  {sh:24} C early/mid/late {e}/{m}/{l} {tag}")
+    check_itp(os.path.join(root, "toefl-itp.html"), fails)
     print()
     if fails:
         print("BALANCE CHECK FAILED (%d):" % len(fails))
@@ -123,4 +181,4 @@ def main(d="."):
     return 0
 
 if __name__=="__main__":
-    sys.exit(main(sys.argv[1] if len(sys.argv)>1 else "."))
+    sys.exit(main(sys.argv[1] if len(sys.argv)>1 else None))
