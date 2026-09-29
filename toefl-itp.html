@@ -13,7 +13,7 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
 <!-- HUBGEN:leaf end -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TOEFL ITP Coach — Advanced Hub</title>
+<title>TOEFL ITP Coach · Advanced Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800;9..144,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -583,12 +583,8 @@ function toggleTheme() {
     const html = document.documentElement;
     const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
     html.setAttribute('data-theme', next);
-    localStorage.setItem('adv-theme', next);
+    try { localStorage.setItem('arschul:theme', next); } catch (e) {}
 }
-(function() {
-    const saved = localStorage.getItem('adv-theme');
-    if (saved) document.documentElement.setAttribute('data-theme', saved);
-})();
 
 /* ---------- Tabs & modes ---------- */
 function showTab(name) {
@@ -668,7 +664,7 @@ function stopSpeech() {
 }
 /* lines: array of [speaker, text]; speaker M / W / N (narrator) */
 function speakLines(lines, btn) {
-    if (!('speechSynthesis' in window)) { alert('Sorry — this browser does not support speech synthesis.'); return; }
+    if (!('speechSynthesis' in window)) { if (btn) { btn.textContent = 'Audio not available in this browser'; btn.disabled = true; } return; }
     stopSpeech();
     if (!voiceW && !voiceM) pickVoices();
     speaking = true;
@@ -703,7 +699,7 @@ const PART_A = [
       why: "\"To pass with flying colors\" = to succeed brilliantly. Option C is a sound-alike trap." },
     { conv: [["W","Do you know where Professor Lima's office is?"],["M","It's on the third floor, right next to the library entrance."]],
       q: "What does the man say about the office?",
-      opts: ["It is inside the library.","It is next to the library entrance.","It is on the first floor.","It has been moved recently."], a: 1,
+      opts: ["It is inside the library.","It has been moved recently.","It is on the first floor.","It is next to the library entrance."], a: 3,
       why: "A detail question — the answer restates exactly what he said: third floor, next to the library entrance." },
     { conv: [["M","I heard the field trip was called off."],["W","Yeah, because of the storm."]],
       q: "What happened to the field trip?",
@@ -719,7 +715,7 @@ const PART_A = [
       why: "\"Give someone a hand\" = help someone. \"Sure\" = she agrees." },
     { conv: [["W","Have you seen my calculator anywhere?"],["M","Isn't that it, under your notebook?"]],
       q: "What does the man imply?",
-      opts: ["He borrowed the calculator.","The calculator is probably under the notebook.","The woman lost her notebook.","The woman should buy a new calculator."], a: 1,
+      opts: ["He borrowed the calculator.","The woman lost her notebook.","The calculator is probably under the notebook.","The woman should buy a new calculator."], a: 2,
       why: "His question politely points out where the calculator is — an implication question." },
     { conv: [["M","The concert tickets sold out in an hour."],["W","You can say that again — I couldn't get one either."]],
       q: "What does the woman mean?",
@@ -731,15 +727,15 @@ const PART_A = [
       why: "\"Not that I know of\" = I don't think so. It usually closes at eight, so it's probably closed now." },
     { conv: [["M","I was about to call you about the assignment."],["W","Great minds think alike — I have a question about it too."]],
       q: "What does the woman mean?",
-      opts: ["She already finished the assignment.","She was thinking the same thing.","She thinks the man is very intelligent.","She forgot about the assignment."], a: 1,
+      opts: ["She already finished the assignment.","She forgot about the assignment.","She thinks the man is very intelligent.","She was thinking the same thing."], a: 3,
       why: "\"Great minds think alike\" is said when two people have the same idea at the same time." },
     { conv: [["W","You look exhausted this morning."],["M","I stayed up all night finishing my essay."]],
       q: "What does the man mean?",
-      opts: ["He didn't sleep last night.","He got up very early.","He couldn't finish his essay.","He is going to bed now."], a: 0,
+      opts: ["He couldn't finish his essay.","He got up very early.","He didn't sleep last night.","He is going to bed now."], a: 2,
       why: "\"Stay up all night\" = not go to bed at all." },
     { conv: [["M","Should we take the bus to the museum, or walk?"],["W","It's up to you, but it looks like rain."]],
       q: "What does the woman suggest?",
-      opts: ["They should probably take the bus.","They should visit the museum another day.","She refuses to make plans.","They should walk quickly."], a: 0,
+      opts: ["They should walk quickly.","They should visit the museum another day.","She refuses to make plans.","They should probably take the bus."], a: 3,
       why: "\"It's up to you\" = you decide — but mentioning rain is a hint that the bus is the better choice." }
 ];
 
@@ -764,10 +760,10 @@ const PART_B = {
           opts: ["He is writing a term paper.","He is learning to fly.","He is preparing a class presentation.","He wants to sell them."], a: 0,
           why: "He says it directly in his first line: \"It's for my term paper.\"" },
         { q: "What does the woman say about reference books?",
-          opts: ["They can be borrowed for three weeks.","They cannot be taken out of the library.","They are kept on the first floor.","They are only for professors."], a: 1,
+          opts: ["They can be borrowed for three weeks.","They are kept on the first floor.","They cannot be taken out of the library.","They are only for professors."], a: 2,
           why: "\"Reference books can't leave the library\" — so he can only photocopy them." },
         { q: "What should the man do if a book he needs is checked out?",
-          opts: ["Buy his own copy","Place a hold","Ask his professor","Come back next semester"], a: 1,
+          opts: ["Buy his own copy","Come back next semester","Ask his professor","Place a hold"], a: 3,
           why: "She tells him to place a hold at the desk or online and wait for an email." }
     ]
 };
@@ -781,13 +777,13 @@ const PART_C = [
           opts: ["The history of desert travel","How camels survive in the desert","Differences between camels and reptiles","How animals store water"], a: 1,
           why: "The first sentence announces it: the camel as a survival expert. The other options are too narrow or about next week." },
         { q: "According to the speaker, what does a camel's hump contain?",
-          opts: ["Water","Fat","Muscle","Air"], a: 1,
+          opts: ["Water","Air","Muscle","Fat"], a: 3,
           why: "The water idea is called a myth — the hump stores fat." },
         { q: "Why can a camel's body release heat easily?",
           opts: ["Its fat is concentrated in one place.","It sweats constantly.","It drinks cold water.","Its skin is very thin."], a: 0,
           why: "Fat in one place (the hump) instead of under the skin lets the rest of the body lose heat." },
         { q: "What will the class probably discuss next week?",
-          opts: ["Desert reptiles","Camel farming","The water cycle","A trip to the zoo"], a: 0,
+          opts: ["The water cycle","Camel farming","Desert reptiles","A trip to the zoo"], a: 2,
           why: "The last sentence of a talk often previews the next class — listen right to the end." }
       ]
     },
@@ -801,10 +797,10 @@ const PART_C = [
           opts: ["A photography exhibition","A film about winter","A book about the 1920s","A new café"], a: 0,
           why: "It's the special exhibition of photographs from the 1920s." },
         { q: "Why is flash photography not allowed?",
-          opts: ["It disturbs other visitors.","The light can damage the old prints.","It is too noisy.","Cameras are not permitted in the museum."], a: 1,
+          opts: ["It disturbs other visitors.","It is too noisy.","The light can damage the old prints.","Cameras are not permitted in the museum."], a: 2,
           why: "A reason question — listen for \"since\" and \"because\"." },
         { q: "What will the visitors probably do next?",
-          opts: ["Visit the gift shop","Leave their coats and go upstairs","Watch a film","Meet Alice Monteiro"], a: 1,
+          opts: ["Visit the gift shop","Meet Alice Monteiro","Watch a film","Leave their coats and go upstairs"], a: 3,
           why: "The final instructions tell you what happens next: cloakroom, then upstairs." }
       ]
     }
@@ -816,16 +812,16 @@ const STRUCTURE = [
       opts: ["it flows","which flows","flows","which it flows"], a: 1,
       why: "Between commas we need a relative clause: \"which flows\". Option A and D add an extra subject; option C would give the sentence two main verbs." },
     { stem: "Not until the nineteenth century ____ that bacteria cause many diseases.",
-      opts: ["scientists proved","did scientists prove","scientists did prove","when scientists proved"], a: 1,
+      opts: ["scientists proved","when scientists proved","scientists did prove","did scientists prove"], a: 3,
       why: "A negative opener (\"Not until…\") forces question-style inversion: did + subject + base verb." },
     { stem: "____ in 1888, the Kodak camera made photography available to ordinary people.",
       opts: ["Introduced","It was introduced","Introducing","To introduce"], a: 0,
       why: "A reduced passive clause: \"(Which was) introduced in 1888\". The camera was introduced, so we need the past participle, not -ing." },
     { stem: "The higher you climb, ____ the air becomes.",
-      opts: ["the thinner","thinner","the thinnest","thinner than"], a: 0,
+      opts: ["the thinnest","thinner","the thinner","thinner than"], a: 2,
       why: "The double comparative pattern: \"the + comparative…, the + comparative…\"." },
     { stem: "Honey ____ one of the few foods that never spoils.",
-      opts: ["it is","is","being","which is"], a: 1,
+      opts: ["it is","which is","being","is"], a: 3,
       why: "The sentence has a subject (Honey) but no main verb — only \"is\" completes it. \"It is\" doubles the subject." },
     { stem: "Ostriches cannot fly, ____ run faster than most birds can fly.",
       opts: ["but they can","although they can","they can","so can they"], a: 0,
@@ -846,7 +842,7 @@ const STRUCTURE = [
       opts: ["that","which","where","it"], a: 1,
       why: "After a comma, use \"which\" — never \"that\" — for a non-essential clause about a thing." },
     { stem: "Scientists estimate ____ more than eight million species of animals on Earth.",
-      opts: ["there are that","that there are","that they are","there be"], a: 1,
+      opts: ["there are that","there be","that they are","that there are"], a: 3,
       why: "\"Estimate that + clause\": that there are more than eight million species. \"They are\" has no clear reference." }
 ];
 
@@ -857,17 +853,17 @@ const WRITTEN = [
       why: "The subject is \"leaves\" (plural) — the prepositional phrase \"of the maple tree\" is a distraction. Correct: turn." },
     { parts: [{l:"A",t:"Each"}," of the students ",{l:"B",t:"have"}," to give a short presentation ",{l:"C",t:"at the end"}," ",{l:"D",t:"of the course"},"."], a: "B",
       why: "\"Each\" is always singular on the ITP: each of the students has to give…" },
-    { parts: ["The scientist explained the theory so ",{l:"A",t:"clear"}," that ",{l:"B",t:"everyone"}," in the audience ",{l:"C",t:"was able"}," to ",{l:"D",t:"understand"}," it."], a: "A",
-      why: "The word describes how she explained (a verb), so it must be an adverb: clearly." },
+    { parts: ["The scientist ",{l:"A",t:"explained"}," the new theory ",{l:"B",t:"to"}," an audience that ",{l:"C",t:"was able"}," to follow every step ",{l:"D",t:"easy"},"."], a: "D",
+      why: "The word describes how the audience followed (a verb), so it must be an adverb: easily." },
     { parts: ["Bats use sound waves ",{l:"A",t:"to find"}," food, ",{l:"B",t:"avoiding"}," obstacles, and ",{l:"C",t:"to communicate"}," ",{l:"D",t:"with"}," one another."], a: "B",
       why: "Parallel structure: to find, to avoid, and to communicate. One -ing form breaks the list." },
     { parts: ["Columbus ",{l:"A",t:"has sailed"}," across the Atlantic ",{l:"B",t:"in 1492"}," ",{l:"C",t:"with"}," three small ships and ",{l:"D",t:"about"}," ninety men."], a: "A",
       why: "A finished past date (in 1492) requires the simple past: sailed, not the present perfect." },
-    { parts: [{l:"A",t:"Almost all"}," of the ",{l:"B",t:"informations"}," in the library ",{l:"C",t:"can now be accessed"}," ",{l:"D",t:"through"}," the online catalog."], a: "B",
+    { parts: ["The library ",{l:"A",t:"now offers"}," online access ",{l:"B",t:"to"}," almost all ",{l:"C",t:"of its"}," ",{l:"D",t:"informations"},"."], a: "D",
       why: "\"Information\" is a non-count noun — it never takes -s." },
     { parts: ["Mount Everest ",{l:"A",t:"is higher"}," ",{l:"B",t:"than any"}," other ",{l:"C",t:"mountains"}," ",{l:"D",t:"in the"}," world."], a: "C",
       why: "\"Any other\" is followed by a singular noun: higher than any other mountain." },
-    { parts: ["The committee will announce ",{l:"A",t:"their"}," decision ",{l:"B",t:"as soon as"}," all the votes ",{l:"C",t:"have been"}," ",{l:"D",t:"counted"},"."], a: "A",
+    { parts: ["As soon as all the votes ",{l:"A",t:"have been"}," ",{l:"B",t:"counted"},", the committee ",{l:"C",t:"will announce"}," ",{l:"D",t:"their"}," decision."], a: "D",
       why: "On the ITP a committee is one unit — a singular thing: its decision." },
     { parts: [{l:"A",t:"Despite of"}," the heavy rain, the outdoor concert ",{l:"B",t:"continued"}," ",{l:"C",t:"as"}," ",{l:"D",t:"planned"},"."], a: "A",
       why: "It's either \"despite the rain\" or \"in spite of the rain\" — never \"despite of\"." },
@@ -905,10 +901,10 @@ const READING = [
           opts: ["The life of Levi Strauss","How blue jeans developed from work clothes into everyday fashion","Mining in the American West","How Hollywood films influence fashion"], a: 1,
           why: "Main idea: the answer must cover the whole passage. Options A, C and D each match only one part of it." },
         { q: "According to the passage, why did Davis add rivets to the trousers?",
-          opts: ["To make them more fashionable","To make them stronger for heavy work","To make them cheaper to produce","To make them easier to wash"], a: 1,
+          opts: ["To make them more fashionable","To make them easier to wash","To make them cheaper to produce","To make them stronger for heavy work"], a: 3,
           why: "Detail: the miners complained the trousers were not durable enough, so he strengthened the pockets." },
         { q: "The word \"durable\" in line 5 is closest in meaning to",
-          opts: ["comfortable","long-lasting","expensive","fashionable"], a: 1,
+          opts: ["long-lasting","comfortable","expensive","fashionable"], a: 0,
           why: "Vocabulary in context: trousers for heavy labor need to last — durable = long-lasting." },
         { q: "Davis became partners with Levi Strauss because",
           opts: ["Strauss invented the rivet","Davis could not pay the patent fee alone","they were old friends","Strauss owned a clothing store"], a: 1,
@@ -952,7 +948,7 @@ const READING = [
           opts: ["The life cycle of honeybees","How bees tell each other where food is","The career of Karl von Frisch","How bees produce honey"], a: 1,
           why: "Main idea: every paragraph serves the same point — the dance as communication about food." },
         { q: "According to the passage, what shape does the waggle dance follow?",
-          opts: ["A circle","A straight line","A figure eight","A square"], a: 2,
+          opts: ["A circle","A straight line","A square","A figure eight"], a: 3,
           why: "Detail, lines 4–5: a pattern shaped like the number eight." },
         { q: "The word \"obtain\" in line 7 is closest in meaning to",
           opts: ["receive","lose","ignore","repeat"], a: 0,
@@ -967,7 +963,7 @@ const READING = [
           opts: ["the dance","the hive","the food source","the sun"], a: 2,
           why: "Reference: the duration shows how far away the food source is. Substitute each option to check." },
         { q: "What can be inferred about scientists before the 1940s?",
-          opts: ["They did not yet understand what the dance meant.","They believed bees could not see the sun.","They had never observed bees dancing.","They thought bees were more intelligent than humans."], a: 0,
+          opts: ["They thought bees were more intelligent than humans.","They believed bees could not see the sun.","They had never observed bees dancing.","They did not yet understand what the dance meant."], a: 3,
           why: "Inference: if von Frisch decoded it in the 1940s, its meaning was not understood before — one logical step, no more." },
         { q: "Why does the author mention the Nobel Prize?",
           opts: ["To show the importance of von Frisch's discovery","To explain how bees are studied today","To compare bees with other insects","To describe von Frisch's education"], a: 0,
@@ -998,7 +994,7 @@ const READING = [
       ],
       questions: [
         { q: "What is the main purpose of the passage?",
-          opts: ["To describe the stages of sleep","To explain the active role sleep plays in memory","To compare human and animal sleep","To argue that students study too much"], a: 1,
+          opts: ["To describe the stages of sleep","To argue that students study too much","To compare human and animal sleep","To explain the active role sleep plays in memory"], a: 3,
           why: "Main idea: old view rejected, new view explained, implications given — all about sleep and memory." },
         { q: "According to the passage, scientists used to believe that during sleep the brain",
           opts: ["replayed the day's events","was simply resting","created new neurons","solved problems"], a: 1,
@@ -1010,13 +1006,13 @@ const READING = [
           opts: ["Erase all unimportant memories","Replay the experiences of the day","Stop all electrical activity","Create dreams about the future"], a: 1,
           why: "Detail, lines 8–9. Option A is too extreme — the text says \"weakening\", not erasing." },
         { q: "The word \"consolidation\" in line 5 is closest in meaning to",
-          opts: ["deletion","strengthening","invention","comparison"], a: 1,
+          opts: ["deletion","invention","strengthening","comparison"], a: 2,
           why: "Vocabulary: the definition follows the dash — fragile memories converted into stable ones." },
         { q: "The word \"them\" in line 13 refers to",
           opts: ["connections","neurons","problems","experiences"], a: 2,
           why: "Reference: people solve problems after sleeping on them — the idiom \"to sleep on a problem\"." },
         { q: "The author would most probably advise a student to",
-          opts: ["study all night before an important exam","sleep well after studying new material","avoid studying word lists","drink coffee to stay awake"], a: 1,
+          opts: ["study all night before an important exam","drink coffee to stay awake","avoid studying word lists","sleep well after studying new material"], a: 3,
           why: "Inference: the passage says all-night study deprives the brain of what it needs — so the advice is the opposite." },
         { q: "What was the result of the study mentioned in the passage?",
           opts: ["Students who slept remembered more words.","All students remembered the same number of words.","Students who stayed awake learned faster.","The study produced no clear results."], a: 0,
