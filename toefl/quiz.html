@@ -345,7 +345,7 @@ function sync(){
   const a=avail(), want=+$("n").value;
   $("avail").textContent=a?`${a} exercises available`:"nothing selected";
   $("nout").textContent=Math.min(want,a)||0;
-  $("famhint").textContent=picked.fams.size===FAM.length?"all ten":`${picked.fams.size} selected`;
+  $("famhint").textContent=picked.fams.size===FAM.length?`all ${FAM.length}`:`${picked.fams.size} selected`;
   const bad=!a||!picked.sets.size||!picked.fams.size;
   $("build").disabled=bad;
   $("warn").textContent=bad?"Pick at least one family and one question type.":
@@ -496,15 +496,13 @@ function update(){
 /* ---------- printing & theme ---------- */
 $("pw").onclick=()=>{ if(!quiz.length) return render(); document.body.className="print-blank"; print(); };
 $("pk").onclick=()=>{ if(!quiz.length) return render(); document.body.className="print-key"; print(); };
-$("theme").onclick=()=>{
-  const d=document.documentElement.dataset.theme==="dark", t=d?"light":"dark";
+function toggleTheme(){
+  const t=document.documentElement.dataset.theme==="dark"?"light":"dark";
   document.documentElement.dataset.theme=t;
-  $("theme").textContent=t==="dark"?"🌙":"☀️";
-  try{localStorage.setItem("toefl-theme",t)}catch(e){}
-};
+  try{localStorage.setItem("arschul:theme",t)}catch(e){}
+}
+$("theme").onclick=()=>window.toggleTheme();
 (function(){
-  try{const t=localStorage.getItem("toefl-theme");
-    if(t){document.documentElement.dataset.theme=t;$("theme").textContent=t==="dark"?"🌙":"☀️";}}catch(e){}
   try{const p=JSON.parse(localStorage.getItem("toefl-quiz-prefs")||"null");
     if(p){ picked.fams=new Set(p.f); picked.sets=new Set(p.s); $("n").value=p.n;
       document.querySelectorAll("[data-fam]").forEach(b=>b.setAttribute("aria-pressed",String(picked.fams.has(b.dataset.fam))));

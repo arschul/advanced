@@ -291,15 +291,12 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
 <script>
 /* ── theme ─────────────────────────────────────────────────── */
 var themeBtn = document.getElementById('themeBtn');
-function setTheme(t){
+function toggleTheme(){
+  var t = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
   document.documentElement.setAttribute('data-theme', t);
-  themeBtn.textContent = t === 'light' ? '☀️' : '🌙';
-  localStorage.setItem('vocab-theme', t);
+  try{ localStorage.setItem('arschul:theme', t); }catch(e){}
 }
-setTheme(localStorage.getItem('vocab-theme') === 'light' ? 'light' : 'dark');
-themeBtn.addEventListener('click', function(){
-  setTheme(document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
-});
+themeBtn.addEventListener('click', function(){ window.toggleTheme(); });
 
 /* ── state ─────────────────────────────────────────────────── */
 var THEME = null, ITEMS = [], VIEW = [], starred = [], slug = '';

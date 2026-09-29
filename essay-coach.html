@@ -13,7 +13,7 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
 <!-- HUBGEN:leaf end -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Essay Coach — Advanced Hub</title>
+<title>Essay Coach · Advanced Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800;9..144,900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -431,17 +431,13 @@ function toggleTheme() {
     const html = document.documentElement;
     const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
     html.setAttribute('data-theme', next);
-    localStorage.setItem('adv-theme', next);
+    try { localStorage.setItem('arschul:theme', next); } catch (e) {}
     updateThemeBtn();
 }
 function updateThemeBtn() {
     document.getElementById('themeBtn').textContent =
         document.documentElement.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙';
 }
-(function() {
-    const saved = localStorage.getItem('adv-theme');
-    if (saved) document.documentElement.setAttribute('data-theme', saved);
-})();
 
 /* ================= LESSON DATA ================= */
 const LEGEND = [

@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
+<!-- HUBGEN:leaf start -->
+<script>(function(){try{var k="arschul:theme",v=localStorage.getItem(k);
+if(!v){var o=["hub-theme","theme","gh-theme","adv-theme","reviews-theme","worksheets-theme",
+"vocab-theme","toefl-theme","stc-theme","wheelquest-theme","wba-theme","airtight-theme","efl-reader-theme"];
+for(var i=0;i<o.length;i++){var x=localStorage.getItem(o[i]);if(x==="light"||x==="dark"){v=x;break;}}
+v=v||"dark";localStorage.setItem(k,v);}
+var m=(v==="system")?(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):v;
+document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
+<script defer src="https://arschul.github.io/assets/leaf.v1.js"></script>
+<!-- HUBGEN:leaf end -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TOEFL Error Correction · Advanced Hub</title>
@@ -159,10 +169,8 @@ function toggleTheme(){
   const html=document.documentElement;
   const next=html.getAttribute('data-theme')==='light'?'dark':'light';
   html.setAttribute('data-theme',next);
-  document.getElementById('theme-btn').textContent=next==='light'?'☀️':'🌙';
-  try{localStorage.setItem('toefl-theme',next)}catch(e){}
+  try{localStorage.setItem('arschul:theme',next)}catch(e){}
 }
-try{const t=localStorage.getItem('toefl-theme');if(t){document.documentElement.setAttribute('data-theme',t);document.getElementById('theme-btn').textContent=t==='light'?'☀️':'🌙';}}catch(e){}
 </script>
 </body>
 </html>

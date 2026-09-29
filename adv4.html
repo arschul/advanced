@@ -13,7 +13,7 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
 <!-- HUBGEN:leaf end -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Advanced 4 – Booklet Companion – GrammarHub</title>
+<title>Advanced 4 Booklet Companion · Advanced Hub</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
@@ -240,7 +240,7 @@ onmouseout="this.style.opacity=.55" title="Classroom Hub">&#8592; Hub</a>
   <button class="iconbtn" id="prev" title="Previous set (←)" aria-label="Previous set">‹</button>
   <button class="iconbtn" id="next" title="Next set (→)" aria-label="Next set">›</button>
   <button class="iconbtn" id="print" title="Print this set" aria-label="Print this set">⎙</button>
-  <button class="iconbtn" id="theme" title="Light / dark" aria-label="Toggle light or dark">☾</button>
+  <button class="iconbtn theme-btn" id="theme" title="Light / dark" aria-label="Toggle light or dark">☾</button>
 </header>
 
 <div class="scrim" id="scrim"></div>
@@ -2320,15 +2320,12 @@ document.getElementById('scrim').addEventListener('click',closeSide);
 document.getElementById('print').addEventListener('click',function(){window.print();});
 document.getElementById('prev').addEventListener('click',function(){if(cur!=='home'&&+cur>1)go(+cur-1);});
 document.getElementById('next').addEventListener('click',function(){if(cur!=='home'&&+cur<25)go(+cur+1);});
-document.getElementById('theme').addEventListener('click',function(){
-  var r=document.documentElement,dark=r.getAttribute('data-theme')==='dark';
-  r.setAttribute('data-theme',dark?'light':'dark');
-  this.textContent=dark?'☾':'☀';
-  try{localStorage.setItem('gh-theme',dark?'light':'dark');}catch(e){}
-});
-(function(){
-  try{if(localStorage.getItem('gh-theme')==='dark'){document.documentElement.setAttribute('data-theme','dark');document.getElementById('theme').textContent='☀';}}catch(e){}
-})();
+function toggleTheme(){
+  var r=document.documentElement,t=r.getAttribute('data-theme')==='dark'?'light':'dark';
+  r.setAttribute('data-theme',t);
+  try{localStorage.setItem('arschul:theme',t);}catch(e){}
+}
+document.getElementById('theme').addEventListener('click',function(){window.toggleTheme();});
 window.addEventListener('keydown',function(e){
   if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA'||e.target.tagName==='SELECT') return;
   if(cur==='home') return;
