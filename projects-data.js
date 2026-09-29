@@ -13,7 +13,7 @@
 
 var ADVANCED_PROJECTS_META = {
   version: 1,
-  updated: "2026-08-02"
+  updated: "2026-09-29"
 };
 
 /* Shared rubric. Every project is scored on these four criteria plus
@@ -808,7 +808,7 @@ var ADVANCED_PROJECTS = [
         { n: 21, text: "Another team reads your letter and says what they would cut" },
         { n: 22, text: "Cut it" }
       ] },
-    { id: "s6", name: "Sealing", hours: 1,
+    { id: "s6", name: "Sealing", hours: 0.5,
       focus: "Narration and ceremony - what you are looking at is / we leave this to you",
       steps: [
         { n: 23, text: "Assemble the capsule contents for display" },
