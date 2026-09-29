@@ -1,4 +1,4 @@
-/* Work & Employment — 40 items at C1. Schema: word, pos, def, colls[3], ex, note, pitfall, family, tags */
+/* Work & Employment — 40 items at C1. Schema: word, pos, def, colls[3], ex, note, pitfall, family, tags, contrast{good,bad,why} */
 window.VOCAB = window.VOCAB || {};
 window.VOCAB.work = {
   slug: "work",
