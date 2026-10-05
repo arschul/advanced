@@ -290,7 +290,7 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
       <p class="why">No <i>the</i> with most countries, cities, states, lakes, single mountains or continents: <i>Brazil, Curitiba, Lake Titicaca, Mount Everest</i>. Use <i>the</i> with plurals and political unions: <i>the United States, the Netherlands, the Philippines</i>, and with rivers, seas, deserts and ranges: <i>the Amazon, the Andes, the Sahara</i>. Institutions used for their purpose take no article — <i>at school, in class, at work</i> — though American English keeps it in <i>in the hospital</i>.</p>
     </div></details>
 
-    <details class="pat"><summary>11 · Determiners fix the noun's number</summary><div class="body">
+    <details class="pat"><summary>11 · Determiners fix the noun’s number</summary><div class="body">
       <div class="ex no"><span class="strike">Every students</span> must complete the modules. · <span class="strike">Both proposal</span> were rejected.</div>
       <div class="ex yes"><b>Every student</b> must complete the modules. · <b>Both proposals</b> were rejected.</div>
       <p class="why">Singular noun after <i>each, every, either, neither, another</i>. Plural noun after <i>both, several, many, few, all</i> and after <i>one of</i>. <i>All</i> and <i>most</i> also take uncountables directly: <i>most research, all evidence</i>.</p>
@@ -333,55 +333,56 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
 
 <script>
 const A=[
- {s:["Before the interns submitted their proposals, the supervisor gave them ","that the department had prepared."],o:["many advices","an advice","several advices","a great deal of advice"],a:3,w:"<i>Advice</i> is uncountable: no <i>-s</i>, no <i>a</i>. To count it you need a partitive — <i>three pieces of advice</i>."},
- {s:["Researchers who join the project cannot begin until ","that the ministry ordered finally arrives."],o:["the equipments","the equipment","an equipment","some equipments"],a:1,w:"<i>Equipment</i> is uncountable however many machines are meant. <i>Arrives</i> is singular for the same reason."},
- {s:["She completed ","MBA before she applied for the post that required an advanced degree."],o:["some","a","an","the"],a:2,w:"The article follows sound, not spelling. <i>MBA</i> begins with the sound “em”, so it takes <i>an</i> — while <i>a university</i> keeps <i>a</i>."},
- {s:["A student submitted a proposal last week, and ","proposal has already been reviewed by two committees."],o:["the","some","any","a"],a:0,w:"First mention takes <i>a</i>, later mention takes <i>the</i>. The reader now knows which proposal is meant."},
- {s:["This is ","time that the committee has rejected an application from the department."],o:["the three","a third","the third","third"],a:2,w:"Ordinals point to one position only, so they take <i>the</i> — as do superlatives and <i>the same, the only, the last</i>."},
- {s:["","are essential to any economy that depends on the exports it ships by road."],o:["A good roads","The good road","The good roads","Good roads"],a:3,w:"A general category takes a bare plural. <i>The good roads</i> would mean a particular set the reader is expected to recognize."},
- {s:["","of oil rose sharply after the ministry announced the tariffs that importers had feared."],o:["Price","The price","A price","Some price"],a:1,w:"The <i>of</i>-phrase pins the noun down to one particular price, and a specified noun takes <i>the</i>. Compare general <i>oil prices rose</i>."},
- {s:["Enrollment fell this year, and the department received ","applications than it had budgeted for."],o:["fewer","little","much","less"],a:0,w:"<i>Applications</i> can be counted one by one, so it takes <i>fewer</i>. <i>Less</i> belongs with uncountables such as <i>funding</i>."},
- {s:["She has ","friends in the city, so she rarely goes out when the weekend arrives."],o:["few","a little","little","a few"],a:0,w:"Dropping the article reverses the meaning. <i>So she rarely goes out</i> forces the negative <i>few</i> — hardly any. <i>A few</i> would mean enough."},
- {s:["Children who live in the village walk to ","every morning before the buses reach the main road."],o:["the schools","school","the school","a school"],a:1,w:"An institution used for its purpose takes no article: <i>at school, in class, at work</i>. <i>The school</i> would point at the building itself."},
- {s:["","of the two proposals was accepted, although the committee praised the research behind both."],o:["Either","Any","Neither","None"],a:2,w:"<i>Neither</i> covers exactly two; <i>none</i> covers three or more. <i>Both</i> later in the sentence confirms there are two."},
- {s:["One candidate withdrew before the interviews began, and ","decided not to attend at all."],o:["other","another","the another","others"],a:1,w:"Bare <i>other</i> cannot stand alone before a verb. <i>Another</i> means one more of several; <i>the other</i> would mean the remaining one of exactly two."}
+ {s:["The new office has ","for twenty people."],o:["enough furniture","enough furnitures","a furniture","furnitures enough"],a:0,w:"<i>Furniture</i> is uncountable: no plural and no <i>a</i>."},
+ {s:["Before the storm, we bought ","bread and six bottles of water."],o:["two breads","two loaf of","two piece of","two loaves of"],a:3,w:"Count an uncountable noun with a unit noun: <i>two loaves of bread</i>, <i>six bottles of water</i>. The unit noun takes the plural."},
+ {s:["He is ","honest mechanic who works at a European car dealership."],o:["a","an","the","one"],a:1,w:"<i>Honest</i> begins with a vowel sound (silent <i>h</i>), so <i>an</i>. <i>A European</i> is correct: it begins with a /j/ sound."},
+ {s:["We adopted a puppy and a kitten last spring, and ","kitten now rules the house."],o:["the","a","one","some"],a:0,w:"The kitten has already been mentioned, so the second mention takes <i>the</i>."},
+ {s:["She was ","first person in her family to attend college."],o:["a","an","one","the"],a:3,w:"Ordinals (<i>first, second, last</i>) pick out a single position, so they take <i>the</i>."},
+ {s:["","is the main cause of traffic accidents in the city."],o:["The speeding","Speeding","A speeding","The speed"],a:1,w:"A general statement about an activity takes no article."},
+ {s:["","the bakery on Main Street sells is still warm at seven."],o:["Bread","A bread","The bread","Breads"],a:2,w:"The clause <i>the bakery sells</i> specifies which bread, so <i>the</i>. Without the clause, <i>Bread is …</i> would be a general statement."},
+ {s:["The new bus route has cut ","traffic on our street."],o:["the number of","fewer","the amount of","many"],a:2,w:"<i>Traffic</i> is uncountable, so <i>the amount of</i>. <i>The number of</i> and <i>fewer</i> are for countable nouns."},
+ {s:["The test was so hard that ","students finished it, and most left half the questions blank."],o:["a few","little","a little","few"],a:3,w:"<i>Few</i> = hardly any, which fits the result. <i>A few</i> = some, a positive meaning. <i>Little</i> is for uncountable nouns."},
+ {s:["My cousin moved to "," to study engineering."],o:["the Netherlands","Netherlands","a Netherlands","The Netherland"],a:0,w:"Most country names take no article, but plural names and names with words like <i>Republic</i> or <i>States</i> take <i>the</i>: <i>the Netherlands, the United States</i>."},
+ {s:["","of the twins has a different favorite color."],o:["Both","Each","All","Every"],a:1,w:"<i>Each of</i> takes a singular verb and fits two people. <i>Every</i> cannot be followed by <i>of</i>; <i>both</i> and <i>all</i> need a plural verb."},
+ {s:["This café is too noisy; let’s find ","place to talk."],o:["other","others","another","the another"],a:2,w:"<i>Another</i> = one more, any other, with a singular noun. <i>Other</i> alone needs a plural or uncountable noun."}
 ];
 const B=[
- {p:[["The committee gave ",0],["the applicants",1],[" ",0],["several advices",1],[" about ",0],["the documents",1],[" that the office requires and ",0],["the deadlines",1],[" that it enforces",0]],a:1,f:"a great deal of advice",w:"<i>Advice</i> is uncountable. The three other noun phrases are all correctly specified by the clauses that follow them."},
- {p:[["Until they receive ",0],["a new equipment",1],[" and ",0],["the funding",1],[" that ",0],["the ministry",1],[" approved last year, the researchers cannot repeat ",0],["the experiment",1],[" that failed in June",0]],a:0,f:"new equipment",w:"<i>Equipment</i> takes neither <i>a</i> nor <i>-s</i>. <i>The funding</i> is correct because the relative clause specifies which funding."},
- {p:[["She spent ",0],["an hour",1],[" reading ",0],["a article",1],[" that ",0],["a colleague",1],[" had recommended when they met at ",0],["the conference",1],[" in Lisbon",0]],a:1,f:"an article",w:"<i>Article</i> begins with a vowel sound. <i>An hour</i> is correct because the <i>h</i> is silent."},
- {p:[["The price of housing has risen faster than ",0],["the wages",1],[" that most workers earn, which explains why ",0],["fewer families",1],[" now buy ",0],["the homes",1],[" that ",0],["the developers",1],[" build",0]],a:2,f:"homes",w:"Homes in general take no article here \u2014 the relative clause after it modifies <i>developers</i>, not the noun. <i>The wages that most workers earn</i> is correctly specified."},
- {p:[["",0],["Less students",1],[" applied this year than ",0],["the department",1],[" expected, although ",0],["the number",1],[" of ",0],["international candidates",1],[" who inquired increased",0]],a:0,f:"Fewer students",w:"<i>Students</i> is countable, so it takes <i>fewer</i>. <i>The number of</i> is the correct pairing for a countable noun \u2014 <i>the amount of</i> would not be."},
- {p:[["Since moving to ",0],["the city",1],[", she has rarely left ",0],["the apartment",1],[" that ",0],["her employer",1],[" rents for her, because she has ",0],["a few",1],[" friends there",0]],a:3,f:"few",w:"<i>She has rarely left the apartment</i> signals scarcity, which needs the negative <i>few</i>. The three <i>the</i> phrases are all specified by context or by a clause."},
- {p:[["In ",0],["the program",1],[" that the faculty redesigned, ",0],["every students",1],[" who enrolled must complete ",0],["the modules",1],[" that ",0],["the department",1],[" lists in the handbook",0]],a:1,f:"every student",w:"<i>Every</i> takes a singular noun. The other three take <i>the</i> correctly because each is specified by a following clause or by shared context."},
- {p:[["",0],["The ministers",1],[" spent several months negotiating ",0],["an agreement",1],[" that ",0],["the Brazil",1],[" and ",0],["the United States",1],[" finally signed in Geneva",0]],a:2,f:"Brazil",w:"Single-word country names take no article. <i>The United States</i> keeps <i>the</i> because it is a plural political union."},
- {p:[["The team collected ",0],["a lot of informations",1],[" from ",0],["the archives",1],[" that ",0],["the library",1],[" had digitized before ",0],["the fire",1],[" destroyed the building",0]],a:0,f:"a lot of information",w:"<i>Information</i> has no plural. <i>A lot of</i> is correct with it \u2014 only the <i>-s</i> is wrong."},
- {p:[["",0],["The department",1],[" that had submitted ",0],["the documents",1],[" in March learned that ",0],["one proposal",1],[" was accepted and ",0],["the another",1],[" was returned",0]],a:3,f:"the other",w:"<i>Another</i> already contains <i>an</i>, so <i>the another</i> stacks two determiners. With exactly two items the second is <i>the other</i>."}
+ {p:[["The hotel gave us ",0],["useful information",1],[" about ",0],["the area",1],[" and ",0],["a map",1],[", but we had brought ",0],["too many luggages",1],[".",0]],a:3,f:"too much luggage",w:"<i>Luggage</i> is uncountable: no plural, and <i>much</i> rather than <i>many</i>. <i>Useful information</i> is correct."},
+ {p:[["It took ",0],["an hour",1],[" to find ",0],["a umbrella",1],[" and ",0],["a uniform",1],[" for ",0],["the ceremony",1],[".",0]],a:1,f:"an umbrella",w:"<i>Umbrella</i> begins with a vowel sound. <i>An hour</i> and <i>a uniform</i> are correct because the rule follows sound, not spelling."},
+ {p:[["",0],["A man",1],[" and ",0],["a woman",1],[" entered the shop, and ",0],["a woman",1],[" bought ",0],["a scarf",1],[".",0]],a:2,f:"the woman",w:"The woman has already been introduced, so the second mention takes <i>the</i>."},
+ {p:[["",0],["The bicycles",1],[" are cheaper to run than ",0],["cars",1],[", and ",0],["the city",1],[" now has ",0],["more bike lanes",1],[".",0]],a:0,f:"Bicycles",w:"A general statement about a category takes a bare plural, just as <i>cars</i> does."},
+ {p:[["",0],["Coffee",1],[" is popular all over Brazil, but ",0],["coffee",1],[" served at ",0],["the station",1],[" is ",0],["terrible",1],[".",0]],a:1,f:"the coffee",w:"<i>Served at the station</i> specifies which coffee, so <i>the</i>. The first <i>Coffee</i> is a general statement and correctly bare."},
+ {p:[["There were ",0],["fewer cars",1],[" on the road and ",0],["less accidents",1],[" this year, and ",0],["the amount of",1],[" pollution ",0],["dropped",1],[".",0]],a:1,f:"fewer accidents",w:"<i>Accidents</i> is countable, so <i>fewer</i>. <i>The amount of pollution</i> is correct for an uncountable noun."},
+ {p:[["We had ",0],["a little time",1],[" before the train, so we ",0],["had to run",1],[", grabbing ",0],["a few",1],[" sandwiches ",0],["on the way",1],[".",0]],a:0,f:"little time",w:"<i>A little</i> means some — enough. Having to run shows there was hardly any time: <i>little time</i>."},
+ {p:[["After ",0],["high school",1],[", she moved to ",0],["the Canada",1],[" and studied at ",0],["the University of Toronto",1],[" for ",0],["four years",1],[".",0]],a:1,f:"Canada",w:"Single-word country names take no article. <i>The University of Toronto</i> takes <i>the</i> because of the <i>of</i> phrase."},
+ {p:[["",0],["Each",1],[" of the rooms has ",0],["two windows",1],[", but ",0],["neither rooms",1],[" has ",0],["a balcony",1],[".",0]],a:2,f:"neither room",w:"<i>Neither</i> takes a singular noun, as <i>has</i> already shows."},
+ {p:[["One of my brothers ",0],["lives",1],[" in Lima and ",0],["the other",1],[" in Quito, while ",0],["my parents",1],[" and ",0],["the another relatives",1],[" live nearby.",0]],a:3,f:"the other relatives",w:"<i>Another</i> cannot follow <i>the</i>, and it takes a singular noun. With a plural, use <i>the other relatives</i>."}
 ];
 const PAT=["","Uncountable nouns take no plural and no a","Counting an uncountable noun","A or an goes by sound",
  "First mention and later mention","The with unique reference","Zero article for general statements",
  "The when a modifier specifies which","Much, many, fewer, less, amount, number","A few and few, a little and little",
- "Place names and institutions","Determiners fix the noun's number","Other, another, the other"];
+ "Place names and institutions","Determiners fix the noun’s number","Other, another, the other"];
 const C=[
- {t:"The supervisor offered the interns a great deal of advices about the reports that the department publishes each quarter.",x:"advices",a:["advice"],p:1,
-  w:"<i>Advice</i> has no plural. <i>A great deal of</i> is already the correct quantifier for an uncountable noun \u2014 only the <i>-s</i> is wrong."},
- {t:"Researchers who join the institute receive a training that the department designed for newcomers who lack laboratory experience.",x:"a training",a:["training"],p:1,
-  w:"<i>Training</i> is uncountable and takes no <i>a</i>. <i>Laboratory experience</i> at the end is correctly left bare."},
- {t:"She waited an hour for a answer that never came from the office that had promised one before the deadline.",x:"a answer",a:["an answer","an"],p:3,
-  w:"<i>Answer</i> begins with a vowel sound. <i>An hour</i> is already correct because the <i>h</i> is silent \u2014 the sentence gets the rule right once and wrong once."},
- {t:"The economies that depend on exports will not grow, most analysts now agree, unless the governments invest.",x:"the governments",a:["governments"],p:6,
-  w:"A general category takes a bare plural. <i>The economies</i> is correct because the relative clause specifies which economies."},
- {t:"Less people attended the lecture than the organizers had expected, although the number of registrations was unusually high.",x:"Less",a:["Fewer"],p:8,
-  w:"<i>People</i> is countable. <i>The number of registrations</i> is already the correct countable pairing."},
- {t:"Every students who completed the course received a certificate that the university issues each June.",x:"Every students",a:["Every student","student"],p:11,
-  w:"<i>Every</i> takes a singular noun, and <i>received</i> has already treated the subject as one unit at a time."},
- {t:"He returned from the Peru last month and immediately began the report that the committee had requested in April.",x:"the Peru",a:["Peru"],p:10,
-  w:"Single-word country names take no article. <i>The report</i> is correct because the relative clause specifies which report."},
- {t:"One of the applicants withdrew before the interviews, and the another accepted a position at a rival firm.",x:"the another",a:["the other"],p:12,
-  w:"<i>Another</i> cannot follow <i>the</i>. With two candidates in view the second is <i>the other</i>."}
+ {t:"The tourists asked the hotel staff for directions and some advices about where to eat.",x:"some advices",a:["some advice"],p:1,
+  w:"<i>Advice</i> is uncountable. <i>Directions</i> is correct as a plural."},
+ {t:"We ordered two cups of tea and a slice of cake, and the waiter brought us two breads as well.",x:"two breads",a:["two rolls","two pieces of bread"],p:2,
+  w:"An uncountable noun is counted with a unit noun, as in <i>two cups of tea</i> and <i>a slice of cake</i>."},
+ {t:"It was an unusual request from a NGO, but the manager agreed within an hour.",x:"a NGO",a:["an NGO"],p:3,
+  w:"<i>NGO</i> is read letter by letter and begins with the sound /e/. <i>An unusual</i> and <i>an hour</i> are correct."},
+ {t:"She was the only person at the party who knew a name of the host’s dog.",x:"a name",a:["the name"],p:7,
+  w:"<i>Of the host’s dog</i> specifies which name — there is only one. <i>The only person</i> is correct."},
+ {t:"The honesty is important in any friendship, and the friendship we share is very important to me.",x:"The honesty",a:["Honesty"],p:6,
+  w:"A general statement about an abstract quality takes no article. <i>The friendship we share</i> is specific, so <i>the</i> is correct there."},
+ {t:"The number of tourists has doubled, but the amount of hotels in town has stayed the same.",x:"the amount of hotels",a:["the number of hotels"],p:8,
+  w:"<i>Hotels</i> is countable, so <i>the number of</i> — as with <i>tourists</i> at the start."},
+ {t:"Few drivers use the old road now, so there is a few traffic even at rush hour.",x:"a few traffic",a:["little traffic"],p:9,
+  w:"<i>Traffic</i> is uncountable, and the meaning is hardly any: <i>little</i>. <i>Few drivers</i> is correct for a countable noun."},
+ {t:"Both candidates gave strong answers in the interview, but every candidates must also complete a written test.",x:"every candidates",a:["every candidate"],p:11,
+  w:"<i>Every</i> takes a singular noun. <i>Both candidates</i> is correctly plural."}
 ];
 
-const _PA=[9, 2, 11, 8, 0, 10, 4, 6, 3, 5, 7, 1],_PB=[6, 3, 9, 1, 7, 4, 0, 8, 2, 5],_PC=[0,5,1,6,7,3,2,4];
+
+const _PA=[1, 8, 10, 3, 11, 6, 9, 5, 0, 2, 7, 4],_PB=[4, 6, 9, 0, 2, 7, 1, 8, 3, 5],_PC=[7, 0, 3, 6, 4, 2, 5, 1];
 [[A,_PA],[B,_PB],[C,_PC]].forEach(function(pair){var arr=pair[0],p=pair[1],c=arr.slice();
   p.forEach(function(src,dst){arr[dst]=c[src];});});
 
