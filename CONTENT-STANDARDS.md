@@ -25,6 +25,7 @@ template, design system, data shape and registration steps.
 | Intensive course day | `intensive-b2-c1.html` | own | `DAYS_META` + `DAYS_HTML` (system fonts, see Appendix) |
 | Essay Coach lesson / prompt | `essay-coach.html` | Fraunces + Inter | `LESSONS`, `PROMPTS` |
 | TOEFL ITP item | `toefl-itp.html` | Fraunces + Inter | `PART_A`, `PART_C`, `STRUCTURE`, `WRITTEN`, `READING` |
+| IELTS Listening test | `ielts/data/<slug>.js` | Fraunces + DM Sans (shell `ielts/listen.html`) | external data file |
 | New standalone page | `<slug>.html` at root | Spectral + Work Sans, teal | inline, or `data/` if large |
 | New section | `<section>/index.html` + leaves | Fraunces + DM Sans | per-leaf or `<section>/data/` |
 
@@ -240,6 +241,36 @@ These are single-file apps; copy an existing entry and keep its shape.
 
 ---
 
+### 3.6 New IELTS Listening test
+File `ielts/data/<slug>.js` (`test-3`, `test-4`, …), copied from `ielts/data/test-2.js`:
+```js
+window.IELTS = window.IELTS || {};
+window.IELTS["<slug>"] = { slug, title: "Test N", blurb, parts: [
+  { n, title, ctx, speakers: { X: { n: "Name", g: "f|m", acc: "en-GB|en-US|en-AU|…" } },
+    groups: [ … ], script: [ … ] }  // exactly four parts, questions 1–40
+]};
+```
+- Script lines: `{nar}` narrator, `{pause: seconds}` reading time, `{sp, t, tts?}` speech.
+  `[[n|text]]` marks where the answer to question *n* is heard — exactly one per question,
+  in that question’s part. `tts` overrides what is spoken (phone numbers, odd readings);
+  spelled words written `H-A-L` are read letter by letter automatically.
+- Group types: gap types `form`, `notes`, `table`, `flow`, `sentences`, `summary`, `short`
+  (with `{n}` placeholders, `ans: {n: [accepted…]}` and `limit: {w, num}`); `mc` (three
+  options, 0-based `a`); `mc2` (choose TWO: five options, `a: [i, j]`, counts as two
+  questions); `match` (`opts: [[letter, text]]`, items with a letter); `map` (inline `svg`
+  with `m-key` letter markers, `letters`, items with a letter).
+- Every accepted answer obeys its group’s word limit; list US and UK spellings both.
+- Each part follows the real format: Part 1 two-speaker everyday transaction, Part 2
+  monologue, Part 3 two to four speakers in an academic setting, Part 4 lecture.
+  Scripts are original and include the usual distractors (self-corrections, rejected options).
+- Answer balance for 3-option MC **(new)**: across a test’s single-answer MC, each letter
+  is correct at least twice and never three times in a row.
+
+Registration: add the slug to `TESTS` and a `<script src="data/<slug>.js">` tag in
+`ielts/index.html`, a catalog item `ielts-listening-<slug>` with path
+`ielts/listen.html#/<slug>`, refresh the hub card’s counts, and run
+`python3 tools/check_ielts.py` (must pass).
+
 ## 4. Catalog entry (every linkable page)
 
 Add an item to `arschul.github.io/data/catalog.json`:
@@ -275,6 +306,7 @@ In this repo (all need `node` on PATH):
 python3 tools/check_content.py      # titles, theme, leaf region, dialogs, fonts, data schemas
 python3 tools/check_balance.py      # answer positions: TOEFL sheets + TOEFL ITP
 python3 tools/sync_quiz.py --check  # Quiz Builder bank matches the sheets
+python3 tools/check_ielts.py        # IELTS Listening: numbering, anchors, word limits, balance
 ```
 Then:
 1. Extract each changed `<script>` block and run `node --check` on it (and on any `.js`

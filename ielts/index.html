@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<!-- HUBGEN:leaf start -->
+<script>(function(){try{var k="arschul:theme",v=localStorage.getItem(k);
+if(!v){var o=["hub-theme","theme","gh-theme","adv-theme","reviews-theme","worksheets-theme",
+"vocab-theme","toefl-theme","stc-theme","wheelquest-theme","wba-theme","airtight-theme","efl-reader-theme"];
+for(var i=0;i<o.length;i++){var x=localStorage.getItem(o[i]);if(x==="light"||x==="dark"){v=x;break;}}
+v=v||"dark";localStorage.setItem(k,v);}
+var m=(v==="system")?(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):v;
+document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
+<script defer src="https://arschul.github.io/assets/leaf.v1.js"></script>
+<!-- HUBGEN:leaf end -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IELTS Listening · Advanced Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0e12;--surface:#15171c;--surface2:#1b1e25;--text:#eef0f2;--muted:#8b929c;--border:#262932;
+    --violet:#a78bfa;--violet-deep:#1c1433;--violet-line:rgba(167,139,250,0.35);
+    --key-accent:#f0c75e;--key-deep:#2a2206;--radius:18px;
+  }
+  :root[data-theme="light"]{
+    --bg:#f4f1ea;--surface:#ffffff;--surface2:#faf8f3;--text:#1a1815;--muted:#6b6660;--border:#e2ddd2;
+    --violet:#7c3aed;--violet-deep:#ede9fe;--violet-line:rgba(124,58,237,0.3);
+    --key-accent:#b8860b;--key-deep:#fbf2dc;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;
+    display:flex;flex-direction:column;align-items:center;line-height:1.65;transition:background .3s,color .3s}
+  .theme-toggle{position:fixed;top:1.25rem;right:1.25rem;z-index:10;width:42px;height:42px;border-radius:50%;
+    border:1px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;display:flex;
+    align-items:center;justify-content:center;font-size:1.1rem;transition:all .2s}
+  .theme-toggle:hover{border-color:var(--text);color:var(--text);transform:scale(1.06)}
+  .wrap{width:100%;max-width:980px;padding:4.5rem 1.5rem 4rem}
+  .back-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.8rem;font-weight:500;color:var(--muted);
+    text-decoration:none;margin-bottom:2.5rem;transition:color .2s}
+  .back-link:hover{color:var(--violet)}
+  .eyebrow{font-size:.72rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:1.1rem}
+  h1{font-family:'Fraunces',serif;font-weight:700;font-optical-sizing:auto;font-size:clamp(2.4rem,6vw,4rem);
+    line-height:1.05;letter-spacing:-1.5px;margin-bottom:.9rem}
+  h1 .accent{background:linear-gradient(90deg,var(--violet),#38bdf8);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{color:var(--muted);font-size:1.05rem;max-width:580px;font-weight:300;line-height:1.7;margin-bottom:2.5rem}
+  .note{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--violet);
+    border-radius:12px;padding:1.1rem 1.3rem;font-size:.88rem;color:var(--muted);font-weight:300;line-height:1.75;margin-bottom:2.5rem}
+  .note b{color:var(--text);font-weight:600}
+  .test{margin-bottom:2.8rem}
+  .class-header{display:flex;align-items:center;gap:.9rem;margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:1px solid var(--border)}
+  .class-badge{font-size:.7rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:.25rem .75rem;
+    border-radius:100px;background:var(--violet-deep);color:var(--violet);border:1px solid var(--violet-line)}
+  .class-title{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:600;letter-spacing:-.3px}
+  .test-count{color:var(--muted);font-size:.85rem;margin-left:auto}
+  .rows{display:flex;flex-direction:column;gap:.75rem}
+  .row{display:flex;align-items:center;gap:1rem;background:var(--surface);border:1px solid var(--border);
+    border-radius:14px;padding:1.1rem 1.3rem;text-decoration:none;color:inherit;position:relative;overflow:hidden;
+    transition:transform .2s,border-color .2s,box-shadow .2s}
+  .row::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--violet);
+    transform:scaleX(0);transform-origin:left;transition:transform .3s}
+  a.row:hover{transform:translateY(-3px);border-color:var(--violet);box-shadow:0 10px 30px rgba(0,0,0,.15)}
+  a.row:hover::before{transform:scaleX(1)}
+  .row.full{border-color:var(--violet-line)}
+  .num{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:700;color:var(--violet);min-width:26px}
+  .txt{flex:1}
+  .txt h3{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;letter-spacing:-.2px;margin-bottom:.2rem}
+  .txt p{font-size:.85rem;color:var(--muted);font-weight:300;line-height:1.6}
+  .tag{font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;padding:.15rem .6rem;
+    border-radius:100px;border:1px solid var(--border);color:var(--muted);background:var(--surface2);white-space:nowrap}
+  .tag.live{border-color:var(--violet-line);color:var(--violet);background:var(--violet-deep)}
+  .tag.score{border-color:var(--key-accent);color:var(--key-accent);background:var(--key-deep)}
+  .tags{display:flex;gap:.4rem;flex-wrap:wrap;justify-content:flex-end}
+  footer{margin-top:auto;padding:2.5rem 1.5rem;font-size:.78rem;color:var(--muted);text-align:center}
+  footer a{color:var(--muted);text-decoration:none}
+  footer a:hover{color:var(--violet)}
+  @media(max-width:600px){.row{padding:1rem;gap:.8rem;flex-wrap:wrap}.tags{width:100%;justify-content:flex-start;padding-left:calc(26px + .8rem)}.test-count{display:none}}
+</style>
+</head>
+<body>
+
+<button class="theme-toggle" id="theme-btn" onclick="toggleTheme()" title="Toggle light/dark mode">🌙</button>
+
+<div class="wrap">
+  <a class="back-link" href="../index.html">← Advanced Hub</a>
+  <p class="eyebrow">Phil Young’s English School · IELTS-style practice</p>
+  <h1>IELTS <span class="accent">Listening</span></h1>
+  <p class="lede">Full practice tests in the IELTS Listening format: four parts, forty questions, read aloud by your browser’s own voices. Play a whole test or one part at a time, and finish with a percentage score.</p>
+
+  <div class="note">
+    <b>How to use these.</b> Put the test on the projector and press Play. The recording includes the instructions and the reading time before each set of questions, just like the real exam. Students can answer on screen or on the printed question paper. <b>Check answers</b> gives a score for whatever you played: one part out of ten, or the full test out of forty. Turn on <b>Test conditions</b> to play each part once only, with no skipping. Use <b>Voices</b> to choose a different voice for any speaker; Edge’s “Natural” voices sound the most realistic.
+  </div>
+
+  <div id="tests"></div>
+</div>
+
+<footer>
+  Part of <a href="../index.html">Advanced Hub</a> · <a href="https://arschul.github.io/">arschul.github.io</a> · Phil Young’s English School
+</footer>
+
+<script src="data/test-1.js"></script>
+<script src="data/test-2.js"></script>
+<script>
+var TESTS = ['test-1', 'test-2'];
+
+function toggleTheme(){
+  var h = document.documentElement, next = h.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+  h.setAttribute('data-theme', next);
+  try{ localStorage.setItem('arschul:theme', next); }catch(e){}
+  icon();
+}
+function icon(){ document.getElementById('theme-btn').textContent = document.documentElement.getAttribute('data-theme') === 'light' ? '☀️' : '🌙'; }
+function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+function scores(slug){ try{ return JSON.parse(localStorage.getItem('adv:ielts-listening:' + slug + ':scores')) || {}; }catch(e){ return {}; } }
+function range(P){ var a = P.groups[0].from, b = P.groups[P.groups.length - 1].to; return a + '–' + b; }
+
+function render(){
+  var h = '';
+  TESTS.forEach(function(slug, i){
+    var T = (window.IELTS || {})[slug]; if(!T) return;
+    var S = scores(slug), last = function(k){ return S[k] ? '<span class="tag score">Last · ' + S[k].pct + '%</span>' : ''; };
+    h += '<div class="test"><div class="class-header"><span class="class-badge">B2 → C1</span><span class="class-title">' + esc(T.title) + '</span><span class="test-count">4 parts · 40 questions</span></div><div class="rows">';
+    h += '<a class="row full" href="./listen.html#/' + slug + '"><span class="num">✦</span><span class="txt"><h3>Full test</h3><p>' + esc(T.blurb) + '</p></span><span class="tags">' + last('full') + '<span class="tag live">40 questions</span></span></a>';
+    T.parts.forEach(function(P){
+      h += '<a class="row" href="./listen.html#/' + slug + '/p' + P.n + '"><span class="num">' + P.n + '</span><span class="txt"><h3>' + esc(P.title) + '</h3><p>' + esc(P.ctx) + '</p></span><span class="tags">' + last('p' + P.n) + '<span class="tag live">Q ' + range(P) + '</span></span></a>';
+    });
+    h += '</div></div>';
+  });
+  document.getElementById('tests').innerHTML = h;
+}
+icon();
+render();
+window.addEventListener('pageshow', render);
+</script>
+</body>
+</html>
