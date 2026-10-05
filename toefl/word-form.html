@@ -333,55 +333,56 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
 
 <script>
 const A=[
- {s:["The technicians who calibrated the instrument recorded the readings ","before the trial began."],o:["carefully","carefulness","more careful","careful"],a:0,w:"The word modifies <i>recorded</i>, a verb, so it needs the adverb. <i>Careful readings</i> would modify a noun and take no <i>-ly</i>."},
- {s:["The results that the second team obtained seem ",", although the sample was unusually small."],o:["conclusiveness","conclusive","conclusively","conclusion"],a:1,w:"After a linking verb the word describes the subject, not the action. Substitute <i>are</i> to test it: <i>the results are conclusive</i>."},
- {s:["The ministry announced measures intended to stimulate ","growth in the regions that exports had bypassed."],o:["economical","economically","economy","economic"],a:3,w:"A word sitting directly in front of a noun usually has to be an adjective, and a matching adjective exists here."},
- {s:["","of the data took three months longer than the committee had budgeted for."],o:["The analyze","The analysis","The analytic","The analyzing"],a:1,w:"Only a noun can follow <i>the</i>. The noun form of <i>analyze</i> is irregular, like <i>decide / decision</i> and <i>succeed / success</i>."},
- {s:["Students who sat through the entire lecture said they were ","by the argument that the speaker developed."],o:["confuse","confusion","confusing","confused"],a:3,w:"<i>-ed</i> describes the person who has the feeling; <i>-ing</i> describes the thing that causes it. The argument was confusing; the students were confused."},
- {s:["The board praised the ","with which the staff handled the transition that followed the merger."],o:["efficiency","efficiently","efficientness","efficient"],a:0,w:"<i>The</i> requires a noun. The noun built from <i>efficient</i> takes <i>-cy</i>."},
- {s:["The proposal that the department submitted was more ","than anyone on the panel had expected."],o:["persuaded","persuasion","persuasive","persuasively"],a:2,w:"<i>More</i> is followed by an adjective. <i>Persuasion</i> is the noun and cannot fill that slot."},
- {s:["The new regulations are intended to ","the protections that workers won in the 1990s."],o:["strength","strengthen","strong","strongly"],a:1,w:"After <i>to</i> the slot needs a verb, and the verb is built with <i>-en</i>."},
- {s:["The delay did not ","the outcome, though it postponed the announcement by two weeks."],o:["effect","affect","effective","affection"],a:1,w:"<i>Affect</i> is the verb, <i>effect</i> the noun. <i>The delay had no effect on the outcome</i> would use the noun."},
- {s:["The committee had ","begun its review when the ministry withdrew the funding it had promised."],o:["harder","hardness","hard","hardly"],a:3,w:"<i>Hardly</i> means almost not; <i>hard</i> means with effort. They are not the adverb and adjective of the same word."},
- {s:["","in graduate study requires more than the talent that most candidates bring to the interview."],o:["Success","Successful","Successfully","Succeed"],a:0,w:"A subject slot needs a noun or a gerund. <i>Succeeding in graduate study requires…</i> would work equally well."},
- {s:["The ministry approved a ","plan that the previous administration had drafted before the election."],o:["fifth-year","five-years","five-year","five years'"],a:2,w:"A noun modifying another noun loses its plural. The plural returns when it stands alone: <i>the plan runs for five years</i>."}
+ {s:["The surgeon explained the risks ","so that the patient could make an informed decision."],o:["honest","honesty","honestly","more honest"],a:2,w:"The word modifies the verb <i>explained</i>, so it must be an adverb."},
+ {s:["After three days without rain, the soil felt ","to the touch."],o:["dry","dryly","dryness","drily"],a:0,w:"<i>Feel</i> here is a linking verb: it describes the soil, not the action of feeling. Linking verbs take adjectives."},
+ {s:["She has no ","training, so she cannot give advice on the injury."],o:["medicine","medical","medically","medic"],a:1,w:"The slot describes the kind of training, so it needs the adjective <i>medical</i>. <i>Medicine training</i> is not idiomatic."},
+ {s:["The ","of the new airport will take at least five years."],o:["construct","constructive","constructing of","construction"],a:3,w:"After <i>the</i> and before <i>of</i>, the slot needs a noun. <i>Construct</i> is a verb here, and <i>constructive</i> is an adjective with a different meaning."},
+ {s:["The passengers were ","after twelve hours of delays at the airport."],o:["exhausted","exhausting","exhaustion","exhaustive"],a:0,w:"The passengers feel the tiredness, so <i>-ed</i>. The delays would be <i>exhausting</i>. <i>Exhaustive</i> means thorough."},
+ {s:["The ","of the new tax law surprised even its supporters."],o:["complex","complexion","complexity","complexness"],a:2,w:"The noun is <i>complexity</i>. <i>Complexion</i> is a real word, but it means the skin of the face."},
+ {s:["The museum’s collection of glass is ","in size and quality."],o:["impressed","impression","impressionable","impressive"],a:3,w:"The collection causes the reaction, so the adjective is <i>impressive</i>. <i>Impressed</i> describes the visitors."},
+ {s:["The city plans to ","the main avenue to four lanes."],o:["wide","width","widen","widely"],a:2,w:"After <i>to</i> the slot needs a verb. The suffix <i>-en</i> turns the adjective into one: <i>wide → widen</i>, as in <i>short → shorten</i>."},
+ {s:["The red scarf nicely ","the gray coat."],o:["compliments","complements","complimentary","complementing"],a:1,w:"<i>Complement</i> means to complete or go well with. <i>Compliment</i> means to praise."},
+ {s:["The firm’s new design is ","regarded by architects across the country."],o:["high","higher","height","highly"],a:3,w:"<i>Highly</i> means <i>very much</i>. <i>High</i> as an adverb refers to physical height: <i>the plane flew high</i>."},
+ {s:["","a second language as an adult takes patience and daily practice."],o:["Learn","Learning","Learned","To learning"],a:1,w:"The subject slot needs a noun or gerund. <i>To learn</i> would also work; <i>to learning</i> does not."},
+ {s:["We booked a ","cruise along the coast."],o:["ten-day","ten-days","ten days","ten-days’"],a:0,w:"A number + noun used as a modifier stays singular and takes a hyphen: <i>a ten-day cruise</i>, but <i>a cruise of ten days</i>."}
 ];
 const B=[
- {p:[["The technicians who ",0],["calibrated",1],[" the instrument ",0],["recorded",1],[" the readings ",0],["careful",1],[" and reported them to the supervisor who ",0],["had requested",1],[" them",0]],a:2,f:"carefully",w:"The word modifies <i>recorded</i>, so it takes the adverb form. All three verbs around it are correct."},
- {p:[["The results ",0],["seem conclusively",1],[", although the sample ",0],["was small",1],[" and the researchers who ",0],["collected",1],[" it ",0],["acknowledged",1],[" the limitation",0]],a:0,f:"seem conclusive",w:"After a linking verb the word describes the subject. <i>Was small</i> in the same sentence shows the pattern handled correctly."},
- {p:[["The ministry ",0],["announced",1],[" measures intended to stimulate ",0],["economy growth",1],[" in the regions that exports ",0],["had bypassed",1],[" during ",0],["the last decade",1]],a:1,f:"economic growth",w:"A noun directly in front of another noun should be an adjective where one exists."},
- {p:[["",0],["The analyze",1],[" of the data took three months longer than the committee ",0],["had budgeted",1],[", which ",0],["delayed",1],[" the report that the ministry ",0],["expected",1],[" in June",0]],a:0,f:"The analysis",w:"Only a noun can follow <i>the</i>. The three verbs later in the sentence are all correctly formed."},
- {p:[["The students who ",0],["attended",1],[" the entire lecture found the argument ",0],["difficult",1],[", the examples ",0],["helpful",1],[" and the conclusion ",0],["confused",1]],a:3,f:"confusing",w:"The conclusion causes the feeling, so it takes <i>-ing</i>. The students would be <i>confused</i>."},
- {p:[["The board praised the staff for ",0],["the speed",1],[" of the transition, ",0],["the clarity",1],[" of the memo and ",0],["the efficient",1],[" with which the merger ",0],["was handled",1]],a:2,f:"the efficiency",w:"Two correctly formed nouns set the pattern before the third item breaks it."},
- {p:[["The regulations that Congress ",0],["passed",1],[" are intended ",0],["to strength",1],[" the protections that workers ",0],["won",1],[" in the 1990s and ",0],["to simplify",1],[" the appeals process",0]],a:1,f:"to strengthen",w:"After <i>to</i> the slot needs a verb. <i>To simplify</i> later in the sentence is the same structure done correctly."},
- {p:[["The delay that the storm ",0],["caused",1],[" ",0],["postponed",1],[" the announcement by two weeks but ",0],["did not effect",1],[" the outcome that the analysts ",0],["had predicted",1]],a:2,f:"did not affect",w:"<i>Affect</i> is the verb. <i>Effect</i> would need a determiner in front of it: <i>had no effect on</i>."},
- {p:[["The committee ",0],["had hard begun",1],[" its review when the ministry ",0],["withdrew",1],[" the funding that the department ",0],["had counted on",1],[" ",0],["since January",1]],a:0,f:"had hardly begun",w:"<i>Hardly</i> means almost not. <i>Hard</i> would mean with effort, which contradicts the rest of the sentence."},
- {p:[["The previous administration ",0],["had drafted",1],[" the proposal before the election that ",0],["changed",1],[" the majority, and the ministry finally ",0],["approved",1],[" ",0],["a five-years plan",1],[" in March",0]],a:3,f:"a five-year plan",w:"A noun modifying another noun drops its plural, and the hyphen signals it."}
+ {p:[["The volunteers worked ",0],["quick",1],[" to fill the sandbags, ",0],["carefully",1],[" stacking them ",0],["along the river",1],[" ",0],["before dark",1],[".",0]],a:0,f:"quickly",w:"The word modifies <i>worked</i>, so it must be an adverb — like <i>carefully</i> later in the sentence."},
+ {p:[["The bread ",0],["smelled",1],[" ",0],["wonderful",1],[" and tasted ",0],["freshly",1],[", but the coffee was ",0],["terrible",1],[".",0]],a:2,f:"fresh",w:"<i>Taste</i> is a linking verb here, so it takes an adjective — just as <i>smelled wonderful</i> does."},
+ {p:[["Her ",0],["decide",1],[" to move abroad ",0],["surprised",1],[" her family, who ",0],["had expected",1],[" her to ",0],["stay",1],[" near home.",0]],a:0,f:"decision",w:"After <i>her</i> the slot needs a noun: <i>decision</i>."},
+ {p:[["The documentary was ",0],["fascinating",1],[", but the ending was so ",0],["depressed",1],[" that many viewers ",0],["left",1],[" feeling ",0],["disappointed",1],[".",0]],a:1,f:"depressing",w:"The ending causes the feeling, so <i>-ing</i>. <i>Disappointed</i> is correct: it describes the viewers."},
+ {p:[["The ",0],["kindness",1],[" of strangers and the ",0],["generous",1],[" of local businesses ",0],["helped",1],[" the town ",0],["recover",1],[" quickly.",0]],a:1,f:"generosity",w:"After <i>the</i> and before <i>of</i>, the slot needs a noun — as <i>kindness</i> is in the parallel phrase."},
+ {p:[["The guide was ",0],["knowledgeable",1],[" and ",0],["friendly",1],[", and the bus was ",0],["comfortable",1],[", but the tour itself was ",0],["disappointment",1],[".",0]],a:3,f:"disappointing",w:"After <i>was</i>, describing the tour, the slot needs an adjective, like the three before it."},
+ {p:[["The company hopes to ",0],["modernize",1],[" its factories, ",0],["simplify",1],[" its rules and ",0],["cut",1],[" costs, but it cannot ",0],["short",1],[" delivery times.",0]],a:3,f:"shorten",w:"After <i>cannot</i> the slot needs a verb. <i>Short</i> is an adjective; <i>-en</i> makes it a verb."},
+ {p:[["The coach’s ",0],["advise",1],[" was simple: never ",0],["lose",1],[" at home, ",0],["accept",1],[" criticism and ",0],["practice",1],[" every day.",0]],a:0,f:"advice",w:"After <i>the coach’s</i> the slot needs a noun. <i>Advice</i> is the noun; <i>advise</i> is the verb. <i>Lose</i> (not <i>loose</i>) is correct."},
+ {p:[["She has been working ",0],["late",1],[" every night ",0],["lately",1],[", and yesterday she ",0],["near",1],[" missed the ",0],["last",1],[" train.",0]],a:2,f:"nearly",w:"<i>Nearly</i> means <i>almost</i>. <i>Late</i> (at a late hour) and <i>lately</i> (recently) are both used correctly."},
+ {p:[["The ",0],["three-hour",1],[" meeting ended with a ",0],["two-pages",1],[" memo that ",0],["nobody",1],[" ",0],["read",1],[" carefully.",0]],a:1,f:"two-page",w:"A number + noun modifier stays singular, exactly as <i>three-hour</i> does."}
 ];
 const PAT=["","Adjective or adverb","Adjective after linking verbs","Noun where an adjective is needed",
  "Noun or verb form","-ed and -ing adjectives","Noun suffixes",
  "Adjective suffixes","Verb-forming suffixes","Confusable pairs",
  "Adverbs that break the -ly rule","The slot decides the form","Noun modifiers stay singular"];
 const C=[
- {t:"The technicians recorded the readings careful before the trial began and reported the anomaly immediately to the supervisor.",x:"careful",a:["carefully"],p:1,
-  w:"The word modifies <i>recorded</i>. <i>Immediately</i> later in the sentence is the same job done correctly."},
- {t:"Although the sample was small, the findings appear conclusively, and the researchers who collected the data honestly describe the limitation.",x:"conclusively",a:["conclusive"],p:2,
-  w:"After <i>appear</i> the word describes the subject, so it stays an adjective. <i>Honestly</i> is correct because it modifies a verb."},
- {t:"The analyze of the samples took longer than the committee expected, which delayed the publication of the results.",x:"analyze",a:["analysis"],p:4,
-  w:"Only a noun can follow <i>the</i>. <i>The publication</i> at the end is the same structure done correctly."},
- {t:"The students found the lecture interesting, the handouts useful and the final example confused.",x:"confused",a:["confusing"],p:5,
-  w:"The example causes the feeling, so it takes <i>-ing</i>. <i>Interesting</i> earlier in the list is the same choice made correctly."},
- {t:"Largely because the figures were presented clearly, the proposal was more persuasion than the panel had expected.",x:"persuasion",a:["persuasive"],p:7,
-  w:"<i>More</i> is followed by an adjective. <i>Clearly</i> is correct because it modifies <i>presented</i>."},
- {t:"The storm delayed the announcement by two weeks but did not effect the outcome that the analysts had predicted.",x:"effect",a:["affect"],p:9,
-  w:"<i>Affect</i> is the verb form. As a noun it would need a determiner: <i>had no effect on the outcome</i>."},
- {t:"To success in graduate study requires more than the talent that most candidates bring to the interview.",x:"To success",a:["Success","Succeeding"],p:11,
-  w:"A subject must be a noun or a gerund. Either <i>Success</i> or <i>Succeeding</i> fills the slot."},
- {t:"The previous administration spent eighteen months drafting what the ministry finally approved as a five-years plan.",x:"five-years",a:["five-year"],p:12,
-  w:"A noun modifying another noun loses its plural. <i>Eighteen months</i> keeps its plural because it stands alone."}
+ {t:"Scientists warned of serious environment damage after the oil spill, and the economic losses were enormous.",x:"environment damage",a:["environmental damage"],p:3,
+  w:"The slot describes the kind of damage, so it needs an adjective. <i>Economic losses</i> later in the sentence is correct."},
+ {t:"The children listened quiet while the librarian read aloud, and they clapped enthusiastically at the end.",x:"listened quiet",a:["listened quietly"],p:1,
+  w:"The word modifies <i>listened</i>, so it must be an adverb — like <i>enthusiastically</i>."},
+ {t:"The guide seemed bored, and his long talk about the castle was tired, although the view from the tower was amazing.",x:"was tired",a:["was tiring"],p:5,
+  w:"The talk causes the feeling, so <i>-ing</i>. <i>Seemed bored</i> is correct because it describes the guide."},
+ {t:"The judges praised the originality of her design and the accurate of her measurements.",x:"the accurate",a:["the accuracy"],p:6,
+  w:"After <i>the</i> and before <i>of</i>, a noun — as <i>the originality of</i> already shows."},
+ {t:"To clarify the rules and to simple the forms, the office hired an outside consultant.",x:"to simple",a:["to simplify"],p:8,
+  w:"After <i>to</i> the slot needs a verb. <i>To clarify</i> is the same structure done correctly."},
+ {t:"The landlord’s advice was sensible: lock the windows at night and make sure the garden gate never comes lose.",x:"comes lose",a:["comes loose"],p:9,
+  w:"<i>Loose</i> (adjective) means not tight; <i>lose</i> is a verb. <i>Advice</i> is correctly used as the noun."},
+ {t:"The project was nearly finished when the funding ran out, and the team had near given up hope of completing it.",x:"had near given up",a:["had nearly given up"],p:10,
+  w:"<i>Nearly</i> means <i>almost</i>, as in <i>nearly finished</i> earlier in the sentence."},
+ {t:"Recycle is easy in this city, and recycling saves the town money every year.",x:"Recycle is easy",a:["Recycling is easy"],p:11,
+  w:"The subject slot needs a noun or gerund. <i>Recycling saves</i> later in the sentence is correct."}
 ];
 
-const _PA=[7, 10, 3, 6, 2, 8, 1, 9, 5, 11, 0, 4],_PB=[6, 3, 9, 1, 7, 4, 0, 8, 2, 5],_PC=[2, 5, 0, 7, 3, 6, 1, 4];
+
+const _PA=[2, 10, 7, 4, 8, 3, 11, 5, 0, 9, 6, 1],_PB=[6, 1, 7, 3, 9, 0, 2, 4, 8, 5],_PC=[7, 5, 1, 3, 0, 6, 4, 2];
 [[A,_PA],[B,_PB],[C,_PC]].forEach(function(pair){var arr=pair[0],p=pair[1],c=arr.slice();
   p.forEach(function(src,dst){arr[dst]=c[src];});});
 
