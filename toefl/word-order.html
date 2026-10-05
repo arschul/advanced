@@ -188,6 +188,8 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
     .rulesum .rs b.t{display:block;margin-bottom:1px}
     .rulesum .rs .ex{padding-left:0;margin:0;font-size:9.5pt;color:#000}
     .rulesum .rs .ex::before{content:""}
+    .rulesum .rs .rr{margin:0 0 1px;font-size:9.5pt;color:#000}
+    .rulesum .rs .ex{font-style:italic;color:#333}
     .seg{cursor:default}
     section{margin-top:18px}
     section>h2{font-size:1.2rem;border-bottom:1px solid #000}
@@ -230,73 +232,73 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
     <h2>The twelve patterns</h2>
     <p class="lede">English fixes its word order more tightly than Portuguese does — and then reverses it in a handful of structures that have to be learned as a set.</p>
 
-    <details class="pat"><summary>1 · Order of adverbials: manner, place, time</summary><div class="body">
+    <details class="pat" data-rule="Several adverbials after a verb go manner (how), then place (where), then time (when)."><summary>1 · Order of adverbials: manner, place, time</summary><div class="body">
       <div class="ex no">The technicians examined the samples <span class="strike">yesterday carefully in the laboratory</span>.</div>
       <div class="ex yes">The technicians examined the samples <b>carefully in the laboratory yesterday</b>.</div>
       <p class="why">When several adverbials pile up after a verb, English orders them manner, then place, then time. Time can also move to the front of the sentence for emphasis — <i>Yesterday the technicians examined the samples carefully</i> — but it does not belong in the middle of the run.</p>
     </div></details>
 
-    <details class="pat"><summary>2 · Embedded questions keep statement order</summary><div class="body">
+    <details class="pat" data-rule="A question inside a sentence uses statement order and drops do / does / did."><summary>2 · Embedded questions keep statement order</summary><div class="body">
       <div class="ex no">The committee has not decided <span class="strike">where will the conference be held</span>.</div>
       <div class="ex yes">The committee has not decided <b>where the conference will be held</b>.</div>
       <p class="why">Once a question is folded inside a larger sentence it stops being a question and takes subject-before-verb order, with no <i>do</i>, <i>does</i> or <i>did</i>. This applies after <i>know, wonder, decide, explain, ask, tell me, I'm not sure</i>. The clue is that the sentence as a whole is a statement, whatever the question word suggests.</p>
     </div></details>
 
-    <details class="pat"><summary>3 · Pronoun objects sit inside separable phrasal verbs</summary><div class="body">
+    <details class="pat" data-rule="A pronoun object goes between verb and particle: put it off, not put off it."><summary>3 · Pronoun objects sit inside separable phrasal verbs</summary><div class="body">
       <div class="ex no">The committee <span class="strike">put off it</span> until the next fiscal year.</div>
       <div class="ex yes">The committee <b>put it off</b> until the next fiscal year. · The committee <b>put off the decision</b>.</div>
       <p class="why">With separable phrasal verbs a full noun phrase can go either side of the particle, but a pronoun must go between the verb and the particle. Same for <i>turn it down, bring it up, carry it out, set it up, point it out</i>. Inseparable verbs never split at all: <i>deal with it</i>, never <i>deal it with</i>.</p>
     </div></details>
 
-    <details class="pat"><summary>4 · Inversion after a fronted negative</summary><div class="body">
+    <details class="pat" data-rule="After a fronted negative (never, rarely, seldom, not until), put the auxiliary before the subject."><summary>4 · Inversion after a fronted negative</summary><div class="body">
       <div class="ex no"><span class="strike">Never before the university has seen</span> such a drop in applications.</div>
       <div class="ex yes"><b>Never before has the university seen</b> such a drop in applications.</div>
       <p class="why">Put a negative or near-negative adverbial first and the subject and auxiliary swap places, exactly as in a question. The triggers: <i>never, rarely, seldom, hardly, scarcely, no sooner, not until, at no time, under no circumstances, little</i>. If there is no auxiliary, <i>do / does / did</i> appears to carry the inversion.</p>
     </div></details>
 
-    <details class="pat"><summary>5 · Inversion after fronted <i>only</i></summary><div class="body">
+    <details class="pat" data-rule="After a fronted only phrase, the main clause inverts: only then did they realize."><summary>5 · Inversion after fronted <i>only</i></summary><div class="body">
       <div class="ex no">Only after the auditors filed their report <span class="strike">the committee approved</span> the budget.</div>
       <div class="ex yes">Only after the auditors filed their report <b>did the committee approve</b> the budget.</div>
       <p class="why">Same rule as pattern 4: <i>only then, only after, only when, only by, only in this way, not only</i>. The inversion falls on the main clause, not on the clause inside the <i>only</i> phrase — <i>the auditors filed</i> stays in normal order and <i>did the committee approve</i> inverts.</p>
     </div></details>
 
-    <details class="pat"><summary>6 · Conditionals without <i>if</i></summary><div class="body">
+    <details class="pat" data-rule="Without if, the condition inverts: Had I known …, Were I you …, Should you need …."><summary>6 · Conditionals without <i>if</i></summary><div class="body">
       <div class="ex no"><span class="strike">The director had known</span> about the delay, the team would have rescheduled.</div>
       <div class="ex yes"><b>Had the director known</b> about the delay, the team would have rescheduled.</div>
       <p class="why">Drop <i>if</i> and invert instead: <i>Had she known</i>, <i>Were it not for the funding</i>, <i>Should you require assistance</i>. Only these three forms work this way. Note that without either <i>if</i> or the inversion, the sentence becomes a comma splice — which is how the error usually presents itself.</p>
     </div></details>
 
-    <details class="pat"><summary>7 · So, such, neither and nor</summary><div class="body">
+    <details class="pat" data-rule="Fronted so + adjective, such, neither and nor force inversion: so strong was the wind."><summary>7 · So, such, neither and nor</summary><div class="body">
       <div class="ex no"><span class="strike">So convincing the argument was</span> that no one objected.</div>
       <div class="ex yes"><b>So convincing was the argument</b> that no one objected. · <b>Neither did the panel</b> raise any question.</div>
       <p class="why">A fronted <i>so</i> + adjective or <i>such</i> + noun inverts what follows: <i>So difficult was the exam that…</i>, <i>Such was the delay that…</i>. <i>Neither</i> and <i>nor</i> invert too when they open a clause: <i>Neither did she attend</i>, <i>nor was the report filed</i>. Contrast the short agreement forms, which invert as well: <i>So do I</i>, <i>Neither do I</i>.</p>
     </div></details>
 
-    <details class="pat"><summary>8 · Fronted place expressions</summary><div class="body">
+    <details class="pat" data-rule="After a fronted place phrase the verb may come first, but it still agrees with the subject."><summary>8 · Fronted place expressions</summary><div class="body">
       <div class="ex no">Among the documents the archivists recovered <span class="strike">several letters were</span>.</div>
       <div class="ex yes">Among the documents the archivists recovered <b>were several letters</b>. · <b>On the table lay</b> the revised draft.</div>
       <p class="why">When a phrase of place opens the sentence and the verb is <i>be</i>, <i>lie</i>, <i>stand</i>, <i>sit</i> or <i>come</i>, the subject follows the verb. This is the same structure as <i>there is</i> and <i>here comes</i>, and the risk is the same: the verb must agree with the subject that comes after it, not with anything in the fronted phrase.</p>
     </div></details>
 
-    <details class="pat"><summary>9 · One subject per clause</summary><div class="body">
+    <details class="pat" data-rule="One subject per clause: do not repeat the subject with a pronoun after a relative clause."><summary>9 · One subject per clause</summary><div class="body">
       <div class="ex no">The professor who supervised the project <span class="strike">she presented</span> the findings in June.</div>
       <div class="ex yes">The professor who supervised the project <b>presented</b> the findings in June.</div>
       <p class="why">A pronoun cannot repeat a subject that has already been named. The error appears most often after a long relative clause, when the writer has lost track of the subject and restates it. Delete the pronoun — the noun phrase at the front is the subject.</p>
     </div></details>
 
-    <details class="pat"><summary>10 · Redundant pairs</summary><div class="body">
+    <details class="pat" data-rule="Drop words the verb already contains: return (back), repeat (again), combine (together)."><summary>10 · Redundant pairs</summary><div class="body">
       <div class="ex no">The delegation <span class="strike">returned back</span> to the capital.</div>
       <div class="ex yes">The delegation <b>returned</b> to the capital.</div>
       <p class="why">One word already contains the other's meaning: <i>return back, repeat again, advance forward, rise up, join together, new innovation, past history, final outcome, basic fundamentals, free gift, close proximity, personal opinion</i>. Also <i>the reason is because</i>, which should be <i>the reason is that</i> or simply <i>because</i>.</p>
     </div></details>
 
-    <details class="pat"><summary>11 · Wordy phrases that a single word replaces</summary><div class="body">
+    <details class="pat" data-rule="Replace wordy phrases with one word: because, not due to the fact that."><summary>11 · Wordy phrases that a single word replaces</summary><div class="body">
       <div class="ex no"><span class="strike">Due to the fact that</span> the funding was withdrawn, two courses were canceled.</div>
       <div class="ex yes"><b>Because</b> the funding was withdrawn, two courses were canceled.</div>
       <p class="why">The swaps worth memorizing: <i>due to the fact that</i> → <i>because</i>, <i>at this point in time</i> → <i>now</i>, <i>in the event that</i> → <i>if</i>, <i>in spite of the fact that</i> → <i>although</i>, <i>for the purpose of</i> → <i>to</i>, <i>a large number of</i> → <i>many</i>. Also collapse empty openers: <i>There are many people who believe</i> becomes <i>Many people believe</i>. Length does not raise a writing score; density does.</p>
     </div></details>
 
-    <details class="pat"><summary>12 · One negative per clause</summary><div class="body">
+    <details class="pat" data-rule="One negative per clause: hardly, barely, never and nobody are already negative."><summary>12 · One negative per clause</summary><div class="body">
       <div class="ex no">The auditors <span class="strike">did not find hardly any</span> evidence of irregularity.</div>
       <div class="ex yes">The auditors <b>found hardly any</b> evidence of irregularity. · The auditors <b>did not find any</b> evidence.</div>
       <p class="why"><i>Hardly, scarcely, barely</i> and <i>rarely</i> are already negative, so pairing them with <i>not</i> doubles the negation. The same applies to <i>not … nothing</i> and <i>without … no</i>. Keep one negative and let it do the work.</p>
@@ -492,12 +494,13 @@ $("reset").onclick=()=>{ans={};rev={};save();location.reload();};
     const rs=$("rulesum"); if(!rs) return;
     const cards=[...document.querySelectorAll(".pat")];
     rs.innerHTML='<h2>Pattern reference</h2>'
-      +'<p class="note">The twelve patterns this worksheet tests, with the corrected form of each. '
+      +'<p class="note">The twelve patterns this worksheet tests: the rule, then a corrected example. '
       +'Question numbers in the answer key refer back to these.</p><div class="cols">'
       +cards.map((p,i)=>{
         const t=p.querySelector("summary").textContent.replace(/^\s*\d+\s*[\u00b7.]\s*/,"");
         const ex=p.querySelector(".ex.yes");
-        return '<div class="rs"><b class="t">'+(i+1)+'. '+esc(t)+'</b>'+(ex?'<div class="ex">'+ex.innerHTML+'</div>':'')+'</div>';
+        const r=p.dataset.rule;
+        return '<div class="rs"><b class="t">'+(i+1)+'. '+esc(t)+'</b>'+(r?'<div class="rr">'+esc(r)+'</div>':'')+(ex?'<div class="ex">'+ex.innerHTML+'</div>':'')+'</div>';
       }).join("")+'</div>';
   })();
   Object.keys(ans).forEach(n=>{
