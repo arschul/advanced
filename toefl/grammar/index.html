@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<!-- HUBGEN:leaf start -->
+<script>(function(){try{var k="arschul:theme",v=localStorage.getItem(k);
+if(!v){var o=["hub-theme","theme","gh-theme","adv-theme","reviews-theme","worksheets-theme",
+"vocab-theme","toefl-theme","stc-theme","wheelquest-theme","wba-theme","airtight-theme","efl-reader-theme"];
+for(var i=0;i<o.length;i++){var x=localStorage.getItem(o[i]);if(x==="light"||x==="dark"){v=x;break;}}
+v=v||"dark";localStorage.setItem(k,v);}
+var m=(v==="system")?(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):v;
+document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
+<script defer src="https://arschul.github.io/assets/leaf.v1.js"></script>
+<!-- HUBGEN:leaf end -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grammar Practice · TOEFL Error Correction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0e12;--surface:#15171c;--surface2:#1b1e25;--text:#eef0f2;--muted:#8b929c;--border:#262932;
+    --violet:#a78bfa;--violet-deep:#1c1433;--violet-line:rgba(167,139,250,0.35);
+    --key-accent:#f0c75e;--key-deep:#2a2206;--radius:18px;
+  }
+  :root[data-theme="light"]{
+    --bg:#f4f1ea;--surface:#ffffff;--surface2:#faf8f3;--text:#1a1815;--muted:#6b6660;--border:#e2ddd2;
+    --violet:#7c3aed;--violet-deep:#ede9fe;--violet-line:rgba(124,58,237,0.3);
+    --key-accent:#b8860b;--key-deep:#fbf2dc;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;
+    display:flex;flex-direction:column;align-items:center;line-height:1.65;transition:background .3s,color .3s}
+  .theme-toggle{position:fixed;top:1.25rem;right:1.25rem;z-index:10;width:42px;height:42px;border-radius:50%;
+    border:1px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;display:flex;
+    align-items:center;justify-content:center;font-size:1.1rem;transition:all .2s}
+  .theme-toggle:hover{border-color:var(--text);color:var(--text);transform:scale(1.06)}
+  .wrap{width:100%;max-width:980px;padding:4.5rem 1.5rem 4rem}
+  .back-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.8rem;font-weight:500;color:var(--muted);
+    text-decoration:none;margin-bottom:2.5rem;transition:color .2s}
+  .back-link:hover{color:var(--violet)}
+  .eyebrow{font-size:.72rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:1.1rem}
+  h1{font-family:'Fraunces',serif;font-weight:700;font-optical-sizing:auto;font-size:clamp(2.4rem,6vw,4rem);
+    line-height:1.05;letter-spacing:-1.5px;margin-bottom:.9rem}
+  h1 .accent{background:linear-gradient(90deg,var(--violet),#38bdf8);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{color:var(--muted);font-size:1.05rem;max-width:560px;font-weight:300;line-height:1.7;margin-bottom:2.5rem}
+  .note{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--violet);
+    border-radius:12px;padding:1.1rem 1.3rem;font-size:.88rem;color:var(--muted);font-weight:300;line-height:1.75;margin-bottom:2.5rem}
+  .note b{color:var(--text);font-weight:600}
+  .class-header{display:flex;align-items:center;gap:.9rem;margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:1px solid var(--border)}
+  .class-badge{font-size:.7rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:.25rem .75rem;
+    border-radius:100px;background:var(--violet-deep);color:var(--violet);border:1px solid var(--violet-line)}
+  .class-title{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:600;letter-spacing:-.3px}
+  .test-count{color:var(--muted);font-size:.85rem;margin-left:auto}
+  .rows{display:flex;flex-direction:column;gap:.75rem}
+  .row{display:flex;align-items:center;gap:1rem;background:var(--surface);border:1px solid var(--border);
+    border-radius:14px;padding:1.1rem 1.3rem;text-decoration:none;color:inherit;position:relative;overflow:hidden;
+    transition:transform .2s,border-color .2s,box-shadow .2s}
+  .row::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--violet);
+    transform:scaleX(0);transform-origin:left;transition:transform .3s}
+  a.row:hover{transform:translateY(-3px);border-color:var(--violet);box-shadow:0 10px 30px rgba(0,0,0,.15)}
+  a.row:hover::before{transform:scaleX(1)}
+  .row.soon{opacity:.45}
+  .num{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:700;color:var(--violet);min-width:26px}
+  .row.soon .num{color:var(--muted)}
+  .txt{flex:1}
+  .txt h3{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;letter-spacing:-.2px;margin-bottom:.2rem}
+  .txt p{font-size:.85rem;color:var(--muted);font-weight:300;line-height:1.6}
+  .tag{font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;padding:.15rem .6rem;
+    border-radius:100px;border:1px solid var(--border);color:var(--muted);background:var(--surface2);white-space:nowrap}
+  .tag.live{border-color:var(--violet-line);color:var(--violet);background:var(--violet-deep)}
+  footer{margin-top:auto;padding:2.5rem 1.5rem;font-size:.78rem;color:var(--muted);text-align:center}
+  footer a{color:var(--muted);text-decoration:none}
+  footer a:hover{color:var(--violet)}
+  .theme-block{margin-top:2.6rem}
+  .steps{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin:.8rem 0 0}
+  .steps span{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:.4rem .5rem;font-size:.72rem;line-height:1.35;color:var(--muted)}
+  .steps b{display:block;color:var(--text);font-weight:600}
+  @media(max-width:700px){.steps{grid-template-columns:repeat(4,1fr)}}
+  @media(max-width:600px){.row{padding:1rem;gap:.8rem}.test-count{display:none}}
+</style>
+</head>
+<body>
+
+<button class="theme-toggle" id="theme-btn" onclick="toggleTheme()" title="Toggle light/dark mode">🌙</button>
+
+<div class="wrap">
+  <a class="back-link" href="../index.html">← TOEFL Error Correction</a>
+  <p class="eyebrow">Phil Young’s English School · B1 → B2</p>
+  <h1>Grammar <span class="accent">Practice</span></h1>
+  <p class="lede">Thirty one-hour sessions on the grammar points the TOEFL ITP tests most, in eight themes. Each session explains one point, drills it in the exact Structure and Written Expression format, then practices it in other ways.</p>
+
+  <div class="note">
+    <b>How a session runs.</b> Seven timed blocks that add up to one hour. Every block has its own clock — tap it to start or pause. Each session prints as a worksheet and as a separate answer key.
+    <div class="steps">
+      <span><b>Warm-up</b>5 min</span><span><b>Explain</b>10 min</span><span><b>Structure</b>10 min</span><span><b>Written Expression</b>10 min</span><span><b>Practice</b>10 min</span><span><b>Production</b>10 min</span><span><b>Exit check</b>5 min</span>
+    </div>
+  </div>
+  <div class="note">
+    <b>Beyond the TOEFL format.</b> Practice and Production rotate through seven activity types: sorting into categories, matching, unscrambling sentences, typed gap-fill, finding every error in a paragraph, combining two sentences, and rewriting a sentence from a given start.
+  </div>
+
+  <div class="theme-block">
+  <div class="class-header">
+    <span class="class-badge">Theme 1</span>
+    <span class="class-title">Sentence core</span>
+    <span class="test-count">4 sessions</span>
+  </div>
+  <div class="rows">
+    <div class="row soon">
+      <span class="num">1</span>
+      <span class="txt"><h3>Missing subject or verb</h3><p>Every clause needs one subject and one verb — the most tested point in Structure.</p></span>
+      <span class="tag">Coming</span>
+    </div>
+    <div class="row soon">
+      <span class="num">2</span>
+      <span class="txt"><h3>Appositives</h3><p>A noun phrase that renames another noun, set off by commas, with no verb of its own.</p></span>
+      <span class="tag">Coming</span>
+    </div>
+    <div class="row soon">
+      <span class="num">3</span>
+      <span class="txt"><h3>Coordinating conjunctions</h3><p>And, but, or, so, yet: joining words, phrases and clauses correctly.</p></span>
+      <span class="tag">Coming</span>
+    </div>
+    <div class="row soon">
+      <span class="num">4</span>
+      <span class="txt"><h3>Adverb-clause connectors</h3><p>Because, although, when, if: one connector per clause, and the right one for the meaning.</p></span>
+      <span class="tag">Coming</span>
+    </div>
+  </div>
+  </div>
+  <div class="theme-block">
+  <div class="class-header">
+    <span class="class-badge">Theme 2</span>
+    <span class="class-title">Clauses</span>
+    <span class="test-count">4 sessions</span>
+  </div>
+  <div class="rows">
+    <div class="row soon">
+      <span class="num">5</span>
+      <span class="txt"><h3>Adjective clauses</h3><p>Who, which, that, whose, where — and the pronoun the clause must not repeat.</p></span>
+      <span class="tag">Coming</span>
+    </div>
+    <div class="row soon">
+      <span class="num">6</span>
+      <span class="txt"><h3>Reduced adjective clauses</h3><p>The students sitting at the back, the letters written in 1900.</p></span>
+      <span class="tag">Coming</span>
+    </div>
+    <div class="row soon">
+      <span class="num">7</span>
+      <span class="txt"><h3>Noun clauses</h3><p>What, that, whether, how: clauses used as subjects and objects, with statement word order.</p></span>
+      <span class="tag">Coming</span>
+    </div>
+    <div class="row soon">
+      <span class="num">8</span>
+      <span class="txt"><h3>Reduced adverb clauses</h3><p>While studying, although tired, before leaving — the subject has to match.</p></span>
+      <span class="tag">Coming</span>
+    </div>
+  </div>
+  </div>
+  <div class="theme-block">
+  <div class="class-header">
+    <span class="class-badge">Theme 3</span>
+    <span class="class-title">Verb forms</span>
+    <span class="test-count">5 sessions</span>
+  </div>
+  <div class="rows">
+    <div class="row soon">
+      <span class="num">9</span>
+      <span class="txt"><h3>Tense sequence</h3><p>Past with past, time words that fix the tense, present perfect against simple past.</p></span>
+      <span class="tag">Coming</span>
+    </div>
+    <div class="row soon">
+      <span class="num">10</span>
+      <span class="txt"><h3>Past participles after have and be</h3><p>Had gone, was written: the third form of irregular verbs.</p></span>
+      <span class="tag">Coming</span>
+    </div>
+    <div class="row soon">
+      <span class="num">11</span>
+      <span class="txt"><h3>Passive voice</h3><p>Be + past participle, and the verbs that have no passive.</p></span>
+      <span class="tag">Coming</span>
+    </div>
+    <div class="row soon">
+      <span class="num">12</span>
+      <span class="txt"><h3>Modals + base form</h3><p>Can, must, should + bare verb; must have done, should have known.</p></span>
+      <span class="tag">Coming</span>
+    </div>
+    <div class="row soon">
+      <span class="num">13</span>
+      <span class="txt"><h3>Subjunctive and conditionals</h3><p>Insist that he go; if I were; the three conditional patterns.</p></span>
+      <span class="tag">Coming</span>
+    </div>
+  </div>
+  </div>
+  <div class="theme-block">
+  <div class="class-header">
+    <span class="class-badge">Theme 4</span>
+    <span class="class-title">Verbals</span>
+    <span class="test-count">2 sessions</span>
+  </div>
+  <div class="rows">
+    <div class="row soon">
+      <span class="num">14</span>
+      <span class="txt"><h3>Gerund or infinitive</h3><p>Enjoy doing, decide to do, and the gerund after every preposition.</p></span>
+      <span class="tag">Coming</span>
+    </div>
+    <div class="row soon">
+      <span class="num">15</span>
+      <span class="txt"><h3>-ed or -ing adjectives</h3><p>Bored or boring, interested or interesting: feeling against cause.</p></span>
+      <span class="tag">Coming</span>
+    </div>
+  </div>
+  </div>
+  <div class="theme-block">
+  <div class="class-header">
+    <span class="class-badge">Theme 5</span>
+    <span class="class-title">Agreement</span>
+    <span class="test-count">3 sessions</span>
+  </div>
+  <div class="rows">
+    <a class="row" href="./subject-verb-agreement.html">
+      <span class="num">16</span>
+      <span class="txt"><h3>Subject–verb agreement</h3><p>Find the real subject: each, one of, neither … nor, there is, news, people.</p></span>
+      <span class="tag live">60 min</span>
+    </a>
+    <div class="row soon">
+      <span class="num">17</span>
+      <span class="txt"><h3>Pronoun agreement and reference</h3><p>Pronouns that match their nouns in number and point to one clear noun.</p></span>
+      <span class="tag">Coming</span>
+    </div>
+    <div class="row soon">
+      <span class="num">18</span>
+      <span class="txt"><h3>Parallel structure</h3><p>Lists and pairs in the same form: reading, writing and speaking.</p></span>
+      <span class="tag">Coming</span>
+    </div>
+  </div>
+  </div>
+  <div class="theme-block">
+  <div class="class-header">
+    <span class="class-badge">Theme 6</span>
+    <span class="class-title">Inversion and comparison</span>
+    <span class="test-count">3 sessions</span>
+  </div>
+  <div class="rows">
+    <div class="row soon">
+      <span class="num">19</span>
+      <span class="txt"><h3>Inversion after negatives and only</h3><p>Never have I, not only did she, only then was it.</p></span>
+      <span class="tag">Coming</span>
+    </div>
+    <div class="row soon">
+      <span class="num">20</span>
+      <span class="txt"><h3>Inversion with place and conditionals</h3><p>On the hill stands a church; had I known, were it not for.</p></span>
+      <span class="tag">Coming</span>
+    </div>
+    <div class="row soon">
+      <span class="num">21</span>
+      <span class="txt"><h3>Comparatives and superlatives</h3><p>Bigger than, the most important, as … as, the more … the more.</p></span>
+      <span class="tag">Coming</span>
+    </div>
+  </div>
+  </div>
+  <div class="theme-block">
+  <div class="class-header">
+    <span class="class-badge">Theme 7</span>
+    <span class="class-title">Nouns and determiners</span>
+    <span class="test-count">4 sessions</span>
+  </div>
+  <div class="rows">
+    <div class="row soon">
+      <span class="num">22</span>
+      <span class="txt"><h3>Countable and uncountable nouns</h3><p>Much and many, few and little, a piece of advice.</p></span>
+      <span class="tag">Coming</span>
+    </div>
+    <div class="row soon">
+      <span class="num">23</span>
+      <span class="txt"><h3>Articles</h3><p>A, an, the, or no article at all.</p></span>
+      <span class="tag">Coming</span>
+    </div>
+    <div class="row soon">
+      <span class="num">24</span>
+      <span class="txt"><h3>Singular and plural nouns</h3><p>Plural after numbers and one of; irregular plurals; nouns that never take -s.</p></span>
+      <span class="tag">Coming</span>
+    </div>
+    <div class="row soon">
+      <span class="num">25</span>
+      <span class="txt"><h3>Pronoun case and possessives</h3><p>I or me, who or whom, its or it’s, their or there.</p></span>
+      <span class="tag">Coming</span>
+    </div>
+  </div>
+  </div>
+  <div class="theme-block">
+  <div class="class-header">
+    <span class="class-badge">Theme 8</span>
+    <span class="class-title">Word form and usage</span>
+    <span class="test-count">5 sessions</span>
+  </div>
+  <div class="rows">
+    <div class="row soon">
+      <span class="num">26</span>
+      <span class="txt"><h3>Word form</h3><p>Noun, verb, adjective or adverb: the suffix that fits the slot.</p></span>
+      <span class="tag">Coming</span>
+    </div>
+    <div class="row soon">
+      <span class="num">27</span>
+      <span class="txt"><h3>Adjective or adverb</h3><p>A careful driver drives carefully; feel bad, look good.</p></span>
+      <span class="tag">Coming</span>
+    </div>
+    <div class="row soon">
+      <span class="num">28</span>
+      <span class="txt"><h3>Redundancy</h3><p>Return back, the reason is because, she she — words that say the same thing twice.</p></span>
+      <span class="tag">Coming</span>
+    </div>
+    <div class="row soon">
+      <span class="num">29</span>
+      <span class="txt"><h3>Word order</h3><p>Adverb position, adjective order, enough, and questions inside sentences.</p></span>
+      <span class="tag">Coming</span>
+    </div>
+    <div class="row soon">
+      <span class="num">30</span>
+      <span class="txt"><h3>Confused words and prepositions</h3><p>Make or do, like or alike, other or another, and the preposition a word needs.</p></span>
+      <span class="tag">Coming</span>
+    </div>
+  </div>
+  </div>
+</div>
+
+<footer>
+  Part of the <a href="../index.html">TOEFL Error Correction</a> section · <a href="../../index.html">Advanced Hub</a> · Phil Young’s English School
+</footer>
+
+<script>
+function toggleTheme(){
+  const html=document.documentElement;
+  const next=html.getAttribute('data-theme')==='light'?'dark':'light';
+  html.setAttribute('data-theme',next);
+  try{localStorage.setItem('arschul:theme',next)}catch(e){}
+}
+</script>
+</body>
+</html>
