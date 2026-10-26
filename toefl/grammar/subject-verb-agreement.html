@@ -122,6 +122,8 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
   .gap{display:inline-block;min-width:4.5em;border-bottom:2px solid var(--muted);margin:0 .15em;text-align:center;color:var(--violet);font-weight:600}
   .opts{grid-column:2;display:flex;flex-direction:column;align-items:flex-start;gap:.35rem;margin-top:.6rem}
   .opts.row{flex-direction:row;flex-wrap:wrap}
+  .opts.grid{display:grid;grid-template-columns:1fr 1fr;align-items:stretch}
+  @media(max-width:520px){.opts.grid{grid-template-columns:1fr}}
   .opt{font-family:inherit;font-size:.92rem;padding:.3rem .85rem;border-radius:100px;cursor:pointer;text-align:left;
     background:var(--surface2);color:var(--text);border:1px solid var(--border);transition:all .2s}
   .opt .l{font-weight:700;color:var(--violet);margin-right:.45rem}
@@ -130,11 +132,11 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
   .opt.right{background:var(--good-soft);border-color:var(--good-line);color:var(--good)}
   .opt.wrong{background:var(--bad-soft);border-color:var(--bad-line);color:var(--bad);text-decoration:line-through}
   /* written expression: letter under the underline, as on the ITP */
-  .we{line-height:2.6}
-  .seg{display:inline-flex;flex-direction:column;align-items:center;line-height:1.35;vertical-align:top;cursor:pointer;border-radius:4px;padding:0 2px;transition:background .2s}
-  .seg{min-width:1.3em}
-  .seg u{text-decoration:none;border-bottom:2px solid var(--text);padding-bottom:1px}
-  .seg sub{font-size:.68rem;font-weight:700;color:var(--violet);line-height:1.2}
+  .we{line-height:2.9}
+  .seg{position:relative;display:inline-block;line-height:1.5;cursor:pointer;border-radius:4px;padding:0 1px;transition:background .2s}
+  .seg u{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px}
+  .seg sub{position:absolute;left:50%;top:100%;transform:translateX(-50%);margin-top:-1px;font-size:.66rem;font-weight:700;
+    color:var(--violet);line-height:1;vertical-align:baseline}
   .seg:hover{background:var(--violet-deep)}
   .seg.right{background:var(--good-soft)}
   .seg.wrong{background:var(--bad-soft)}
@@ -221,6 +223,7 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
     .seg{cursor:default}
     body.print-blank .gap{color:transparent}
     .seg sub{color:#000}
+    .we{line-height:2.6}
     .line{display:block;border-bottom:1px solid #888;height:22px;grid-column:2}
     .tick{grid-column:2;font-size:10pt}
     .sort{display:block}
@@ -276,7 +279,9 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
 <!-- GP:data start -->
 <script>
 /* Grammar Practice session. Schema: see toefl/grammar/README.md.
-   Items are numbered 1–N in block order. a = 0-based answer index. */
+   Items are numbered 1–N in block order. a = 0-based answer index.
+   Pace: TOEFL ITP Structure & Written Expression is 40 items in 25 minutes (about 35 s each),
+   so each 10-minute TOEFL block holds 15 items and the 5-minute exit check holds 8. */
 const S={
   slug:"subject-verb-agreement", n:16, of:30, theme:"Agreement",
   title:"Subject and Verb Agreement",
@@ -285,7 +290,9 @@ const S={
     {t:"The price of these shoes are too high.", ok:false, fix:"The price of these shoes <b>is</b> too high.", w:"The subject is <i>price</i>, not <i>shoes</i>."},
     {t:"Everyone in the office likes the new manager.", ok:true, w:"<i>Everyone</i> is singular, so <i>likes</i> is right."},
     {t:"There is three windows in the kitchen.", ok:false, fix:"There <b>are</b> three windows in the kitchen.", w:"After <i>there</i>, the verb agrees with the noun that follows: <i>three windows</i>."},
-    {t:"The news was better than we expected.", ok:true, w:"<i>News</i> looks plural but is singular."}
+    {t:"The news was better than we expected.", ok:true, w:"<i>News</i> looks plural but is singular."},
+    {t:"My brother and I lives in the same building.", ok:false, fix:"My brother and I <b>live</b> in the same building.", w:"Two people joined by <i>and</i> are plural."},
+    {t:"One of the windows is broken.", ok:true, w:"The subject is <i>one</i>, so <i>is</i> is right."}
   ],
 
   pats:[
@@ -328,7 +335,25 @@ const S={
     {s:["","in the old part of town are very expensive to rent."], o:["Apartments","The apartment","An apartment is","Apartment that"], a:0,
      w:"The sentence already has its verb, <i>are</i>, so it needs a plural subject: <i>Apartments</i>. (C) adds a second verb."},
     {s:["A number of tourists ","in the hotel lobby."], o:["is waiting","waits","are waiting","waiting"], a:2,
-     w:"<i>A number of</i> means <i>several</i>, so it is plural → <i>are waiting</i>. (D) has no helping verb."}
+     w:"<i>A number of</i> means <i>several</i>, so it is plural → <i>are waiting</i>. (D) has no helping verb."},
+    {s:["The keys to the front door ","on the kitchen table."], o:["is","was","are","it is"], a:2,
+     w:"The subject is <i>the keys</i>; <i>to the front door</i> does not change it → <i>are</i>."},
+    {s:["Economics ","a popular subject at our university."], o:["are","is","have been","being"], a:1,
+     w:"Subjects that end in <i>-ics</i> are singular → <i>is</i>."},
+    {s:["Each of the hotel rooms ","a view of the ocean."], o:["have","are having","with","has"], a:3,
+     w:"The subject is <i>each</i> → <i>has</i>. (C) leaves the sentence without a verb."},
+    {s:["My sister and her husband ","in a small apartment downtown."], o:["live","lives","is living","living"], a:0,
+     w:"Two people joined by <i>and</i> → plural <i>live</i>."},
+    {s:["Either the manager or her assistants ","the store every night."], o:["closes","close","is closing","closing"], a:1,
+     w:"With <i>either … or</i>, the nearer subject decides: <i>her assistants</i> → <i>close</i>."},
+    {s:["The number of students in the program ","since 2015."], o:["grow","are growing","has grown","growing"], a:2,
+     w:"<i>The number</i> is one number → singular <i>has grown</i>. <i>Since 2015</i> needs the present perfect."},
+    {s:["There ","a lot of information on the website."], o:["are","have","they are","is"], a:3,
+     w:"<i>Information</i> is uncountable, so it is singular → <i>is</i>."},
+    {s:["The people who live on my street ","very friendly."], o:["are","is","being","it is"], a:0,
+     w:"<i>People</i> is plural → <i>are</i>. <i>Who live on my street</i> is inside the subject."},
+    {s:["Learning a new language ","time and patience."], o:["take","takes","taking","are taking"], a:1,
+     w:"An <i>-ing</i> subject is singular → <i>takes</i>."}
   ],
 
   we:[
@@ -343,11 +368,29 @@ const S={
     {p:[["Neither my parents ",0],["nor",1],[" my brother ",0],["like",1],[" ",0],["the",1],[" new ",0],["apartment",1]], a:1, f:"likes",
      w:"With <i>neither … nor</i>, the nearer subject decides: <i>my brother</i>, singular → <i>likes</i>."},
     {p:[["I ",0],["know",1],[" ",0],["a",1],[" woman ",0],["who",1],[" ",0],["speak",1],[" three languages",0]], a:3, f:"speaks",
-     w:"<i>Who</i> refers back to <i>a woman</i>, singular → <i>speaks</i>."}
+     w:"<i>Who</i> refers back to <i>a woman</i>, singular → <i>speaks</i>."},
+    {p:[["",0],["There is",1],[" ",0],["many",1],[" ",0],["good",1],[" restaurants ",0],["near",1],[" our office",0]], a:0, f:"There are",
+     w:"The subject comes after the verb: <i>many good restaurants</i>, plural → <i>There are</i>."},
+    {p:[["My ",0],["friends",1],[" and I ",0],["usually",1],[" ",0],["goes",1],[" to the beach ",0],["on",1],[" Sundays",0]], a:2, f:"go",
+     w:"<i>My friends and I</i> is plural → <i>go</i>."},
+    {p:[["Everybody ",0],["in",1],[" my family ",0],["enjoy",1],[" ",0],["watching",1],[" ",0],["old",1],[" movies",0]], a:1, f:"enjoys",
+     w:"<i>Everybody</i> is singular → <i>enjoys</i>."},
+    {p:[["One of the ",0],["most",1],[" popular ",0],["tourist",1],[" attractions in the city ",0],["are",1],[" the old ",0],["market",1]], a:2, f:"is",
+     w:"The subject is <i>one</i> → <i>is</i>."},
+    {p:[["",0],["Has",1],[" the children ",0],["finished",1],[" ",0],["their",1],[" ",0],["homework",1],[" yet?",0]], a:0, f:"Have",
+     w:"<i>Children</i> is plural → <i>Have</i>."},
+    {p:[["The new parking rules ",0],["were",1],[" ",0],["announced",1],[" ",0],["last week",1],[", but nobody ",0],["understand",1],[" them",0]], a:3, f:"understands",
+     w:"<i>Nobody</i> is singular → <i>understands</i>."},
+    {p:[["",0],["Do",1],[" the news ",0],["start",1],[" ",0],["at",1],[" seven ",0],["tonight",1],["?",0]], a:0, f:"Does",
+     w:"<i>News</i> is singular → <i>Does</i>."},
+    {p:[["The price of fruit and vegetables ",0],["at",1],[" ",0],["the",1],[" market ",0],["have",1],[" ",0],["gone",1],[" up",0]], a:2, f:"has",
+     w:"The subject is <i>the price</i>, singular → <i>has</i>."},
+    {p:[["Both my laptop and my phone ",0],["need",1],[" ",0],["to be",1],[" ",0],["repaired",1],[", but the repair shop ",0],["are",1],[" closed",0]], a:3, f:"is",
+     w:"<i>The repair shop</i> is singular → <i>is</i>. <i>Need</i> is right: two things joined by <i>and</i>."}
   ],
 
   prac:{type:"sort", title:"Is or are?",
-    instr:"Ten subjects. Decide which ones take <b>is</b> and which take <b>are</b>. <span class=\"screen-only\">Tap a verb on each card; the card moves to its column.</span><span class=\"print-only\">Write <b>is</b> or <b>are</b> after each one.</span>",
+    instr:"Sixteen subjects. Decide which ones take <b>is</b> and which take <b>are</b>. Work fast — about fifteen seconds each — then discuss the ones the class disagrees on. <span class=\"screen-only\">Tap a verb on each card; the card moves to its column.</span><span class=\"print-only\">Write <b>is</b> or <b>are</b> after each one.</span>",
     cols:["is","are"],
     items:[
       {t:"The news", c:0, w:"<i>News</i> is singular."},
@@ -359,7 +402,13 @@ const S={
       {t:"Everyone at the party", c:0, w:"<i>Everyone</i> is singular."},
       {t:"A number of people", c:1, w:"<i>A number of</i> = several → plural."},
       {t:"The number of cars", c:0, w:"<i>The number</i> is one number → singular."},
-      {t:"My brother and his wife", c:1, w:"Two people joined by <i>and</i> → plural."}
+      {t:"My brother and his wife", c:1, w:"Two people joined by <i>and</i> → plural."},
+      {t:"Physics", c:0, w:"<i>-ics</i> subject → singular."},
+      {t:"The children", c:1, w:"<i>Children</i> is the plural of <i>child</i>."},
+      {t:"Swimming in the ocean", c:0, w:"An <i>-ing</i> subject is singular."},
+      {t:"Both of my parents", c:1, w:"<i>Both</i> means two → plural."},
+      {t:"Nobody in the room", c:0, w:"<i>Nobody</i> is singular."},
+      {t:"The books on the shelf", c:1, w:"The subject is <i>the books</i>."}
     ]},
 
   prod:{type:"transform", title:"Rewrite the sentence",
@@ -370,7 +419,9 @@ const S={
       {t:"There is a mistake in your essay. (several)", cue:"There", a:["There are several mistakes in your essay."], w:"<i>Several mistakes</i> is plural → <i>are</i>."},
       {t:"My mother and my father don’t like loud music.", cue:"Neither my mother nor my father", a:["Neither my mother nor my father likes loud music."], w:"Nearer subject <i>my father</i> → <i>likes</i>."},
       {t:"The students live near the school.", cue:"Each of the students", a:["Each of the students lives near the school."], w:"The subject is <i>each</i> → <i>lives</i>."},
-      {t:"The scientists are studying the problem.", cue:"The team of scientists", a:["The team of scientists is studying the problem."], w:"The subject is <i>the team</i> → <i>is</i>."}
+      {t:"The scientists are studying the problem.", cue:"The team of scientists", a:["The team of scientists is studying the problem."], w:"The subject is <i>the team</i> → <i>is</i>."},
+      {t:"Many people want to visit the museum.", cue:"Everybody", a:["Everybody wants to visit the museum."], w:"<i>Everybody</i> is singular → <i>wants</i>."},
+      {t:"Tom plays soccer on Saturdays. (or his brothers)", cue:"Either Tom or his brothers", a:["Either Tom or his brothers play soccer on Saturdays."], w:"Nearer subject <i>his brothers</i> → <i>play</i>."}
     ]},
 
   exit:[
@@ -381,7 +432,15 @@ const S={
     {k:"str", s:["One of the students ","a question about the homework."], o:["have","has","having","were having"], a:1,
      w:"The subject is <i>one</i> → <i>has</i>."},
     {k:"we", p:[["The ",0],["people",1],[" who live ",0],["next door",1],[" ",0],["has",1],[" ",0],["a",1],[" big garden",0]], a:2, f:"have",
-     w:"<i>People</i> is plural → <i>have</i>."}
+     w:"<i>People</i> is plural → <i>have</i>."},
+    {k:"str", s:["The furniture in these rooms ","very old."], o:["is","are","were","have been"], a:0,
+     w:"<i>Furniture</i> is uncountable → singular <i>is</i>."},
+    {k:"we", p:[["Every ",0],["one",1],[" of the ",0],["questions",1],[" ",0],["on",1],[" the test ",0],["were",1],[" difficult",0]], a:3, f:"was",
+     w:"The subject is <i>every one</i> → <i>was</i>."},
+    {k:"str", s:["Neither the bus nor the trains ","on time this morning."], o:["was","is","were","has been"], a:2,
+     w:"The nearer subject is <i>the trains</i> → <i>were</i>."},
+    {k:"we", p:[["The ",0],["students",1],[" in my class ",0],["has",1],[" ",0],["different",1],[" ",0],["opinions",1],[" about the movie",0]], a:1, f:"have",
+     w:"The subject is <i>the students</i> → <i>have</i>."}
   ]
 };
 </script>
@@ -422,6 +481,8 @@ S.exit.forEach(q=>IT.push({kind:q.k,blk:"exit",q}));
 IT.forEach((x,i)=>x.n=i+1);
 const SCORED=IT.filter(x=>x.kind!=="transform"&&x.kind!=="combine"&&x.kind!=="unscramble"||false);
 const byN=n=>IT[n-1];
+const cnt=b=>IT.filter(x=>x.blk===b).length;
+const PACE=`<span class="screen-only"> Pace yourself at about <b>35 seconds a question</b> — the real test speed — then use the time left to go over the answers.</span>`;
 const range=b=>{const l=IT.filter(x=>x.blk===b);return l.length?l[0].n+"–"+l[l.length-1].n:""};
 
 /* ---------- renderers ---------- */
@@ -432,12 +493,12 @@ function rWarm(x){const q=x.q;
   <div class="fb" id="fb${x.n}"></div></div>`;}
 function rStr(x){const q=x.q;
   return `<div class="q" id="q${x.n}"><div class="n">${x.n}</div><div class="stem">${q.s[0]}<span class="gap" id="g${x.n}">&nbsp;</span>${q.s[1]?" "+q.s[1]:""}</div>
-  <div class="opts">${q.o.map((o,j)=>`<button class="opt" data-n="${x.n}" data-i="${j}"><span class="l">(${LET[j]})</span>${o}</button>`).join("")}</div>
+  <div class="opts grid">${q.o.map((o,j)=>`<button class="opt" data-n="${x.n}" data-i="${j}"><span class="l">(${LET[j]})</span>${o}</button>`).join("")}</div>
   <div class="popts">${q.o.map((o,j)=>`<span>(${LET[j]}) ${o}</span>`).join("")}</div>
   <div class="fb" id="fb${x.n}"></div></div>`;}
 function rWe(x){const q=x.q;let li=0;
   const body=q.p.map(([t,u])=>u?`<span class="seg" tabindex="0" data-n="${x.n}" data-i="${li}"><u>${t}</u><sub>${LET[li++]}</sub></span>`:t).join("");
-  return `<div class="q" id="q${x.n}"><div class="n">${x.n}</div><div class="stem we">${body}.</div>
+  return `<div class="q" id="q${x.n}"><div class="n">${x.n}</div><div class="stem we">${body}${/[.?!]$/.test(q.p[q.p.length-1][0])?"":"."}</div>
   <div class="fb" id="fb${x.n}"></div></div>`;}
 function rSort(){
   const p=S.prac;
@@ -457,14 +518,14 @@ const R={warm:rWarm,str:rStr,we:rWe,transform:rTransform};
 
 
 function head(b,i){
-  return `<div class="blk-head"><span class="blk-num">${i+1}</span><h2><small>${b.name} · ${b.min} min</small>${b.sub}</h2>
+  return `<div class="blk-head"><span class="blk-num">${i+1}</span><h2><small>${b.name} · ${b.min} min${cnt(b.id)?" · "+cnt(b.id)+" items":""}</small>${b.sub}</h2>
   <button class="timer" data-t="${b.id}" data-min="${b.min}" title="Start or pause the clock">▶ ${b.min}:00</button>
   <button class="treset" data-tr="${b.id}" title="Reset the clock" aria-label="Reset the clock">↺</button></div>`;}
 
 function build(){
   $("eyebrow").textContent=`Phil Young’s English School · Session ${S.n} of ${S.of} · ${S.theme}`;
   $("printhead").textContent=`${S.title} · Grammar Practice · Name: ______________________  Date: __________`;
-  $("plan").innerHTML=BLOCKS.map((b,i)=>`<a href="#b-${b.id}"><b>${i+1} · ${b.name}</b><span>${b.min} min</span></a>`).join("");
+  $("plan").innerHTML=BLOCKS.map((b,i)=>`<a href="#b-${b.id}"><b>${i+1} · ${b.name}</b><span>${b.min} min${cnt(b.id)?" · "+cnt(b.id)+" items":""}</span></a>`).join("");
   let h="";
   BLOCKS.forEach((b,i)=>{
     h+=`<section class="blk" id="b-${b.id}">`+head(b,i);
@@ -474,11 +535,11 @@ function build(){
       <div class="pats">${S.pats.map((p,j)=>`<div class="pat"><h3><i>${j+1}</i>${p.h}</h3><p class="rule">${p.rule}</p>
       <div class="ex no">${p.no}</div><div class="ex yes">${p.yes}</div><p class="why">${p.why}</p></div>`).join("")}</div>
       <div class="trap"><b>TOEFL tip</b>${S.trap}</div>`;
-    else if(b.id==="str") h+=`<p class="instr">Questions ${range("str")}. <b>Directions:</b> Each sentence is incomplete. Choose the <b>one</b> word or phrase, (A), (B), (C) or (D), that best completes the sentence.</p>`+list.map(rStr).join("");
-    else if(b.id==="we") h+=`<p class="instr">Questions ${range("we")}. <b>Directions:</b> Each sentence has four underlined words or phrases, marked (A), (B), (C) and (D). Identify the <b>one</b> that must be changed for the sentence to be correct.</p>`+list.map(rWe).join("");
+    else if(b.id==="str") h+=`<p class="instr">Questions ${range("str")}. <b>Directions:</b> Each sentence is incomplete. Choose the <b>one</b> word or phrase, (A), (B), (C) or (D), that best completes the sentence.${PACE}</p>`+list.map(rStr).join("");
+    else if(b.id==="we") h+=`<p class="instr">Questions ${range("we")}. <b>Directions:</b> Each sentence has four underlined words or phrases, marked (A), (B), (C) and (D). Identify the <b>one</b> that must be changed for the sentence to be correct.${PACE}</p>`+list.map(rWe).join("");
     else if(b.id==="prac") h+=`<p class="instr">Questions ${range("prac")}. ${S.prac.instr}</p>`+rSort();
     else if(b.id==="prod") h+=`<p class="instr">Questions ${range("prod")}. ${S.prod.instr} <span class="screen-only">Type your answer and press Check, or write in your notebook and compare with the model.</span></p>`+list.map(x=>R[x.kind](x)).join("");
-    else if(b.id==="exit") h+=`<p class="instr">Questions ${range("exit")}. Two Structure items and two Written Expression items. Work alone and don’t check your notes.</p>`
+    else if(b.id==="exit") h+=`<p class="instr">Questions ${range("exit")}. Structure and Written Expression items, mixed. Work alone, don’t check your notes, and keep to the test pace: eight questions in under five minutes.</p>`
       +list.map(x=>R[x.kind](x)).join("")+`<div class="score" id="scorebox"></div>`;
     h+=`</section>`;
   });
