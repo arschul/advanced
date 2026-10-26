@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Balance and shape checks for Grammar Practice sessions (toefl/grammar/*.html).
+"""Balance and shape checks for Grammar Practice sessions (grammar/*.html).
 
   python3 tools/check_grammar.py        exit 1 on any failure
 
@@ -77,7 +77,7 @@ def run(path):
             if len(set(ms)) != len(ms): errs.append("match: duplicate right-hand items")
     return errs
 bad = 0
-for p in sorted(glob.glob(os.path.join(ROOT, "toefl", "grammar", "*.html"))):
+for p in sorted(glob.glob(os.path.join(ROOT, "grammar", "*.html"))):
     if "GP:data start" not in open(p, encoding="utf-8").read(): continue
     e = run(p); bad += bool(e)
     print(("FAIL " if e else "ok   ") + os.path.relpath(p, ROOT) + "".join("\n     - " + x for x in e))

@@ -13,7 +13,7 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
 <!-- HUBGEN:leaf end -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Adverb Clause Connectors · Grammar Practice</title>
+<title>Appositives · Grammar Practice</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -308,8 +308,8 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
 
   <a class="back-link" href="./index.html">← Grammar Practice</a>
   <p class="eyebrow" id="eyebrow"></p>
-  <h1>Adverb-clause <span class="accent">connectors</span></h1>
-  <p class="lede"><i>Because, although, when, while, if, unless</i> and <i>until</i> join a clause to the main clause and tell you why, when, or under what condition. Choose the connector by meaning, follow it with a subject and a verb, and use the present tense for the future after time words.</p>
+  <h1><span class="accent">Appositives</span></h1>
+  <p class="lede">An appositive is a noun phrase that renames the noun next to it: <i>Brasília, the capital of Brazil, was built in the 1950s.</i> It has no verb of its own. The TOEFL tests it by offering answers that add a verb, a pronoun or half a clause where none belongs.</p>
   <div class="chips"><span class="chip">B1 → B2</span><span class="chip">100 items</span><span class="chip">TOEFL ITP · Structure &amp; Written Expression</span></div>
   <div class="actions">
     <button class="btn btn-view" id="pw">Print worksheet</button>
@@ -330,133 +330,147 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
   <div class="keyblock" id="key"></div>
 </div>
 
-<footer>Part of the <a href="../index.html">TOEFL Error Correction</a> section · <a href="./index.html">Grammar Practice</a> · <a href="../../index.html">Advanced Hub</a> · Phil Young’s English School</footer>
+<footer>Part of the <a href="./index.html">Grammar Practice</a> section · <a href="../index.html">Advanced Hub</a> · Phil Young’s English School</footer>
 
 <!-- GP:data start -->
 <script>
-/* Grammar Practice session data. Shapes are documented in toefl/grammar/README.md.
+/* Grammar Practice session data. Shapes are documented in grammar/README.md.
    Items are numbered 1–100 in block order. a = 0-based answer index. */
 const S={
-  slug:"adverb-clauses",
-  n:4,
+  slug:"appositives",
+  n:2,
   of:30,
   theme:"Sentence core",
-  title:"Adverb Clause Connectors",
+  title:"Appositives",
 
   warm:[
-    {"t": "Because the traffic, we arrived late.", "ok": false, "fix": "<b>Because of</b> the traffic, we arrived late.", "w": "<i>Because</i> needs a clause; before a noun, use <i>because of</i>."},
-    {"t": "Although it was cold, we went to the beach.", "ok": true, "w": "Contrast: <i>although</i> + clause."},
-    {"t": "When I will see him, I will give him the message.", "ok": false, "fix": "When I <b>see</b> him, I will give him the message.", "w": "After <i>when</i>, use the present for the future."},
-    {"t": "We waited until the rain stopped.", "ok": true, "w": "Time: <i>until</i> + clause."},
-    {"t": "Unless you don’t study, you won’t pass.", "ok": false, "fix": "<b>Unless you study</b>, you won’t pass.", "w": "<i>Unless</i> already means <i>if not</i>."},
-    {"t": "Despite the noise, the baby slept.", "ok": true, "w": "<i>Despite</i> + noun."}
+    {"t": "My uncle, a taxi driver, knows every street in the city.", "ok": true, "w": "<i>A taxi driver</i> renames <i>my uncle</i>; the main verb is <i>knows</i>."},
+    {"t": "Lisbon, is the capital of Portugal, has beautiful old buildings.", "ok": false, "fix": "Lisbon, <b>the capital of Portugal</b>, has beautiful old buildings.", "w": "An appositive has no verb. Delete <i>is</i>."},
+    {"t": "A talented cook my grandmother makes the best cakes.", "ok": false, "fix": "A talented cook<b>,</b> my grandmother makes the best cakes.", "w": "An opening appositive is followed by a comma, then the noun it renames."},
+    {"t": "Dr. Reis, our family doctor, is retiring next year.", "ok": true, "w": "<i>Our family doctor</i> renames <i>Dr. Reis</i>."},
+    {"t": "Our new neighbor, he is a musician, plays the piano every night.", "ok": false, "fix": "Our new neighbor, <b>a musician</b>, plays the piano every night.", "w": "No pronoun and no verb inside an appositive."},
+    {"t": "The Amazon, the largest rainforest in the world, covers parts of nine countries.", "ok": true, "w": "The appositive sits between commas; the verb <i>covers</i> belongs to <i>the Amazon</i>."}
   ],
 
   pats:[
-    {"h": "Connector + clause, preposition + noun", "rule": "Because, although, while + subject and verb. Because of, despite, during + noun.", "no": "<span class=\"strike\">Because</span> the rain, we stayed home.", "yes": "<b>Because of</b> the rain, we stayed home. · <b>Because it was raining</b>, we stayed home.", "why": "Look at what follows the gap. A subject and a verb → a connector (<i>because, although, while</i>). Only a noun → a preposition (<i>because of, despite, during</i>)."},
-    {"h": "Choose by meaning", "rule": "Cause: because, since. Contrast: although, even though. Time: when, while, before, after, until, as soon as. Condition: if, unless.", "no": "<span class=\"strike\">Although</span> I was tired, I went to bed early.", "yes": "<b>Because</b> I was tired, I went to bed early. · <b>Although</b> I was tired, I stayed up late.", "why": "Read both clauses and ask how they are related. A surprising result → contrast. A normal result → cause."},
-    {"h": "One connector per link", "rule": "Don’t add but or so to a sentence that already has although or because.", "no": "Because it was late, <span class=\"strike\">so</span> we left.", "yes": "<b>Because</b> it was late, we left. · It was late, <b>so</b> we left.", "why": "The connector already joins the two clauses. A second one joins them again."},
-    {"h": "Present for the future after time words", "rule": "After when, as soon as, before, after, until and if, use the present to talk about the future.", "no": "When I <span class=\"strike\">will finish</span>, I will call you.", "yes": "When I <b>finish</b>, I will call you. · If it <b>rains</b> tomorrow, we will stay home.", "why": "The <i>will</i> goes in the main clause only. The time or <i>if</i> clause stays in the present."},
-    {"h": "Unless means if not", "rule": "Unless already contains the negative. Don’t add not.", "no": "Unless you <span class=\"strike\">don’t</span> hurry, you will be late.", "yes": "<b>Unless you hurry</b>, you will be late. · <b>If you don’t hurry</b>, you will be late.", "why": "<i>Unless you hurry</i> = <i>if you don’t hurry</i>. Two negatives cancel each other out."},
-    {"h": "Despite, in spite of and during", "rule": "These are prepositions: they take a noun or an -ing form, never a clause.", "no": "<span class=\"strike\">Despite it was raining</span>, we went out.", "yes": "<b>Despite the rain</b>, we went out. · <b>Although it was raining</b>, we went out. · <b>During</b> the movie, everyone was quiet.", "why": "Note the forms: <i>despite</i> (no <i>of</i>), <i>in spite of</i> (with <i>of</i>). <i>During</i> + noun; <i>while</i> + clause."}
+    {"h": "An appositive renames a noun", "rule": "It is a noun phrase placed next to the noun it describes, usually between commas.", "no": "Ana, <span class=\"strike\">is my best friend,</span> is a nurse.", "yes": "Ana, <b>my best friend</b>, is a nurse.", "why": "Read the sentence without the appositive: <i>Ana is a nurse.</i> It must still be complete. The appositive only adds information about Ana."},
+    {"h": "No verb, no pronoun inside", "rule": "An appositive has no verb and no subject pronoun of its own.", "no": "Mr. Lopes, <span class=\"strike\">he is</span> our new teacher, comes from Recife.", "yes": "Mr. Lopes, <b>our new teacher</b>, comes from Recife.", "why": "If you want a verb, you need a full relative clause: <i>Mr. Lopes, who is our new teacher, …</i> Without <i>who</i>, drop the verb and the pronoun."},
+    {"h": "An appositive can open the sentence", "rule": "Noun phrase, comma, then the noun it renames.", "no": "<span class=\"strike\">Is a popular tourist city,</span> Salvador has beautiful beaches.", "yes": "<b>A popular tourist city,</b> Salvador has beautiful beaches.", "why": "The noun right after the comma is the one the opening phrase describes. That noun is also the subject of the main verb: <i>Salvador has …</i>"},
+    {"h": "Commas around extra information", "rule": "Put commas on both sides when the appositive is in the middle; one comma when it ends the sentence.", "no": "My brother <span class=\"strike\">a pilot</span> travels a lot.", "yes": "My brother<b>, a pilot,</b> travels a lot. · I had lunch with Carla<b>, my oldest friend</b>.", "why": "The commas show where the extra information starts and stops. Leave them out only when the name identifies which one: <i>the writer Machado de Assis</i>."},
+    {"h": "Appositive or relative clause", "rule": "An appositive is a relative clause without who / which + be. Drop both, or keep both.", "no": "Paris, <span class=\"strike\">which the capital of France</span>, is very old.", "yes": "Paris, <b>the capital of France</b>, is very old. · Paris, <b>which is the capital of France</b>, is very old.", "why": "Half a clause (<i>which the capital</i>) is always wrong. On the TOEFL this is a favorite distractor."},
+    {"h": "The verb agrees with the main noun", "rule": "The appositive does not change the subject. The verb agrees with the noun before the commas.", "no": "Our neighbors, a young couple from Chile, <span class=\"strike\">has</span> two dogs.", "yes": "Our neighbors, a young couple from Chile, <b>have</b> two dogs.", "why": "Cover the appositive and read <i>our neighbors … have</i>. The singular noun <i>couple</i> inside the commas does not count."}
   ],
-  trap:"When the gap is the connector, check what comes after it. Subject + verb: you need <i>because, although, when, while</i>. A noun only: you need <i>because of, despite, during</i>. Then check the meaning, and cross out any option that would give the sentence two connectors.",
+  trap:"When the gap is between two commas right after a noun, the answer is almost always a noun phrase with no verb. Cross out every option that contains <i>is</i>, <i>it is</i>, <i>he is</i> or a half clause such as <i>which the</i>. When the gap opens the sentence and a comma follows, check that the noun after the comma is the subject of the main verb.",
 
   str:[
-    {"s": ["", "it was raining, we went for a walk."], "w": "Raining but we walked: contrast + clause. <i>Despite</i> cannot take a clause.", "o": ["Because", "Despite", "Although", "So"], "a": 2},
-    {"s": ["We stayed inside ", "the storm."], "w": "Only a noun follows: <i>during</i>.", "o": ["while", "when", "although", "during"], "a": 3},
-    {"s": ["", "you hurry, you will miss the bus."], "w": "Unless = if not: <i>if you don’t hurry</i>.", "o": ["If", "Because", "Although", "Unless"], "a": 3},
-    {"s": ["I’ll call you as soon as I ", "home."], "w": "After a time word, present for the future.", "o": ["will get", "getting", "get", "to get"], "a": 2},
-    {"s": ["", "the bad weather, the flight left on time."], "w": "Only a noun follows, and the meaning is contrast: <i>despite</i>.", "o": ["Although", "Because", "Despite", "Even though"], "a": 2},
-    {"s": ["She couldn’t sleep ", "the neighbors were very loud."], "w": "A clause follows, and it gives the cause: <i>because</i>.", "o": ["because of", "because", "although", "unless"], "a": 1},
-    {"s": ["", "I was a child, I lived near the sea."], "w": "A clause follows and the meaning is time: <i>when</i>.", "o": ["During", "When", "Unless", "Despite"], "a": 1},
-    {"s": ["We won’t go to the beach ", "it stops raining."], "w": "A clause follows; time limit: <i>until</i>.", "o": ["during", "despite", "until", "because of"], "a": 2},
-    {"s": ["", "he had a bad cold, he went to work."], "w": "A clause and a contrast: <i>even though</i>.", "o": ["Even though", "Because", "In spite of", "If"], "a": 0},
-    {"s": ["Turn off the lights ", "you leave the room."], "w": "A clause follows: <i>when</i>.", "o": ["during", "when", "because of", "despite"], "a": 1},
-    {"s": ["", "of the heavy traffic, we arrived late."], "w": "Only <i>because</i> combines with <i>of</i> here: <i>because of</i> + noun.", "o": ["Although", "Since", "Despite", "Because"], "a": 3},
-    {"s": ["If it ", "tomorrow, we will stay at home."], "w": "After <i>if</i>, present for the future.", "o": ["rains", "will rain", "raining", "rain"], "a": 0},
-    {"s": ["I have known her ", "we were children."], "w": "From a point in the past + clause: <i>since</i>.", "o": ["since", "for", "during", "until"], "a": 0},
-    {"s": ["", "she studied hard, she failed the test."], "w": "Studied hard but failed: contrast + clause.", "o": ["Because", "Despite", "So", "Although"], "a": 3},
-    {"s": ["Wash your hands ", "you eat."], "w": "A clause follows; order in time: <i>before</i>.", "o": ["during", "despite", "before", "because of"], "a": 2},
-    {"s": ["The game was canceled ", "the rain."], "w": "Only a noun follows: <i>because of</i>.", "o": ["because", "because of", "although", "unless"], "a": 1},
-    {"s": ["", "I finish this report, I’ll help you."], "w": "A clause follows; time: <i>after</i>.", "o": ["After", "During", "Despite", "Because of"], "a": 0},
-    {"s": ["You can borrow my car ", "you drive carefully."], "w": "Condition: <i>as long as</i> = only if.", "o": ["unless", "despite", "during", "as long as"], "a": 3},
-    {"s": ["While I ", "dinner, the phone rang."], "w": "After <i>while</i>, a subject and a full verb: <i>I was cooking</i>.", "o": ["cooking was", "were cooking", "was cooking", "was cook"], "a": 2},
-    {"s": ["", "he is very rich, he lives in a small house."], "w": "Rich but a small house: contrast + clause.", "o": ["Because", "Even though", "Despite", "So that"], "a": 1},
-    {"s": ["We left early ", "we could get good seats."], "w": "Purpose + clause: <i>so that</i>.", "o": ["because of", "despite", "although", "so that"], "a": 3},
-    {"s": ["", "it was late, we decided to take a taxi."], "w": "<i>Since</i> here means <i>because</i>.", "o": ["Since", "Despite", "Although", "Unless"], "a": 0},
-    {"s": ["Don’t open the door ", "you know who it is."], "w": "Don’t open it if you don’t know: <i>unless</i>.", "o": ["if", "because", "during", "unless"], "a": 3},
-    {"s": ["", "the movie, everyone was quiet."], "w": "Only a noun follows: <i>during</i>.", "o": ["While", "During", "When", "Although"], "a": 1},
-    {"s": ["I will wait here ", "you come back."], "w": "A clause follows; time limit: <i>until</i>.", "o": ["during", "by", "until", "despite"], "a": 2},
-    {"s": ["", "I got to the station, the train had left."], "w": "Time + clause: <i>by the time</i>.", "o": ["During", "By the time", "Until", "Despite"], "a": 1},
-    {"s": ["He passed the exam ", "he didn’t study much."], "w": "Passed but didn’t study: contrast + clause.", "o": ["although", "because", "despite", "so"], "a": 0},
-    {"s": ["", "you need help, please call me."], "w": "Condition: <i>if</i>.", "o": ["Unless", "Despite", "If", "During"], "a": 2},
-    {"s": ["In spite of ", ", the team won the game."], "w": "<i>In spite of</i> takes a noun, not a clause.", "o": ["the injury", "they were tired", "it was raining", "was injured"], "a": 0},
-    {"s": ["We’ll start the meeting when everyone ", "."], "w": "After <i>when</i>, present for the future; <i>everyone</i> is singular.", "o": ["arrives", "will arrive", "arriving", "arrive"], "a": 0}
+    {"s": ["Brasília, ", ", was built in the 1950s."], "w": "Between commas after a noun: an appositive, with no verb.", "o": ["the capital of Brazil", "is the capital of Brazil", "it is the capital of Brazil", "that the capital of Brazil"], "a": 0},
+    {"s": ["", ", my grandfather worked on a farm for forty years."], "w": "An opening appositive: noun phrase, comma, then the noun it renames.", "o": ["Was a hard-working man", "He was a hard-working man", "A hard-working man", "Because a hard-working man"], "a": 2},
+    {"s": ["The giraffe, ", ", can grow to more than five meters."], "w": "No verb inside the appositive.", "o": ["is the tallest animal on land", "the tallest animal on land", "it is the tallest animal on land", "which the tallest animal on land"], "a": 1},
+    {"s": ["Our teacher, ", ", gives us a lot of homework."], "w": "A name can be an appositive: <i>our teacher, Ms. Costa, …</i>", "o": ["is Ms. Costa", "she is Ms. Costa", "Ms. Costa", "her name Ms. Costa"], "a": 2},
+    {"s": ["Coffee, ", ", is grown in many parts of Brazil."], "w": "Noun phrase only; (D) is half a relative clause.", "o": ["one of the country’s main exports", "it is one of the country’s main exports", "is one of the country’s main exports", "which one of the country’s main exports"], "a": 0},
+    {"s": ["Mercury, ", ", is also the smallest."], "w": "Between the commas: a noun phrase with no verb.", "o": ["is the planet closest to the Sun", "the planet closest to the Sun", "it is the planet closest to the Sun", "the planet is closest to the Sun"], "a": 1},
+    {"s": ["My best friend, ", ", lives in Canada now."], "w": "The appositive renames <i>my best friend</i>; the verb is <i>lives</i>.", "o": ["is a software engineer", "who a software engineer", "a software engineer", "and a software engineer"], "a": 2},
+    {"s": ["", ", the city has many museums and theaters."], "w": "Opening appositive, then the noun it renames: <i>the city</i>.", "o": ["It is a cultural center", "Is a cultural center", "Because a cultural center", "A cultural center"], "a": 3},
+    {"s": ["Feijoada, ", ", is usually served on Saturdays."], "w": "No verb inside the appositive.", "o": ["is a dish of black beans and meat", "it is a dish of black beans and meat", "a dish is of black beans and meat", "a dish of black beans and meat"], "a": 3},
+    {"s": ["The company’s new product, ", ", will go on sale in March."], "w": "Noun phrase only between the commas.", "o": ["is a smaller and cheaper phone", "a smaller and cheaper phone", "it is a smaller and cheaper phone", "which a smaller and cheaper phone"], "a": 1},
+    {"s": ["Mr. Alves, ", ", has worked at the school for twenty years."], "w": "Noun phrase only; the main verb is <i>has worked</i>.", "o": ["he is the principal", "the principal", "is the principal", "the principal is"], "a": 1},
+    {"s": ["Spanish, ", ", is spoken in Spain and in most of Latin America."], "w": "The sentence already has its verb, <i>is</i>; the gap is an appositive.", "o": ["is a language with more than 500 million speakers", "it is a language with more than 500 million speakers", "a language with more than 500 million speakers", "has more than 500 million speakers"], "a": 2},
+    {"s": ["", ", Curitiba is known for its parks."], "w": "Opening appositive, comma, then <i>Curitiba</i>.", "o": ["Is the capital of Paraná", "It is the capital of Paraná", "The capital of Paraná is", "The capital of Paraná"], "a": 3},
+    {"s": ["Dinner, ", ", is usually at eight in our house."], "w": "No verb inside the appositive.", "o": ["is the main meal of the day", "the main meal of the day", "it is the main meal of the day", "the main meal is of the day"], "a": 1},
+    {"s": ["The Pacific, ", ", covers about a third of the Earth’s surface."], "w": "Noun phrase only between the commas.", "o": ["the largest ocean", "is the largest ocean", "it is the largest ocean", "which the largest ocean"], "a": 0},
+    {"s": ["Ana, ", ", always gets the best grades."], "w": "The appositive renames Ana; the verb is <i>gets</i>.", "o": ["is the youngest student in the class", "she is the youngest student in the class", "the youngest student in the class", "who the youngest student in the class"], "a": 2},
+    {"s": ["My favorite sport, ", ", is popular all over Brazil."], "w": "A one-word appositive: <i>my favorite sport, volleyball, …</i>", "o": ["volleyball", "is volleyball", "it is volleyball", "volleyball is"], "a": 0},
+    {"s": ["", ", the old station is now a cultural center."], "w": "Opening appositive with no verb, then <i>the old station</i>.", "o": ["It was a busy place a hundred years ago", "Was a busy place a hundred years ago", "A busy place was a hundred years ago", "A busy place a hundred years ago"], "a": 3},
+    {"s": ["Penicillin, ", ", was discovered in 1928."], "w": "Noun phrase only between the commas.", "o": ["it was the first widely used antibiotic", "was the first widely used antibiotic", "the first widely used antibiotic", "which the first widely used antibiotic"], "a": 2},
+    {"s": ["The book I am reading, ", ", is about a family in the Amazon."], "w": "The gap renames <i>the book</i>; no verb.", "o": ["it is a novel by a young Brazilian writer", "a novel by a young Brazilian writer", "is a novel by a young Brazilian writer", "that a novel by a young Brazilian writer"], "a": 1},
+    {"s": ["My two brothers, ", ", both play the guitar."], "w": "Names as an appositive: <i>my two brothers, Pedro and Lucas, …</i>", "o": ["are Pedro and Lucas", "they are Pedro and Lucas", "Pedro and Lucas", "Pedro and Lucas are"], "a": 2},
+    {"s": ["Ice, ", ", floats on water."], "w": "No verb inside the appositive.", "o": ["the solid form of water", "is the solid form of water", "it is the solid form of water", "which the solid form of water"], "a": 0},
+    {"s": ["Our hotel, ", ", was only five minutes from the beach."], "w": "Noun phrase only; the verb is <i>was</i>.", "o": ["was a small old house", "it was a small old house", "a small old house was", "a small old house"], "a": 3},
+    {"s": ["", ", Machado de Assis wrote many famous novels."], "w": "Opening appositive, then the name it renames.", "o": ["He was a Brazilian writer of the nineteenth century", "A Brazilian writer of the nineteenth century", "Was a Brazilian writer of the nineteenth century", "A Brazilian writer who of the nineteenth century"], "a": 1},
+    {"s": ["The Nile, ", ", flows into the Mediterranean Sea."], "w": "Noun phrase only between the commas.", "o": ["one of the longest rivers in the world", "is one of the longest rivers in the world", "it is one of the longest rivers in the world", "which one of the longest rivers in the world"], "a": 0},
+    {"s": ["The meeting will be on Friday, ", "."], "w": "An appositive can end the sentence: <i>Friday, the last day of the month</i>.", "o": ["is the last day of the month", "it is the last day of the month", "the last day of the month", "which the last day of the month"], "a": 2},
+    {"s": ["I gave the book to Carla, ", "."], "w": "End appositive renaming <i>Carla</i>; no verb.", "o": ["she is my oldest friend", "is my oldest friend", "who my oldest friend", "my oldest friend"], "a": 3},
+    {"s": ["", ", the tomato is actually a fruit."], "w": "Opening appositive, then <i>the tomato</i>.", "o": ["A common salad ingredient", "It is a common salad ingredient", "Is a common salad ingredient", "Because a common salad ingredient"], "a": 0},
+    {"s": ["Our new car, ", ", uses very little gas."], "w": "Noun phrase only between the commas.", "o": ["is a small hybrid", "a small hybrid", "it is a small hybrid", "which a small hybrid"], "a": 1},
+    {"s": ["The festival takes place in June, ", "."], "w": "End appositive renaming <i>June</i>.", "o": ["is one of the coldest months of the year here", "it is one of the coldest months of the year here", "which one of the coldest months of the year here", "one of the coldest months of the year here"], "a": 3}
   ],
 
   we:[
-    {"p": [["We ", 0], ["went", 1], [" ", 0], ["out", 1], [" ", 0], ["because", 1], [" ", 0], ["the", 1], [" rain", 0]], "a": 2, "f": "despite", "w": "We went out even with the rain, and only a noun follows: <i>despite</i>."},
-    {"p": [["", 0], ["Unfortunate", 1], [", the game ", 0], ["was", 1], [" canceled ", 0], ["because of", 1], [" ", 0], ["the", 1], [" rain", 0]], "a": 0, "f": "Unfortunately", "w": "<i>Because of</i> is right. An adverb comments on the sentence: <i>unfortunately</i>.", "x": 1},
-    {"p": [["I’ll ", 0], ["call", 1], [" you ", 0], ["as soon as", 1], [" I ", 0], ["get", 1], [" ", 0], ["to", 1], [" home", 0]], "a": 3, "f": "", "w": "<i>As soon as I get</i> is right. <i>Home</i> takes no <i>to</i>: delete it.", "x": 1},
-    {"p": [["", 0], ["Although", 1], [" it was raining, we ", 0], ["go", 1], [" ", 0], ["for", 1], [" ", 0], ["a", 1], [" walk yesterday", 0]], "a": 1, "f": "went", "w": "<i>Although</i> is right. <i>Yesterday</i> needs the past: <i>went</i>.", "x": 1},
-    {"p": [["You ", 0], ["won’t", 1], [" ", 0], ["pass", 1], [" ", 0], ["the", 1], [" exam ", 0], ["if", 1], [" you study", 0]], "a": 3, "f": "unless", "w": "The meaning is <i>if you don’t study</i>: <i>unless</i>."},
-    {"p": [["She ", 0], ["couldn’t", 1], [" ", 0], ["sleep", 1], [" ", 0], ["because of", 1], [" the ", 0], ["neighbors", 1], [" were noisy", 0]], "a": 2, "f": "because", "w": "A clause follows: <i>because the neighbors were noisy</i>."},
-    {"p": [["You ", 0], ["can", 1], [" ", 0], ["borrow", 1], [" my car ", 0], ["unless", 1], [" you ", 0], ["drive", 1], [" carefully", 0]], "a": 2, "f": "if", "w": "The condition is positive: <i>if you drive carefully</i>."},
-    {"p": [["While I ", 0], ["was", 1], [" ", 0], ["cook", 1], [" dinner, ", 0], ["the", 1], [" phone ", 0], ["rang", 1]], "a": 1, "f": "cooking", "w": "<i>While</i> is right. The continuous form: <i>was cooking</i>.", "x": 1},
-    {"p": [["We ", 0], ["stayed", 1], [" ", 0], ["inside", 1], [" ", 0], ["while", 1], [" ", 0], ["the", 1], [" storm", 0]], "a": 2, "f": "during", "w": "Only a noun follows: <i>during the storm</i>."},
-    {"p": [["", 0], ["Unless", 1], [" you hurry, you will ", 0], ["missing", 1], [" ", 0], ["the", 1], [" ", 0], ["bus", 1]], "a": 1, "f": "miss", "w": "<i>Unless</i> is right. After <i>will</i>, the base form: <i>miss</i>.", "x": 1},
-    {"p": [["", 0], ["A", 1], [" ", 0], ["hour", 1], [" ", 0], ["after", 1], [" we ", 0], ["left", 1], [", it started to rain", 0]], "a": 0, "f": "An", "w": "<i>After</i> + clause is right. <i>Hour</i> starts with a vowel sound: <i>an hour</i>.", "x": 1},
-    {"p": [["Wash ", 0], ["your", 1], [" hands ", 0], ["before", 1], [" you ", 0], ["eats", 1], [" ", 0], ["lunch", 1]], "a": 2, "f": "eat", "w": "<i>Before</i> is right. <i>You</i> takes <i>eat</i>.", "x": 1},
-    {"p": [["As soon as ", 0], ["she", 1], [" ", 0], ["will arrive", 1], [", ", 0], ["we", 1], [" ", 0], ["can", 1], [" start", 0]], "a": 1, "f": "arrives", "w": "After <i>as soon as</i>, present for the future."},
-    {"p": [["", 0], ["Despite", 1], [" the ", 0], ["bad", 1], [" weather, the ", 0], ["flights", 1], [" ", 0], ["was", 1], [" on time", 0]], "a": 3, "f": "were", "w": "<i>Despite</i> + noun is right. <i>Flights</i> is plural → <i>were</i>.", "x": 1},
-    {"p": [["She ", 0], ["couldn’t", 1], [" sleep ", 0], ["because", 1], [" the ", 0], ["neighbors", 1], [" were very ", 0], ["loudly", 1]], "a": 3, "f": "loud", "w": "<i>Because</i> + clause is right. After <i>were</i>, the adjective: <i>loud</i>.", "x": 1},
-    {"p": [["", 0], ["Although", 1], [" ", 0], ["I", 1], [" ", 0], ["was", 1], [" tired, I ", 0], ["went", 1], [" to bed early", 0]], "a": 0, "f": "Because", "w": "Tired → bed early is cause, not contrast."},
-    {"p": [["He ", 0], ["went", 1], [" home ", 0], ["because of", 1], [" ", 0], ["it", 1], [" ", 0], ["was", 1], [" late", 0]], "a": 1, "f": "because", "w": "A clause follows: <i>because it was late</i>."},
-    {"p": [["The ", 0], ["game", 1], [" ", 0], ["was", 1], [" canceled ", 0], ["because", 1], [" ", 0], ["the", 1], [" snow", 0]], "a": 2, "f": "because of", "w": "Only a noun follows: <i>because of the snow</i>."},
-    {"p": [["If it ", 0], ["rains", 1], [" tomorrow, we will ", 0], ["stay", 1], [" ", 0], ["in", 1], [" ", 0], ["home", 1]], "a": 2, "f": "at", "w": "<i>If it rains</i> is right. The phrase is <i>stay at home</i>.", "x": 1},
-    {"p": [["We ", 0], ["arrived", 1], [" late ", 0], ["despite", 1], [" ", 0], ["the", 1], [" ", 0], ["heavy", 1], [" traffic", 0]], "a": 1, "f": "because of", "w": "The traffic caused the delay: <i>because of</i>."},
-    {"p": [["He passed the exam ", 0], ["although", 1], [" he ", 0], ["didn’t", 1], [" ", 0], ["studied", 1], [" ", 0], ["much", 1]], "a": 2, "f": "study", "w": "<i>Although</i> is right. After <i>didn’t</i>, the base form: <i>study</i>.", "x": 1},
-    {"p": [["Please ", 0], ["turn", 1], [" ", 0], ["off", 1], [" ", 0], ["the", 1], [" lights ", 0], ["during", 1], [" you leave", 0]], "a": 3, "f": "when", "w": "A clause follows: <i>when you leave</i>."},
-    {"p": [["", 0], ["If", 1], [" ", 0], ["you", 1], [" hurry, you ", 0], ["will", 1], [" miss ", 0], ["the", 1], [" train", 0]], "a": 0, "f": "Unless", "w": "The meaning is <i>if you don’t hurry</i>: <i>unless</i>."},
-    {"p": [["If ", 0], ["it", 1], [" ", 0], ["will rain", 1], [" ", 0], ["tomorrow", 1], [", we ", 0], ["will", 1], [" stay home", 0]], "a": 1, "f": "rains", "w": "After <i>if</i>, present for the future."},
-    {"p": [["", 0], ["When", 1], [" I was ", 0], ["a", 1], [" child, I ", 0], ["lived", 1], [" ", 0], ["near of", 1], [" the sea", 0]], "a": 3, "f": "near", "w": "<i>When</i> is right. The preposition is <i>near</i>, without <i>of</i>.", "x": 1},
-    {"p": [["", 0], ["Much", 1], [" people ", 0], ["stayed", 1], [" home ", 0], ["because of", 1], [" ", 0], ["the", 1], [" rain", 0]], "a": 0, "f": "Many", "w": "<i>Because of</i> + noun is right. <i>People</i> is countable → <i>many</i>.", "x": 1},
-    {"p": [["I have ", 0], ["known", 1], [" her ", 0], ["since", 1], [" we ", 0], ["was", 1], [" ", 0], ["children", 1]], "a": 2, "f": "were", "w": "<i>Since</i> + clause is right. <i>We</i> takes <i>were</i>.", "x": 1},
-    {"p": [["", 0], ["Because of", 1], [" ", 0], ["she", 1], [" ", 0], ["was", 1], [" sick, she ", 0], ["stayed", 1], [" home", 0]], "a": 0, "f": "Because", "w": "A clause follows: <i>because she was sick</i>."},
-    {"p": [["I ", 0], ["read", 1], [" ", 0], ["during", 1], [" I ", 0], ["was", 1], [" on the ", 0], ["bus", 1]], "a": 1, "f": "while", "w": "A clause follows: <i>while</i>."},
-    {"p": [["We ", 0], ["stayed", 1], [" inside ", 0], ["during", 1], [" the storm ", 0], ["and", 1], [" ", 0], ["watch", 1], [" TV", 0]], "a": 3, "f": "watched", "w": "<i>During</i> + noun is right. The verbs must match in tense: <i>watched</i>.", "x": 1}
+    {"p": [["We have a meeting ", 0], ["in", 1], [" Friday, ", 0], ["the last day of the month", 1], [", ", 0], ["at", 1], [" ", 0], ["ten", 1]], "a": 0, "f": "on", "w": "The appositive is right. Days take <i>on</i>.", "x": 1},
+    {"p": [["", 0], ["It", 1], [" ", 0], ["the", 1], [" ", 0], ["largest", 1], [" city in Brazil, São Paulo ", 0], ["has", 1], [" about twelve million people", 0]], "a": 0, "f": "", "w": "No pronoun in an appositive. Delete <i>it</i>."},
+    {"p": [["We ", 0], ["visited", 1], [" ", 0], ["Ouro Preto", 1], [", ", 0], ["an", 1], [" old mining town that ", 0], ["famous", 1], [" for its churches", 0]], "a": 3, "f": "is famous", "w": "<i>That</i> starts a clause, which needs a verb: <i>that is famous</i>."},
+    {"p": [["The ", 0], ["Amazon", 1], [", ", 0], ["which", 1], [" ", 0], ["the", 1], [" largest rainforest in the world, ", 0], ["covers", 1], [" parts of nine countries", 0]], "a": 1, "f": "which is", "w": "Keep the whole clause (<i>which is</i>) or drop <i>which</i> too. Half a clause is wrong."},
+    {"p": [["Rome, ", 0], ["is", 1], [" ", 0], ["the", 1], [" capital of Italy, ", 0], ["has", 1], [" ", 0], ["many", 1], [" ancient buildings", 0]], "a": 0, "f": "", "w": "An appositive has no verb. Delete <i>is</i>."},
+    {"p": [["We ", 0], ["stayed", 1], [" ", 0], ["with", 1], [" ", 0], ["Marta", 1], [", ", 0], ["she is", 1], [" my mother’s cousin", 0]], "a": 3, "f": "", "w": "Delete <i>she is</i>: <i>Marta, my mother’s cousin</i>."},
+    {"p": [["The giraffe, ", 0], ["the tallest animal on land", 1], [", ", 0], ["can", 1], [" ", 0], ["grow", 1], [" to more than five ", 0], ["meter", 1]], "a": 3, "f": "meters", "w": "The appositive is right. After <i>five</i>, plural: <i>meters</i>.", "x": 1},
+    {"p": [["Our ", 0], ["neighbors", 1], [", ", 0], ["they", 1], [" ", 0], ["a", 1], [" young couple from Chile, ", 0], ["have", 1], [" two dogs", 0]], "a": 1, "f": "", "w": "No pronoun inside the appositive. Delete <i>they</i>."},
+    {"p": [["My ", 0], ["cousin", 1], [", ", 0], ["an", 1], [" ", 0], ["famous", 1], [" singer, ", 0], ["lives", 1], [" in Rio", 0]], "a": 1, "f": "a", "w": "The appositive structure is right. <i>Famous</i> starts with a consonant sound: <i>a famous singer</i>.", "x": 1},
+    {"p": [["The ", 0], ["students", 1], [", ", 0], ["a", 1], [" group of twenty teenagers, ", 0], ["was", 1], [" ", 0], ["very", 1], [" excited", 0]], "a": 2, "f": "were", "w": "The subject is <i>the students</i> → <i>were</i>."},
+    {"p": [["", 0], ["Much", 1], [" tourists visit Ouro Preto, ", 0], ["an", 1], [" ", 0], ["old", 1], [" mining town ", 0], ["famous", 1], [" for its churches", 0]], "a": 0, "f": "Many", "w": "The appositive is right. <i>Tourists</i> is countable → <i>many</i>.", "x": 1},
+    {"p": [["Dr. Reis, ", 0], ["our family doctor", 1], [", ", 0], ["retire", 1], [" ", 0], ["next", 1], [" ", 0], ["year", 1]], "a": 1, "f": "will retire", "w": "The appositive is right. A future event needs a full verb: <i>will retire</i>.", "x": 1},
+    {"p": [["Spanish, ", 0], ["a language with millions of speakers", 1], [", ", 0], ["is", 1], [" ", 0], ["speaking", 1], [" in ", 0], ["many", 1], [" countries", 0]], "a": 2, "f": "spoken", "w": "The appositive is right. Passive: <i>is spoken</i>.", "x": 1},
+    {"p": [["The ", 0], ["meeting", 1], [" ", 0], ["will be", 1], [" ", 0], ["on", 1], [" Friday, ", 0], ["it is", 1], [" the last day of the month", 0]], "a": 3, "f": "", "w": "Delete <i>it is</i>: <i>Friday, the last day of the month</i>."},
+    {"p": [["Our hotel, ", 0], ["a small old house", 1], [", was only five ", 0], ["minutes", 1], [" ", 0], ["of", 1], [" ", 0], ["the", 1], [" beach", 0]], "a": 2, "f": "from", "w": "The appositive is right. Distance is measured <i>from</i> a place.", "x": 1},
+    {"p": [["", 0], ["A", 1], [" ", 0], ["old", 1], [" colonial town, Olinda ", 0], ["is", 1], [" famous ", 0], ["for", 1], [" its carnival", 0]], "a": 0, "f": "An", "w": "The appositive structure is right. Before a vowel sound: <i>an old</i>.", "x": 1},
+    {"p": [["I ", 0], ["gave", 1], [" ", 0], ["the", 1], [" book ", 0], ["to", 1], [" Carla, ", 0], ["she is", 1], [" my oldest friend", 0]], "a": 3, "f": "", "w": "An appositive has no subject or verb. Delete <i>she is</i>."},
+    {"p": [["Brasília, ", 0], ["the capital of Brazil", 1], [", ", 0], ["was", 1], [" ", 0], ["build", 1], [" ", 0], ["in", 1], [" the 1950s", 0]], "a": 2, "f": "built", "w": "The appositive is right. After <i>was</i>, the past participle: <i>built</i>.", "x": 1},
+    {"p": [["The ", 0], ["festival", 1], [" ", 0], ["takes", 1], [" ", 0], ["place", 1], [" in June, ", 0], ["it is", 1], [" one of the coldest months here", 0]], "a": 3, "f": "", "w": "Delete <i>it is</i>: <i>June, one of the coldest months here</i>."},
+    {"p": [["The ", 0], ["bus", 1], [" driver, ", 0], ["he", 1], [" ", 0], ["a", 1], [" ", 0], ["friendly", 1], [" man, always says good morning", 0]], "a": 1, "f": "", "w": "No pronoun inside the appositive. Delete <i>he</i>."},
+    {"p": [["", 0], ["Is", 1], [" ", 0], ["an", 1], [" ", 0], ["important", 1], [" port, Santos ", 0], ["receives", 1], [" ships from all over the world", 0]], "a": 0, "f": "", "w": "Delete <i>is</i>: <i>An important port, Santos receives …</i>"},
+    {"p": [["Our ", 0], ["hotel", 1], [", ", 0], ["a", 1], [" small ", 0], ["old", 1], [" house, ", 0], ["were", 1], [" only five minutes from the beach", 0]], "a": 3, "f": "was", "w": "The subject is <i>our hotel</i> → <i>was</i>."},
+    {"p": [["", 0], ["Lisbon", 1], [", ", 0], ["it", 1], [" ", 0], ["the", 1], [" capital of Portugal, ", 0], ["is", 1], [" on the coast", 0]], "a": 1, "f": "", "w": "No pronoun inside the appositive. Delete <i>it</i>."},
+    {"p": [["My uncle, ", 0], ["a taxi driver", 1], [", ", 0], ["knows", 1], [" ", 0], ["every streets", 1], [" in ", 0], ["the", 1], [" city", 0]], "a": 2, "f": "every street", "w": "The appositive is right. <i>Every</i> takes a singular noun.", "x": 1},
+    {"p": [["Mercury, ", 0], ["the planet closest to the Sun", 1], [", ", 0], ["is", 1], [" ", 0], ["also", 1], [" ", 0], ["the smaller", 1]], "a": 3, "f": "the smallest", "w": "The appositive is right. Of all the planets → superlative: <i>the smallest</i>.", "x": 1},
+    {"p": [["Dr. ", 0], ["Reis", 1], [", ", 0], ["was", 1], [" ", 0], ["our", 1], [" family doctor for years, ", 0], ["retired", 1], [" last month", 0]], "a": 1, "f": "", "w": "An appositive has no verb. Delete <i>was</i>."},
+    {"p": [["Feijoada, ", 0], ["a dish of black beans and meat", 1], [", is ", 0], ["usual", 1], [" ", 0], ["served", 1], [" ", 0], ["on", 1], [" Saturdays", 0]], "a": 1, "f": "usually", "w": "The appositive is right. Before a verb, use the adverb: <i>usually</i>.", "x": 1},
+    {"p": [["Our teacher, ", 0], ["Ms. Costa", 1], [", ", 0], ["gives", 1], [" us a lot of ", 0], ["homeworks", 1], [" ", 0], ["every", 1], [" week", 0]], "a": 2, "f": "homework", "w": "The appositive is right. <i>Homework</i> is uncountable: no <i>-s</i>.", "x": 1},
+    {"p": [["I gave the book to Carla, ", 0], ["my oldest friend", 1], [", ", 0], ["because", 1], [" she ", 0], ["loves", 1], [" ", 0], ["to reading", 1]], "a": 3, "f": "reading", "w": "The appositive is right. <i>Loves</i> + <i>reading</i> or <i>to read</i>, not <i>to reading</i>.", "x": 1},
+    {"p": [["My ", 0], ["best", 1], [" friend, ", 0], ["a software engineer", 1], [", ", 0], ["lives", 1], [" ", 0], ["at", 1], [" Canada now", 0]], "a": 3, "f": "in", "w": "The appositive is right. Countries take <i>in</i>.", "x": 1}
   ],
 
-  prac:{type:"para", title:"Find every error", instr:"Two paragraphs with sixteen underlined connectors. Some are correct and some are wrong.",
-    paras:[
-      ["Last Saturday started badly. ", {"t": "Because", "f": "Because of", "w": "Only a noun follows (the rain): because of."}, " the rain, I couldn’t go running, so I stayed home ", {"t": "until"}, " lunch. ", {"t": "Although"}, " the weather was terrible, my friend Paula called and invited me to the movies. ", {"t": "During", "f": "While", "w": "A clause follows (I was getting ready): while."}, " I was getting ready, the power went out. I waited ", {"t": "until"}, " it came back, and then I left. ", {"t": "Despite", "f": "Although", "w": "A clause follows (I hurried): although."}, " I hurried, I arrived late, ", {"t": "so"}, " I missed the first ten minutes."],
-      ["Paula and I always have coffee ", {"t": "after"}, " a movie. This time the café was closed ", {"t": "because", "f": "because of", "w": "Only a noun follows (the holiday): because of."}, " the holiday, ", {"t": "so"}, " we walked to another one. We knew that ", {"t": "if", "f": "unless", "w": "The meaning is ‘if we didn’t find a table’: unless."}, " we found a table soon, we would have to go home, ", {"t": "but"}, " we were lucky. We talked for hours ", {"t": "while"}, " it rained outside. ", {"t": "When I will", "f": "When I", "w": "After when, use the present for the future: when I see."}, " see her next week, I will ask about her new job. ", {"t": "Even though"}, " the day started badly, it ended well. I want to go out again ", {"t": "as soon as I will", "f": "as soon as I", "w": "After as soon as, use the present: as soon as I have."}, " have a free weekend."]
+  prac:{type:"match", title:"Match the appositive", colL:"Nouns", colR:"Appositives", instr:"Match each noun (left) with the appositive that renames it (right). Then say the full sentence aloud with commas: <i>Brasília, the capital of Brazil, …</i> <span class=\"print-only\">Write the letter next to each noun.</span>",
+    items:[
+      {"t": "Brasília", "m": "the capital of Brazil", "w": "Brasília is the capital."},
+      {"t": "The Amazon", "m": "the largest rainforest in the world", "w": "A rainforest."},
+      {"t": "Mercury", "m": "the planet closest to the Sun", "w": "A planet."},
+      {"t": "Feijoada", "m": "a dish of black beans and meat", "w": "A dish."},
+      {"t": "The giraffe", "m": "the tallest animal on land", "w": "An animal."},
+      {"t": "Volleyball", "m": "a team sport played over a high net", "w": "A sport."},
+      {"t": "Portuguese", "m": "the official language of Brazil, Portugal and Angola", "w": "A language."},
+      {"t": "The Pacific", "m": "the largest ocean on Earth", "w": "An ocean."},
+      {"t": "Penicillin", "m": "the first widely used antibiotic", "w": "A medicine."},
+      {"t": "Machado de Assis", "m": "a Brazilian writer of the 1800s", "w": "A writer."},
+      {"t": "The tomato", "m": "a fruit that most people call a vegetable", "w": "A fruit."},
+      {"t": "Coffee", "m": "a drink made from roasted beans", "w": "A drink."},
+      {"t": "Florianópolis", "m": "a city on an island in the south of Brazil", "w": "A city on an island."},
+      {"t": "A dentist", "m": "a doctor who takes care of teeth", "w": "A kind of doctor."},
+      {"t": "The heart", "m": "the organ that pumps blood", "w": "An organ."},
+      {"t": "Ice", "m": "water in its solid form", "w": "Frozen water."}
     ]},
 
-  prod:{type:"transform", title:"Rewrite with the connector", instr:"Rewrite each sentence, starting with the words given. Keep the meaning.",
+  prod:{type:"combine", title:"Combine with an appositive", instr:"Join the two sentences into one, using an appositive. Remember the commas.",
     items:[
-      {"t": "It was raining, but we went out.", "cue": "Although", "a": ["Although it was raining, we went out."], "w": "<i>Although</i> + clause replaces <i>but</i>."},
-      {"t": "We stayed home because of the storm.", "cue": "We stayed home because", "a": ["We stayed home because there was a storm.", "We stayed home because it was stormy."], "w": "<i>Because</i> needs a clause: <i>there was a storm</i>."},
-      {"t": "If you don’t hurry, you will be late.", "cue": "Unless", "a": ["Unless you hurry, you will be late.", "Unless you hurry, you’ll be late."], "w": "<i>Unless</i> = <i>if not</i>, so drop the <i>don’t</i>."},
-      {"t": "Although it was cold, we went swimming.", "cue": "Despite", "a": ["Despite the cold, we went swimming.", "Despite the cold weather, we went swimming."], "w": "<i>Despite</i> + noun."},
-      {"t": "I will finish my homework. Then I will watch TV.", "cue": "After", "a": ["After I finish my homework, I will watch TV.", "After I finish my homework, I’ll watch TV.", "After I’ve finished my homework, I’ll watch TV.", "After I have finished my homework, I will watch TV."], "w": "Present after a time word, <i>will</i> in the main clause."},
-      {"t": "Ana was cooking. The phone rang.", "cue": "While", "a": ["While Ana was cooking, the phone rang."], "w": "<i>While</i> + the longer action."},
-      {"t": "She studied hard. She failed the test.", "cue": "Even though", "a": ["Even though she studied hard, she failed the test."], "w": "Contrast + clause."},
-      {"t": "I’ll get home. Then I’ll call you.", "cue": "I’ll call you as soon as", "a": ["I’ll call you as soon as I get home.", "I will call you as soon as I get home."], "w": "Present after <i>as soon as</i>."},
-      {"t": "We waited. Then the rain stopped.", "cue": "We waited until", "a": ["We waited until the rain stopped."], "w": "<i>Until</i> marks the end of the waiting."},
-      {"t": "The flight was late because of the fog.", "cue": "The flight was late because", "a": ["The flight was late because it was foggy.", "The flight was late because there was fog."], "w": "<i>Because</i> + clause: <i>it was foggy</i>."}
+      {"t": ["Mr. Silva is our neighbor.", "Mr. Silva is a pilot."], "a": ["Mr. Silva, our neighbor, is a pilot.", "Our neighbor, Mr. Silva, is a pilot.", "Mr. Silva, a pilot, is our neighbor."], "w": "Turn one sentence into a noun phrase and put it next to the noun."},
+      {"t": ["Recife is a city in the northeast.", "Recife has many bridges."], "a": ["Recife, a city in the northeast, has many bridges.", "A city in the northeast, Recife has many bridges."], "w": "<i>A city in the northeast</i> renames Recife."},
+      {"t": ["My brother is an engineer.", "My brother works in Chile."], "a": ["My brother, an engineer, works in Chile.", "An engineer, my brother works in Chile."], "w": "<i>An engineer</i> renames my brother."},
+      {"t": ["Our dog is a big black Labrador.", "Our dog sleeps all day."], "a": ["Our dog, a big black Labrador, sleeps all day.", "A big black Labrador, our dog sleeps all day."], "w": "The appositive goes between commas."},
+      {"t": ["Olinda is an old colonial town.", "Olinda is famous for its carnival."], "a": ["Olinda, an old colonial town, is famous for its carnival.", "An old colonial town, Olinda is famous for its carnival."], "w": "Keep one verb: <i>is famous</i>."},
+      {"t": ["I met Carla yesterday.", "Carla is my new manager."], "a": ["I met Carla, my new manager, yesterday.", "Yesterday I met Carla, my new manager.", "Yesterday, I met Carla, my new manager.", "I met my new manager, Carla, yesterday."], "w": "The appositive goes right after <i>Carla</i>."},
+      {"t": ["Our hotel was a small old house.", "Our hotel was near the beach."], "a": ["Our hotel, a small old house, was near the beach.", "A small old house, our hotel was near the beach."], "w": "One verb: <i>was near the beach</i>."},
+      {"t": ["Soccer is the most popular sport in Brazil.", "Soccer is played everywhere."], "a": ["Soccer, the most popular sport in Brazil, is played everywhere.", "The most popular sport in Brazil, soccer is played everywhere."], "w": "The appositive renames soccer."},
+      {"t": ["The meeting is on Friday.", "Friday is the last day of the month."], "a": ["The meeting is on Friday, the last day of the month."], "w": "An appositive can end the sentence."},
+      {"t": ["My grandmother was a teacher for forty years.", "My grandmother loves books."], "a": ["A teacher for forty years, my grandmother loves books.", "My grandmother, a teacher for forty years, loves books."], "w": "Drop <i>was</i>; keep the noun phrase."}
     ]},
 
   exit:[
-    {"k": "str", "s": ["", "she was very tired, she finished her work."], "w": "Tired but finished: contrast + clause.", "o": ["Although", "Because", "Despite", "So"], "a": 0},
-    {"k": "we", "p": [["We ", 0], ["left", 1], [" ", 0], ["despite", 1], [" ", 0], ["it", 1], [" ", 0], ["was", 1], [" snowing", 0]], "a": 1, "f": "although", "w": "A clause follows: <i>although it was snowing</i>."},
-    {"k": "str", "s": ["We canceled the picnic ", "the rain."], "w": "Only a noun follows: <i>because of</i>.", "o": ["because of", "because", "although", "unless"], "a": 0},
-    {"k": "we", "p": [["", 0], ["Although", 1], [" she was very ", 0], ["tiredly", 1], [", she ", 0], ["finished", 1], [" ", 0], ["her", 1], [" work", 0]], "a": 1, "f": "tired", "w": "<i>Although</i> is right. After <i>was</i>, the adjective: <i>tired</i>.", "x": 1},
-    {"k": "str", "s": ["Please call me when you ", "at the hotel."], "w": "After <i>when</i>, present for the future.", "o": ["will arrive", "arriving", "arrived", "arrive"], "a": 3},
-    {"k": "we", "p": [["The ", 0], ["game", 1], [" ", 0], ["was", 1], [" canceled ", 0], ["because", 1], [" ", 0], ["the", 1], [" storm", 0]], "a": 2, "f": "because of", "w": "Only a noun follows: <i>because of</i>."},
-    {"k": "str", "s": ["", "you study, you won’t pass the exam."], "w": "Unless = if not.", "o": ["If", "Because", "Unless", "Although"], "a": 2},
-    {"k": "we", "p": [["Please call me ", 0], ["when", 1], [" you ", 0], ["arrive", 1], [" ", 0], ["at", 1], [" ", 0], ["the hotels", 1]], "a": 3, "f": "the hotel", "w": "<i>When you arrive</i> is right. One hotel: <i>the hotel</i>.", "x": 1}
+    {"k": "str", "s": ["", ", the town has a famous carnival."], "w": "Opening appositive with no verb, then <i>the town</i>.", "o": ["Is an old colonial town", "An old colonial town", "It is an old colonial town", "An old colonial town it"], "a": 1},
+    {"k": "we", "p": [["", 0], ["Volleyball", 1], [", ", 0], ["a", 1], [" ", 0], ["popular", 1], [" sport in Brazil, ", 0], ["are", 1], [" played on the beach and indoors", 0]], "a": 3, "f": "is", "w": "The subject is <i>volleyball</i> → <i>is</i>."},
+    {"k": "str", "s": ["My uncle, ", ", fixes cars for a living."], "w": "Noun phrase only between the commas.", "o": ["a mechanic", "is a mechanic", "he is a mechanic", "who a mechanic"], "a": 0},
+    {"k": "we", "p": [["", 0], ["Many", 1], [" information about Rio, ", 0], ["the second largest city in Brazil", 1], [", ", 0], ["is", 1], [" ", 0], ["available", 1], [" online", 0]], "a": 0, "f": "Much", "w": "The appositive is right. <i>Information</i> is uncountable → <i>much</i>.", "x": 1},
+    {"k": "str", "s": ["The Atacama, ", ", is in the north of Chile."], "w": "No verb inside the appositive.", "o": ["is one of the driest places on Earth", "one of the driest places on Earth", "it is one of the driest places on Earth", "which one of the driest places on Earth"], "a": 1},
+    {"k": "we", "p": [["My ", 0], ["grandparents", 1], [", ", 0], ["both", 1], [" retired teachers, ", 0], ["lives", 1], [" ", 0], ["near", 1], [" the beach", 0]], "a": 2, "f": "live", "w": "The subject is <i>my grandparents</i> → <i>live</i>."},
+    {"k": "str", "s": ["We had lunch with Rafael, ", "."], "w": "End appositive renaming <i>Rafael</i>.", "o": ["he is my sister’s husband", "is my sister’s husband", "who my sister’s husband", "my sister’s husband"], "a": 3},
+    {"k": "we", "p": [["Rafael, ", 0], ["my sister’s husband", 1], [", ", 0], ["is", 1], [" ", 0], ["a", 1], [" ", 0], ["engineer", 1]], "a": 2, "f": "an", "w": "The appositive is right. Before a vowel sound: <i>an engineer</i>.", "x": 1}
   ]
 };
 </script>

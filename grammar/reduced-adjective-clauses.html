@@ -13,7 +13,7 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
 <!-- HUBGEN:leaf end -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Missing Subject or Verb · Grammar Practice</title>
+<title>Reduced Adjective Clauses · Grammar Practice</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -308,8 +308,8 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
 
   <a class="back-link" href="./index.html">← Grammar Practice</a>
   <p class="eyebrow" id="eyebrow"></p>
-  <h1>Missing subject <span class="accent">or verb</span></h1>
-  <p class="lede">Every English clause needs a subject and a verb, even where another language would leave one out. This is the most common gap in TOEFL Structure: the sentence is missing its subject, its verb, or the connector that lets it have a second verb.</p>
+  <h1>Reduced adjective <span class="accent">clauses</span></h1>
+  <p class="lede">An adjective clause can lose its relative word and its <i>be</i>: <i>the man who is standing there</i> becomes <i>the man standing there</i>; <i>the letters which were written in 1900</i> becomes <i>the letters written in 1900</i>. Use <i>-ing</i> when the noun does the action and the past participle when the action is done to it.</p>
   <div class="chips"><span class="chip">B1 → B2</span><span class="chip">100 items</span><span class="chip">TOEFL ITP · Structure &amp; Written Expression</span></div>
   <div class="actions">
     <button class="btn btn-view" id="pw">Print worksheet</button>
@@ -330,147 +330,133 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
   <div class="keyblock" id="key"></div>
 </div>
 
-<footer>Part of the <a href="../index.html">TOEFL Error Correction</a> section · <a href="./index.html">Grammar Practice</a> · <a href="../../index.html">Advanced Hub</a> · Phil Young’s English School</footer>
+<footer>Part of the <a href="./index.html">Grammar Practice</a> section · <a href="../index.html">Advanced Hub</a> · Phil Young’s English School</footer>
 
 <!-- GP:data start -->
 <script>
-/* Grammar Practice session data. Shapes are documented in toefl/grammar/README.md.
+/* Grammar Practice session data. Shapes are documented in grammar/README.md.
    Items are numbered 1–100 in block order. a = 0-based answer index. */
 const S={
-  slug:"missing-subject-verb",
-  n:1,
+  slug:"reduced-adjective-clauses",
+  n:6,
   of:30,
-  theme:"Sentence core",
-  title:"Missing Subject or Verb",
+  theme:"Clauses",
+  title:"Reduced Adjective Clauses",
 
   warm:[
-    {"t": "Is very cold in Curitiba in July.", "ok": false, "fix": "<b>It is</b> very cold in Curitiba in July.", "w": "English needs a subject, even an empty one like <i>it</i>."},
-    {"t": "The children playing in the park.", "ok": false, "fix": "The children <b>are playing</b> in the park.", "w": "An <i>-ing</i> form is not a verb on its own; it needs <i>be</i>."},
-    {"t": "My sister works at a hospital.", "ok": true, "w": "Subject <i>my sister</i>, verb <i>works</i>: complete."},
-    {"t": "Because I didn’t have time.", "ok": false, "fix": "I didn’t call you <b>because I didn’t have time</b>.", "w": "A clause that starts with <i>because</i> needs a main clause."},
-    {"t": "There are two banks near my house.", "ok": true, "w": "<i>There</i> fills the subject position; the verb is <i>are</i>."},
-    {"t": "The man he lives upstairs is a doctor.", "ok": false, "fix": "The man <b>who</b> lives upstairs is a doctor.", "w": "Two verbs (<i>lives</i>, <i>is</i>) need a connector, not a second subject."}
+    {"t": "The man standing at the door is my uncle.", "ok": true, "w": "<i>Standing</i> = <i>who is standing</i>."},
+    {"t": "The letters writing in 1900 were found in the attic.", "ok": false, "fix": "The letters <b>written</b> in 1900 were found in the attic.", "w": "Someone wrote the letters: past participle."},
+    {"t": "The students who studying in the library were quiet.", "ok": false, "fix": "The students <b>studying</b> in the library were quiet.", "w": "Drop <i>who</i> and <i>be</i> together, or keep both."},
+    {"t": "Most of the food served at the party was delicious.", "ok": true, "w": "<i>Served</i> = <i>which was served</i>."},
+    {"t": "People live near the river worry about floods.", "ok": false, "fix": "People <b>living</b> near the river worry about floods.", "w": "Two verbs and no connector: reduce to <i>living</i>."},
+    {"t": "The book recommended by my teacher was very useful.", "ok": true, "w": "<i>Recommended</i> = <i>that was recommended</i>."}
   ],
 
   pats:[
-    {"h": "Every clause needs a subject", "rule": "English never leaves out the subject. Use it or there when there is no real one.", "no": "<span class=\"strike\">Is</span> raining again today.", "yes": "<b>It is</b> raining again today. · <b>There is</b> a problem with the printer.", "why": "Weather, time and distance take <i>it</i>: <i>it is late, it is ten kilometers</i>. Things that exist take <i>there</i>: <i>there is a bank, there are two schools</i>."},
-    {"h": "Don’t repeat the subject", "rule": "A subject is said once. Don’t add a pronoun after it.", "no": "My brother <span class=\"strike\">he</span> works in a bank.", "yes": "My brother <b>works</b> in a bank. · <b>He</b> works in a bank.", "why": "If the sentence already has its subject, a pronoun after it is a second subject. On the TOEFL, an answer like <i>it is</i> or <i>they have</i> is wrong when the subject is already there."},
-    {"h": "-ing and to- forms are not main verbs", "rule": "An -ing form needs be. A to- form can be a subject, but the sentence still needs a main verb.", "no": "The students <span class=\"strike\">waiting</span> outside the room.", "yes": "The students <b>are waiting</b> outside the room. · <b>Learning</b> a language <b>takes</b> time.", "why": "<i>Waiting, to wait, waited</i> (after a noun) can describe, but they cannot be the main verb. Look for a verb that shows the tense: <i>is, was, takes, opened</i>."},
-    {"h": "A connector needs a main clause", "rule": "A clause that starts with because, when, although, who, which or that cannot stand alone.", "no": "<span class=\"strike\">Because the bus was late.</span>", "yes": "We missed the class <b>because the bus was late</b>. · The woman <b>who lives next door</b> is a nurse.", "why": "These clauses are pieces of a bigger sentence. Read on: is there a main subject and verb outside the connector’s clause? If not, it is a fragment."},
-    {"h": "Count verbs and connectors", "rule": "Two verbs need one connector; three verbs need two.", "no": "The man <span class=\"strike\">called</span> you is my uncle.", "yes": "The man <b>who called</b> you is my uncle. · I think <b>that</b> she <b>is</b> right.", "why": "Every extra clause needs something to join it: <i>who, which, that, because, and, but</i>. If you count two verbs and no connector, something is missing — or one of the verbs must change."},
-    {"h": "A phrase with a preposition is never the subject", "rule": "Words after in, on, at, of, from are not the subject.", "no": "<span class=\"strike\">In my country has</span> many beautiful beaches.", "yes": "<b>My country has</b> many beautiful beaches. · In my country, <b>there are</b> many beautiful beaches.", "why": "If a sentence starts with a prepositional phrase, the subject comes later. When there is no real subject, use <i>there</i> or <i>it</i>."}
+    {"h": "Drop the relative word and be together", "rule": "who is → (nothing), which was → (nothing). Keep both or drop both.", "no": "The man <span class=\"strike\">who standing</span> at the door is my uncle.", "yes": "The man <b>standing</b> at the door is my uncle. · The man <b>who is standing</b> at the door …", "why": "<i>Who standing</i> is half a clause. Either the full clause (<i>who is standing</i>) or the reduced phrase (<i>standing</i>)."},
+    {"h": "-ing when the noun does the action", "rule": "An active clause reduces to the -ing form, even without be.", "no": "The train <span class=\"strike\">leaves</span> at six is the fastest.", "yes": "The train <b>leaving</b> at six is the fastest. · People <b>living</b> near the river …", "why": "<i>The train that leaves</i> → <i>the train leaving</i>. <i>People who live</i> → <i>people living</i>. The noun is the doer."},
+    {"h": "Past participle when it is done to the noun", "rule": "A passive clause reduces to the past participle.", "no": "The houses <span class=\"strike\">building</span> in 1900 are very old.", "yes": "The houses <b>built</b> in 1900 are very old. · Shoes <b>made</b> in Italy …", "why": "Ask: does the noun do it, or is it done to the noun? Houses don’t build; someone built them → <i>built</i>."},
+    {"h": "Know the irregular participles", "rule": "written, built, taken, chosen, known, spoken, made, sold, found, given, broken.", "no": "a letter <span class=\"strike\">wrote</span> in English", "yes": "a letter <b>written</b> in English · the photos <b>taken</b> on our trip", "why": "The simple past (<i>wrote, took, built</i>) is never right here. If the verb has three forms, use the third."},
+    {"h": "The phrase sits right after its noun", "rule": "Put the reduced phrase directly after the noun it describes.", "no": "<span class=\"strike\">Made in Italy</span>, I bought some shoes.", "yes": "I bought some shoes <b>made in Italy</b>.", "why": "An opening phrase describes the subject that follows it. I wasn’t made in Italy, the shoes were."},
+    {"h": "One main verb only", "rule": "If the sentence already has its main verb, the clause must be reduced or keep its relative word.", "no": "The students <span class=\"strike\">were studying</span> in the library were quiet.", "yes": "The students <b>studying</b> in the library were quiet.", "why": "Count the verbs. <i>Were studying … were</i> is two main verbs with no connector."}
   ],
-  trap:"In Structure, underline every verb and circle every connector before you look at the answers. If the sentence already has its main verb, the gap needs a subject. If it has a subject but no main verb, the answer must contain one. An answer that adds a second verb with no connector is always wrong.",
+  trap:"If the gap comes right after a noun and the sentence already has its main verb, the answer is usually a reduced clause: an <i>-ing</i> form (the noun does it) or a past participle (it is done to the noun). Cross out options that add a second main verb (<i>is, was, are</i>) without <i>who</i> or <i>which</i>.",
 
   str:[
-    {"s": ["", "is the largest city in Brazil."], "w": "The sentence has its verb, <i>is</i>, so it needs a subject. A phrase with <i>in</i> cannot be the subject.", "o": ["In São Paulo", "São Paulo it", "São Paulo", "Because São Paulo"], "a": 2},
-    {"s": ["The first computers ", "very large and very expensive."], "w": "The subject is there; the gap needs the main verb. (B) repeats the subject; (C) makes the whole sentence a fragment.", "o": ["were", "being", "they were", "which were"], "a": 0},
-    {"s": ["", "many good restaurants in this neighborhood."], "w": "No real subject, and the noun is plural: <i>there are</i>.", "o": ["Are", "It has", "There are", "There"], "a": 2},
-    {"s": ["Coffee ", "in Brazil since the eighteenth century."], "w": "The gap needs a full verb with its helping verb: <i>has been grown</i>.", "o": ["growing", "has been grown", "been grown", "that has been grown"], "a": 1},
-    {"s": ["", "every day is good for your health."], "w": "The verb is <i>is</i>; the gap needs a subject. An <i>-ing</i> form can be a subject.", "o": ["Walk", "Walks", "Walking", "You walking"], "a": 2},
-    {"s": ["When ", ", the streets were empty."], "w": "<i>When</i> starts a clause, so it needs a subject and a verb: <i>we arrived</i>.", "o": ["we arrived", "arrived", "arriving we", "our arrival was"], "a": 0},
-    {"s": ["The museum ", "every day except Monday."], "w": "The subject is <i>the museum</i>; the gap needs the main verb. (D) repeats the subject.", "o": ["opening", "to open", "it opens", "opens"], "a": 3},
-    {"s": ["", "a long time to learn a new language well."], "w": "No real subject, so English uses <i>it</i>: <i>it takes a long time</i>.", "o": ["It takes", "Takes", "Taking", "It taking"], "a": 0},
-    {"s": ["The students ", "in the library were very quiet."], "w": "The main verb is <i>were</i>. The gap describes the students: <i>studying in the library</i>. (A) and (D) add a second verb with no connector.", "o": ["are studying", "studying", "who studying", "they study"], "a": 1},
-    {"s": ["Every morning ", "the dog before breakfast."], "w": "After a time phrase, the normal order is subject + verb: <i>my father walks</i>.", "o": ["walks my father", "my father walking", "my father to walk", "my father walks"], "a": 3},
-    {"s": ["The book ", "last year became a bestseller."], "w": "Two verbs (<i>wrote</i>, <i>became</i>) need a connector: <i>that she wrote</i>.", "o": ["she wrote it", "that she wrote", "wrote", "it was written"], "a": 1},
-    {"s": ["", "the bus was late, we missed the first class."], "w": "Two clauses need a connector. <i>Because of</i> is followed by a noun, not a clause.", "o": ["The", "So", "Because of", "Because"], "a": 3},
-    {"s": ["In the summer, ", "very hot and humid."], "w": "Weather takes <i>it</i> as its subject: <i>it is very hot</i>.", "o": ["is", "has", "it has", "it is"], "a": 3},
-    {"s": ["The price of gasoline ", "again last month."], "w": "The subject is there; the gap needs a main verb in the past.", "o": ["going up", "it went up", "went up", "to go up"], "a": 2},
-    {"s": ["", "in the north of the country is very dry."], "w": "The verb is <i>is</i>, so the gap is the subject. (D) would give the sentence two verbs.", "o": ["In the weather", "The weather", "Weather it", "The weather is"], "a": 1},
-    {"s": ["Many people ", "the city on weekends."], "w": "The gap needs the main verb. (D) turns the sentence into a fragment.", "o": ["leaving", "they leave", "who leave", "leave"], "a": 3},
-    {"s": ["", "to the beach is the best part of the summer."], "w": "The verb is <i>is</i>; the subject is an <i>-ing</i> phrase: <i>going to the beach</i>.", "o": ["Going", "Go", "We go", "To going"], "a": 0},
-    {"s": ["The man ", "you saw at the party is my neighbor."], "w": "Two verbs (<i>saw</i>, <i>is</i>) need a connector that refers to the man: <i>whom</i>.", "o": ["he", "whom", "and", "so"], "a": 1},
-    {"s": ["My parents ", "in the same house for thirty years."], "w": "The gap needs the main verb: <i>have lived</i>.", "o": ["living", "have lived", "having lived", "they have lived"], "a": 1},
-    {"s": ["Although ", "hard, he failed the test."], "w": "<i>Although</i> starts a clause: subject + verb, <i>he studied</i>.", "o": ["studied", "studying he", "he studied", "his study"], "a": 2},
-    {"s": ["", "no milk in the refrigerator."], "w": "Something exists (or doesn’t): <i>there is</i>.", "o": ["It is", "Is", "Have", "There is"], "a": 3},
-    {"s": ["The new shopping center ", "more than two hundred stores."], "w": "The gap needs the main verb. (D) leaves the sentence without one.", "o": ["having", "has", "it has", "with"], "a": 1},
-    {"s": ["", "is my favorite day of the week."], "w": "The gap is the subject. <i>On Saturday</i> is a time phrase, not a subject.", "o": ["On Saturday", "Saturday it", "The Saturday that", "Saturday"], "a": 3},
-    {"s": ["When the movie ended, everyone ", "."], "w": "The main clause needs a verb: <i>everyone went home</i>.", "o": ["going home", "to go home", "went home", "who went home"], "a": 2},
-    {"s": ["The letter ", "yesterday was from my bank."], "w": "Two verbs need a connector: <i>the letter that arrived … was</i>.", "o": ["that arrived", "arrived", "it arrived", "was arriving"], "a": 0},
-    {"s": ["", "the teacher explained the rule, the students practiced it."], "w": "Two clauses need a connector. <i>Then</i> and <i>next</i> are not connectors.", "o": ["Then", "After", "The", "Next"], "a": 1},
-    {"s": ["Most of the students in my class ", "English for work."], "w": "The gap needs the main verb: <i>need</i>.", "o": ["needing", "they need", "need", "to need"], "a": 2},
-    {"s": ["", "very important to wear a seat belt."], "w": "The real subject (<i>to wear a seat belt</i>) comes later, so English starts with <i>it is</i>.", "o": ["It is", "Is", "There is", "That"], "a": 0},
-    {"s": ["The children were tired because ", "all day."], "w": "<i>Because</i> starts a clause: subject + full verb.", "o": ["they had played", "had played", "playing", "they playing"], "a": 0},
-    {"s": ["", "a car is expensive in a big city."], "w": "The verb is <i>is</i>; the subject is an <i>-ing</i> phrase: <i>owning a car</i>.", "o": ["Own", "Owns", "Owning", "To owning"], "a": 2}
+    {"s": ["The man ", "at the door is my uncle."], "w": "The man does it: <i>standing</i>. (B) adds a second main verb.", "o": ["stands", "is standing", "who standing", "standing"], "a": 3},
+    {"s": ["The letters ", "in 1900 were found in the attic."], "w": "The letters were written: past participle.", "o": ["written", "writing", "wrote", "were written"], "a": 0},
+    {"s": ["The students ", "in the library were very quiet."], "w": "The students do it: <i>studying</i>.", "o": ["were studying", "studying", "who studying", "study"], "a": 1},
+    {"s": ["Most of the food ", "at the party was delicious."], "w": "The food was served: past participle.", "o": ["served", "serving", "was served", "it served"], "a": 0},
+    {"s": ["People ", "near the river worry about floods."], "w": "People who live → <i>people living</i>.", "o": ["live", "living", "lived", "are living"], "a": 1},
+    {"s": ["The book ", "by my teacher was very useful."], "w": "The book was recommended: past participle.", "o": ["recommending", "recommends", "recommended", "was recommended"], "a": 2},
+    {"s": ["The bridge ", "in 1950 is still in use."], "w": "The bridge was built: past participle.", "o": ["built", "building", "was built", "builds"], "a": 0},
+    {"s": ["Anyone ", "to join the club should fill out a form."], "w": "Anyone who wants → <i>anyone wanting</i>. (D) has the wrong verb form for <i>anyone</i>.", "o": ["wants", "wanted", "wanting", "who want"], "a": 2},
+    {"s": ["The car ", "in front of my house belongs to my neighbor."], "w": "Someone parked the car: past participle.", "o": ["parking", "is parked", "parked", "parks"], "a": 2},
+    {"s": ["The woman ", "to the manager is my sister."], "w": "The woman does it: <i>talking</i>.", "o": ["talked", "talking", "talks", "was talking"], "a": 1},
+    {"s": ["Languages ", "in Switzerland include German and French."], "w": "Languages are spoken: past participle.", "o": ["speaking", "spoken", "speak", "are spoken"], "a": 1},
+    {"s": ["The children ", "in the yard are my nephews."], "w": "The children do it: <i>playing</i>.", "o": ["playing", "played", "play", "are playing"], "a": 0},
+    {"s": ["The photos ", "on our trip are on my computer."], "w": "The photos were taken: past participle.", "o": ["taking", "took", "were taken", "taken"], "a": 3},
+    {"s": ["The bus ", "to the airport leaves at nine."], "w": "The bus does it: <i>going</i>.", "o": ["goes", "going", "gone", "is going"], "a": 1},
+    {"s": ["Shoes ", "in Italy are often expensive."], "w": "Shoes are made: past participle.", "o": ["made", "making", "make", "are made"], "a": 0},
+    {"s": ["The man ", "the red car is my boss."], "w": "The man does it: <i>driving</i>.", "o": ["drives", "driven", "driving", "is driving"], "a": 2},
+    {"s": ["The money ", "last month is in the bank."], "w": "The money was saved: past participle.", "o": ["saving", "saved", "saves", "was saved"], "a": 1},
+    {"s": ["The girl ", "next to Ana is from Peru."], "w": "The girl does it: <i>sitting</i>.", "o": ["sits", "sat", "sitting", "is sitting"], "a": 2},
+    {"s": ["Most of the people ", "to the party came."], "w": "The people were invited: past participle.", "o": ["inviting", "invite", "were invited", "invited"], "a": 3},
+    {"s": ["A woman ", "a big hat walked into the room."], "w": "The woman does it: <i>wearing</i>.", "o": ["wears", "worn", "was wearing", "wearing"], "a": 3},
+    {"s": ["The houses ", "near the beach are very expensive."], "w": "The houses are located: past participle.", "o": ["located", "locating", "locate", "are located"], "a": 0},
+    {"s": ["Students ", "the exam must arrive early."], "w": "The students do it: <i>taking</i>.", "o": ["take", "taken", "taking", "are taking"], "a": 2},
+    {"s": ["The song ", "at the wedding was beautiful."], "w": "The song was sung: past participle.", "o": ["singing", "sung", "sang", "was sung"], "a": 1},
+    {"s": ["Visitors ", "the museum must leave their bags at the door."], "w": "The visitors do it: <i>entering</i>.", "o": ["enter", "entered", "are entering", "entering"], "a": 3},
+    {"s": ["The window ", "by the storm has been repaired."], "w": "The window was broken: past participle.", "o": ["breaking", "broke", "was broken", "broken"], "a": 3},
+    {"s": ["The new rules, ", "last week, are very strict."], "w": "The rules were announced: past participle.", "o": ["announced", "announcing", "announce", "were announced"], "a": 0},
+    {"s": ["Anyone ", "a car must have a license."], "w": "Anyone who drives → <i>anyone driving</i>.", "o": ["drives", "driven", "driving", "who drive"], "a": 2},
+    {"s": ["The cake ", "by my grandmother was delicious."], "w": "The cake was made: past participle.", "o": ["making", "makes", "was made", "made"], "a": 3},
+    {"s": ["The train ", "at six is the fastest."], "w": "The train does it: <i>leaving</i>.", "o": ["leaves", "leaving", "left", "is leaving"], "a": 1},
+    {"s": ["The questions ", "on the test were very difficult."], "w": "The questions were asked: past participle.", "o": ["asked", "asking", "ask", "were asked"], "a": 0}
   ],
 
   we:[
-    {"p": [["", 0], ["A", 1], [" ", 0], ["old", 1], [" man ", 0], ["who", 1], [" ", 0], ["lives", 1], [" next door is a doctor", 0]], "a": 0, "f": "An", "w": "<i>Who lives … is</i> is right. Before a vowel sound, use <i>an</i>: <i>an old man</i>.", "x": 1},
-    {"p": [["The ", 0], ["results", 1], [" ", 0], ["of", 1], [" the test ", 0], ["surprising", 1], [" ", 0], ["everyone", 1]], "a": 2, "f": "surprised", "w": "The sentence needs a main verb: <i>surprised</i>."},
-    {"p": [["Every ", 0], ["days", 1], [" my father ", 0], ["walks", 1], [" ", 0], ["the", 1], [" ", 0], ["dog", 1], [" before breakfast", 0]], "a": 0, "f": "day", "w": "<i>My father walks</i> is right. <i>Every</i> takes a singular noun: <i>every day</i>.", "x": 1},
-    {"p": [["", 0], ["Learn", 1], [" ", 0], ["a new", 1], [" language ", 0], ["takes", 1], [" ", 0], ["time", 1]], "a": 0, "f": "Learning", "w": "The subject of <i>takes</i> must be a noun or an <i>-ing</i> form."},
-    {"p": [["When ", 0], ["I", 1], [" ", 0], ["was", 1], [" a ", 0], ["child", 1], [", ", 0], ["lived", 1], [" in a small town", 0]], "a": 3, "f": "I lived", "w": "The main clause needs its own subject: <i>I lived</i>."},
-    {"p": [["It ", 0], ["is", 1], [" important ", 0], ["to", 1], [" drink ", 0], ["many", 1], [" ", 0], ["water", 1], [" every day", 0]], "a": 2, "f": "much", "w": "Subject and verb are fine (<i>it is</i>). The error: <i>water</i> is uncountable → <i>much</i>.", "x": 1},
-    {"p": [["The book that she ", 0], ["wrote", 1], [" last year ", 0], ["became", 1], [" ", 0], ["a", 1], [" ", 0], ["bestsellers", 1]], "a": 3, "f": "bestseller", "w": "<i>That she wrote … became</i> is right. After <i>a</i>, the noun is singular.", "x": 1},
-    {"p": [["The ", 0], ["museum", 1], [" ", 0], ["opening", 1], [" ", 0], ["at", 1], [" nine ", 0], ["every", 1], [" morning", 0]], "a": 1, "f": "opens", "w": "The sentence needs a main verb: <i>opens</i>."},
-    {"p": [["Because the bus ", 0], ["was", 1], [" ", 0], ["lately", 1], [", we ", 0], ["missed", 1], [" the ", 0], ["first", 1], [" class", 0]], "a": 1, "f": "late", "w": "The clauses are complete. <i>Lately</i> means <i>recently</i>; the adjective is <i>late</i>.", "x": 1},
-    {"p": [["My ", 0], ["friend", 1], [" ", 0], ["told", 1], [" ", 0], ["me", 1], [" ", 0], ["is", 1], [" going to rain", 0]], "a": 3, "f": "it is", "w": "The reported clause needs a subject: <i>it is going to rain</i>."},
-    {"p": [["Our ", 0], ["teacher", 1], [" ", 0], ["gave", 1], [" us ", 0], ["a lot of", 1], [" homework, but ", 0], ["was", 1], [" easy", 0]], "a": 3, "f": "it was", "w": "The clause after <i>but</i> needs a subject: <i>it was easy</i>."},
-    {"p": [["After ", 0], ["we", 1], [" ", 0], ["ate", 1], [" dinner, ", 0], ["watched", 1], [" ", 0], ["a", 1], [" movie", 0]], "a": 2, "f": "we watched", "w": "The main clause needs its own subject: <i>we watched</i>."},
-    {"p": [["In ", 0], ["the", 1], [" ", 0], ["winter", 1], [", ", 0], ["is", 1], [" very cold ", 0], ["in", 1], [" the south", 0]], "a": 2, "f": "it is", "w": "Weather needs <i>it</i> as its subject."},
-    {"p": [["My sister ", 0], ["works", 1], [" at ", 0], ["a", 1], [" hospital and ", 0], ["is", 1], [" ", 0], ["very busily", 1]], "a": 3, "f": "very busy", "w": "The verbs are fine. After <i>is</i>, use an adjective: <i>busy</i>.", "x": 1},
-    {"p": [["Every ", 0], ["year", 1], [", ", 0], ["thousands", 1], [" of tourists ", 0], ["visiting", 1], [" ", 0], ["the", 1], [" old city", 0]], "a": 2, "f": "visit", "w": "The sentence needs a main verb: <i>visit</i>."},
-    {"p": [["There ", 0], ["are", 1], [" ", 0], ["three", 1], [" ", 0], ["bedroom", 1], [" ", 0], ["in", 1], [" our apartment", 0]], "a": 2, "f": "bedrooms", "w": "<i>There are</i> is right. After <i>three</i>, the noun is plural: <i>bedrooms</i>.", "x": 1},
-    {"p": [["There ", 0], ["is", 1], [" ", 0], ["a", 1], [" ", 0], ["milk", 1], [" ", 0], ["in", 1], [" the refrigerator", 0]], "a": 1, "f": "some", "w": "<i>There is</i> is right. <i>Milk</i> is uncountable, so no <i>a</i>: <i>some milk</i>.", "x": 1},
-    {"p": [["When ", 0], ["we", 1], [" ", 0], ["arrived", 1], [", the streets ", 0], ["was", 1], [" ", 0], ["empty", 1]], "a": 2, "f": "were", "w": "Every clause has its subject and verb, but <i>the streets</i> is plural → <i>were</i>.", "x": 1},
-    {"p": [["Walking ", 0], ["every", 1], [" day ", 0], ["is", 1], [" ", 0], ["good", 1], [" ", 0], ["to", 1], [" your health", 0]], "a": 3, "f": "for", "w": "<i>Walking … is</i> is right. The phrase is <i>good for</i> your health.", "x": 1},
-    {"p": [["My parents ", 0], ["have", 1], [" ", 0], ["lived", 1], [" in the same house ", 0], ["for", 1], [" ", 0], ["thirty year", 1]], "a": 3, "f": "thirty years", "w": "The verb is fine. After <i>thirty</i>, use the plural: <i>years</i>.", "x": 1},
-    {"p": [["The ", 0], ["man", 1], [" ", 0], ["who", 1], [" ", 0], ["he", 1], [" ", 0], ["lives", 1], [" upstairs is a doctor", 0]], "a": 2, "f": "", "w": "<i>Who</i> is already the subject of <i>lives</i>; <i>he</i> repeats it. Delete it."},
-    {"p": [["The museum ", 0], ["opens", 1], [" ", 0], ["in", 1], [" Monday ", 0], ["and", 1], [" ", 0], ["closes", 1], [" at six", 0]], "a": 1, "f": "on", "w": "The verbs are fine. Days take <i>on</i>: <i>on Monday</i>.", "x": 1},
-    {"p": [["The ", 0], ["students", 1], [" ", 0], ["waiting", 1], [" ", 0], ["for", 1], [" the bus ", 0], ["since", 1], [" seven o’clock", 0]], "a": 1, "f": "have been waiting", "w": "The sentence has no main verb: <i>have been waiting</i>."},
-    {"p": [["", 0], ["Much", 1], [" students ", 0], ["are", 1], [" ", 0], ["waiting", 1], [" ", 0], ["outside", 1], [" the room", 0]], "a": 0, "f": "Many", "w": "<i>Are waiting</i> is right. <i>Students</i> is countable → <i>many</i>.", "x": 1},
-    {"p": [["My ", 0], ["grandmother", 1], [" ", 0], ["always", 1], [" said that ", 0], ["was", 1], [" ", 0], ["important", 1], [" to read every day", 0]], "a": 2, "f": "it was", "w": "The clause after <i>that</i> needs a subject: <i>it was important</i>."},
-    {"p": [["Most of ", 0], ["the", 1], [" students ", 0], ["on", 1], [" my class ", 0], ["need", 1], [" English ", 0], ["for", 1], [" work", 0]], "a": 1, "f": "in", "w": "<i>Most of the students … need</i> is right. You are <i>in</i> a class.", "x": 1},
-    {"p": [["", 0], ["Drive", 1], [" ", 0], ["in", 1], [" the city center ", 0], ["is", 1], [" ", 0], ["very", 1], [" stressful", 0]], "a": 0, "f": "Driving", "w": "The subject of <i>is</i> must be an <i>-ing</i> form: <i>driving</i>."},
-    {"p": [["Owning ", 0], ["a", 1], [" car ", 0], ["is", 1], [" ", 0], ["expensiver", 1], [" in ", 0], ["a big", 1], [" city", 0]], "a": 2, "f": "more expensive", "w": "<i>Owning a car is</i> is right. Long adjectives take <i>more</i>: <i>more expensive</i>.", "x": 1},
-    {"p": [["I ", 0], ["called", 1], [" ", 0], ["you", 1], [" ", 0], ["because", 1], [" ", 0], ["needed", 1], [" help", 0]], "a": 3, "f": "I needed", "w": "The clause after <i>because</i> needs its own subject: <i>I needed</i>."},
-    {"p": [["", 0], ["Is", 1], [" ", 0], ["important", 1], [" to ", 0], ["drink", 1], [" water ", 0], ["during", 1], [" the day", 0]], "a": 0, "f": "It is", "w": "There is no subject. Use <i>it</i>: <i>it is important to …</i>"}
+    {"p": [["", 0], ["Much", 1], [" people ", 0], ["living", 1], [" near the river ", 0], ["worry", 1], [" ", 0], ["about", 1], [" floods", 0]], "a": 0, "f": "Many", "w": "<i>Living</i> is right. <i>People</i> is countable → <i>many</i>.", "x": 1},
+    {"p": [["Students ", 0], ["taking", 1], [" the exam ", 0], ["must", 1], [" ", 0], ["arriving", 1], [" ", 0], ["early", 1]], "a": 2, "f": "arrive", "w": "<i>Taking</i> is right. After <i>must</i>, the base form: <i>arrive</i>.", "x": 1},
+    {"p": [["People ", 0], ["live", 1], [" ", 0], ["near", 1], [" the river ", 0], ["worry", 1], [" ", 0], ["about", 1], [" floods", 0]], "a": 0, "f": "living", "w": "Two main verbs. Reduce: <i>living</i>."},
+    {"p": [["The man ", 0], ["stands", 1], [" ", 0], ["at", 1], [" ", 0], ["the", 1], [" door ", 0], ["is", 1], [" my uncle", 0]], "a": 0, "f": "standing", "w": "Two main verbs. Reduce: <i>standing</i>."},
+    {"p": [["My ", 0], ["friend", 1], [" ", 0], ["has", 1], [" a dog ", 0], ["calls", 1], [" ", 0], ["Max", 1]], "a": 2, "f": "called", "w": "The dog is called Max: past participle."},
+    {"p": [["The photos ", 0], ["taken", 1], [" on our trip ", 0], ["are", 1], [" ", 0], ["in", 1], [" ", 0], ["my", 1], [" computer", 0]], "a": 2, "f": "on", "w": "<i>Taken</i> is right. Files are <i>on</i> a computer.", "x": 1},
+    {"p": [["The ", 0], ["book", 1], [" ", 0], ["recommending", 1], [" ", 0], ["by", 1], [" my teacher ", 0], ["was", 1], [" very useful", 0]], "a": 1, "f": "recommended", "w": "The book was recommended: past participle."},
+    {"p": [["The children ", 0], ["who playing", 1], [" ", 0], ["in", 1], [" the yard ", 0], ["are", 1], [" ", 0], ["my", 1], [" nephews", 0]], "a": 0, "f": "playing", "w": "Drop <i>who</i> and <i>are</i> together: <i>playing</i>."},
+    {"p": [["The ", 0], ["car", 1], [" ", 0], ["parking", 1], [" ", 0], ["in", 1], [" front of my house ", 0], ["belongs", 1], [" to my neighbor", 0]], "a": 1, "f": "parked", "w": "Someone parked the car: <i>parked</i>."},
+    {"p": [["The children ", 0], ["playing", 1], [" ", 0], ["in", 1], [" the yard ", 0], ["are", 1], [" ", 0], ["my nephew", 1]], "a": 3, "f": "my nephews", "w": "<i>Playing</i> is right. Several children: <i>nephews</i>.", "x": 1},
+    {"p": [["Visitors ", 0], ["entering", 1], [" the museum ", 0], ["must", 1], [" ", 0], ["to leave", 1], [" ", 0], ["their", 1], [" bags at the door", 0]], "a": 2, "f": "leave", "w": "<i>Entering</i> is right. After <i>must</i>, no <i>to</i>: <i>leave</i>.", "x": 1},
+    {"p": [["The man ", 0], ["standing", 1], [" at the door ", 0], ["is", 1], [" ", 0], ["my", 1], [" ", 0], ["uncles", 1]], "a": 3, "f": "uncle", "w": "<i>Standing</i> is right. One man: <i>my uncle</i>.", "x": 1},
+    {"p": [["The ", 0], ["students", 1], [" ", 0], ["studied", 1], [" ", 0], ["in", 1], [" the library ", 0], ["were", 1], [" quiet", 0]], "a": 1, "f": "studying", "w": "The students did the studying: <i>studying</i>."},
+    {"p": [["The ", 0], ["photos", 1], [" ", 0], ["took", 1], [" ", 0], ["on", 1], [" our trip ", 0], ["are", 1], [" on my computer", 0]], "a": 1, "f": "taken", "w": "The past participle of <i>take</i> is <i>taken</i>."},
+    {"p": [["We ", 0], ["visited", 1], [" ", 0], ["a", 1], [" ", 0], ["castle", 1], [" ", 0], ["build", 1], [" in the twelfth century", 0]], "a": 3, "f": "built", "w": "The castle was built: past participle."},
+    {"p": [["The book ", 0], ["recommended", 1], [" ", 0], ["by", 1], [" my teacher ", 0], ["were", 1], [" ", 0], ["very", 1], [" useful", 0]], "a": 2, "f": "was", "w": "<i>Recommended</i> is right. <i>The book</i> is singular → <i>was</i>.", "x": 1},
+    {"p": [["Shoes ", 0], ["made", 1], [" ", 0], ["in", 1], [" Italy ", 0], ["are", 1], [" often ", 0], ["expensives", 1]], "a": 3, "f": "expensive", "w": "<i>Made</i> is right. Adjectives have no plural.", "x": 1},
+    {"p": [["Every ", 0], ["students", 1], [" ", 0], ["taking", 1], [" ", 0], ["the", 1], [" course ", 0], ["must", 1], [" buy a book", 0]], "a": 0, "f": "student", "w": "<i>Taking</i> is right. <i>Every</i> takes a singular noun.", "x": 1},
+    {"p": [["The car ", 0], ["parked", 1], [" in front of my house ", 0], ["belong", 1], [" ", 0], ["to", 1], [" ", 0], ["my", 1], [" neighbor", 0]], "a": 1, "f": "belongs", "w": "<i>Parked</i> is right. <i>The car</i> is singular → <i>belongs</i>.", "x": 1},
+    {"p": [["The ", 0], ["teacher", 1], [" ", 0], ["gave", 1], [" us a test ", 0], ["contained", 1], [" ", 0], ["fifty", 1], [" questions", 0]], "a": 2, "f": "containing", "w": "The test contains them: <i>containing</i>."},
+    {"p": [["I ", 0], ["read", 1], [" ", 0], ["an", 1], [" ", 0], ["article", 1], [" ", 0], ["writing", 1], [" by a famous doctor", 0]], "a": 3, "f": "written", "w": "The article was written: past participle."},
+    {"p": [["The letters ", 0], ["written", 1], [" in 1900 ", 0], ["were", 1], [" ", 0], ["find", 1], [" ", 0], ["in", 1], [" the attic", 0]], "a": 2, "f": "found", "w": "<i>Written</i> is right. Passive: <i>were found</i>.", "x": 1},
+    {"p": [["", 0], ["A", 1], [" ", 0], ["old", 1], [" castle ", 0], ["built", 1], [" ", 0], ["in", 1], [" the twelfth century stands on the hill", 0]], "a": 0, "f": "An", "w": "<i>Built</i> is right. Before a vowel sound: <i>an old castle</i>.", "x": 1},
+    {"p": [["She ", 0], ["has", 1], [" ", 0], ["a", 1], [" ", 0], ["brother", 1], [" ", 0], ["lives", 1], [" in Japan", 0]], "a": 3, "f": "living", "w": "Two verbs and no connector: <i>living</i> (or <i>who lives</i>)."},
+    {"p": [["The bridge ", 0], ["building", 1], [" ", 0], ["in", 1], [" 1950 ", 0], ["is", 1], [" ", 0], ["still", 1], [" in use", 0]], "a": 0, "f": "built", "w": "The bridge was built: past participle."},
+    {"p": [["The woman ", 0], ["talking", 1], [" to the manager ", 0], ["are", 1], [" ", 0], ["my", 1], [" ", 0], ["sister", 1]], "a": 1, "f": "is", "w": "<i>Talking</i> is right. <i>The woman</i> is singular → <i>is</i>.", "x": 1},
+    {"p": [["The cake ", 0], ["made", 1], [" ", 0], ["by", 1], [" my grandmother ", 0], ["was", 1], [" ", 0], ["deliciously", 1]], "a": 3, "f": "delicious", "w": "<i>Made</i> is right. After <i>was</i>, the adjective: <i>delicious</i>.", "x": 1},
+    {"p": [["There ", 0], ["is", 1], [" ", 0], ["a", 1], [" ", 0], ["man", 1], [" ", 0], ["waited", 1], [" for you outside", 0]], "a": 3, "f": "waiting", "w": "The man is waiting: <i>waiting</i>."},
+    {"p": [["The ", 0], ["students", 1], [" ", 0], ["were studying", 1], [" ", 0], ["in", 1], [" the library ", 0], ["were", 1], [" quiet", 0]], "a": 1, "f": "studying", "w": "Two main verbs. Reduce: <i>studying</i>."},
+    {"p": [["Languages ", 0], ["spoken", 1], [" in Switzerland ", 0], ["includes", 1], [" ", 0], ["German", 1], [" ", 0], ["and", 1], [" French", 0]], "a": 1, "f": "include", "w": "<i>Spoken</i> is right. <i>Languages</i> is plural → <i>include</i>.", "x": 1}
   ],
 
-  prac:{type:"sort", title:"Sentence or not?", poolTitle:"Word groups", cols:["Complete sentence", "Not complete"], instr:"Sixteen word groups. Is each one a complete sentence, or is something missing? Then discuss the ones the class disagrees on. <span class=\"screen-only\">Tap a choice on each card; the card moves to its column.</span><span class=\"print-only\">Write <b>C</b> (complete) or <b>N</b> (not complete) after each one.</span>",
-    items:[
-      {"t": "The library closes at nine.", "c": 0, "w": "Subject <i>the library</i> + verb <i>closes</i>."},
-      {"t": "It rained all weekend.", "c": 0, "w": "<i>It</i> is the subject for weather."},
-      {"t": "There is a problem with my phone.", "c": 0, "w": "<i>There is</i> + noun."},
-      {"t": "Walking to work saves money.", "c": 0, "w": "<i>Walking to work</i> is the subject; <i>saves</i> is the verb."},
-      {"t": "The woman who called you is my aunt.", "c": 0, "w": "Main clause: <i>the woman … is my aunt</i>."},
-      {"t": "Because of the rain, the game was canceled.", "c": 0, "w": "Main clause: <i>the game was canceled</i>."},
-      {"t": "When the class ended, we went home.", "c": 0, "w": "Main clause: <i>we went home</i>."},
-      {"t": "To learn a language, you need patience.", "c": 0, "w": "Main clause: <i>you need patience</i>."},
-      {"t": "Because the library was closed.", "c": 1, "w": "Only a <i>because</i> clause; no main clause."},
-      {"t": "The students waiting outside the room.", "c": 1, "w": "No main verb: <i>are waiting</i>."},
-      {"t": "Is very hot today.", "c": 1, "w": "No subject: <i>it is</i>."},
-      {"t": "The man who lives next door.", "c": 1, "w": "Only a subject; the main verb is missing."},
-      {"t": "When we arrived at the airport.", "c": 1, "w": "Only a <i>when</i> clause."},
-      {"t": "In my country many beautiful beaches.", "c": 1, "w": "No subject and no verb: <i>my country has</i>."},
-      {"t": "Studying English every evening after work.", "c": 1, "w": "An <i>-ing</i> phrase with no main verb."},
-      {"t": "Which was the best part of the trip.", "c": 1, "w": "A <i>which</i> clause cannot stand alone."}
+  prac:{type:"para", title:"Find every error", instr:"Two paragraphs with sixteen underlined phrases. Some are correct and some are wrong.",
+    paras:[
+      ["Last month I visited Ouro Preto, an old mining town in Minas Gerais. Our bus, ", {"t": "leave", "f": "leaving", "w": "The bus did the action: -ing."}, " from Belo Horizonte, took two hours. The buildings ", {"t": "construct", "f": "constructed", "w": "Someone built them: past participle."}, " in the eighteenth century are beautiful. The guide ", {"t": "showing"}, " us around was very friendly. She told us about the gold ", {"t": "finding", "f": "found", "w": "The gold was found: past participle."}, " in the hills nearby. People ", {"t": "live", "f": "living", "w": "People who live → people living."}, " in the town are proud of its history. We ate at a restaurant ", {"t": "serving"}, " typical food from the region."],
+      ["The hotel ", {"t": "who located", "f": "located", "w": "Drop who and be together: located."}, " near the main square was small but comfortable. Our room had a window ", {"t": "looking"}, " onto an old street. The breakfast ", {"t": "included"}, " in the price was excellent. Most of the tourists ", {"t": "staying"}, " at the hotel were from Europe. The man ", {"t": "sit", "f": "sitting", "w": "The man was doing it: -ing."}, " at the front desk spoke four languages. I bought some soap ", {"t": "made"}, " by local artists and a book ", {"t": "wrote", "f": "written", "w": "The book was written: past participle."}, " by a local historian. The photos ", {"t": "taking", "f": "taken", "w": "The photos were taken: past participle."}, " during the trip are now on my wall. Anyone ", {"t": "interested"}, " in history should visit the town. The road ", {"t": "leading"}, " to it is very steep."]
     ]},
 
-  prod:{type:"gap", title:"Add the missing word", instr:"Each sentence is missing one word: a subject, a verb or a connector. Write it in the gap.",
+  prod:{type:"transform", title:"Reduce the clause", instr:"Rewrite each sentence without <i>who, which</i> or <i>that</i>. Start with the words given.",
     items:[
-      {"s": ["", "is raining again."], "a": ["It"], "h": "one word", "w": "Weather takes <i>it</i>."},
-      {"s": ["", "are three bedrooms in the apartment."], "a": ["There"], "h": "one word", "w": "Things that exist take <i>there</i>."},
-      {"s": ["The children ", "playing in the yard."], "a": ["are", "were"], "h": "one word", "w": "An <i>-ing</i> form needs <i>be</i>."},
-      {"s": ["", "is a long way from here to the coast."], "a": ["It"], "h": "one word", "w": "Distance takes <i>it</i>."},
-      {"s": ["The woman ", "lives next door is a nurse."], "a": ["who", "that"], "h": "one word", "w": "Two verbs need a connector: <i>who</i>."},
-      {"s": ["", "was a lot of traffic this morning."], "a": ["There"], "h": "one word", "w": "<i>There was</i> + noun."},
-      {"s": ["The museum ", "closed on Mondays."], "a": ["is"], "h": "one word", "w": "The sentence needs a verb: <i>is</i>."},
-      {"s": ["We stayed home because ", "was raining."], "a": ["it"], "h": "one word", "w": "The <i>because</i> clause needs its own subject."},
-      {"s": ["My grandparents ", "in a small town near the coast."], "a": ["live", "lived"], "h": "one word", "w": "The sentence needs a main verb."},
-      {"s": ["", "English every day helps you improve quickly."], "a": ["Speaking", "Practicing", "Reading", "Studying", "Using", "Writing", "Hearing", "Learning"], "h": "one word, -ing", "w": "The subject of <i>helps</i> is an <i>-ing</i> form."}
+      {"t": "The man who is standing at the door is my uncle.", "cue": "The man", "a": ["The man standing at the door is my uncle."], "w": "Drop <i>who is</i>: <i>standing</i>."},
+      {"t": "The letters which were written in 1900 were found in the attic.", "cue": "The letters", "a": ["The letters written in 1900 were found in the attic."], "w": "Drop <i>which were</i>: <i>written</i>."},
+      {"t": "People who live near the river worry about floods.", "cue": "People", "a": ["People living near the river worry about floods."], "w": "Active, no <i>be</i>: <i>living</i>."},
+      {"t": "The book that was recommended by my teacher was useful.", "cue": "The book", "a": ["The book recommended by my teacher was useful."], "w": "Drop <i>that was</i>: <i>recommended</i>."},
+      {"t": "The children who are playing in the yard are my nephews.", "cue": "The children", "a": ["The children playing in the yard are my nephews."], "w": "Drop <i>who are</i>: <i>playing</i>."},
+      {"t": "The bridge that was built in 1950 is still in use.", "cue": "The bridge", "a": ["The bridge built in 1950 is still in use."], "w": "Drop <i>that was</i>: <i>built</i>."},
+      {"t": "Anyone who wants to join the club should fill out a form.", "cue": "Anyone", "a": ["Anyone wanting to join the club should fill out a form."], "w": "Active, no <i>be</i>: <i>wanting</i>."},
+      {"t": "The photos that were taken on our trip are on my computer.", "cue": "The photos", "a": ["The photos taken on our trip are on my computer."], "w": "Drop <i>that were</i>: <i>taken</i>."},
+      {"t": "The woman who is talking to the manager is my sister.", "cue": "The woman", "a": ["The woman talking to the manager is my sister."], "w": "Drop <i>who is</i>: <i>talking</i>."},
+      {"t": "Shoes which are made in Italy are often expensive.", "cue": "Shoes", "a": ["Shoes made in Italy are often expensive."], "w": "Drop <i>which are</i>: <i>made</i>."}
     ]},
 
   exit:[
-    {"k": "str", "s": ["", "several reasons why the plan failed."], "w": "Things that exist take <i>there</i> + verb: <i>there are several reasons</i>.", "o": ["Are", "There are", "There", "It has"], "a": 1},
-    {"k": "we", "p": [["I ", 0], ["like", 1], [" ", 0], ["this", 1], [" ", 0], ["restaurant", 1], [" because ", 0], ["has", 1], [" great desserts", 0]], "a": 3, "f": "it has", "w": "The clause after <i>because</i> needs a subject: <i>it has</i>."},
-    {"k": "str", "s": ["The bakery ", "fresh bread every morning."], "w": "The gap needs the main verb. (C) repeats the subject; (D) makes a fragment.", "o": ["sells", "selling", "it sells", "that sells"], "a": 0},
-    {"k": "we", "p": [["", 0], ["An", 1], [" ", 0], ["university", 1], [" ", 0], ["near", 1], [" my house ", 0], ["opened", 1], [" last year", 0]], "a": 0, "f": "A", "w": "The verb is fine. <i>University</i> starts with a /j/ sound → <i>a university</i>.", "x": 1},
-    {"k": "str", "s": ["", "in a big city can be lonely."], "w": "The verb is <i>can be</i>; the subject is an <i>-ing</i> phrase.", "o": ["Live", "To living", "Living", "Lives"], "a": 2},
-    {"k": "we", "p": [["Some ", 0], ["students", 1], [" ", 0], ["preferring", 1], [" ", 0], ["to", 1], [" study ", 0], ["at", 1], [" night", 0]], "a": 1, "f": "prefer", "w": "The sentence needs a main verb: <i>prefer</i>."},
-    {"k": "str", "s": ["The car ", "last week has already broken down."], "w": "Two verbs need a connector: <i>the car that I bought</i>.", "o": ["I bought it", "bought", "that I bought", "was bought"], "a": 2},
-    {"k": "we", "p": [["The bakery ", 0], ["sells", 1], [" ", 0], ["fresh", 1], [" bread ", 0], ["every", 1], [" ", 0], ["mornings", 1]], "a": 3, "f": "morning", "w": "<i>The bakery sells</i> is right. <i>Every</i> takes a singular noun.", "x": 1}
+    {"k": "str", "s": ["The boy ", "to my sister is her classmate."], "w": "The boy does it: <i>talking</i>.", "o": ["talks", "talked", "talking", "is talking"], "a": 2},
+    {"k": "we", "p": [["The ", 0], ["questions", 1], [" ", 0], ["asking", 1], [" ", 0], ["on", 1], [" the test ", 0], ["were", 1], [" difficult", 0]], "a": 1, "f": "asked", "w": "The questions were asked: past participle."},
+    {"k": "str", "s": ["The cars ", "in Japan are very reliable."], "w": "The cars are made: past participle.", "o": ["making", "made", "make", "are made"], "a": 1},
+    {"k": "we", "p": [["The window ", 0], ["broken", 1], [" by the storm ", 0], ["has", 1], [" ", 0], ["be", 1], [" ", 0], ["repaired", 1]], "a": 2, "f": "been", "w": "<i>Broken</i> is right. Present perfect passive: <i>has been repaired</i>.", "x": 1},
+    {"k": "str", "s": ["Tourists ", "the city in summer should book hotels early."], "w": "The tourists do it: <i>visiting</i>.", "o": ["visit", "visited", "are visiting", "visiting"], "a": 3},
+    {"k": "we", "p": [["I ", 0], ["found", 1], [" ", 0], ["a", 1], [" ", 0], ["wallet", 1], [" ", 0], ["losing", 1], [" by a tourist", 0]], "a": 3, "f": "lost", "w": "The wallet was lost: past participle."},
+    {"k": "str", "s": ["The keys ", "in the car were found by a neighbor."], "w": "The keys were left: past participle.", "o": ["left", "leaving", "leave", "were left"], "a": 0},
+    {"k": "we", "p": [["", 0], ["Much", 1], [" questions ", 0], ["asked", 1], [" ", 0], ["on", 1], [" the test ", 0], ["were", 1], [" difficult", 0]], "a": 0, "f": "Many", "w": "<i>Asked</i> is right. <i>Questions</i> is countable → <i>many</i>.", "x": 1}
   ]
 };
 </script>

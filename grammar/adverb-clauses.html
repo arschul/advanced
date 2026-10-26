@@ -13,7 +13,7 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
 <!-- HUBGEN:leaf end -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Reduced Adverb Clauses · Grammar Practice</title>
+<title>Adverb Clause Connectors · Grammar Practice</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -308,8 +308,8 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
 
   <a class="back-link" href="./index.html">← Grammar Practice</a>
   <p class="eyebrow" id="eyebrow"></p>
-  <h1>Reduced adverb <span class="accent">clauses</span></h1>
-  <p class="lede">When both clauses have the same subject, an adverb clause can lose its subject and its <i>be</i>: <i>While I was walking home, I saw an accident</i> becomes <i>While walking home, I saw an accident.</i> The subject of the main clause must be the one doing (or receiving) the action, or the sentence says something absurd.</p>
+  <h1>Adverb-clause <span class="accent">connectors</span></h1>
+  <p class="lede"><i>Because, although, when, while, if, unless</i> and <i>until</i> join a clause to the main clause and tell you why, when, or under what condition. Choose the connector by meaning, follow it with a subject and a verb, and use the present tense for the future after time words.</p>
   <div class="chips"><span class="chip">B1 → B2</span><span class="chip">100 items</span><span class="chip">TOEFL ITP · Structure &amp; Written Expression</span></div>
   <div class="actions">
     <button class="btn btn-view" id="pw">Print worksheet</button>
@@ -330,147 +330,133 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
   <div class="keyblock" id="key"></div>
 </div>
 
-<footer>Part of the <a href="../index.html">TOEFL Error Correction</a> section · <a href="./index.html">Grammar Practice</a> · <a href="../../index.html">Advanced Hub</a> · Phil Young’s English School</footer>
+<footer>Part of the <a href="./index.html">Grammar Practice</a> section · <a href="../index.html">Advanced Hub</a> · Phil Young’s English School</footer>
 
 <!-- GP:data start -->
 <script>
-/* Grammar Practice session data. Shapes are documented in toefl/grammar/README.md.
+/* Grammar Practice session data. Shapes are documented in grammar/README.md.
    Items are numbered 1–100 in block order. a = 0-based answer index. */
 const S={
-  slug:"reduced-adverb-clauses",
-  n:8,
+  slug:"adverb-clauses",
+  n:4,
   of:30,
-  theme:"Clauses",
-  title:"Reduced Adverb Clauses",
+  theme:"Sentence core",
+  title:"Adverb Clause Connectors",
 
   warm:[
-    {"t": "While walking home, I saw an accident.", "ok": true, "w": "Same subject (I): <i>while walking</i>."},
-    {"t": "After finished the test, the students left.", "ok": false, "fix": "After <b>finishing</b> the test, the students left.", "w": "After a connector, the <i>-ing</i> form."},
-    {"t": "Although tired, she kept working.", "ok": true, "w": "<i>Although (she was) tired</i>."},
-    {"t": "Walking to school, the rain started.", "ok": false, "fix": "Walking to school, <b>I got caught in the rain</b>.", "w": "The rain wasn’t walking. The subject after the comma must be the walker."},
-    {"t": "Before leave, please turn off the lights.", "ok": false, "fix": "Before <b>leaving</b>, please turn off the lights.", "w": "After <i>before</i>, the <i>-ing</i> form."},
-    {"t": "Built in 1920, the house needs a new roof.", "ok": true, "w": "The house was built: past participle."}
+    {"t": "Because the traffic, we arrived late.", "ok": false, "fix": "<b>Because of</b> the traffic, we arrived late.", "w": "<i>Because</i> needs a clause; before a noun, use <i>because of</i>."},
+    {"t": "Although it was cold, we went to the beach.", "ok": true, "w": "Contrast: <i>although</i> + clause."},
+    {"t": "When I will see him, I will give him the message.", "ok": false, "fix": "When I <b>see</b> him, I will give him the message.", "w": "After <i>when</i>, use the present for the future."},
+    {"t": "We waited until the rain stopped.", "ok": true, "w": "Time: <i>until</i> + clause."},
+    {"t": "Unless you don’t study, you won’t pass.", "ok": false, "fix": "<b>Unless you study</b>, you won’t pass.", "w": "<i>Unless</i> already means <i>if not</i>."},
+    {"t": "Despite the noise, the baby slept.", "ok": true, "w": "<i>Despite</i> + noun."}
   ],
 
   pats:[
-    {"h": "Same subject: drop the subject and be", "rule": "Reduce only when both clauses have the same subject.", "no": "While <span class=\"strike\">was walking</span> home, I saw an accident.", "yes": "While <b>walking</b> home, I saw an accident. · While <b>I was walking</b> home, …", "why": "Drop the subject and <i>be</i> together, or keep both. Half (<i>while was walking</i>) is wrong."},
-    {"h": "Connector + -ing", "rule": "After, before, while, when and since keep the connector and take -ing.", "no": "After <span class=\"strike\">finished</span> the test, the students left.", "yes": "After <b>finishing</b> the test, the students left. · Since <b>moving</b> here, …", "why": "<i>After they finished</i> → <i>after finishing</i>. The connector stays; the verb becomes <i>-ing</i>."},
-    {"h": "-ing for active, past participle for passive", "rule": "The subject does it → -ing. It is done to the subject → past participle.", "no": "<span class=\"strike\">Writing</span> in Latin, the book had few readers.", "yes": "<b>Written</b> in Latin, the book had few readers. · <b>Hearing</b> the news, she cried.", "why": "The book didn’t write; someone wrote it → <i>written</i>. She heard the news herself → <i>hearing</i>."},
-    {"h": "The subject must match", "rule": "The noun after the comma is the one that does (or receives) the opening action.", "no": "Walking to school, <span class=\"strike\">the rain started</span>.", "yes": "Walking to school, <b>I</b> got caught in the rain.", "why": "A mismatch is called a dangling modifier. On the TOEFL, test each option: could this subject do the opening action?"},
-    {"h": "Having + past participle", "rule": "Having done shows the earlier of two actions.", "no": "Having <span class=\"strike\">finish</span> the report, she went home.", "yes": "<b>Having finished</b> the report, she went home.", "why": "First she finished, then she went home. <i>Having</i> is always followed by a past participle."},
-    {"h": "Although, if, when + adjective or participle", "rule": "These connectors can be followed by just an adjective or a participle.", "no": "Although <span class=\"strike\">was tired</span>, she kept working.", "yes": "<b>Although tired</b>, she kept working. · <b>If necessary</b>, call me. · <b>When finished</b>, …", "why": "<i>Although she was tired</i> → <i>although tired</i>. Drop the subject and <i>be</i>, keep the rest."}
+    {"h": "Connector + clause, preposition + noun", "rule": "Because, although, while + subject and verb. Because of, despite, during + noun.", "no": "<span class=\"strike\">Because</span> the rain, we stayed home.", "yes": "<b>Because of</b> the rain, we stayed home. · <b>Because it was raining</b>, we stayed home.", "why": "Look at what follows the gap. A subject and a verb → a connector (<i>because, although, while</i>). Only a noun → a preposition (<i>because of, despite, during</i>)."},
+    {"h": "Choose by meaning", "rule": "Cause: because, since. Contrast: although, even though. Time: when, while, before, after, until, as soon as. Condition: if, unless.", "no": "<span class=\"strike\">Although</span> I was tired, I went to bed early.", "yes": "<b>Because</b> I was tired, I went to bed early. · <b>Although</b> I was tired, I stayed up late.", "why": "Read both clauses and ask how they are related. A surprising result → contrast. A normal result → cause."},
+    {"h": "One connector per link", "rule": "Don’t add but or so to a sentence that already has although or because.", "no": "Because it was late, <span class=\"strike\">so</span> we left.", "yes": "<b>Because</b> it was late, we left. · It was late, <b>so</b> we left.", "why": "The connector already joins the two clauses. A second one joins them again."},
+    {"h": "Present for the future after time words", "rule": "After when, as soon as, before, after, until and if, use the present to talk about the future.", "no": "When I <span class=\"strike\">will finish</span>, I will call you.", "yes": "When I <b>finish</b>, I will call you. · If it <b>rains</b> tomorrow, we will stay home.", "why": "The <i>will</i> goes in the main clause only. The time or <i>if</i> clause stays in the present."},
+    {"h": "Unless means if not", "rule": "Unless already contains the negative. Don’t add not.", "no": "Unless you <span class=\"strike\">don’t</span> hurry, you will be late.", "yes": "<b>Unless you hurry</b>, you will be late. · <b>If you don’t hurry</b>, you will be late.", "why": "<i>Unless you hurry</i> = <i>if you don’t hurry</i>. Two negatives cancel each other out."},
+    {"h": "Despite, in spite of and during", "rule": "These are prepositions: they take a noun or an -ing form, never a clause.", "no": "<span class=\"strike\">Despite it was raining</span>, we went out.", "yes": "<b>Despite the rain</b>, we went out. · <b>Although it was raining</b>, we went out. · <b>During</b> the movie, everyone was quiet.", "why": "Note the forms: <i>despite</i> (no <i>of</i>), <i>in spite of</i> (with <i>of</i>). <i>During</i> + noun; <i>while</i> + clause."}
   ],
-  trap:"When a sentence opens with an <i>-ing</i> or <i>-ed</i> phrase and a comma, the noun right after the comma must be the one doing (or receiving) that action. When the options are different main clauses, choose the one whose subject makes sense with the opening phrase.",
+  trap:"When the gap is the connector, check what comes after it. Subject + verb: you need <i>because, although, when, while</i>. A noun only: you need <i>because of, despite, during</i>. Then check the meaning, and cross out any option that would give the sentence two connectors.",
 
   str:[
-    {"s": ["While ", "home, I saw an accident."], "w": "Same subject: drop <i>I was</i> → <i>walking</i>.", "o": ["walked", "walking", "I walking", "was walking"], "a": 1},
-    {"s": ["After ", "the test, the students left the room."], "w": "After + <i>-ing</i>.", "o": ["finished", "they finishing", "finishing", "finish"], "a": 2},
-    {"s": ["", "in 1920, the house needs a new roof."], "w": "The house was built: past participle.", "o": ["Building", "Built", "It was built", "To build"], "a": 1},
-    {"s": ["Walking to school, ", "."], "w": "The subject after the comma must be the one walking: <i>I</i>.", "o": ["I got caught in the rain", "the rain started", "it started to rain", "the rain was heavy"], "a": 0},
-    {"s": ["Although ", ", she kept working."], "w": "<i>Although (she was) tired</i>.", "o": ["she tired", "was tired", "tired", "tiring"], "a": 2},
-    {"s": ["Before ", "the house, please turn off the lights."], "w": "Before + <i>-ing</i>.", "o": ["leave", "left", "you leaving", "leaving"], "a": 3},
-    {"s": ["", "the report, she went home."], "w": "<i>Having</i> + past participle for the earlier action.", "o": ["Having finish", "Had finished", "Having finished", "Finished she"], "a": 2},
-    {"s": ["", "in Latin, the book had very few readers."], "w": "The book was written: past participle.", "o": ["Writing", "Wrote", "It was written", "Written"], "a": 3},
-    {"s": ["When ", "a new language, you should practice every day."], "w": "When + <i>-ing</i>.", "o": ["learning", "learn", "learned", "you learning"], "a": 0},
-    {"s": ["After ", "dinner, we watched a movie."], "w": "After + <i>-ing</i>.", "o": ["had", "have", "having", "to have"], "a": 2},
-    {"s": ["", "the news, she started to cry."], "w": "She heard it herself: <i>-ing</i>.", "o": ["Hearing", "Heard", "She heard", "To hear"], "a": 0},
-    {"s": ["Since ", "to Curitiba, he has made many friends."], "w": "Since + <i>-ing</i>.", "o": ["moving", "moved", "he moving", "move"], "a": 0},
-    {"s": ["", "by the noise, the baby started to cry."], "w": "The baby was frightened: past participle.", "o": ["Frightening", "Frightened", "Frighten", "It frightened"], "a": 1},
-    {"s": ["If ", ", I can help you with your homework."], "w": "<i>If (it is) necessary</i>.", "o": ["it necessary", "necessity", "necessarily", "necessary"], "a": 3},
-    {"s": ["While ", "in the park, I found a wallet."], "w": "While + <i>-ing</i>.", "o": ["jogged", "jogging", "I jogging", "to jog"], "a": 1},
-    {"s": ["Having lived in Japan for ten years, ", "speaks Japanese well."], "w": "The person who lived in Japan is the subject: <i>my uncle</i>.", "o": ["my uncle he", "my uncle", "Japanese", "the language"], "a": 1},
-    {"s": ["", "carefully, the vase arrived without a scratch."], "w": "The vase was packed: past participle.", "o": ["Packed", "Packing", "Pack", "It packed"], "a": 0},
-    {"s": ["Before ", "to bed, I always brush my teeth."], "w": "Before + <i>-ing</i>.", "o": ["go", "going", "went", "I going"], "a": 1},
-    {"s": ["", "too much, I felt sick."], "w": "<i>Having</i> + past participle.", "o": ["Having eat", "Had eaten", "Ate", "Having eaten"], "a": 3},
-    {"s": ["When ", "for directions, she was very helpful."], "w": "She was asked: <i>when asked</i>.", "o": ["asked", "asking", "ask", "to ask"], "a": 0},
-    {"s": ["", "the door, I saw a strange man."], "w": "I opened it: <i>-ing</i>.", "o": ["Opened", "I opened", "Open", "Opening"], "a": 3},
-    {"s": ["Though ", "in a small village, she became a famous scientist."], "w": "<i>Though (she was) born</i>.", "o": ["bearing", "born", "she born", "was born"], "a": 1},
-    {"s": ["After ", "the movie, we went out for pizza."], "w": "After + <i>-ing</i>.", "o": ["seeing", "saw", "seen", "we seeing"], "a": 0},
-    {"s": ["", "in the morning, the flowers smell wonderful."], "w": "The flowers are picked: past participle.", "o": ["Picking", "Picked", "Pick", "They picked"], "a": 1},
-    {"s": ["Looking out of the window, ", "."], "w": "The one looking must be the subject: <i>I</i>.", "o": ["a rainbow appeared", "there was a rainbow", "I saw a rainbow", "the rainbow was beautiful"], "a": 2},
-    {"s": ["Since ", "the company, she has been much happier."], "w": "Since + <i>-ing</i>.", "o": ["left", "she leaving", "leave", "leaving"], "a": 3},
-    {"s": ["When ", ", the soup should be very hot."], "w": "The soup is served: <i>when served</i>.", "o": ["serving", "serve", "served", "it served"], "a": 2},
-    {"s": ["", "about the problem, the manager called a meeting."], "w": "The manager was informed: past participle.", "o": ["Informing", "Inform", "Informed", "He informed"], "a": 2},
-    {"s": ["While ", "dinner, I burned my hand."], "w": "While + <i>-ing</i>.", "o": ["cooking", "cooked", "I cooking", "to cook"], "a": 0},
-    {"s": ["", "for two hours, we were very tired."], "w": "<i>Having</i> + past participle.", "o": ["Having walk", "Walked", "Had walked", "Having walked"], "a": 3}
+    {"s": ["", "it was raining, we went for a walk."], "w": "Raining but we walked: contrast + clause. <i>Despite</i> cannot take a clause.", "o": ["Because", "Despite", "Although", "So"], "a": 2},
+    {"s": ["We stayed inside ", "the storm."], "w": "Only a noun follows: <i>during</i>.", "o": ["while", "when", "although", "during"], "a": 3},
+    {"s": ["", "you hurry, you will miss the bus."], "w": "Unless = if not: <i>if you don’t hurry</i>.", "o": ["If", "Because", "Although", "Unless"], "a": 3},
+    {"s": ["I’ll call you as soon as I ", "home."], "w": "After a time word, present for the future.", "o": ["will get", "getting", "get", "to get"], "a": 2},
+    {"s": ["", "the bad weather, the flight left on time."], "w": "Only a noun follows, and the meaning is contrast: <i>despite</i>.", "o": ["Although", "Because", "Despite", "Even though"], "a": 2},
+    {"s": ["She couldn’t sleep ", "the neighbors were very loud."], "w": "A clause follows, and it gives the cause: <i>because</i>.", "o": ["because of", "because", "although", "unless"], "a": 1},
+    {"s": ["", "I was a child, I lived near the sea."], "w": "A clause follows and the meaning is time: <i>when</i>.", "o": ["During", "When", "Unless", "Despite"], "a": 1},
+    {"s": ["We won’t go to the beach ", "it stops raining."], "w": "A clause follows; time limit: <i>until</i>.", "o": ["during", "despite", "until", "because of"], "a": 2},
+    {"s": ["", "he had a bad cold, he went to work."], "w": "A clause and a contrast: <i>even though</i>.", "o": ["Even though", "Because", "In spite of", "If"], "a": 0},
+    {"s": ["Turn off the lights ", "you leave the room."], "w": "A clause follows: <i>when</i>.", "o": ["during", "when", "because of", "despite"], "a": 1},
+    {"s": ["", "of the heavy traffic, we arrived late."], "w": "Only <i>because</i> combines with <i>of</i> here: <i>because of</i> + noun.", "o": ["Although", "Since", "Despite", "Because"], "a": 3},
+    {"s": ["If it ", "tomorrow, we will stay at home."], "w": "After <i>if</i>, present for the future.", "o": ["rains", "will rain", "raining", "rain"], "a": 0},
+    {"s": ["I have known her ", "we were children."], "w": "From a point in the past + clause: <i>since</i>.", "o": ["since", "for", "during", "until"], "a": 0},
+    {"s": ["", "she studied hard, she failed the test."], "w": "Studied hard but failed: contrast + clause.", "o": ["Because", "Despite", "So", "Although"], "a": 3},
+    {"s": ["Wash your hands ", "you eat."], "w": "A clause follows; order in time: <i>before</i>.", "o": ["during", "despite", "before", "because of"], "a": 2},
+    {"s": ["The game was canceled ", "the rain."], "w": "Only a noun follows: <i>because of</i>.", "o": ["because", "because of", "although", "unless"], "a": 1},
+    {"s": ["", "I finish this report, I’ll help you."], "w": "A clause follows; time: <i>after</i>.", "o": ["After", "During", "Despite", "Because of"], "a": 0},
+    {"s": ["You can borrow my car ", "you drive carefully."], "w": "Condition: <i>as long as</i> = only if.", "o": ["unless", "despite", "during", "as long as"], "a": 3},
+    {"s": ["While I ", "dinner, the phone rang."], "w": "After <i>while</i>, a subject and a full verb: <i>I was cooking</i>.", "o": ["cooking was", "were cooking", "was cooking", "was cook"], "a": 2},
+    {"s": ["", "he is very rich, he lives in a small house."], "w": "Rich but a small house: contrast + clause.", "o": ["Because", "Even though", "Despite", "So that"], "a": 1},
+    {"s": ["We left early ", "we could get good seats."], "w": "Purpose + clause: <i>so that</i>.", "o": ["because of", "despite", "although", "so that"], "a": 3},
+    {"s": ["", "it was late, we decided to take a taxi."], "w": "<i>Since</i> here means <i>because</i>.", "o": ["Since", "Despite", "Although", "Unless"], "a": 0},
+    {"s": ["Don’t open the door ", "you know who it is."], "w": "Don’t open it if you don’t know: <i>unless</i>.", "o": ["if", "because", "during", "unless"], "a": 3},
+    {"s": ["", "the movie, everyone was quiet."], "w": "Only a noun follows: <i>during</i>.", "o": ["While", "During", "When", "Although"], "a": 1},
+    {"s": ["I will wait here ", "you come back."], "w": "A clause follows; time limit: <i>until</i>.", "o": ["during", "by", "until", "despite"], "a": 2},
+    {"s": ["", "I got to the station, the train had left."], "w": "Time + clause: <i>by the time</i>.", "o": ["During", "By the time", "Until", "Despite"], "a": 1},
+    {"s": ["He passed the exam ", "he didn’t study much."], "w": "Passed but didn’t study: contrast + clause.", "o": ["although", "because", "despite", "so"], "a": 0},
+    {"s": ["", "you need help, please call me."], "w": "Condition: <i>if</i>.", "o": ["Unless", "Despite", "If", "During"], "a": 2},
+    {"s": ["In spite of ", ", the team won the game."], "w": "<i>In spite of</i> takes a noun, not a clause.", "o": ["the injury", "they were tired", "it was raining", "was injured"], "a": 0},
+    {"s": ["We’ll start the meeting when everyone ", "."], "w": "After <i>when</i>, present for the future; <i>everyone</i> is singular.", "o": ["arrives", "will arrive", "arriving", "arrive"], "a": 0}
   ],
 
   we:[
-    {"p": [["", 0], ["When", 1], [" ", 0], ["learn", 1], [" ", 0], ["a", 1], [" new language, you ", 0], ["should", 1], [" practice", 0]], "a": 1, "f": "learning", "w": "When + <i>-ing</i>."},
-    {"p": [["", 0], ["After", 1], [" ", 0], ["see", 1], [" ", 0], ["the", 1], [" movie, we ", 0], ["went", 1], [" out for pizza", 0]], "a": 1, "f": "seeing", "w": "After + <i>-ing</i>."},
-    {"p": [["He ", 0], ["has", 1], [" made ", 0], ["many", 1], [" friends ", 0], ["since move", 1], [" ", 0], ["to", 1], [" Curitiba", 0]], "a": 2, "f": "since moving", "w": "Since + <i>-ing</i>."},
-    {"p": [["Before ", 0], ["leave", 1], [" ", 0], ["the", 1], [" house, please ", 0], ["turn", 1], [" ", 0], ["off", 1], [" the lights", 0]], "a": 0, "f": "leaving", "w": "Before + <i>-ing</i>."},
-    {"p": [["You ", 0], ["must", 1], [" show ", 0], ["your", 1], [" ticket ", 0], ["before enter", 1], [" ", 0], ["the", 1], [" theater", 0]], "a": 2, "f": "before entering", "w": "Before + <i>-ing</i>."},
-    {"p": [["Every ", 0], ["days", 1], [", ", 0], ["after finishing", 1], [" work, she ", 0], ["goes", 1], [" ", 0], ["running", 1]], "a": 0, "f": "day", "w": "<i>After finishing</i> is right. <i>Every</i> takes a singular noun.", "x": 1},
-    {"p": [["My ", 0], ["uncle", 1], [" ", 0], ["speaks", 1], [" ", 0], ["Japanese", 1], [" well, ", 0], ["having live", 1], [" there for ten years", 0]], "a": 3, "f": "having lived", "w": "<i>Having</i> + past participle."},
-    {"p": [["", 0], ["Much", 1], [" people, ", 0], ["having heard", 1], [" ", 0], ["the", 1], [" news, ", 0], ["called", 1], [" the station", 0]], "a": 0, "f": "Many", "w": "<i>Having heard</i> is right. <i>People</i> is countable → <i>many</i>.", "x": 1},
-    {"p": [["", 0], ["Since", 1], [" ", 0], ["moved", 1], [" ", 0], ["to", 1], [" Curitiba, he ", 0], ["has", 1], [" made many friends", 0]], "a": 1, "f": "moving", "w": "Since + <i>-ing</i>."},
-    {"p": [["", 0], ["While cooking", 1], [" dinner, I ", 0], ["burn", 1], [" ", 0], ["my", 1], [" ", 0], ["hand", 1]], "a": 1, "f": "burned", "w": "<i>While cooking</i> is right. A past event: <i>burned</i>.", "x": 1},
-    {"p": [["", 0], ["A", 1], [" hour ", 0], ["after", 1], [" ", 0], ["leaving", 1], [" home, I ", 0], ["realized", 1], [" I had forgotten my keys", 0]], "a": 0, "f": "An", "w": "<i>After leaving</i> is right. <i>Hour</i> starts with a vowel sound: <i>an hour</i>.", "x": 1},
-    {"p": [["After ", 0], ["finished", 1], [" ", 0], ["the", 1], [" test, the ", 0], ["students", 1], [" ", 0], ["left", 1]], "a": 0, "f": "finishing", "w": "After + <i>-ing</i>."},
-    {"p": [["We ", 0], ["were", 1], [" ", 0], ["tired", 1], [" ", 0], ["after walk", 1], [" ", 0], ["for", 1], [" two hours", 0]], "a": 2, "f": "after walking", "w": "After + <i>-ing</i>."},
-    {"p": [["", 0], ["Having lived", 1], [" in Japan for ten years, my uncle ", 0], ["speaks", 1], [" ", 0], ["Japanese", 1], [" ", 0], ["very good", 1]], "a": 3, "f": "very well", "w": "<i>Having lived</i> is right. To describe how he speaks, use the adverb: <i>well</i>.", "x": 1},
-    {"p": [["Please ", 0], ["turn", 1], [" ", 0], ["off", 1], [" ", 0], ["the", 1], [" lights ", 0], ["before leave", 1]], "a": 3, "f": "before leaving", "w": "Before + <i>-ing</i>."},
-    {"p": [["", 0], ["While walking", 1], [" home, I ", 0], ["saw", 1], [" ", 0], ["a", 1], [" ", 0], ["accident", 1]], "a": 2, "f": "an", "w": "<i>While walking</i> is right. Before a vowel sound: <i>an accident</i>.", "x": 1},
-    {"p": [["", 0], ["Built", 1], [" in 1920, the house ", 0], ["need", 1], [" ", 0], ["a", 1], [" ", 0], ["new", 1], [" roof", 0]], "a": 1, "f": "needs", "w": "<i>Built</i> is right. <i>The house</i> takes <i>needs</i>.", "x": 1},
-    {"p": [["", 0], ["Frightened", 1], [" by the noise, the ", 0], ["baby", 1], [" ", 0], ["started", 1], [" ", 0], ["cry", 1]], "a": 3, "f": "to cry", "w": "<i>Frightened</i> is right. <i>Started</i> + <i>to cry</i> or <i>crying</i>.", "x": 1},
-    {"p": [["", 0], ["Having finished", 1], [" the report, she ", 0], ["go", 1], [" ", 0], ["home", 1], [" ", 0], ["early", 1]], "a": 1, "f": "went", "w": "<i>Having finished</i> is right. The main verb must be past: <i>went</i>.", "x": 1},
-    {"p": [["I ", 0], ["burned", 1], [" ", 0], ["my", 1], [" ", 0], ["hand", 1], [" ", 0], ["while cook", 1], [" dinner", 0]], "a": 3, "f": "while cooking", "w": "While + <i>-ing</i>."},
-    {"p": [["", 0], ["After finishing", 1], [" the test, the ", 0], ["students", 1], [" ", 0], ["leaved", 1], [" ", 0], ["quickly", 1]], "a": 2, "f": "left", "w": "<i>After finishing</i> is right. The past of <i>leave</i> is <i>left</i>.", "x": 1},
-    {"p": [["While ", 0], ["was walking", 1], [" ", 0], ["home", 1], [", I ", 0], ["saw", 1], [" ", 0], ["an", 1], [" accident", 0]], "a": 0, "f": "walking", "w": "Drop the subject and <i>be</i> together: <i>walking</i>."},
-    {"p": [["", 0], ["When learning", 1], [" a new language, you ", 0], ["should", 1], [" ", 0], ["practicing", 1], [" ", 0], ["every", 1], [" day", 0]], "a": 2, "f": "practice", "w": "<i>When learning</i> is right. After <i>should</i>, the base form.", "x": 1},
-    {"p": [["She ", 0], ["kept", 1], [" ", 0], ["working", 1], [" ", 0], ["although", 1], [" ", 0], ["was tired", 1]], "a": 3, "f": "tired", "w": "Drop the subject and <i>be</i> together: <i>although tired</i>."},
-    {"p": [["", 0], ["Since moving", 1], [" to Curitiba, he ", 0], ["has", 1], [" ", 0], ["make", 1], [" ", 0], ["many", 1], [" friends", 0]], "a": 2, "f": "made", "w": "<i>Since moving</i> is right. Present perfect: <i>has made</i>.", "x": 1},
-    {"p": [["", 0], ["Before going", 1], [" to bed, I ", 0], ["always", 1], [" ", 0], ["brush", 1], [" my ", 0], ["tooths", 1]], "a": 3, "f": "teeth", "w": "<i>Before going</i> is right. The plural of <i>tooth</i> is <i>teeth</i>.", "x": 1},
-    {"p": [["", 0], ["If necessary", 1], [", I can ", 0], ["help", 1], [" you ", 0], ["with", 1], [" your ", 0], ["homeworks", 1]], "a": 3, "f": "homework", "w": "<i>If necessary</i> is right. <i>Homework</i> is uncountable.", "x": 1},
-    {"p": [["", 0], ["Though", 1], [" ", 0], ["bear", 1], [" ", 0], ["in", 1], [" a small village, she ", 0], ["became", 1], [" famous", 0]], "a": 1, "f": "born", "w": "<i>Though (she was) born</i>."},
-    {"p": [["She ", 0], ["went", 1], [" ", 0], ["home", 1], [" ", 0], ["after finish", 1], [" ", 0], ["her", 1], [" work", 0]], "a": 2, "f": "after finishing", "w": "After + <i>-ing</i>."},
-    {"p": [["", 0], ["Written", 1], [" ", 0], ["in", 1], [" Latin, the book ", 0], ["had", 1], [" very ", 0], ["little readers", 1]], "a": 3, "f": "few readers", "w": "<i>Written</i> is right. <i>Readers</i> is countable → <i>few</i>.", "x": 1}
+    {"p": [["We ", 0], ["went", 1], [" ", 0], ["out", 1], [" ", 0], ["because", 1], [" ", 0], ["the", 1], [" rain", 0]], "a": 2, "f": "despite", "w": "We went out even with the rain, and only a noun follows: <i>despite</i>."},
+    {"p": [["", 0], ["Unfortunate", 1], [", the game ", 0], ["was", 1], [" canceled ", 0], ["because of", 1], [" ", 0], ["the", 1], [" rain", 0]], "a": 0, "f": "Unfortunately", "w": "<i>Because of</i> is right. An adverb comments on the sentence: <i>unfortunately</i>.", "x": 1},
+    {"p": [["I’ll ", 0], ["call", 1], [" you ", 0], ["as soon as", 1], [" I ", 0], ["get", 1], [" ", 0], ["to", 1], [" home", 0]], "a": 3, "f": "", "w": "<i>As soon as I get</i> is right. <i>Home</i> takes no <i>to</i>: delete it.", "x": 1},
+    {"p": [["", 0], ["Although", 1], [" it was raining, we ", 0], ["go", 1], [" ", 0], ["for", 1], [" ", 0], ["a", 1], [" walk yesterday", 0]], "a": 1, "f": "went", "w": "<i>Although</i> is right. <i>Yesterday</i> needs the past: <i>went</i>.", "x": 1},
+    {"p": [["You ", 0], ["won’t", 1], [" ", 0], ["pass", 1], [" ", 0], ["the", 1], [" exam ", 0], ["if", 1], [" you study", 0]], "a": 3, "f": "unless", "w": "The meaning is <i>if you don’t study</i>: <i>unless</i>."},
+    {"p": [["She ", 0], ["couldn’t", 1], [" ", 0], ["sleep", 1], [" ", 0], ["because of", 1], [" the ", 0], ["neighbors", 1], [" were noisy", 0]], "a": 2, "f": "because", "w": "A clause follows: <i>because the neighbors were noisy</i>."},
+    {"p": [["You ", 0], ["can", 1], [" ", 0], ["borrow", 1], [" my car ", 0], ["unless", 1], [" you ", 0], ["drive", 1], [" carefully", 0]], "a": 2, "f": "if", "w": "The condition is positive: <i>if you drive carefully</i>."},
+    {"p": [["While I ", 0], ["was", 1], [" ", 0], ["cook", 1], [" dinner, ", 0], ["the", 1], [" phone ", 0], ["rang", 1]], "a": 1, "f": "cooking", "w": "<i>While</i> is right. The continuous form: <i>was cooking</i>.", "x": 1},
+    {"p": [["We ", 0], ["stayed", 1], [" ", 0], ["inside", 1], [" ", 0], ["while", 1], [" ", 0], ["the", 1], [" storm", 0]], "a": 2, "f": "during", "w": "Only a noun follows: <i>during the storm</i>."},
+    {"p": [["", 0], ["Unless", 1], [" you hurry, you will ", 0], ["missing", 1], [" ", 0], ["the", 1], [" ", 0], ["bus", 1]], "a": 1, "f": "miss", "w": "<i>Unless</i> is right. After <i>will</i>, the base form: <i>miss</i>.", "x": 1},
+    {"p": [["", 0], ["A", 1], [" ", 0], ["hour", 1], [" ", 0], ["after", 1], [" we ", 0], ["left", 1], [", it started to rain", 0]], "a": 0, "f": "An", "w": "<i>After</i> + clause is right. <i>Hour</i> starts with a vowel sound: <i>an hour</i>.", "x": 1},
+    {"p": [["Wash ", 0], ["your", 1], [" hands ", 0], ["before", 1], [" you ", 0], ["eats", 1], [" ", 0], ["lunch", 1]], "a": 2, "f": "eat", "w": "<i>Before</i> is right. <i>You</i> takes <i>eat</i>.", "x": 1},
+    {"p": [["As soon as ", 0], ["she", 1], [" ", 0], ["will arrive", 1], [", ", 0], ["we", 1], [" ", 0], ["can", 1], [" start", 0]], "a": 1, "f": "arrives", "w": "After <i>as soon as</i>, present for the future."},
+    {"p": [["", 0], ["Despite", 1], [" the ", 0], ["bad", 1], [" weather, the ", 0], ["flights", 1], [" ", 0], ["was", 1], [" on time", 0]], "a": 3, "f": "were", "w": "<i>Despite</i> + noun is right. <i>Flights</i> is plural → <i>were</i>.", "x": 1},
+    {"p": [["She ", 0], ["couldn’t", 1], [" sleep ", 0], ["because", 1], [" the ", 0], ["neighbors", 1], [" were very ", 0], ["loudly", 1]], "a": 3, "f": "loud", "w": "<i>Because</i> + clause is right. After <i>were</i>, the adjective: <i>loud</i>.", "x": 1},
+    {"p": [["", 0], ["Although", 1], [" ", 0], ["I", 1], [" ", 0], ["was", 1], [" tired, I ", 0], ["went", 1], [" to bed early", 0]], "a": 0, "f": "Because", "w": "Tired → bed early is cause, not contrast."},
+    {"p": [["He ", 0], ["went", 1], [" home ", 0], ["because of", 1], [" ", 0], ["it", 1], [" ", 0], ["was", 1], [" late", 0]], "a": 1, "f": "because", "w": "A clause follows: <i>because it was late</i>."},
+    {"p": [["The ", 0], ["game", 1], [" ", 0], ["was", 1], [" canceled ", 0], ["because", 1], [" ", 0], ["the", 1], [" snow", 0]], "a": 2, "f": "because of", "w": "Only a noun follows: <i>because of the snow</i>."},
+    {"p": [["If it ", 0], ["rains", 1], [" tomorrow, we will ", 0], ["stay", 1], [" ", 0], ["in", 1], [" ", 0], ["home", 1]], "a": 2, "f": "at", "w": "<i>If it rains</i> is right. The phrase is <i>stay at home</i>.", "x": 1},
+    {"p": [["We ", 0], ["arrived", 1], [" late ", 0], ["despite", 1], [" ", 0], ["the", 1], [" ", 0], ["heavy", 1], [" traffic", 0]], "a": 1, "f": "because of", "w": "The traffic caused the delay: <i>because of</i>."},
+    {"p": [["He passed the exam ", 0], ["although", 1], [" he ", 0], ["didn’t", 1], [" ", 0], ["studied", 1], [" ", 0], ["much", 1]], "a": 2, "f": "study", "w": "<i>Although</i> is right. After <i>didn’t</i>, the base form: <i>study</i>.", "x": 1},
+    {"p": [["Please ", 0], ["turn", 1], [" ", 0], ["off", 1], [" ", 0], ["the", 1], [" lights ", 0], ["during", 1], [" you leave", 0]], "a": 3, "f": "when", "w": "A clause follows: <i>when you leave</i>."},
+    {"p": [["", 0], ["If", 1], [" ", 0], ["you", 1], [" hurry, you ", 0], ["will", 1], [" miss ", 0], ["the", 1], [" train", 0]], "a": 0, "f": "Unless", "w": "The meaning is <i>if you don’t hurry</i>: <i>unless</i>."},
+    {"p": [["If ", 0], ["it", 1], [" ", 0], ["will rain", 1], [" ", 0], ["tomorrow", 1], [", we ", 0], ["will", 1], [" stay home", 0]], "a": 1, "f": "rains", "w": "After <i>if</i>, present for the future."},
+    {"p": [["", 0], ["When", 1], [" I was ", 0], ["a", 1], [" child, I ", 0], ["lived", 1], [" ", 0], ["near of", 1], [" the sea", 0]], "a": 3, "f": "near", "w": "<i>When</i> is right. The preposition is <i>near</i>, without <i>of</i>.", "x": 1},
+    {"p": [["", 0], ["Much", 1], [" people ", 0], ["stayed", 1], [" home ", 0], ["because of", 1], [" ", 0], ["the", 1], [" rain", 0]], "a": 0, "f": "Many", "w": "<i>Because of</i> + noun is right. <i>People</i> is countable → <i>many</i>.", "x": 1},
+    {"p": [["I have ", 0], ["known", 1], [" her ", 0], ["since", 1], [" we ", 0], ["was", 1], [" ", 0], ["children", 1]], "a": 2, "f": "were", "w": "<i>Since</i> + clause is right. <i>We</i> takes <i>were</i>.", "x": 1},
+    {"p": [["", 0], ["Because of", 1], [" ", 0], ["she", 1], [" ", 0], ["was", 1], [" sick, she ", 0], ["stayed", 1], [" home", 0]], "a": 0, "f": "Because", "w": "A clause follows: <i>because she was sick</i>."},
+    {"p": [["I ", 0], ["read", 1], [" ", 0], ["during", 1], [" I ", 0], ["was", 1], [" on the ", 0], ["bus", 1]], "a": 1, "f": "while", "w": "A clause follows: <i>while</i>."},
+    {"p": [["We ", 0], ["stayed", 1], [" inside ", 0], ["during", 1], [" the storm ", 0], ["and", 1], [" ", 0], ["watch", 1], [" TV", 0]], "a": 3, "f": "watched", "w": "<i>During</i> + noun is right. The verbs must match in tense: <i>watched</i>.", "x": 1}
   ],
 
-  prac:{type:"sort", title:"-ing or past participle?", poolTitle:"Sentences", cols:["-ing form", "Past participle"], instr:"Sixteen sentences with a verb in brackets. Does the gap need the <i>-ing</i> form or the past participle? Then say the full sentence. <span class=\"screen-only\">Tap a choice on each card; the card moves to its column.</span><span class=\"print-only\">Write the correct form after each sentence.</span>",
-    items:[
-      {"t": "(walk) ___ home, I saw an accident.", "c": 0, "w": "I was walking: <i>walking</i>."},
-      {"t": "(hear) ___ the news, she started to cry.", "c": 0, "w": "She heard it: <i>hearing</i>."},
-      {"t": "(open) ___ the door, I saw a strange man.", "c": 0, "w": "I opened it: <i>opening</i>."},
-      {"t": "While (jog) ___ in the park, I found a wallet.", "c": 0, "w": "I was jogging: <i>jogging</i>."},
-      {"t": "After (finish) ___ the test, the students left.", "c": 0, "w": "After + <i>-ing</i>: <i>finishing</i>."},
-      {"t": "(look) ___ out of the window, I saw a rainbow.", "c": 0, "w": "I was looking: <i>looking</i>."},
-      {"t": "Before (go) ___ to bed, I brush my teeth.", "c": 0, "w": "Before + <i>-ing</i>: <i>going</i>."},
-      {"t": "Since (move) ___ to Curitiba, he has made many friends.", "c": 0, "w": "Since + <i>-ing</i>: <i>moving</i>."},
-      {"t": "(build) ___ in 1920, the house needs a new roof.", "c": 1, "w": "The house was built: <i>built</i>."},
-      {"t": "(write) ___ in Latin, the book had few readers.", "c": 1, "w": "The book was written: <i>written</i>."},
-      {"t": "(frighten) ___ by the noise, the baby started to cry.", "c": 1, "w": "The baby was frightened: <i>frightened</i>."},
-      {"t": "(pack) ___ carefully, the vase arrived safely.", "c": 1, "w": "The vase was packed: <i>packed</i>."},
-      {"t": "When (serve) ___, the soup should be hot.", "c": 1, "w": "The soup is served: <i>served</i>."},
-      {"t": "Though (bear) ___ in a small village, she became famous.", "c": 1, "w": "She was born: <i>born</i>."},
-      {"t": "(pick) ___ in the morning, the flowers smell wonderful.", "c": 1, "w": "The flowers are picked: <i>picked</i>."},
-      {"t": "(inform) ___ about the problem, the manager called a meeting.", "c": 1, "w": "The manager was informed: <i>informed</i>."}
+  prac:{type:"para", title:"Find every error", instr:"Two paragraphs with sixteen underlined connectors. Some are correct and some are wrong.",
+    paras:[
+      ["Last Saturday started badly. ", {"t": "Because", "f": "Because of", "w": "Only a noun follows (the rain): because of."}, " the rain, I couldn’t go running, so I stayed home ", {"t": "until"}, " lunch. ", {"t": "Although"}, " the weather was terrible, my friend Paula called and invited me to the movies. ", {"t": "During", "f": "While", "w": "A clause follows (I was getting ready): while."}, " I was getting ready, the power went out. I waited ", {"t": "until"}, " it came back, and then I left. ", {"t": "Despite", "f": "Although", "w": "A clause follows (I hurried): although."}, " I hurried, I arrived late, ", {"t": "so"}, " I missed the first ten minutes."],
+      ["Paula and I always have coffee ", {"t": "after"}, " a movie. This time the café was closed ", {"t": "because", "f": "because of", "w": "Only a noun follows (the holiday): because of."}, " the holiday, ", {"t": "so"}, " we walked to another one. We knew that ", {"t": "if", "f": "unless", "w": "The meaning is ‘if we didn’t find a table’: unless."}, " we found a table soon, we would have to go home, ", {"t": "but"}, " we were lucky. We talked for hours ", {"t": "while"}, " it rained outside. ", {"t": "When I will", "f": "When I", "w": "After when, use the present for the future: when I see."}, " see her next week, I will ask about her new job. ", {"t": "Even though"}, " the day started badly, it ended well. I want to go out again ", {"t": "as soon as I will", "f": "as soon as I", "w": "After as soon as, use the present: as soon as I have."}, " have a free weekend."]
     ]},
 
-  prod:{type:"combine", title:"Combine with a reduced clause", instr:"Join the two sentences into one, using a reduced clause that starts with the word given.",
+  prod:{type:"transform", title:"Rewrite with the connector", instr:"Rewrite each sentence, starting with the words given. Keep the meaning.",
     items:[
-      {"t": ["I was walking home.", "I saw an accident."], "h": "(While …)", "a": ["While walking home, I saw an accident."], "w": "Same subject: drop <i>I was</i>."},
-      {"t": ["The students finished the test.", "Then they left."], "h": "(After …)", "a": ["After finishing the test, the students left.", "After finishing the test, they left."], "w": "After + <i>-ing</i>."},
-      {"t": ["The house was built in 1920.", "It needs a new roof."], "h": "(Built …)", "a": ["Built in 1920, the house needs a new roof."], "w": "Passive → past participle."},
-      {"t": ["She was tired.", "She kept working."], "h": "(Although …)", "a": ["Although tired, she kept working."], "w": "Drop <i>she was</i>: <i>although tired</i>."},
-      {"t": ["She finished the report.", "Then she went home."], "h": "(Having …)", "a": ["Having finished the report, she went home."], "w": "<i>Having</i> + past participle for the earlier action."},
-      {"t": ["The book was written in Latin.", "It had few readers."], "h": "(Written …)", "a": ["Written in Latin, the book had few readers."], "w": "Passive → past participle."},
-      {"t": ["He moved to Curitiba.", "Since then he has made many friends."], "h": "(Since …)", "a": ["Since moving to Curitiba, he has made many friends."], "w": "Since + <i>-ing</i>."},
-      {"t": ["I was cooking dinner.", "I burned my hand."], "h": "(While …)", "a": ["While cooking dinner, I burned my hand.", "I burned my hand while cooking dinner."], "w": "Same subject: drop <i>I was</i>."},
-      {"t": ["She heard the news.", "She started to cry."], "h": "(Hearing …)", "a": ["Hearing the news, she started to cry.", "Hearing the news, she started crying."], "w": "Active → <i>-ing</i>."},
-      {"t": ["The soup is served.", "It should be very hot."], "h": "(When …)", "a": ["When served, the soup should be very hot."], "w": "Passive → <i>when served</i>."}
+      {"t": "It was raining, but we went out.", "cue": "Although", "a": ["Although it was raining, we went out."], "w": "<i>Although</i> + clause replaces <i>but</i>."},
+      {"t": "We stayed home because of the storm.", "cue": "We stayed home because", "a": ["We stayed home because there was a storm.", "We stayed home because it was stormy."], "w": "<i>Because</i> needs a clause: <i>there was a storm</i>."},
+      {"t": "If you don’t hurry, you will be late.", "cue": "Unless", "a": ["Unless you hurry, you will be late.", "Unless you hurry, you’ll be late."], "w": "<i>Unless</i> = <i>if not</i>, so drop the <i>don’t</i>."},
+      {"t": "Although it was cold, we went swimming.", "cue": "Despite", "a": ["Despite the cold, we went swimming.", "Despite the cold weather, we went swimming."], "w": "<i>Despite</i> + noun."},
+      {"t": "I will finish my homework. Then I will watch TV.", "cue": "After", "a": ["After I finish my homework, I will watch TV.", "After I finish my homework, I’ll watch TV.", "After I’ve finished my homework, I’ll watch TV.", "After I have finished my homework, I will watch TV."], "w": "Present after a time word, <i>will</i> in the main clause."},
+      {"t": "Ana was cooking. The phone rang.", "cue": "While", "a": ["While Ana was cooking, the phone rang."], "w": "<i>While</i> + the longer action."},
+      {"t": "She studied hard. She failed the test.", "cue": "Even though", "a": ["Even though she studied hard, she failed the test."], "w": "Contrast + clause."},
+      {"t": "I’ll get home. Then I’ll call you.", "cue": "I’ll call you as soon as", "a": ["I’ll call you as soon as I get home.", "I will call you as soon as I get home."], "w": "Present after <i>as soon as</i>."},
+      {"t": "We waited. Then the rain stopped.", "cue": "We waited until", "a": ["We waited until the rain stopped."], "w": "<i>Until</i> marks the end of the waiting."},
+      {"t": "The flight was late because of the fog.", "cue": "The flight was late because", "a": ["The flight was late because it was foggy.", "The flight was late because there was fog."], "w": "<i>Because</i> + clause: <i>it was foggy</i>."}
     ]},
 
   exit:[
-    {"k": "str", "s": ["While ", "the dishes, I broke a glass."], "w": "While + <i>-ing</i>.", "o": ["washed", "washing", "I washing", "wash"], "a": 1},
-    {"k": "we", "p": [["I ", 0], ["always", 1], [" ", 0], ["brush", 1], [" ", 0], ["my", 1], [" teeth ", 0], ["before go", 1], [" to bed", 0]], "a": 3, "f": "before going", "w": "Before + <i>-ing</i>."},
-    {"k": "str", "s": ["", "in Brazil, this coffee is sold all over the world."], "w": "The coffee is grown: past participle.", "o": ["Grown", "Growing", "It grows", "Grow"], "a": 0},
-    {"k": "we", "p": [["", 0], ["Opening", 1], [" the door, I ", 0], ["seen", 1], [" ", 0], ["a", 1], [" ", 0], ["strange", 1], [" man", 0]], "a": 1, "f": "saw", "w": "<i>Opening</i> is right. The past of <i>see</i> is <i>saw</i>.", "x": 1},
-    {"k": "str", "s": ["Having lost his keys, ", "."], "w": "The one who lost the keys must be the subject: <i>he</i>.", "o": ["the door wouldn’t open", "his keys were gone", "he couldn’t open the door", "the door was locked"], "a": 2},
-    {"k": "we", "p": [["", 0], ["Wrote", 1], [" ", 0], ["in", 1], [" 1850, the ", 0], ["novel", 1], [" ", 0], ["is", 1], [" still popular", 0]], "a": 0, "f": "Written", "w": "The novel was written: past participle."},
-    {"k": "str", "s": ["Before ", "the exam, read all the instructions."], "w": "Before + <i>-ing</i>.", "o": ["start", "started", "starting", "you starting"], "a": 2},
-    {"k": "we", "p": [["", 0], ["After seeing", 1], [" the movie, we ", 0], ["went", 1], [" ", 0], ["out", 1], [" ", 0], ["to", 1], [" pizza", 0]], "a": 3, "f": "for", "w": "<i>After seeing</i> is right. You go out <i>for</i> pizza.", "x": 1}
+    {"k": "str", "s": ["", "she was very tired, she finished her work."], "w": "Tired but finished: contrast + clause.", "o": ["Although", "Because", "Despite", "So"], "a": 0},
+    {"k": "we", "p": [["We ", 0], ["left", 1], [" ", 0], ["despite", 1], [" ", 0], ["it", 1], [" ", 0], ["was", 1], [" snowing", 0]], "a": 1, "f": "although", "w": "A clause follows: <i>although it was snowing</i>."},
+    {"k": "str", "s": ["We canceled the picnic ", "the rain."], "w": "Only a noun follows: <i>because of</i>.", "o": ["because of", "because", "although", "unless"], "a": 0},
+    {"k": "we", "p": [["", 0], ["Although", 1], [" she was very ", 0], ["tiredly", 1], [", she ", 0], ["finished", 1], [" ", 0], ["her", 1], [" work", 0]], "a": 1, "f": "tired", "w": "<i>Although</i> is right. After <i>was</i>, the adjective: <i>tired</i>.", "x": 1},
+    {"k": "str", "s": ["Please call me when you ", "at the hotel."], "w": "After <i>when</i>, present for the future.", "o": ["will arrive", "arriving", "arrived", "arrive"], "a": 3},
+    {"k": "we", "p": [["The ", 0], ["game", 1], [" ", 0], ["was", 1], [" canceled ", 0], ["because", 1], [" ", 0], ["the", 1], [" storm", 0]], "a": 2, "f": "because of", "w": "Only a noun follows: <i>because of</i>."},
+    {"k": "str", "s": ["", "you study, you won’t pass the exam."], "w": "Unless = if not.", "o": ["If", "Because", "Unless", "Although"], "a": 2},
+    {"k": "we", "p": [["Please call me ", 0], ["when", 1], [" you ", 0], ["arrive", 1], [" ", 0], ["at", 1], [" ", 0], ["the hotels", 1]], "a": 3, "f": "the hotel", "w": "<i>When you arrive</i> is right. One hotel: <i>the hotel</i>.", "x": 1}
   ]
 };
 </script>

@@ -13,7 +13,7 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
 <!-- HUBGEN:leaf end -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Noun Clauses · Grammar Practice</title>
+<title>Reduced Adverb Clauses · Grammar Practice</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -308,8 +308,8 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
 
   <a class="back-link" href="./index.html">← Grammar Practice</a>
   <p class="eyebrow" id="eyebrow"></p>
-  <h1>Noun <span class="accent">clauses</span></h1>
-  <p class="lede">A noun clause does the job of a noun: <i>What he said</i> surprised me; I don’t know <i>where she lives</i>. It starts with <i>that, what, whether, if</i> or a question word, and inside it the word order is the order of a statement: subject before verb.</p>
+  <h1>Reduced adverb <span class="accent">clauses</span></h1>
+  <p class="lede">When both clauses have the same subject, an adverb clause can lose its subject and its <i>be</i>: <i>While I was walking home, I saw an accident</i> becomes <i>While walking home, I saw an accident.</i> The subject of the main clause must be the one doing (or receiving) the action, or the sentence says something absurd.</p>
   <div class="chips"><span class="chip">B1 → B2</span><span class="chip">100 items</span><span class="chip">TOEFL ITP · Structure &amp; Written Expression</span></div>
   <div class="actions">
     <button class="btn btn-view" id="pw">Print worksheet</button>
@@ -330,147 +330,147 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
   <div class="keyblock" id="key"></div>
 </div>
 
-<footer>Part of the <a href="../index.html">TOEFL Error Correction</a> section · <a href="./index.html">Grammar Practice</a> · <a href="../../index.html">Advanced Hub</a> · Phil Young’s English School</footer>
+<footer>Part of the <a href="./index.html">Grammar Practice</a> section · <a href="../index.html">Advanced Hub</a> · Phil Young’s English School</footer>
 
 <!-- GP:data start -->
 <script>
-/* Grammar Practice session data. Shapes are documented in toefl/grammar/README.md.
+/* Grammar Practice session data. Shapes are documented in grammar/README.md.
    Items are numbered 1–100 in block order. a = 0-based answer index. */
 const S={
-  slug:"noun-clauses",
-  n:7,
+  slug:"reduced-adverb-clauses",
+  n:8,
   of:30,
   theme:"Clauses",
-  title:"Noun Clauses",
+  title:"Reduced Adverb Clauses",
 
   warm:[
-    {"t": "I don’t know where does she live.", "ok": false, "fix": "I don’t know where <b>she lives</b>.", "w": "Inside a noun clause, statement order and no <i>does</i>."},
-    {"t": "What he said surprised everyone.", "ok": true, "w": "<i>What he said</i> is the subject of <i>surprised</i>."},
-    {"t": "Can you tell me what time is it?", "ok": false, "fix": "Can you tell me what time <b>it is</b>?", "w": "Statement order inside: <i>it is</i>."},
-    {"t": "I think that the test was easy.", "ok": true, "w": "<i>That</i> + a full clause."},
-    {"t": "That she won the prize surprised nobody.", "ok": true, "w": "A <i>that</i> clause as the subject."},
-    {"t": "I wonder if will it rain tomorrow.", "ok": false, "fix": "I wonder if <b>it will</b> rain tomorrow.", "w": "Statement order: <i>it will</i>."}
+    {"t": "While walking home, I saw an accident.", "ok": true, "w": "Same subject (I): <i>while walking</i>."},
+    {"t": "After finished the test, the students left.", "ok": false, "fix": "After <b>finishing</b> the test, the students left.", "w": "After a connector, the <i>-ing</i> form."},
+    {"t": "Although tired, she kept working.", "ok": true, "w": "<i>Although (she was) tired</i>."},
+    {"t": "Walking to school, the rain started.", "ok": false, "fix": "Walking to school, <b>I got caught in the rain</b>.", "w": "The rain wasn’t walking. The subject after the comma must be the walker."},
+    {"t": "Before leave, please turn off the lights.", "ok": false, "fix": "Before <b>leaving</b>, please turn off the lights.", "w": "After <i>before</i>, the <i>-ing</i> form."},
+    {"t": "Built in 1920, the house needs a new roof.", "ok": true, "w": "The house was built: past participle."}
   ],
 
   pats:[
-    {"h": "Statement order inside", "rule": "After the question word, put the subject before the verb.", "no": "I don’t know where <span class=\"strike\">is the bank</span>.", "yes": "I don’t know where <b>the bank is</b>. · Can you tell me what time <b>it is</b>?", "why": "The question is now part of a sentence, so it stops being a question. Subject first, then verb."},
-    {"h": "No do, does or did", "rule": "The helping verb do disappears; the main verb takes the tense.", "no": "Do you know what <span class=\"strike\">did he buy</span>?", "yes": "Do you know what <b>he bought</b>? · I wonder where <b>she lives</b>.", "why": "<i>What did he buy?</i> → <i>what he bought</i>. <i>Where does she live?</i> → <i>where she lives</i>."},
-    {"h": "What or that", "rule": "What means the thing that. That adds nothing; it only introduces a full clause.", "no": "<span class=\"strike\">That</span> I need is a new phone.", "yes": "<b>What</b> I need is a new phone. · I think <b>that</b> you are right.", "why": "If the clause is missing an object (<i>I need ___</i>), use <i>what</i>. If the clause is complete (<i>you are right</i>), use <i>that</i>."},
-    {"h": "If or whether for yes–no questions", "rule": "A yes–no question becomes an if or whether clause.", "no": "I don’t know <span class=\"strike\">that</span> he is coming. (= I’m not sure)", "yes": "I don’t know <b>if</b> he is coming. · <b>Whether</b> he will come is not clear.", "why": "Use <i>whether</i>, not <i>if</i>, at the start of a sentence, after a preposition and before <i>or not</i>."},
-    {"h": "A noun clause can be the subject", "rule": "Start with that, what, whether or a question word.", "no": "<span class=\"strike\">She won the prize</span> surprised nobody.", "yes": "<b>That she won the prize</b> surprised nobody. · <b>Where he went</b> is a mystery.", "why": "A full sentence can’t be a subject on its own. The connector turns it into a noun."},
-    {"h": "Question mark or period", "rule": "Use a question mark only if the whole sentence asks something.", "no": "I wonder where she is<span class=\"strike\">?</span>", "yes": "I wonder where she is<b>.</b> · Do you know where she is<b>?</b>", "why": "<i>I wonder …</i> is a statement. <i>Do you know …</i> is a question."}
+    {"h": "Same subject: drop the subject and be", "rule": "Reduce only when both clauses have the same subject.", "no": "While <span class=\"strike\">was walking</span> home, I saw an accident.", "yes": "While <b>walking</b> home, I saw an accident. · While <b>I was walking</b> home, …", "why": "Drop the subject and <i>be</i> together, or keep both. Half (<i>while was walking</i>) is wrong."},
+    {"h": "Connector + -ing", "rule": "After, before, while, when and since keep the connector and take -ing.", "no": "After <span class=\"strike\">finished</span> the test, the students left.", "yes": "After <b>finishing</b> the test, the students left. · Since <b>moving</b> here, …", "why": "<i>After they finished</i> → <i>after finishing</i>. The connector stays; the verb becomes <i>-ing</i>."},
+    {"h": "-ing for active, past participle for passive", "rule": "The subject does it → -ing. It is done to the subject → past participle.", "no": "<span class=\"strike\">Writing</span> in Latin, the book had few readers.", "yes": "<b>Written</b> in Latin, the book had few readers. · <b>Hearing</b> the news, she cried.", "why": "The book didn’t write; someone wrote it → <i>written</i>. She heard the news herself → <i>hearing</i>."},
+    {"h": "The subject must match", "rule": "The noun after the comma is the one that does (or receives) the opening action.", "no": "Walking to school, <span class=\"strike\">the rain started</span>.", "yes": "Walking to school, <b>I</b> got caught in the rain.", "why": "A mismatch is called a dangling modifier. On the TOEFL, test each option: could this subject do the opening action?"},
+    {"h": "Having + past participle", "rule": "Having done shows the earlier of two actions.", "no": "Having <span class=\"strike\">finish</span> the report, she went home.", "yes": "<b>Having finished</b> the report, she went home.", "why": "First she finished, then she went home. <i>Having</i> is always followed by a past participle."},
+    {"h": "Although, if, when + adjective or participle", "rule": "These connectors can be followed by just an adjective or a participle.", "no": "Although <span class=\"strike\">was tired</span>, she kept working.", "yes": "<b>Although tired</b>, she kept working. · <b>If necessary</b>, call me. · <b>When finished</b>, …", "why": "<i>Although she was tired</i> → <i>although tired</i>. Drop the subject and <i>be</i>, keep the rest."}
   ],
-  trap:"When the gap follows <i>know, ask, wonder, tell me</i>, or the gap is the subject of the sentence, think noun clause. Pick the option with statement order (subject + verb). Cross out any option with <i>do, does</i> or <i>did</i>, or with the verb before the subject.",
+  trap:"When a sentence opens with an <i>-ing</i> or <i>-ed</i> phrase and a comma, the noun right after the comma must be the one doing (or receiving) that action. When the options are different main clauses, choose the one whose subject makes sense with the opening phrase.",
 
   str:[
-    {"s": ["I don’t know where ", "."], "w": "Statement order, no <i>does</i>.", "o": ["does she live", "she lives", "lives she", "she does live"], "a": 1},
-    {"s": ["", "he said surprised everyone."], "w": "The clause is missing an object (<i>he said ___</i>): <i>what</i>.", "o": ["That", "Which", "What", "It"], "a": 2},
-    {"s": ["Can you tell me what time ", "?"], "w": "Statement order: <i>it is</i>.", "o": ["it is", "is it", "does it", "it does"], "a": 0},
-    {"s": ["I wonder ", "it will rain tomorrow."], "w": "A yes–no question: <i>whether</i>.", "o": ["that", "whether", "what", "which"], "a": 1},
-    {"s": ["", "she won the prize surprised nobody."], "w": "A complete clause as the subject: <i>that</i>.", "o": ["What", "She", "Which", "That"], "a": 3},
-    {"s": ["Do you know how much ", "?"], "w": "Statement order, no <i>does</i>.", "o": ["does this cost", "this costs", "costs this", "this does cost"], "a": 1},
-    {"s": ["Nobody knows why ", "the job."], "w": "Statement order, no <i>did</i>.", "o": ["he left", "did he leave", "he did leave", "left he"], "a": 0},
-    {"s": ["", "you need is a good night’s sleep."], "w": "Missing object (<i>you need ___</i>): <i>what</i>.", "o": ["That", "Which", "It", "What"], "a": 3},
-    {"s": ["I’m not sure ", "he will come to the party."], "w": "A yes–no question: <i>if</i>.", "o": ["what", "if", "which", "who"], "a": 1},
-    {"s": ["She asked me where ", "."], "w": "Statement order, no <i>did</i>.", "o": ["did I work", "I worked", "I did work", "worked I"], "a": 1},
-    {"s": ["The problem is ", "we don’t have enough money."], "w": "A complete clause: <i>that</i>.", "o": ["that", "what", "which", "it"], "a": 0},
-    {"s": ["Please tell me ", "you want for dinner."], "w": "Missing object (<i>you want ___</i>): <i>what</i>.", "o": ["that", "if", "what", "whether"], "a": 2},
-    {"s": ["I can’t remember ", "I put my keys."], "w": "A place: <i>where</i>.", "o": ["that", "where", "what", "which"], "a": 1},
-    {"s": ["Do you know who ", "this book?"], "w": "<i>Who</i> is the subject: <i>who wrote</i>.", "o": ["did write", "does write", "wrote", "written"], "a": 2},
-    {"s": ["", "the museum is open on Mondays is not clear."], "w": "At the start of a sentence, <i>whether</i>, not <i>if</i>.", "o": ["If", "That if", "What", "Whether"], "a": 3},
-    {"s": ["He told me ", "he was going to be late."], "w": "A complete statement: <i>that</i>.", "o": ["what", "which", "that", "whether"], "a": 2},
-    {"s": ["I have no idea how old ", "."], "w": "Statement order: <i>she is</i>.", "o": ["is she", "she is", "she does", "does she"], "a": 1},
-    {"s": ["We need to decide ", "to go on vacation."], "w": "A place: <i>where</i>.", "o": ["that", "what", "which", "where"], "a": 3},
-    {"s": ["It is important ", "everyone arrives on time."], "w": "A complete clause: <i>that</i>.", "o": ["what", "that", "which", "whether"], "a": 1},
-    {"s": ["Do you remember ", "we met?"], "w": "A time: <i>when</i>.", "o": ["when", "what", "which", "who"], "a": 0},
-    {"s": ["The teacher explained ", "the answer was wrong."], "w": "A reason: <i>why</i>.", "o": ["what", "which", "why", "who"], "a": 2},
-    {"s": ["I wonder ", "they will arrive."], "w": "A time: <i>when</i>.", "o": ["what", "which", "that", "when"], "a": 3},
-    {"s": ["Could you tell me ", "the bank is?"], "w": "A place: <i>where</i>.", "o": ["that", "what", "where", "which"], "a": 2},
-    {"s": ["", "he is late again doesn’t surprise me."], "w": "A complete clause as subject: <i>that</i>.", "o": ["That", "What", "He", "It"], "a": 0},
-    {"s": ["Let me know ", "you can come or not."], "w": "Before <i>or not</i>: <i>whether</i>.", "o": ["that", "what", "which", "whether"], "a": 3},
-    {"s": ["I don’t understand ", "this word means."], "w": "Missing object (<i>means ___</i>): <i>what</i>.", "o": ["what", "that", "which", "if"], "a": 0},
-    {"s": ["My parents asked me ", "I had finished my homework."], "w": "A yes–no question: <i>if</i>.", "o": ["that", "what", "if", "which"], "a": 2},
-    {"s": ["Do you know ", "the next train leaves?"], "w": "Statement order after the question word.", "o": ["what time", "what time does", "when does", "does"], "a": 0},
-    {"s": ["She didn’t say ", "she was angry."], "w": "A reason: <i>why</i>.", "o": ["why", "what", "which", "who"], "a": 0},
-    {"s": ["", "is still a mystery."], "w": "A noun clause as subject, in statement order.", "o": ["Where did he go", "He went where", "Where went he", "Where he went"], "a": 3}
+    {"s": ["While ", "home, I saw an accident."], "w": "Same subject: drop <i>I was</i> → <i>walking</i>.", "o": ["walked", "walking", "I walking", "was walking"], "a": 1},
+    {"s": ["After ", "the test, the students left the room."], "w": "After + <i>-ing</i>.", "o": ["finished", "they finishing", "finishing", "finish"], "a": 2},
+    {"s": ["", "in 1920, the house needs a new roof."], "w": "The house was built: past participle.", "o": ["Building", "Built", "It was built", "To build"], "a": 1},
+    {"s": ["Walking to school, ", "."], "w": "The subject after the comma must be the one walking: <i>I</i>.", "o": ["I got caught in the rain", "the rain started", "it started to rain", "the rain was heavy"], "a": 0},
+    {"s": ["Although ", ", she kept working."], "w": "<i>Although (she was) tired</i>.", "o": ["she tired", "was tired", "tired", "tiring"], "a": 2},
+    {"s": ["Before ", "the house, please turn off the lights."], "w": "Before + <i>-ing</i>.", "o": ["leave", "left", "you leaving", "leaving"], "a": 3},
+    {"s": ["", "the report, she went home."], "w": "<i>Having</i> + past participle for the earlier action.", "o": ["Having finish", "Had finished", "Having finished", "Finished she"], "a": 2},
+    {"s": ["", "in Latin, the book had very few readers."], "w": "The book was written: past participle.", "o": ["Writing", "Wrote", "It was written", "Written"], "a": 3},
+    {"s": ["When ", "a new language, you should practice every day."], "w": "When + <i>-ing</i>.", "o": ["learning", "learn", "learned", "you learning"], "a": 0},
+    {"s": ["After ", "dinner, we watched a movie."], "w": "After + <i>-ing</i>.", "o": ["had", "have", "having", "to have"], "a": 2},
+    {"s": ["", "the news, she started to cry."], "w": "She heard it herself: <i>-ing</i>.", "o": ["Hearing", "Heard", "She heard", "To hear"], "a": 0},
+    {"s": ["Since ", "to Curitiba, he has made many friends."], "w": "Since + <i>-ing</i>.", "o": ["moving", "moved", "he moving", "move"], "a": 0},
+    {"s": ["", "by the noise, the baby started to cry."], "w": "The baby was frightened: past participle.", "o": ["Frightening", "Frightened", "Frighten", "It frightened"], "a": 1},
+    {"s": ["If ", ", I can help you with your homework."], "w": "<i>If (it is) necessary</i>.", "o": ["it necessary", "necessity", "necessarily", "necessary"], "a": 3},
+    {"s": ["While ", "in the park, I found a wallet."], "w": "While + <i>-ing</i>.", "o": ["jogged", "jogging", "I jogging", "to jog"], "a": 1},
+    {"s": ["Having lived in Japan for ten years, ", "speaks Japanese well."], "w": "The person who lived in Japan is the subject: <i>my uncle</i>.", "o": ["my uncle he", "my uncle", "Japanese", "the language"], "a": 1},
+    {"s": ["", "carefully, the vase arrived without a scratch."], "w": "The vase was packed: past participle.", "o": ["Packed", "Packing", "Pack", "It packed"], "a": 0},
+    {"s": ["Before ", "to bed, I always brush my teeth."], "w": "Before + <i>-ing</i>.", "o": ["go", "going", "went", "I going"], "a": 1},
+    {"s": ["", "too much, I felt sick."], "w": "<i>Having</i> + past participle.", "o": ["Having eat", "Had eaten", "Ate", "Having eaten"], "a": 3},
+    {"s": ["When ", "for directions, she was very helpful."], "w": "She was asked: <i>when asked</i>.", "o": ["asked", "asking", "ask", "to ask"], "a": 0},
+    {"s": ["", "the door, I saw a strange man."], "w": "I opened it: <i>-ing</i>.", "o": ["Opened", "I opened", "Open", "Opening"], "a": 3},
+    {"s": ["Though ", "in a small village, she became a famous scientist."], "w": "<i>Though (she was) born</i>.", "o": ["bearing", "born", "she born", "was born"], "a": 1},
+    {"s": ["After ", "the movie, we went out for pizza."], "w": "After + <i>-ing</i>.", "o": ["seeing", "saw", "seen", "we seeing"], "a": 0},
+    {"s": ["", "in the morning, the flowers smell wonderful."], "w": "The flowers are picked: past participle.", "o": ["Picking", "Picked", "Pick", "They picked"], "a": 1},
+    {"s": ["Looking out of the window, ", "."], "w": "The one looking must be the subject: <i>I</i>.", "o": ["a rainbow appeared", "there was a rainbow", "I saw a rainbow", "the rainbow was beautiful"], "a": 2},
+    {"s": ["Since ", "the company, she has been much happier."], "w": "Since + <i>-ing</i>.", "o": ["left", "she leaving", "leave", "leaving"], "a": 3},
+    {"s": ["When ", ", the soup should be very hot."], "w": "The soup is served: <i>when served</i>.", "o": ["serving", "serve", "served", "it served"], "a": 2},
+    {"s": ["", "about the problem, the manager called a meeting."], "w": "The manager was informed: past participle.", "o": ["Informing", "Inform", "Informed", "He informed"], "a": 2},
+    {"s": ["While ", "dinner, I burned my hand."], "w": "While + <i>-ing</i>.", "o": ["cooking", "cooked", "I cooking", "to cook"], "a": 0},
+    {"s": ["", "for two hours, we were very tired."], "w": "<i>Having</i> + past participle.", "o": ["Having walk", "Walked", "Had walked", "Having walked"], "a": 3}
   ],
 
   we:[
-    {"p": [["", 0], ["Does", 1], [" you ", 0], ["know", 1], [" ", 0], ["what time it is", 1], [" ", 0], ["now", 1], ["?", 0]], "a": 0, "f": "Do", "w": "<i>What time it is</i> is right. <i>You</i> takes <i>do</i>.", "x": 1},
-    {"p": [["I ", 0], ["can’t", 1], [" ", 0], ["remember", 1], [" ", 0], ["where", 1], [" ", 0], ["did I put", 1], [" my keys", 0]], "a": 3, "f": "I put", "w": "No <i>did</i>: <i>where I put</i>."},
-    {"p": [["", 0], ["That", 1], [" she ", 0], ["won", 1], [" the prize ", 0], ["surprise", 1], [" ", 0], ["nobody", 1]], "a": 2, "f": "surprised", "w": "<i>That she won</i> is right. The main verb must be past: <i>surprised</i>.", "x": 1},
-    {"p": [["The ", 0], ["problem", 1], [" is ", 0], ["what", 1], [" ", 0], ["we", 1], [" don’t ", 0], ["have", 1], [" enough money", 0]], "a": 1, "f": "that", "w": "A complete clause: <i>that</i>."},
-    {"p": [["", 0], ["Much", 1], [" people ", 0], ["don’t", 1], [" know ", 0], ["what", 1], [" ", 0], ["this", 1], [" word means", 0]], "a": 0, "f": "Many", "w": "<i>What this word means</i> is right. <i>People</i> is countable → <i>many</i>.", "x": 1},
-    {"p": [["I ", 0], ["don’t", 1], [" ", 0], ["understand", 1], [" ", 0], ["what", 1], [" ", 0], ["does this word mean", 1]], "a": 3, "f": "this word means", "w": "No <i>does</i>: <i>this word means</i>."},
-    {"p": [["We ", 0], ["need", 1], [" ", 0], ["to", 1], [" decide ", 0], ["that", 1], [" ", 0], ["to", 1], [" go on vacation", 0]], "a": 2, "f": "where", "w": "A place: <i>where</i>."},
-    {"p": [["Let ", 0], ["me", 1], [" ", 0], ["know", 1], [" ", 0], ["if", 1], [" ", 0], ["can you", 1], [" come", 0]], "a": 3, "f": "you can", "w": "Statement order: <i>you can</i>."},
-    {"p": [["", 0], ["A", 1], [" ", 0], ["old", 1], [" woman ", 0], ["asked", 1], [" me ", 0], ["where the bank was", 1]], "a": 0, "f": "An", "w": "<i>Where the bank was</i> is right. Before a vowel sound: <i>an</i>.", "x": 1},
-    {"p": [["I ", 0], ["have", 1], [" ", 0], ["no", 1], [" idea ", 0], ["how old is she", 1], [" ", 0], ["now", 1]], "a": 2, "f": "how old she is", "w": "Statement order: <i>she is</i>."},
-    {"p": [["The problem ", 0], ["is", 1], [" ", 0], ["that", 1], [" we ", 0], ["don’t", 1], [" have ", 0], ["many", 1], [" money", 0]], "a": 3, "f": "much", "w": "<i>That</i> is right. <i>Money</i> is uncountable → <i>much</i>.", "x": 1},
-    {"p": [["Can ", 0], ["you", 1], [" ", 0], ["tell", 1], [" me ", 0], ["what time is it", 1], [" ", 0], ["now", 1], ["?", 0]], "a": 2, "f": "what time it is", "w": "Statement order: <i>it is</i>."},
-    {"p": [["I ", 0], ["think", 1], [" ", 0], ["that", 1], [" the test ", 0], ["was", 1], [" ", 0], ["more easy", 1], [" than the last one", 0]], "a": 3, "f": "easier", "w": "<i>That</i> is right. The comparative of <i>easy</i> is <i>easier</i>.", "x": 1},
-    {"p": [["She ", 0], ["asked", 1], [" me ", 0], ["where did I work", 1], [" ", 0], ["before", 1], [" ", 0], ["this", 1], [" job", 0]], "a": 1, "f": "where I worked", "w": "No <i>did</i>: <i>where I worked</i>."},
-    {"p": [["Please tell me ", 0], ["what", 1], [" you ", 0], ["want", 1], [" ", 0], ["to", 1], [" ", 0], ["eating", 1]], "a": 3, "f": "eat", "w": "<i>What</i> is right. After <i>to</i>, the base form: <i>eat</i>.", "x": 1},
-    {"p": [["", 0], ["That", 1], [" ", 0], ["I", 1], [" ", 0], ["need", 1], [" ", 0], ["is", 1], [" a new phone", 0]], "a": 0, "f": "What", "w": "Missing object (<i>I need ___</i>): <i>what</i>."},
-    {"p": [["", 0], ["What", 1], [" you need ", 0], ["is", 1], [" ", 0], ["a", 1], [" ", 0], ["good", 1], [" advice", 0]], "a": 2, "f": "", "w": "<i>What you need</i> is right. <i>Advice</i> is uncountable: delete <i>a</i>.", "x": 1},
-    {"p": [["I ", 0], ["wonder", 1], [" ", 0], ["if will it", 1], [" ", 0], ["rain", 1], [" ", 0], ["tomorrow", 1]], "a": 1, "f": "if it will", "w": "Statement order: <i>if it will</i>."},
-    {"p": [["The ", 0], ["teacher", 1], [" ", 0], ["explained", 1], [" ", 0], ["why", 1], [" ", 0], ["was the answer", 1], [" wrong", 0]], "a": 3, "f": "the answer was", "w": "Statement order: <i>the answer was</i>."},
-    {"p": [["She ", 0], ["asked", 1], [" me ", 0], ["where I worked", 1], [" ", 0], ["in", 1], [" ", 0], ["last", 1], [" year", 0]], "a": 2, "f": "", "w": "<i>Where I worked</i> is right. <i>Last year</i> takes no preposition: delete <i>in</i>.", "x": 1},
-    {"p": [["Do ", 0], ["you", 1], [" ", 0], ["remember", 1], [" ", 0], ["what", 1], [" ", 0], ["we", 1], [" met?", 0]], "a": 2, "f": "when", "w": "A time: <i>when</i>."},
-    {"p": [["", 0], ["Where did he go", 1], [" ", 0], ["is", 1], [" ", 0], ["still", 1], [" ", 0], ["a", 1], [" mystery", 0]], "a": 0, "f": "Where he went", "w": "Statement order, no <i>did</i>."},
-    {"p": [["I ", 0], ["have", 1], [" ", 0], ["not", 1], [" idea ", 0], ["how old she is", 1], [", ", 0], ["but", 1], [" she looks young", 0]], "a": 1, "f": "no", "w": "<i>How old she is</i> is right. The phrase is <i>no idea</i>.", "x": 1},
-    {"p": [["", 0], ["What he said", 1], [" ", 0], ["surprised", 1], [" ", 0], ["everybodys", 1], [" ", 0], ["in", 1], [" the room", 0]], "a": 2, "f": "everybody", "w": "<i>What he said</i> is right. <i>Everybody</i> has no plural.", "x": 1},
-    {"p": [["", 0], ["If", 1], [" ", 0], ["the", 1], [" ", 0], ["museum", 1], [" is open on Mondays is ", 0], ["not", 1], [" clear", 0]], "a": 0, "f": "Whether", "w": "At the start of a sentence: <i>whether</i>."},
-    {"p": [["Do ", 0], ["you", 1], [" know ", 0], ["what did he buy", 1], [" ", 0], ["at", 1], [" ", 0], ["the", 1], [" store?", 0]], "a": 1, "f": "what he bought", "w": "No <i>did</i>; the main verb takes the tense: <i>he bought</i>."},
-    {"p": [["He ", 0], ["telled", 1], [" me ", 0], ["that", 1], [" he ", 0], ["was", 1], [" going to be ", 0], ["late", 1]], "a": 0, "f": "told", "w": "<i>That</i> is right. The past of <i>tell</i> is <i>told</i>.", "x": 1},
-    {"p": [["I ", 0], ["don’t", 1], [" know ", 0], ["where she lives", 1], [", ", 0], ["but", 1], [" she ", 0], ["work", 1], [" at the bank", 0]], "a": 3, "f": "works", "w": "<i>Where she lives</i> is right. <i>She</i> takes <i>works</i>.", "x": 1},
-    {"p": [["I ", 0], ["can’t", 1], [" ", 0], ["remembers", 1], [" ", 0], ["where", 1], [" I ", 0], ["put", 1], [" my keys", 0]], "a": 1, "f": "remember", "w": "<i>Where I put</i> is right. After <i>can’t</i>, the base form.", "x": 1},
-    {"p": [["Nobody knows ", 0], ["why he left", 1], [", but he ", 0], ["have", 1], [" ", 0], ["a", 1], [" ", 0], ["new", 1], [" job now", 0]], "a": 1, "f": "has", "w": "<i>Why he left</i> is right. <i>He</i> takes <i>has</i>.", "x": 1}
+    {"p": [["", 0], ["When", 1], [" ", 0], ["learn", 1], [" ", 0], ["a", 1], [" new language, you ", 0], ["should", 1], [" practice", 0]], "a": 1, "f": "learning", "w": "When + <i>-ing</i>."},
+    {"p": [["", 0], ["After", 1], [" ", 0], ["see", 1], [" ", 0], ["the", 1], [" movie, we ", 0], ["went", 1], [" out for pizza", 0]], "a": 1, "f": "seeing", "w": "After + <i>-ing</i>."},
+    {"p": [["He ", 0], ["has", 1], [" made ", 0], ["many", 1], [" friends ", 0], ["since move", 1], [" ", 0], ["to", 1], [" Curitiba", 0]], "a": 2, "f": "since moving", "w": "Since + <i>-ing</i>."},
+    {"p": [["Before ", 0], ["leave", 1], [" ", 0], ["the", 1], [" house, please ", 0], ["turn", 1], [" ", 0], ["off", 1], [" the lights", 0]], "a": 0, "f": "leaving", "w": "Before + <i>-ing</i>."},
+    {"p": [["You ", 0], ["must", 1], [" show ", 0], ["your", 1], [" ticket ", 0], ["before enter", 1], [" ", 0], ["the", 1], [" theater", 0]], "a": 2, "f": "before entering", "w": "Before + <i>-ing</i>."},
+    {"p": [["Every ", 0], ["days", 1], [", ", 0], ["after finishing", 1], [" work, she ", 0], ["goes", 1], [" ", 0], ["running", 1]], "a": 0, "f": "day", "w": "<i>After finishing</i> is right. <i>Every</i> takes a singular noun.", "x": 1},
+    {"p": [["My ", 0], ["uncle", 1], [" ", 0], ["speaks", 1], [" ", 0], ["Japanese", 1], [" well, ", 0], ["having live", 1], [" there for ten years", 0]], "a": 3, "f": "having lived", "w": "<i>Having</i> + past participle."},
+    {"p": [["", 0], ["Much", 1], [" people, ", 0], ["having heard", 1], [" ", 0], ["the", 1], [" news, ", 0], ["called", 1], [" the station", 0]], "a": 0, "f": "Many", "w": "<i>Having heard</i> is right. <i>People</i> is countable → <i>many</i>.", "x": 1},
+    {"p": [["", 0], ["Since", 1], [" ", 0], ["moved", 1], [" ", 0], ["to", 1], [" Curitiba, he ", 0], ["has", 1], [" made many friends", 0]], "a": 1, "f": "moving", "w": "Since + <i>-ing</i>."},
+    {"p": [["", 0], ["While cooking", 1], [" dinner, I ", 0], ["burn", 1], [" ", 0], ["my", 1], [" ", 0], ["hand", 1]], "a": 1, "f": "burned", "w": "<i>While cooking</i> is right. A past event: <i>burned</i>.", "x": 1},
+    {"p": [["", 0], ["A", 1], [" hour ", 0], ["after", 1], [" ", 0], ["leaving", 1], [" home, I ", 0], ["realized", 1], [" I had forgotten my keys", 0]], "a": 0, "f": "An", "w": "<i>After leaving</i> is right. <i>Hour</i> starts with a vowel sound: <i>an hour</i>.", "x": 1},
+    {"p": [["After ", 0], ["finished", 1], [" ", 0], ["the", 1], [" test, the ", 0], ["students", 1], [" ", 0], ["left", 1]], "a": 0, "f": "finishing", "w": "After + <i>-ing</i>."},
+    {"p": [["We ", 0], ["were", 1], [" ", 0], ["tired", 1], [" ", 0], ["after walk", 1], [" ", 0], ["for", 1], [" two hours", 0]], "a": 2, "f": "after walking", "w": "After + <i>-ing</i>."},
+    {"p": [["", 0], ["Having lived", 1], [" in Japan for ten years, my uncle ", 0], ["speaks", 1], [" ", 0], ["Japanese", 1], [" ", 0], ["very good", 1]], "a": 3, "f": "very well", "w": "<i>Having lived</i> is right. To describe how he speaks, use the adverb: <i>well</i>.", "x": 1},
+    {"p": [["Please ", 0], ["turn", 1], [" ", 0], ["off", 1], [" ", 0], ["the", 1], [" lights ", 0], ["before leave", 1]], "a": 3, "f": "before leaving", "w": "Before + <i>-ing</i>."},
+    {"p": [["", 0], ["While walking", 1], [" home, I ", 0], ["saw", 1], [" ", 0], ["a", 1], [" ", 0], ["accident", 1]], "a": 2, "f": "an", "w": "<i>While walking</i> is right. Before a vowel sound: <i>an accident</i>.", "x": 1},
+    {"p": [["", 0], ["Built", 1], [" in 1920, the house ", 0], ["need", 1], [" ", 0], ["a", 1], [" ", 0], ["new", 1], [" roof", 0]], "a": 1, "f": "needs", "w": "<i>Built</i> is right. <i>The house</i> takes <i>needs</i>.", "x": 1},
+    {"p": [["", 0], ["Frightened", 1], [" by the noise, the ", 0], ["baby", 1], [" ", 0], ["started", 1], [" ", 0], ["cry", 1]], "a": 3, "f": "to cry", "w": "<i>Frightened</i> is right. <i>Started</i> + <i>to cry</i> or <i>crying</i>.", "x": 1},
+    {"p": [["", 0], ["Having finished", 1], [" the report, she ", 0], ["go", 1], [" ", 0], ["home", 1], [" ", 0], ["early", 1]], "a": 1, "f": "went", "w": "<i>Having finished</i> is right. The main verb must be past: <i>went</i>.", "x": 1},
+    {"p": [["I ", 0], ["burned", 1], [" ", 0], ["my", 1], [" ", 0], ["hand", 1], [" ", 0], ["while cook", 1], [" dinner", 0]], "a": 3, "f": "while cooking", "w": "While + <i>-ing</i>."},
+    {"p": [["", 0], ["After finishing", 1], [" the test, the ", 0], ["students", 1], [" ", 0], ["leaved", 1], [" ", 0], ["quickly", 1]], "a": 2, "f": "left", "w": "<i>After finishing</i> is right. The past of <i>leave</i> is <i>left</i>.", "x": 1},
+    {"p": [["While ", 0], ["was walking", 1], [" ", 0], ["home", 1], [", I ", 0], ["saw", 1], [" ", 0], ["an", 1], [" accident", 0]], "a": 0, "f": "walking", "w": "Drop the subject and <i>be</i> together: <i>walking</i>."},
+    {"p": [["", 0], ["When learning", 1], [" a new language, you ", 0], ["should", 1], [" ", 0], ["practicing", 1], [" ", 0], ["every", 1], [" day", 0]], "a": 2, "f": "practice", "w": "<i>When learning</i> is right. After <i>should</i>, the base form.", "x": 1},
+    {"p": [["She ", 0], ["kept", 1], [" ", 0], ["working", 1], [" ", 0], ["although", 1], [" ", 0], ["was tired", 1]], "a": 3, "f": "tired", "w": "Drop the subject and <i>be</i> together: <i>although tired</i>."},
+    {"p": [["", 0], ["Since moving", 1], [" to Curitiba, he ", 0], ["has", 1], [" ", 0], ["make", 1], [" ", 0], ["many", 1], [" friends", 0]], "a": 2, "f": "made", "w": "<i>Since moving</i> is right. Present perfect: <i>has made</i>.", "x": 1},
+    {"p": [["", 0], ["Before going", 1], [" to bed, I ", 0], ["always", 1], [" ", 0], ["brush", 1], [" my ", 0], ["tooths", 1]], "a": 3, "f": "teeth", "w": "<i>Before going</i> is right. The plural of <i>tooth</i> is <i>teeth</i>.", "x": 1},
+    {"p": [["", 0], ["If necessary", 1], [", I can ", 0], ["help", 1], [" you ", 0], ["with", 1], [" your ", 0], ["homeworks", 1]], "a": 3, "f": "homework", "w": "<i>If necessary</i> is right. <i>Homework</i> is uncountable.", "x": 1},
+    {"p": [["", 0], ["Though", 1], [" ", 0], ["bear", 1], [" ", 0], ["in", 1], [" a small village, she ", 0], ["became", 1], [" famous", 0]], "a": 1, "f": "born", "w": "<i>Though (she was) born</i>."},
+    {"p": [["She ", 0], ["went", 1], [" ", 0], ["home", 1], [" ", 0], ["after finish", 1], [" ", 0], ["her", 1], [" work", 0]], "a": 2, "f": "after finishing", "w": "After + <i>-ing</i>."},
+    {"p": [["", 0], ["Written", 1], [" ", 0], ["in", 1], [" Latin, the book ", 0], ["had", 1], [" very ", 0], ["little readers", 1]], "a": 3, "f": "few readers", "w": "<i>Written</i> is right. <i>Readers</i> is countable → <i>few</i>.", "x": 1}
   ],
 
-  prac:{type:"gap", title:"Which word starts the clause?", instr:"Write the one word that starts each noun clause: <i>that, what, whether, if, who, where, when, why</i> or <i>how</i>.",
+  prac:{type:"sort", title:"-ing or past participle?", poolTitle:"Sentences", cols:["-ing form", "Past participle"], instr:"Sixteen sentences with a verb in brackets. Does the gap need the <i>-ing</i> form or the past participle? Then say the full sentence. <span class=\"screen-only\">Tap a choice on each card; the card moves to its column.</span><span class=\"print-only\">Write the correct form after each sentence.</span>",
     items:[
-      {"s": ["I don’t know ", "she lives."], "a": ["where"], "h": "place", "w": "A place: <i>where</i>."},
-      {"s": ["", "he said surprised everyone."], "a": ["What"], "h": "thing", "w": "Missing object: <i>what</i>."},
-      {"s": ["I wonder ", "it will rain tomorrow."], "a": ["if", "whether"], "h": "yes or no", "w": "A yes–no question: <i>if / whether</i>."},
-      {"s": ["", "she won the prize surprised nobody."], "a": ["That"], "h": "complete clause", "w": "A complete clause as subject: <i>that</i>."},
-      {"s": ["Do you know ", "wrote this book?"], "a": ["who"], "h": "person", "w": "A person, subject: <i>who</i>."},
-      {"s": ["I think ", "the test was easy."], "a": ["that"], "h": "complete clause", "w": "A complete clause: <i>that</i>."},
-      {"s": ["Can you tell me ", "the bank opens?"], "a": ["when"], "h": "time", "w": "A time: <i>when</i>."},
-      {"s": ["Nobody knows ", "he left the company."], "a": ["why"], "h": "reason", "w": "A reason: <i>why</i>."},
-      {"s": ["", "you need is a good night’s sleep."], "a": ["What"], "h": "thing", "w": "Missing object: <i>what</i>."},
-      {"s": ["I’m not sure ", "he will come."], "a": ["if", "whether"], "h": "yes or no", "w": "A yes–no question: <i>if / whether</i>."},
-      {"s": ["Please tell me ", "much this costs."], "a": ["how"], "h": "amount", "w": "<i>How much</i>."},
-      {"s": ["The problem is ", "we don’t have enough money."], "a": ["that"], "h": "complete clause", "w": "A complete clause: <i>that</i>."},
-      {"s": ["I can’t remember ", "I put my keys."], "a": ["where"], "h": "place", "w": "A place: <i>where</i>."},
-      {"s": ["Let me know ", "or not you can come."], "a": ["whether"], "h": "before or not", "w": "Before <i>or not</i>: <i>whether</i>."},
-      {"s": ["Do you know ", "old she is?"], "a": ["how"], "h": "age", "w": "<i>How old</i>."},
-      {"s": ["She asked me ", "I had finished my homework."], "a": ["if", "whether"], "h": "yes or no", "w": "A yes–no question: <i>if / whether</i>."}
+      {"t": "(walk) ___ home, I saw an accident.", "c": 0, "w": "I was walking: <i>walking</i>."},
+      {"t": "(hear) ___ the news, she started to cry.", "c": 0, "w": "She heard it: <i>hearing</i>."},
+      {"t": "(open) ___ the door, I saw a strange man.", "c": 0, "w": "I opened it: <i>opening</i>."},
+      {"t": "While (jog) ___ in the park, I found a wallet.", "c": 0, "w": "I was jogging: <i>jogging</i>."},
+      {"t": "After (finish) ___ the test, the students left.", "c": 0, "w": "After + <i>-ing</i>: <i>finishing</i>."},
+      {"t": "(look) ___ out of the window, I saw a rainbow.", "c": 0, "w": "I was looking: <i>looking</i>."},
+      {"t": "Before (go) ___ to bed, I brush my teeth.", "c": 0, "w": "Before + <i>-ing</i>: <i>going</i>."},
+      {"t": "Since (move) ___ to Curitiba, he has made many friends.", "c": 0, "w": "Since + <i>-ing</i>: <i>moving</i>."},
+      {"t": "(build) ___ in 1920, the house needs a new roof.", "c": 1, "w": "The house was built: <i>built</i>."},
+      {"t": "(write) ___ in Latin, the book had few readers.", "c": 1, "w": "The book was written: <i>written</i>."},
+      {"t": "(frighten) ___ by the noise, the baby started to cry.", "c": 1, "w": "The baby was frightened: <i>frightened</i>."},
+      {"t": "(pack) ___ carefully, the vase arrived safely.", "c": 1, "w": "The vase was packed: <i>packed</i>."},
+      {"t": "When (serve) ___, the soup should be hot.", "c": 1, "w": "The soup is served: <i>served</i>."},
+      {"t": "Though (bear) ___ in a small village, she became famous.", "c": 1, "w": "She was born: <i>born</i>."},
+      {"t": "(pick) ___ in the morning, the flowers smell wonderful.", "c": 1, "w": "The flowers are picked: <i>picked</i>."},
+      {"t": "(inform) ___ about the problem, the manager called a meeting.", "c": 1, "w": "The manager was informed: <i>informed</i>."}
     ]},
 
-  prod:{type:"unscramble", title:"Put the words in order", instr:"Put the words in order. Remember: statement order inside the noun clause.",
+  prod:{type:"combine", title:"Combine with a reduced clause", instr:"Join the two sentences into one, using a reduced clause that starts with the word given.",
     items:[
-      {"a": ["I don’t know where she lives."], "w": "Subject before verb: <i>she lives</i>."},
-      {"a": ["Can you tell me what time it is?"], "w": "Statement order inside: <i>it is</i>."},
-      {"a": ["Do you know how much this costs?"], "w": "No <i>does</i>: <i>this costs</i>."},
-      {"a": ["Nobody knows why he left the company."], "w": "No <i>did</i>: <i>he left</i>."},
-      {"a": ["I wonder if it will rain tomorrow."], "w": "<i>If</i> + statement order."},
-      {"a": ["What he said surprised everyone."], "w": "A <i>what</i> clause as subject."},
-      {"a": ["Could you tell me where the bank is?"], "w": "Statement order: <i>the bank is</i>."},
-      {"a": ["I have no idea how old she is."], "w": "Statement order: <i>she is</i>."},
-      {"a": ["She asked me where I worked."], "w": "No <i>did</i>: <i>I worked</i>."},
-      {"a": ["That she won the prize surprised nobody."], "w": "A <i>that</i> clause as subject."}
+      {"t": ["I was walking home.", "I saw an accident."], "h": "(While …)", "a": ["While walking home, I saw an accident."], "w": "Same subject: drop <i>I was</i>."},
+      {"t": ["The students finished the test.", "Then they left."], "h": "(After …)", "a": ["After finishing the test, the students left.", "After finishing the test, they left."], "w": "After + <i>-ing</i>."},
+      {"t": ["The house was built in 1920.", "It needs a new roof."], "h": "(Built …)", "a": ["Built in 1920, the house needs a new roof."], "w": "Passive → past participle."},
+      {"t": ["She was tired.", "She kept working."], "h": "(Although …)", "a": ["Although tired, she kept working."], "w": "Drop <i>she was</i>: <i>although tired</i>."},
+      {"t": ["She finished the report.", "Then she went home."], "h": "(Having …)", "a": ["Having finished the report, she went home."], "w": "<i>Having</i> + past participle for the earlier action."},
+      {"t": ["The book was written in Latin.", "It had few readers."], "h": "(Written …)", "a": ["Written in Latin, the book had few readers."], "w": "Passive → past participle."},
+      {"t": ["He moved to Curitiba.", "Since then he has made many friends."], "h": "(Since …)", "a": ["Since moving to Curitiba, he has made many friends."], "w": "Since + <i>-ing</i>."},
+      {"t": ["I was cooking dinner.", "I burned my hand."], "h": "(While …)", "a": ["While cooking dinner, I burned my hand.", "I burned my hand while cooking dinner."], "w": "Same subject: drop <i>I was</i>."},
+      {"t": ["She heard the news.", "She started to cry."], "h": "(Hearing …)", "a": ["Hearing the news, she started to cry.", "Hearing the news, she started crying."], "w": "Active → <i>-ing</i>."},
+      {"t": ["The soup is served.", "It should be very hot."], "h": "(When …)", "a": ["When served, the soup should be very hot."], "w": "Passive → <i>when served</i>."}
     ]},
 
   exit:[
-    {"k": "str", "s": ["I don’t remember where ", "my phone."], "w": "Statement order, no <i>did</i>.", "o": ["did I leave", "I did leave", "I left", "left I"], "a": 2},
-    {"k": "we", "p": [["Do ", 0], ["you", 1], [" ", 0], ["know", 1], [" ", 0], ["when", 1], [" ", 0], ["does the train leave", 1], ["?", 0]], "a": 3, "f": "the train leaves", "w": "No <i>does</i>: <i>when the train leaves</i>."},
-    {"k": "str", "s": ["", "she said made me laugh."], "w": "Missing object (<i>she said ___</i>): <i>what</i>.", "o": ["That", "What", "Which", "It"], "a": 1},
-    {"k": "we", "p": [["I ", 0], ["wonder", 1], [" ", 0], ["if", 1], [" it ", 0], ["will", 1], [" ", 0], ["rains", 1], [" tomorrow", 0]], "a": 3, "f": "rain", "w": "<i>If it will</i> is right. After <i>will</i>, the base form: <i>rain</i>.", "x": 1},
-    {"k": "str", "s": ["Do you know if ", "tomorrow?"], "w": "Statement order: <i>the store is open</i>.", "o": ["the store is open", "is the store open", "open is the store", "does the store open"], "a": 0},
-    {"k": "we", "p": [["I ", 0], ["wonder", 1], [" ", 0], ["where are they", 1], [" ", 0], ["going", 1], [" ", 0], ["now", 1]], "a": 1, "f": "where they are", "w": "Statement order: <i>they are</i>."},
-    {"k": "str", "s": ["", "he will accept the job is not certain."], "w": "At the start of a sentence: <i>whether</i>.", "o": ["If", "What", "Whether", "That if"], "a": 2},
-    {"k": "we", "p": [["", 0], ["Mine", 1], [" sister asked me ", 0], ["what", 1], [" ", 0], ["I", 1], [" ", 0], ["wanted", 1], [" for my birthday", 0]], "a": 0, "f": "My", "w": "<i>What I wanted</i> is right. Before a noun: <i>my</i>.", "x": 1}
+    {"k": "str", "s": ["While ", "the dishes, I broke a glass."], "w": "While + <i>-ing</i>.", "o": ["washed", "washing", "I washing", "wash"], "a": 1},
+    {"k": "we", "p": [["I ", 0], ["always", 1], [" ", 0], ["brush", 1], [" ", 0], ["my", 1], [" teeth ", 0], ["before go", 1], [" to bed", 0]], "a": 3, "f": "before going", "w": "Before + <i>-ing</i>."},
+    {"k": "str", "s": ["", "in Brazil, this coffee is sold all over the world."], "w": "The coffee is grown: past participle.", "o": ["Grown", "Growing", "It grows", "Grow"], "a": 0},
+    {"k": "we", "p": [["", 0], ["Opening", 1], [" the door, I ", 0], ["seen", 1], [" ", 0], ["a", 1], [" ", 0], ["strange", 1], [" man", 0]], "a": 1, "f": "saw", "w": "<i>Opening</i> is right. The past of <i>see</i> is <i>saw</i>.", "x": 1},
+    {"k": "str", "s": ["Having lost his keys, ", "."], "w": "The one who lost the keys must be the subject: <i>he</i>.", "o": ["the door wouldn’t open", "his keys were gone", "he couldn’t open the door", "the door was locked"], "a": 2},
+    {"k": "we", "p": [["", 0], ["Wrote", 1], [" ", 0], ["in", 1], [" 1850, the ", 0], ["novel", 1], [" ", 0], ["is", 1], [" still popular", 0]], "a": 0, "f": "Written", "w": "The novel was written: past participle."},
+    {"k": "str", "s": ["Before ", "the exam, read all the instructions."], "w": "Before + <i>-ing</i>.", "o": ["start", "started", "starting", "you starting"], "a": 2},
+    {"k": "we", "p": [["", 0], ["After seeing", 1], [" the movie, we ", 0], ["went", 1], [" ", 0], ["out", 1], [" ", 0], ["to", 1], [" pizza", 0]], "a": 3, "f": "for", "w": "<i>After seeing</i> is right. You go out <i>for</i> pizza.", "x": 1}
   ]
 };
 </script>

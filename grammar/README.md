@@ -1,4 +1,4 @@
-# Grammar Practice (toefl/grammar/)
+# Grammar Practice (grammar/)
 
 Thirty sessions at B1 → B2, one TOEFL ITP grammar point each, 100 items per session.
 Every page is self-contained: the shared engine (CSS + JS) is copied into each page, and

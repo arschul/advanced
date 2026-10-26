@@ -13,7 +13,7 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
 <!-- HUBGEN:leaf end -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Appositives · Grammar Practice</title>
+<title>Adjective Clauses · Grammar Practice</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -308,8 +308,8 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
 
   <a class="back-link" href="./index.html">← Grammar Practice</a>
   <p class="eyebrow" id="eyebrow"></p>
-  <h1><span class="accent">Appositives</span></h1>
-  <p class="lede">An appositive is a noun phrase that renames the noun next to it: <i>Brasília, the capital of Brazil, was built in the 1950s.</i> It has no verb of its own. The TOEFL tests it by offering answers that add a verb, a pronoun or half a clause where none belongs.</p>
+  <h1>Adjective <span class="accent">clauses</span></h1>
+  <p class="lede">An adjective clause describes a noun and starts with <i>who, which, that, whose, where</i> or <i>when</i>. Choose the word that fits the noun, and don’t repeat the noun with a pronoun the clause already has.</p>
   <div class="chips"><span class="chip">B1 → B2</span><span class="chip">100 items</span><span class="chip">TOEFL ITP · Structure &amp; Written Expression</span></div>
   <div class="actions">
     <button class="btn btn-view" id="pw">Print worksheet</button>
@@ -330,147 +330,147 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
   <div class="keyblock" id="key"></div>
 </div>
 
-<footer>Part of the <a href="../index.html">TOEFL Error Correction</a> section · <a href="./index.html">Grammar Practice</a> · <a href="../../index.html">Advanced Hub</a> · Phil Young’s English School</footer>
+<footer>Part of the <a href="./index.html">Grammar Practice</a> section · <a href="../index.html">Advanced Hub</a> · Phil Young’s English School</footer>
 
 <!-- GP:data start -->
 <script>
-/* Grammar Practice session data. Shapes are documented in toefl/grammar/README.md.
+/* Grammar Practice session data. Shapes are documented in grammar/README.md.
    Items are numbered 1–100 in block order. a = 0-based answer index. */
 const S={
-  slug:"appositives",
-  n:2,
+  slug:"adjective-clauses",
+  n:5,
   of:30,
-  theme:"Sentence core",
-  title:"Appositives",
+  theme:"Clauses",
+  title:"Adjective Clauses",
 
   warm:[
-    {"t": "My uncle, a taxi driver, knows every street in the city.", "ok": true, "w": "<i>A taxi driver</i> renames <i>my uncle</i>; the main verb is <i>knows</i>."},
-    {"t": "Lisbon, is the capital of Portugal, has beautiful old buildings.", "ok": false, "fix": "Lisbon, <b>the capital of Portugal</b>, has beautiful old buildings.", "w": "An appositive has no verb. Delete <i>is</i>."},
-    {"t": "A talented cook my grandmother makes the best cakes.", "ok": false, "fix": "A talented cook<b>,</b> my grandmother makes the best cakes.", "w": "An opening appositive is followed by a comma, then the noun it renames."},
-    {"t": "Dr. Reis, our family doctor, is retiring next year.", "ok": true, "w": "<i>Our family doctor</i> renames <i>Dr. Reis</i>."},
-    {"t": "Our new neighbor, he is a musician, plays the piano every night.", "ok": false, "fix": "Our new neighbor, <b>a musician</b>, plays the piano every night.", "w": "No pronoun and no verb inside an appositive."},
-    {"t": "The Amazon, the largest rainforest in the world, covers parts of nine countries.", "ok": true, "w": "The appositive sits between commas; the verb <i>covers</i> belongs to <i>the Amazon</i>."}
+    {"t": "The woman who lives next door is a nurse.", "ok": true, "w": "<i>Who</i> for a person; the main verb is <i>is</i>."},
+    {"t": "The book which I bought it yesterday is very good.", "ok": false, "fix": "The book which I bought yesterday is very good.", "w": "<i>Which</i> already stands for the book. Delete <i>it</i>."},
+    {"t": "This is the house where I was born.", "ok": true, "w": "<i>Where</i> for a place."},
+    {"t": "I have a friend which speaks four languages.", "ok": false, "fix": "I have a friend <b>who</b> speaks four languages.", "w": "A friend is a person: <i>who</i>."},
+    {"t": "The man whose car was stolen called the police.", "ok": true, "w": "<i>Whose</i> shows possession: his car."},
+    {"t": "The city where I live in is very big.", "ok": false, "fix": "The city where I live is very big.", "w": "<i>Where</i> already means <i>in which</i>. Delete <i>in</i>."}
   ],
 
   pats:[
-    {"h": "An appositive renames a noun", "rule": "It is a noun phrase placed next to the noun it describes, usually between commas.", "no": "Ana, <span class=\"strike\">is my best friend,</span> is a nurse.", "yes": "Ana, <b>my best friend</b>, is a nurse.", "why": "Read the sentence without the appositive: <i>Ana is a nurse.</i> It must still be complete. The appositive only adds information about Ana."},
-    {"h": "No verb, no pronoun inside", "rule": "An appositive has no verb and no subject pronoun of its own.", "no": "Mr. Lopes, <span class=\"strike\">he is</span> our new teacher, comes from Recife.", "yes": "Mr. Lopes, <b>our new teacher</b>, comes from Recife.", "why": "If you want a verb, you need a full relative clause: <i>Mr. Lopes, who is our new teacher, …</i> Without <i>who</i>, drop the verb and the pronoun."},
-    {"h": "An appositive can open the sentence", "rule": "Noun phrase, comma, then the noun it renames.", "no": "<span class=\"strike\">Is a popular tourist city,</span> Salvador has beautiful beaches.", "yes": "<b>A popular tourist city,</b> Salvador has beautiful beaches.", "why": "The noun right after the comma is the one the opening phrase describes. That noun is also the subject of the main verb: <i>Salvador has …</i>"},
-    {"h": "Commas around extra information", "rule": "Put commas on both sides when the appositive is in the middle; one comma when it ends the sentence.", "no": "My brother <span class=\"strike\">a pilot</span> travels a lot.", "yes": "My brother<b>, a pilot,</b> travels a lot. · I had lunch with Carla<b>, my oldest friend</b>.", "why": "The commas show where the extra information starts and stops. Leave them out only when the name identifies which one: <i>the writer Machado de Assis</i>."},
-    {"h": "Appositive or relative clause", "rule": "An appositive is a relative clause without who / which + be. Drop both, or keep both.", "no": "Paris, <span class=\"strike\">which the capital of France</span>, is very old.", "yes": "Paris, <b>the capital of France</b>, is very old. · Paris, <b>which is the capital of France</b>, is very old.", "why": "Half a clause (<i>which the capital</i>) is always wrong. On the TOEFL this is a favorite distractor."},
-    {"h": "The verb agrees with the main noun", "rule": "The appositive does not change the subject. The verb agrees with the noun before the commas.", "no": "Our neighbors, a young couple from Chile, <span class=\"strike\">has</span> two dogs.", "yes": "Our neighbors, a young couple from Chile, <b>have</b> two dogs.", "why": "Cover the appositive and read <i>our neighbors … have</i>. The singular noun <i>couple</i> inside the commas does not count."}
+    {"h": "Who, which or that", "rule": "Who for people, which for things, that for both.", "no": "The doctor <span class=\"strike\">which</span> helped me was very kind.", "yes": "The doctor <b>who</b> helped me was very kind. · The bus <b>that</b> goes downtown is late.", "why": "Look at the noun right before the gap. A person → <i>who</i> (or <i>that</i>). A thing or an animal → <i>which</i> (or <i>that</i>)."},
+    {"h": "Don’t repeat the noun", "rule": "The relative word replaces a noun or pronoun in the clause. Don’t add it again.", "no": "The car that I bought <span class=\"strike\">it</span> last year is red.", "yes": "The car that I bought last year is red. · The man who <span class=\"strike\">he</span> lives here …", "why": "<i>That</i> already is the object of <i>bought</i>; <i>who</i> already is the subject of <i>lives</i>. A second pronoun is always wrong."},
+    {"h": "Whose for possession", "rule": "Whose replaces his, her, its or their.", "no": "The student <span class=\"strike\">who his</span> bag was stolen called the police.", "yes": "The student <b>whose</b> bag was stolen called the police.", "why": "Join <i>the student</i> + <i>his bag was stolen</i> with <i>whose</i>. Don’t confuse it with <i>who’s</i> (= who is)."},
+    {"h": "Where and when", "rule": "Where for places, when for times. With which, keep the preposition.", "no": "The hotel <span class=\"strike\">which</span> we stayed was cheap.", "yes": "The hotel <b>where</b> we stayed was cheap. · The hotel <b>which</b> we stayed <b>at</b> … · The day <b>when</b> we met …", "why": "<i>Where</i> means <i>in / at which</i>, so it takes no preposition: <i>the city where I live</i>, not <i>where I live in</i>."},
+    {"h": "Whom after a preposition", "rule": "After to, with, for, of: whom (people) or which (things), never who or that.", "no": "The man to <span class=\"strike\">who</span> I spoke was helpful.", "yes": "The man to <b>whom</b> I spoke was helpful. · The man (that) I spoke to was helpful.", "why": "Formal English puts the preposition first: <i>to whom, with which, most of whom</i>. Everyday English moves it to the end and drops the pronoun."},
+    {"h": "Commas and that", "rule": "With commas (extra information), use who or which. Never use that after a comma.", "no": "My brother, <span class=\"strike\">that</span> lives in Rio, is a doctor.", "yes": "My brother, <b>who</b> lives in Rio, is a doctor. · Paris, <b>which</b> is very old, …", "why": "Commas mark information that could be left out. In those clauses, <i>that</i> is not allowed."}
   ],
-  trap:"When the gap is between two commas right after a noun, the answer is almost always a noun phrase with no verb. Cross out every option that contains <i>is</i>, <i>it is</i>, <i>he is</i> or a half clause such as <i>which the</i>. When the gap opens the sentence and a comma follows, check that the noun after the comma is the subject of the main verb.",
+  trap:"When the gap follows a noun and the sentence already has its main verb, the answer is usually a relative clause. Choose the word by the noun (person, thing, place, time or possession), and cross out any option that adds <i>he, she, it</i> or <i>them</i> inside the clause.",
 
   str:[
-    {"s": ["Brasília, ", ", was built in the 1950s."], "w": "Between commas after a noun: an appositive, with no verb.", "o": ["the capital of Brazil", "is the capital of Brazil", "it is the capital of Brazil", "that the capital of Brazil"], "a": 0},
-    {"s": ["", ", my grandfather worked on a farm for forty years."], "w": "An opening appositive: noun phrase, comma, then the noun it renames.", "o": ["Was a hard-working man", "He was a hard-working man", "A hard-working man", "Because a hard-working man"], "a": 2},
-    {"s": ["The giraffe, ", ", can grow to more than five meters."], "w": "No verb inside the appositive.", "o": ["is the tallest animal on land", "the tallest animal on land", "it is the tallest animal on land", "which the tallest animal on land"], "a": 1},
-    {"s": ["Our teacher, ", ", gives us a lot of homework."], "w": "A name can be an appositive: <i>our teacher, Ms. Costa, …</i>", "o": ["is Ms. Costa", "she is Ms. Costa", "Ms. Costa", "her name Ms. Costa"], "a": 2},
-    {"s": ["Coffee, ", ", is grown in many parts of Brazil."], "w": "Noun phrase only; (D) is half a relative clause.", "o": ["one of the country’s main exports", "it is one of the country’s main exports", "is one of the country’s main exports", "which one of the country’s main exports"], "a": 0},
-    {"s": ["Mercury, ", ", is also the smallest."], "w": "Between the commas: a noun phrase with no verb.", "o": ["is the planet closest to the Sun", "the planet closest to the Sun", "it is the planet closest to the Sun", "the planet is closest to the Sun"], "a": 1},
-    {"s": ["My best friend, ", ", lives in Canada now."], "w": "The appositive renames <i>my best friend</i>; the verb is <i>lives</i>.", "o": ["is a software engineer", "who a software engineer", "a software engineer", "and a software engineer"], "a": 2},
-    {"s": ["", ", the city has many museums and theaters."], "w": "Opening appositive, then the noun it renames: <i>the city</i>.", "o": ["It is a cultural center", "Is a cultural center", "Because a cultural center", "A cultural center"], "a": 3},
-    {"s": ["Feijoada, ", ", is usually served on Saturdays."], "w": "No verb inside the appositive.", "o": ["is a dish of black beans and meat", "it is a dish of black beans and meat", "a dish is of black beans and meat", "a dish of black beans and meat"], "a": 3},
-    {"s": ["The company’s new product, ", ", will go on sale in March."], "w": "Noun phrase only between the commas.", "o": ["is a smaller and cheaper phone", "a smaller and cheaper phone", "it is a smaller and cheaper phone", "which a smaller and cheaper phone"], "a": 1},
-    {"s": ["Mr. Alves, ", ", has worked at the school for twenty years."], "w": "Noun phrase only; the main verb is <i>has worked</i>.", "o": ["he is the principal", "the principal", "is the principal", "the principal is"], "a": 1},
-    {"s": ["Spanish, ", ", is spoken in Spain and in most of Latin America."], "w": "The sentence already has its verb, <i>is</i>; the gap is an appositive.", "o": ["is a language with more than 500 million speakers", "it is a language with more than 500 million speakers", "a language with more than 500 million speakers", "has more than 500 million speakers"], "a": 2},
-    {"s": ["", ", Curitiba is known for its parks."], "w": "Opening appositive, comma, then <i>Curitiba</i>.", "o": ["Is the capital of Paraná", "It is the capital of Paraná", "The capital of Paraná is", "The capital of Paraná"], "a": 3},
-    {"s": ["Dinner, ", ", is usually at eight in our house."], "w": "No verb inside the appositive.", "o": ["is the main meal of the day", "the main meal of the day", "it is the main meal of the day", "the main meal is of the day"], "a": 1},
-    {"s": ["The Pacific, ", ", covers about a third of the Earth’s surface."], "w": "Noun phrase only between the commas.", "o": ["the largest ocean", "is the largest ocean", "it is the largest ocean", "which the largest ocean"], "a": 0},
-    {"s": ["Ana, ", ", always gets the best grades."], "w": "The appositive renames Ana; the verb is <i>gets</i>.", "o": ["is the youngest student in the class", "she is the youngest student in the class", "the youngest student in the class", "who the youngest student in the class"], "a": 2},
-    {"s": ["My favorite sport, ", ", is popular all over Brazil."], "w": "A one-word appositive: <i>my favorite sport, volleyball, …</i>", "o": ["volleyball", "is volleyball", "it is volleyball", "volleyball is"], "a": 0},
-    {"s": ["", ", the old station is now a cultural center."], "w": "Opening appositive with no verb, then <i>the old station</i>.", "o": ["It was a busy place a hundred years ago", "Was a busy place a hundred years ago", "A busy place was a hundred years ago", "A busy place a hundred years ago"], "a": 3},
-    {"s": ["Penicillin, ", ", was discovered in 1928."], "w": "Noun phrase only between the commas.", "o": ["it was the first widely used antibiotic", "was the first widely used antibiotic", "the first widely used antibiotic", "which the first widely used antibiotic"], "a": 2},
-    {"s": ["The book I am reading, ", ", is about a family in the Amazon."], "w": "The gap renames <i>the book</i>; no verb.", "o": ["it is a novel by a young Brazilian writer", "a novel by a young Brazilian writer", "is a novel by a young Brazilian writer", "that a novel by a young Brazilian writer"], "a": 1},
-    {"s": ["My two brothers, ", ", both play the guitar."], "w": "Names as an appositive: <i>my two brothers, Pedro and Lucas, …</i>", "o": ["are Pedro and Lucas", "they are Pedro and Lucas", "Pedro and Lucas", "Pedro and Lucas are"], "a": 2},
-    {"s": ["Ice, ", ", floats on water."], "w": "No verb inside the appositive.", "o": ["the solid form of water", "is the solid form of water", "it is the solid form of water", "which the solid form of water"], "a": 0},
-    {"s": ["Our hotel, ", ", was only five minutes from the beach."], "w": "Noun phrase only; the verb is <i>was</i>.", "o": ["was a small old house", "it was a small old house", "a small old house was", "a small old house"], "a": 3},
-    {"s": ["", ", Machado de Assis wrote many famous novels."], "w": "Opening appositive, then the name it renames.", "o": ["He was a Brazilian writer of the nineteenth century", "A Brazilian writer of the nineteenth century", "Was a Brazilian writer of the nineteenth century", "A Brazilian writer who of the nineteenth century"], "a": 1},
-    {"s": ["The Nile, ", ", flows into the Mediterranean Sea."], "w": "Noun phrase only between the commas.", "o": ["one of the longest rivers in the world", "is one of the longest rivers in the world", "it is one of the longest rivers in the world", "which one of the longest rivers in the world"], "a": 0},
-    {"s": ["The meeting will be on Friday, ", "."], "w": "An appositive can end the sentence: <i>Friday, the last day of the month</i>.", "o": ["is the last day of the month", "it is the last day of the month", "the last day of the month", "which the last day of the month"], "a": 2},
-    {"s": ["I gave the book to Carla, ", "."], "w": "End appositive renaming <i>Carla</i>; no verb.", "o": ["she is my oldest friend", "is my oldest friend", "who my oldest friend", "my oldest friend"], "a": 3},
-    {"s": ["", ", the tomato is actually a fruit."], "w": "Opening appositive, then <i>the tomato</i>.", "o": ["A common salad ingredient", "It is a common salad ingredient", "Is a common salad ingredient", "Because a common salad ingredient"], "a": 0},
-    {"s": ["Our new car, ", ", uses very little gas."], "w": "Noun phrase only between the commas.", "o": ["is a small hybrid", "a small hybrid", "it is a small hybrid", "which a small hybrid"], "a": 1},
-    {"s": ["The festival takes place in June, ", "."], "w": "End appositive renaming <i>June</i>.", "o": ["is one of the coldest months of the year here", "it is one of the coldest months of the year here", "which one of the coldest months of the year here", "one of the coldest months of the year here"], "a": 3}
+    {"s": ["The woman ", "lives next door is a nurse."], "w": "A person, subject of <i>lives</i>: <i>who</i>.", "o": ["which", "who", "whose", "where"], "a": 1},
+    {"s": ["The book ", "I bought yesterday is very good."], "w": "A thing, object of <i>bought</i>: <i>that</i>.", "o": ["that", "who", "whose", "where"], "a": 0},
+    {"s": ["This is the house ", "I was born."], "w": "A place: <i>where</i> (= in which).", "o": ["which", "who", "where", "whose"], "a": 2},
+    {"s": ["The man ", "car was stolen called the police."], "w": "Possession (his car): <i>whose</i>.", "o": ["who", "which", "whose", "that"], "a": 2},
+    {"s": ["The students ", "passed the test received a certificate."], "w": "People, subject of <i>passed</i>: <i>who</i>.", "o": ["who", "whose", "which they", "where"], "a": 0},
+    {"s": ["I still remember the day ", "we first met."], "w": "A time: <i>when</i>.", "o": ["when", "where", "who", "whose"], "a": 0},
+    {"s": ["The bus ", "goes to the airport leaves every hour."], "w": "A thing: <i>that</i>. (D) gives the sentence two verbs with no connector.", "o": ["who", "where", "that", "it"], "a": 2},
+    {"s": ["My sister, ", "lives in Chile, is coming to visit."], "w": "A person, with commas: <i>who</i>. Never <i>that</i> after a comma.", "o": ["that", "which", "who", "whose"], "a": 2},
+    {"s": ["The hotel ", "we stayed was near the beach."], "w": "A place with no preposition at the end: <i>where</i>.", "o": ["which", "where", "who", "that"], "a": 1},
+    {"s": ["Is this the key ", "you were looking for?"], "w": "A thing, object of <i>looking for</i>: <i>that</i>.", "o": ["who", "that", "where", "whose"], "a": 1},
+    {"s": ["The teacher ", "I admire most is Ms. Lopes."], "w": "A person, object of <i>admire</i>: <i>whom</i>.", "o": ["whose", "which", "where", "whom"], "a": 3},
+    {"s": ["The company ", "my father works for is very large."], "w": "A thing with the preposition at the end: <i>that … for</i>.", "o": ["who", "where", "whose", "that"], "a": 3},
+    {"s": ["Paris, ", "is the capital of France, has many museums."], "w": "A thing, with commas: <i>which</i>.", "o": ["that", "who", "which", "where"], "a": 2},
+    {"s": ["The girl ", "mother is a doctor wants to study medicine."], "w": "Possession (her mother): <i>whose</i>. <i>Who’s</i> means <i>who is</i>.", "o": ["whose", "who", "who’s", "which"], "a": 0},
+    {"s": ["The movie ", "last night was very funny."], "w": "The clause can drop <i>that</i>, but it can’t repeat the object with <i>it</i>.", "o": ["we watched", "we watched it", "which we watched it", "who we watched"], "a": 0},
+    {"s": ["Anyone ", "wants to join the club can sign up online."], "w": "A person, subject of <i>wants</i>: <i>who</i>.", "o": ["which", "who", "whose", "whom"], "a": 1},
+    {"s": ["The restaurant ", "serves the best pizza is closed today."], "w": "Subject of <i>serves</i>: <i>that</i>. <i>Where</i> needs its own subject.", "o": ["where", "who", "it", "that"], "a": 3},
+    {"s": ["The year ", "I graduated was very difficult."], "w": "A time: <i>when</i>.", "o": ["where", "when", "who", "whose"], "a": 1},
+    {"s": ["The person to ", "you should send the letter is Mr. Rocha."], "w": "After a preposition, for a person: <i>whom</i>.", "o": ["who", "that", "which", "whom"], "a": 3},
+    {"s": ["The dog ", "barks all night belongs to our neighbor."], "w": "An animal: <i>that</i> or <i>which</i>.", "o": ["who", "whose", "that", "where"], "a": 2},
+    {"s": ["This is the town ", "my grandparents grew up."], "w": "A place: <i>where</i>.", "o": ["which", "who", "whose", "where"], "a": 3},
+    {"s": ["The students, most of ", "were tired, went to bed early."], "w": "After <i>most of</i>, for people: <i>whom</i>. (C) joins two clauses with no connector.", "o": ["who", "them", "which", "whom"], "a": 3},
+    {"s": ["I lost the umbrella ", "my mother gave me."], "w": "A thing, object of <i>gave</i>: <i>that</i>.", "o": ["that", "who", "whose", "where"], "a": 0},
+    {"s": ["The scientist ", "discovery changed medicine won a prize."], "w": "Possession (her discovery): <i>whose</i>.", "o": ["who", "which", "that", "whose"], "a": 3},
+    {"s": ["A pharmacy is a store ", "you can buy medicine."], "w": "A place: <i>where</i>.", "o": ["which", "where", "who", "whose"], "a": 1},
+    {"s": ["The man ", "is wearing a blue hat is my uncle."], "w": "A person, subject of <i>is wearing</i>: <i>who</i>.", "o": ["who", "which", "whose", "he"], "a": 0},
+    {"s": ["The phone ", "last month already broke."], "w": "Drop <i>that</i> if you like, but don’t repeat the object with <i>it</i>.", "o": ["I bought it", "which I bought it", "I bought", "bought"], "a": 2},
+    {"s": ["There are many people in my city ", "speak English."], "w": "People, subject of <i>speak</i>: <i>who</i>.", "o": ["which", "who", "whose", "they"], "a": 1},
+    {"s": ["The reason ", "I called is to invite you to dinner."], "w": "After <i>the reason</i>: <i>why</i>.", "o": ["which", "where", "whose", "why"], "a": 3},
+    {"s": ["The house, ", "was built in 1920, needs a new roof."], "w": "A thing, with commas: <i>which</i>.", "o": ["which", "that", "who", "where"], "a": 0}
   ],
 
   we:[
-    {"p": [["We have a meeting ", 0], ["in", 1], [" Friday, ", 0], ["the last day of the month", 1], [", ", 0], ["at", 1], [" ", 0], ["ten", 1]], "a": 0, "f": "on", "w": "The appositive is right. Days take <i>on</i>.", "x": 1},
-    {"p": [["", 0], ["It", 1], [" ", 0], ["the", 1], [" ", 0], ["largest", 1], [" city in Brazil, São Paulo ", 0], ["has", 1], [" about twelve million people", 0]], "a": 0, "f": "", "w": "No pronoun in an appositive. Delete <i>it</i>."},
-    {"p": [["We ", 0], ["visited", 1], [" ", 0], ["Ouro Preto", 1], [", ", 0], ["an", 1], [" old mining town that ", 0], ["famous", 1], [" for its churches", 0]], "a": 3, "f": "is famous", "w": "<i>That</i> starts a clause, which needs a verb: <i>that is famous</i>."},
-    {"p": [["The ", 0], ["Amazon", 1], [", ", 0], ["which", 1], [" ", 0], ["the", 1], [" largest rainforest in the world, ", 0], ["covers", 1], [" parts of nine countries", 0]], "a": 1, "f": "which is", "w": "Keep the whole clause (<i>which is</i>) or drop <i>which</i> too. Half a clause is wrong."},
-    {"p": [["Rome, ", 0], ["is", 1], [" ", 0], ["the", 1], [" capital of Italy, ", 0], ["has", 1], [" ", 0], ["many", 1], [" ancient buildings", 0]], "a": 0, "f": "", "w": "An appositive has no verb. Delete <i>is</i>."},
-    {"p": [["We ", 0], ["stayed", 1], [" ", 0], ["with", 1], [" ", 0], ["Marta", 1], [", ", 0], ["she is", 1], [" my mother’s cousin", 0]], "a": 3, "f": "", "w": "Delete <i>she is</i>: <i>Marta, my mother’s cousin</i>."},
-    {"p": [["The giraffe, ", 0], ["the tallest animal on land", 1], [", ", 0], ["can", 1], [" ", 0], ["grow", 1], [" to more than five ", 0], ["meter", 1]], "a": 3, "f": "meters", "w": "The appositive is right. After <i>five</i>, plural: <i>meters</i>.", "x": 1},
-    {"p": [["Our ", 0], ["neighbors", 1], [", ", 0], ["they", 1], [" ", 0], ["a", 1], [" young couple from Chile, ", 0], ["have", 1], [" two dogs", 0]], "a": 1, "f": "", "w": "No pronoun inside the appositive. Delete <i>they</i>."},
-    {"p": [["My ", 0], ["cousin", 1], [", ", 0], ["an", 1], [" ", 0], ["famous", 1], [" singer, ", 0], ["lives", 1], [" in Rio", 0]], "a": 1, "f": "a", "w": "The appositive structure is right. <i>Famous</i> starts with a consonant sound: <i>a famous singer</i>.", "x": 1},
-    {"p": [["The ", 0], ["students", 1], [", ", 0], ["a", 1], [" group of twenty teenagers, ", 0], ["was", 1], [" ", 0], ["very", 1], [" excited", 0]], "a": 2, "f": "were", "w": "The subject is <i>the students</i> → <i>were</i>."},
-    {"p": [["", 0], ["Much", 1], [" tourists visit Ouro Preto, ", 0], ["an", 1], [" ", 0], ["old", 1], [" mining town ", 0], ["famous", 1], [" for its churches", 0]], "a": 0, "f": "Many", "w": "The appositive is right. <i>Tourists</i> is countable → <i>many</i>.", "x": 1},
-    {"p": [["Dr. Reis, ", 0], ["our family doctor", 1], [", ", 0], ["retire", 1], [" ", 0], ["next", 1], [" ", 0], ["year", 1]], "a": 1, "f": "will retire", "w": "The appositive is right. A future event needs a full verb: <i>will retire</i>.", "x": 1},
-    {"p": [["Spanish, ", 0], ["a language with millions of speakers", 1], [", ", 0], ["is", 1], [" ", 0], ["speaking", 1], [" in ", 0], ["many", 1], [" countries", 0]], "a": 2, "f": "spoken", "w": "The appositive is right. Passive: <i>is spoken</i>.", "x": 1},
-    {"p": [["The ", 0], ["meeting", 1], [" ", 0], ["will be", 1], [" ", 0], ["on", 1], [" Friday, ", 0], ["it is", 1], [" the last day of the month", 0]], "a": 3, "f": "", "w": "Delete <i>it is</i>: <i>Friday, the last day of the month</i>."},
-    {"p": [["Our hotel, ", 0], ["a small old house", 1], [", was only five ", 0], ["minutes", 1], [" ", 0], ["of", 1], [" ", 0], ["the", 1], [" beach", 0]], "a": 2, "f": "from", "w": "The appositive is right. Distance is measured <i>from</i> a place.", "x": 1},
-    {"p": [["", 0], ["A", 1], [" ", 0], ["old", 1], [" colonial town, Olinda ", 0], ["is", 1], [" famous ", 0], ["for", 1], [" its carnival", 0]], "a": 0, "f": "An", "w": "The appositive structure is right. Before a vowel sound: <i>an old</i>.", "x": 1},
-    {"p": [["I ", 0], ["gave", 1], [" ", 0], ["the", 1], [" book ", 0], ["to", 1], [" Carla, ", 0], ["she is", 1], [" my oldest friend", 0]], "a": 3, "f": "", "w": "An appositive has no subject or verb. Delete <i>she is</i>."},
-    {"p": [["Brasília, ", 0], ["the capital of Brazil", 1], [", ", 0], ["was", 1], [" ", 0], ["build", 1], [" ", 0], ["in", 1], [" the 1950s", 0]], "a": 2, "f": "built", "w": "The appositive is right. After <i>was</i>, the past participle: <i>built</i>.", "x": 1},
-    {"p": [["The ", 0], ["festival", 1], [" ", 0], ["takes", 1], [" ", 0], ["place", 1], [" in June, ", 0], ["it is", 1], [" one of the coldest months here", 0]], "a": 3, "f": "", "w": "Delete <i>it is</i>: <i>June, one of the coldest months here</i>."},
-    {"p": [["The ", 0], ["bus", 1], [" driver, ", 0], ["he", 1], [" ", 0], ["a", 1], [" ", 0], ["friendly", 1], [" man, always says good morning", 0]], "a": 1, "f": "", "w": "No pronoun inside the appositive. Delete <i>he</i>."},
-    {"p": [["", 0], ["Is", 1], [" ", 0], ["an", 1], [" ", 0], ["important", 1], [" port, Santos ", 0], ["receives", 1], [" ships from all over the world", 0]], "a": 0, "f": "", "w": "Delete <i>is</i>: <i>An important port, Santos receives …</i>"},
-    {"p": [["Our ", 0], ["hotel", 1], [", ", 0], ["a", 1], [" small ", 0], ["old", 1], [" house, ", 0], ["were", 1], [" only five minutes from the beach", 0]], "a": 3, "f": "was", "w": "The subject is <i>our hotel</i> → <i>was</i>."},
-    {"p": [["", 0], ["Lisbon", 1], [", ", 0], ["it", 1], [" ", 0], ["the", 1], [" capital of Portugal, ", 0], ["is", 1], [" on the coast", 0]], "a": 1, "f": "", "w": "No pronoun inside the appositive. Delete <i>it</i>."},
-    {"p": [["My uncle, ", 0], ["a taxi driver", 1], [", ", 0], ["knows", 1], [" ", 0], ["every streets", 1], [" in ", 0], ["the", 1], [" city", 0]], "a": 2, "f": "every street", "w": "The appositive is right. <i>Every</i> takes a singular noun.", "x": 1},
-    {"p": [["Mercury, ", 0], ["the planet closest to the Sun", 1], [", ", 0], ["is", 1], [" ", 0], ["also", 1], [" ", 0], ["the smaller", 1]], "a": 3, "f": "the smallest", "w": "The appositive is right. Of all the planets → superlative: <i>the smallest</i>.", "x": 1},
-    {"p": [["Dr. ", 0], ["Reis", 1], [", ", 0], ["was", 1], [" ", 0], ["our", 1], [" family doctor for years, ", 0], ["retired", 1], [" last month", 0]], "a": 1, "f": "", "w": "An appositive has no verb. Delete <i>was</i>."},
-    {"p": [["Feijoada, ", 0], ["a dish of black beans and meat", 1], [", is ", 0], ["usual", 1], [" ", 0], ["served", 1], [" ", 0], ["on", 1], [" Saturdays", 0]], "a": 1, "f": "usually", "w": "The appositive is right. Before a verb, use the adverb: <i>usually</i>.", "x": 1},
-    {"p": [["Our teacher, ", 0], ["Ms. Costa", 1], [", ", 0], ["gives", 1], [" us a lot of ", 0], ["homeworks", 1], [" ", 0], ["every", 1], [" week", 0]], "a": 2, "f": "homework", "w": "The appositive is right. <i>Homework</i> is uncountable: no <i>-s</i>.", "x": 1},
-    {"p": [["I gave the book to Carla, ", 0], ["my oldest friend", 1], [", ", 0], ["because", 1], [" she ", 0], ["loves", 1], [" ", 0], ["to reading", 1]], "a": 3, "f": "reading", "w": "The appositive is right. <i>Loves</i> + <i>reading</i> or <i>to read</i>, not <i>to reading</i>.", "x": 1},
-    {"p": [["My ", 0], ["best", 1], [" friend, ", 0], ["a software engineer", 1], [", ", 0], ["lives", 1], [" ", 0], ["at", 1], [" Canada now", 0]], "a": 3, "f": "in", "w": "The appositive is right. Countries take <i>in</i>.", "x": 1}
+    {"p": [["She ", 0], ["is", 1], [" ", 0], ["the", 1], [" ", 0], ["teacher", 1], [" ", 0], ["which", 1], [" everyone likes", 0]], "a": 3, "f": "who", "w": "A teacher is a person: <i>who</i> or <i>that</i>."},
+    {"p": [["The girl ", 0], ["who", 1], [" ", 0], ["mother", 1], [" ", 0], ["is", 1], [" a ", 0], ["doctor", 1], [" wants to be a nurse", 0]], "a": 0, "f": "whose", "w": "Possession (her mother): <i>whose</i>."},
+    {"p": [["The year ", 0], ["when", 1], [" I ", 0], ["graduate", 1], [" ", 0], ["was", 1], [" ", 0], ["very", 1], [" difficult", 0]], "a": 1, "f": "graduated", "w": "<i>When</i> is right. A past year: <i>graduated</i>.", "x": 1},
+    {"p": [["The man ", 0], ["whose", 1], [" car ", 0], ["was", 1], [" stolen ", 0], ["call", 1], [" ", 0], ["the", 1], [" police", 0]], "a": 2, "f": "called", "w": "<i>Whose car</i> is right. The main verb must be past: <i>called</i>.", "x": 1},
+    {"p": [["The restaurant ", 0], ["that", 1], [" ", 0], ["serves", 1], [" the best pizza ", 0], ["is", 1], [" closed ", 0], ["in", 1], [" Sundays", 0]], "a": 3, "f": "on", "w": "<i>That serves</i> is right. Days take <i>on</i>.", "x": 1},
+    {"p": [["The movie ", 0], ["that", 1], [" ", 0], ["we", 1], [" watched ", 0], ["in", 1], [" last night ", 0], ["was", 1], [" very funny", 0]], "a": 2, "f": "", "w": "<i>That</i> is right. <i>Last night</i> takes no preposition: delete <i>in</i>.", "x": 1},
+    {"p": [["The ", 0], ["city", 1], [" ", 0], ["which", 1], [" ", 0], ["I", 1], [" ", 0], ["was", 1], [" born is very small", 0]], "a": 1, "f": "where", "w": "A place with no preposition: <i>where</i>."},
+    {"p": [["", 0], ["Much", 1], [" ", 0], ["people", 1], [" ", 0], ["who", 1], [" ", 0], ["live", 1], [" here work in the city", 0]], "a": 0, "f": "Many", "w": "<i>Who live</i> is right. <i>People</i> is countable → <i>many</i>.", "x": 1},
+    {"p": [["I ", 0], ["remember", 1], [" ", 0], ["the", 1], [" ", 0], ["day", 1], [" ", 0], ["where", 1], [" we first met", 0]], "a": 3, "f": "when", "w": "A time: <i>when</i>."},
+    {"p": [["We ", 0], ["visited", 1], [" ", 0], ["the", 1], [" house ", 0], ["which", 1], [" ", 0], ["my", 1], [" father was born", 0]], "a": 2, "f": "where", "w": "A place with no preposition: <i>where</i>."},
+    {"p": [["The city ", 0], ["where", 1], [" ", 0], ["I", 1], [" ", 0], ["live", 1], [" ", 0], ["in", 1], [" is very big", 0]], "a": 3, "f": "", "w": "<i>Where</i> already means <i>in which</i>. Delete <i>in</i>."},
+    {"p": [["The hotel ", 0], ["which", 1], [" ", 0], ["we", 1], [" ", 0], ["stayed", 1], [" ", 0], ["was", 1], [" near the beach", 0]], "a": 0, "f": "where", "w": "A place with no preposition: <i>where</i>."},
+    {"p": [["I ", 0], ["lost", 1], [" ", 0], ["the", 1], [" umbrella ", 0], ["who", 1], [" ", 0], ["my", 1], [" mother gave me", 0]], "a": 2, "f": "that", "w": "An umbrella is a thing: <i>that</i>."},
+    {"p": [["The woman ", 0], ["who", 1], [" ", 0], ["lives", 1], [" next door ", 0], ["is", 1], [" a ", 0], ["nurses", 1]], "a": 3, "f": "nurse", "w": "<i>Who lives</i> is right. One woman: <i>a nurse</i>.", "x": 1},
+    {"p": [["", 0], ["Are", 1], [" this the key ", 0], ["that", 1], [" you ", 0], ["were", 1], [" ", 0], ["looking", 1], [" for?", 0]], "a": 0, "f": "Is", "w": "<i>That</i> is right. <i>This</i> is singular: <i>Is this …?</i>", "x": 1},
+    {"p": [["The house, ", 0], ["which", 1], [" was ", 0], ["build", 1], [" in 1920, ", 0], ["needs", 1], [" ", 0], ["a", 1], [" new roof", 0]], "a": 1, "f": "built", "w": "<i>Which</i> is right. Passive: <i>was built</i>.", "x": 1},
+    {"p": [["The ", 0], ["students", 1], [" ", 0], ["were studying", 1], [" ", 0], ["in", 1], [" the library ", 0], ["were", 1], [" quiet", 0]], "a": 1, "f": "who were studying", "w": "Two main verbs. Join them: <i>who were studying</i>."},
+    {"p": [["I ", 0], ["still", 1], [" ", 0], ["remember", 1], [" the day ", 0], ["when", 1], [" we first ", 0], ["meet", 1]], "a": 3, "f": "met", "w": "<i>When</i> is right. A past event: <i>met</i>.", "x": 1},
+    {"p": [["The doctor ", 0], ["which", 1], [" ", 0], ["helped", 1], [" me ", 0], ["was", 1], [" ", 0], ["very", 1], [" kind", 0]], "a": 0, "f": "who", "w": "A doctor is a person: <i>who</i>."},
+    {"p": [["The ", 0], ["day", 1], [" ", 0], ["where", 1], [" ", 0], ["we", 1], [" ", 0], ["met", 1], [" was rainy", 0]], "a": 1, "f": "when", "w": "A time: <i>when</i>."},
+    {"p": [["The ", 0], ["people", 1], [" ", 0], ["to", 1], [" ", 0], ["who", 1], [" I ", 0], ["spoke", 1], [" were very helpful", 0]], "a": 2, "f": "whom", "w": "After a preposition: <i>whom</i>."},
+    {"p": [["The book ", 0], ["that", 1], [" I ", 0], ["buyed", 1], [" ", 0], ["yesterday", 1], [" ", 0], ["is", 1], [" very good", 0]], "a": 1, "f": "bought", "w": "<i>That</i> is right. The past of <i>buy</i> is <i>bought</i>.", "x": 1},
+    {"p": [["This ", 0], ["is", 1], [" ", 0], ["the", 1], [" student ", 0], ["who’s", 1], [" ", 0], ["bag", 1], [" was stolen", 0]], "a": 2, "f": "whose", "w": "Possession: <i>whose</i>. <i>Who’s</i> = <i>who is</i>."},
+    {"p": [["The company ", 0], ["that", 1], [" my father ", 0], ["works", 1], [" for ", 0], ["is", 1], [" very ", 0], ["largely", 1]], "a": 3, "f": "large", "w": "<i>That … for</i> is right. After <i>is</i>, the adjective: <i>large</i>.", "x": 1},
+    {"p": [["Every ", 0], ["students", 1], [" ", 0], ["who", 1], [" ", 0], ["wants", 1], [" ", 0], ["to", 1], [" join the club can sign up", 0]], "a": 0, "f": "student", "w": "<i>Who wants</i> is right. <i>Every</i> takes a singular noun: <i>student</i>.", "x": 1},
+    {"p": [["A pharmacy ", 0], ["is", 1], [" ", 0], ["an", 1], [" store ", 0], ["where", 1], [" ", 0], ["you", 1], [" can buy medicine", 0]], "a": 1, "f": "a", "w": "<i>Where</i> is right. <i>Store</i> starts with a consonant: <i>a store</i>.", "x": 1},
+    {"p": [["I ", 0], ["have", 1], [" ", 0], ["a", 1], [" friend ", 0], ["which", 1], [" ", 0], ["speaks", 1], [" four languages", 0]], "a": 2, "f": "who", "w": "A friend is a person: <i>who</i>."},
+    {"p": [["The scientist ", 0], ["whose", 1], [" ", 0], ["discover", 1], [" ", 0], ["changed", 1], [" ", 0], ["medicine", 1], [" won a prize", 0]], "a": 1, "f": "discovery", "w": "<i>Whose</i> is right, but it needs a noun: <i>discovery</i>.", "x": 1},
+    {"p": [["The ", 0], ["car", 1], [" ", 0], ["that", 1], [" I ", 0], ["bought", 1], [" ", 0], ["it", 1], [" last year is red", 0]], "a": 3, "f": "", "w": "<i>That</i> already stands for the car. Delete <i>it</i>."},
+    {"p": [["My sister, ", 0], ["who", 1], [" ", 0], ["lives", 1], [" in Chile, ", 0], ["is", 1], [" coming to visit ", 0], ["on", 1], [" next week", 0]], "a": 3, "f": "", "w": "<i>Who</i> is right. <i>Next week</i> takes no preposition: delete <i>on</i>.", "x": 1}
   ],
 
-  prac:{type:"match", title:"Match the appositive", colL:"Nouns", colR:"Appositives", instr:"Match each noun (left) with the appositive that renames it (right). Then say the full sentence aloud with commas: <i>Brasília, the capital of Brazil, …</i> <span class=\"print-only\">Write the letter next to each noun.</span>",
+  prac:{type:"sort", title:"Who, which, where or whose?", poolTitle:"Sentences", cols:["who", "which", "where", "whose"], instr:"Sixteen sentences, each with a gap. Which word fits? Then discuss the ones the class disagrees on. <span class=\"screen-only\">Tap a word on each card; the card moves to its column.</span><span class=\"print-only\">Write the word after each sentence.</span>",
     items:[
-      {"t": "Brasília", "m": "the capital of Brazil", "w": "Brasília is the capital."},
-      {"t": "The Amazon", "m": "the largest rainforest in the world", "w": "A rainforest."},
-      {"t": "Mercury", "m": "the planet closest to the Sun", "w": "A planet."},
-      {"t": "Feijoada", "m": "a dish of black beans and meat", "w": "A dish."},
-      {"t": "The giraffe", "m": "the tallest animal on land", "w": "An animal."},
-      {"t": "Volleyball", "m": "a team sport played over a high net", "w": "A sport."},
-      {"t": "Portuguese", "m": "the official language of Brazil, Portugal and Angola", "w": "A language."},
-      {"t": "The Pacific", "m": "the largest ocean on Earth", "w": "An ocean."},
-      {"t": "Penicillin", "m": "the first widely used antibiotic", "w": "A medicine."},
-      {"t": "Machado de Assis", "m": "a Brazilian writer of the 1800s", "w": "A writer."},
-      {"t": "The tomato", "m": "a fruit that most people call a vegetable", "w": "A fruit."},
-      {"t": "Coffee", "m": "a drink made from roasted beans", "w": "A drink."},
-      {"t": "Florianópolis", "m": "a city on an island in the south of Brazil", "w": "A city on an island."},
-      {"t": "A dentist", "m": "a doctor who takes care of teeth", "w": "A kind of doctor."},
-      {"t": "The heart", "m": "the organ that pumps blood", "w": "An organ."},
-      {"t": "Ice", "m": "water in its solid form", "w": "Frozen water."}
+      {"t": "The woman ___ lives next door is a nurse.", "c": 0, "w": "A person: <i>who</i>."},
+      {"t": "I have a friend ___ speaks four languages.", "c": 0, "w": "A person: <i>who</i>."},
+      {"t": "The man ___ is wearing a hat is my uncle.", "c": 0, "w": "A person: <i>who</i>."},
+      {"t": "Students ___ study every day usually do well.", "c": 0, "w": "People: <i>who</i>."},
+      {"t": "Paris, ___ is the capital of France, is very old.", "c": 1, "w": "A thing, with commas: <i>which</i>."},
+      {"t": "The bus, ___ was late again, was full.", "c": 1, "w": "A thing, with commas: <i>which</i>."},
+      {"t": "I lost my phone, ___ was new.", "c": 1, "w": "A thing, with a comma: <i>which</i>."},
+      {"t": "The house, ___ was built in 1920, needs a new roof.", "c": 1, "w": "A thing, with commas: <i>which</i>."},
+      {"t": "This is the house ___ I was born.", "c": 2, "w": "A place: <i>where</i>."},
+      {"t": "A library is a place ___ you can borrow books.", "c": 2, "w": "A place: <i>where</i>."},
+      {"t": "The hotel ___ we stayed was cheap.", "c": 2, "w": "A place: <i>where</i>."},
+      {"t": "I want to visit the town ___ my mother grew up.", "c": 2, "w": "A place: <i>where</i>."},
+      {"t": "The girl ___ mother is a doctor wants to be a nurse.", "c": 3, "w": "Possession: <i>whose</i>."},
+      {"t": "The man ___ car was stolen called the police.", "c": 3, "w": "Possession: <i>whose</i>."},
+      {"t": "I met a writer ___ books are famous.", "c": 3, "w": "Possession: <i>whose</i>."},
+      {"t": "The student ___ bag was stolen was very upset.", "c": 3, "w": "Possession: <i>whose</i>."}
     ]},
 
-  prod:{type:"combine", title:"Combine with an appositive", instr:"Join the two sentences into one, using an appositive. Remember the commas.",
+  prod:{type:"combine", title:"Combine with a relative clause", instr:"Join the two sentences into one with <i>who, which, that, whose, where</i> or <i>when</i>.",
     items:[
-      {"t": ["Mr. Silva is our neighbor.", "Mr. Silva is a pilot."], "a": ["Mr. Silva, our neighbor, is a pilot.", "Our neighbor, Mr. Silva, is a pilot.", "Mr. Silva, a pilot, is our neighbor."], "w": "Turn one sentence into a noun phrase and put it next to the noun."},
-      {"t": ["Recife is a city in the northeast.", "Recife has many bridges."], "a": ["Recife, a city in the northeast, has many bridges.", "A city in the northeast, Recife has many bridges."], "w": "<i>A city in the northeast</i> renames Recife."},
-      {"t": ["My brother is an engineer.", "My brother works in Chile."], "a": ["My brother, an engineer, works in Chile.", "An engineer, my brother works in Chile."], "w": "<i>An engineer</i> renames my brother."},
-      {"t": ["Our dog is a big black Labrador.", "Our dog sleeps all day."], "a": ["Our dog, a big black Labrador, sleeps all day.", "A big black Labrador, our dog sleeps all day."], "w": "The appositive goes between commas."},
-      {"t": ["Olinda is an old colonial town.", "Olinda is famous for its carnival."], "a": ["Olinda, an old colonial town, is famous for its carnival.", "An old colonial town, Olinda is famous for its carnival."], "w": "Keep one verb: <i>is famous</i>."},
-      {"t": ["I met Carla yesterday.", "Carla is my new manager."], "a": ["I met Carla, my new manager, yesterday.", "Yesterday I met Carla, my new manager.", "Yesterday, I met Carla, my new manager.", "I met my new manager, Carla, yesterday."], "w": "The appositive goes right after <i>Carla</i>."},
-      {"t": ["Our hotel was a small old house.", "Our hotel was near the beach."], "a": ["Our hotel, a small old house, was near the beach.", "A small old house, our hotel was near the beach."], "w": "One verb: <i>was near the beach</i>."},
-      {"t": ["Soccer is the most popular sport in Brazil.", "Soccer is played everywhere."], "a": ["Soccer, the most popular sport in Brazil, is played everywhere.", "The most popular sport in Brazil, soccer is played everywhere."], "w": "The appositive renames soccer."},
-      {"t": ["The meeting is on Friday.", "Friday is the last day of the month."], "a": ["The meeting is on Friday, the last day of the month."], "w": "An appositive can end the sentence."},
-      {"t": ["My grandmother was a teacher for forty years.", "My grandmother loves books."], "a": ["A teacher for forty years, my grandmother loves books.", "My grandmother, a teacher for forty years, loves books."], "w": "Drop <i>was</i>; keep the noun phrase."}
+      {"t": ["I have a friend.", "She speaks four languages."], "a": ["I have a friend who speaks four languages.", "I have a friend that speaks four languages."], "w": "A person, subject: <i>who</i>."},
+      {"t": ["This is the house.", "I was born there."], "a": ["This is the house where I was born.", "This is the house that I was born in.", "This is the house I was born in.", "This is the house in which I was born.", "This is the house which I was born in."], "w": "A place: <i>where</i>, with no <i>there</i>."},
+      {"t": ["The man called the police.", "His car was stolen."], "a": ["The man whose car was stolen called the police."], "w": "<i>His</i> becomes <i>whose</i>."},
+      {"t": ["The book was very good.", "I bought it yesterday."], "a": ["The book that I bought yesterday was very good.", "The book which I bought yesterday was very good.", "The book I bought yesterday was very good."], "w": "Drop <i>it</i>: the relative word replaces it."},
+      {"t": ["My brother lives in Rio.", "He is a doctor."], "h": "(use commas)", "a": ["My brother, who lives in Rio, is a doctor.", "My brother, who is a doctor, lives in Rio."], "w": "Extra information: commas and <i>who</i>."},
+      {"t": ["I remember the day.", "We first met on that day."], "a": ["I remember the day when we first met.", "I remember the day we first met.", "I remember the day that we first met.", "I remember the day on which we first met."], "w": "A time: <i>when</i>."},
+      {"t": ["The bus goes to the airport.", "It leaves every hour."], "a": ["The bus that goes to the airport leaves every hour.", "The bus which goes to the airport leaves every hour."], "w": "A thing, subject: <i>that</i> or <i>which</i>."},
+      {"t": ["The woman is very kind.", "I spoke to her."], "a": ["The woman I spoke to is very kind.", "The woman that I spoke to is very kind.", "The woman who I spoke to is very kind.", "The woman whom I spoke to is very kind.", "The woman to whom I spoke is very kind."], "w": "Object of <i>to</i>: <i>whom</i>, or leave the word out."},
+      {"t": ["Curitiba is in the south of Brazil.", "It has many parks."], "h": "(use which)", "a": ["Curitiba, which has many parks, is in the south of Brazil.", "Curitiba, which is in the south of Brazil, has many parks."], "w": "Extra information about a place: commas and <i>which</i>."},
+      {"t": ["The student won a prize.", "Her project was the best."], "a": ["The student whose project was the best won a prize."], "w": "<i>Her</i> becomes <i>whose</i>."}
     ]},
 
   exit:[
-    {"k": "str", "s": ["", ", the town has a famous carnival."], "w": "Opening appositive with no verb, then <i>the town</i>.", "o": ["Is an old colonial town", "An old colonial town", "It is an old colonial town", "An old colonial town it"], "a": 1},
-    {"k": "we", "p": [["", 0], ["Volleyball", 1], [", ", 0], ["a", 1], [" ", 0], ["popular", 1], [" sport in Brazil, ", 0], ["are", 1], [" played on the beach and indoors", 0]], "a": 3, "f": "is", "w": "The subject is <i>volleyball</i> → <i>is</i>."},
-    {"k": "str", "s": ["My uncle, ", ", fixes cars for a living."], "w": "Noun phrase only between the commas.", "o": ["a mechanic", "is a mechanic", "he is a mechanic", "who a mechanic"], "a": 0},
-    {"k": "we", "p": [["", 0], ["Many", 1], [" information about Rio, ", 0], ["the second largest city in Brazil", 1], [", ", 0], ["is", 1], [" ", 0], ["available", 1], [" online", 0]], "a": 0, "f": "Much", "w": "The appositive is right. <i>Information</i> is uncountable → <i>much</i>.", "x": 1},
-    {"k": "str", "s": ["The Atacama, ", ", is in the north of Chile."], "w": "No verb inside the appositive.", "o": ["is one of the driest places on Earth", "one of the driest places on Earth", "it is one of the driest places on Earth", "which one of the driest places on Earth"], "a": 1},
-    {"k": "we", "p": [["My ", 0], ["grandparents", 1], [", ", 0], ["both", 1], [" retired teachers, ", 0], ["lives", 1], [" ", 0], ["near", 1], [" the beach", 0]], "a": 2, "f": "live", "w": "The subject is <i>my grandparents</i> → <i>live</i>."},
-    {"k": "str", "s": ["We had lunch with Rafael, ", "."], "w": "End appositive renaming <i>Rafael</i>.", "o": ["he is my sister’s husband", "is my sister’s husband", "who my sister’s husband", "my sister’s husband"], "a": 3},
-    {"k": "we", "p": [["Rafael, ", 0], ["my sister’s husband", 1], [", ", 0], ["is", 1], [" ", 0], ["a", 1], [" ", 0], ["engineer", 1]], "a": 2, "f": "an", "w": "The appositive is right. Before a vowel sound: <i>an engineer</i>.", "x": 1}
+    {"k": "str", "s": ["The people ", "live upstairs are very noisy."], "w": "People, subject of <i>live</i>: <i>who</i>.", "o": ["which", "who", "whose", "where"], "a": 1},
+    {"k": "we", "p": [["The ", 0], ["scientist", 1], [" ", 0], ["who", 1], [" ", 0], ["discovery", 1], [" ", 0], ["changed", 1], [" medicine won a prize", 0]], "a": 1, "f": "whose", "w": "Possession (her discovery): <i>whose</i>."},
+    {"k": "str", "s": ["This is the restaurant ", "we had our first date."], "w": "A place: <i>where</i>.", "o": ["which", "who", "where", "whose"], "a": 2},
+    {"k": "we", "p": [["The phone ", 0], ["that", 1], [" I ", 0], ["bought", 1], [" last month ", 0], ["already", 1], [" ", 0], ["broken", 1]], "a": 3, "f": "broke", "w": "<i>That</i> is right. The past of <i>break</i> is <i>broke</i>.", "x": 1},
+    {"k": "str", "s": ["The boy ", "bike was stolen went to the police."], "w": "Possession (his bike): <i>whose</i>.", "o": ["who", "which", "whose", "that"], "a": 2},
+    {"k": "we", "p": [["The phone ", 0], ["what", 1], [" ", 0], ["I", 1], [" ", 0], ["bought", 1], [" ", 0], ["last", 1], [" month broke", 0]], "a": 0, "f": "that", "w": "<i>What</i> can’t follow a noun. Use <i>that</i>."},
+    {"k": "str", "s": ["The laptop ", "last year still works well."], "w": "No repeated <i>it</i> inside the clause.", "o": ["I bought it", "which I bought it", "bought", "I bought"], "a": 3},
+    {"k": "we", "p": [["There are ", 0], ["much", 1], [" people ", 0], ["in", 1], [" my city ", 0], ["who", 1], [" ", 0], ["speak", 1], [" English", 0]], "a": 0, "f": "many", "w": "<i>Who speak</i> is right. <i>People</i> is countable → <i>many</i>.", "x": 1}
   ]
 };
 </script>

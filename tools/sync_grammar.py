@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Copy the Grammar Practice engine into every session page.
 
-tools/grammar_engine.html holds the CSS and JS shared by all sessions in toefl/grammar/,
+tools/grammar_engine.html holds the CSS and JS shared by all sessions in grammar/,
 between GP:engine-css and GP:engine-js markers. Each session page carries an identical copy
 (pages stay self-contained). This rewrites those regions so the copies can never drift.
 
@@ -21,7 +21,7 @@ def main():
     check = "--check" in sys.argv
     src = open(SRC, encoding="utf-8").read()
     stale = 0
-    for p in sorted(glob.glob(os.path.join(ROOT, "toefl", "grammar", "*.html"))):
+    for p in sorted(glob.glob(os.path.join(ROOT, "grammar", "*.html"))):
         s = open(p, encoding="utf-8").read()
         if "<!-- GP:engine-js start -->" not in s:
             continue

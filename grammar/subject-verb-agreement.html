@@ -13,7 +13,7 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
 <!-- HUBGEN:leaf end -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Adjective Clauses · Grammar Practice</title>
+<title>Subject and Verb Agreement · Grammar Practice</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -308,8 +308,8 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
 
   <a class="back-link" href="./index.html">← Grammar Practice</a>
   <p class="eyebrow" id="eyebrow"></p>
-  <h1>Adjective <span class="accent">clauses</span></h1>
-  <p class="lede">An adjective clause describes a noun and starts with <i>who, which, that, whose, where</i> or <i>when</i>. Choose the word that fits the noun, and don’t repeat the noun with a pronoun the clause already has.</p>
+  <h1>Subject–verb <span class="accent">agreement</span></h1>
+  <p class="lede">One thing takes <i>is, has, was</i> and a verb with <i>-s</i>. More than one take <i>are, have, were</i> and no <i>-s</i>. The rule is easy; the hard part is finding the real subject. This session gives you six patterns, then practice in the exact TOEFL format and in two other kinds of exercise.</p>
   <div class="chips"><span class="chip">B1 → B2</span><span class="chip">100 items</span><span class="chip">TOEFL ITP · Structure &amp; Written Expression</span></div>
   <div class="actions">
     <button class="btn btn-view" id="pw">Print worksheet</button>
@@ -330,147 +330,147 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
   <div class="keyblock" id="key"></div>
 </div>
 
-<footer>Part of the <a href="../index.html">TOEFL Error Correction</a> section · <a href="./index.html">Grammar Practice</a> · <a href="../../index.html">Advanced Hub</a> · Phil Young’s English School</footer>
+<footer>Part of the <a href="./index.html">Grammar Practice</a> section · <a href="../index.html">Advanced Hub</a> · Phil Young’s English School</footer>
 
 <!-- GP:data start -->
 <script>
-/* Grammar Practice session data. Shapes are documented in toefl/grammar/README.md.
+/* Grammar Practice session data. Shapes are documented in grammar/README.md.
    Items are numbered 1–100 in block order. a = 0-based answer index. */
 const S={
-  slug:"adjective-clauses",
-  n:5,
+  slug:"subject-verb-agreement",
+  n:16,
   of:30,
-  theme:"Clauses",
-  title:"Adjective Clauses",
+  theme:"Agreement",
+  title:"Subject and Verb Agreement",
 
   warm:[
-    {"t": "The woman who lives next door is a nurse.", "ok": true, "w": "<i>Who</i> for a person; the main verb is <i>is</i>."},
-    {"t": "The book which I bought it yesterday is very good.", "ok": false, "fix": "The book which I bought yesterday is very good.", "w": "<i>Which</i> already stands for the book. Delete <i>it</i>."},
-    {"t": "This is the house where I was born.", "ok": true, "w": "<i>Where</i> for a place."},
-    {"t": "I have a friend which speaks four languages.", "ok": false, "fix": "I have a friend <b>who</b> speaks four languages.", "w": "A friend is a person: <i>who</i>."},
-    {"t": "The man whose car was stolen called the police.", "ok": true, "w": "<i>Whose</i> shows possession: his car."},
-    {"t": "The city where I live in is very big.", "ok": false, "fix": "The city where I live is very big.", "w": "<i>Where</i> already means <i>in which</i>. Delete <i>in</i>."}
+    {"t": "The price of these shoes are too high.", "ok": false, "fix": "The price of these shoes <b>is</b> too high.", "w": "The subject is <i>price</i>, not <i>shoes</i>."},
+    {"t": "Everyone in the office likes the new manager.", "ok": true, "w": "<i>Everyone</i> is singular, so <i>likes</i> is right."},
+    {"t": "There is three windows in the kitchen.", "ok": false, "fix": "There <b>are</b> three windows in the kitchen.", "w": "After <i>there</i>, the verb agrees with the noun that follows: <i>three windows</i>."},
+    {"t": "The news was better than we expected.", "ok": true, "w": "<i>News</i> looks plural but is singular."},
+    {"t": "My brother and I lives in the same building.", "ok": false, "fix": "My brother and I <b>live</b> in the same building.", "w": "Two people joined by <i>and</i> are plural."},
+    {"t": "One of the windows is broken.", "ok": true, "w": "The subject is <i>one</i>, so <i>is</i> is right."}
   ],
 
   pats:[
-    {"h": "Who, which or that", "rule": "Who for people, which for things, that for both.", "no": "The doctor <span class=\"strike\">which</span> helped me was very kind.", "yes": "The doctor <b>who</b> helped me was very kind. · The bus <b>that</b> goes downtown is late.", "why": "Look at the noun right before the gap. A person → <i>who</i> (or <i>that</i>). A thing or an animal → <i>which</i> (or <i>that</i>)."},
-    {"h": "Don’t repeat the noun", "rule": "The relative word replaces a noun or pronoun in the clause. Don’t add it again.", "no": "The car that I bought <span class=\"strike\">it</span> last year is red.", "yes": "The car that I bought last year is red. · The man who <span class=\"strike\">he</span> lives here …", "why": "<i>That</i> already is the object of <i>bought</i>; <i>who</i> already is the subject of <i>lives</i>. A second pronoun is always wrong."},
-    {"h": "Whose for possession", "rule": "Whose replaces his, her, its or their.", "no": "The student <span class=\"strike\">who his</span> bag was stolen called the police.", "yes": "The student <b>whose</b> bag was stolen called the police.", "why": "Join <i>the student</i> + <i>his bag was stolen</i> with <i>whose</i>. Don’t confuse it with <i>who’s</i> (= who is)."},
-    {"h": "Where and when", "rule": "Where for places, when for times. With which, keep the preposition.", "no": "The hotel <span class=\"strike\">which</span> we stayed was cheap.", "yes": "The hotel <b>where</b> we stayed was cheap. · The hotel <b>which</b> we stayed <b>at</b> … · The day <b>when</b> we met …", "why": "<i>Where</i> means <i>in / at which</i>, so it takes no preposition: <i>the city where I live</i>, not <i>where I live in</i>."},
-    {"h": "Whom after a preposition", "rule": "After to, with, for, of: whom (people) or which (things), never who or that.", "no": "The man to <span class=\"strike\">who</span> I spoke was helpful.", "yes": "The man to <b>whom</b> I spoke was helpful. · The man (that) I spoke to was helpful.", "why": "Formal English puts the preposition first: <i>to whom, with which, most of whom</i>. Everyday English moves it to the end and drops the pronoun."},
-    {"h": "Commas and that", "rule": "With commas (extra information), use who or which. Never use that after a comma.", "no": "My brother, <span class=\"strike\">that</span> lives in Rio, is a doctor.", "yes": "My brother, <b>who</b> lives in Rio, is a doctor. · Paris, <b>which</b> is very old, …", "why": "Commas mark information that could be left out. In those clauses, <i>that</i> is not allowed."}
+    {"h": "Find the real subject", "rule": "Ignore the words between the subject and the verb.", "no": "The color of the walls <span class=\"strike\">are</span> too dark.", "yes": "The color of the walls <b>is</b> too dark. · The doctor, together with two nurses, <b>was</b> at the door.", "why": "Phrases with <i>of, in, with, along with, together with, as well as</i> do not change the subject. Cover them with your finger and read the subject and verb together: <i>the color … is</i>."},
+    {"h": "Each, every, one of", "rule": "Each, every, one of, either and neither take a singular verb.", "no": "One of my cousins <span class=\"strike\">live</span> in Canada.", "yes": "One of my cousins <b>lives</b> in Canada. · Each of the rooms <b>has</b> a window.", "why": "The subject is <i>one</i> or <i>each</i>, not the plural noun after <i>of</i>. The same goes for <i>everyone, everybody, someone, nobody</i>: all singular. With <i>most, some, all, half</i> and <i>a lot</i> + <i>of</i>, the noun after <i>of</i> decides: <i>most of the water <b>is</b></i>, <i>most of the students <b>are</b></i>."},
+    {"h": "And, or, nor", "rule": "A and B is plural. With or, either … or and neither … nor, the verb agrees with the nearer subject.", "no": "My brother and my sister <span class=\"strike\">works</span> at the bank.", "yes": "My brother and my sister <b>work</b> at the bank. · Neither the manager nor the workers <b>were</b> happy.", "why": "<i>And</i> adds two things together, so the verb is plural. <i>Or</i> and <i>nor</i> do not add; look at the subject closest to the verb: <i>neither the workers nor the manager <b>was</b></i>."},
+    {"h": "There is, there are", "rule": "After there, the verb agrees with the noun that comes after it.", "no": "There <span class=\"strike\">is</span> many reasons to learn English.", "yes": "There <b>are</b> many reasons to learn English. · On the table <b>were</b> two letters.", "why": "<i>There</i> is not the subject. The real subject comes after the verb, so read ahead before you choose <i>is</i> or <i>are</i>. The same happens when a sentence starts with a place: <i>on the table were …</i>"},
+    {"h": "Nouns that trick you", "rule": "Some nouns look plural but are singular, and some look singular but are plural.", "no": "The news <span class=\"strike\">are</span> on at seven.", "yes": "The news <b>is</b> on at seven. · The police <b>are</b> looking for the driver. · Swimming <b>is</b> good exercise.", "why": "Singular: <i>news, mathematics, physics, economics</i>, an <i>-ing</i> subject, <i>the number of</i>. Plural: <i>people, police, children</i>, <i>a number of</i>, and pair nouns like <i>jeans, scissors, glasses</i>. An amount of money, time or distance is singular: <i>ten dollars <b>is</b> enough</i>. Compare <i>the number of cars <b>is</b> growing</i> with <i>a number of cars <b>are</b> parked outside</i>."},
+    {"h": "Who, which, that", "rule": "In a relative clause, the verb agrees with the noun before who, which or that.", "no": "I have a friend who <span class=\"strike\">speak</span> four languages.", "yes": "I have a friend who <b>speaks</b> four languages. · The books that <b>are</b> on the shelf are new.", "why": "<i>Who, which</i> and <i>that</i> have no number of their own. Look back to the noun they replace: <i>a friend</i> → <i>speaks</i>; <i>the books</i> → <i>are</i>."}
   ],
-  trap:"When the gap follows a noun and the sentence already has its main verb, the answer is usually a relative clause. Choose the word by the noun (person, thing, place, time or possession), and cross out any option that adds <i>he, she, it</i> or <i>them</i> inside the clause.",
+  trap:"On the TOEFL, the subject and its verb are often far apart. In Structure, check that your answer gives the sentence one subject and one verb that agree. In Written Expression, when a verb is underlined, find its subject before you decide.",
 
   str:[
-    {"s": ["The woman ", "lives next door is a nurse."], "w": "A person, subject of <i>lives</i>: <i>who</i>.", "o": ["which", "who", "whose", "where"], "a": 1},
-    {"s": ["The book ", "I bought yesterday is very good."], "w": "A thing, object of <i>bought</i>: <i>that</i>.", "o": ["that", "who", "whose", "where"], "a": 0},
-    {"s": ["This is the house ", "I was born."], "w": "A place: <i>where</i> (= in which).", "o": ["which", "who", "where", "whose"], "a": 2},
-    {"s": ["The man ", "car was stolen called the police."], "w": "Possession (his car): <i>whose</i>.", "o": ["who", "which", "whose", "that"], "a": 2},
-    {"s": ["The students ", "passed the test received a certificate."], "w": "People, subject of <i>passed</i>: <i>who</i>.", "o": ["who", "whose", "which they", "where"], "a": 0},
-    {"s": ["I still remember the day ", "we first met."], "w": "A time: <i>when</i>.", "o": ["when", "where", "who", "whose"], "a": 0},
-    {"s": ["The bus ", "goes to the airport leaves every hour."], "w": "A thing: <i>that</i>. (D) gives the sentence two verbs with no connector.", "o": ["who", "where", "that", "it"], "a": 2},
-    {"s": ["My sister, ", "lives in Chile, is coming to visit."], "w": "A person, with commas: <i>who</i>. Never <i>that</i> after a comma.", "o": ["that", "which", "who", "whose"], "a": 2},
-    {"s": ["The hotel ", "we stayed was near the beach."], "w": "A place with no preposition at the end: <i>where</i>.", "o": ["which", "where", "who", "that"], "a": 1},
-    {"s": ["Is this the key ", "you were looking for?"], "w": "A thing, object of <i>looking for</i>: <i>that</i>.", "o": ["who", "that", "where", "whose"], "a": 1},
-    {"s": ["The teacher ", "I admire most is Ms. Lopes."], "w": "A person, object of <i>admire</i>: <i>whom</i>.", "o": ["whose", "which", "where", "whom"], "a": 3},
-    {"s": ["The company ", "my father works for is very large."], "w": "A thing with the preposition at the end: <i>that … for</i>.", "o": ["who", "where", "whose", "that"], "a": 3},
-    {"s": ["Paris, ", "is the capital of France, has many museums."], "w": "A thing, with commas: <i>which</i>.", "o": ["that", "who", "which", "where"], "a": 2},
-    {"s": ["The girl ", "mother is a doctor wants to study medicine."], "w": "Possession (her mother): <i>whose</i>. <i>Who’s</i> means <i>who is</i>.", "o": ["whose", "who", "who’s", "which"], "a": 0},
-    {"s": ["The movie ", "last night was very funny."], "w": "The clause can drop <i>that</i>, but it can’t repeat the object with <i>it</i>.", "o": ["we watched", "we watched it", "which we watched it", "who we watched"], "a": 0},
-    {"s": ["Anyone ", "wants to join the club can sign up online."], "w": "A person, subject of <i>wants</i>: <i>who</i>.", "o": ["which", "who", "whose", "whom"], "a": 1},
-    {"s": ["The restaurant ", "serves the best pizza is closed today."], "w": "Subject of <i>serves</i>: <i>that</i>. <i>Where</i> needs its own subject.", "o": ["where", "who", "it", "that"], "a": 3},
-    {"s": ["The year ", "I graduated was very difficult."], "w": "A time: <i>when</i>.", "o": ["where", "when", "who", "whose"], "a": 1},
-    {"s": ["The person to ", "you should send the letter is Mr. Rocha."], "w": "After a preposition, for a person: <i>whom</i>.", "o": ["who", "that", "which", "whom"], "a": 3},
-    {"s": ["The dog ", "barks all night belongs to our neighbor."], "w": "An animal: <i>that</i> or <i>which</i>.", "o": ["who", "whose", "that", "where"], "a": 2},
-    {"s": ["This is the town ", "my grandparents grew up."], "w": "A place: <i>where</i>.", "o": ["which", "who", "whose", "where"], "a": 3},
-    {"s": ["The students, most of ", "were tired, went to bed early."], "w": "After <i>most of</i>, for people: <i>whom</i>. (C) joins two clauses with no connector.", "o": ["who", "them", "which", "whom"], "a": 3},
-    {"s": ["I lost the umbrella ", "my mother gave me."], "w": "A thing, object of <i>gave</i>: <i>that</i>.", "o": ["that", "who", "whose", "where"], "a": 0},
-    {"s": ["The scientist ", "discovery changed medicine won a prize."], "w": "Possession (her discovery): <i>whose</i>.", "o": ["who", "which", "that", "whose"], "a": 3},
-    {"s": ["A pharmacy is a store ", "you can buy medicine."], "w": "A place: <i>where</i>.", "o": ["which", "where", "who", "whose"], "a": 1},
-    {"s": ["The man ", "is wearing a blue hat is my uncle."], "w": "A person, subject of <i>is wearing</i>: <i>who</i>.", "o": ["who", "which", "whose", "he"], "a": 0},
-    {"s": ["The phone ", "last month already broke."], "w": "Drop <i>that</i> if you like, but don’t repeat the object with <i>it</i>.", "o": ["I bought it", "which I bought it", "I bought", "bought"], "a": 2},
-    {"s": ["There are many people in my city ", "speak English."], "w": "People, subject of <i>speak</i>: <i>who</i>.", "o": ["which", "who", "whose", "they"], "a": 1},
-    {"s": ["The reason ", "I called is to invite you to dinner."], "w": "After <i>the reason</i>: <i>why</i>.", "o": ["which", "where", "whose", "why"], "a": 3},
-    {"s": ["The house, ", "was built in 1920, needs a new roof."], "w": "A thing, with commas: <i>which</i>.", "o": ["which", "that", "who", "where"], "a": 0}
+    {"s": ["The museum, along with the two libraries next to it, ", "closed on Mondays."], "w": "The subject is <i>the museum</i>; <i>along with the two libraries</i> does not change it. Singular → <i>is</i>.", "o": ["are", "being", "is", "have been"], "a": 2},
+    {"s": ["Neither the teacher nor the students ", "the answer."], "w": "With <i>neither … nor</i>, the verb agrees with the nearer subject, <i>the students</i> → <i>know</i>.", "o": ["know", "knows", "knowing", "is knowing"], "a": 0},
+    {"s": ["There ", "several ways to save energy at home."], "w": "The subject comes after the verb: <i>several ways</i>, plural → <i>are</i>.", "o": ["is", "has", "are", "it is"], "a": 2},
+    {"s": ["Every student in the two classes ", "a laptop."], "w": "<i>Every student</i> is singular, even though <i>the two classes</i> is plural → <i>has</i>.", "o": ["have", "having", "has", "are having"], "a": 2},
+    {"s": ["", "in the old part of town are very expensive to rent."], "w": "The sentence already has its verb, <i>are</i>, so it needs a plural subject: <i>Apartments</i>. (C) adds a second verb.", "o": ["Apartments", "The apartment", "An apartment is", "Apartment that"], "a": 0},
+    {"s": ["A number of tourists ", "in the hotel lobby."], "w": "<i>A number of</i> means <i>several</i>, so it is plural → <i>are waiting</i>. (D) has no helping verb.", "o": ["is waiting", "waits", "waiting", "are waiting"], "a": 3},
+    {"s": ["The keys to the front door ", "on the kitchen table."], "w": "The subject is <i>the keys</i>; <i>to the front door</i> does not change it → <i>are</i>.", "o": ["is", "was", "are", "it is"], "a": 2},
+    {"s": ["Economics ", "a popular subject at our university."], "w": "Subjects that end in <i>-ics</i> are singular → <i>is</i>.", "o": ["are", "is", "have been", "being"], "a": 1},
+    {"s": ["Each of the hotel rooms ", "a view of the ocean."], "w": "The subject is <i>each</i> → <i>has</i>. (C) leaves the sentence without a verb.", "o": ["have", "are having", "with", "has"], "a": 3},
+    {"s": ["My sister and her husband ", "in a small apartment downtown."], "w": "Two people joined by <i>and</i> → plural <i>live</i>.", "o": ["lives", "live", "is living", "living"], "a": 1},
+    {"s": ["Either the manager or her assistants ", "the store every night."], "w": "With <i>either … or</i>, the nearer subject decides: <i>her assistants</i> → <i>close</i>.", "o": ["closes", "close", "is closing", "closing"], "a": 1},
+    {"s": ["The number of students in the program ", "since 2015."], "w": "<i>The number</i> is one number → singular <i>has grown</i>. <i>Since 2015</i> needs the present perfect.", "o": ["grow", "are growing", "growing", "has grown"], "a": 3},
+    {"s": ["There ", "a lot of information on the website."], "w": "<i>Information</i> is uncountable, so it is singular → <i>is</i>.", "o": ["is", "are", "have", "they are"], "a": 0},
+    {"s": ["The people who live on my street ", "very friendly."], "w": "<i>People</i> is plural → <i>are</i>. <i>Who live on my street</i> is inside the subject.", "o": ["is", "being", "are", "it is"], "a": 2},
+    {"s": ["Learning a new language ", "time and patience."], "w": "An <i>-ing</i> subject is singular → <i>takes</i>.", "o": ["take", "taking", "takes", "are taking"], "a": 2},
+    {"s": ["The results of the experiment ", "surprising."], "w": "The subject is <i>the results</i>; <i>of the experiment</i> does not change it → <i>were</i>.", "o": ["were", "was", "it was", "being"], "a": 0},
+    {"s": ["Somebody in the building ", "playing loud music."], "w": "<i>Somebody</i> is singular → <i>is</i>.", "o": ["are", "were", "have been", "is"], "a": 3},
+    {"s": ["The children in the photograph ", "my nephews."], "w": "<i>Children</i> is plural → <i>are</i>.", "o": ["are", "is", "was", "being"], "a": 0},
+    {"s": ["Ten dollars ", "too much for a cup of coffee."], "w": "An amount of money is one amount → singular <i>is</i>.", "o": ["are", "were", "have been", "is"], "a": 3},
+    {"s": ["Neither of the drivers ", "hurt in the accident."], "w": "<i>Neither</i> is singular → <i>was</i>.", "o": ["were", "was", "have been", "being"], "a": 1},
+    {"s": ["Everything in these boxes ", "to my grandmother."], "w": "<i>Everything</i> is singular → <i>belongs</i>. (C) leaves the sentence without a verb.", "o": ["belongs", "belong", "are belonging", "belonging"], "a": 0},
+    {"s": ["Both Anna and her sister ", "the piano."], "w": "<i>Both … and</i> joins two people → plural <i>play</i>.", "o": ["plays", "play", "is playing", "playing"], "a": 1},
+    {"s": ["The man who sells newspapers on the corner ", "to everyone."], "w": "The subject is <i>the man</i>; <i>who sells newspapers on the corner</i> is inside the subject → <i>talks</i>.", "o": ["talk", "are talking", "talking", "talks"], "a": 3},
+    {"s": ["The quality of the photos ", "much better on the new phone."], "w": "The subject is <i>the quality</i>, not <i>the photos</i> → <i>is</i>.", "o": ["is", "are", "were", "have been"], "a": 0},
+    {"s": ["", "at the meeting agreed with the new plan."], "w": "The sentence already has its verb, <i>agreed</i>; it needs only a subject. (A) and (C) add a second clause or verb.", "o": ["Everyone who", "Everyone was", "Everyone being", "Everyone"], "a": 3},
+    {"s": ["Not only the students but also the teacher ", "tired after the trip."], "w": "With <i>not only … but also</i>, the nearer subject decides: <i>the teacher</i> → <i>was</i>.", "o": ["were", "was", "are", "have been"], "a": 1},
+    {"s": ["The jeans I bought last week ", "too long."], "w": "<i>Jeans</i> is a pair noun, always plural → <i>are</i>.", "o": ["is", "was", "are", "it is"], "a": 2},
+    {"s": ["Most of the water in the lake ", "polluted."], "w": "After <i>most of</i>, the noun decides: <i>water</i> is uncountable → <i>is</i>.", "o": ["are", "were", "have been", "is"], "a": 3},
+    {"s": ["My favorite part of the holidays ", "the food."], "w": "The subject is <i>part</i>, singular → <i>is</i>.", "o": ["is", "are", "were", "being"], "a": 0},
+    {"s": ["The members of the club ", "every Thursday evening."], "w": "The subject is <i>the members</i> → <i>meet</i>.", "o": ["meets", "meet", "is meeting", "meeting"], "a": 1}
   ],
 
   we:[
-    {"p": [["She ", 0], ["is", 1], [" ", 0], ["the", 1], [" ", 0], ["teacher", 1], [" ", 0], ["which", 1], [" everyone likes", 0]], "a": 3, "f": "who", "w": "A teacher is a person: <i>who</i> or <i>that</i>."},
-    {"p": [["The girl ", 0], ["who", 1], [" ", 0], ["mother", 1], [" ", 0], ["is", 1], [" a ", 0], ["doctor", 1], [" wants to be a nurse", 0]], "a": 0, "f": "whose", "w": "Possession (her mother): <i>whose</i>."},
-    {"p": [["The year ", 0], ["when", 1], [" I ", 0], ["graduate", 1], [" ", 0], ["was", 1], [" ", 0], ["very", 1], [" difficult", 0]], "a": 1, "f": "graduated", "w": "<i>When</i> is right. A past year: <i>graduated</i>.", "x": 1},
-    {"p": [["The man ", 0], ["whose", 1], [" car ", 0], ["was", 1], [" stolen ", 0], ["call", 1], [" ", 0], ["the", 1], [" police", 0]], "a": 2, "f": "called", "w": "<i>Whose car</i> is right. The main verb must be past: <i>called</i>.", "x": 1},
-    {"p": [["The restaurant ", 0], ["that", 1], [" ", 0], ["serves", 1], [" the best pizza ", 0], ["is", 1], [" closed ", 0], ["in", 1], [" Sundays", 0]], "a": 3, "f": "on", "w": "<i>That serves</i> is right. Days take <i>on</i>.", "x": 1},
-    {"p": [["The movie ", 0], ["that", 1], [" ", 0], ["we", 1], [" watched ", 0], ["in", 1], [" last night ", 0], ["was", 1], [" very funny", 0]], "a": 2, "f": "", "w": "<i>That</i> is right. <i>Last night</i> takes no preposition: delete <i>in</i>.", "x": 1},
-    {"p": [["The ", 0], ["city", 1], [" ", 0], ["which", 1], [" ", 0], ["I", 1], [" ", 0], ["was", 1], [" born is very small", 0]], "a": 1, "f": "where", "w": "A place with no preposition: <i>where</i>."},
-    {"p": [["", 0], ["Much", 1], [" ", 0], ["people", 1], [" ", 0], ["who", 1], [" ", 0], ["live", 1], [" here work in the city", 0]], "a": 0, "f": "Many", "w": "<i>Who live</i> is right. <i>People</i> is countable → <i>many</i>.", "x": 1},
-    {"p": [["I ", 0], ["remember", 1], [" ", 0], ["the", 1], [" ", 0], ["day", 1], [" ", 0], ["where", 1], [" we first met", 0]], "a": 3, "f": "when", "w": "A time: <i>when</i>."},
-    {"p": [["We ", 0], ["visited", 1], [" ", 0], ["the", 1], [" house ", 0], ["which", 1], [" ", 0], ["my", 1], [" father was born", 0]], "a": 2, "f": "where", "w": "A place with no preposition: <i>where</i>."},
-    {"p": [["The city ", 0], ["where", 1], [" ", 0], ["I", 1], [" ", 0], ["live", 1], [" ", 0], ["in", 1], [" is very big", 0]], "a": 3, "f": "", "w": "<i>Where</i> already means <i>in which</i>. Delete <i>in</i>."},
-    {"p": [["The hotel ", 0], ["which", 1], [" ", 0], ["we", 1], [" ", 0], ["stayed", 1], [" ", 0], ["was", 1], [" near the beach", 0]], "a": 0, "f": "where", "w": "A place with no preposition: <i>where</i>."},
-    {"p": [["I ", 0], ["lost", 1], [" ", 0], ["the", 1], [" umbrella ", 0], ["who", 1], [" ", 0], ["my", 1], [" mother gave me", 0]], "a": 2, "f": "that", "w": "An umbrella is a thing: <i>that</i>."},
-    {"p": [["The woman ", 0], ["who", 1], [" ", 0], ["lives", 1], [" next door ", 0], ["is", 1], [" a ", 0], ["nurses", 1]], "a": 3, "f": "nurse", "w": "<i>Who lives</i> is right. One woman: <i>a nurse</i>.", "x": 1},
-    {"p": [["", 0], ["Are", 1], [" this the key ", 0], ["that", 1], [" you ", 0], ["were", 1], [" ", 0], ["looking", 1], [" for?", 0]], "a": 0, "f": "Is", "w": "<i>That</i> is right. <i>This</i> is singular: <i>Is this …?</i>", "x": 1},
-    {"p": [["The house, ", 0], ["which", 1], [" was ", 0], ["build", 1], [" in 1920, ", 0], ["needs", 1], [" ", 0], ["a", 1], [" new roof", 0]], "a": 1, "f": "built", "w": "<i>Which</i> is right. Passive: <i>was built</i>.", "x": 1},
-    {"p": [["The ", 0], ["students", 1], [" ", 0], ["were studying", 1], [" ", 0], ["in", 1], [" the library ", 0], ["were", 1], [" quiet", 0]], "a": 1, "f": "who were studying", "w": "Two main verbs. Join them: <i>who were studying</i>."},
-    {"p": [["I ", 0], ["still", 1], [" ", 0], ["remember", 1], [" the day ", 0], ["when", 1], [" we first ", 0], ["meet", 1]], "a": 3, "f": "met", "w": "<i>When</i> is right. A past event: <i>met</i>.", "x": 1},
-    {"p": [["The doctor ", 0], ["which", 1], [" ", 0], ["helped", 1], [" me ", 0], ["was", 1], [" ", 0], ["very", 1], [" kind", 0]], "a": 0, "f": "who", "w": "A doctor is a person: <i>who</i>."},
-    {"p": [["The ", 0], ["day", 1], [" ", 0], ["where", 1], [" ", 0], ["we", 1], [" ", 0], ["met", 1], [" was rainy", 0]], "a": 1, "f": "when", "w": "A time: <i>when</i>."},
-    {"p": [["The ", 0], ["people", 1], [" ", 0], ["to", 1], [" ", 0], ["who", 1], [" I ", 0], ["spoke", 1], [" were very helpful", 0]], "a": 2, "f": "whom", "w": "After a preposition: <i>whom</i>."},
-    {"p": [["The book ", 0], ["that", 1], [" I ", 0], ["buyed", 1], [" ", 0], ["yesterday", 1], [" ", 0], ["is", 1], [" very good", 0]], "a": 1, "f": "bought", "w": "<i>That</i> is right. The past of <i>buy</i> is <i>bought</i>.", "x": 1},
-    {"p": [["This ", 0], ["is", 1], [" ", 0], ["the", 1], [" student ", 0], ["who’s", 1], [" ", 0], ["bag", 1], [" was stolen", 0]], "a": 2, "f": "whose", "w": "Possession: <i>whose</i>. <i>Who’s</i> = <i>who is</i>."},
-    {"p": [["The company ", 0], ["that", 1], [" my father ", 0], ["works", 1], [" for ", 0], ["is", 1], [" very ", 0], ["largely", 1]], "a": 3, "f": "large", "w": "<i>That … for</i> is right. After <i>is</i>, the adjective: <i>large</i>.", "x": 1},
-    {"p": [["Every ", 0], ["students", 1], [" ", 0], ["who", 1], [" ", 0], ["wants", 1], [" ", 0], ["to", 1], [" join the club can sign up", 0]], "a": 0, "f": "student", "w": "<i>Who wants</i> is right. <i>Every</i> takes a singular noun: <i>student</i>.", "x": 1},
-    {"p": [["A pharmacy ", 0], ["is", 1], [" ", 0], ["an", 1], [" store ", 0], ["where", 1], [" ", 0], ["you", 1], [" can buy medicine", 0]], "a": 1, "f": "a", "w": "<i>Where</i> is right. <i>Store</i> starts with a consonant: <i>a store</i>.", "x": 1},
-    {"p": [["I ", 0], ["have", 1], [" ", 0], ["a", 1], [" friend ", 0], ["which", 1], [" ", 0], ["speaks", 1], [" four languages", 0]], "a": 2, "f": "who", "w": "A friend is a person: <i>who</i>."},
-    {"p": [["The scientist ", 0], ["whose", 1], [" ", 0], ["discover", 1], [" ", 0], ["changed", 1], [" ", 0], ["medicine", 1], [" won a prize", 0]], "a": 1, "f": "discovery", "w": "<i>Whose</i> is right, but it needs a noun: <i>discovery</i>.", "x": 1},
-    {"p": [["The ", 0], ["car", 1], [" ", 0], ["that", 1], [" I ", 0], ["bought", 1], [" ", 0], ["it", 1], [" last year is red", 0]], "a": 3, "f": "", "w": "<i>That</i> already stands for the car. Delete <i>it</i>."},
-    {"p": [["My sister, ", 0], ["who", 1], [" ", 0], ["lives", 1], [" in Chile, ", 0], ["is", 1], [" coming to visit ", 0], ["on", 1], [" next week", 0]], "a": 3, "f": "", "w": "<i>Who</i> is right. <i>Next week</i> takes no preposition: delete <i>on</i>.", "x": 1}
+    {"p": [["The ", 0], ["color", 1], [" of her eyes ", 0], ["are", 1], [" ", 0], ["a", 1], [" ", 0], ["beautiful", 1], [" green", 0]], "a": 1, "f": "is", "w": "The subject is <i>the color</i>, not <i>her eyes</i> → <i>is</i>."},
+    {"p": [["A number of ", 0], ["tourist", 1], [" ", 0], ["are", 1], [" ", 0], ["waiting", 1], [" ", 0], ["in", 1], [" the lobby", 0]], "a": 0, "f": "tourists", "w": "<i>A number of … are</i> is right, but <i>a number of</i> needs a plural noun: <i>tourists</i>.", "x": 1},
+    {"p": [["", 0], ["Much", 1], [" people ", 0], ["are", 1], [" ", 0], ["waiting", 1], [" ", 0], ["for", 1], [" the bus", 0]], "a": 0, "f": "Many", "w": "<i>People are</i> agrees. <i>People</i> is countable → <i>many</i>.", "x": 1},
+    {"p": [["There ", 0], ["are", 1], [" ", 0], ["many", 1], [" ", 0], ["beautifuls", 1], [" ", 0], ["parks", 1], [" in my city", 0]], "a": 2, "f": "beautiful", "w": "<i>There are many parks</i> agrees. Adjectives have no plural.", "x": 1},
+    {"p": [["The ", 0], ["information", 1], [" ", 0], ["in", 1], [" these ", 0], ["brochures", 1], [" ", 0], ["are", 1], [" out of date", 0]], "a": 3, "f": "is", "w": "<i>Information</i> is uncountable, so it is singular → <i>is</i>. <i>Brochures</i> is inside a phrase that starts with <i>in</i>."},
+    {"p": [["The ", 0], ["news", 1], [" about the ", 0], ["storm", 1], [" ", 0], ["were", 1], [" ", 0], ["worse", 1], [" than we expected", 0]], "a": 2, "f": "was", "w": "<i>News</i> is singular → <i>was</i>."},
+    {"p": [["One of the ", 0], ["reasons", 1], [" ", 0], ["I", 1], [" ", 0], ["like", 1], [" this city ", 0], ["are", 1], [" the food", 0]], "a": 3, "f": "is", "w": "The subject is <i>one</i> → <i>is</i>."},
+    {"p": [["Ten ", 0], ["kilometers", 1], [" ", 0], ["are", 1], [" ", 0], ["a", 1], [" long way to ", 0], ["walk", 1]], "a": 1, "f": "is", "w": "A distance is one amount → singular <i>is</i>."},
+    {"p": [["", 0], ["There’s", 1], [" two ", 0], ["cats", 1], [" ", 0], ["sleeping", 1], [" ", 0], ["on", 1], [" my bed", 0]], "a": 0, "f": "There are", "w": "<i>Two cats</i> is plural → <i>There are</i>."},
+    {"p": [["The students ", 0], ["felt", 1], [" ", 0], ["tired", 1], [" ", 0], ["because", 1], [" the trip ", 0], ["were", 1], [" long", 0]], "a": 3, "f": "was", "w": "<i>The trip</i> is singular → <i>was</i>."},
+    {"p": [["Both the kitchen and the bathroom ", 0], ["need", 1], [" new floors, but we ", 0], ["don’t", 1], [" have ", 0], ["many", 1], [" ", 0], ["money", 1]], "a": 2, "f": "much", "w": "<i>Need</i> and <i>we don’t</i> agree. <i>Money</i> is uncountable → <i>much</i>.", "x": 1},
+    {"p": [["The ", 0], ["students", 1], [" in my class ", 0], ["are", 1], [" very ", 0], ["friendly", 1], [" and ", 0], ["helpfully", 1]], "a": 3, "f": "helpful", "w": "<i>The students … are</i> is right. After <i>are</i>, adjectives: <i>friendly and helpful</i>.", "x": 1},
+    {"p": [["The ", 0], ["furniture", 1], [" ", 0], ["in", 1], [" ", 0], ["our", 1], [" new house ", 0], ["are", 1], [" from my grandmother", 0]], "a": 3, "f": "is", "w": "<i>Furniture</i> is uncountable → singular <i>is</i>."},
+    {"p": [["Neither my parents ", 0], ["nor", 1], [" my brother ", 0], ["like", 1], [" ", 0], ["the", 1], [" new ", 0], ["apartment", 1]], "a": 1, "f": "likes", "w": "With <i>neither … nor</i>, the nearer subject decides: <i>my brother</i>, singular → <i>likes</i>."},
+    {"p": [["The children in the park ", 0], ["were", 1], [" playing ", 0], ["happy", 1], [" ", 0], ["with", 1], [" ", 0], ["their", 1], [" dog", 0]], "a": 1, "f": "happily", "w": "<i>The children … were</i> agrees. To describe how they played, use the adverb: <i>happily</i>.", "x": 1},
+    {"p": [["Mathematics ", 0], ["is", 1], [" ", 0], ["the", 1], [" subject that most students ", 0], ["find", 1], [" ", 0], ["the most hard", 1]], "a": 3, "f": "the hardest", "w": "<i>Mathematics is</i> and <i>students find</i> agree. Short adjectives take <i>-est</i>: <i>the hardest</i>.", "x": 1},
+    {"p": [["Physics ", 0], ["is", 1], [" ", 0], ["one", 1], [" of the most difficult ", 0], ["subject", 1], [" ", 0], ["at", 1], [" school", 0]], "a": 2, "f": "subjects", "w": "<i>Physics is</i> agrees. <i>One of the …</i> takes a plural noun: <i>subjects</i>.", "x": 1},
+    {"p": [["My ", 0], ["parents", 1], [" ", 0], ["have", 1], [" ", 0], ["lived", 1], [" in this house ", 0], ["for", 1], [" 1990", 0]], "a": 3, "f": "since", "w": "<i>My parents have</i> agrees. A starting point (1990) takes <i>since</i>.", "x": 1},
+    {"p": [["", 0], ["An", 1], [" ", 0], ["hotel", 1], [" on the corner ", 0], ["has", 1], [" ", 0], ["only", 1], [" ten rooms", 0]], "a": 0, "f": "A", "w": "<i>The hotel … has</i> agrees. In American English, <i>hotel</i> starts with a consonant sound: <i>a hotel</i>.", "x": 1},
+    {"p": [["My ", 0], ["friends", 1], [" and I ", 0], ["usually", 1], [" ", 0], ["goes", 1], [" to the beach ", 0], ["on", 1], [" Sundays", 0]], "a": 2, "f": "go", "w": "<i>My friends and I</i> is plural → <i>go</i>."},
+    {"p": [["The price of ", 0], ["these", 1], [" shoes ", 0], ["is", 1], [" too high, so I ", 0], ["didn’t", 1], [" ", 0], ["bought", 1], [" them", 0]], "a": 3, "f": "buy", "w": "<i>The price … is</i> agrees. After <i>didn’t</i>, the base form: <i>buy</i>.", "x": 1},
+    {"p": [["", 0], ["Do", 1], [" your sister ", 0], ["work", 1], [" ", 0], ["at", 1], [" the ", 0], ["hospital", 1], ["?", 0]], "a": 0, "f": "Does", "w": "<i>Your sister</i> is singular → <i>Does</i>."},
+    {"p": [["Everyone in ", 0], ["the", 1], [" office ", 0], ["likes", 1], [" the new manager ", 0], ["because", 1], [" she is very ", 0], ["kindly", 1]], "a": 3, "f": "kind", "w": "<i>Everyone … likes</i> agrees. After <i>is</i>, the adjective: <i>kind</i>.", "x": 1},
+    {"p": [["The news ", 0], ["was", 1], [" ", 0], ["more good", 1], [" ", 0], ["than", 1], [" ", 0], ["we", 1], [" expected", 0]], "a": 1, "f": "better", "w": "<i>The news was</i> agrees. The comparative of <i>good</i> is <i>better</i>.", "x": 1},
+    {"p": [["", 0], ["Do", 1], [" the news ", 0], ["start", 1], [" ", 0], ["at", 1], [" seven ", 0], ["tonight", 1], ["?", 0]], "a": 0, "f": "Does", "w": "<i>News</i> is singular → <i>Does</i>."},
+    {"p": [["", 0], ["Swimming", 1], [" and running ", 0], ["is", 1], [" ", 0], ["good", 1], [" ", 0], ["for", 1], [" your heart", 0]], "a": 1, "f": "are", "w": "Two activities joined by <i>and</i> → plural <i>are</i>."},
+    {"p": [["", 0], ["Was", 1], [" your friends ", 0], ["at", 1], [" the ", 0], ["concert", 1], [" last ", 0], ["night", 1], ["?", 0]], "a": 0, "f": "Were", "w": "<i>Your friends</i> is plural → <i>Were</i>."},
+    {"p": [["The police ", 0], ["are", 1], [" looking ", 0], ["after", 1], [" ", 0], ["the", 1], [" ", 0], ["driver", 1], [" who caused the accident", 0]], "a": 1, "f": "for", "w": "<i>The police are</i> agrees. To try to find someone is to <i>look for</i> them.", "x": 1},
+    {"p": [["The ", 0], ["scissors", 1], [" ", 0], ["on", 1], [" the desk ", 0], ["is", 1], [" ", 0], ["very", 1], [" sharp", 0]], "a": 2, "f": "are", "w": "<i>Scissors</i> is a pair noun, always plural → <i>are</i>."},
+    {"p": [["My brother and his wife ", 0], ["have", 1], [" two ", 0], ["childs", 1], [" ", 0], ["and", 1], [" ", 0], ["a", 1], [" dog", 0]], "a": 1, "f": "children", "w": "<i>My brother and his wife have</i> agrees. The plural of <i>child</i> is <i>children</i>.", "x": 1}
   ],
 
-  prac:{type:"sort", title:"Who, which, where or whose?", poolTitle:"Sentences", cols:["who", "which", "where", "whose"], instr:"Sixteen sentences, each with a gap. Which word fits? Then discuss the ones the class disagrees on. <span class=\"screen-only\">Tap a word on each card; the card moves to its column.</span><span class=\"print-only\">Write the word after each sentence.</span>",
+  prac:{type:"sort", title:"Is or are?", binPrefix:"… ", poolTitle:"Subjects", instr:"Sixteen subjects. Decide which ones take <b>is</b> and which take <b>are</b>. Then discuss the ones the class disagrees on. <span class=\"screen-only\">Tap a verb on each card; the card moves to its column.</span><span class=\"print-only\">Write <b>is</b> or <b>are</b> after each one.</span>", cols:["is", "are"],
     items:[
-      {"t": "The woman ___ lives next door is a nurse.", "c": 0, "w": "A person: <i>who</i>."},
-      {"t": "I have a friend ___ speaks four languages.", "c": 0, "w": "A person: <i>who</i>."},
-      {"t": "The man ___ is wearing a hat is my uncle.", "c": 0, "w": "A person: <i>who</i>."},
-      {"t": "Students ___ study every day usually do well.", "c": 0, "w": "People: <i>who</i>."},
-      {"t": "Paris, ___ is the capital of France, is very old.", "c": 1, "w": "A thing, with commas: <i>which</i>."},
-      {"t": "The bus, ___ was late again, was full.", "c": 1, "w": "A thing, with commas: <i>which</i>."},
-      {"t": "I lost my phone, ___ was new.", "c": 1, "w": "A thing, with a comma: <i>which</i>."},
-      {"t": "The house, ___ was built in 1920, needs a new roof.", "c": 1, "w": "A thing, with commas: <i>which</i>."},
-      {"t": "This is the house ___ I was born.", "c": 2, "w": "A place: <i>where</i>."},
-      {"t": "A library is a place ___ you can borrow books.", "c": 2, "w": "A place: <i>where</i>."},
-      {"t": "The hotel ___ we stayed was cheap.", "c": 2, "w": "A place: <i>where</i>."},
-      {"t": "I want to visit the town ___ my mother grew up.", "c": 2, "w": "A place: <i>where</i>."},
-      {"t": "The girl ___ mother is a doctor wants to be a nurse.", "c": 3, "w": "Possession: <i>whose</i>."},
-      {"t": "The man ___ car was stolen called the police.", "c": 3, "w": "Possession: <i>whose</i>."},
-      {"t": "I met a writer ___ books are famous.", "c": 3, "w": "Possession: <i>whose</i>."},
-      {"t": "The student ___ bag was stolen was very upset.", "c": 3, "w": "Possession: <i>whose</i>."}
+      {"t": "The news", "c": 0, "w": "<i>News</i> is singular."},
+      {"t": "The police", "c": 1, "w": "<i>Police</i> is always plural."},
+      {"t": "Each of the players", "c": 0, "w": "The subject is <i>each</i>."},
+      {"t": "Mathematics", "c": 0, "w": "School subjects in <i>-ics</i> are singular."},
+      {"t": "The students in my class", "c": 1, "w": "The subject is <i>the students</i>."},
+      {"t": "Neither the coach nor the players", "c": 1, "w": "The nearer subject is <i>the players</i>."},
+      {"t": "Everyone at the party", "c": 0, "w": "<i>Everyone</i> is singular."},
+      {"t": "A number of people", "c": 1, "w": "<i>A number of</i> = several → plural."},
+      {"t": "The number of cars", "c": 0, "w": "<i>The number</i> is one number → singular."},
+      {"t": "My brother and his wife", "c": 1, "w": "Two people joined by <i>and</i> → plural."},
+      {"t": "Physics", "c": 0, "w": "<i>-ics</i> subject → singular."},
+      {"t": "The children", "c": 1, "w": "<i>Children</i> is the plural of <i>child</i>."},
+      {"t": "Swimming in the ocean", "c": 0, "w": "An <i>-ing</i> subject is singular."},
+      {"t": "Both of my parents", "c": 1, "w": "<i>Both</i> means two → plural."},
+      {"t": "Nobody in the room", "c": 0, "w": "<i>Nobody</i> is singular."},
+      {"t": "The books on the shelf", "c": 1, "w": "The subject is <i>the books</i>."}
     ]},
 
-  prod:{type:"combine", title:"Combine with a relative clause", instr:"Join the two sentences into one with <i>who, which, that, whose, where</i> or <i>when</i>.",
+  prod:{type:"transform", title:"Rewrite the sentence", instr:"Rewrite each sentence so that it starts with the words given. Change the verb if you need to, and keep the meaning.",
     items:[
-      {"t": ["I have a friend.", "She speaks four languages."], "a": ["I have a friend who speaks four languages.", "I have a friend that speaks four languages."], "w": "A person, subject: <i>who</i>."},
-      {"t": ["This is the house.", "I was born there."], "a": ["This is the house where I was born.", "This is the house that I was born in.", "This is the house I was born in.", "This is the house in which I was born.", "This is the house which I was born in."], "w": "A place: <i>where</i>, with no <i>there</i>."},
-      {"t": ["The man called the police.", "His car was stolen."], "a": ["The man whose car was stolen called the police."], "w": "<i>His</i> becomes <i>whose</i>."},
-      {"t": ["The book was very good.", "I bought it yesterday."], "a": ["The book that I bought yesterday was very good.", "The book which I bought yesterday was very good.", "The book I bought yesterday was very good."], "w": "Drop <i>it</i>: the relative word replaces it."},
-      {"t": ["My brother lives in Rio.", "He is a doctor."], "h": "(use commas)", "a": ["My brother, who lives in Rio, is a doctor.", "My brother, who is a doctor, lives in Rio."], "w": "Extra information: commas and <i>who</i>."},
-      {"t": ["I remember the day.", "We first met on that day."], "a": ["I remember the day when we first met.", "I remember the day we first met.", "I remember the day that we first met.", "I remember the day on which we first met."], "w": "A time: <i>when</i>."},
-      {"t": ["The bus goes to the airport.", "It leaves every hour."], "a": ["The bus that goes to the airport leaves every hour.", "The bus which goes to the airport leaves every hour."], "w": "A thing, subject: <i>that</i> or <i>which</i>."},
-      {"t": ["The woman is very kind.", "I spoke to her."], "a": ["The woman I spoke to is very kind.", "The woman that I spoke to is very kind.", "The woman who I spoke to is very kind.", "The woman whom I spoke to is very kind.", "The woman to whom I spoke is very kind."], "w": "Object of <i>to</i>: <i>whom</i>, or leave the word out."},
-      {"t": ["Curitiba is in the south of Brazil.", "It has many parks."], "h": "(use which)", "a": ["Curitiba, which has many parks, is in the south of Brazil.", "Curitiba, which is in the south of Brazil, has many parks."], "w": "Extra information about a place: commas and <i>which</i>."},
-      {"t": ["The student won a prize.", "Her project was the best."], "a": ["The student whose project was the best won a prize."], "w": "<i>Her</i> becomes <i>whose</i>."}
+      {"t": "All the students have a dictionary.", "cue": "Every student", "a": ["Every student has a dictionary."], "w": "<i>Every</i> + singular noun → <i>has</i>."},
+      {"t": "The children are playing in the yard.", "cue": "One of the children", "a": ["One of the children is playing in the yard."], "w": "The subject is <i>one</i> → <i>is</i>."},
+      {"t": "There is a mistake in your essay. (several)", "cue": "There", "a": ["There are several mistakes in your essay."], "w": "<i>Several mistakes</i> is plural → <i>are</i>."},
+      {"t": "My mother and my father don’t like loud music.", "cue": "Neither my mother nor my father", "a": ["Neither my mother nor my father likes loud music."], "w": "Nearer subject <i>my father</i> → <i>likes</i>."},
+      {"t": "The students live near the school.", "cue": "Each of the students", "a": ["Each of the students lives near the school."], "w": "The subject is <i>each</i> → <i>lives</i>."},
+      {"t": "The scientists are studying the problem.", "cue": "The team of scientists", "a": ["The team of scientists is studying the problem."], "w": "The subject is <i>the team</i> → <i>is</i>."},
+      {"t": "Many people want to visit the museum.", "cue": "Everybody", "a": ["Everybody wants to visit the museum."], "w": "<i>Everybody</i> is singular → <i>wants</i>."},
+      {"t": "Tom plays soccer on Saturdays. (or his brothers)", "cue": "Either Tom or his brothers", "a": ["Either Tom or his brothers play soccer on Saturdays."], "w": "Nearer subject <i>his brothers</i> → <i>play</i>."},
+      {"t": "These shoes are too expensive.", "cue": "This pair of shoes", "a": ["This pair of shoes is too expensive."], "w": "The subject is <i>pair</i> → <i>is</i>."},
+      {"t": "My best friend studies medicine. (together with two other friends)", "cue": "My best friend, together with two other friends,", "a": ["My best friend, together with two other friends, studies medicine."], "w": "<i>Together with …</i> does not change the subject → <i>studies</i>."}
     ]},
 
   exit:[
-    {"k": "str", "s": ["The people ", "live upstairs are very noisy."], "w": "People, subject of <i>live</i>: <i>who</i>.", "o": ["which", "who", "whose", "where"], "a": 1},
-    {"k": "we", "p": [["The ", 0], ["scientist", 1], [" ", 0], ["who", 1], [" ", 0], ["discovery", 1], [" ", 0], ["changed", 1], [" medicine won a prize", 0]], "a": 1, "f": "whose", "w": "Possession (her discovery): <i>whose</i>."},
-    {"k": "str", "s": ["This is the restaurant ", "we had our first date."], "w": "A place: <i>where</i>.", "o": ["which", "who", "where", "whose"], "a": 2},
-    {"k": "we", "p": [["The phone ", 0], ["that", 1], [" I ", 0], ["bought", 1], [" last month ", 0], ["already", 1], [" ", 0], ["broken", 1]], "a": 3, "f": "broke", "w": "<i>That</i> is right. The past of <i>break</i> is <i>broke</i>.", "x": 1},
-    {"k": "str", "s": ["The boy ", "bike was stolen went to the police."], "w": "Possession (his bike): <i>whose</i>.", "o": ["who", "which", "whose", "that"], "a": 2},
-    {"k": "we", "p": [["The phone ", 0], ["what", 1], [" ", 0], ["I", 1], [" ", 0], ["bought", 1], [" ", 0], ["last", 1], [" month broke", 0]], "a": 0, "f": "that", "w": "<i>What</i> can’t follow a noun. Use <i>that</i>."},
-    {"k": "str", "s": ["The laptop ", "last year still works well."], "w": "No repeated <i>it</i> inside the clause.", "o": ["I bought it", "which I bought it", "bought", "I bought"], "a": 3},
-    {"k": "we", "p": [["There are ", 0], ["much", 1], [" people ", 0], ["in", 1], [" my city ", 0], ["who", 1], [" ", 0], ["speak", 1], [" English", 0]], "a": 0, "f": "many", "w": "<i>Who speak</i> is right. <i>People</i> is countable → <i>many</i>.", "x": 1}
+    {"k": "str", "s": ["Both the kitchen and the bathroom ", "new floors."], "w": "Two subjects joined by <i>and</i> → plural <i>need</i>.", "o": ["needs", "need", "is needing", "it needs"], "a": 1},
+    {"k": "we", "p": [["Every ", 0], ["one", 1], [" of the ", 0], ["questions", 1], [" ", 0], ["on", 1], [" the test ", 0], ["were", 1], [" difficult", 0]], "a": 3, "f": "was", "w": "The subject is <i>every one</i> → <i>was</i>."},
+    {"k": "str", "s": ["One of the students ", "a question about the homework."], "w": "The subject is <i>one</i> → <i>has</i>.", "o": ["has", "have", "having", "were having"], "a": 0},
+    {"k": "we", "p": [["", 0], ["Informations", 1], [" about the course ", 0], ["is", 1], [" ", 0], ["available", 1], [" ", 0], ["on", 1], [" the website", 0]], "a": 0, "f": "Information", "w": "<i>Information … is</i> agrees, but <i>information</i> never takes <i>-s</i>.", "x": 1},
+    {"k": "str", "s": ["The furniture in these rooms ", "very old."], "w": "<i>Furniture</i> is uncountable → singular <i>is</i>.", "o": ["are", "were", "is", "have been"], "a": 2},
+    {"k": "we", "p": [["The ", 0], ["students", 1], [" in my class ", 0], ["has", 1], [" ", 0], ["different", 1], [" ", 0], ["opinions", 1], [" about the movie", 0]], "a": 1, "f": "have", "w": "The subject is <i>the students</i> → <i>have</i>."},
+    {"k": "str", "s": ["Neither the bus nor the trains ", "on time this morning."], "w": "The nearer subject is <i>the trains</i> → <i>were</i>.", "o": ["was", "is", "were", "has been"], "a": 2},
+    {"k": "we", "p": [["Somebody in ", 0], ["the", 1], [" building ", 0], ["is", 1], [" ", 0], ["playing", 1], [" ", 0], ["loudly", 1], [" music", 0]], "a": 3, "f": "loud", "w": "<i>Somebody … is</i> agrees. Before a noun, use the adjective: <i>loud music</i>.", "x": 1}
   ]
 };
 </script>
