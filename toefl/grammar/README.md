@@ -32,6 +32,10 @@ each page carries its own data in the `GP:data` block.
 - `str: [{s:[before, after], o:[4 options], a, w}]` — `a` is 0-based.
 - `we: [{p:[[text, underlined 0/1], …], a, f, w}]` — exactly 4 underlined parts; `f` is the
   correction (empty string = delete the part).
+  `x: 1` marks an item whose error is **off** the session topic. Exactly half of `we` and half
+  of the exit check’s Written Expression items carry it: the topic structure is underlined and
+  correct, and the error is elsewhere (article, plural, preposition, word form, tense…), so
+  students can’t answer by always picking the topic part.
 - `exit: [{k:"str"|"we", …same fields}]`.
 - `prac`, `prod`: `{type, title, instr, …}` where `type` is one of
   - `sort` — `cols:[…]`, `items:[{t, c, w}]`, optional `poolTitle`, `binPrefix`. The engine shuffles the cards.

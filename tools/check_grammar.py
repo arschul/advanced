@@ -6,7 +6,7 @@
 Per session (100 items): Structure and Written Expression have 30 items each and the
   exit check 8. In each, every letter is the answer at least 6 times (2 in the exit check), with no more than 2 identical answers in a row. Written Expression (block + exit WE items): exactly 4 underlined parts,
   the error span appears once in the sentence, and the error falls early, middle and late
-  at least 6 times each. Sort categories are used within one item of evenly; a paragraph
+  at least 6 times each, and half the items (x:1) have their error off the session topic. Sort categories are used within one item of evenly; a paragraph
   hunt has 30–60% wrong spans; every typed item has an accepted answer. Matching order is
   shuffled by the engine (never 1 = a).
 Needs node on PATH (the session data is a JavaScript literal).
@@ -30,6 +30,12 @@ def run(path):
         for i in range(1, len(seq)):
             run_ = run_ + 1 if seq[i] == seq[i-1] else 1
             if run_ > 2: errs.append(f"{name}: 3 identical answers in a row at item {i+1}")
+    # Half the Written Expression items must have their error OFF the session's topic (x:1),
+    # so the topic part is a correct distractor and students can't just pick it every time.
+    off = sum(1 for q in S["we"] if q.get("x")); exoff = sum(1 for q in S["exit"] if q.get("k") == "we" and q.get("x"))
+    exwe = sum(1 for q in S["exit"] if q.get("k") == "we")
+    if off * 2 != len(S["we"]): errs.append(f"we: {off} of {len(S['we'])} errors off the topic (need half)")
+    if exoff * 2 != exwe: errs.append(f"exit: {exoff} of {exwe} WE errors off the topic (need half)")
     we = S["we"] + [q for q in S["exit"] if q.get("k") == "we"]
     pos = []
     for i, q in enumerate(we, 1):
