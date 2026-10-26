@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<!-- HUBGEN:leaf start -->
+<script>(function(){try{var k="arschul:theme",v=localStorage.getItem(k);
+if(!v){var o=["hub-theme","theme","gh-theme","adv-theme","reviews-theme","worksheets-theme",
+"vocab-theme","toefl-theme","stc-theme","wheelquest-theme","wba-theme","airtight-theme","efl-reader-theme"];
+for(var i=0;i<o.length;i++){var x=localStorage.getItem(o[i]);if(x==="light"||x==="dark"){v=x;break;}}
+v=v||"dark";localStorage.setItem(k,v);}
+var m=(v==="system")?(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):v;
+document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
+<script defer src="https://arschul.github.io/assets/leaf.v1.js"></script>
+<!-- HUBGEN:leaf end -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Articles · Grammar Practice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- GP:engine-css start -->
+<style>
+  :root{
+    --bg:#0c0e12;--surface:#15171c;--surface2:#1b1e25;--text:#eef0f2;--muted:#8b929c;--border:#262932;
+    --violet:#a78bfa;--violet-deep:#1c1433;--violet-line:rgba(167,139,250,0.35);
+    --key-accent:#f0c75e;--key-deep:#2a2206;--key-line:rgba(240,199,94,0.25);
+    --good:#4ade80;--good-soft:rgba(74,222,128,0.12);--good-line:rgba(74,222,128,0.35);
+    --bad:#f87171;--bad-soft:rgba(248,113,113,0.12);--bad-line:rgba(248,113,113,0.35);
+    --radius:14px;
+  }
+  :root[data-theme="light"]{
+    --bg:#f4f1ea;--surface:#ffffff;--surface2:#faf8f3;--text:#1a1815;--muted:#6b6660;--border:#e2ddd2;
+    --violet:#7c3aed;--violet-deep:#ede9fe;--violet-line:rgba(124,58,237,0.3);
+    --key-accent:#b8860b;--key-deep:#fbf2dc;--key-line:rgba(184,134,11,0.3);
+    --good:#15803d;--good-soft:#dcfce7;--good-line:rgba(21,128,61,0.3);
+    --bad:#b91c1c;--bad-soft:#fee2e2;--bad-line:rgba(185,28,28,0.3);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;
+    line-height:1.65;transition:background .3s,color .3s;-webkit-font-smoothing:antialiased}
+  .wrap{width:100%;max-width:880px;margin:0 auto;padding:4.5rem 1.5rem 5rem}
+  .theme-toggle{position:fixed;top:1.25rem;right:1.25rem;z-index:30;width:42px;height:42px;border-radius:50%;
+    border:1px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;display:flex;
+    align-items:center;justify-content:center;font-size:1.1rem;transition:all .2s}
+  .theme-toggle:hover{border-color:var(--text);color:var(--text);transform:scale(1.06)}
+  .back-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.8rem;font-weight:500;color:var(--muted);
+    text-decoration:none;margin-bottom:2.5rem;transition:color .2s}
+  .back-link:hover{color:var(--violet)}
+  .eyebrow{font-size:.72rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:1.1rem}
+  h1,h2,h3,.n,.score strong,.blk-num{font-family:'Fraunces',Georgia,serif;font-optical-sizing:auto}
+  h1{font-weight:700;font-size:clamp(2.2rem,5.5vw,3.4rem);line-height:1.05;letter-spacing:-1.5px;margin-bottom:.9rem}
+  h1 .accent{background:linear-gradient(90deg,var(--violet),#38bdf8);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{color:var(--muted);font-size:1.02rem;font-weight:300;line-height:1.75;max-width:60ch;margin-bottom:1.8rem}
+  .chips{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.6rem}
+  .chip{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;padding:.2rem .7rem;border-radius:100px;
+    border:1px solid var(--violet-line);color:var(--violet);background:var(--violet-deep)}
+  .actions{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem}
+  .btn{font-family:inherit;font-size:.75rem;font-weight:600;letter-spacing:.3px;padding:.45rem .9rem;border-radius:8px;
+    cursor:pointer;transition:all .2s;display:inline-block}
+  .btn-view{background:var(--violet-deep);color:var(--violet);border:1px solid var(--violet-line)}
+  .btn-view:hover{background:var(--violet);color:#fff}
+  .btn-key{background:var(--key-deep);color:var(--key-accent);border:1px solid var(--key-line)}
+  .btn-key:hover{background:var(--key-accent);color:#1a1815}
+  .btn-dl{background:transparent;color:var(--muted);border:1px solid var(--border)}
+  .btn-dl:hover{border-color:var(--muted);color:var(--text)}
+
+  /* session plan */
+  .plan{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:2.2rem}
+  .plan a{display:block;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--border);
+    border-radius:10px;padding:.55rem .6rem;transition:border-color .2s}
+  .plan a:hover{border-color:var(--violet)}
+  .plan b{display:block;font-size:.78rem;font-weight:600;line-height:1.3}
+  .plan span{font-size:.7rem;color:var(--muted)}
+  .plan-total{font-size:.75rem;color:var(--muted);margin:-1.6rem 0 2.2rem;text-align:right}
+
+  .progress{position:sticky;top:0;z-index:20;background:var(--bg);padding:.85rem 0;border-bottom:1px solid var(--border);
+    display:flex;align-items:center;gap:.9rem;font-size:.78rem;color:var(--muted)}
+  .track{flex:1;height:4px;background:var(--surface2);border-radius:100px;overflow:hidden}
+  .fill{height:100%;width:0;background:linear-gradient(90deg,var(--violet),#38bdf8);transition:width .35s}
+
+  /* blocks */
+  .blk{margin-top:3.2rem;scroll-margin-top:4rem}
+  .blk-head{display:flex;align-items:center;gap:.8rem;padding-bottom:.75rem;border-bottom:1px solid var(--border)}
+  .blk-num{width:34px;height:34px;border-radius:10px;background:var(--violet-deep);color:var(--violet);border:1px solid var(--violet-line);
+    display:flex;align-items:center;justify-content:center;font-weight:700;flex:none}
+  .blk-head h2{font-size:1.45rem;font-weight:600;letter-spacing:-.3px;flex:1;line-height:1.2}
+  .blk-head h2 small{display:block;font-family:'DM Sans',sans-serif;font-size:.72rem;font-weight:500;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--muted);margin-bottom:.15rem}
+  .instr{color:var(--muted);font-size:.88rem;font-weight:300;margin-top:1rem;line-height:1.7}
+  .instr b{color:var(--text);font-weight:600}
+
+  /* explanation */
+  .pats{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:1rem}
+  .pat{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.15rem;position:relative;overflow:hidden}
+  .pat::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--violet);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+  .pat:hover::before{transform:scaleX(1)}
+  .pat h3{font-size:1.02rem;font-weight:600;letter-spacing:-.2px;margin-bottom:.3rem}
+  .pat h3 i{font-style:normal;color:var(--violet);margin-right:.35rem}
+  .pat .rule{font-size:.9rem;font-weight:500;margin-bottom:.5rem}
+  .ex{margin:.4rem 0;padding-left:1.4rem;position:relative;font-size:.92rem}
+  .ex.no::before{content:"✗";position:absolute;left:0;color:var(--bad);font-weight:700}
+  .ex.yes::before{content:"✓";position:absolute;left:0;color:var(--good);font-weight:700}
+  .ex.no{color:var(--muted)}
+  .ex b{color:var(--good)}
+  .strike{color:var(--bad);text-decoration:line-through}
+  .why{font-size:.84rem;color:var(--muted);font-weight:300;line-height:1.7;margin-top:.5rem}
+  .trap{margin-top:.9rem;background:var(--key-deep);border:1px solid var(--key-line);border-radius:var(--radius);padding:1rem 1.15rem;font-size:.9rem;line-height:1.7}
+  .trap b:first-child{color:var(--key-accent);display:block;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.2rem}
+
+  /* items */
+  .q{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem 1.2rem;margin-top:.75rem;
+    display:grid;grid-template-columns:30px 1fr;gap:.2rem .9rem;break-inside:avoid}
+  .n{font-weight:600;color:var(--muted);font-size:1rem;line-height:1.7}
+  .stem{font-size:1.05rem;line-height:1.75}
+  .gap{display:inline-block;min-width:4.5em;border-bottom:2px solid var(--muted);margin:0 .15em;text-align:center;color:var(--violet);font-weight:600}
+  .opts{grid-column:2;display:flex;flex-direction:column;align-items:flex-start;gap:.35rem;margin-top:.6rem}
+  .opts.row{flex-direction:row;flex-wrap:wrap}
+  .opts.grid{display:grid;grid-template-columns:1fr 1fr;align-items:stretch}
+  @media(max-width:520px){.opts.grid{grid-template-columns:1fr}}
+  .opt{font-family:inherit;font-size:.92rem;padding:.3rem .85rem;border-radius:100px;cursor:pointer;text-align:left;
+    background:var(--surface2);color:var(--text);border:1px solid var(--border);transition:all .2s}
+  .opt .l{font-weight:700;color:var(--violet);margin-right:.45rem}
+  .opt:hover:not(:disabled){border-color:var(--violet)}
+  .opt:disabled{cursor:default}
+  .opt.right{background:var(--good-soft);border-color:var(--good-line);color:var(--good)}
+  .opt.wrong{background:var(--bad-soft);border-color:var(--bad-line);color:var(--bad);text-decoration:line-through}
+  /* written expression: letter under the underline, as on the ITP */
+  .we{line-height:2.9}
+  .seg{position:relative;display:inline-block;line-height:1.5;cursor:pointer;border-radius:4px;padding:0 1px;transition:background .2s}
+  .seg u{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:4px}
+  .seg sub{position:absolute;left:50%;top:100%;transform:translateX(-50%);margin-top:-1px;font-size:.66rem;font-weight:700;
+    color:var(--violet);line-height:1;vertical-align:baseline}
+  .seg:hover{background:var(--violet-deep)}
+  .seg.right{background:var(--good-soft)}
+  .seg.wrong{background:var(--bad-soft)}
+  .seg.locked{cursor:default}
+  /* sort */
+  .sort{margin-top:1rem;display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:.8rem;align-items:start}
+  .pool,.bin{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.8rem;min-height:120px}
+  .bin h3,.pool h3{font-size:1rem;font-weight:600;margin-bottom:.5rem}
+  .bin h3{color:var(--violet)}
+  .card{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;background:var(--surface2);border:1px solid var(--border);
+    border-radius:10px;padding:.4rem .55rem;margin-bottom:.4rem;font-size:.92rem}
+  .card .t{flex:1;min-width:8em}
+  .card .n2{font-weight:600;color:var(--muted);margin-right:.2rem}
+  .card .opt{font-size:.8rem;padding:.15rem .6rem}
+  .card.right{border-color:var(--good-line);background:var(--good-soft)}
+  .card.wrong{border-color:var(--bad-line);background:var(--bad-soft)}
+  .card .note{display:block;width:100%;font-size:.8rem;color:var(--muted);font-weight:300}
+  /* production */
+  .orig{color:var(--muted);font-size:.95rem}
+  .cue{margin-top:.35rem;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
+  .cue b{font-weight:600}
+  input[type=text]{font-family:inherit;font-size:.95rem;padding:.45rem .7rem;border-radius:8px;background:var(--surface2);color:var(--text);
+    border:1px solid var(--border);flex:1;min-width:220px}
+  input.right{border-color:var(--good-line);background:var(--good-soft)}
+  input.close{border-color:var(--key-line);background:var(--key-deep)}
+  .row-btns{grid-column:2;display:flex;gap:.4rem;margin-top:.6rem;flex-wrap:wrap}
+  input:focus-visible,.opt:focus-visible,.btn:focus-visible,.theme-toggle:focus-visible,.seg:focus-visible{outline:2px solid var(--violet);outline-offset:2px}
+  .fb{grid-column:2;margin-top:.7rem;padding:.65rem .9rem;border-radius:10px;font-size:.87rem;font-weight:300;line-height:1.7;display:none;color:var(--muted)}
+  .fb.show{display:block}
+  .fb.ok{background:var(--good-soft);border:1px solid var(--good-line)}
+  .fb.no{background:var(--bad-soft);border:1px solid var(--bad-line)}
+  .fb.mid{background:var(--key-deep);border:1px solid var(--key-line)}
+  .fb b{font-weight:600}
+  .fb>b:first-child{display:block;margin-bottom:.1rem}
+  .fb.ok>b:first-child{color:var(--good)}
+  .fb.no>b:first-child{color:var(--bad)}
+  .fb.mid>b:first-child{color:var(--key-accent)}
+  .fb .model{color:var(--text);font-weight:500}
+  .score{margin-top:1.2rem;padding:1.4rem;border:1px solid var(--violet-line);border-radius:18px;background:var(--violet-deep);text-align:center;display:none}
+  .score.show{display:block}
+  .score strong{font-size:2rem;font-weight:700;letter-spacing:-1px;display:block;margin-bottom:.2rem;color:var(--violet)}
+  .score span{font-size:.85rem;color:var(--muted)}
+  footer{padding:2.5rem 1.5rem;color:var(--muted);font-size:.78rem;text-align:center;border-top:1px solid var(--border);margin-top:3rem}
+  footer a{color:var(--muted);text-decoration:none}
+  footer a:hover{color:var(--violet)}
+
+  .printhead,.keyblock,.print-only,.popts,.line,.tick,.pbox{display:none}
+
+  @media(max-width:700px){
+    .wrap{padding:3.5rem 1.1rem 4rem}
+    .plan{grid-template-columns:repeat(4,1fr)}
+    .pats{grid-template-columns:1fr}
+    .sort{grid-template-columns:1fr 1fr}
+    .pool{grid-column:1/-1}
+    .q{grid-template-columns:24px 1fr;padding:1rem}
+  }
+
+  @media print{
+    @page{margin:14mm}
+    :root,:root[data-theme]{--bg:#fff;--surface:#fff;--surface2:#fff;--text:#000;--muted:#333;--border:#bbb;
+      --violet:#000;--violet-deep:#fff;--violet-line:#bbb;--key-accent:#000;--key-deep:#fff;--key-line:#bbb;
+      --good:#000;--good-soft:#fff;--good-line:#bbb;--bad:#000;--bad-soft:#fff;--bad-line:#bbb}
+    body{font-size:11pt;line-height:1.45}
+    .theme-toggle,.back-link,.eyebrow,.chips,.actions,.plan,.plan-total,.progress,.lede,.fb,.score,
+    .opts,.row-btns,.screen-only,footer,input{display:none!important}
+    .wrap{max-width:none;padding:0}
+    h1{font-size:1.5rem;letter-spacing:-.5px;margin-bottom:.3rem}
+    h1 .accent{color:#000;-webkit-text-fill-color:#000;background:none}
+    .printhead{display:block;border-bottom:1px solid #000;padding-bottom:5px;margin-bottom:10px;font-size:.88rem}
+    .print-only{display:inline}
+    .blk{margin-top:14px}
+    .blk-head{border-bottom:1px solid #000;padding-bottom:3px}
+    .blk-num{border:1px solid #000;width:24px;height:24px;font-size:.8rem;border-radius:5px}
+    .blk-head h2{font-size:1.1rem}
+    .blk-head h2 small{display:inline;margin-right:.4rem}
+    .instr{margin-top:4px;font-size:9.5pt}
+    .pats{gap:6px;grid-template-columns:1fr 1fr}
+    .pat,.trap{padding:6px 8px;border:1px solid #999;border-radius:4px;break-inside:avoid}
+    .pat::before{display:none}
+    .pat .why{display:none}
+    .q{border:none;padding:4px 0;margin:0;grid-template-columns:22px 1fr}
+    .popts{display:block;grid-column:2;font-size:10.5pt}
+    .popts span{display:inline-block;min-width:24%}
+    .seg{cursor:default}
+    body.print-blank .gap{color:transparent}
+    .seg sub{color:#000}
+    .we{line-height:2.6}
+    .line{display:block;border-bottom:1px solid #888;height:22px;grid-column:2}
+    .tick{grid-column:2;font-size:10pt}
+    .sort{display:block}
+    .bin{display:none}
+    .pool{border:none;padding:0;min-height:0}
+    .card{border:none;border-bottom:1px dotted #999;border-radius:0;padding:3px 0;margin:0}
+    .card .opt{display:none}
+    .card .note{display:none}
+    .blk-head,.instr{break-after:avoid;page-break-after:avoid}
+    .card .pbox{display:inline}
+    body.print-key .wrap>*:not(.printhead):not(.keyblock):not(h1){display:none!important}
+    body.print-key .keyblock{display:block}
+    .keyblock h2{font-size:1.15rem;border-bottom:1px solid #000;margin-bottom:6px}
+    .keyblock p{font-size:10pt;margin:3px 0;break-inside:avoid}
+    .keyblock h3{font-size:10.5pt;margin-top:8px}
+  }
+</style>
+<style>
+  /* sort with more than two columns */
+  .sort.wide{grid-template-columns:repeat(var(--nc),1fr)}
+  .sort.wide .pool{grid-column:1/-1}
+  /* matching */
+  .match{display:grid;grid-template-columns:1.15fr 1fr;gap:.8rem;margin-top:1rem;align-items:start}
+  .mcol{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.8rem}
+  .mcol h3{font-size:1rem;font-weight:600;margin-bottom:.5rem}
+  .mi{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;padding:.4rem .2rem;border-bottom:1px solid var(--border);font-size:.94rem}
+  .mi:last-child{border-bottom:none}
+  .mi .t{flex:1;min-width:10em}
+  .mi .n2,.mr .l2{font-weight:600;color:var(--muted);margin-right:.25rem}
+  .mi.right{background:var(--good-soft)}
+  .mi.wrong{background:var(--bad-soft)}
+  .mi .note{display:block;width:100%;font-size:.8rem;color:var(--muted);font-weight:300}
+  .mr{padding:.35rem .2rem;font-size:.94rem;border-bottom:1px solid var(--border)}
+  .mr:last-child{border-bottom:none}
+  select{font-family:inherit;font-size:.9rem;padding:.3rem .5rem;border-radius:8px;background:var(--surface2);color:var(--text);border:1px solid var(--border)}
+  select:disabled{opacity:1}
+  /* inline gap-fill */
+  input.gapin{flex:none;min-width:0;width:9em;display:inline-block;margin:0 .2em;padding:.2rem .5rem}
+  input.gapin.wrong{border-color:var(--bad-line);background:var(--bad-soft)}
+  .hint{color:var(--muted);font-size:.85rem}
+  /* unscramble */
+  .tiles,.built{grid-column:2;display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.6rem}
+  .built{min-height:2.5rem;padding:.35rem;border:1px dashed var(--border);border-radius:10px;align-items:center}
+  .built:empty::before{content:"Tap the words in order";color:var(--muted);font-size:.85rem;padding-left:.3rem}
+  .tile{font-family:inherit;font-size:.92rem;padding:.25rem .7rem;border-radius:8px;cursor:pointer;background:var(--surface2);color:var(--text);border:1px solid var(--border)}
+  .tile:hover:not(:disabled){border-color:var(--violet)}
+  .built .tile{background:var(--violet-deep);border-color:var(--violet-line)}
+  .built.right{border-color:var(--good-line);background:var(--good-soft)}
+  .built.wrong{border-color:var(--bad-line);background:var(--bad-soft)}
+  /* paragraph error hunt */
+  .para{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem 1.3rem;margin-top:.9rem;font-size:1.04rem;line-height:2.3}
+  .ps{border-bottom:2px solid var(--muted);cursor:pointer;padding:0 2px;border-radius:3px;transition:background .2s}
+  .ps sup{font-size:.62em;font-weight:700;color:var(--violet);margin-left:1px}
+  .ps:hover{background:var(--violet-deep)}
+  .ps.mk{background:var(--violet-deep);border-bottom-color:var(--violet)}
+  .ps.hit{background:var(--good-soft);border-bottom-color:var(--good)}
+  .ps.miss{background:var(--bad-soft);border-bottom-color:var(--bad)}
+  .ps.fa{background:var(--bad-soft);text-decoration:line-through}
+  .ps.locked{cursor:default}
+  .ps .fx{color:var(--good);font-weight:600;margin-left:.3em}
+  .pbtns{display:flex;gap:.5rem;margin-top:.8rem;align-items:center;flex-wrap:wrap}
+  .pfb{margin-top:.8rem}
+  .pfb p{font-size:.86rem;color:var(--muted);font-weight:300;line-height:1.65;margin:.25rem 0}
+  .pfb p b{color:var(--text);font-weight:600}
+  .tiles-print{display:none}
+  @media(max-width:700px){.match{grid-template-columns:1fr}}
+  @media print{
+    .match{display:block}
+    .mcol{border:none;padding:0;margin-bottom:8px}
+    .mi select,.mi .note{display:none}
+    .mi .pbox{display:inline}
+    .mi,.mr{border-bottom:1px dotted #999;padding:3px 0}
+    input.gapin{display:inline-block!important;border:none;border-bottom:1px solid #000;border-radius:0;background:none;width:8em}
+    .tiles,.built,.pbtns,.pfb{display:none!important}
+    .tiles-print{display:block;grid-column:2;font-size:10.5pt}
+    .para{border:1px solid #999;line-height:2;font-size:10.5pt;padding:6px 8px;break-inside:avoid}
+    .ps{border-bottom:1px solid #000;background:none!important;text-decoration:none!important}
+    .ps .fx{display:none}
+    .ps sup{color:#000}
+  }
+</style>
+<!-- GP:engine-css end -->
+</head>
+<body class="print-blank">
+
+<button class="theme-toggle" id="theme" title="Toggle light/dark mode">🌙</button>
+
+<div class="wrap">
+  <div class="printhead" id="printhead"></div>
+
+  <a class="back-link" href="./index.html">← Grammar Practice</a>
+  <p class="eyebrow" id="eyebrow"></p>
+  <h1><span class="accent">Articles</span>: a, an, the or nothing</h1>
+  <p class="lede">Use <i>a / an</i> for one countable thing mentioned for the first time, <i>the</i> for something specific or already known, and no article for plural or uncountable nouns in general (<i>Cats are independent. Water is essential.</i>). <i>A</i> or <i>an</i> depends on the sound, not the letter: <i>an hour, a university</i>.</p>
+  <div class="chips"><span class="chip">B1 → B2</span><span class="chip">100 items</span><span class="chip">TOEFL ITP · Structure &amp; Written Expression</span></div>
+  <div class="actions">
+    <button class="btn btn-view" id="pw">Print worksheet</button>
+    <button class="btn btn-key" id="pk">Print answer key</button>
+    <button class="btn btn-dl" id="reset">Start over</button>
+  </div>
+  <nav class="plan" id="plan"></nav>
+  <p class="plan-total">Seven blocks · 100 items · each block can be done on its own</p>
+
+  <div class="progress">
+    <span id="ptext"></span>
+    <div class="track"><div class="fill" id="pfill"></div></div>
+    <span id="pscore"></span>
+  </div>
+
+  <div id="blocks"></div>
+
+  <div class="keyblock" id="key"></div>
+</div>
+
+<footer>Part of the <a href="./index.html">Grammar Practice</a> section · <a href="../index.html">Advanced Hub</a> · Phil Young’s English School</footer>
+
+<!-- GP:data start -->
+<script>
+/* Grammar Practice session data. Shapes are documented in grammar/README.md.
+   Items are numbered 1–100 in block order. a = 0-based answer index. */
+const S={
+  slug:"articles",
+  n:23,
+  of:30,
+  theme:"Nouns and determiners",
+  title:"Articles",
+
+  warm:[
+    {"t": "She is an university student.", "ok": false, "fix": "She is <b>a</b> university student.", "w": "<i>University</i> starts with a /j/ sound: <i>a</i>."},
+    {"t": "I waited for an hour.", "ok": true, "w": "<i>Hour</i> starts with a vowel sound: <i>an</i>."},
+    {"t": "The life is beautiful.", "ok": false, "fix": "<b>Life</b> is beautiful.", "w": "In general, abstract nouns take no article."},
+    {"t": "The sun rises in the east.", "ok": true, "w": "Only one sun, only one east: <i>the</i>."},
+    {"t": "My father is engineer.", "ok": false, "fix": "My father is <b>an engineer</b>.", "w": "Jobs take <i>a / an</i>."},
+    {"t": "I bought a book. The book was expensive.", "ok": true, "w": "First mention <i>a</i>, second mention <i>the</i>."}
+  ],
+
+  pats:[
+    {"h": "A or an: listen to the sound", "rule": "an before a vowel sound, a before a consonant sound.", "no": "I waited for <span class=\"strike\">a</span> hour.", "yes": "I waited for <b>an hour</b>. · <b>a university</b> · <b>an MBA</b> · <b>a European</b> country", "why": "<i>Hour</i> starts with a vowel sound (the <i>h</i> is silent); <i>university</i> and <i>European</i> start with a /j/ sound."},
+    {"h": "First mention a, then the", "rule": "a / an introduces one thing; the refers back to it.", "no": "I bought a book. <span class=\"strike\">A</span> book was expensive.", "yes": "I bought <b>a</b> book. <b>The</b> book was expensive.", "why": "After the first mention, the listener knows which one, so it becomes specific."},
+    {"h": "The: one of a kind, or specific", "rule": "the sun, the moon, the internet, the first, the best, the same; the + noun + of / that.", "no": "<span class=\"strike\">Sun</span> is a star.", "yes": "<b>The sun</b> is a star. · <b>the best</b> student · <b>the</b> book <b>that</b> you lent me", "why": "Superlatives, ordinals and <i>same</i> always take <i>the</i>. A phrase with <i>of</i> or <i>that</i> usually makes the noun specific."},
+    {"h": "No article: things in general", "rule": "Plural and uncountable nouns used in general take no article.", "no": "<span class=\"strike\">The</span> life is beautiful.", "yes": "<b>Life</b> is beautiful. · <b>Dogs</b> are loyal. · I love <b>music</b>.", "why": "Portuguese uses the article here (<i>a vida, os cães</i>); English does not."},
+    {"h": "Jobs, one thing: a / an", "rule": "Use a / an with a single countable noun, especially jobs and descriptions.", "no": "My father is <span class=\"strike\">engineer</span>.", "yes": "My father is <b>an engineer</b>. · She has <b>a</b> big house.", "why": "A singular countable noun almost never stands alone: it needs <i>a, the, my, this</i> …"},
+    {"h": "Fixed expressions", "rule": "No article: go to school / bed / work, at home, by bus, on Monday, in 2020, English (the language). The: in the morning, the radio, play the piano.", "no": "I go to <span class=\"strike\">the</span> school by <span class=\"strike\">the</span> bus.", "yes": "I go to <b>school</b> by <b>bus</b>. · <b>in the morning</b> · She plays <b>the piano</b>.", "why": "These expressions don’t follow the general rules. Learn them as chunks."}
+  ],
+  trap:"When an article is underlined, ask three questions: is the next word a vowel <i>sound</i> (<i>an</i>)? Is the noun specific, unique or a superlative (<i>the</i>)? Is it plural or uncountable and general (no article)? And when a singular countable noun has no article at all, that may be the error.",
+
+  str:[
+    {"s": ["She is ", "university student."], "w": "/j/ sound: <i>a university</i>.", "o": ["an", "the", "—", "a"], "a": 3},
+    {"s": ["I waited for ", "hour."], "w": "Silent <i>h</i>: <i>an hour</i>.", "o": ["a", "the", "an", "—"], "a": 2},
+    {"s": ["", "is beautiful."], "w": "In general: no article.", "o": ["The life", "A life", "Lives", "Life"], "a": 3},
+    {"s": ["", "rises in the east."], "w": "Only one: <i>the sun</i>.", "o": ["The sun", "Sun", "A sun", "Suns"], "a": 0},
+    {"s": ["My father is ", "."], "w": "Jobs: <i>an engineer</i>.", "o": ["engineer", "the engineer", "an engineer", "a engineer"], "a": 2},
+    {"s": ["I bought a book. ", "was expensive."], "w": "Second mention: <i>the</i>.", "o": ["A book", "Book", "The book", "Books"], "a": 2},
+    {"s": ["She is ", "student in the class."], "w": "Superlative: <i>the best</i>.", "o": ["best", "a best", "most best", "the best"], "a": 3},
+    {"s": ["I love ", "."], "w": "In general, uncountable: no article.", "o": ["the music", "music", "a music", "musics"], "a": 1},
+    {"s": ["We go to ", "by bus."], "w": "Fixed expression: <i>go to school</i>.", "o": ["the school", "school", "a school", "schools"], "a": 1},
+    {"s": ["He has ", "idea."], "w": "Vowel sound: <i>an interesting</i>.", "o": ["a interesting", "interesting", "an interesting", "the interestingly"], "a": 2},
+    {"s": ["", "are loyal animals."], "w": "In general, plural: no article.", "o": ["The dogs", "A dogs", "Dog", "Dogs"], "a": 3},
+    {"s": ["Can you close ", ", please? It’s cold."], "w": "Both people know which one: <i>the</i>.", "o": ["window", "the window", "a window", "windows"], "a": 1},
+    {"s": ["She was born in ", "."], "w": "Years: no article.", "o": ["the 2005", "a 2005", "2005", "the year of 2005"], "a": 2},
+    {"s": ["He plays ", "every evening."], "w": "Play + instrument: <i>the</i>.", "o": ["guitar", "a guitar", "guitars", "the guitar"], "a": 3},
+    {"s": ["This is ", "book that I told you about."], "w": "<i>That …</i> makes it specific: <i>the</i>.", "o": ["the", "a", "an", "—"], "a": 0},
+    {"s": ["I have ", "cat and two dogs."], "w": "First mention, one: <i>a</i>.", "o": ["an", "the", "a", "—"], "a": 2},
+    {"s": ["We studied ", "yesterday."], "w": "Languages: no article.", "o": ["the English", "English", "an English", "Englishes"], "a": 1},
+    {"s": ["She wants to get ", "MBA."], "w": "<i>M</i> sounds /em/: <i>an MBA</i>.", "o": ["an", "a", "the", "—"], "a": 0},
+    {"s": ["", "of Brazil is Brasília."], "w": "<i>Of Brazil</i> makes it specific.", "o": ["Capital", "The capital", "A capital", "Capitals"], "a": 1},
+    {"s": ["I usually drink coffee in ", "."], "w": "Fixed: <i>in the morning</i>.", "o": ["morning", "a morning", "mornings", "the morning"], "a": 3},
+    {"s": ["It was ", "unusual day."], "w": "Vowel sound: <i>an unusual</i>.", "o": ["an", "a", "the", "—"], "a": 0},
+    {"s": ["He goes to ", "at 11 p.m."], "w": "Fixed: <i>go to bed</i>.", "o": ["the bed", "bed", "a bed", "beds"], "a": 1},
+    {"s": ["Italy is ", "European country."], "w": "/j/ sound: <i>a European</i>.", "o": ["a", "an", "the", "—"], "a": 0},
+    {"s": ["We live on ", "floor."], "w": "Ordinal: <i>the third</i>.", "o": ["third", "the third", "a third", "thirds"], "a": 1},
+    {"s": ["", "is necessary for life."], "w": "In general, uncountable: no article.", "o": ["Water", "The water", "A water", "Waters"], "a": 0},
+    {"s": ["I read about it on ", "."], "w": "Only one: <i>the internet</i>.", "o": ["internet", "the internet", "an internet", "internets"], "a": 1},
+    {"s": ["She is ", "honest person."], "w": "Silent <i>h</i>: <i>an honest</i>.", "o": ["an", "a", "the", "—"], "a": 0},
+    {"s": ["They have ", "same car as us."], "w": "Always <i>the same</i>.", "o": ["a", "—", "the", "an"], "a": 2},
+    {"s": ["He is ", "very good teacher."], "w": "One, a description: <i>a</i>.", "o": ["an", "the", "—", "a"], "a": 3},
+    {"s": ["Let’s meet on ", "."], "w": "Days: no article.", "o": ["the Monday", "a Monday", "Mondays at", "Monday"], "a": 3}
+  ],
+
+  we:[
+    {"p": [["", 0], ["We", 1], [" ", 0], ["study", 1], [" ", 0], ["the English", 1], [" ", 0], ["three", 1], [" times a week", 0]], "a": 2, "f": "English", "w": "Languages: no article."},
+    {"p": [["I ", 0], ["waited", 1], [" ", 0], ["for", 1], [" ", 0], ["a", 1], [" ", 0], ["hour", 1], [" at the bank", 0]], "a": 2, "f": "an", "w": "Silent <i>h</i>: <i>an hour</i>."},
+    {"p": [["He ", 0], ["has", 1], [" ", 0], ["a", 1], [" ", 0], ["interesting", 1], [" ", 0], ["idea", 1], [" for the project", 0]], "a": 1, "f": "an", "w": "Vowel sound: <i>an interesting</i>."},
+    {"p": [["", 0], ["I", 1], [" love ", 0], ["the music", 1], [" ", 0], ["and", 1], [" ", 0], ["the", 1], [" art of that period", 0]], "a": 1, "f": "music", "w": "In general: <i>music</i>. (<i>The art of that period</i> is specific.)"},
+    {"p": [["I ", 0], ["reads", 1], [" ", 0], ["the", 1], [" ", 0], ["news", 1], [" ", 0], ["on", 1], [" the internet every day", 0]], "a": 0, "f": "read", "w": "<i>The internet</i> is right. <i>I</i> takes <i>read</i>.", "x": 1},
+    {"p": [["She is ", 0], ["the best", 1], [" student ", 0], ["in", 1], [" ", 0], ["the", 1], [" class ", 0], ["because of", 1], [" she studies hard", 0]], "a": 3, "f": "because", "w": "<i>The best</i> is right. Before a clause: <i>because</i>.", "x": 1},
+    {"p": [["", 0], ["Life", 1], [" ", 0], ["seems", 1], [" ", 0], ["beautiful", 1], [" when people ", 0], ["is", 1], [" young", 0]], "a": 3, "f": "are", "w": "<i>Life</i> is right. <i>People</i> takes <i>are</i>.", "x": 1},
+    {"p": [["We ", 0], ["go", 1], [" ", 0], ["to", 1], [" ", 0], ["the school", 1], [" ", 0], ["by", 1], [" bus", 0]], "a": 2, "f": "school", "w": "Fixed: <i>go to school</i>."},
+    {"p": [["My father ", 0], ["is", 1], [" ", 0], ["an", 1], [" ", 0], ["engineer", 1], [" ", 0], ["in", 1], [" a big company", 0]], "a": 3, "f": "at", "w": "<i>An engineer</i> is right. A workplace: <i>at a company</i>.", "x": 1},
+    {"p": [["I ", 0], ["bought", 1], [" ", 0], ["a", 1], [" novel, but ", 0], ["a book", 1], [" ", 0], ["was", 1], [" boring", 0]], "a": 2, "f": "the book", "w": "Second mention: <i>the</i>."},
+    {"p": [["We ", 0], ["lives", 1], [" ", 0], ["on", 1], [" ", 0], ["the third", 1], [" ", 0], ["floor", 1], [" of that building", 0]], "a": 0, "f": "live", "w": "<i>The third floor</i> is right. <i>We</i> takes <i>live</i>.", "x": 1},
+    {"p": [["She ", 0], ["is", 1], [" ", 0], ["a", 1], [" ", 0], ["university", 1], [" student ", 0], ["on", 1], [" Rio", 0]], "a": 3, "f": "in", "w": "<i>A university</i> is right. Cities take <i>in</i>.", "x": 1},
+    {"p": [["She is ", 0], ["an", 1], [" ", 0], ["university", 1], [" ", 0], ["student", 1], [" ", 0], ["in", 1], [" Rio", 0]], "a": 0, "f": "a", "w": "/j/ sound: <i>a university</i>."},
+    {"p": [["", 0], ["He", 1], [" ", 0], ["goes to the bed", 1], [" ", 0], ["at", 1], [" ", 0], ["eleven", 1], [" every night", 0]], "a": 1, "f": "goes to bed", "w": "Fixed: <i>go to bed</i>."},
+    {"p": [["I ", 0], ["buy", 1], [" ", 0], ["a", 1], [" book ", 0], ["yesterday", 1], [", but ", 0], ["the", 1], [" book was boring", 0]], "a": 0, "f": "bought", "w": "<i>A … the</i> is right. <i>Yesterday</i> → <i>bought</i>.", "x": 1},
+    {"p": [["She was ", 0], ["born", 1], [" ", 0], ["in", 1], [" ", 0], ["2005", 1], [" ", 0], ["at", 1], [" Recife", 0]], "a": 3, "f": "in", "w": "<i>In 2005</i> is right. Cities take <i>in</i>.", "x": 1},
+    {"p": [["", 0], ["The life", 1], [" ", 0], ["is", 1], [" ", 0], ["beautiful", 1], [" ", 0], ["when", 1], [" you are young", 0]], "a": 0, "f": "Life", "w": "In general: no article."},
+    {"p": [["He ", 0], ["goes", 1], [" ", 0], ["to", 1], [" ", 0], ["bed", 1], [" early because he ", 0], ["have", 1], [" to work", 0]], "a": 3, "f": "has", "w": "<i>Goes to bed</i> is right. <i>He</i> takes <i>has</i>.", "x": 1},
+    {"p": [["", 0], ["They", 1], [" ", 0], ["want", 1], [" ", 0], ["to", 1], [" get ", 0], ["a", 1], [" MBA next year", 0]], "a": 3, "f": "an", "w": "/em/ sound: <i>an MBA</i>."},
+    {"p": [["", 0], ["He", 1], [" ", 0], ["play", 1], [" ", 0], ["the", 1], [" ", 0], ["guitar", 1], [" in a band", 0]], "a": 1, "f": "plays", "w": "<i>The guitar</i> is right. <i>He</i> takes <i>plays</i>.", "x": 1},
+    {"p": [["My ", 0], ["father", 1], [" ", 0], ["is engineer", 1], [" ", 0], ["at", 1], [" ", 0], ["a", 1], [" big company", 0]], "a": 1, "f": "is an engineer", "w": "Jobs take <i>a / an</i>."},
+    {"p": [["I ", 0], ["wait", 1], [" ", 0], ["for", 1], [" ", 0], ["an", 1], [" ", 0], ["hour", 1], [" at the bank yesterday", 0]], "a": 0, "f": "waited", "w": "<i>An hour</i> is right. <i>Yesterday</i> → <i>waited</i>.", "x": 1},
+    {"p": [["He has ", 0], ["an", 1], [" ", 0], ["interesting", 1], [" idea for the project, but nobody ", 0], ["listen", 1], [" ", 0], ["to", 1], [" him", 0]], "a": 2, "f": "listens", "w": "<i>An interesting idea</i> is right. <i>Nobody</i> takes <i>listens</i>.", "x": 1},
+    {"p": [["She ", 0], ["is", 1], [" ", 0], ["best", 1], [" ", 0], ["student", 1], [" ", 0], ["in", 1], [" the class", 0]], "a": 1, "f": "the best", "w": "Superlative: <i>the best</i>."},
+    {"p": [["", 0], ["She", 1], [" ", 0], ["was", 1], [" ", 0], ["born", 1], [" ", 0], ["in the 2005", 1], [" in Recife", 0]], "a": 3, "f": "in 2005", "w": "Years: no article."},
+    {"p": [["My cousins ", 0], ["goes", 1], [" ", 0], ["to", 1], [" ", 0], ["school", 1], [" ", 0], ["by", 1], [" bus every day", 0]], "a": 0, "f": "go", "w": "<i>Go to school by bus</i> is right. <i>My cousins</i> takes <i>go</i>.", "x": 1},
+    {"p": [["", 0], ["The dogs", 1], [" ", 0], ["are", 1], [" ", 0], ["very", 1], [" ", 0], ["loyal", 1], [" animals", 0]], "a": 0, "f": "Dogs", "w": "In general, plural: no article."},
+    {"p": [["", 0], ["They", 1], [" want ", 0], ["getting", 1], [" ", 0], ["an", 1], [" ", 0], ["MBA", 1], [" next year", 0]], "a": 1, "f": "to get", "w": "<i>An MBA</i> is right. <i>Want</i> + <i>to</i>.", "x": 1},
+    {"p": [["", 0], ["We", 1], [" ", 0], ["live", 1], [" ", 0], ["on", 1], [" ", 0], ["third floor", 1], [" of that building", 0]], "a": 3, "f": "the third floor", "w": "Ordinal: <i>the third</i>."},
+    {"p": [["", 0], ["Dogs", 1], [" ", 0], ["are", 1], [" very ", 0], ["loyally", 1], [" ", 0], ["animals", 1]], "a": 2, "f": "loyal", "w": "<i>Dogs</i> is right. Before a noun: the adjective.", "x": 1}
+  ],
+
+  prac:{type:"para", title:"Find every error", instr:"A short blog post with sixteen underlined phrases. Some are correct and some are wrong.",
+    paras:[
+      ["Last year I spent ", {"t": "a month"}, " in Lisbon. I stayed with ", {"t": "a old friend", "f": "an old friend", "w": "Vowel sound: an old friend."}, ". She is ", {"t": "an architect"}, ", and her apartment is near ", {"t": "the river"}, ". Every morning we had coffee on ", {"t": "the balcony"}, " and talked about ", {"t": "the art", "f": "art", "w": "In general, uncountable: no article."}, " and music. In ", {"t": "the afternoon"}, ", I walked around ", {"t": "old city", "f": "the old city", "w": "A singular countable noun needs an article; the old part of Lisbon is specific: the old city."}, ". It is one of ", {"t": "most beautiful", "f": "the most beautiful", "w": "Superlative: the most beautiful."}, " places I know."],
+      ["On the weekend we took ", {"t": "a train"}, " to Porto. ", {"t": "A trip", "f": "The trip", "w": "We know which trip — the one to Porto: the trip."}, " took three hours. Porto is ", {"t": "an university", "f": "a university", "w": "/j/ sound: a university."}, " city, and ", {"t": "the students"}, " there wear black capes. We spent ", {"t": "an hour"}, " in a famous bookshop. On ", {"t": "the Sunday", "f": "Sunday", "w": "Days of the week: no article."}, " we went back to Lisbon. It was ", {"t": "the best"}, " vacation of my life."]
+    ]},
+
+  prod:{type:"gap", title:"A, an, the or nothing?", instr:"Write <i>a, an, the</i>, or <i>x</i> for no article.",
+    items:[
+      {"s": ["She waited for ", "hour at the doctor’s."], "a": ["an"], "h": "", "w": "Silent <i>h</i>: <i>an hour</i>."},
+      {"s": ["", "children need a lot of sleep."], "a": ["x", "–", "-", "—"], "h": "", "w": "In general, plural: no article."},
+      {"s": ["My sister is ", "nurse."], "a": ["a"], "h": "", "w": "Jobs: <i>a nurse</i>."},
+      {"s": ["", "moon goes around the Earth."], "a": ["the", "The"], "h": "", "w": "Only one: <i>the moon</i>."},
+      {"s": ["I’m reading a book. ", "book is about Brazil."], "a": ["the", "The"], "h": "", "w": "Second mention: <i>the</i>."},
+      {"s": ["He is ", "tallest boy in the school."], "a": ["the"], "h": "", "w": "Superlative: <i>the tallest</i>."},
+      {"s": ["We usually go to ", "work by car."], "a": ["x", "–", "-", "—"], "h": "", "w": "Fixed: <i>go to work</i>."},
+      {"s": ["She studies at ", "university in São Paulo."], "a": ["a"], "h": "", "w": "/j/ sound: <i>a university</i>."},
+      {"s": ["", "honesty is very important."], "a": ["x", "–", "-", "—"], "h": "", "w": "In general, abstract: no article."},
+      {"s": ["Can you pass me ", "salt, please?"], "a": ["the"], "h": "", "w": "The salt on the table: <i>the</i>."}
+    ]},
+
+  exit:[
+    {"k": "str", "s": ["He is ", "honest man."], "w": "Silent <i>h</i>: <i>an honest</i>.", "o": ["an", "a", "the", "—"], "a": 0},
+    {"k": "we", "p": [["", 0], ["The water", 1], [" ", 0], ["is", 1], [" ", 0], ["necessary", 1], [" ", 0], ["for", 1], [" all life", 0]], "a": 0, "f": "Water", "w": "In general: no article."},
+    {"k": "str", "s": ["", "is the largest planet."], "w": "Planet names: no article.", "o": ["The Jupiter", "A Jupiter", "Jupiter", "Jupiters"], "a": 2},
+    {"k": "we", "p": [["It ", 0], ["was", 1], [" ", 0], ["an", 1], [" ", 0], ["unusual", 1], [" day for ", 0], ["every", 1]], "a": 3, "f": "everyone", "w": "<i>An unusual day</i> is right. As a pronoun: <i>everyone</i>.", "x": 1},
+    {"k": "str", "s": ["I saw a dog. ", "was very big."], "w": "Second mention: <i>the</i>.", "o": ["A dog", "Dog", "The dog", "Dogs"], "a": 2},
+    {"k": "we", "p": [["It ", 0], ["was", 1], [" ", 0], ["a", 1], [" ", 0], ["unusual", 1], [" ", 0], ["day", 1], [" for everyone", 0]], "a": 1, "f": "an", "w": "Vowel sound: <i>an unusual</i>."},
+    {"k": "str", "s": ["She plays ", "beautifully."], "w": "Play + instrument: <i>the</i>.", "o": ["piano", "a piano", "pianos", "the piano"], "a": 3},
+    {"k": "we", "p": [["", 0], ["Water", 1], [" ", 0], ["are", 1], [" ", 0], ["necessary", 1], [" ", 0], ["for", 1], [" all life", 0]], "a": 1, "f": "is", "w": "<i>Water</i> is right. Uncountable: <i>is</i>.", "x": 1}
+  ]
+};
+</script>
+<!-- GP:data end -->
+
+<!-- GP:engine-js start -->
+<script>
+/* Grammar Practice engine. Shared by every session; edit tools/grammar_engine.html and run
+   tools/sync_grammar.py to copy it into the pages. Session data lives in the GP:data block. */
+(function(){
+const LET="ABCD", $=id=>document.getElementById(id);
+const KEY="adv:grammar-practice:"+S.slug;
+const BLOCKS=[
+  {id:"warm",  name:"Warm-up",            sub:"Right or wrong?"},
+  {id:"learn", name:"Explain",            sub:"The patterns"},
+  {id:"str",   name:"Structure",          sub:"TOEFL format"},
+  {id:"we",    name:"Written Expression", sub:"TOEFL format"},
+  {id:"prac",  name:"Practice",           sub:S.prac.title},
+  {id:"prod",  name:"Production",         sub:S.prod.title},
+  {id:"exit",  name:"Exit check",         sub:"Mixed TOEFL items"}
+];
+let st={a:{},t:{},r:{},u:{},p:{}};
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+function load(){try{const d=JSON.parse(localStorage.getItem(KEY)||"{}");st={a:d.a||{},t:d.t||{},r:d.r||{},u:d.u||{},p:d.p||{}}}catch(e){}}
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");
+
+/* deterministic shuffles, so the printed sheet matches the screen */
+function shuffleIdx(len,seed){
+  let h=0;for(const c of seed)h=(h*31+c.charCodeAt(0))>>>0;
+  const a=[...Array(len).keys()];
+  for(let i=len-1;i>0;i--){h=(h*1103515245+12345)>>>0;const j=h%(i+1);[a[i],a[j]]=[a[j],a[i]];}
+  return a;}
+function derange(len,seed){let a=shuffleIdx(len,seed),k=0;
+  while(len>1&&a.some((v,i)=>v===i)&&k<200)a=shuffleIdx(len,seed+"#"+(++k));return a;}
+
+/* ---------- numbering ---------- */
+[S.prac,S.prod].forEach(P=>{if(P.type==="sort"){const c=P.items.slice();P.items=shuffleIdx(c.length,S.slug).map(i=>c[i]);}});
+const IT=[];
+const add=(blk,kind,q)=>IT.push({blk,kind,q});
+S.warm.forEach(q=>add("warm","warm",q));
+S.str.forEach(q=>add("str","str",q));
+S.we.forEach(q=>add("we","we",q));
+[["prac",S.prac],["prod",S.prod]].forEach(([b,P])=>{
+  if(P.type==="para")P.paras.forEach((para,pi)=>para.forEach(seg=>{if(typeof seg!=="string")add(b,"para",seg);}));
+  else P.items.forEach(q=>add(b,P.type,q));});
+S.exit.forEach(q=>add("exit",q.k,q));
+IT.forEach((x,i)=>x.n=i+1);
+const UNSCORED={transform:1,combine:1};
+const SCORED=IT.filter(x=>!UNSCORED[x.kind]);
+const byN=n=>IT[n-1];
+const inBlk=b=>IT.filter(x=>x.blk===b);
+const cnt=b=>inBlk(b).length;
+const range=b=>{const l=inBlk(b);return l.length?l[0].n+"–"+l[l.length-1].n:""};
+const P_OF=b=>b==="prac"?S.prac:S.prod;
+
+/* ---------- renderers ---------- */
+function rWarm(x){const q=x.q;
+  return `<div class="q" id="q${x.n}"><div class="n">${x.n}</div><div class="stem">${q.t}</div>
+  <div class="opts row">${["Correct","Incorrect"].map((o,j)=>`<button class="opt" data-n="${x.n}" data-i="${j}">${o}</button>`).join("")}</div>
+  <div class="tick">Correct ☐ &nbsp; Incorrect ☐ &nbsp; Correction: ______________________________</div>
+  <div class="fb" id="fb${x.n}"></div></div>`;}
+function rStr(x){const q=x.q;
+  return `<div class="q" id="q${x.n}"><div class="n">${x.n}</div><div class="stem">${q.s[0]}<span class="gap" id="g${x.n}">&nbsp;</span>${q.s[1]?" "+q.s[1]:""}</div>
+  <div class="opts grid">${q.o.map((o,j)=>`<button class="opt" data-n="${x.n}" data-i="${j}"><span class="l">(${LET[j]})</span>${o}</button>`).join("")}</div>
+  <div class="popts">${q.o.map((o,j)=>`<span>(${LET[j]}) ${o}</span>`).join("")}</div>
+  <div class="fb" id="fb${x.n}"></div></div>`;}
+function rWe(x){const q=x.q;let li=0;
+  const body=q.p.map(([t,u])=>u?`<span class="seg" tabindex="0" data-n="${x.n}" data-i="${li}"><u>${t}</u><sub>${LET[li++]}</sub></span>`:t).join("");
+  return `<div class="q" id="q${x.n}"><div class="n">${x.n}</div><div class="stem we">${body}${/[.?!]$/.test(q.p[q.p.length-1][0])?"":"."}</div>
+  <div class="fb" id="fb${x.n}"></div></div>`;}
+function rSort(b){const P=P_OF(b),nc=P.cols.length;
+  const cards=inBlk(b).map(x=>`<div class="card" id="c${x.n}"><span class="t"><span class="n2">${x.n}.</span> ${x.q.t} <span class="pbox">______</span></span>
+    ${P.cols.map((c,j)=>`<button class="opt" data-n="${x.n}" data-i="${j}">${c}</button>`).join("")}
+    <span class="note" id="fb${x.n}"></span></div>`).join("");
+  return `<div class="sort${nc>2?" wide":""}" style="--nc:${nc}"><div class="pool" id="pool-${b}"><h3 class="screen-only">${P.poolTitle||"Items"}</h3>${cards}</div>
+  ${P.cols.map((c,j)=>`<div class="bin" id="bin-${b}-${j}"><h3>${P.binPrefix||""}${c}</h3></div>`).join("")}</div>`;}
+function rMatch(b){const P=P_OF(b),L=inBlk(b),ord=derange(L.length,S.slug+":"+b);
+  const letters="abcdefghijklmnopqrstuvwxyz";
+  P._ord=ord; // ord[k] = index of the item whose answer sits at letter k
+  L.forEach((x,i)=>x.ml=letters[ord.indexOf(i)]);
+  const left=L.map(x=>`<div class="mi" id="c${x.n}"><span class="t"><span class="n2">${x.n}.</span> ${x.q.t} <span class="pbox">____</span></span>
+    <select data-m="${x.n}" aria-label="Match for ${x.n}"><option value="">–</option>${ord.map((v,k)=>`<option value="${k}">${letters[k]}</option>`).join("")}</select>
+    <span class="note" id="fb${x.n}"></span></div>`).join("");
+  const right=ord.map((v,k)=>`<div class="mr"><span class="l2">${letters[k]}.</span> ${L[v].q.m}</div>`).join("");
+  return `<div class="match"><div class="mcol"><h3>${P.colL||""}</h3>${left}</div><div class="mcol"><h3>${P.colR||""}</h3>${right}</div></div>`;}
+function rGap(x){const q=x.q;
+  return `<div class="q" id="q${x.n}"><div class="n">${x.n}</div><div class="stem">${q.s[0]}<input type="text" class="gapin" id="in${x.n}" aria-label="Answer ${x.n}" autocomplete="off" spellcheck="false">${q.s[1]||""}${q.h?` <span class="hint">(${q.h})</span>`:""}</div>
+  <div class="row-btns"><button class="opt" data-gap="${x.n}">Check</button></div>
+  <div class="fb" id="fb${x.n}"></div></div>`;}
+function tilesOf(x){const s=x.q.a[0],end=/[.?!]$/.test(s)?s.slice(-1):"";
+  const w=(end?s.slice(0,-1):s).split(" ");
+  if(!x.q.keep&&w[0]!=="I")w[0]=w[0].charAt(0).toLowerCase()+w[0].slice(1);
+  let o=shuffleIdx(w.length,S.slug+":u"+x.n),k=0;
+  while(w.length>2&&o.every((v,i)=>v===i)&&k<50)o=shuffleIdx(w.length,S.slug+":u"+x.n+"#"+(++k));
+  return {w,o,end};}
+function rUnscramble(x){const T=tilesOf(x);x.T=T;
+  return `<div class="q" id="q${x.n}"><div class="n">${x.n}</div><div class="stem">${x.q.h?`<span class="hint">${x.q.h}</span>`:"Put the words in order."}</div>
+  <div class="built" id="bu${x.n}"></div>
+  <div class="tiles" id="ti${x.n}">${T.o.map(i=>`<button class="tile" data-u="${x.n}" data-w="${i}">${esc(T.w[i])}</button>`).join("")}</div>
+  <div class="tiles-print">${T.o.map(i=>esc(T.w[i])).join(" &nbsp;/&nbsp; ")}${T.end?` &nbsp;( ${T.end} )`:""}</div><span class="line"></span>
+  <div class="row-btns"><button class="opt" data-uc="${x.n}">Check</button><button class="opt" data-ux="${x.n}">Clear</button></div>
+  <div class="fb" id="fb${x.n}"></div></div>`;}
+function rTransform(x){const q=x.q;
+  return `<div class="q" id="q${x.n}"><div class="n">${x.n}</div><div><div class="orig">${q.t}</div>
+  <div class="cue"><b>${q.cue} …</b></div><span class="line"></span></div>
+  <div class="row-btns"><input type="text" id="in${x.n}" aria-label="Your answer to ${x.n}" placeholder="${esc(q.cue)} …" autocomplete="off" spellcheck="false">
+  <button class="opt" data-check="${x.n}">Check</button><button class="opt" data-model="${x.n}">Show model</button></div>
+  <div class="fb" id="fb${x.n}"></div></div>`;}
+function rCombine(x){const q=x.q;
+  return `<div class="q" id="q${x.n}"><div class="n">${x.n}</div><div><div class="orig">${q.t.join(" ")}</div>
+  ${q.h?`<div class="cue"><span class="hint">${q.h}</span></div>`:""}<span class="line"></span><span class="line"></span></div>
+  <div class="row-btns"><input type="text" id="in${x.n}" aria-label="Your answer to ${x.n}" placeholder="One sentence …" autocomplete="off" spellcheck="false">
+  <button class="opt" data-check="${x.n}">Check</button><button class="opt" data-model="${x.n}">Show model</button></div>
+  <div class="fb" id="fb${x.n}"></div></div>`;}
+function rPara(b){const P=P_OF(b);let i=0;const L=inBlk(b);
+  const paras=P.paras.map(para=>`<div class="para">${para.map(seg=>{if(typeof seg==="string")return seg;const x=L[i++];
+    return `<span class="ps" tabindex="0" id="ps${x.n}" data-p="${x.n}">${seg.t}<sup>${x.n}</sup></span>`;}).join("")}</div>`).join("");
+  return paras+`<div class="pbtns"><button class="opt" data-pc="${b}">Check the paragraphs</button><span class="hint" id="pc-${b}"></span></div><div class="pfb" id="pfb-${b}"></div>`;}
+const R={warm:rWarm,str:rStr,we:rWe,gap:rGap,unscramble:rUnscramble,transform:rTransform,combine:rCombine};
+
+function head(b,i){const c=cnt(b.id);
+  return `<div class="blk-head"><span class="blk-num">${i+1}</span><h2><small>${b.name}${c?" · "+c+" items":""}</small>${b.sub}</h2></div>`;}
+
+function blockBody(b){const P=P_OF(b.id),L=inBlk(b.id);
+  const ins=`<p class="instr">Questions ${range(b.id)}. ${P.instr}${
+    {gap:" <span class=\"screen-only\">Type the missing word and press Check.</span>",
+     unscramble:" <span class=\"screen-only\">Tap the words in order; tap a placed word to send it back.</span>",
+     transform:" <span class=\"screen-only\">Type your answer and press Check, or write in your notebook and compare with the model.</span>",
+     combine:" <span class=\"screen-only\">Type your answer and press Check, or write in your notebook and compare with the model.</span>",
+     para:" <span class=\"screen-only\">Tap every underlined part you think is wrong, then press Check.</span><span class=\"print-only\">Circle each wrong part and write the correction above it.</span>",
+     match:" <span class=\"screen-only\">Choose a letter for each one.</span>",
+     sort:""}[P.type]||""}</p>`;
+  if(P.type==="sort")return ins+rSort(b.id);
+  if(P.type==="match")return ins+rMatch(b.id);
+  if(P.type==="para")return ins+rPara(b.id);
+  return ins+L.map(x=>R[x.kind](x)).join("");}
+
+function build(){
+  $("eyebrow").textContent=`Phil Young’s English School · Session ${S.n} of ${S.of} · ${S.theme}`;
+  $("printhead").textContent=`${S.title} · Grammar Practice · Name: ______________________  Date: __________`;
+  $("plan").innerHTML=BLOCKS.map((b,i)=>`<a href="#b-${b.id}"><b>${i+1} · ${b.name}</b><span>${cnt(b.id)?cnt(b.id)+" items":"Read first"}</span></a>`).join("");
+  let h="";
+  BLOCKS.forEach((b,i)=>{
+    h+=`<section class="blk" id="b-${b.id}">`+head(b,i);
+    const list=inBlk(b.id);
+    if(b.id==="warm") h+=`<p class="instr">Questions ${range("warm")}. Is each sentence correct? Don’t look anything up yet — just decide.</p>`+list.map(rWarm).join("");
+    else if(b.id==="learn") h+=`<p class="instr">Read each pattern with the class. The ✗ line shows the mistake; the ✓ line shows the fix.</p>
+      <div class="pats">${S.pats.map((p,j)=>`<div class="pat"><h3><i>${j+1}</i>${p.h}</h3><p class="rule">${p.rule}</p>
+      <div class="ex no">${p.no}</div><div class="ex yes">${p.yes}</div><p class="why">${p.why}</p></div>`).join("")}</div>
+      <div class="trap"><b>TOEFL tip</b>${S.trap}</div>`;
+    else if(b.id==="str") h+=`<p class="instr">Questions ${range("str")}. <b>Directions:</b> Each sentence is incomplete. Choose the <b>one</b> word or phrase, (A), (B), (C) or (D), that best completes the sentence.</p>`+list.map(rStr).join("");
+    else if(b.id==="we") h+=`<p class="instr">Questions ${range("we")}. <b>Directions:</b> Each sentence has four underlined words or phrases, marked (A), (B), (C) and (D). Identify the <b>one</b> that must be changed for the sentence to be correct.</p>`+list.map(rWe).join("");
+    else if(b.id==="prac"||b.id==="prod") h+=blockBody(b);
+    else if(b.id==="exit") h+=`<p class="instr">Questions ${range("exit")}. Structure and Written Expression items, mixed. Work alone and don’t check your notes.</p>`
+      +list.map(x=>R[x.kind](x)).join("")+`<div class="score" id="scorebox"></div>`;
+    h+=`</section>`;
+  });
+  $("blocks").innerHTML=h;
+  buildKey();
+}
+
+function buildKey(){
+  const L=(n,a,w)=>`<p><b>${n}.</b> ${a}${w?" — "+w:""}</p>`;
+  const ans=x=>{const q=x.q;
+    switch(x.kind){
+      case "warm": return L(x.n,q.ok?"Correct":"Incorrect → "+q.fix,q.ok?q.w:"");
+      case "str": return L(x.n,`(${LET[q.a]}) ${q.o[q.a]}`,q.w);
+      case "we": return L(x.n,`(${LET[q.a]}) ${q.p.filter(s=>s[1])[q.a][0]} → <b>${q.f||"delete it"}</b>`,q.w);
+      case "sort": return L(x.n,`${q.t} <b>${P_OF(x.blk).cols[q.c]}</b>`,q.w);
+      case "match": return L(x.n,`<b>${x.ml}</b> · ${q.t} → ${q.m}`,q.w);
+      case "gap": return L(x.n,`<b>${q.a[0]}</b>${q.a.length>1?" (also: "+q.a.slice(1).join(", ")+")":""}`,q.w);
+      case "unscramble": return L(x.n,`<b>${q.a[0]}</b>`,q.w);
+      case "transform": case "combine": return L(x.n,`<b>${q.a[0]}</b>`,q.w);
+      case "para": return L(x.n,q.f?`<i>${q.t}</i> → <b>${q.f}</b>`:`<i>${q.t}</i> — correct`,q.f?q.w:"");
+    }return "";};
+  $("key").innerHTML=`<h2>Answer key · ${S.title}</h2>`+BLOCKS.filter(b=>b.id!=="learn")
+    .map(b=>`<h3>${b.name} · ${range(b.id)}</h3>`+inBlk(b.id).map(ans).join("")).join("");
+}
+
+/* ---------- answering ---------- */
+const norm=s=>s.toLowerCase().replace(/[’‘]/g,"'").replace(/[^a-z0-9' ]+/g," ").replace(/\s+/g," ").trim();
+function fb(n,cls,html){const f=$("fb"+n);if(!f)return;f.className=(f.classList.contains("note")?"note ":"fb show ")+cls;f.innerHTML=html;}
+function rec(n,i,ok,quiet){if(quiet)return;st.a[n]={i,ok};save();update();}
+function lockOpts(n,i,right){
+  document.querySelectorAll(`.opt[data-n="${n}"]`).forEach(b=>{b.disabled=true});
+  const ok=i===right;
+  document.querySelector(`.opt[data-n="${n}"][data-i="${i}"]`).classList.add(ok?"right":"wrong");
+  if(!ok)document.querySelector(`.opt[data-n="${n}"][data-i="${right}"]`).classList.add("right");
+  return ok;}
+function choose(n,i,quiet){
+  const x=byN(n),q=x.q;
+  if(x.kind==="warm"){const ok=lockOpts(n,i,q.ok?0:1);
+    fb(n,ok?"ok":"no",`<b>${ok?"Yes":"Not quite"} — the sentence is ${q.ok?"correct":"incorrect"}.</b>${q.fix?`<span class="model">${q.fix}</span> `:""}${q.w}`);
+    return rec(n,i,ok,quiet);}
+  if(x.kind==="str"){const ok=lockOpts(n,i,q.a);$("g"+n).innerHTML=q.o[q.a];
+    fb(n,ok?"ok":"no",`<b>${ok?"Correct":"Not correct"} — (${LET[q.a]}) ${q.o[q.a]}</b>${q.w}`);
+    return rec(n,i,ok,quiet);}
+  if(x.kind==="we"){const ok=i===q.a;
+    document.querySelectorAll(`.seg[data-n="${n}"]`).forEach(s=>s.classList.add("locked"));
+    document.querySelector(`.seg[data-n="${n}"][data-i="${i}"]`).classList.add(ok?"right":"wrong");
+    if(!ok)document.querySelector(`.seg[data-n="${n}"][data-i="${q.a}"]`).classList.add("right");
+    fb(n,ok?"ok":"no",`<b>${ok?"Correct":"Not correct"} — (${LET[q.a]}) ${q.f?`should be “${q.f}”`:"should be deleted"}</b>${q.w}`);
+    return rec(n,i,ok,quiet);}
+  if(x.kind==="sort"){const card=$("c"+n),ok=lockOpts(n,i,q.c),P=P_OF(x.blk);
+    card.classList.add(ok?"right":"wrong");
+    fb(n,"",(ok?"":"<b>→ "+P.cols[q.c]+".</b> ")+q.w);
+    $(`bin-${x.blk}-${q.c}`).appendChild(card);
+    return rec(n,i,ok,quiet);}
+  if(x.kind==="match"){const sel=document.querySelector(`select[data-m="${n}"]`),P=P_OF(x.blk);
+    const right=P._ord.indexOf(inBlk(x.blk).indexOf(x)),ok=i===right;
+    sel.value=String(i);sel.disabled=true;$("c"+n).classList.add(ok?"right":"wrong");
+    fb(n,"",(ok?"":`<b>→ ${x.ml}.</b> `)+q.w);
+    return rec(n,i,ok,quiet);}
+}
+function checkGap(n,quiet){const x=byN(n),q=x.q,inp=$("in"+n);
+  if(!quiet){if(!inp.value.trim()){fb(n,"mid","<b>Type a word first.</b>");return;}st.t[n]=inp.value;}
+  const ok=q.a.some(a=>norm(a)===norm(inp.value));
+  inp.disabled=true;inp.classList.add(ok?"right":"wrong");
+  const b=document.querySelector(`[data-gap="${n}"]`);if(b)b.disabled=true;
+  fb(n,ok?"ok":"no",`<b>${ok?"Correct":"Not correct"} — ${q.a[0]}</b>${q.w}`);
+  rec(n,ok?1:0,ok,quiet);}
+function placeTile(n,w){const b=document.querySelector(`#ti${n} [data-w="${w}"]`);if(b)$("bu"+n).appendChild(b);}
+function checkU(n,quiet){const x=byN(n),q=x.q,T=x.T;
+  const order=[...$("bu"+n).querySelectorAll(".tile")].map(b=>+b.dataset.w);
+  if(!quiet&&order.length<T.w.length){fb(n,"mid","<b>Use every word first.</b>");return;}
+  st.u[n]=order;
+  const said=order.map(i=>T.w[i]).join(" ")+T.end;
+  const ok=q.a.some(a=>norm(a)===norm(said));
+  $("bu"+n).classList.add(ok?"right":"wrong");
+  document.querySelectorAll(`#q${n} .tile, #q${n} [data-uc], #q${n} [data-ux]`).forEach(b=>b.disabled=true);
+  fb(n,ok?"ok":"no",`<b>${ok?"Correct":"Not quite"}</b><span class="model">${q.a[0]}</span> ${q.w}`);
+  rec(n,ok?1:0,ok,quiet);}
+function check(n){const x=byN(n),q=x.q,v=$("in"+n).value;st.t[n]=v;save();
+  if(!v.trim()){fb(n,"mid","<b>Write your sentence first.</b>");return;}
+  const hit=q.a.some(a=>norm(a)===norm(v));
+  $("in"+n).className=hit?"right":"close";
+  fb(n,hit?"ok":"mid",hit?`<b>That matches a model answer.</b>${q.w}`:`<b>Compare with the model.</b><span class="model">${q.a[0]}</span> ${q.w}${q.a.length>1?`<br>Also possible: ${q.a.slice(1).join(" · ")}`:""}<br>If yours says the same thing in a different way, it may still be right — ask your teacher.`);}
+function model(n){const q=byN(n).q;fb(n,"ok",`<b>Model answer</b><span class="model">${q.a[0]}</span> ${q.w}${q.a.length>1?`<br>Also possible: ${q.a.slice(1).join(" · ")}`:""}`);st.r[n]=1;save();}
+function checkPara(b,quiet){const L=inBlk(b);let right=0,lines=[];
+  L.forEach(x=>{const el=$("ps"+x.n),mk=!!st.p[x.n],bad=!!x.q.f,ok=mk===bad;
+    el.classList.remove("mk");el.classList.add("locked");
+    if(bad)el.classList.add(mk?"hit":"miss");else if(mk)el.classList.add("fa");
+    if(bad&&!el.querySelector(".fx"))el.insertAdjacentHTML("beforeend",`<span class="fx">→ ${x.q.f}</span>`);
+    if(ok)right++;
+    if(bad)lines.push(`<p><b>${x.n}.</b> ${mk?"Found":"Missed"}: <i>${x.q.t}</i> → <b>${x.q.f}</b>. ${x.q.w||""}</p>`);
+    else if(mk)lines.push(`<p><b>${x.n}.</b> <i>${x.q.t}</i> was correct. ${x.q.w||""}</p>`);
+    if(!quiet)st.a[x.n]={i:mk?1:0,ok};});
+  $("pfb-"+b).innerHTML=lines.join("");
+  $("pc-"+b).textContent=`${right} of ${L.length} judged correctly.`;
+  const btn=document.querySelector(`[data-pc="${b}"]`);if(btn)btn.disabled=true;
+  if(!quiet){save();update();}}
+
+function update(){
+  const done=SCORED.filter(x=>st.a[x.n]).length,right=SCORED.filter(x=>st.a[x.n]&&st.a[x.n].ok).length,total=SCORED.length;
+  $("ptext").textContent=`${done} of ${total} answered`;
+  $("pfill").style.width=(done/total*100)+"%";
+  $("pscore").textContent=done?right+" right":"";
+  const ex=inBlk("exit"),ed=ex.filter(x=>st.a[x.n]).length,er=ex.filter(x=>st.a[x.n]&&st.a[x.n].ok).length,sb=$("scorebox");
+  if(ed===ex.length){sb.className="score show";
+    sb.innerHTML=`<strong>${er} / ${ex.length}</strong>${er===ex.length?"Ready for the next session.":er>=ex.length-1?"Nearly there. Reread the pattern behind the item you missed.":"Go back to the patterns, then try the TOEFL blocks again."}<br><span>Session total: ${right} of ${total} scored items right.</span>`;}
+  else sb.className="score";
+}
+
+/* ---------- events ---------- */
+document.addEventListener("click",e=>{
+  const o=e.target.closest(".opt[data-n]");if(o&&!o.disabled){choose(+o.dataset.n,+o.dataset.i);return;}
+  const s=e.target.closest(".seg");if(s&&!s.classList.contains("locked")){choose(+s.dataset.n,+s.dataset.i);return;}
+  const c=e.target.closest("[data-check]");if(c){check(+c.dataset.check);return;}
+  const m=e.target.closest("[data-model]");if(m){model(+m.dataset.model);return;}
+  const g=e.target.closest("[data-gap]");if(g&&!g.disabled){checkGap(+g.dataset.gap);return;}
+  const t=e.target.closest(".tile");if(t&&!t.disabled){const n=+t.dataset.u;
+    (t.parentElement.id==="bu"+n?$("ti"+n):$("bu"+n)).appendChild(t);return;}
+  const uc=e.target.closest("[data-uc]");if(uc&&!uc.disabled){checkU(+uc.dataset.uc);return;}
+  const ux=e.target.closest("[data-ux]");if(ux&&!ux.disabled){const n=+ux.dataset.ux;
+    [...$("bu"+n).querySelectorAll(".tile")].forEach(b=>$("ti"+n).appendChild(b));return;}
+  const p=e.target.closest(".ps");if(p&&!p.classList.contains("locked")){const n=+p.dataset.p;
+    st.p[n]=!st.p[n];if(!st.p[n])delete st.p[n];p.classList.toggle("mk",!!st.p[n]);save();return;}
+  const pc=e.target.closest("[data-pc]");if(pc&&!pc.disabled){checkPara(pc.dataset.pc);return;}
+});
+document.addEventListener("change",e=>{const s=e.target.closest("select[data-m]");if(s&&s.value!=="")choose(+s.dataset.m,+s.value);});
+document.addEventListener("keydown",e=>{
+  if(e.key!=="Enter")return;
+  if(e.target.classList.contains("seg")||e.target.classList.contains("ps")){e.target.click();return;}
+  if(e.target.id&&e.target.id.startsWith("in")){const n=+e.target.id.slice(2),x=byN(n);
+    if(x.kind==="gap")checkGap(n);else check(n);}
+});
+
+window.toggleTheme=function(){
+  const t=document.documentElement.dataset.theme==="dark"?"light":"dark";
+  document.documentElement.dataset.theme=t;
+  try{localStorage.setItem("arschul:theme",t)}catch(e){}
+};
+$("theme").onclick=()=>window.toggleTheme();
+function cardsHome(){IT.filter(x=>x.kind==="sort").forEach(x=>$("pool-"+x.blk).appendChild($("c"+x.n)));}
+function cardsBack(){IT.filter(x=>x.kind==="sort"&&st.a[x.n]).forEach(x=>$(`bin-${x.blk}-${x.q.c}`).appendChild($("c"+x.n)));}
+$("pw").onclick=()=>{document.body.className="print-blank";cardsHome();print();cardsBack();};
+$("pk").onclick=()=>{document.body.className="print-key";print();setTimeout(()=>document.body.className="print-blank",500);};
+$("reset").onclick=()=>{st={a:{},t:{},r:{},u:{},p:{}};save();location.reload();};
+
+load();build();
+Object.keys(st.p).forEach(n=>{const el=$("ps"+n);if(el)el.classList.add("mk");});
+const paraDone={};
+Object.keys(st.a).forEach(n=>{const x=byN(+n);if(!x)return;
+  if(x.kind==="gap"){const i=$("in"+n);i.value=st.t[n]||"";checkGap(+n,true);}
+  else if(x.kind==="unscramble"){(st.u[n]||[]).forEach(w=>placeTile(+n,w));checkU(+n,true);}
+  else if(x.kind==="para")paraDone[x.blk]=1;
+  else choose(+n,st.a[n].i,true);});
+Object.keys(paraDone).forEach(b=>checkPara(b,true));
+Object.keys(st.t).forEach(n=>{const x=byN(+n);if(x&&x.kind!=="gap"){const i=$("in"+n);if(i)i.value=st.t[n];}});
+Object.keys(st.r).forEach(n=>model(+n));
+update();
+})();
+</script>
+<!-- GP:engine-js end -->
+</body>
+</html>
