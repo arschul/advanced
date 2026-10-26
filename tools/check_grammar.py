@@ -6,7 +6,9 @@
 Per session (100 items): Structure and Written Expression have 30 items each and the
   exit check 8. In each, every letter is the answer at least 6 times (2 in the exit check), with no more than 2 identical answers in a row. Written Expression (block + exit WE items): exactly 4 underlined parts,
   the error span appears once in the sentence, and the error falls early, middle and late
-  at least 6 times each. Sort items: the categories are used within one item of evenly.
+  at least 6 times each. Sort categories are used within one item of evenly; a paragraph
+  hunt has 30–60% wrong spans; every typed item has an accepted answer. Matching order is
+  shuffled by the engine (never 1 = a).
 Needs node on PATH (the session data is a JavaScript literal).
 """
 import glob, json, os, re, subprocess, sys
@@ -44,12 +46,29 @@ def run(path):
         pos.append("early" if r < 1/3 else "late" if r > 2/3 else "mid")
     for b in ("early", "mid", "late"):
         if pos.count(b) < 6: errs.append(f"WE: error {b} in the sentence only {pos.count(b)}x (min 6)")
-    total = len(S["warm"]) + len(S["str"]) + len(S["we"]) + len(S["prac"]["items"]) + len(S["prod"]["items"]) + len(S["exit"])
+    def n_items(P):
+        if P["type"] == "para":
+            return sum(1 for para in P["paras"] for x in para if not isinstance(x, str))
+        return len(P["items"])
+    for P in (S["prac"], S["prod"]):
+        if P["type"] == "para":
+            spans = [x for para in P["paras"] for x in para if not isinstance(x, str)]
+            bad = sum(1 for x in spans if x.get("f"))
+            if not (len(spans) * 0.3 <= bad <= len(spans) * 0.6):
+                errs.append(f"para: {bad} wrong of {len(spans)} (keep 30–60%)")
+        if P["type"] in ("gap", "transform", "combine", "unscramble"):
+            for i, q in enumerate(P["items"], 1):
+                if not q.get("a"): errs.append(f"{P['type']} {i}: no accepted answer")
+    total = len(S["warm"]) + len(S["str"]) + len(S["we"]) + n_items(S["prac"]) + n_items(S["prod"]) + len(S["exit"])
     if total != 100: errs.append(f"{total} items (expected 100)")
-    if S["prac"]["type"] == "sort":
-        cs = [q["c"] for q in S["prac"]["items"]]
-        cnt = [cs.count(i) for i in range(len(S["prac"]["cols"]))]
-        if max(cnt) - min(cnt) > 1: errs.append(f"sort: uneven categories {cnt}")
+    for P in (S["prac"], S["prod"]):
+        if P["type"] == "sort":
+            cs = [q["c"] for q in P["items"]]
+            cnt = [cs.count(i) for i in range(len(P["cols"]))]
+            if max(cnt) - min(cnt) > 1: errs.append(f"sort: uneven categories {cnt}")
+        if P["type"] == "match":
+            ms = [q["m"] for q in P["items"]]
+            if len(set(ms)) != len(ms): errs.append("match: duplicate right-hand items")
     return errs
 bad = 0
 for p in sorted(glob.glob(os.path.join(ROOT, "toefl", "grammar", "*.html"))):

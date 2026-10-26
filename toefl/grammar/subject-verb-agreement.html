@@ -233,6 +233,70 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
     .keyblock h3{font-size:10.5pt;margin-top:8px}
   }
 </style>
+<style>
+  /* sort with more than two columns */
+  .sort.wide{grid-template-columns:repeat(var(--nc),1fr)}
+  .sort.wide .pool{grid-column:1/-1}
+  /* matching */
+  .match{display:grid;grid-template-columns:1.15fr 1fr;gap:.8rem;margin-top:1rem;align-items:start}
+  .mcol{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.8rem}
+  .mcol h3{font-size:1rem;font-weight:600;margin-bottom:.5rem}
+  .mi{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;padding:.4rem .2rem;border-bottom:1px solid var(--border);font-size:.94rem}
+  .mi:last-child{border-bottom:none}
+  .mi .t{flex:1;min-width:10em}
+  .mi .n2,.mr .l2{font-weight:600;color:var(--muted);margin-right:.25rem}
+  .mi.right{background:var(--good-soft)}
+  .mi.wrong{background:var(--bad-soft)}
+  .mi .note{display:block;width:100%;font-size:.8rem;color:var(--muted);font-weight:300}
+  .mr{padding:.35rem .2rem;font-size:.94rem;border-bottom:1px solid var(--border)}
+  .mr:last-child{border-bottom:none}
+  select{font-family:inherit;font-size:.9rem;padding:.3rem .5rem;border-radius:8px;background:var(--surface2);color:var(--text);border:1px solid var(--border)}
+  select:disabled{opacity:1}
+  /* inline gap-fill */
+  input.gapin{flex:none;min-width:0;width:9em;display:inline-block;margin:0 .2em;padding:.2rem .5rem}
+  input.gapin.wrong{border-color:var(--bad-line);background:var(--bad-soft)}
+  .hint{color:var(--muted);font-size:.85rem}
+  /* unscramble */
+  .tiles,.built{grid-column:2;display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.6rem}
+  .built{min-height:2.5rem;padding:.35rem;border:1px dashed var(--border);border-radius:10px;align-items:center}
+  .built:empty::before{content:"Tap the words in order";color:var(--muted);font-size:.85rem;padding-left:.3rem}
+  .tile{font-family:inherit;font-size:.92rem;padding:.25rem .7rem;border-radius:8px;cursor:pointer;background:var(--surface2);color:var(--text);border:1px solid var(--border)}
+  .tile:hover:not(:disabled){border-color:var(--violet)}
+  .built .tile{background:var(--violet-deep);border-color:var(--violet-line)}
+  .built.right{border-color:var(--good-line);background:var(--good-soft)}
+  .built.wrong{border-color:var(--bad-line);background:var(--bad-soft)}
+  /* paragraph error hunt */
+  .para{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem 1.3rem;margin-top:.9rem;font-size:1.04rem;line-height:2.3}
+  .ps{border-bottom:2px solid var(--muted);cursor:pointer;padding:0 2px;border-radius:3px;transition:background .2s}
+  .ps sup{font-size:.62em;font-weight:700;color:var(--violet);margin-left:1px}
+  .ps:hover{background:var(--violet-deep)}
+  .ps.mk{background:var(--violet-deep);border-bottom-color:var(--violet)}
+  .ps.hit{background:var(--good-soft);border-bottom-color:var(--good)}
+  .ps.miss{background:var(--bad-soft);border-bottom-color:var(--bad)}
+  .ps.fa{background:var(--bad-soft);text-decoration:line-through}
+  .ps.locked{cursor:default}
+  .ps .fx{color:var(--good);font-weight:600;margin-left:.3em}
+  .pbtns{display:flex;gap:.5rem;margin-top:.8rem;align-items:center;flex-wrap:wrap}
+  .pfb{margin-top:.8rem}
+  .pfb p{font-size:.86rem;color:var(--muted);font-weight:300;line-height:1.65;margin:.25rem 0}
+  .pfb p b{color:var(--text);font-weight:600}
+  .tiles-print{display:none}
+  @media(max-width:700px){.match{grid-template-columns:1fr}}
+  @media print{
+    .match{display:block}
+    .mcol{border:none;padding:0;margin-bottom:8px}
+    .mi select,.mi .note{display:none}
+    .mi .pbox{display:inline}
+    .mi,.mr{border-bottom:1px dotted #999;padding:3px 0}
+    input.gapin{display:inline-block!important;border:none;border-bottom:1px solid #000;border-radius:0;background:none;width:8em}
+    .tiles,.built,.pbtns,.pfb{display:none!important}
+    .tiles-print{display:block;grid-column:2;font-size:10.5pt}
+    .para{border:1px solid #999;line-height:2;font-size:10.5pt;padding:6px 8px;break-inside:avoid}
+    .ps{border-bottom:1px solid #000;background:none!important;text-decoration:none!important}
+    .ps .fx{display:none}
+    .ps sup{color:#000}
+  }
+</style>
 <!-- GP:engine-css end -->
 </head>
 <body class="print-blank">
@@ -245,7 +309,7 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
   <a class="back-link" href="./index.html">← Grammar Practice</a>
   <p class="eyebrow" id="eyebrow"></p>
   <h1>Subject–verb <span class="accent">agreement</span></h1>
-  <p class="lede">One thing takes <i>is, has, was</i> and a verb with <i>-s</i>. More than one take <i>are, have, were</i> and no <i>-s</i>. The rule is easy; the hard part is finding the real subject. This session gives you six patterns, then practice in the exact TOEFL format and in three other kinds of exercise.</p>
+  <p class="lede">One thing takes <i>is, has, was</i> and a verb with <i>-s</i>. More than one take <i>are, have, were</i> and no <i>-s</i>. The rule is easy; the hard part is finding the real subject. This session gives you six patterns, then practice in the exact TOEFL format and in two other kinds of exercise.</p>
   <div class="chips"><span class="chip">B1 → B2</span><span class="chip">100 items</span><span class="chip">TOEFL ITP · Structure &amp; Written Expression</span></div>
   <div class="actions">
     <button class="btn btn-view" id="pw">Print worksheet</button>
@@ -270,7 +334,7 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
 
 <!-- GP:data start -->
 <script>
-/* Grammar Practice session. Schema: see toefl/grammar/README.md.
+/* Grammar Practice session data. Shapes are documented in toefl/grammar/README.md.
    Items are numbered 1–N in block order. a = 0-based answer index.
    100 items: warm-up 6, Structure 30, Written Expression 30, practice 16, production 10, exit 8. */
 const S={
@@ -442,7 +506,7 @@ const S={
      w:"<i>Who</i> refers to <i>my cousin</i>, singular → <i>lives</i>."}
   ],
 
-  prac:{type:"sort", title:"Is or are?",
+  prac:{type:"sort", title:"Is or are?", binPrefix:"… ", poolTitle:"Subjects",
     instr:"Sixteen subjects. Decide which ones take <b>is</b> and which take <b>are</b>. Then discuss the ones the class disagrees on. <span class=\"screen-only\">Tap a verb on each card; the card moves to its column.</span><span class=\"print-only\">Write <b>is</b> or <b>are</b> after each one.</span>",
     cols:["is","are"],
     items:[
@@ -503,41 +567,53 @@ const S={
 
 <!-- GP:engine-js start -->
 <script>
+/* Grammar Practice engine. Shared by every session; edit tools/grammar_engine.html and run
+   tools/sync_grammar.py to copy it into the pages. Session data lives in the GP:data block. */
 (function(){
 const LET="ABCD", $=id=>document.getElementById(id);
 const KEY="adv:grammar-practice:"+S.slug;
 const BLOCKS=[
-  {id:"warm",  name:"Warm-up",  sub:"Right or wrong?"},
-  {id:"learn", name:"Explain", sub:"The patterns"},
-  {id:"str",   name:"Structure", sub:"TOEFL format"},
+  {id:"warm",  name:"Warm-up",            sub:"Right or wrong?"},
+  {id:"learn", name:"Explain",            sub:"The patterns"},
+  {id:"str",   name:"Structure",          sub:"TOEFL format"},
   {id:"we",    name:"Written Expression", sub:"TOEFL format"},
-  {id:"prac",  name:"Practice", sub:S.prac.title},
-  {id:"prod",  name:"Production", sub:S.prod.title},
-  {id:"exit",  name:"Exit check",  sub:"Mixed TOEFL items"}
+  {id:"prac",  name:"Practice",           sub:S.prac.title},
+  {id:"prod",  name:"Production",         sub:S.prod.title},
+  {id:"exit",  name:"Exit check",         sub:"Mixed TOEFL items"}
 ];
-let st={a:{},t:{},r:{}};
+let st={a:{},t:{},r:{},u:{},p:{}};
 function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
-function load(){try{const d=JSON.parse(localStorage.getItem(KEY)||"{}");st={a:d.a||{},t:d.t||{},r:d.r||{}}}catch(e){}}
+function load(){try{const d=JSON.parse(localStorage.getItem(KEY)||"{}");st={a:d.a||{},t:d.t||{},r:d.r||{},u:d.u||{},p:d.p||{}}}catch(e){}}
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");
 
-/* ---------- numbering ---------- */
-function shuffleIdx(len,seed){ // deterministic, so the printed sheet matches the screen
+/* deterministic shuffles, so the printed sheet matches the screen */
+function shuffleIdx(len,seed){
   let h=0;for(const c of seed)h=(h*31+c.charCodeAt(0))>>>0;
   const a=[...Array(len).keys()];
   for(let i=len-1;i>0;i--){h=(h*1103515245+12345)>>>0;const j=h%(i+1);[a[i],a[j]]=[a[j],a[i]];}
   return a;}
-if(S.prac.type==="sort"||S.prac.type==="match"){const c=S.prac.items.slice();S.prac.items=shuffleIdx(c.length,S.slug).map(i=>c[i]);}
-const IT=[]; // {n,kind,blk,q}
-S.warm.forEach(q=>IT.push({kind:"warm",blk:"warm",q}));
-S.str.forEach(q=>IT.push({kind:"str",blk:"str",q}));
-S.we.forEach(q=>IT.push({kind:"we",blk:"we",q}));
-S.prac.items.forEach(q=>IT.push({kind:S.prac.type,blk:"prac",q}));
-S.prod.items.forEach(q=>IT.push({kind:S.prod.type,blk:"prod",q}));
-S.exit.forEach(q=>IT.push({kind:q.k,blk:"exit",q}));
+function derange(len,seed){let a=shuffleIdx(len,seed),k=0;
+  while(len>1&&a.some((v,i)=>v===i)&&k<200)a=shuffleIdx(len,seed+"#"+(++k));return a;}
+
+/* ---------- numbering ---------- */
+[S.prac,S.prod].forEach(P=>{if(P.type==="sort"){const c=P.items.slice();P.items=shuffleIdx(c.length,S.slug).map(i=>c[i]);}});
+const IT=[];
+const add=(blk,kind,q)=>IT.push({blk,kind,q});
+S.warm.forEach(q=>add("warm","warm",q));
+S.str.forEach(q=>add("str","str",q));
+S.we.forEach(q=>add("we","we",q));
+[["prac",S.prac],["prod",S.prod]].forEach(([b,P])=>{
+  if(P.type==="para")P.paras.forEach((para,pi)=>para.forEach(seg=>{if(typeof seg!=="string")add(b,"para",seg);}));
+  else P.items.forEach(q=>add(b,P.type,q));});
+S.exit.forEach(q=>add("exit",q.k,q));
 IT.forEach((x,i)=>x.n=i+1);
-const SCORED=IT.filter(x=>x.kind!=="transform"&&x.kind!=="combine"&&x.kind!=="unscramble"||false);
+const UNSCORED={transform:1,combine:1};
+const SCORED=IT.filter(x=>!UNSCORED[x.kind]);
 const byN=n=>IT[n-1];
-const cnt=b=>IT.filter(x=>x.blk===b).length;
-const range=b=>{const l=IT.filter(x=>x.blk===b);return l.length?l[0].n+"–"+l[l.length-1].n:""};
+const inBlk=b=>IT.filter(x=>x.blk===b);
+const cnt=b=>inBlk(b).length;
+const range=b=>{const l=inBlk(b);return l.length?l[0].n+"–"+l[l.length-1].n:""};
+const P_OF=b=>b==="prac"?S.prac:S.prod;
 
 /* ---------- renderers ---------- */
 function rWarm(x){const q=x.q;
@@ -554,25 +630,72 @@ function rWe(x){const q=x.q;let li=0;
   const body=q.p.map(([t,u])=>u?`<span class="seg" tabindex="0" data-n="${x.n}" data-i="${li}"><u>${t}</u><sub>${LET[li++]}</sub></span>`:t).join("");
   return `<div class="q" id="q${x.n}"><div class="n">${x.n}</div><div class="stem we">${body}${/[.?!]$/.test(q.p[q.p.length-1][0])?"":"."}</div>
   <div class="fb" id="fb${x.n}"></div></div>`;}
-function rSort(){
-  const p=S.prac;
-  const cards=IT.filter(y=>y.blk==="prac").map(x=>{const q=x.q;
-    return `<div class="card" id="c${x.n}"><span class="t"><span class="n2">${x.n}.</span> ${q.t} <span class="pbox">______</span></span>
-    ${p.cols.map((c,j)=>`<button class="opt" data-n="${x.n}" data-i="${j}">${c}</button>`).join("")}
-    <span class="note" id="fb${x.n}"></span></div>`}).join("");
-  return `<div class="sort"><div class="pool" id="pool"><h3 class="screen-only">Subjects</h3>${cards}</div>
-  ${p.cols.map((c,j)=>`<div class="bin" id="bin${j}"><h3>… ${c}</h3></div>`).join("")}</div>`;}
+function rSort(b){const P=P_OF(b),nc=P.cols.length;
+  const cards=inBlk(b).map(x=>`<div class="card" id="c${x.n}"><span class="t"><span class="n2">${x.n}.</span> ${x.q.t} <span class="pbox">______</span></span>
+    ${P.cols.map((c,j)=>`<button class="opt" data-n="${x.n}" data-i="${j}">${c}</button>`).join("")}
+    <span class="note" id="fb${x.n}"></span></div>`).join("");
+  return `<div class="sort${nc>2?" wide":""}" style="--nc:${nc}"><div class="pool" id="pool-${b}"><h3 class="screen-only">${P.poolTitle||"Items"}</h3>${cards}</div>
+  ${P.cols.map((c,j)=>`<div class="bin" id="bin-${b}-${j}"><h3>${P.binPrefix||""}${c}</h3></div>`).join("")}</div>`;}
+function rMatch(b){const P=P_OF(b),L=inBlk(b),ord=derange(L.length,S.slug+":"+b);
+  const letters="abcdefghijklmnopqrstuvwxyz";
+  P._ord=ord; // ord[k] = index of the item whose answer sits at letter k
+  L.forEach((x,i)=>x.ml=letters[ord.indexOf(i)]);
+  const left=L.map(x=>`<div class="mi" id="c${x.n}"><span class="t"><span class="n2">${x.n}.</span> ${x.q.t} <span class="pbox">____</span></span>
+    <select data-m="${x.n}" aria-label="Match for ${x.n}"><option value="">–</option>${ord.map((v,k)=>`<option value="${k}">${letters[k]}</option>`).join("")}</select>
+    <span class="note" id="fb${x.n}"></span></div>`).join("");
+  const right=ord.map((v,k)=>`<div class="mr"><span class="l2">${letters[k]}.</span> ${L[v].q.m}</div>`).join("");
+  return `<div class="match"><div class="mcol"><h3>${P.colL||""}</h3>${left}</div><div class="mcol"><h3>${P.colR||""}</h3>${right}</div></div>`;}
+function rGap(x){const q=x.q;
+  return `<div class="q" id="q${x.n}"><div class="n">${x.n}</div><div class="stem">${q.s[0]}<input type="text" class="gapin" id="in${x.n}" aria-label="Answer ${x.n}" autocomplete="off" spellcheck="false">${q.s[1]||""}${q.h?` <span class="hint">(${q.h})</span>`:""}</div>
+  <div class="row-btns"><button class="opt" data-gap="${x.n}">Check</button></div>
+  <div class="fb" id="fb${x.n}"></div></div>`;}
+function tilesOf(x){const s=x.q.a[0],end=/[.?!]$/.test(s)?s.slice(-1):"";
+  const w=(end?s.slice(0,-1):s).split(" ");
+  if(!x.q.keep&&w[0]!=="I")w[0]=w[0].charAt(0).toLowerCase()+w[0].slice(1);
+  let o=shuffleIdx(w.length,S.slug+":u"+x.n),k=0;
+  while(w.length>2&&o.every((v,i)=>v===i)&&k<50)o=shuffleIdx(w.length,S.slug+":u"+x.n+"#"+(++k));
+  return {w,o,end};}
+function rUnscramble(x){const T=tilesOf(x);x.T=T;
+  return `<div class="q" id="q${x.n}"><div class="n">${x.n}</div><div class="stem">${x.q.h?`<span class="hint">${x.q.h}</span>`:"Put the words in order."}</div>
+  <div class="built" id="bu${x.n}"></div>
+  <div class="tiles" id="ti${x.n}">${T.o.map(i=>`<button class="tile" data-u="${x.n}" data-w="${i}">${esc(T.w[i])}</button>`).join("")}</div>
+  <div class="tiles-print">${T.o.map(i=>esc(T.w[i])).join(" &nbsp;/&nbsp; ")}${T.end?` &nbsp;( ${T.end} )`:""}</div><span class="line"></span>
+  <div class="row-btns"><button class="opt" data-uc="${x.n}">Check</button><button class="opt" data-ux="${x.n}">Clear</button></div>
+  <div class="fb" id="fb${x.n}"></div></div>`;}
 function rTransform(x){const q=x.q;
   return `<div class="q" id="q${x.n}"><div class="n">${x.n}</div><div><div class="orig">${q.t}</div>
   <div class="cue"><b>${q.cue} …</b></div><span class="line"></span></div>
-  <div class="row-btns"><input type="text" id="in${x.n}" aria-label="Your answer to ${x.n}" placeholder="${q.cue} …" autocomplete="off" spellcheck="false">
+  <div class="row-btns"><input type="text" id="in${x.n}" aria-label="Your answer to ${x.n}" placeholder="${esc(q.cue)} …" autocomplete="off" spellcheck="false">
   <button class="opt" data-check="${x.n}">Check</button><button class="opt" data-model="${x.n}">Show model</button></div>
   <div class="fb" id="fb${x.n}"></div></div>`;}
-const R={warm:rWarm,str:rStr,we:rWe,transform:rTransform};
+function rCombine(x){const q=x.q;
+  return `<div class="q" id="q${x.n}"><div class="n">${x.n}</div><div><div class="orig">${q.t.join(" ")}</div>
+  ${q.h?`<div class="cue"><span class="hint">${q.h}</span></div>`:""}<span class="line"></span><span class="line"></span></div>
+  <div class="row-btns"><input type="text" id="in${x.n}" aria-label="Your answer to ${x.n}" placeholder="One sentence …" autocomplete="off" spellcheck="false">
+  <button class="opt" data-check="${x.n}">Check</button><button class="opt" data-model="${x.n}">Show model</button></div>
+  <div class="fb" id="fb${x.n}"></div></div>`;}
+function rPara(b){const P=P_OF(b);let i=0;const L=inBlk(b);
+  const paras=P.paras.map(para=>`<div class="para">${para.map(seg=>{if(typeof seg==="string")return seg;const x=L[i++];
+    return `<span class="ps" tabindex="0" id="ps${x.n}" data-p="${x.n}">${seg.t}<sup>${x.n}</sup></span>`;}).join("")}</div>`).join("");
+  return paras+`<div class="pbtns"><button class="opt" data-pc="${b}">Check the paragraphs</button><span class="hint" id="pc-${b}"></span></div><div class="pfb" id="pfb-${b}"></div>`;}
+const R={warm:rWarm,str:rStr,we:rWe,gap:rGap,unscramble:rUnscramble,transform:rTransform,combine:rCombine};
 
+function head(b,i){const c=cnt(b.id);
+  return `<div class="blk-head"><span class="blk-num">${i+1}</span><h2><small>${b.name}${c?" · "+c+" items":""}</small>${b.sub}</h2></div>`;}
 
-function head(b,i){
-  return `<div class="blk-head"><span class="blk-num">${i+1}</span><h2><small>${b.name}${cnt(b.id)?" · "+cnt(b.id)+" items":""}</small>${b.sub}</h2></div>`;}
+function blockBody(b){const P=P_OF(b.id),L=inBlk(b.id);
+  const ins=`<p class="instr">Questions ${range(b.id)}. ${P.instr}${
+    {gap:" <span class=\"screen-only\">Type the missing word and press Check.</span>",
+     unscramble:" <span class=\"screen-only\">Tap the words in order; tap a placed word to send it back.</span>",
+     transform:" <span class=\"screen-only\">Type your answer and press Check, or write in your notebook and compare with the model.</span>",
+     combine:" <span class=\"screen-only\">Type your answer and press Check, or write in your notebook and compare with the model.</span>",
+     para:" <span class=\"screen-only\">Tap every underlined part you think is wrong, then press Check.</span><span class=\"print-only\">Circle each wrong part and write the correction above it.</span>",
+     match:" <span class=\"screen-only\">Choose a letter for each one.</span>",
+     sort:""}[P.type]||""}</p>`;
+  if(P.type==="sort")return ins+rSort(b.id);
+  if(P.type==="match")return ins+rMatch(b.id);
+  if(P.type==="para")return ins+rPara(b.id);
+  return ins+L.map(x=>R[x.kind](x)).join("");}
 
 function build(){
   $("eyebrow").textContent=`Phil Young’s English School · Session ${S.n} of ${S.of} · ${S.theme}`;
@@ -581,7 +704,7 @@ function build(){
   let h="";
   BLOCKS.forEach((b,i)=>{
     h+=`<section class="blk" id="b-${b.id}">`+head(b,i);
-    const list=IT.filter(x=>x.blk===b.id);
+    const list=inBlk(b.id);
     if(b.id==="warm") h+=`<p class="instr">Questions ${range("warm")}. Is each sentence correct? Don’t look anything up yet — just decide.</p>`+list.map(rWarm).join("");
     else if(b.id==="learn") h+=`<p class="instr">Read each pattern with the class. The ✗ line shows the mistake; the ✓ line shows the fix.</p>
       <div class="pats">${S.pats.map((p,j)=>`<div class="pat"><h3><i>${j+1}</i>${p.h}</h3><p class="rule">${p.rule}</p>
@@ -589,8 +712,7 @@ function build(){
       <div class="trap"><b>TOEFL tip</b>${S.trap}</div>`;
     else if(b.id==="str") h+=`<p class="instr">Questions ${range("str")}. <b>Directions:</b> Each sentence is incomplete. Choose the <b>one</b> word or phrase, (A), (B), (C) or (D), that best completes the sentence.</p>`+list.map(rStr).join("");
     else if(b.id==="we") h+=`<p class="instr">Questions ${range("we")}. <b>Directions:</b> Each sentence has four underlined words or phrases, marked (A), (B), (C) and (D). Identify the <b>one</b> that must be changed for the sentence to be correct.</p>`+list.map(rWe).join("");
-    else if(b.id==="prac") h+=`<p class="instr">Questions ${range("prac")}. ${S.prac.instr}</p>`+rSort();
-    else if(b.id==="prod") h+=`<p class="instr">Questions ${range("prod")}. ${S.prod.instr} <span class="screen-only">Type your answer and press Check, or write in your notebook and compare with the model.</span></p>`+list.map(x=>R[x.kind](x)).join("");
+    else if(b.id==="prac"||b.id==="prod") h+=blockBody(b);
     else if(b.id==="exit") h+=`<p class="instr">Questions ${range("exit")}. Structure and Written Expression items, mixed. Work alone and don’t check your notes.</p>`
       +list.map(x=>R[x.kind](x)).join("")+`<div class="score" id="scorebox"></div>`;
     h+=`</section>`;
@@ -600,67 +722,102 @@ function build(){
 }
 
 function buildKey(){
-  const sec=(title,lines)=>`<h3>${title}</h3>`+lines.join("");
   const L=(n,a,w)=>`<p><b>${n}.</b> ${a}${w?" — "+w:""}</p>`;
   const ans=x=>{const q=x.q;
-    if(x.kind==="warm") return L(x.n,q.ok?"Correct":"Incorrect → "+q.fix,q.ok?q.w:"");
-    if(x.kind==="str") return L(x.n,`(${LET[q.a]}) ${q.o[q.a]}`,q.w);
-    if(x.kind==="we") return L(x.n,`(${LET[q.a]}) ${q.p.filter(s=>s[1])[q.a][0]} → <b>${q.f}</b>`,q.w);
-    if(x.kind==="sort") return L(x.n,`${q.t} <b>${S.prac.cols[q.c]}</b>`,q.w);
-    if(x.kind==="transform") return L(x.n,`<b>${q.a[0]}</b>`,q.w);
-    return "";};
+    switch(x.kind){
+      case "warm": return L(x.n,q.ok?"Correct":"Incorrect → "+q.fix,q.ok?q.w:"");
+      case "str": return L(x.n,`(${LET[q.a]}) ${q.o[q.a]}`,q.w);
+      case "we": return L(x.n,`(${LET[q.a]}) ${q.p.filter(s=>s[1])[q.a][0]} → <b>${q.f||"delete it"}</b>`,q.w);
+      case "sort": return L(x.n,`${q.t} <b>${P_OF(x.blk).cols[q.c]}</b>`,q.w);
+      case "match": return L(x.n,`<b>${x.ml}</b> · ${q.t} → ${q.m}`,q.w);
+      case "gap": return L(x.n,`<b>${q.a[0]}</b>${q.a.length>1?" (also: "+q.a.slice(1).join(", ")+")":""}`,q.w);
+      case "unscramble": return L(x.n,`<b>${q.a[0]}</b>`,q.w);
+      case "transform": case "combine": return L(x.n,`<b>${q.a[0]}</b>`,q.w);
+      case "para": return L(x.n,q.f?`<i>${q.t}</i> → <b>${q.f}</b>`:`<i>${q.t}</i> — correct`,q.f?q.w:"");
+    }return "";};
   $("key").innerHTML=`<h2>Answer key · ${S.title}</h2>`+BLOCKS.filter(b=>b.id!=="learn")
-    .map(b=>sec(`${b.name} · ${range(b.id)}`,IT.filter(x=>x.blk===b.id).map(ans))).join("");
+    .map(b=>`<h3>${b.name} · ${range(b.id)}</h3>`+inBlk(b.id).map(ans).join("")).join("");
 }
 
 /* ---------- answering ---------- */
-function fb(n,cls,html){const f=$("fb"+n);f.className=(f.classList.contains("note")?"note ":"fb show ")+cls;f.innerHTML=html;}
+const norm=s=>s.toLowerCase().replace(/[’‘]/g,"'").replace(/[^a-z0-9' ]+/g," ").replace(/\s+/g," ").trim();
+function fb(n,cls,html){const f=$("fb"+n);if(!f)return;f.className=(f.classList.contains("note")?"note ":"fb show ")+cls;f.innerHTML=html;}
+function rec(n,i,ok,quiet){if(quiet)return;st.a[n]={i,ok};save();update();}
+function lockOpts(n,i,right){
+  document.querySelectorAll(`.opt[data-n="${n}"]`).forEach(b=>{b.disabled=true});
+  const ok=i===right;
+  document.querySelector(`.opt[data-n="${n}"][data-i="${i}"]`).classList.add(ok?"right":"wrong");
+  if(!ok)document.querySelector(`.opt[data-n="${n}"][data-i="${right}"]`).classList.add("right");
+  return ok;}
 function choose(n,i,quiet){
   const x=byN(n),q=x.q;
-  if(x.kind==="warm"){const ok=(i===0)===q.ok;
-    document.querySelectorAll(`.opt[data-n="${n}"]`).forEach(b=>{b.disabled=true});
-    document.querySelector(`.opt[data-n="${n}"][data-i="${i}"]`).classList.add(ok?"right":"wrong");
-    if(!ok)document.querySelector(`.opt[data-n="${n}"][data-i="${q.ok?0:1}"]`).classList.add("right");
+  if(x.kind==="warm"){const ok=lockOpts(n,i,q.ok?0:1);
     fb(n,ok?"ok":"no",`<b>${ok?"Yes":"Not quite"} — the sentence is ${q.ok?"correct":"incorrect"}.</b>${q.fix?`<span class="model">${q.fix}</span> `:""}${q.w}`);
     return rec(n,i,ok,quiet);}
-  if(x.kind==="str"){const ok=i===q.a;
-    document.querySelectorAll(`.opt[data-n="${n}"]`).forEach(b=>{b.disabled=true});
-    document.querySelector(`.opt[data-n="${n}"][data-i="${i}"]`).classList.add(ok?"right":"wrong");
-    if(!ok)document.querySelector(`.opt[data-n="${n}"][data-i="${q.a}"]`).classList.add("right");
-    $("g"+n).innerHTML=q.o[q.a];
+  if(x.kind==="str"){const ok=lockOpts(n,i,q.a);$("g"+n).innerHTML=q.o[q.a];
     fb(n,ok?"ok":"no",`<b>${ok?"Correct":"Not correct"} — (${LET[q.a]}) ${q.o[q.a]}</b>${q.w}`);
     return rec(n,i,ok,quiet);}
   if(x.kind==="we"){const ok=i===q.a;
     document.querySelectorAll(`.seg[data-n="${n}"]`).forEach(s=>s.classList.add("locked"));
     document.querySelector(`.seg[data-n="${n}"][data-i="${i}"]`).classList.add(ok?"right":"wrong");
     if(!ok)document.querySelector(`.seg[data-n="${n}"][data-i="${q.a}"]`).classList.add("right");
-    fb(n,ok?"ok":"no",`<b>${ok?"Correct":"Not correct"} — (${LET[q.a]}) should be “${q.f}”</b>${q.w}`);
+    fb(n,ok?"ok":"no",`<b>${ok?"Correct":"Not correct"} — (${LET[q.a]}) ${q.f?`should be “${q.f}”`:"should be deleted"}</b>${q.w}`);
     return rec(n,i,ok,quiet);}
-  if(x.kind==="sort"){const ok=i===q.c, card=$("c"+n);
-    card.querySelectorAll(".opt").forEach(b=>b.disabled=true);
-    card.querySelector(`.opt[data-i="${i}"]`).classList.add(ok?"right":"wrong");
-    if(!ok)card.querySelector(`.opt[data-i="${q.c}"]`).classList.add("right");
+  if(x.kind==="sort"){const card=$("c"+n),ok=lockOpts(n,i,q.c),P=P_OF(x.blk);
     card.classList.add(ok?"right":"wrong");
-    fb(n,"",(ok?"":"<b>→ "+S.prac.cols[q.c]+".</b> ")+q.w);
-    $("bin"+q.c).appendChild(card);
+    fb(n,"",(ok?"":"<b>→ "+P.cols[q.c]+".</b> ")+q.w);
+    $(`bin-${x.blk}-${q.c}`).appendChild(card);
+    return rec(n,i,ok,quiet);}
+  if(x.kind==="match"){const sel=document.querySelector(`select[data-m="${n}"]`),P=P_OF(x.blk);
+    const right=P._ord.indexOf(inBlk(x.blk).indexOf(x)),ok=i===right;
+    sel.value=String(i);sel.disabled=true;$("c"+n).classList.add(ok?"right":"wrong");
+    fb(n,"",(ok?"":`<b>→ ${x.ml}.</b> `)+q.w);
     return rec(n,i,ok,quiet);}
 }
-function rec(n,i,ok,quiet){if(quiet)return;st.a[n]={i,ok};save();update();}
-
-const norm=s=>s.toLowerCase().replace(/[’‘]/g,"'").replace(/[^a-z0-9' ]+/g," ").replace(/\s+/g," ").trim();
+function checkGap(n,quiet){const x=byN(n),q=x.q,inp=$("in"+n);
+  if(!quiet){if(!inp.value.trim()){fb(n,"mid","<b>Type a word first.</b>");return;}st.t[n]=inp.value;}
+  const ok=q.a.some(a=>norm(a)===norm(inp.value));
+  inp.disabled=true;inp.classList.add(ok?"right":"wrong");
+  const b=document.querySelector(`[data-gap="${n}"]`);if(b)b.disabled=true;
+  fb(n,ok?"ok":"no",`<b>${ok?"Correct":"Not correct"} — ${q.a[0]}</b>${q.w}`);
+  rec(n,ok?1:0,ok,quiet);}
+function placeTile(n,w){const b=document.querySelector(`#ti${n} [data-w="${w}"]`);if(b)$("bu"+n).appendChild(b);}
+function checkU(n,quiet){const x=byN(n),q=x.q,T=x.T;
+  const order=[...$("bu"+n).querySelectorAll(".tile")].map(b=>+b.dataset.w);
+  if(!quiet&&order.length<T.w.length){fb(n,"mid","<b>Use every word first.</b>");return;}
+  st.u[n]=order;
+  const said=order.map(i=>T.w[i]).join(" ")+T.end;
+  const ok=q.a.some(a=>norm(a)===norm(said));
+  $("bu"+n).classList.add(ok?"right":"wrong");
+  document.querySelectorAll(`#q${n} .tile, #q${n} [data-uc], #q${n} [data-ux]`).forEach(b=>b.disabled=true);
+  fb(n,ok?"ok":"no",`<b>${ok?"Correct":"Not quite"}</b><span class="model">${q.a[0]}</span> ${q.w}`);
+  rec(n,ok?1:0,ok,quiet);}
 function check(n){const x=byN(n),q=x.q,v=$("in"+n).value;st.t[n]=v;save();
   if(!v.trim()){fb(n,"mid","<b>Write your sentence first.</b>");return;}
   const hit=q.a.some(a=>norm(a)===norm(v));
   $("in"+n).className=hit?"right":"close";
-  fb(n,hit?"ok":"mid",hit?`<b>That matches the model.</b>${q.w}`:`<b>Compare with the model.</b><span class="model">${q.a[0]}</span> ${q.w} <br>If yours says the same thing with a different word order, it may still be right — ask your teacher.`);}
-function model(n){const q=byN(n).q;fb(n,"ok",`<b>Model answer</b><span class="model">${q.a[0]}</span> ${q.w}`);st.r[n]=1;save();}
+  fb(n,hit?"ok":"mid",hit?`<b>That matches a model answer.</b>${q.w}`:`<b>Compare with the model.</b><span class="model">${q.a[0]}</span> ${q.w}${q.a.length>1?`<br>Also possible: ${q.a.slice(1).join(" · ")}`:""}<br>If yours says the same thing in a different way, it may still be right — ask your teacher.`);}
+function model(n){const q=byN(n).q;fb(n,"ok",`<b>Model answer</b><span class="model">${q.a[0]}</span> ${q.w}${q.a.length>1?`<br>Also possible: ${q.a.slice(1).join(" · ")}`:""}`);st.r[n]=1;save();}
+function checkPara(b,quiet){const L=inBlk(b);let right=0,lines=[];
+  L.forEach(x=>{const el=$("ps"+x.n),mk=!!st.p[x.n],bad=!!x.q.f,ok=mk===bad;
+    el.classList.remove("mk");el.classList.add("locked");
+    if(bad)el.classList.add(mk?"hit":"miss");else if(mk)el.classList.add("fa");
+    if(bad&&!el.querySelector(".fx"))el.insertAdjacentHTML("beforeend",`<span class="fx">→ ${x.q.f}</span>`);
+    if(ok)right++;
+    if(bad)lines.push(`<p><b>${x.n}.</b> ${mk?"Found":"Missed"}: <i>${x.q.t}</i> → <b>${x.q.f}</b>. ${x.q.w||""}</p>`);
+    else if(mk)lines.push(`<p><b>${x.n}.</b> <i>${x.q.t}</i> was correct. ${x.q.w||""}</p>`);
+    if(!quiet)st.a[x.n]={i:mk?1:0,ok};});
+  $("pfb-"+b).innerHTML=lines.join("");
+  $("pc-"+b).textContent=`${right} of ${L.length} judged correctly.`;
+  const btn=document.querySelector(`[data-pc="${b}"]`);if(btn)btn.disabled=true;
+  if(!quiet){save();update();}}
 
 function update(){
   const done=SCORED.filter(x=>st.a[x.n]).length,right=SCORED.filter(x=>st.a[x.n]&&st.a[x.n].ok).length,total=SCORED.length;
   $("ptext").textContent=`${done} of ${total} answered`;
   $("pfill").style.width=(done/total*100)+"%";
   $("pscore").textContent=done?right+" right":"";
-  const ex=IT.filter(x=>x.blk==="exit"),ed=ex.filter(x=>st.a[x.n]).length,er=ex.filter(x=>st.a[x.n]&&st.a[x.n].ok).length,sb=$("scorebox");
+  const ex=inBlk("exit"),ed=ex.filter(x=>st.a[x.n]).length,er=ex.filter(x=>st.a[x.n]&&st.a[x.n].ok).length,sb=$("scorebox");
   if(ed===ex.length){sb.className="score show";
     sb.innerHTML=`<strong>${er} / ${ex.length}</strong>${er===ex.length?"Ready for the next session.":er>=ex.length-1?"Nearly there. Reread the pattern behind the item you missed.":"Go back to the patterns, then try the TOEFL blocks again."}<br><span>Session total: ${right} of ${total} scored items right.</span>`;}
   else sb.className="score";
@@ -672,10 +829,22 @@ document.addEventListener("click",e=>{
   const s=e.target.closest(".seg");if(s&&!s.classList.contains("locked")){choose(+s.dataset.n,+s.dataset.i);return;}
   const c=e.target.closest("[data-check]");if(c){check(+c.dataset.check);return;}
   const m=e.target.closest("[data-model]");if(m){model(+m.dataset.model);return;}
+  const g=e.target.closest("[data-gap]");if(g&&!g.disabled){checkGap(+g.dataset.gap);return;}
+  const t=e.target.closest(".tile");if(t&&!t.disabled){const n=+t.dataset.u;
+    (t.parentElement.id==="bu"+n?$("ti"+n):$("bu"+n)).appendChild(t);return;}
+  const uc=e.target.closest("[data-uc]");if(uc&&!uc.disabled){checkU(+uc.dataset.uc);return;}
+  const ux=e.target.closest("[data-ux]");if(ux&&!ux.disabled){const n=+ux.dataset.ux;
+    [...$("bu"+n).querySelectorAll(".tile")].forEach(b=>$("ti"+n).appendChild(b));return;}
+  const p=e.target.closest(".ps");if(p&&!p.classList.contains("locked")){const n=+p.dataset.p;
+    st.p[n]=!st.p[n];if(!st.p[n])delete st.p[n];p.classList.toggle("mk",!!st.p[n]);save();return;}
+  const pc=e.target.closest("[data-pc]");if(pc&&!pc.disabled){checkPara(pc.dataset.pc);return;}
 });
+document.addEventListener("change",e=>{const s=e.target.closest("select[data-m]");if(s&&s.value!=="")choose(+s.dataset.m,+s.value);});
 document.addEventListener("keydown",e=>{
-  if(e.key==="Enter"&&e.target.classList.contains("seg")){e.target.click();}
-  if(e.key==="Enter"&&e.target.id&&e.target.id.startsWith("in")){check(+e.target.id.slice(2));}
+  if(e.key!=="Enter")return;
+  if(e.target.classList.contains("seg")||e.target.classList.contains("ps")){e.target.click();return;}
+  if(e.target.id&&e.target.id.startsWith("in")){const n=+e.target.id.slice(2),x=byN(n);
+    if(x.kind==="gap")checkGap(n);else check(n);}
 });
 
 window.toggleTheme=function(){
@@ -684,16 +853,22 @@ window.toggleTheme=function(){
   try{localStorage.setItem("arschul:theme",t)}catch(e){}
 };
 $("theme").onclick=()=>window.toggleTheme();
-$("pw").onclick=()=>{document.body.className="print-blank";
-  const pool=$("pool");IT.filter(x=>x.kind==="sort").forEach(x=>pool.appendChild($("c"+x.n)));
-  print();
-  IT.filter(x=>x.kind==="sort"&&st.a[x.n]).forEach(x=>$("bin"+x.q.c).appendChild($("c"+x.n)));};
+function cardsHome(){IT.filter(x=>x.kind==="sort").forEach(x=>$("pool-"+x.blk).appendChild($("c"+x.n)));}
+function cardsBack(){IT.filter(x=>x.kind==="sort"&&st.a[x.n]).forEach(x=>$(`bin-${x.blk}-${x.q.c}`).appendChild($("c"+x.n)));}
+$("pw").onclick=()=>{document.body.className="print-blank";cardsHome();print();cardsBack();};
 $("pk").onclick=()=>{document.body.className="print-key";print();setTimeout(()=>document.body.className="print-blank",500);};
-$("reset").onclick=()=>{st={a:{},t:{},r:{}};save();location.reload();};
+$("reset").onclick=()=>{st={a:{},t:{},r:{},u:{},p:{}};save();location.reload();};
 
 load();build();
-Object.keys(st.a).forEach(n=>choose(+n,st.a[n].i,true));
-Object.keys(st.t).forEach(n=>{const i=$("in"+n);if(i)i.value=st.t[n];});
+Object.keys(st.p).forEach(n=>{const el=$("ps"+n);if(el)el.classList.add("mk");});
+const paraDone={};
+Object.keys(st.a).forEach(n=>{const x=byN(+n);if(!x)return;
+  if(x.kind==="gap"){const i=$("in"+n);i.value=st.t[n]||"";checkGap(+n,true);}
+  else if(x.kind==="unscramble"){(st.u[n]||[]).forEach(w=>placeTile(+n,w));checkU(+n,true);}
+  else if(x.kind==="para")paraDone[x.blk]=1;
+  else choose(+n,st.a[n].i,true);});
+Object.keys(paraDone).forEach(b=>checkPara(b,true));
+Object.keys(st.t).forEach(n=>{const x=byN(+n);if(x&&x.kind!=="gap"){const i=$("in"+n);if(i)i.value=st.t[n];}});
 Object.keys(st.r).forEach(n=>model(+n));
 update();
 })();
