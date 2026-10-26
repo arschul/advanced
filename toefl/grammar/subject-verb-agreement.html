@@ -85,14 +85,6 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
   .blk-head h2{font-size:1.45rem;font-weight:600;letter-spacing:-.3px;flex:1;line-height:1.2}
   .blk-head h2 small{display:block;font-family:'DM Sans',sans-serif;font-size:.72rem;font-weight:500;letter-spacing:.08em;
     text-transform:uppercase;color:var(--muted);margin-bottom:.15rem}
-  .timer{font-family:inherit;font-variant-numeric:tabular-nums;font-size:.85rem;font-weight:600;padding:.4rem .8rem;border-radius:100px;
-    cursor:pointer;background:var(--surface);color:var(--muted);border:1px solid var(--border);min-width:84px;transition:all .2s}
-  .timer:hover{border-color:var(--violet);color:var(--violet)}
-  .timer.run{background:var(--violet-deep);color:var(--violet);border-color:var(--violet-line)}
-  .timer.done{background:var(--key-deep);color:var(--key-accent);border-color:var(--key-line);animation:pulse 1s ease-in-out 4}
-  .treset{font-family:inherit;background:none;border:none;color:var(--muted);cursor:pointer;font-size:1rem;padding:.2rem .3rem}
-  .treset:hover{color:var(--text)}
-  @keyframes pulse{50%{transform:scale(1.08)}}
   .instr{color:var(--muted);font-size:.88rem;font-weight:300;margin-top:1rem;line-height:1.7}
   .instr b{color:var(--text);font-weight:600}
 
@@ -163,7 +155,7 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
   input.right{border-color:var(--good-line);background:var(--good-soft)}
   input.close{border-color:var(--key-line);background:var(--key-deep)}
   .row-btns{grid-column:2;display:flex;gap:.4rem;margin-top:.6rem;flex-wrap:wrap}
-  input:focus-visible,.opt:focus-visible,.btn:focus-visible,.timer:focus-visible,.theme-toggle:focus-visible,.seg:focus-visible{outline:2px solid var(--violet);outline-offset:2px}
+  input:focus-visible,.opt:focus-visible,.btn:focus-visible,.theme-toggle:focus-visible,.seg:focus-visible{outline:2px solid var(--violet);outline-offset:2px}
   .fb{grid-column:2;margin-top:.7rem;padding:.65rem .9rem;border-radius:10px;font-size:.87rem;font-weight:300;line-height:1.7;display:none;color:var(--muted)}
   .fb.show{display:block}
   .fb.ok{background:var(--good-soft);border:1px solid var(--good-line)}
@@ -200,7 +192,7 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
       --violet:#000;--violet-deep:#fff;--violet-line:#bbb;--key-accent:#000;--key-deep:#fff;--key-line:#bbb;
       --good:#000;--good-soft:#fff;--good-line:#bbb;--bad:#000;--bad-soft:#fff;--bad-line:#bbb}
     body{font-size:11pt;line-height:1.45}
-    .theme-toggle,.back-link,.eyebrow,.chips,.actions,.plan,.plan-total,.progress,.lede,.timer,.treset,.fb,.score,
+    .theme-toggle,.back-link,.eyebrow,.chips,.actions,.plan,.plan-total,.progress,.lede,.fb,.score,
     .opts,.row-btns,.screen-only,footer,input{display:none!important}
     .wrap{max-width:none;padding:0}
     h1{font-size:1.5rem;letter-spacing:-.5px;margin-bottom:.3rem}
@@ -254,14 +246,14 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
   <p class="eyebrow" id="eyebrow"></p>
   <h1>Subject–verb <span class="accent">agreement</span></h1>
   <p class="lede">One thing takes <i>is, has, was</i> and a verb with <i>-s</i>. More than one take <i>are, have, were</i> and no <i>-s</i>. The rule is easy; the hard part is finding the real subject. This session gives you six patterns, then practice in the exact TOEFL format and in three other kinds of exercise.</p>
-  <div class="chips"><span class="chip">B1 → B2</span><span class="chip">60 minutes</span><span class="chip">TOEFL ITP · Structure &amp; Written Expression</span></div>
+  <div class="chips"><span class="chip">B1 → B2</span><span class="chip">100 items</span><span class="chip">TOEFL ITP · Structure &amp; Written Expression</span></div>
   <div class="actions">
     <button class="btn btn-view" id="pw">Print worksheet</button>
     <button class="btn btn-key" id="pk">Print answer key</button>
     <button class="btn btn-dl" id="reset">Start over</button>
   </div>
   <nav class="plan" id="plan"></nav>
-  <p class="plan-total">Seven blocks · 60 minutes · tap a block’s clock to time it</p>
+  <p class="plan-total">Seven blocks · 100 items · each block can be done on its own</p>
 
   <div class="progress">
     <span id="ptext"></span>
@@ -280,8 +272,7 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
 <script>
 /* Grammar Practice session. Schema: see toefl/grammar/README.md.
    Items are numbered 1–N in block order. a = 0-based answer index.
-   Pace: TOEFL ITP Structure & Written Expression is 40 items in 25 minutes (about 35 s each),
-   so each 10-minute TOEFL block holds 15 items and the 5-minute exit check holds 8. */
+   100 items: warm-up 6, Structure 30, Written Expression 30, practice 16, production 10, exit 8. */
 const S={
   slug:"subject-verb-agreement", n:16, of:30, theme:"Agreement",
   title:"Subject and Verb Agreement",
@@ -303,7 +294,7 @@ const S={
     {h:"Each, every, one of", rule:"Each, every, one of, either and neither take a singular verb.",
      no:"One of my cousins <span class=\"strike\">live</span> in Canada.",
      yes:"One of my cousins <b>lives</b> in Canada. · Each of the rooms <b>has</b> a window.",
-     why:"The subject is <i>one</i> or <i>each</i>, not the plural noun after <i>of</i>. The same goes for <i>everyone, everybody, someone, nobody</i>: all singular."},
+     why:"The subject is <i>one</i> or <i>each</i>, not the plural noun after <i>of</i>. The same goes for <i>everyone, everybody, someone, nobody</i>: all singular. With <i>most, some, all, half</i> and <i>a lot</i> + <i>of</i>, the noun after <i>of</i> decides: <i>most of the water <b>is</b></i>, <i>most of the students <b>are</b></i>."},
     {h:"And, or, nor", rule:"A and B is plural. With or, either … or and neither … nor, the verb agrees with the nearer subject.",
      no:"My brother and my sister <span class=\"strike\">works</span> at the bank.",
      yes:"My brother and my sister <b>work</b> at the bank. · Neither the manager nor the workers <b>were</b> happy.",
@@ -315,7 +306,7 @@ const S={
     {h:"Nouns that trick you", rule:"Some nouns look plural but are singular, and some look singular but are plural.",
      no:"The news <span class=\"strike\">are</span> on at seven.",
      yes:"The news <b>is</b> on at seven. · The police <b>are</b> looking for the driver. · Swimming <b>is</b> good exercise.",
-     why:"Singular: <i>news, mathematics, physics, economics</i>, an <i>-ing</i> subject, <i>the number of</i>. Plural: <i>people, police, children</i>, <i>a number of</i>. Compare <i>the number of cars <b>is</b> growing</i> with <i>a number of cars <b>are</b> parked outside</i>."},
+     why:"Singular: <i>news, mathematics, physics, economics</i>, an <i>-ing</i> subject, <i>the number of</i>. Plural: <i>people, police, children</i>, <i>a number of</i>, and pair nouns like <i>jeans, scissors, glasses</i>. An amount of money, time or distance is singular: <i>ten dollars <b>is</b> enough</i>. Compare <i>the number of cars <b>is</b> growing</i> with <i>a number of cars <b>are</b> parked outside</i>."},
     {h:"Who, which, that", rule:"In a relative clause, the verb agrees with the noun before who, which or that.",
      no:"I have a friend who <span class=\"strike\">speak</span> four languages.",
      yes:"I have a friend who <b>speaks</b> four languages. · The books that <b>are</b> on the shelf are new.",
@@ -354,6 +345,37 @@ const S={
      w:"<i>People</i> is plural → <i>are</i>. <i>Who live on my street</i> is inside the subject."},
     {s:["Learning a new language ","time and patience."], o:["take","takes","taking","are taking"], a:1,
      w:"An <i>-ing</i> subject is singular → <i>takes</i>."}
+,
+    {s:["The results of the experiment ","surprising."], o:["was","it was","being","were"], a:3,
+     w:"The subject is <i>the results</i>; <i>of the experiment</i> does not change it → <i>were</i>."},
+    {s:["Somebody in the building ","playing loud music."], o:["is","are","were","have been"], a:0,
+     w:"<i>Somebody</i> is singular → <i>is</i>."},
+    {s:["The children in the photograph ","my nephews."], o:["is","was","are","being"], a:2,
+     w:"<i>Children</i> is plural → <i>are</i>."},
+    {s:["Ten dollars ","too much for a cup of coffee."], o:["are","were","have been","is"], a:3,
+     w:"An amount of money is one amount → singular <i>is</i>."},
+    {s:["Neither of the drivers ","hurt in the accident."], o:["were","was","have been","being"], a:1,
+     w:"<i>Neither</i> is singular → <i>was</i>."},
+    {s:["Everything in these boxes ","to my grandmother."], o:["belong","are belonging","belonging","belongs"], a:3,
+     w:"<i>Everything</i> is singular → <i>belongs</i>. (C) leaves the sentence without a verb."},
+    {s:["Both Anna and her sister ","the piano."], o:["play","plays","is playing","playing"], a:0,
+     w:"<i>Both … and</i> joins two people → plural <i>play</i>."},
+    {s:["The man who sells newspapers on the corner ","to everyone."], o:["talk","are talking","talks","talking"], a:2,
+     w:"The subject is <i>the man</i>; <i>who sells newspapers on the corner</i> is inside the subject → <i>talks</i>."},
+    {s:["The quality of the photos ","much better on the new phone."], o:["are","were","have been","is"], a:3,
+     w:"The subject is <i>the quality</i>, not <i>the photos</i> → <i>is</i>."},
+    {s:["","at the meeting agreed with the new plan."], o:["Everyone who","Everyone","Everyone was","Everyone being"], a:1,
+     w:"The sentence already has its verb, <i>agreed</i>; it needs only a subject. (A) and (C) add a second clause or verb."},
+    {s:["Not only the students but also the teacher ","tired after the trip."], o:["were","are","was","have been"], a:2,
+     w:"With <i>not only … but also</i>, the nearer subject decides: <i>the teacher</i> → <i>was</i>."},
+    {s:["The jeans I bought last week ","too long."], o:["are","is","was","it is"], a:0,
+     w:"<i>Jeans</i> is a pair noun, always plural → <i>are</i>."},
+    {s:["Most of the water in the lake ","polluted."], o:["are","were","have been","is"], a:3,
+     w:"After <i>most of</i>, the noun decides: <i>water</i> is uncountable → <i>is</i>."},
+    {s:["My favorite part of the holidays ","the food."], o:["are","is","were","being"], a:1,
+     w:"The subject is <i>part</i>, singular → <i>is</i>."},
+    {s:["The members of the club ","every Thursday evening."], o:["meets","is meeting","meeting","meet"], a:3,
+     w:"The subject is <i>the members</i> → <i>meet</i>."}
   ],
 
   we:[
@@ -387,10 +409,41 @@ const S={
      w:"The subject is <i>the price</i>, singular → <i>has</i>."},
     {p:[["Both my laptop and my phone ",0],["need",1],[" ",0],["to be",1],[" ",0],["repaired",1],[", but the repair shop ",0],["are",1],[" closed",0]], a:3, f:"is",
      w:"<i>The repair shop</i> is singular → <i>is</i>. <i>Need</i> is right: two things joined by <i>and</i>."}
+,
+    {p:[["The ",0],["boxes",1],[" in the garage ",0],["is",1],[" ",0],["full",1],[" ",0],["of",1],[" old toys",0]], a:1, f:"are",
+     w:"The subject is <i>the boxes</i>, plural → <i>are</i>."},
+    {p:[["",0],["All",1],[" of the ",0],["new",1],[" apartments ",0],["have",1],[" a balcony, and each of them ",0],["are",1],[" sunny",0]], a:3, f:"is",
+     w:"<i>Each of them</i> is singular → <i>is</i>. <i>Have</i> is right: <i>all of the apartments</i> is plural."},
+    {p:[["",0],["Was",1],[" your friends ",0],["at",1],[" the ",0],["concert",1],[" last ",0],["night",1],["?",0]], a:0, f:"Were",
+     w:"<i>Your friends</i> is plural → <i>Were</i>."},
+    {p:[["The man ",0],["who",1],[" ",0],["lives",1],[" next door ",0],["have",1],[" ",0],["three",1],[" dogs",0]], a:2, f:"has",
+     w:"The subject is <i>the man</i> → <i>has</i>. <i>Lives</i> is right: <i>who</i> refers to <i>the man</i>."},
+    {p:[["",0],["Swimming",1],[" and running ",0],["is",1],[" ",0],["good",1],[" ",0],["for",1],[" your heart",0]], a:1, f:"are",
+     w:"Two activities joined by <i>and</i> → plural <i>are</i>."},
+    {p:[["The students ",0],["felt",1],[" ",0],["tired",1],[" ",0],["because",1],[" the trip ",0],["were",1],[" long",0]], a:3, f:"was",
+     w:"<i>The trip</i> is singular → <i>was</i>."},
+    {p:[["Ten ",0],["kilometers",1],[" ",0],["are",1],[" ",0],["a",1],[" long way to ",0],["walk",1]], a:1, f:"is",
+     w:"A distance is one amount → singular <i>is</i>."},
+    {p:[["The ",0],["news",1],[" about the ",0],["storm",1],[" ",0],["were",1],[" ",0],["worse",1],[" than we expected",0]], a:2, f:"was",
+     w:"<i>News</i> is singular → <i>was</i>."},
+    {p:[["",0],["There’s",1],[" two ",0],["cats",1],[" ",0],["sleeping",1],[" ",0],["on",1],[" my bed",0]], a:0, f:"There are",
+     w:"<i>Two cats</i> is plural → <i>There are</i>."},
+    {p:[["One of the ",0],["reasons",1],[" ",0],["I",1],[" ",0],["like",1],[" this city ",0],["are",1],[" the food",0]], a:3, f:"is",
+     w:"The subject is <i>one</i> → <i>is</i>."},
+    {p:[["The ",0],["scissors",1],[" ",0],["on",1],[" the desk ",0],["is",1],[" ",0],["very",1],[" sharp",0]], a:2, f:"are",
+     w:"<i>Scissors</i> is a pair noun, always plural → <i>are</i>."},
+    {p:[["",0],["Do",1],[" your sister ",0],["work",1],[" ",0],["at",1],[" the ",0],["hospital",1],["?",0]], a:0, f:"Does",
+     w:"<i>Your sister</i> is singular → <i>Does</i>."},
+    {p:[["The ",0],["color",1],[" of her eyes ",0],["are",1],[" ",0],["a",1],[" ",0],["beautiful",1],[" green",0]], a:1, f:"is",
+     w:"The subject is <i>the color</i>, not <i>her eyes</i> → <i>is</i>."},
+    {p:[["The ",0],["furniture",1],[" ",0],["in",1],[" ",0],["our",1],[" new house ",0],["are",1],[" from my grandmother",0]], a:3, f:"is",
+     w:"<i>Furniture</i> is uncountable → singular <i>is</i>."},
+    {p:[["My ",0],["cousin",1],[", ",0],["who",1],[" ",0],["live",1],[" in Chicago, is ",0],["visiting",1],[" us next week",0]], a:2, f:"lives",
+     w:"<i>Who</i> refers to <i>my cousin</i>, singular → <i>lives</i>."}
   ],
 
   prac:{type:"sort", title:"Is or are?",
-    instr:"Sixteen subjects. Decide which ones take <b>is</b> and which take <b>are</b>. Work fast — about fifteen seconds each — then discuss the ones the class disagrees on. <span class=\"screen-only\">Tap a verb on each card; the card moves to its column.</span><span class=\"print-only\">Write <b>is</b> or <b>are</b> after each one.</span>",
+    instr:"Sixteen subjects. Decide which ones take <b>is</b> and which take <b>are</b>. Then discuss the ones the class disagrees on. <span class=\"screen-only\">Tap a verb on each card; the card moves to its column.</span><span class=\"print-only\">Write <b>is</b> or <b>are</b> after each one.</span>",
     cols:["is","are"],
     items:[
       {t:"The news", c:0, w:"<i>News</i> is singular."},
@@ -421,7 +474,9 @@ const S={
       {t:"The students live near the school.", cue:"Each of the students", a:["Each of the students lives near the school."], w:"The subject is <i>each</i> → <i>lives</i>."},
       {t:"The scientists are studying the problem.", cue:"The team of scientists", a:["The team of scientists is studying the problem."], w:"The subject is <i>the team</i> → <i>is</i>."},
       {t:"Many people want to visit the museum.", cue:"Everybody", a:["Everybody wants to visit the museum."], w:"<i>Everybody</i> is singular → <i>wants</i>."},
-      {t:"Tom plays soccer on Saturdays. (or his brothers)", cue:"Either Tom or his brothers", a:["Either Tom or his brothers play soccer on Saturdays."], w:"Nearer subject <i>his brothers</i> → <i>play</i>."}
+      {t:"Tom plays soccer on Saturdays. (or his brothers)", cue:"Either Tom or his brothers", a:["Either Tom or his brothers play soccer on Saturdays."], w:"Nearer subject <i>his brothers</i> → <i>play</i>."},
+      {t:"These shoes are too expensive.", cue:"This pair of shoes", a:["This pair of shoes is too expensive."], w:"The subject is <i>pair</i> → <i>is</i>."},
+      {t:"My best friend studies medicine. (together with two other friends)", cue:"My best friend, together with two other friends,", a:["My best friend, together with two other friends, studies medicine."], w:"<i>Together with …</i> does not change the subject → <i>studies</i>."}
     ]},
 
   exit:[
@@ -452,13 +507,13 @@ const S={
 const LET="ABCD", $=id=>document.getElementById(id);
 const KEY="adv:grammar-practice:"+S.slug;
 const BLOCKS=[
-  {id:"warm",  name:"Warm-up",            min:5,  sub:"Right or wrong?"},
-  {id:"learn", name:"Explain",            min:10, sub:"The patterns"},
-  {id:"str",   name:"Structure",          min:10, sub:"TOEFL format"},
-  {id:"we",    name:"Written Expression", min:10, sub:"TOEFL format"},
-  {id:"prac",  name:"Practice",           min:10, sub:S.prac.title},
-  {id:"prod",  name:"Production",         min:10, sub:S.prod.title},
-  {id:"exit",  name:"Exit check",         min:5,  sub:"Mixed TOEFL items"}
+  {id:"warm",  name:"Warm-up",  sub:"Right or wrong?"},
+  {id:"learn", name:"Explain", sub:"The patterns"},
+  {id:"str",   name:"Structure", sub:"TOEFL format"},
+  {id:"we",    name:"Written Expression", sub:"TOEFL format"},
+  {id:"prac",  name:"Practice", sub:S.prac.title},
+  {id:"prod",  name:"Production", sub:S.prod.title},
+  {id:"exit",  name:"Exit check",  sub:"Mixed TOEFL items"}
 ];
 let st={a:{},t:{},r:{}};
 function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
@@ -482,7 +537,6 @@ IT.forEach((x,i)=>x.n=i+1);
 const SCORED=IT.filter(x=>x.kind!=="transform"&&x.kind!=="combine"&&x.kind!=="unscramble"||false);
 const byN=n=>IT[n-1];
 const cnt=b=>IT.filter(x=>x.blk===b).length;
-const PACE=`<span class="screen-only"> Pace yourself at about <b>35 seconds a question</b> — the real test speed — then use the time left to go over the answers.</span>`;
 const range=b=>{const l=IT.filter(x=>x.blk===b);return l.length?l[0].n+"–"+l[l.length-1].n:""};
 
 /* ---------- renderers ---------- */
@@ -518,14 +572,12 @@ const R={warm:rWarm,str:rStr,we:rWe,transform:rTransform};
 
 
 function head(b,i){
-  return `<div class="blk-head"><span class="blk-num">${i+1}</span><h2><small>${b.name} · ${b.min} min${cnt(b.id)?" · "+cnt(b.id)+" items":""}</small>${b.sub}</h2>
-  <button class="timer" data-t="${b.id}" data-min="${b.min}" title="Start or pause the clock">▶ ${b.min}:00</button>
-  <button class="treset" data-tr="${b.id}" title="Reset the clock" aria-label="Reset the clock">↺</button></div>`;}
+  return `<div class="blk-head"><span class="blk-num">${i+1}</span><h2><small>${b.name}${cnt(b.id)?" · "+cnt(b.id)+" items":""}</small>${b.sub}</h2></div>`;}
 
 function build(){
   $("eyebrow").textContent=`Phil Young’s English School · Session ${S.n} of ${S.of} · ${S.theme}`;
   $("printhead").textContent=`${S.title} · Grammar Practice · Name: ______________________  Date: __________`;
-  $("plan").innerHTML=BLOCKS.map((b,i)=>`<a href="#b-${b.id}"><b>${i+1} · ${b.name}</b><span>${b.min} min${cnt(b.id)?" · "+cnt(b.id)+" items":""}</span></a>`).join("");
+  $("plan").innerHTML=BLOCKS.map((b,i)=>`<a href="#b-${b.id}"><b>${i+1} · ${b.name}</b><span>${cnt(b.id)?cnt(b.id)+" items":"Read first"}</span></a>`).join("");
   let h="";
   BLOCKS.forEach((b,i)=>{
     h+=`<section class="blk" id="b-${b.id}">`+head(b,i);
@@ -535,11 +587,11 @@ function build(){
       <div class="pats">${S.pats.map((p,j)=>`<div class="pat"><h3><i>${j+1}</i>${p.h}</h3><p class="rule">${p.rule}</p>
       <div class="ex no">${p.no}</div><div class="ex yes">${p.yes}</div><p class="why">${p.why}</p></div>`).join("")}</div>
       <div class="trap"><b>TOEFL tip</b>${S.trap}</div>`;
-    else if(b.id==="str") h+=`<p class="instr">Questions ${range("str")}. <b>Directions:</b> Each sentence is incomplete. Choose the <b>one</b> word or phrase, (A), (B), (C) or (D), that best completes the sentence.${PACE}</p>`+list.map(rStr).join("");
-    else if(b.id==="we") h+=`<p class="instr">Questions ${range("we")}. <b>Directions:</b> Each sentence has four underlined words or phrases, marked (A), (B), (C) and (D). Identify the <b>one</b> that must be changed for the sentence to be correct.${PACE}</p>`+list.map(rWe).join("");
+    else if(b.id==="str") h+=`<p class="instr">Questions ${range("str")}. <b>Directions:</b> Each sentence is incomplete. Choose the <b>one</b> word or phrase, (A), (B), (C) or (D), that best completes the sentence.</p>`+list.map(rStr).join("");
+    else if(b.id==="we") h+=`<p class="instr">Questions ${range("we")}. <b>Directions:</b> Each sentence has four underlined words or phrases, marked (A), (B), (C) and (D). Identify the <b>one</b> that must be changed for the sentence to be correct.</p>`+list.map(rWe).join("");
     else if(b.id==="prac") h+=`<p class="instr">Questions ${range("prac")}. ${S.prac.instr}</p>`+rSort();
     else if(b.id==="prod") h+=`<p class="instr">Questions ${range("prod")}. ${S.prod.instr} <span class="screen-only">Type your answer and press Check, or write in your notebook and compare with the model.</span></p>`+list.map(x=>R[x.kind](x)).join("");
-    else if(b.id==="exit") h+=`<p class="instr">Questions ${range("exit")}. Structure and Written Expression items, mixed. Work alone, don’t check your notes, and keep to the test pace: eight questions in under five minutes.</p>`
+    else if(b.id==="exit") h+=`<p class="instr">Questions ${range("exit")}. Structure and Written Expression items, mixed. Work alone and don’t check your notes.</p>`
       +list.map(x=>R[x.kind](x)).join("")+`<div class="score" id="scorebox"></div>`;
     h+=`</section>`;
   });
@@ -614,23 +666,8 @@ function update(){
   else sb.className="score";
 }
 
-/* ---------- timers ---------- */
-const T={};let iv=null,runId=null;
-const fmt=s=>Math.floor(s/60)+":"+String(s%60).padStart(2,"0");
-function tbtn(id){return document.querySelector(`.timer[data-t="${id}"]`);}
-function paint(id){const b=tbtn(id),t=T[id];
-  b.className="timer"+(t.left===0?" done":id===runId?" run":"");
-  b.textContent=t.left===0?"Time’s up":(id===runId?"❚❚ ":"▶ ")+fmt(t.left);}
-function stop(){if(iv)clearInterval(iv);iv=null;const r=runId;runId=null;if(r)paint(r);}
-function start(id){stop();runId=id;paint(id);
-  iv=setInterval(()=>{const t=T[id];t.left=Math.max(0,t.left-1);if(t.left===0){clearInterval(iv);iv=null;runId=null;}paint(id);},1000);}
-function initTimers(){BLOCKS.forEach(b=>{T[b.id]={left:b.min*60};});}
-
 /* ---------- events ---------- */
 document.addEventListener("click",e=>{
-  const t=e.target.closest(".timer");if(t){const id=t.dataset.t;
-    if(runId===id)stop();else{if(T[id].left===0)T[id].left=+t.dataset.min*60;start(id);}return;}
-  const tr=e.target.closest(".treset");if(tr){const id=tr.dataset.tr;if(runId===id)stop();T[id].left=BLOCKS.find(b=>b.id===id).min*60;paint(id);return;}
   const o=e.target.closest(".opt[data-n]");if(o&&!o.disabled){choose(+o.dataset.n,+o.dataset.i);return;}
   const s=e.target.closest(".seg");if(s&&!s.classList.contains("locked")){choose(+s.dataset.n,+s.dataset.i);return;}
   const c=e.target.closest("[data-check]");if(c){check(+c.dataset.check);return;}
@@ -654,7 +691,7 @@ $("pw").onclick=()=>{document.body.className="print-blank";
 $("pk").onclick=()=>{document.body.className="print-key";print();setTimeout(()=>document.body.className="print-blank",500);};
 $("reset").onclick=()=>{st={a:{},t:{},r:{}};save();location.reload();};
 
-load();build();initTimers();
+load();build();
 Object.keys(st.a).forEach(n=>choose(+n,st.a[n].i,true));
 Object.keys(st.t).forEach(n=>{const i=$("in"+n);if(i)i.value=st.t[n];});
 Object.keys(st.r).forEach(n=>model(+n));

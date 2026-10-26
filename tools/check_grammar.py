@@ -3,11 +3,10 @@
 
   python3 tools/check_grammar.py        exit 1 on any failure
 
-Per session: Structure and Written Expression have 15 items each and the exit check 8
-  (TOEFL pace, about 35 s an item). In each, every letter is the answer at least 3 times
-  (2 in the exit check), with no more than 2 identical answers in a row. Written Expression (block + exit WE items): exactly 4 underlined parts,
+Per session (100 items): Structure and Written Expression have 30 items each and the
+  exit check 8. In each, every letter is the answer at least 6 times (2 in the exit check), with no more than 2 identical answers in a row. Written Expression (block + exit WE items): exactly 4 underlined parts,
   the error span appears once in the sentence, and the error falls early, middle and late
-  at least 3 times each. Sort items: the categories are used within one item of evenly.
+  at least 6 times each. Sort items: the categories are used within one item of evenly.
 Needs node on PATH (the session data is a JavaScript literal).
 """
 import glob, json, os, re, subprocess, sys
@@ -18,8 +17,8 @@ def run(path):
     S = json.loads(subprocess.run(["node", "-e", JS, path], capture_output=True, text=True, check=True).stdout)
     errs = []
     blocks = {"str": [q["a"] for q in S["str"]], "we": [q["a"] for q in S["we"]], "exit": [q["a"] for q in S["exit"]]}
-    need = {"str": 3, "we": 3, "exit": 2}   # 15-item TOEFL blocks, 8-item exit check
-    size = {"str": 15, "we": 15, "exit": 8}  # TOEFL pace: ~35 s an item
+    need = {"str": 6, "we": 6, "exit": 2}   # 30-item TOEFL blocks, 8-item exit check
+    size = {"str": 30, "we": 30, "exit": 8}  # 100 items per session
     for name, seq in blocks.items():
         if len(seq) != size[name]: errs.append(f"{name}: {len(seq)} items (expected {size[name]})")
         for k in range(4):
@@ -44,7 +43,9 @@ def run(path):
         r = (off + len(err) / 2) / len(full)
         pos.append("early" if r < 1/3 else "late" if r > 2/3 else "mid")
     for b in ("early", "mid", "late"):
-        if pos.count(b) < 3: errs.append(f"WE: error {b} in the sentence only {pos.count(b)}x (min 3)")
+        if pos.count(b) < 6: errs.append(f"WE: error {b} in the sentence only {pos.count(b)}x (min 6)")
+    total = len(S["warm"]) + len(S["str"]) + len(S["we"]) + len(S["prac"]["items"]) + len(S["prod"]["items"]) + len(S["exit"])
+    if total != 100: errs.append(f"{total} items (expected 100)")
     if S["prac"]["type"] == "sort":
         cs = [q["c"] for q in S["prac"]["items"]]
         cnt = [cs.count(i) for i in range(len(S["prac"]["cols"]))]
