@@ -10,6 +10,11 @@ each page carries its own data in the `GP:data` block.
   `python3 tools/sync_grammar.py` to copy it into every page (`--check` before pushing).
 - `tools/check_grammar.py` — item counts, answer balance and error positions. Must pass.
 - `index.html` — the section index; rows switch from “Coming” to a link when a session goes live.
+- `test.html` — the custom test builder. It reads `index.html` for the session list and each session’s
+  `GP:data` block at load time, so new or edited items appear without copying data. Draws Structure and
+  Written Expression items (session blocks plus exit check), balances Structure answers by reordering
+  options (letters cited in `w` are remapped) and picks Written Expression items to balance A–D. Storage
+  key: `adv:grammar-test:state`; the URL hash holds the test so a link reproduces it.
 
 ## Session shape (100 items)
 
