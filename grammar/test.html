@@ -444,7 +444,7 @@ document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
 <script>
 (function(){
 const LET="ABCD", $=id=>document.getElementById(id);
-const KEY="adv:grammar-test:state", SKEY="adv:grammar-test:sound";
+const KEY="adv:grammar-test:state", SKEY="adv:grammar:sound";
 const MARK=["<!-- GP:data "+"start -->","<!-- GP:data "+"end -->"];  // split so the grammar tools skip this page
 const reduced=matchMedia("(prefers-reduced-motion: reduce)").matches;
 let TOPICS=[];const BY={};
@@ -463,7 +463,7 @@ const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",
 
 /* ---------- sound (Web Audio, no files) ---------- */
 let AC=null,soundOn=true;
-try{soundOn=localStorage.getItem(SKEY)!=="off"}catch(e){}
+try{soundOn=(localStorage.getItem(SKEY)||localStorage.getItem("adv:grammar-test:sound"))!=="off"}catch(e){}
 function ac(){if(!AC){try{AC=new (window.AudioContext||window.webkitAudioContext)()}catch(e){}}return AC;}
 document.addEventListener("pointerdown",()=>{const a=ac();if(a&&a.state==="suspended")a.resume();},{once:false});
 function tone(f,d,type,g,when,f2){const a=AC;if(!a||!soundOn)return;const t=a.currentTime+(when||0),o=a.createOscillator(),v=a.createGain();
