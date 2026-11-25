@@ -21,6 +21,7 @@ template, design system, data shape and registration steps.
 | TOEFL section index / Quiz Builder | `toefl/index.html`, `toefl/quiz.html` | Fraunces + DM Sans | rows / `FAM` (copied from sheets) |
 | C1 Vocabulary theme | `vocab/data/<slug>.js` | Fraunces + DM Sans (shell) | external data file |
 | Project Lab project | `projects-data.js` | — (shared catalog) | `ADVANCED_PROJECTS` |
+| Advanced 3 set | `adv3.html` | own (Bricolage Grotesque + Newsreader) | `DATA.push({...})` |
 | Advanced 4 set | `adv4.html` | own (Bricolage Grotesque + Newsreader) | `DATA.push({...})` |
 | Intensive course day | `intensive-b2-c1.html` | own | `DAYS_META` + `DAYS_HTML` (system fonts, see Appendix) |
 | Essay Coach lesson / prompt | `essay-coach.html` | Fraunces + Inter | `LESSONS`, `PROMPTS` |
@@ -215,11 +216,18 @@ that file. This file is also loaded by the teacher dashboard.
   project's `version` when steps change materially, and update
   `ADVANCED_PROJECTS_META.updated`.
 
-### 3.4 New Advanced 4 set / Intensive day / Essay Coach / TOEFL ITP item
+### 3.4 New Advanced 3 / Advanced 4 set / Intensive day / Essay Coach / TOEFL ITP item
 These are single-file apps; copy an existing entry and keep its shape.
-- **Advanced 4**: `{n, t, s, grp, tags, sec:[{L, t, learn:[{b:…}], ex:[…]}]}`. `grp` is
-  one of `Grammar core`, `Review`, `Skills & writing`. `learn` block types: `p, table,
-  note, trick, eg, formula`.
+- **Advanced 3 / Advanced 4**: `{n, t, s, grp, tags, sec:[{L, t, learn:[{b:…}], ex:[…]}]}`.
+  `learn` block types: `p, table, note, trick, eg, formula`. `grp` must appear in that
+  page's own `GROUPS` array (it builds the sidebar headings), so add the group there
+  first or the set renders under no heading: Advanced 4 uses `Grammar core`, `Review`,
+  `Skills & writing`; Advanced 3 uses `Writing & essays`, `Grammar core`, `Review`,
+  `Skills & writing`.
+  Exercise kinds: `gap` (`___` per gap, answers array, `|` separates accepted variants),
+  `pick` (shared `o` options), `mcq` (per-item options + 0-based index + `why`), `match`
+  (`o` list, unique keys), `write` (auto-checked leniently against a model), `open`
+  (not scored; an item with an empty model shows no Show button), `study`, `project`.
 - **Intensive**: add to `DAYS_META` and `DAYS_HTML` at the same index; the `<h2>` and
   print header must read `Day <n> — <theme>` matching `DAYS_META` exactly.
 - **Essay Coach**: prompts are `{level, cat, text}`; `level` in `LEVELS`, `cat` in `CATS`.

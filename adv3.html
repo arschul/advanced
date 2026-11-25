@@ -1,0 +1,2103 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<!-- HUBGEN:leaf start -->
+<script>(function(){try{var k="arschul:theme",v=localStorage.getItem(k);
+if(!v){var o=["hub-theme","theme","gh-theme","adv-theme","reviews-theme","worksheets-theme",
+"vocab-theme","toefl-theme","stc-theme","wheelquest-theme","wba-theme","airtight-theme","efl-reader-theme"];
+for(var i=0;i<o.length;i++){var x=localStorage.getItem(o[i]);if(x==="light"||x==="dark"){v=x;break;}}
+v=v||"dark";localStorage.setItem(k,v);}
+var m=(v==="system")?(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):v;
+document.documentElement.setAttribute("data-theme",m);}catch(e){}})();</script>
+<script defer src="https://arschul.github.io/assets/leaf.v1.js"></script>
+<!-- HUBGEN:leaf end -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced 3 Booklet Companion · Advanced Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<style>
+:root{
+ --paper:#f3efe7; --card:#fbf9f4; --raise:#ffffff;
+ --ink:#22302a; --ink-soft:#5d6b63; --ink-faint:#8a958d;
+ --line:#e5ddd0; --line-soft:#eee7db;
+ --brand:#1f6f5c; --brand-soft:#e4efe9; --brand-deep:#144a3d;
+ --coral:#e2664a; --coral-soft:#fbe4dc;
+ --gold:#cf9526; --gold-soft:#f6ecd4;
+ --correct:#1f7a55; --correct-soft:#e2efe6;
+ --wrong:#cf4a37; --wrong-soft:#f8e2dd;
+ --r:16px; --r-sm:10px; --r-xs:7px;
+}
+:root[data-theme="dark"]{
+ --paper:#121815; --card:#1a221e; --raise:#212b26;
+ --ink:#eef2ec; --ink-soft:#a7b3ac; --ink-faint:#788079;
+ --line:#2a352f; --line-soft:#232d28;
+ --brand:#4bb795; --brand-soft:#1a2a24; --brand-deep:#78d3b6;
+ --coral:#f0805f; --coral-soft:#2c211d;
+ --gold:#e0b24d; --gold-soft:#2a2417;
+ --correct:#4bb488; --correct-soft:#18271f;
+ --wrong:#e46a54; --wrong-soft:#2c1d19;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;}
+em{font-family:'Newsreader',Georgia,serif;font-style:italic;}
+
+/* ── TOP BAR ── */
+.top{position:sticky;top:0;z-index:60;display:flex;align-items:center;gap:.9rem;height:60px;padding:0 1.1rem;
+ background:color-mix(in srgb, var(--paper) 92%, transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
+.burger{display:inline-flex;align-items:center;gap:.45rem;background:none;border:1px solid var(--line);border-radius:100px;height:36px;padding:0 .85rem;font:inherit;font-size:.84rem;font-weight:600;color:var(--ink-soft);cursor:pointer;flex:none;}
+.burger:hover{border-color:var(--brand);color:var(--brand);}
+.burger b{font-weight:700;}
+.brand{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.02rem;letter-spacing:-.02em;color:var(--brand);text-decoration:none;white-space:nowrap;}
+.brand span{color:var(--coral);}
+.brand small{display:block;font-family:'DM Sans',sans-serif;font-weight:500;font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);}
+.searchwrap{position:relative;flex:1;max-width:420px;margin-left:auto;}
+.search{width:100%;background:var(--card);border:1px solid var(--line);border-radius:100px;padding:.5rem 2.2rem .5rem 2.2rem;font:inherit;font-size:.87rem;color:var(--ink);}
+.search:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft);}
+.searchwrap::before{content:'⌕';position:absolute;left:.85rem;top:50%;transform:translateY(-50%);color:var(--ink-faint);font-size:1.05rem;}
+.iconbtn{background:none;border:1px solid var(--line);border-radius:100px;width:36px;height:36px;display:grid;place-items:center;cursor:pointer;color:var(--ink-soft);font-size:.95rem;flex:none;}
+.iconbtn:hover{border-color:var(--brand);color:var(--brand);}
+.iconbtn[disabled]{opacity:.32;cursor:default;}
+.iconbtn[disabled]:hover{border-color:var(--line);color:var(--ink-soft);}
+.setnav{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:.84rem;color:var(--ink-soft);white-space:nowrap;letter-spacing:-.01em;overflow:hidden;text-overflow:ellipsis;max-width:36vw;}
+.setnav b{color:var(--coral);font-weight:800;margin-right:.4rem;}
+
+/* ── LAYOUT ── */
+.wrap{display:block;}
+.side{position:fixed;top:60px;left:0;z-index:56;width:312px;max-width:86vw;height:calc(100vh - 60px);overflow-y:auto;
+ border-right:1px solid var(--line);padding:1.1rem .8rem 4rem;background:var(--paper);
+ transform:translateX(-103%);transition:transform .24s ease;box-shadow:0 14px 44px rgba(0,0,0,.18);}
+.side.open{transform:none;}
+.scrim{display:none;}
+.scrim.on{display:block;position:fixed;inset:60px 0 0;background:rgba(0,0,0,.34);z-index:54;}
+.side h4{font-family:'DM Sans',sans-serif;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin:1.3rem .55rem .5rem;font-weight:700;}
+.side h4:first-child{margin-top:.2rem;}
+.slink{display:flex;gap:.6rem;align-items:baseline;width:100%;text-align:left;background:none;border:none;border-radius:var(--r-sm);padding:.5rem .55rem;cursor:pointer;color:var(--ink-soft);font:inherit;font-size:.84rem;line-height:1.35;}
+.slink:hover{background:var(--card);color:var(--ink);}
+.slink.on{background:var(--brand-soft);color:var(--brand-deep);font-weight:600;}
+.slink .num{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:.72rem;color:var(--ink-faint);min-width:1.35rem;flex:none;}
+.slink.on .num{color:var(--brand);}
+.slink .ttl{flex:1;}
+.slink .pip{width:7px;height:7px;border-radius:50%;background:var(--line);flex:none;align-self:center;}
+.slink .pip.part{background:var(--gold);}
+.slink .pip.full{background:var(--brand);}
+.slink.hide{display:none;}
+.side h4.hide{display:none;}
+
+.main{padding:2rem clamp(1.1rem,3.5vw,3rem) 6rem;max-width:1400px;margin:0 auto;}
+
+/* ── SET HEADER ── */
+.shead{border-bottom:1px solid var(--line);padding-bottom:1.4rem;margin-bottom:1.8rem;}
+.eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--coral);background:var(--coral-soft);border-radius:100px;padding:.28rem .7rem;}
+.shead h1{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(1.7rem,3.6vw,2.5rem);line-height:1.08;letter-spacing:-.025em;margin:.8rem 0 .4rem;}
+.shead .sub{color:var(--ink-soft);font-size:1rem;max-width:70ch;}
+.bar{height:6px;border-radius:100px;background:var(--line-soft);margin-top:1.1rem;overflow:hidden;}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--brand),var(--gold));width:0;transition:width .4s;}
+.barlabel{display:flex;justify-content:space-between;font-size:.74rem;color:var(--ink-faint);margin-top:.45rem;}
+
+/* ── SECTION ── */
+.sec{margin:2.4rem 0;}
+.sec > h2{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.22rem;letter-spacing:-.01em;display:flex;align-items:center;gap:.7rem;margin-bottom:1rem;}
+.sec > h2 .tag{font-size:.72rem;font-weight:700;letter-spacing:.08em;color:var(--brand);background:var(--brand-soft);border-radius:var(--r-xs);padding:.2rem .5rem;flex:none;}
+
+/* learn blocks */
+.learn{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1.3rem 1.4rem;margin-bottom:1.2rem;}
+.learn > * + *{margin-top:.95rem;}
+.learn p{font-size:.95rem;color:var(--ink-soft);max-width:82ch;}
+.formula{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;text-align:center;background:var(--raise);border:1px dashed var(--brand);border-radius:var(--r-sm);padding:.85rem 1rem;color:var(--brand-deep);letter-spacing:.01em;font-size:.95rem;}
+.trick{background:var(--gold-soft);border-left:3px solid var(--gold);border-radius:var(--r-xs);padding:.75rem .95rem;font-size:.9rem;color:var(--ink);}
+.note{background:var(--coral-soft);border-left:3px solid var(--coral);border-radius:var(--r-xs);padding:.75rem .95rem;font-size:.9rem;}
+.egs{display:flex;flex-direction:column;gap:.5rem;}
+.egs{max-width:92ch;}
+.egs div{font-family:'Newsreader',Georgia,serif;font-style:italic;font-size:1.02rem;line-height:1.5;padding-left:1.1rem;position:relative;color:var(--ink);}
+.egs div::before{content:'';position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--gold);}
+.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+table{border-collapse:collapse;width:100%;font-size:.87rem;min-width:420px;}
+th{text-align:left;font-weight:700;font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-faint);padding:.5rem .65rem;border-bottom:1px solid var(--line);}
+td{padding:.55rem .65rem;border-bottom:1px solid var(--line-soft);vertical-align:top;color:var(--ink-soft);}
+td:first-child{color:var(--ink);font-weight:500;}
+tr:last-child td{border-bottom:none;}
+
+/* ── EXERCISE CARD ── */
+.ex{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1.3rem 1.4rem;margin-bottom:1.1rem;}
+.ex.done{border-color:var(--brand);}
+.exhead{display:flex;align-items:flex-start;gap:.7rem;margin-bottom:.35rem;}
+.exno{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:.78rem;color:var(--raise);background:var(--brand);border-radius:var(--r-xs);padding:.22rem .5rem;flex:none;letter-spacing:.03em;}
+.ex.done .exno::after{content:' ✓';}
+.exi{font-size:.9rem;color:var(--ink-soft);flex:1;}
+.items{margin-top:1rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,30rem),1fr));gap:.9rem 2.2rem;align-items:start;}
+.items.one{grid-template-columns:minmax(0,1fr);}
+.item{display:flex;gap:.7rem;align-items:flex-start;}
+.idx{font-family:'Bricolage Grotesque',sans-serif;font-size:.78rem;font-weight:700;color:var(--ink-faint);min-width:1.3rem;padding-top:.35rem;flex:none;}
+.body{flex:1;min-width:0;}
+.q{font-size:.95rem;line-height:1.75;}
+.q em{color:var(--ink);}
+
+input.txt,textarea.txt{font:inherit;font-size:.92rem;color:var(--ink);background:var(--raise);border:1px solid var(--line);border-radius:var(--r-xs);padding:.35rem .55rem;}
+input.txt{min-width:8rem;width:9.5rem;}
+input.gapi{width:8.5rem;text-align:center;border-bottom:2px solid var(--brand);border-radius:var(--r-xs) var(--r-xs) 0 0;}
+input.txt:focus,textarea.txt:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft);}
+.wide{width:100%;display:block;margin-top:.4rem;}
+textarea.txt{width:100%;display:block;margin-top:.45rem;resize:vertical;min-height:2.6rem;line-height:1.6;}
+.ok{border-color:var(--correct)!important;background:var(--correct-soft)!important;}
+.no{border-color:var(--wrong)!important;background:var(--wrong-soft)!important;}
+
+.opts{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.45rem;}
+.opt{font:inherit;font-size:.83rem;background:var(--raise);border:1px solid var(--line);border-radius:100px;padding:.28rem .8rem;cursor:pointer;color:var(--ink-soft);transition:.15s;}
+.opt:hover{border-color:var(--brand);color:var(--brand);}
+.opt.sel{background:var(--brand);border-color:var(--brand);color:#fff;font-weight:600;}
+.opt.sel.good{background:var(--correct);border-color:var(--correct);}
+.opt.sel.bad{background:var(--wrong);border-color:var(--wrong);}
+.opt.reveal{border-color:var(--correct);color:var(--correct);}
+select.txt{font:inherit;font-size:.88rem;padding:.32rem .5rem;border:1px solid var(--line);border-radius:var(--r-xs);background:var(--raise);color:var(--ink);margin-top:.35rem;}
+
+.why{font-size:.83rem;color:var(--ink-soft);margin-top:.4rem;padding-left:.75rem;border-left:2px solid var(--line);display:none;}
+.why.show{display:block;}
+.why b{color:var(--brand-deep);font-weight:600;}
+
+.row{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1.1rem;align-items:center;}
+.btn{font:inherit;font-size:.85rem;font-weight:600;border-radius:100px;padding:.45rem 1.05rem;cursor:pointer;border:1px solid transparent;}
+.btn.primary{background:var(--brand);color:#fff;}
+.btn.primary:hover{background:var(--brand-deep);}
+.btn.ghost{background:none;border-color:var(--line);color:var(--ink-soft);}
+.btn.ghost:hover{border-color:var(--coral);color:var(--coral);}
+.score{margin-left:auto;font-size:.83rem;font-weight:600;color:var(--ink-faint);}
+.score.good{color:var(--correct);}
+.score.part{color:var(--gold);}
+
+.model{margin-top:.45rem;font-family:'Newsreader',Georgia,serif;font-style:italic;font-size:1rem;color:var(--brand-deep);background:var(--brand-soft);border-radius:var(--r-xs);padding:.5rem .7rem;display:none;}
+.model.show{display:block;}
+.item.rv-flash{animation:rvflash 1.2s ease;}
+@keyframes rvflash{0%{background:var(--brand-soft);}100%{background:transparent;}}
+.btn:disabled{opacity:.45;cursor:default;pointer-events:none;}
+.rvbtn{flex:none;font:inherit;font-size:.72rem;font-weight:600;background:none;border:1px solid var(--line);border-radius:100px;padding:.2rem .6rem;margin-top:.3rem;cursor:pointer;color:var(--ink-faint);}
+.rvbtn:hover{border-color:var(--brand);color:var(--brand);}
+.item.rv .rvbtn{visibility:hidden;}
+.model b{font-family:'DM Sans',sans-serif;font-style:normal;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:.2rem;opacity:.75;}
+
+.project{background:var(--raise);border:1px solid var(--gold);border-radius:var(--r-sm);padding:1rem 1.1rem;font-size:.93rem;}
+.project .extra{margin-top:.7rem;padding-top:.7rem;border-top:1px dashed var(--line);color:var(--ink-soft);font-size:.88rem;}
+
+.saved{font-size:.74rem;color:var(--ink-faint);margin-top:.3rem;height:1rem;}
+
+/* ── HOME ── */
+.home h1{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(2rem,5vw,3.1rem);line-height:1.03;letter-spacing:-.03em;margin:.9rem 0 .7rem;}
+.home h1 span{color:var(--coral);}
+.home .lede{color:var(--ink-soft);font-size:1.02rem;max-width:46ch;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(226px,1fr));gap:.9rem;margin-top:1.6rem;}
+.tile{text-align:left;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1rem 1.1rem;cursor:pointer;font:inherit;color:inherit;transition:.2s;position:relative;}
+.tile:hover{border-color:var(--brand);transform:translateY(-3px);}
+.tile .n{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:.72rem;letter-spacing:.1em;color:var(--coral);}
+.tile h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:.99rem;line-height:1.25;margin:.35rem 0 .3rem;letter-spacing:-.01em;}
+.tile p{font-size:.8rem;color:var(--ink-faint);line-height:1.45;}
+.tile .mini{height:4px;border-radius:100px;background:var(--line-soft);margin-top:.8rem;overflow:hidden;}
+.tile .mini i{display:block;height:100%;background:var(--brand);width:0;}
+.tile.hide{display:none;}
+.foot{margin-top:3.5rem;padding-top:1.2rem;border-top:1px solid var(--line);font-size:.78rem;color:var(--ink-faint);line-height:1.7;}
+
+.pager{display:flex;gap:.6rem;margin-top:3rem;padding-top:1.4rem;border-top:1px solid var(--line);}
+.pager button{flex:1;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:var(--r-sm);padding:.75rem .95rem;cursor:pointer;font:inherit;color:var(--ink);}
+.pager button:hover{border-color:var(--brand);}
+.pager small{display:block;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:.15rem;}
+.pager .nx{text-align:right;}
+.pager button[disabled]{opacity:.35;cursor:default;}
+
+@media(max-width:880px){
+ .burger b{display:none;}
+ .burger{padding:0 .7rem;}
+ .main{padding:1.4rem 1.1rem 5rem;}
+ .brand small{display:none;}
+ .searchwrap{max-width:none;}
+ .setnav{display:none;}
+}
+@media(max-width:640px){
+ .searchwrap{display:none;}
+}
+@media print{
+ .top,.side,.pager,.row,.scrim{display:none!important;}
+ .main{padding:0;max-width:none;}
+ .model,.why{display:block!important;}
+ .ex,.learn{break-inside:avoid;border-color:#ccc;}
+}
+</style>
+</head>
+<body>
+<!-- HUBGEN:leafback start -->
+<a href="https://arschul.github.io/" style="position:fixed;left:10px;bottom:10px;z-index:2147483000;
+display:inline-block;padding:5px 11px;border-radius:999px;font:500 12px/1.2 system-ui,sans-serif;
+text-decoration:none;color:#c9d3e4;background:rgba(16,24,42,.82);border:1px solid rgba(160,180,210,.28);
+backdrop-filter:blur(4px);opacity:.55;transition:opacity .2s" onmouseover="this.style.opacity=1"
+onmouseout="this.style.opacity=.55" title="Classroom Hub">&#8592; Hub</a>
+<!-- HUBGEN:leafback end -->
+
+<header class="top">
+  <button class="burger" id="burger" aria-label="Show set list">☰ <b>Sets</b></button>
+  <span class="setnav" id="setnav"></span>
+  <a class="brand" href="./index.html" title="Back to the Advanced Hub">Advanced<span>3</span><small>Booklet companion</small></a>
+  <div class="searchwrap"><input class="search" id="q" type="search" placeholder="Search sets — thesis, hedging, inversions, synthesis…" autocomplete="off" aria-label="Search sets"></div>
+  <button class="iconbtn" id="prev" title="Previous set (←)" aria-label="Previous set">‹</button>
+  <button class="iconbtn" id="next" title="Next set (→)" aria-label="Next set">›</button>
+  <button class="iconbtn" id="print" title="Print this set" aria-label="Print this set">⎙</button>
+  <button class="iconbtn theme-btn" id="theme" title="Light / dark" aria-label="Toggle light or dark">☾</button>
+</header>
+
+<div class="scrim" id="scrim"></div>
+<div class="wrap">
+  <nav class="side" id="side" aria-label="Sets"></nav>
+  <main class="main" id="main"></main>
+</div>
+
+<script>
+/* ══════════ DATA ══════════ */
+var DATA=[];
+/* ===== SETS 1–5 ===== */
+DATA.push(
+
+{n:1,t:"The First Sentence: Thesis, Articles & Paragraphs",s:"Building a strong paragraph — thesis, a/an/the, structure",grp:"Writing & essays",tags:"thesis statement articles a an the paragraph topic sentence",
+ sec:[
+  {L:"A",t:"Building a strong paragraph — the thesis statement",
+   learn:[
+    {b:"p",x:"A good paragraph starts with one clear sentence that gives your main idea plus your reason."},
+    {b:"formula",x:"THESIS = TOPIC + OPINION + BECAUSE (REASON)"},
+    {b:"eg",x:["✗ Online learning is popular. (a fact — no opinion, no reason)",
+              "✓ Online learning is effective because it offers flexibility and lower costs."]}
+   ],
+   ex:[
+    {n:"A1",k:"pick",i:"Read each sentence. Is it a thesis or not?",
+     o:[["T","T — thesis"],["N","N — not a thesis"]],
+     q:[["Cats are animals.","N"],
+        ["Cats make better pets than dogs because they are more independent.","T"],
+        ["The school should add a free coffee machine.","N"],
+        ["The school should add a free coffee machine because it would improve student energy and morale.","T"]]},
+    {n:"A2",k:"write",i:"Write one thesis statement about your favorite hobby. Use the formula: topic + opinion + because (reason).",
+     q:[["Your thesis","Bouldering is the best hobby for a busy student because it builds strength and clears your head in under an hour."]]}
+   ]},
+  {L:"B",t:"Articles: a / an / the",
+   learn:[
+    {b:"table",h:["a / an","the"],r:[
+      ["First time you mention something","Already mentioned, or unique"],
+      ["Any one of many","The specific one"],
+      ["I saw a dog.","The dog was barking."]]},
+    {b:"trick",x:"a + consonant sound (a car, a student) · an + vowel sound (an apple, an hour)"}
+   ],
+   ex:[
+    {n:"B1",k:"gap",i:"Complete with a, an or the.",
+     q:[["I have ___ idea.",["an"]],
+        ["___ sun is very hot today.",["the"]],
+        ["She wants ___ new laptop.",["a"]],
+        ["___ laptop she saw yesterday was expensive.",["the"]]]},
+    {n:"B2",k:"write",i:"Write two short sentences about the same thing. First use a. Then use the.",
+     q:[["Sentence 1 (first time)","I bought a notebook at the station."],
+        ["Sentence 2 (same thing, now specific)","The notebook was already falling apart by Friday."]]}
+   ]},
+  {L:"C",t:"Write one paragraph",
+   learn:[
+    {b:"p",x:"A paragraph is a group of sentences about one idea: a topic sentence (with your thesis), 2–3 supporting sentences, and a concluding sentence."},
+    {b:"eg",x:["Online learning is effective because it offers flexibility and lower costs. First, students can watch recorded lectures at any time. Second, online courses are usually cheaper than in-person classes. For these reasons, online learning is a smart choice for many students."]}
+   ],
+   ex:[
+    {n:"C1",k:"pick",i:"Number the sentences 1–4 to make a good paragraph.",
+     o:[["1","1"],["2","2"],["3","3"],["4","4"]],
+     q:[["For these reasons, dogs are great family pets.","4"],
+        ["Second, dogs help owners stay active by needing daily walks.","3"],
+        ["Dogs make excellent family pets because they are loyal and healthy.","1"],
+        ["First, dogs are loyal and protect their family.","2"]]},
+    {n:"C2",k:"open",i:"Write one paragraph (5–7 sentences) on ONE of these topics: a change that would improve our school · a habit that helps people succeed · your opinion on social media.  Checklist: thesis statement in the first sentence · correct a/an/the · 2–3 supporting sentences · a concluding sentence.",
+     q:[["Your paragraph","Our school should replace the 7:30 start with an 8:30 start because teenagers simply cannot sleep early enough to be alert at dawn. First, adolescent body clocks shift during puberty, so an early alarm cuts into the deepest part of the night. Second, the first period is where most of the failed quizzes happen, which suggests students are not actually awake for it. A later start would also reduce the number of students who skip breakfast entirely. For these reasons, moving the bell one hour later would cost the school nothing and improve almost everything."]]}
+   ]},
+  {L:"D",t:"Mini Project: The \"Brazil Explained\" Challenge",learn:[],
+   ex:[{n:"D1",k:"project",i:"Pick one Brazilian thing (a food, a habit, a place, an expression) and convince a foreigner that it is amazing, in a 5–7 sentence paragraph. Can you move someone from \"I don’t know\" to \"I want to try that\"?",
+        x:"Challenge: write a short paragraph (5–7 sentences) about a place you love. Then draw a simple picture of that place on the back of the page. Exchange with a partner — they read your paragraph and guess the place from your drawing."}]}
+ ]},
+
+{n:2,t:"Cut, Fix, Improve: The Sentence Surgeon Lab",s:"Making your paragraph clear and correct",grp:"Writing & essays",tags:"topic sentence word order svo revise edit paragraph",
+ sec:[
+  {L:"A",t:"Topic sentences",
+   learn:[
+    {b:"p",x:"A topic sentence is the first sentence of a paragraph. It tells the reader one main idea and connects to your thesis."},
+    {b:"formula",x:"TOPIC SENTENCE = ONE IDEA + WHAT THE PARAGRAPH WILL SAY ABOUT IT"},
+    {b:"eg",x:["✗ I will talk about flexibility. (too vague)",
+              "✓ First, online learning offers flexibility for working students. (clear and specific)"]}
+   ],
+   ex:[
+    {n:"A1",k:"mcq",i:"Choose the better topic sentence.",
+     q:[["Which is the better topic sentence?",["Dogs are good.","Dogs make great family pets because they are loyal."],1,"The second names one idea and says what the paragraph will argue about it."],
+        ["Which is the better topic sentence?",["Second, lower costs help students save money.","Second, money is important."],0,"The first is specific and connects to the essay’s point; the second could introduce anything."],
+        ["Which is the better topic sentence?",["This paragraph is about exercise.","Regular exercise improves mental health by reducing stress."],1,"Announcing the topic is not the same as stating an idea about it."]]},
+    {n:"A2",k:"write",i:"Write one topic sentence for a paragraph about your favorite season. One idea + what you will say about it.",
+     q:[["Your topic sentence","Winter is the most productive season of the year because the cold keeps you indoors and on task."]]}
+   ]},
+  {L:"B",t:"Word order (SVO)",
+   learn:[
+    {b:"formula",x:"SUBJECT + VERB + OBJECT + (TIME / PLACE)"},
+    {b:"eg",x:["✓ She writes essays every day.   ✓ I like coffee.",
+              "✗ She every day writes essays.   ✗ I coffee like."]}
+   ],
+   ex:[
+    {n:"B1",k:"write",i:"Put the words in the correct order (SVO).",
+     q:[["every day / drinks / tea / Maria","Maria drinks tea every day."],
+        ["to the park / walk / We / on Sundays","We walk to the park on Sundays."],
+        ["English / They / study / at the library","They study English at the library."]]},
+    {n:"B2",k:"write",i:"Write two correct SVO sentences about your daily routine.",
+     q:[["Sentence 1","I check my messages before breakfast."],
+        ["Sentence 2","My brother takes the bus to work at seven."]]}
+   ]},
+  {L:"C",t:"Revise a paragraph",
+   learn:[
+    {b:"p",x:"Revise means to make your writing better — not just fix spelling. Ask yourself: does every sentence support the topic sentence? Is the word order correct (SVO)? Are the articles (a/an/the) used correctly?"},
+    {b:"note",x:"REVISE ≠ EDIT. Edit = fix small mistakes. Revise = improve the whole paragraph."}
+   ],
+   ex:[
+    {n:"C1",k:"write",i:"Read the weak paragraph, then revise it using the checklist.  Weak paragraph: \"Online learning is good. Students can study at home. They like it because is flexible. The courses are cheap. For these reasons online learning popular.\"",
+     q:[["Your revised version","Online learning is an effective option for many students because it is flexible and affordable. First, students can study at home and watch recorded lectures whenever their schedule allows. Second, online courses usually cost far less than in-person programs. For these reasons, online learning has become popular with working students and parents."]]},
+    {n:"C2",k:"open",i:"Take the paragraph you wrote in Set 1 and revise it here.  Checklist: topic sentence at the beginning? · SVO word order everywhere? · correct a/an/the? · does every sentence support the main idea?",
+     q:[["Your revised paragraph",""]]}
+   ]},
+  {L:"D",t:"Mini Project: The \"Sentence Surgeon\" Revision Lab",learn:[],
+   ex:[{n:"D1",k:"project",i:"You are a Sentence Surgeon. Your job is to take a sick paragraph (full of errors) and operate on it until it is healthy. 1) Diagnose the problems (missing topic sentence, SVO errors, article errors). 2) Operate — rewrite the paragraph correctly. 3) Present your work: show the \"before\" and the \"after\".",x:""}]}
+ ]},
+
+{n:3,t:"Problem Solved! Building a Problem-Solution Essay",s:"Problem-solution essays, part 1 — introduction & problem paragraph",grp:"Writing & essays",tags:"problem solution essay thesis hook parallel structure outline",
+ sec:[
+  {L:"A",t:"Problem-solution essay — introduction + problem paragraph",
+   learn:[
+    {b:"p",x:"A problem-solution essay has two main parts to begin with: 1) the introduction — hook, background, and a thesis that names the problem; 2) the problem paragraph — describes the problem clearly (causes, effects, or both)."},
+    {b:"formula",x:"[PROBLEM] IS A SERIOUS ISSUE BECAUSE [REASON], BUT IT CAN BE SOLVED BY [SOLUTION PREVIEW]"},
+    {b:"eg",x:["Traffic congestion is a serious issue because it wastes time and increases pollution, but it can be solved by improving public transportation."]}
+   ],
+   ex:[
+    {n:"A1",k:"pick",i:"Read each sentence. Is it a hook, a problem statement, or a thesis?",
+     o:[["I","I — introduction hook"],["P","P — problem"],["T","T — thesis"]],
+     q:[["Have you ever been stuck in traffic for an hour?","I"],
+        ["Traffic congestion wastes time and harms the environment.","P"],
+        ["Traffic congestion is a serious issue because it wastes time, but better bus systems can help.","T"]]},
+    {n:"A2",k:"write",i:"Choose one problem — air pollution · smartphone addiction · low student motivation — and write a thesis statement (problem + reason + solution preview).",
+     q:[["Your thesis","Smartphone addiction is a serious issue because it fragments attention and disrupts sleep, but it can be reduced by app limits and phone-free hours at school."]]}
+   ]},
+  {L:"B",t:"Parallel structure",
+   learn:[
+    {b:"p",x:"Parallel structure means using the same grammatical form for items in a list or a series."},
+    {b:"eg",x:["✓ I like running, swimming, and biking. (all -ing)",
+              "✗ I like running, to swim, and biking. (mixed forms)",
+              "✓ The problem is serious, widespread, and urgent. (all adjectives)",
+              "✗ The problem is serious, widespread, and it is urgent. (mixed)"]}
+   ],
+   ex:[
+    {n:"B1",k:"write",i:"Correct the parallel structure error in each sentence.",
+     q:[["She enjoys reading, to write, and painting.","She enjoys reading, writing, and painting."],
+        ["The solution must be cheap, fast, and it should be easy.","The solution must be cheap, fast, and easy."],
+        ["Students need time, space, and to have motivation.","Students need time, space, and motivation."]]},
+    {n:"B2",k:"write",i:"Complete the sentences, keeping the structure parallel.",
+     q:[["To solve this problem, the school should …, …, and ….","To solve this problem, the school should shorten lunch queues, extend library hours, and hire a second counselor."],
+        ["The causes of pollution include …, …, and ….","The causes of pollution include heavy traffic, industrial waste, and poor recycling."]]}
+   ]},
+  {L:"C",t:"Outline an essay",
+   learn:[
+    {b:"p",x:"An outline helps you organize ideas before writing."},
+    {b:"table",h:["I. Introduction","II. Problem paragraph"],r:[
+      ["A. Hook (question, fact, or story)","A. Topic sentence (states the problem)"],
+      ["B. Background (1–2 sentences)","B. Cause or effect 1"],
+      ["C. Thesis (problem + solution preview)","C. Cause or effect 2"],
+      ["","D. Concluding sentence"]]}
+   ],
+   ex:[
+    {n:"C1",k:"match",i:"Match each outline element to the sentence that belongs to it.",
+     o:[["A","First, air pollution comes from cars and factories."],["B","Did you know that 9 out of 10 people breathe polluted air?"],["C","Air pollution is a serious problem, but renewable energy can help."]],
+     q:[["Hook","B"],["Thesis","C"],["Topic sentence (problem)","A"]]},
+    {n:"C2",k:"open",i:"Complete the outline for your chosen problem.",
+     q:[["My problem",""],["I.A — Hook",""],["I.B — Background",""],["I.C — Thesis",""],
+        ["II.A — Topic sentence",""],["II.B — Cause / effect 1",""],["II.C — Cause / effect 2",""],["II.D — Concluding sentence",""]]}
+   ]},
+  {L:"D",t:"Mini Project: The \"Fix My City\" Campaign Poster",learn:[],
+   ex:[{n:"D1",k:"project",i:"You are a concerned citizen who wants to solve a problem in your city, your neighborhood, or a place you know well. Create a campaign poster that 1) names the problem, with a hook and background; 2) explains why it matters (causes or effects); 3) shows your solution. Your poster should convince people that the problem is real and that your solution can work.",x:""}]}
+ ]},
+
+{n:4,t:"The \"Sue-Proof\" Writer: Solutions & Hedging",s:"Problem-solution essays, part 2 — solutions + hedging",grp:"Writing & essays",tags:"solution paragraph conclusion hedging may might seems appears careful language",
+ sec:[
+  {L:"A",t:"Solution paragraph + conclusion",
+   learn:[
+    {b:"p",x:"Last set you wrote an introduction and a problem paragraph. Now you add a solution paragraph and a conclusion."},
+    {b:"table",h:["Solution paragraph","Conclusion"],r:[
+      ["States one clear solution","Restates the problem"],
+      ["Explains how it works","Summarizes 1–2 solutions"],
+      ["Gives a real example (a city, school, or country)","Ends with a final thought — a call to action or a prediction"]]},
+    {b:"eg",x:["SOLUTION PARAGRAPH: One effective solution is setting daily screen time limits. Apps like Instagram allow users to set a 30-minute daily reminder. For example, a study showed that teens who used screen limits reported less anxiety after two weeks. Clearly, this small change could make a big difference.",
+              "CONCLUSION: In conclusion, FOMO on social media increases anxiety and reduces sleep quality. However, setting screen limits and unfollowing toxic accounts can help. Teenagers must take control before their mental health gets worse."]}
+   ],
+   ex:[
+    {n:"A1",k:"open",i:"Write your solution paragraph. Use the problem you chose in Set 3. Write 4–5 sentences.",
+     q:[["My problem",""],["Your solution paragraph",""]]}
+   ]},
+  {L:"B",t:"Hedging — don’t get sued (or marked down)",
+   learn:[
+    {b:"p",x:"Hedging means being careful: not claiming to be 100% certain. Academic writing and good reviews use hedging to sound fair, humble and professional."},
+    {b:"table",h:["Too strong (dangerous)","Hedged (safe, smart)"],r:[
+      ["This solution will work.","This solution may work."],
+      ["Social media causes anxiety.","Social media might contribute to anxiety."],
+      ["The food is terrible.","The food seemed a bit salty to me."],
+      ["The manager is lazy.","The manager appeared to be having an off day."]]},
+    {b:"trick",x:"Common hedging words: may · might · could · seems · appears · suggests · often · tends to · in my opinion"}
+   ],
+   ex:[
+    {n:"B1",k:"write",i:"Rewrite each sentence so it is hedged. Use the word in parentheses.",
+     q:[["This solution will solve the problem. (may)","This solution may solve the problem."],
+        ["Air pollution causes asthma. (might)","Air pollution might cause asthma."],
+        ["Online learning is the best option for everyone. (may not)","Online learning may not be the best option for everyone."],
+        ["The new policy will reduce costs. (seems)","The new policy seems likely to reduce costs."],
+        ["Students fail because of this reason. (could)","Students could fail for this reason."]]},
+    {n:"B2",k:"open",i:"Go back to your solution paragraph from A1. Find two sentences that sound too certain and rewrite them with hedging.",
+     q:[["Original sentence 1",""],["Hedged version 1",""],["Original sentence 2",""],["Hedged version 2",""]]}
+   ]},
+  {L:"C",t:"Write your conclusion",
+   learn:[
+    {b:"p",x:"A conclusion does three jobs in 3–4 sentences: it restates the problem in new words, it summarizes the solution or solutions, and it ends with a final thought — a call to action or a prediction. Keep the hedging: a conclusion that over-promises undoes the careful work of the essay."}
+   ],
+   ex:[
+    {n:"C1",k:"open",i:"Write the conclusion to your problem-solution essay (3–4 sentences). Use at least two hedging words.",
+     q:[["Your conclusion","In conclusion, constant notifications appear to fragment the attention of students who are already short of study time. Screen-time limits and phone-free lessons may not eliminate the problem, but they seem to reduce it at very little cost. If schools act now, the next generation might learn to use these devices rather than be used by them."]]}
+   ]},
+  {L:"D",t:"Mini Project: The \"Expert Witness\" Rewrite",learn:[],
+   ex:[{n:"D1",k:"project",i:"Imagine your essay is being read out in a courtroom and every over-confident claim can be challenged. Swap essays with a partner and act as the opposing lawyer: underline every sentence that claims more than the evidence supports. Then hand it back and rewrite your own flagged sentences with hedging — without making the essay sound weak or vague.",x:""}]}
+ ]},
+
+{n:5,t:"Copy-Paste Protector: Summarize, Paraphrase & Cite",s:"Using sources — summarize, paraphrase, cite + reduced relative clauses",grp:"Writing & essays",tags:"summarize paraphrase cite plagiarism sources reduced relative clauses",
+ sec:[
+  {L:"A",t:"Summarize + paraphrase + cite",
+   learn:[
+    {b:"p",x:"When you use someone else’s idea, give credit. You have three tools."},
+    {b:"table",h:["Tool","What it does","Length","Example"],r:[
+      ["Summarize","Main idea only, in your words","Short","Lee (2021) argues that social media affects sleep."],
+      ["Paraphrase","Same detail, different words","Similar length","According to Lee (2021), using social media before bed may reduce sleep quality."],
+      ["Cite","Tell where you got the information","One line","(Lee, 2021) — or: According to Lee…"]]},
+    {b:"trick",x:"Why cite? It shows research · it makes your writing stronger · it avoids plagiarism."}
+   ],
+   ex:[
+    {n:"A1",k:"mcq",i:"Original: \"Loot boxes in video games encourage gambling habits because they use random rewards to trigger dopamine release.\" (Chen, 2022)  —  What is each response?",
+     q:[["Chen (2022) explains that random rewards in loot boxes may promote addictive behavior.",["Summary","Paraphrase","Too vague — neither"],0,"It gives the main idea only, and it is shorter than the original."],
+        ["Loot boxes are bad (Chen, 2022).",["Summary","Paraphrase","Too vague — neither"],2,"It cites the source but loses the actual claim. A summary must still carry the idea."],
+        ["According to Chen (2022), video game loot boxes use unpredictable rewards that could lead to gambling-like habits in young players.",["Summary","Paraphrase","Too vague — neither"],1,"Same detail, same length, different words — that is a paraphrase."]]},
+    {n:"A2",k:"write",i:"Read the text once, then write a summary and a paraphrase.  Original: \"Teens who spend more than 4 hours daily on TikTok report higher levels of FOMO and lower self-esteem. However, taking a 7-day break from the app improved mood in 60% of participants.\" (Williams, 2023)",
+     q:[["Your summary (main idea only, one sentence)","Williams (2023) found that heavy TikTok use is linked to worse self-esteem, but that a short break helps."],
+        ["Your paraphrase (same detail, different words, two sentences)","According to Williams (2023), adolescents who use TikTok for over four hours a day tend to report more fear of missing out and lower self-worth. The same study found that a week away from the platform lifted the mood of three in five participants."]]}
+   ]},
+  {L:"B",t:"Reduced relative clauses — shorter, more academic",
+   learn:[
+    {b:"p",x:"Relative clauses add information. Reduced clauses say the same thing in fewer words, which suits academic writing."},
+    {b:"table",h:["Full (long)","Reduced (better)"],r:[
+      ["Students who are enrolled for the intensive course will start next week.","Students enrolled for the intensive course will start next week."],
+      ["The study that was published in 2023 is useful.","The study published in 2023 is useful."],
+      ["Social media which is used at night disrupts sleep.","Social media used at night disrupts sleep."]]},
+    {b:"trick",x:"Delete the relative pronoun and the form of be: who are enrolled → enrolled · that was published → published."}
+   ],
+   ex:[
+    {n:"B1",k:"write",i:"Reduce the relative clause in each sentence.",
+     q:[["The research that was conducted in Brazil showed interesting results.","The research conducted in Brazil showed interesting results."],
+        ["Influencers who are paid by brands often hide sponsorships.","Influencers paid by brands often hide sponsorships."],
+        ["The app which is designed for teens is very popular.","The app designed for teens is very popular."]]},
+    {n:"B2",k:"open",i:"Write two sentences about YOUR problem-solution essay. Use one reduced relative clause in each.",
+     q:[["About the problem","Students distracted by constant notifications lose roughly an hour of study time a day."],
+        ["About the solution","A policy introduced in several Dublin schools removed phones from classrooms entirely."]]}
+   ]},
+  {L:"C",t:"Mini Project: The \"Fact Check\" Challenge",learn:[],
+   ex:[{n:"C1",k:"project",i:"The scenario: you wrote a paragraph about a problem (fast fashion, FOMO, loot boxes…). A friend says: \"That’s just your opinion. Prove it.\"  Your job: find ONE real fact, or use the source below. Then write three sentences about your problem — one summary of what the source says, one paraphrase of one detail, and one citation (author + year).",
+        x:"Source you may use: \"The average teen spends 7 hours per day looking at screens. This has been linked to higher rates of anxiety, lower attention spans, and worse sleep quality. However, reducing screen time to 2 hours per day improved mood in 75% of teens after just one week.\" (Martinez, 2023)"}]}
+ ]}
+
+);
+/* ===== SETS 6–10 ===== */
+DATA.push(
+
+{n:6,t:"More Than \"It’s Good\": Writing a Critical Review",s:"Critical reviews, part 1 — judgment, reasons, evidence",grp:"Writing & essays",tags:"critical review judgment evidence gerund participle ing forms evaluation summary",
+ sec:[
+  {L:"A",t:"Getting started — talk with a partner",
+   learn:[
+    {b:"p",x:"Which of these have you seen, tried or followed? Which would you review? A viral TikTok filter that changes your face · AirPods as a fashion trend · a Netflix true crime documentary · a plant-based burger at a fast-food chain · a VSCO aesthetic fashion haul."},
+    {b:"note",x:"Discussion: when you recommend or criticize something online, do you just say \"it’s good / bad\", or do you explain why?"}
+   ],
+   ex:[
+    {n:"A1",k:"open",i:"Note your answers before you discuss them.",
+     q:[["Something you would review, and why",""],["When you recommend something online, what do you usually say about it?",""]]}
+   ]},
+  {L:"B",t:"What is a critical review?",
+   learn:[
+    {b:"p",x:"A critical review is not just saying \"I liked it\" or \"It was bad\"."},
+    {b:"formula",x:"CRITICAL REVIEW = YOUR JUDGMENT + REASONS + EVIDENCE"},
+    {b:"table",h:["Casual opinion","Critical review"],r:[
+      ["This documentary is boring.","This documentary fails to keep viewers engaged because it repeats the same interviews without adding new information."],
+      ["The AirPods trend is stupid.","The AirPods trend prioritizes status over sound quality, as cheaper alternatives offer similar performance."]]}
+   ],
+   ex:[
+    {n:"B1",k:"write",i:"Turn each casual opinion into a critical judgment with a reason.",
+     q:[["This app is annoying.","This app interrupts the user too often, because it sends a notification for every minor update rather than batching them."],
+        ["The book was great.","The book succeeds because it explains a technical subject through a single family’s story, which keeps the statistics readable."],
+        ["That restaurant is overrated.","The restaurant trades on its reputation rather than its cooking, since the menu has barely changed in a decade and the prices have doubled."]]}
+   ]},
+  {L:"C",t:"The structure of a critical review",
+   learn:[
+    {b:"table",h:["Part","What it does","Length"],r:[
+      ["Intro","What you are reviewing + context (where / when you saw it)","1–2 sentences"],
+      ["Summary","What happens — no opinion yet, just facts","2–3 sentences"],
+      ["Evaluation","Your judgment + reasons + evidence","3–5 sentences"]]},
+    {b:"trick",x:"Summary = neutral. Evaluation = your opinion with support."}
+   ],
+   ex:[
+    {n:"C1",k:"pick",i:"Read the short review. Label each sentence.  (1) The viral \"Bold Glamour\" TikTok filter has become extremely popular among teens. (2) The filter smooths skin, changes facial structure, and adds makeup in real time. (3) While the effect is impressive, using this filter constantly may distort young people’s self-image. (4) Seeing your face altered so dramatically makes your natural face seem flawed by comparison. (5) Ignoring this potential harm is irresponsible for both creators and users.",
+     o:[["I","I — Intro"],["S","S — Summary"],["E","E — Evaluation"]],
+     q:[["Sentence 1","I"],["Sentence 2","S"],["Sentence 3","E"],["Sentence 4","E"],["Sentence 5","E"]]}
+   ]},
+  {L:"D",t:"Gerunds vs. participles (review)",
+   learn:[
+    {b:"table",h:["Gerund (-ing as a noun)","Participle (-ing as an adjective)"],r:[
+      ["Swimming is good exercise.","The swimming child was happy."],
+      ["I enjoy reading.","The reading room is quiet."],
+      ["Studying helps you learn.","Studying students need breaks."]]},
+    {b:"trick",x:"Quick test: replace the word with \"it\" or \"something\". If it works, it is a gerund. If it doesn’t, it is a participle."}
+   ],
+   ex:[
+    {n:"D1",k:"pick",i:"Gerund or participle?",
+     o:[["G","G — gerund"],["P","P — participle"]],
+     q:[["Running every day improves health.","G"],
+        ["The running water is cold.","P"],
+        ["I like cooking.","G"],
+        ["The cooking class starts at 10.","P"]]},
+    {n:"D2",k:"pick",i:"Find the -ing forms in this review and label each one.  \"Spending hours on social media has become normal for many teens. This article explores how the fear of missing out pushes people to check Instagram constantly. The writer describes watching friends post highlight reels while feeling left out at home. She suggests setting daily time limits. Worrying about what others are doing is exhausting. Ignoring the problem won’t help either. Learning to scroll mindfully may be the best solution.\"",
+     o:[["G","G — gerund"],["P","P — participle"]],
+     q:[["Spending (hours on social media has become normal)","G"],
+        ["missing (the fear of missing out)","G"],
+        ["watching (describes watching friends post)","G"],
+        ["feeling (while feeling left out)","P"],
+        ["setting (suggests setting daily time limits)","G"],
+        ["Worrying (about what others are doing is exhausting)","G"],
+        ["doing (what others are doing)","P"],
+        ["Ignoring (the problem won’t help)","G"],
+        ["Learning (to scroll mindfully may be the best solution)","G"]]}
+   ]},
+  {L:"E",t:"Mini Project: The \"Critical Review\" TikTok",learn:[],
+   ex:[{n:"E1",k:"project",i:"You are a TikTok reviewer with 60 seconds to review something. Write a short script (60 seconds / 100–150 words) that includes: an intro (what you are reviewing + context); a summary (what happens — no opinion yet); an evaluation (your judgment + reasons + evidence); and at least 2 -ing forms, gerund or participle. Then record your review, or perform it live for a partner.",x:""}]}
+ ]},
+
+{n:7,t:"Review Like a Pro: Critical Reviews & -ing Forms",s:"Critical reviews, part 2 — the \"Ouch\" list of -ing errors",grp:"Writing & essays",tags:"ing forms gerund errors avoid enjoy suggest see watch hear critical review",
+ sec:[
+  {L:"A",t:"Common errors with -ing forms (the \"Ouch\" list)",
+   learn:[
+    {b:"p",x:"Let’s be honest — even advanced students make these mistakes. But after this set, you won’t."},
+    {b:"table",h:["Error","Correction"],r:[
+      ["Is important unfollow toxic accounts.","Unfollowing toxic accounts is important for mental health."],
+      ["Scroll through TikTok for hours is not productive.","Scrolling through TikTok for hours is not productive."],
+      ["She avoids to compare her life to influencers.","She avoids comparing her life to influencers."],
+      ["They saw him posted a meme.","They saw him posting a meme."]]},
+    {b:"table",h:["Rule to remember","Example"],r:[
+      ["Use a gerund as the subject of a sentence","Scrolling is fun."],
+      ["After avoid, enjoy, suggest, mind → use a gerund","avoid comparing"],
+      ["After see, watch, hear → use -ing for an action in progress","saw him posting"]]}
+   ],
+   ex:[
+    {n:"A1",k:"write",i:"Fix the error. Rewrite each sentence correctly.",
+     q:[["Is important keep good role models.","Keeping good role models is important."],
+        ["Spend hours on the internet is not good for your health.","Spending hours on the internet is not good for your health."],
+        ["She avoids to eat junk food.","She avoids eating junk food."],
+        ["I saw him fought with his parents.","I saw him fighting with his parents."]]},
+    {n:"A2",k:"write",i:"Write one sentence for each situation. Use an -ing form in every sentence.",
+     q:[["Give advice about avoiding FOMO","Unfollowing accounts that only show off helps me feel better."],
+        ["Describe something you saw someone doing on social media","I saw a classmate posting the same photo on three different apps."],
+        ["Say why a trend is annoying (use watching or seeing)","Watching everyone copy the same dance gets tiring after the first week."],
+        ["Say why a product is useful (start with Using…)","Using a timer app has cut my screen time almost in half."],
+        ["Say what you regret doing online","I regret arguing with a stranger in the comments for two hours."]]}
+   ]},
+  {L:"B",t:"Write your own critical review",
+   learn:[
+    {b:"p",x:"Now put Set 6 and Set 7 together. Your review has three parts — intro, summary, evaluation — and your -ing forms have to be correct."},
+    {b:"note",x:"Checklist: intro names the thing and the context · summary stays neutral · evaluation gives judgment + reasons + evidence · at least three -ing forms, all correct · hedging where you are not certain."}
+   ],
+   ex:[
+    {n:"B1",k:"open",i:"Choose something you have actually seen, used, read or watched recently. Write a critical review (8–12 sentences) using the three-part structure.",
+     q:[["What you are reviewing",""],["Your review",""]]},
+    {n:"B2",k:"open",i:"Reread your review. List the -ing forms you used and say whether each is a gerund or a participle.",
+     q:[["-ing forms used, and their type",""]]}
+   ]},
+  {L:"C",t:"Mini Project: The \"Ouch List\" Swap",learn:[],
+   ex:[{n:"C1",k:"project",i:"Write five sentences about a trend, a product or a show — and hide one -ing error in each. Swap with a partner. Can they find all five errors and correct them in under five minutes? Score one point per error found, and one bonus point for anyone who can name the rule that was broken.",x:""}]}
+ ]},
+
+{n:8,t:"Me, Myself, and I: The Art of the Personal Statement",s:"Personal statements — show, don’t tell + cohesive devices",grp:"Writing & essays",tags:"personal statement application scholarship cohesive devices however therefore for example",
+ sec:[
+  {L:"A",t:"What is a personal statement?",
+   learn:[
+    {b:"p",x:"A personal statement is a short persuasive essay about you — for a course, a job, an exchange program, or a scholarship."},
+    {b:"eg",x:["✗ Bad: I am hardworking, creative, and friendly. (boring, no evidence)",
+              "✓ Good: When my team’s leader quit two days before a tournament, I organized practice sessions, assigned new roles, and kept everyone motivated. We didn’t win, but we finished strong — and I learned that leadership is about staying calm under pressure."]},
+    {b:"trick",x:"The secret: show, don’t tell. Use a specific example instead of a list of adjectives."}
+   ],
+   ex:[
+    {n:"A1",k:"open",i:"Warm-up (talk with a partner). Imagine you are applying for a summer exchange program in London. They ask: \"Why should we choose you?\"  What would you mention first? How do you avoid just listing \"I’m hardworking and friendly\"?  Discussion: what is more convincing — saying \"I am creative\", or giving a short example of when you solved a problem creatively?",
+     q:[["What you would mention first",""],["Your answer to the discussion question",""]]}
+   ]},
+  {L:"B",t:"Structure of a personal statement",
+   learn:[
+    {b:"table",h:["Part","What it does","Example"],r:[
+      ["Opening","Who you are + what you want","I am applying for the esports internship because I want to learn how gaming events are managed."],
+      ["Specific example","One concrete story, not a list","When I organized a small tournament for 16 players, I learned to handle conflicts and schedules."],
+      ["Why it matters","Connect the example to the opportunity","This experience showed me that teamwork matters more than individual skill."],
+      ["Closing","What you would bring to them","I would bring my passion for fair play and organization to your team."]]},
+    {b:"note",x:"Never start with \"I was born in…\" or \"I have always been…\" — too boring, too predictable."}
+   ],
+   ex:[
+    {n:"B1",k:"pick",i:"Which part of a personal statement is each sentence?",
+     o:[["O","Opening"],["E","Specific example"],["W","Why it matters"],["C","Closing"]],
+     q:[["I am applying for the environmental science program because I want to work on urban water quality.","O"],
+        ["Last winter I mapped every storm drain in my neighborhood for a school project and found four that were blocked.","E"],
+        ["That project taught me that most environmental problems are maintenance problems first.","W"],
+        ["I would bring that same stubbornness about small details to your research group.","C"]]},
+    {n:"B2",k:"open",i:"Plan your own personal statement. Answer in notes, not full sentences.",
+     q:[["What are you applying for?",""],["One concrete story you could tell (not a list of adjectives)",""],
+        ["What that story shows about you",""],["What you would bring to them",""]]}
+   ]},
+  {L:"C",t:"Cohesive devices — glue for your ideas",
+   learn:[
+    {b:"p",x:"Cohesive devices connect your sentences so your writing flows smoothly."},
+    {b:"table",h:["Function","Cohesive device","Example"],r:[
+      ["Addition","in addition, furthermore, moreover","I organized tournaments. In addition, I managed social media."],
+      ["Contrast","however, although, despite","I have no formal experience. However, I taught myself game design."],
+      ["Cause / effect","therefore, as a result, consequently","I practiced daily. Therefore, my skills improved quickly."],
+      ["Example","for example, for instance","I enjoy solving problems. For example, I fixed a scheduling conflict at the last minute."]]}
+   ],
+   ex:[
+    {n:"C1",k:"gap",i:"Complete each sentence with a suitable cohesive device.",
+     q:[["I had never run an event before. ___, I volunteered to coordinate the whole tournament.",["however|nevertheless|nonetheless"]],
+        ["I ran the registration desk. ___, I designed the posters and the schedule.",["in addition|furthermore|moreover"]],
+        ["Two referees cancelled on the morning of the event. ___, I had to referee three matches myself.",["as a result|therefore|consequently"]],
+        ["I enjoy work that has a visible result. ___, I rebuilt our club’s booking system over one weekend.",["for example|for instance"]]]},
+    {n:"C2",k:"open",i:"Write your personal statement (150–200 words) using the four-part structure. Use at least three different cohesive devices and underline each one.",
+     q:[["Your personal statement",""]]}
+   ]},
+  {L:"D",t:"Mini Project: The 60-Second Pitch",learn:[],
+   ex:[{n:"D1",k:"project",i:"Turn your written statement into a spoken 60-second pitch. Cut it to the one story that does the most work, and deliver it to a partner without reading. Your partner’s only job afterwards is to say what they now believe about you — if it isn’t what you intended, the story is not the right one yet.",x:""}]}
+ ]},
+
+{n:9,t:"Combine & Conquer: Writing a Synthesis Report",s:"Synthesis — comparing sources + grammar review of Sets 1–6",grp:"Writing & essays",tags:"synthesis report sources compare combine timed reading grammar review",
+ sec:[
+  {L:"A",t:"Synthesis report — comparing + writing",
+   learn:[
+    {b:"p",x:"A synthesis is different from a summary. Summary = one source, restated. Synthesis = two or more sources, compared and combined to show a new idea."},
+    {b:"formula",x:"SOURCE A SAYS X. SOURCE B SAYS Y. TOGETHER, THEY SHOW Z."},
+    {b:"eg",x:["Martinez (2023) argues that green spaces reduce asthma risk. Kim (2022) claims that air pollution increases breathing problems. Taken together, these studies suggest that cities with less pollution and more parks may have healthier children."]}
+   ],
+   ex:[
+    {n:"A1",k:"write",i:"Read the two sources, then complete the synthesis.  Source A (Lee, 2021): Social media may reduce face-to-face conversation skills.  Source B (Chen, 2022): Online platforms help shy students express themselves.  Lee (2021) believes that social media may harm conversation skills, while Chen (2022) argues that it helps shy students. Together, these studies suggest that…",
+     q:[["Complete the synthesis","…the effect of social media may depend on the student: the same platform can reduce practice for confident speakers and provide it for shy ones."]]},
+    {n:"A2",k:"open",i:"Write one synthesis paragraph (4–5 sentences) comparing two ideas about homework.  Source A (Williams, 2020): Homework helps students practice skills and build discipline.  Source B (Garcia, 2021): Too much homework increases stress and reduces family time.",
+     q:[["Your synthesis paragraph","Williams (2020) argues that homework builds both skill and self-discipline through regular practice. Garcia (2021), in contrast, found that heavy homework loads raise stress levels and cut into family time. The two findings are not necessarily in conflict, since they may describe different quantities of the same activity. Taken together, these studies suggest that the question is not whether homework helps, but how much of it does. A moderate, well-designed load may capture the benefits Williams describes without the costs Garcia reports."]]},
+    {n:"A3",k:"write",i:"Synthesis sentence frames. Complete each sentence with your own words.",
+     q:[["Source A (Santos, 2022): uniforms reduce bullying. Source B (Oliveira, 2023): uniforms limit creativity.  →  Santos (2022) argues that uniforms reduce bullying, while Oliveira (2023) claims that…","…they suppress students' creativity and self-expression."],
+        ["Together, these two sources suggest that…","…uniforms may trade one kind of freedom for another, and schools must decide which matters more at that age."],
+        ["Source A (Lee, 2022): online learning is flexible. Source B (Martinez, 2023): online learning isolates students.  →  Lee (2022) believes online learning is flexible, whereas Martinez (2023) argues that…","…it reduces social interaction and leaves students feeling isolated."],
+        ["Taken together, these studies indicate that…","…the convenience of online study comes at a social cost, which hybrid models may be able to limit."]]}
+   ]},
+  {L:"B",t:"Grammar review — Sets 1–6",
+   learn:[
+    {b:"table",h:["Set","Topic","Example"],r:[
+      ["1","Articles (a/an/the)","I have an idea. The idea is good."],
+      ["2","Word order (SVO)","She writes essays every day. (not: She every day writes…)"],
+      ["3","Parallel structure","I like running, swimming, and biking."],
+      ["4","Hedging (may, might, seems)","This solution may work."],
+      ["5","Reduced relative clauses","The study published in 2020 is useful."],
+      ["6","Gerunds vs. participles","Swimming is fun (gerund) vs. The swimming pool is cold (participle)."]]}
+   ],
+   ex:[
+    {n:"B1",k:"pick",i:"Identify the grammar topic in each sentence.",
+     o:[["A","A — Articles"],["B","B — Word order"],["C","C — Parallel structure"],["D","D — Hedging"],["E","E — Reduced relative clauses"],["F","F — Gerund"],["G","G — Participle"]],
+     q:[["Walking every day is good for your health.","F"],
+        ["The car manufactured in Germany is very fast.","E"],
+        ["She needs a new phone. The phone she has is broken.","A"],
+        ["This solution might reduce costs.","D"],
+        ["He enjoys reading, writing, and to listen to music.","C"],
+        ["The barking dog woke me up.","G"],
+        ["They to the park go every Sunday.","B"]]},
+    {n:"B2",k:"write",i:"Each sentence has one mistake from Sets 1–6. Write the corrected sentence.",
+     q:[["She every day drinks coffee before class.","She drinks coffee every day before class."],
+        ["I need a advice about my career path.","I need advice about my career path."],
+        ["He enjoys to swim, run, and biking.","He enjoys swimming, running, and biking."],
+        ["The solution will solve the problem for sure. (hedge it with may)","The solution may solve the problem."],
+        ["The book which was written in 1990 is on the shelf. (reduce the clause)","The book written in 1990 is on the shelf."],
+        ["Reading is my favorite hobby. (gerund or participle?)","Gerund — it is the subject of the sentence."],
+        ["The crying baby kept everyone awake. (gerund or participle?)","Participle — it describes the noun baby."]]}
+   ]},
+  {L:"C",t:"Timed reading + synthesis report",
+   learn:[
+    {b:"p",x:"Text 1 — Park, 2023: Teenagers who use smartphones for more than 4 hours daily may have lower sleep quality. Park found that blue light from screens delays melatonin production, making it harder to fall asleep. However, teenagers who used \"night mode\" reported slightly better sleep."},
+    {b:"p",x:"Text 2 — Jones, 2023: Smartphones may not be the main cause of sleep problems in teens. Jones argues that homework stress, early school start times, and social anxiety are equally important. In her study, teens with high stress slept poorly even when they did not use phones at night."}
+   ],
+   ex:[
+    {n:"C1",k:"write",i:"Read both texts in 5 minutes, then answer without looking back.",
+     q:[["What does Park (2023) say is the main problem?","Blue light from heavy smartphone use delays melatonin and makes it harder to fall asleep."],
+        ["What does Jones (2023) say is different?","That phones are not the main cause — homework stress, early starts and social anxiety matter just as much."],
+        ["What do both texts agree on?","That teenagers are sleeping badly, and that the cause is not a single simple factor."]]},
+    {n:"C2",k:"open",i:"Write a short synthesis report (one paragraph, 6–8 sentences) using both sources.  Your report must include: a summary of Park (1–2 sentences) · a summary of Jones (1–2 sentences) · a comparison phrase (however, in contrast, similarly, on the other hand) · your conclusion (together, these sources suggest…) · citations for both authors · at least two different grammar items from the review.",
+     q:[["Your synthesis report","Park (2023) reports that teenagers who spend more than four hours a day on smartphones may sleep badly, because blue light delays melatonin production. Teenagers using night mode, she found, slept slightly better. Jones (2023), in contrast, argues that phones are not the main culprit at all. In her study, homework stress, early school start times and social anxiety predicted poor sleep even among teenagers who kept their phones away at night. The two accounts are not incompatible, since screens may worsen a problem they did not create. Together, these sources suggest that advice limited to phones may be too narrow. Schools that start later, and set lighter evening homework, might do more for adolescent sleep than any night-mode setting."],
+        ["Grammar items I used","Reduced relative clause (\"Teenagers using night mode\"); hedging (may, might); paired conjunction (neither… nor); verb + preposition (depend on)."]]}
+   ]},
+  {L:"D",t:"Mini Project: The \"Synthesis Showdown\" Debate",learn:[],
+   ex:[{n:"D1",k:"project",i:"Work in pairs or small groups. Your teacher will give you two short \"sources\" with opposite opinions on a silly topic. Your job: write a synthesis paragraph (4–5 sentences) comparing the two sources and reaching a conclusion. Then read your synthesis aloud. The class votes on the funniest or most creative conclusion.",x:""}]}
+ ]},
+
+{n:10,t:"Double Trouble: Paired Conjunctions & Sentence Combining",s:"both…and · not only…but also · either…or · neither…nor",grp:"Grammar core",tags:"paired conjunctions correlative both and not only but also either or neither nor sentence combining",
+ sec:[
+  {L:"A",t:"Paired conjunctions",
+   learn:[
+    {b:"p",x:"Paired conjunctions work in two parts. They connect similar ideas or choices."},
+    {b:"table",h:["Conjunction","Meaning","Example"],r:[
+      ["both… and","two things together","She speaks both Spanish and French."],
+      ["not only… but also","adds emphasis (the second idea is stronger)","He is not only smart but also very kind."],
+      ["either… or","a choice between two options","You can have either coffee or tea."],
+      ["neither… nor","not the first, not the second (negative)","She likes neither cold weather nor hot weather."]]},
+    {b:"note",x:"The two parts must be parallel (the same grammatical form). ✓ She wants both to travel and to learn.  ✗ She wants both to travel and learning."}
+   ],
+   ex:[
+    {n:"A1",k:"gap",i:"Complete each sentence with the correct paired conjunction: both…and · not only…but also · either…or · neither…nor",
+     q:[["___ the teacher ___ the students were happy with the test results — everyone was pleased.",["both","and"]],
+        ["You can choose ___ the red shirt ___ the blue one.",["either","or"]],
+        ["He is ___ a talented musician ___ a great writer.",["not only","but also"]],
+        ["She likes ___ spicy food ___ sweet food. She only likes salty snacks.",["neither","nor"]]]},
+    {n:"A2",k:"open",i:"Complete each sentence with your own idea. Keep the structure parallel.",
+     q:[["I enjoy both … and …","I enjoy both cooking and eating what other people cook."],
+        ["This class is not only useful but also …","…surprisingly funny."],
+        ["For the project, we can either … or …","…film an interview or build a short website."],
+        ["Neither my friend nor I …","…had read the instructions before we started."]]}
+   ]},
+  {L:"B",t:"Sentence combining drills",
+   learn:[
+    {b:"p",x:"Combining short sentences makes your writing smoother and more academic."},
+    {b:"eg",x:["She is smart. She is hardworking. → She is both smart and hardworking.",
+              "He didn’t call. He didn’t text. → He neither called nor texted.",
+              "The solution is cheap. It is also effective. → The solution is not only cheap but also effective."]}
+   ],
+   ex:[
+    {n:"B1",k:"write",i:"Combine each pair using the conjunction in parentheses.",
+     q:[["The movie was funny. The movie was exciting. (both…and)","The movie was both funny and exciting."],
+        ["She doesn’t eat meat. She doesn’t eat fish. (neither…nor)","She eats neither meat nor fish."],
+        ["We can leave now. We can wait for Maria. (either…or)","We can either leave now or wait for Maria."],
+        ["He lost his job. He also lost his apartment. (not only…but also)","He lost not only his job but also his apartment."]]}
+   ]},
+  {L:"C",t:"Write sentences using paired conjunctions",
+   learn:[],
+   ex:[
+    {n:"C1",k:"study",i:"Study the models.",h:["Type","Model sentence"],r:[
+      ["both… and","Both the introduction and the conclusion need revision."],
+      ["not only… but also","The new policy will not only save money but also reduce waste."],
+      ["either… or","You can either submit your draft online or bring a printed copy."],
+      ["neither… nor","Neither the first source nor the second source provides enough evidence."]]},
+    {n:"C2",k:"open",i:"Write four sentences of your own about one of these topics: social media and teenagers · climate change solutions · school rules.",
+     q:[["both… and",""],["not only… but also",""],["either… or",""],["neither… nor",""]]}
+   ]},
+  {L:"D",t:"Mini Project: The \"Sentence Mash-Up\" Game",learn:[],
+   ex:[{n:"D1",k:"project",i:"Play with a partner or small group. Your teacher will give you short sentence pairs. Your team must combine each pair into one smooth sentence using a paired conjunction (both…and, not only…but also, either…or, neither…nor). The first team to combine all the sentences correctly wins.",x:""}]}
+ ]}
+
+);
+/* ===== SETS 11–15 ===== */
+DATA.push(
+
+{n:11,t:"Flip It! Mastering Inversions for Formal Writing",s:"General inversions — formal and academic style",grp:"Grammar core",tags:"inversion never only then not until rarely seldom here there formal academic",
+ sec:[
+  {L:"A",t:"General inversions — what are they?",
+   learn:[
+    {b:"p",x:"In normal English, the subject comes before the verb. In an inversion, the verb (or auxiliary) comes before the subject. This makes your writing more formal, dramatic or academic."},
+    {b:"eg",x:["Normal: I have never seen such a beautiful sunset.  →  Inverted: Never have I seen such a beautiful sunset.",
+              "Normal: She only then understood the problem.  →  Inverted: Only then did she understand the problem."]},
+    {b:"table",h:["Pattern","Example"],r:[
+      ["Never + auxiliary + subject","Never have I felt so proud."],
+      ["Only then + did + subject","Only then did she realize her mistake."],
+      ["Not until + clause + auxiliary + subject","Not until I read the book did I understand the topic."],
+      ["Here / There + verb + subject","Here is the book you requested. / There goes the bus."],
+      ["Rarely / Seldom + auxiliary + subject","Rarely do we see such dedication."],
+      ["Not only… but also (with inversion)","Not only did he arrive late, but he also forgot his notes."]]},
+    {b:"trick",x:"If the normal sentence has an auxiliary (have, do, be, can, will), move it before the subject. If it has only a main verb, add did / does / do: He rarely eats meat → Rarely does he eat meat."}
+   ],
+   ex:[
+    {n:"A1",k:"match",i:"Match each normal sentence to its inverted version.",
+     o:[["A","Only then did she hear the news."],["B","Here are the keys you lost."],["C","Rarely do we see such talent."],["D","Never have I been so embarrassed."]],
+     q:[["I have never been so embarrassed.","D"],
+        ["She only then heard the news.","A"],
+        ["The keys you lost are here.","B"],
+        ["We rarely see such talent.","C"]]},
+    {n:"A2",k:"open",i:"Complete each inverted sentence with your own idea.",
+     q:[["Never have I …","Never have I been so relieved to see a bus."],
+        ["Only then did she …","Only then did she understand why the file kept crashing."],
+        ["Not until … will I finish this project","Not until the data arrives will I finish this project."],
+        ["Here is / Here are the …","Here are the three reasons the plan failed."],
+        ["Rarely does my teacher …","Rarely does my teacher hand back work without a comment."]]}
+   ]},
+  {L:"B",t:"Rewrite normal sentences as inversions",
+   learn:[],
+   ex:[
+    {n:"B1",k:"write",i:"Rewrite each sentence as an inversion, using the word in parentheses.",
+     q:[["I have never heard such a strange story. (Never)","Never have I heard such a strange story."],
+        ["She only then understood the teacher’s point. (Only then)","Only then did she understand the teacher’s point."],
+        ["We rarely see such honesty in politics. (Rarely)","Rarely do we see such honesty in politics."],
+        ["He not only failed the test, but he also blamed the teacher. (Not only)","Not only did he fail the test, but he also blamed the teacher."],
+        ["I realized the truth not until I read the report. (Not until)","Not until I read the report did I realize the truth."]]},
+    {n:"B2",k:"open",i:"Write two normal sentences of your own. Then invert them.",
+     q:[["Normal sentence 1",""],["Inverted 1",""],["Normal sentence 2",""],["Inverted 2",""]]}
+   ]},
+  {L:"C",t:"Write 6 inverted sentences (formal / academic style)",
+   learn:[],
+   ex:[
+    {n:"C1",k:"study",i:"Study the models.",h:["Pattern","Model (academic topic)"],r:[
+      ["Never…","Never have researchers found a single solution to climate change."],
+      ["Only then…","Only then did the government realize the severity of the crisis."],
+      ["Not until…","Not until students learn time management will they reduce their stress."],
+      ["Here / There…","Here are the three main causes of online learning fatigue."],
+      ["Rarely / Seldom…","Seldom does a single policy address both economic and environmental concerns."],
+      ["Not only… but also","Not only does exercise improve physical health, but it also boosts mental well-being."]]},
+    {n:"C2",k:"open",i:"Brainstorm topics with a partner and write six inverted sentences of your own.",
+     q:[["1 (Never…)",""],["2 (Only then…)",""],["3 (Not until…)",""],["4 (Here / There…)",""],["5 (Rarely / Seldom…)",""],["6 (Not only… but also)",""]]}
+   ]},
+  {L:"D",t:"Mini Project: The \"Inversion Intrigue\" Mystery Game",learn:[],
+   ex:[{n:"D1",k:"project",i:"You are a detective writing clues for a mystery. Each clue must be written as an inverted sentence. Step 1: choose a secret person, place or object related to school or daily life. Step 2: write 3 inverted clues using different inversion patterns. Step 3: read your clues to a partner — they guess the answer. Step 4: switch roles.",
+        x:"Challenge: write a short paragraph (6–8 sentences) for a formal essay. Use at least 3 different inversions and underline them."}]}
+ ]},
+
+{n:12,t:"Neither Here nor There: Mastering Either & Neither",s:"Either and neither — determiner, pronoun, connector",grp:"Grammar core",tags:"either neither nor determiner pronoun connector me neither either way",
+ sec:[
+  {L:"A",t:"Neither / Either — three different roles",
+   learn:[
+    {b:"p",x:"Neither = not one, not the other (negative). Either = one or the other (a choice; also used in negatives)."},
+    {b:"table",h:["Role","Explanation","With neither","With either"],r:[
+      ["Determiner","Describes a noun (comes before it)","Neither solution is perfect.","Either option works for me."],
+      ["Pronoun","Replaces the noun (stands alone)","I asked both students. Neither knew the answer.","Either is fine."],
+      ["Connector","Joins two negative or positive choices","She speaks neither Spanish nor French.","You can have either coffee or tea."]]},
+    {b:"trick",x:"Neither is always singular: neither student is… / neither of them is… Either can be singular (either option is fine), though in conversation people sometimes use the plural (either of them are fine — informal)."}
+   ],
+   ex:[
+    {n:"A1",k:"pick",i:"What role does neither or either play in each sentence?",
+     o:[["D","D — determiner"],["P","P — pronoun"],["C","C — connector (with nor/or)"]],
+     q:[["Neither answer is correct.","D"],
+        ["I invited two friends, but neither came.","P"],
+        ["She eats neither meat nor fish.","C"],
+        ["Either day works for the meeting.","D"],
+        ["You can have either soup or salad.","C"],
+        ["Two students applied. Neither had the required score.","P"]]},
+    {n:"A2",k:"gap",i:"Complete each sentence with neither or either.",
+     q:[["I have two brothers. ___ of them lives near me.",["neither"]],
+        ["You can take ___ bus. They both go downtown.",["either"]],
+        ["___ the blue pen nor the black pen has ink.",["neither"]],
+        ["She doesn’t like ___ coffee or tea. She only drinks water.",["either"]],
+        ["A: \"Which movie do you want to watch?\"  B: \"___ is fine. You choose.\"",["either"]],
+        ["___ of the two solutions seems feasible. We need a third option.",["neither"]]]}
+   ]},
+  {L:"B",t:"Fill-in-the-blank + dialogue practice",
+   learn:[
+    {b:"p",x:"In conversation, neither and either are very common — especially in short responses."},
+    {b:"table",h:["Response","Meaning"],r:[
+      ["Me neither.","I also don’t / didn’t / haven’t (agreeing with a negative)"],
+      ["I don’t either.","The same as \"me neither\" — slightly more formal"],
+      ["Either way.","Both options are acceptable"],
+      ["Neither do I.","An inverted response (formal)"]]},
+    {b:"eg",x:["A: I don’t like spicy food.  B: Me neither. / Neither do I. / I don’t either.",
+              "A: Should we go left or right?  B: Either way. You decide."]}
+   ],
+   ex:[
+    {n:"B1",k:"write",i:"Write a short response to each line using neither or either.",
+     q:[["A: I haven’t finished the reading.","Me neither. / Neither have I."],
+        ["A: Do you want the window seat or the aisle?","Either is fine, thanks."],
+        ["A: I can’t stand long meetings.","Neither can I."],
+        ["A: Should I email her or call her?","Either way works."],
+        ["A: I didn’t understand that last question.","I didn’t either."]]},
+    {n:"B2",k:"open",i:"Write a short dialogue (6–8 lines) between two people who agree about everything they dislike. Use neither or either at least four times, in at least two different roles.",
+     q:[["Your dialogue",""]]}
+   ]},
+  {L:"C",t:"Mini Project: The \"Neither Nor\" Agreement Chain",learn:[],
+   ex:[{n:"C1",k:"project",i:"Stand in a circle. The first student says something they don’t do (\"I don’t drink coffee\"). The next must agree using a different structure (\"Neither do I\"), then add their own negative statement. Nobody may reuse a response form that has already been used in the round — me neither, neither do I, I don’t either, nor do I. Anyone who repeats a form, or breaks the grammar, sits down.",x:""}]}
+ ]},
+
+{n:13,t:"Who’s Who? Pronoun Agreement & Clarity",s:"Pronoun correspondence, agreement traps and ambiguity",grp:"Grammar core",tags:"pronoun agreement antecedent ambiguous collective nouns everyone singular they clarity",
+ sec:[
+  {L:"A",t:"Pronoun correspondence — what is it?",
+   learn:[
+    {b:"p",x:"A pronoun (he, she, it, they, we, you, them, their…) must agree with the noun it replaces — its antecedent."},
+    {b:"table",h:["Rule","Correct","Incorrect"],r:[
+      ["Number (singular → singular, plural → plural)","The student forgot his book.","The student forgot their book. (traditional rule)"],
+      ["Gender","Maria said she was tired.","Maria said he was tired."],
+      ["Clarity (one clear noun — no confusion)","When John called Peter, John hung up.","When John called Peter, he hung up. (who?)"]]},
+    {b:"note",x:"Modern usage: singular they is now accepted in modern English — Every student should bring their own laptop is acceptable."}
+   ],
+   ex:[
+    {n:"A1",k:"mcq",i:"Which version is correct?",
+     q:[["The committee of senior researchers finally released ___ findings.",["its","their"],0,"Committee is singular, even with a long phrase between it and the pronoun."],
+        ["Maria told her sister that ___ had passed.",["she","they"],0,"The antecedent is singular and feminine — though the sentence is still ambiguous about who passed."],
+        ["The collection of rare stamps lost ___ value over time.",["its","their"],0,"The subject is collection (singular), not stamps."]]},
+    {n:"A2",k:"write",i:"Each sentence has a pronoun agreement error. Write the corrected sentence.",
+     q:[["The group of students decided to present their project on Friday, but it was not ready.","The group of students decided to present its project on Friday, but the project was not ready."],
+        ["Every one of the players must bring their own equipment to practice.","Every one of the players must bring his or her own equipment to practice."],
+        ["Neither the director nor the actors was willing to change his schedule.","Neither the director nor the actors were willing to change their schedules."],
+        ["The collection of ancient coins, which had been hidden for centuries, lost their value after the market crashed.","The collection of ancient coins, which had been hidden for centuries, lost its value after the market crashed."],
+        ["Each of the girls brought their own phone to the party.","Each of the girls brought her own phone to the party."]]}
+   ]},
+  {L:"B",t:"Pronoun agreement in long, complex sentences",
+   learn:[
+    {b:"p",x:"In proficiency tests you will see long sentences with a pronoun error. The error is often a mismatch between the pronoun and its noun — even when the two are far apart."},
+    {b:"table",h:["Trap","Example","Correction"],r:[
+      ["Long distance between noun and pronoun","The collection of rare stamps, which had been passed down for generations, lost their value over time.","lost its value (collection = singular)"],
+      ["Collective nouns (team, committee, family, group)","The team celebrated their victory.","The team celebrated its victory. (American English)"],
+      ["Indefinite pronouns (everyone, each, neither)","Everyone brought their own lunch. (acceptable modern)","Traditional: Everyone brought his or her own lunch."],
+      ["Neither… nor with mixed subjects","Neither the teacher nor the students turned in his homework.","…turned in their homework (closest noun = students, plural)"]]}
+   ],
+   ex:[
+    {n:"B1",k:"gap",i:"Complete each sentence with the correct pronoun.",
+     q:[["Everyone in the class finished ___ homework.",["their|his or her"]],
+        ["Neither of the boys remembered ___ password.",["his"]],
+        ["A doctor must be patient with ___ patients.",["his or her|their"]],
+        ["The company announced ___ new policy yesterday.",["its"]],
+        ["If a student is absent, ___ should email the teacher.",["they|he or she"]]]}
+   ]},
+  {L:"C",t:"Ambiguous pronoun correction",
+   learn:[
+    {b:"p",x:"A pronoun is ambiguous when the reader cannot tell which noun it refers to."},
+    {b:"eg",x:["✗ Mary told Sarah that she was promoted. (Who was promoted — Mary or Sarah?)"]},
+    {b:"trick",x:"Three fixes: repeat the noun (Mary told Sarah that Mary was promoted) · rewrite the sentence (Mary was promoted, and she told Sarah) · use direct speech (Mary told Sarah, \"I was promoted.\")"}
+   ],
+   ex:[
+    {n:"C1",k:"write",i:"Each sentence is ambiguous. Rewrite it so that the first meaning given is clear.",
+     q:[["Lisa saw Anna and waved at her. (Lisa waved at Anna)","Lisa saw Anna and waved at Anna."],
+        ["The manager spoke to the employee because he was late. (the employee was late)","The manager spoke to the employee because the employee was late."],
+        ["The car hit the tree, but it wasn’t damaged. (the car wasn’t damaged)","The car hit the tree, but the car wasn’t damaged."],
+        ["John told Mike that he failed the test. (John failed)","John told Mike, \"I failed the test.\""]]}
+   ]},
+  {L:"D",t:"Rewrite unclear sentences",
+   learn:[],
+   ex:[
+    {n:"D1",k:"write",i:"Rewrite each sentence so the meaning is clear.",
+     q:[["When the door hit the table, it broke.","When the door hit the table, the table broke."],
+        ["A nurse must be kind to his patients.","Nurses must be kind to their patients."],
+        ["Neither the teacher nor the student had prepared his lesson.","Neither the teacher nor the student had prepared the lesson."],
+        ["The dog chased the cat until it got tired.","The dog chased the cat until the dog got tired."],
+        ["John called Paul, but he didn’t answer.","John called Paul, but Paul didn’t answer."],
+        ["The president met with the ambassador in his office.","The president met with the ambassador in the president’s office."]]}
+   ]},
+  {L:"E",t:"Mini Project: The \"Pronoun Prosecutor\" Courtroom Game",learn:[],
+   ex:[{n:"E1",k:"project",i:"You are a Pronoun Prosecutor. Your job is to find the pronoun crime in each sentence and \"fix the case\" by rewriting it correctly. Play with a partner — whoever fixes the most sentences correctly wins.",x:""}]}
+ ]},
+
+{n:14,t:"Pick the Right Partner: Verb + Preposition Combinations",s:"Verb + preposition combinations for academic writing",grp:"Grammar core",tags:"verb preposition depend on consist of refer to lead to result in result from contribute to collocation",
+ sec:[
+  {L:"A",t:"Verb + preposition — what are they?",
+   learn:[
+    {b:"p",x:"In English, many verbs are followed by a specific preposition. Using the wrong one is a common error — even at C1 level."},
+    {b:"eg",x:["✗ The solution depends of many factors.  →  ✓ The solution depends on many factors.",
+              "✗ This chapter consists from three parts.  →  ✓ This chapter consists of three parts."]},
+    {b:"note",x:"Why learn them? Academic writing requires precision · exams (IELTS, TOEFL, Cambridge) test these combinations · native speakers notice the errors immediately."},
+    {b:"table",h:["Verb + preposition","Meaning","Example"],r:[
+      ["depend on","be determined by","The outcome depends on the quality of the data."],
+      ["consist of","be made of / include","The report consists of three sections."],
+      ["refer to","mention or point to","In your essay, refer to at least two sources."],
+      ["lead to","cause","Poor sleep can lead to health problems."],
+      ["result in","cause (usually negative or significant)","The accident resulted in serious injuries."],
+      ["result from","be caused by","The delay resulted from a technical issue."],
+      ["contribute to","help cause or add to","Exercise contributes to better mental health."],
+      ["specialize in","focus on a specific area","She specializes in environmental law."],
+      ["approve of","have a positive opinion of","Most parents approve of the new policy."],
+      ["insist on","demand strongly","The teacher insists on proper citations."],
+      ["belong to","be a member of","Which category does this belong to?"],
+      ["care about","be interested in / concerned with","Researchers care about data accuracy."]]}
+   ],
+   ex:[
+    {n:"A1",k:"match",i:"Match each verb with its preposition.",
+     o:[["on","on"],["of","of"],["to","to"],["in","in"],["from","from"],["about","about"]],
+     q:[["depend","on"],["consist","of"],["refer","to"],["lead","to"],["result (cause)","in"],
+        ["result (be caused by)","from"],["specialize","in"],["care","about"],["approve","of"],["insist","on"]]},
+    {n:"A2",k:"gap",i:"Complete each sentence with the correct preposition.",
+     q:[["The success of the project depends ___ several factors, including budget and timing.",["on"]],
+        ["The committee consists ___ representatives from each department.",["of"]],
+        ["In your conclusion, you should refer ___ the main arguments you presented earlier.",["to"]],
+        ["A lack of exercise can lead ___ serious health issues.",["to"]],
+        ["The company’s failure resulted ___ poor management decisions.",["from"]],
+        ["The high sales numbers resulted ___ an effective marketing campaign.",["from"]],
+        ["Regular physical activity contributes ___ overall well-being.",["to"]],
+        ["She decided to specialize ___ renewable energy engineering.",["in"]],
+        ["Many scientists approve ___ the use of AI in medical research.",["of"]],
+        ["The university insists ___ original work and proper citations.",["on"]]]}
+   ]},
+  {L:"B",t:"result in vs. result from — the classic trap",
+   learn:[
+    {b:"p",x:"These two look alike and mean opposite things. Follow the arrow: X results in Y means X causes Y. X results from Y means Y causes X."},
+    {b:"eg",x:["The storm resulted in three days of flooding. (storm → flooding)",
+              "The flooding resulted from three days of storms. (storms → flooding)"]}
+   ],
+   ex:[
+    {n:"B1",k:"gap",i:"Complete with in or from.",
+     q:[["The delay resulted ___ a technical fault in the booking system.",["from"]],
+        ["The new policy resulted ___ a sharp drop in absences.",["in"]],
+        ["Most of the confusion resulted ___ the unclear instructions.",["from"]],
+        ["Cutting the budget resulted ___ longer waiting times.",["in"]]]},
+    {n:"B2",k:"open",i:"Write four sentences about your own studies or work, using depend on, consist of, lead to and contribute to.",
+     q:[["depend on",""],["consist of",""],["lead to",""],["contribute to",""]]}
+   ]},
+  {L:"C",t:"Mini Project: The \"20 Questions\" Grammar Clue Game",learn:[],
+   ex:[{n:"C1",k:"project",i:"Your team thinks of a person, place or thing. You give clues using verb + preposition combinations (it consists of…, it belongs to…, it leads to…, people care about it because…). The other teams must guess what you are describing — but you lose a point for every wrong preposition you use.",x:""}]}
+ ]},
+
+{n:15,t:"The Ultimate Grammar Showdown: Review of Sets 10–14",s:"Integrated review — conjunctions, inversions, either/neither, pronouns, prepositions",grp:"Review",tags:"review sets 10-14 error correction paired conjunctions inversions neither either pronoun preposition",
+ sec:[
+  {L:"A",t:"What are we reviewing?",
+   learn:[
+    {b:"table",h:["Set","Topic"],r:[
+      ["10","Paired conjunctions (both…and, not only…but also, either…or, neither…nor)"],
+      ["11","General inversions (Never have I…, Only then did she…, Not until…, Here is…)"],
+      ["12","Neither / Either (as pronouns, determiners, and with nor/or)"],
+      ["13","Pronoun correspondence (agreement + clarity / ambiguous pronouns)"],
+      ["14","Verb + preposition combinations (depend on, consist of, refer to…)"]]}
+   ],
+   ex:[
+    {n:"A1",k:"pick",i:"Read each sentence. Which set does it belong to?",
+     o:[["10","Set 10"],["11","Set 11"],["12","Set 12"],["13","Set 13"],["14","Set 14"]],
+     q:[["Not only did she finish the report, but she also revised it.","11"],
+        ["Never have I seen such a well-organized conference.","11"],
+        ["Neither of the answers is correct.","12"],
+        ["The solution depends on several factors.","14"],
+        ["Everyone forgot their umbrella.","13"],
+        ["She speaks both Portuguese and Italian.","10"]]},
+    {n:"A2",k:"write",i:"Each sentence has one error from Sets 10–14. Write the corrected sentence.",
+     q:[["Not only she speaks Spanish, but she also speaks French.","Not only does she speak Spanish, but she also speaks French."],
+        ["Only then she realized the importance of the research.","Only then did she realize the importance of the research."],
+        ["Neither the teacher or the student was prepared for the discussion.","Neither the teacher nor the student was prepared for the discussion."],
+        ["I don’t like neither coffee nor tea.","I like neither coffee nor tea."],
+        ["Never I have felt so confident about an exam.","Never have I felt so confident about an exam."],
+        ["The final grade consists from three components.","The final grade consists of three components."],
+        ["When the vase fell off the table, it broke. (fix the ambiguity)","When the vase fell off the table, the vase broke."],
+        ["The professor to who I spoke was very kind.","The professor to whom I spoke was very kind."],
+        ["Every student should bring his own laptop to class. (rewrite to be inclusive)","All students should bring their own laptops to class."],
+        ["Either of the two solutions are acceptable.","Either of the two solutions is acceptable."]]}
+   ]},
+  {L:"B",t:"Part 2 — more error correction",
+   learn:[],
+   ex:[
+    {n:"B1",k:"write",i:"Each sentence has one error. Write the corrected sentence.",
+     q:[["Neither the manager nor the employees was happy with the decision.","Neither the manager nor the employees were happy with the decision."],
+        ["Only then she understood the importance of the research.","Only then did she understand the importance of the research."],
+        ["The book consists from three main sections.","The book consists of three main sections."],
+        ["Everyone forgot his notebook. (rewrite to be inclusive)","Everyone forgot their notebook."],
+        ["When the teacher spoke to the student, he was very nervous. (fix the ambiguity)","When the teacher spoke to the student, the student was very nervous."],
+        ["Not only he finished the project, but he also presented it.","Not only did he finish the project, but he also presented it."],
+        ["I don’t like neither the blue shirt nor the red one.","I like neither the blue shirt nor the red one."],
+        ["The accident resulted in a simple mistake.","The accident resulted from a simple mistake."],
+        ["Rarely he arrives on time for meetings.","Rarely does he arrive on time for meetings."],
+        ["The professor to who I spoke was kind.","The professor to whom I spoke was kind."]]}
+   ]},
+  {L:"C",t:"Mini Project: The \"Grammar in Conversation\" Challenge",learn:[],
+   ex:[{n:"C1",k:"project",i:"Work in pairs or small groups. Write a short dialogue (10–14 lines) between two people that naturally includes all five grammar topics from Sets 10–14. The dialogue can be funny, dramatic or realistic — but the grammar must be correct.",x:""}]}
+ ]}
+
+);
+/* ===== SETS 16–20 ===== */
+DATA.push(
+
+{n:16,t:"Grammar in the Wild: Fixing Real-World English",s:"Grammar in context — labelling structures in an academic paragraph",grp:"Review",tags:"grammar in context academic paragraph label structures review writing",
+ sec:[
+  {L:"A",t:"Grammar in context — why it matters",
+   learn:[
+    {b:"p",x:"You have learned many grammar structures in previous sets. But grammar is not just for exercises — it helps you write clear, precise, academic paragraphs. In this set you will read a short academic paragraph, identify and label all the grammar structures in it, and then write your own."},
+    {b:"p",x:"Read the paragraph below twice. First for meaning. Second, to notice the grammar."},
+    {b:"eg",x:["Not only does online learning offer flexibility, but it also presents significant challenges. Both students and teachers have reported feelings of isolation. Neither a perfect virtual platform nor an ideal schedule can completely replace face-to-face interaction. Never have researchers found a single solution that works for every learner. Only then, after examining multiple studies, did we understand the complexity of the issue. The success of online education depends on several factors, including student motivation, access to technology, and teacher training. A well-structured course consists of clear objectives, regular feedback, and opportunities for collaboration. Everyone in the educational community should carefully consider their own needs before choosing a mode of instruction. Rarely does a one-size-fits-all approach lead to positive outcomes for all students."]},
+    {b:"table",h:["Label","Meaning"],r:[
+      ["[PC]","Paired conjunction"],
+      ["[INV]","Inversion"],
+      ["[V+P]","Verb + preposition"],
+      ["[NE/EI]","Neither / Either"],
+      ["[PRO]","Pronoun correspondence (agreement / clarity)"],
+      ["[WF]","Word form (adjective / adverb)"]]}
+   ],
+   ex:[
+    {n:"A1",k:"write",i:"Find an example of each structure in the paragraph above.",
+     q:[["[INV] an inversion","Never have researchers found a single solution that works for every learner."],
+        ["[PC] a paired conjunction","Both students and teachers have reported feelings of isolation."],
+        ["[NE/EI] neither / either","Neither a perfect virtual platform nor an ideal schedule can completely replace face-to-face interaction."],
+        ["[V+P] a verb + preposition","The success of online education depends on several factors."],
+        ["[V+P] a second verb + preposition","A well-structured course consists of clear objectives, regular feedback, and opportunities for collaboration."],
+        ["[PRO] pronoun correspondence","Everyone in the educational community should carefully consider their own needs."],
+        ["[WF] a word form (adverb)","…should carefully consider… / Rarely does a one-size-fits-all approach lead to positive outcomes."],
+        ["[INV] a second inversion","Only then, after examining multiple studies, did we understand the complexity of the issue."],
+        ["Parallel structure (Set 3)","…clear objectives, regular feedback, and opportunities for collaboration."]]},
+    {n:"A2",k:"pick",i:"Which structure is each extract?",
+     o:[["PC","[PC] Paired conjunction"],["INV","[INV] Inversion"],["VP","[V+P] Verb + preposition"],["NE","[NE/EI] Neither / Either"],["PRO","[PRO] Pronoun"],["WF","[WF] Word form"]],
+     q:[["Not only does online learning offer flexibility, but it also presents significant challenges.","INV"],
+        ["Both students and teachers have reported feelings of isolation.","PC"],
+        ["Neither a perfect virtual platform nor an ideal schedule…","NE"],
+        ["Rarely does a one-size-fits-all approach lead to positive outcomes.","INV"],
+        ["The success of online education depends on several factors.","VP"],
+        ["Everyone… should consider their own needs.","PRO"],
+        ["…should carefully consider…","WF"]]}
+   ]},
+  {L:"B",t:"Write your own academic paragraph",
+   learn:[
+    {b:"p",x:"Now write an original academic paragraph that uses at least eight different target structures from previous sets. Choose a topic from the box."},
+    {b:"note",x:"Topics: why TikTok bans are actually good for your brain · the problem with \"hustle culture\" in high school · why your phone’s \"bedtime mode\" is lying to you · the best study playlist (according to science) · why group projects are secretly a scam · the truth about \"natural\" beauty filters · why pineapple on pizza is a war crime · the correct way to load a dishwasher (yes, there is one) · why your mom was right about sleeping early."}
+   ],
+   ex:[
+    {n:"B1",k:"open",i:"Plan your paragraph: topic plus the structures you intend to use.",
+     q:[["My topic",""],["Structures I will use (list at least 8)",""]]},
+    {n:"B2",k:"open",i:"Write your paragraph (8–12 sentences), then label the structures in the margin or underline them.",
+     q:[["Your paragraph","Not only does hustle culture promise success, but it also quietly redefines rest as failure. Both students and teachers now speak of exhaustion as if it were an achievement. Never have teenagers had so many tools for productivity, and rarely have they felt less productive. The problem depends on a simple confusion: busyness is visible, whereas progress often is not. A healthy schedule consists of focused work, deliberate rest, and time that belongs to nobody else. Neither a color-coded planner nor a 5 a.m. alarm can substitute for sleep. Students pressured into constant activity tend to produce weaker work, not stronger. Everyone in a school should be allowed to protect their own evenings. Only then, after the first genuinely free weekend, did I understand how much the culture had cost me."]]}
+   ]},
+  {L:"C",t:"Mini Project: The \"Grammar Star\" Interview",learn:[],
+   ex:[{n:"C1",k:"project",i:"Work with a partner. One of you is the interviewer, the other is the guest — a celebrity, an expert, a fictional character, or even a talking object. Write and perform a short interview script (10–14 lines) in which the guest uses at least five different grammar structures from previous sets.",x:""}]}
+ ]},
+
+{n:17,t:"Shape Shifters: Mastering Word Forms",s:"Word forms — noun, verb, adjective, adverb",grp:"Grammar core",tags:"word forms word families noun verb adjective adverb suffix error correction",
+ sec:[
+  {L:"A",t:"Word forms — noun, verb, adjective, adverb",
+   learn:[
+    {b:"p",x:"One root word can often change into four different forms. Knowing these helps you write more accurately and flexibly."},
+    {b:"table",h:["Root","Noun","Verb","Adjective","Adverb"],r:[
+      ["create","creation","create","creative","creatively"],
+      ["differ","difference","differ","different","differently"],
+      ["economy","economy","economize","economic","economically"],
+      ["strong","strength","strengthen","strong","strongly"]]},
+    {b:"trick",x:"Adverbs often end in -ly, but not always: fast, hard, well."}
+   ],
+   ex:[
+    {n:"A1",k:"gap",i:"Complete the word families. Type the missing form.",
+     q:[["beauty → noun: beauty · verb: beautify · adjective: ___ · adverb: beautifully",["beautiful"]],
+        ["care → noun: care · verb: care · adjective: careful · adverb: ___",["carefully"]],
+        ["danger → noun: danger · verb: ___ · adjective: dangerous · adverb: dangerously",["endanger"]],
+        ["hope → noun: hope · verb: hope · adjective: ___ · adverb: hopefully",["hopeful"]],
+        ["nature → noun: nature · verb: — · adjective: ___ · adverb: naturally",["natural"]],
+        ["act → noun: action · verb: act · adjective: active · adverb: ___",["actively"]],
+        ["quick → noun: quickness · verb: quicken · adjective: quick · adverb: ___",["quickly"]],
+        ["happy → noun: ___ · verb: — · adjective: happy · adverb: happily",["happiness"]],
+        ["wide → noun: width · verb: ___ · adjective: wide · adverb: widely",["widen"]],
+        ["deep → noun: depth · verb: deepen · adjective: deep · adverb: ___",["deeply"]]]},
+    {n:"A2",k:"mcq",i:"Choose the correct word form.",
+     q:[["The ___ of the sunset took my breath away.",["beauty","beautifully"],0,"After the, a noun is needed as the subject."],
+        ["She works ___ because she doesn’t want to make mistakes.",["careful","carefully"],1,"An adverb is needed to describe the verb works."],
+        ["Climate change may ___ many animal species.",["danger","endanger"],1,"A verb is needed after may."],
+        ["I ___ that the solution will work.",["hope","hopeful"],0,"A verb is needed after the subject I."],
+        ["It is ___ to feel nervous before a presentation.",["nature","natural"],1,"After It is, an adjective is needed."]]}
+   ]},
+  {L:"B",t:"Error correction + word family tables",
+   learn:[
+    {b:"p",x:"Many students mix up word forms. These are the common errors."},
+    {b:"table",h:["Wrong","Right","Why"],r:[
+      ["She is a beauty singer.","She is a beautiful singer.","An adjective is needed to describe a noun (singer)."],
+      ["He ran quick.","He ran quickly.","An adverb is needed to describe a verb (ran)."],
+      ["We need a create solution.","We need a creative solution.","An adjective is needed to describe a noun (solution)."],
+      ["She spoke angry.","She spoke angrily.","An adverb is needed to describe a verb (spoke)."]]}
+   ],
+   ex:[
+    {n:"B1",k:"write",i:"Each sentence has one word form error. Write the corrected sentence.",
+     q:[["The team worked very efficient to finish the project on time.","The team worked very efficiently to finish the project on time."],
+        ["She gave a wonderfully presentation about climate change.","She gave a wonderful presentation about climate change."],
+        ["He is a deeply person who thinks about everything carefully.","He is a deep person who thinks about everything carefully."],
+        ["The music was so beauty that I almost cried.","The music was so beautiful that I almost cried."],
+        ["She drives very careful because the roads are icy.","She drives very carefully because the roads are icy."]]},
+    {n:"B2",k:"open",i:"Complete the word family table for these roots: able · broad · center · dark · efficient · free · growth · heavy · long · strong.",
+     q:[["able — noun / verb / adjective / adverb","ability · enable · able · ably"],
+        ["broad — noun / verb / adjective / adverb","breadth · broaden · broad · broadly"],
+        ["center — noun / verb / adjective / adverb","center · centralize · central · centrally"],
+        ["dark — noun / verb / adjective / adverb","darkness · darken · dark · darkly"],
+        ["efficient — noun / verb / adjective / adverb","efficiency · — · efficient · efficiently"],
+        ["free — noun / verb / adjective / adverb","freedom · free · free · freely"],
+        ["growth — noun / verb / adjective / adverb","growth · grow · growing · — "],
+        ["heavy — noun / verb / adjective / adverb","weight · — · heavy · heavily"],
+        ["long — noun / verb / adjective / adverb","length · lengthen · long · long"],
+        ["strong — noun / verb / adjective / adverb","strength · strengthen · strong · strongly"]]}
+   ]},
+  {L:"C",t:"Mini Project: The \"Word Form\" Poster Challenge",learn:[],
+   ex:[{n:"C1",k:"project",i:"Create a colorful poster (on paper or digital) for one root word from this set. Your poster must show all four forms (noun, verb, adjective, adverb), an example sentence for each form, and a simple drawing or icon for each sentence.",x:""}]}
+ ]},
+
+{n:18,t:"Read Fast, Write Smart: Timed Reading & Paraphrasing",s:"Timed reading + paraphrasing (speed + accuracy)",grp:"Skills & writing",tags:"timed reading paraphrasing speed accuracy ielts toefl memory",
+ sec:[
+  {L:"A",t:"Why timed reading + paraphrasing?",
+   learn:[
+    {b:"p",x:"In academic and exam contexts (IELTS, TOEFL, Cambridge) you must read quickly — finding main ideas under time pressure — and paraphrase accurately, restating information in your own words without copying."},
+    {b:"trick",x:"Speed without accuracy = useless. Accuracy without speed = too slow for exams. This set trains both."},
+    {b:"p",x:"Text A — Climate change refers to long-term shifts in temperatures and weather patterns. These shifts may be natural, but since the 1800s human activities have been the main driver. Burning fossil fuels (coal, oil and gas) releases greenhouse gases, which trap heat in the atmosphere. This process, called the greenhouse effect, has warmed the planet by approximately 1.1°C since pre-industrial times."}
+   ],
+   ex:[
+    {n:"A1",k:"write",i:"Read Text A once. Then answer without looking back.",
+     q:[["What is the main cause of climate change since the 1800s?","Human activity — above all the burning of fossil fuels."],
+        ["What do greenhouse gases do?","They trap heat in the atmosphere, which warms the planet."],
+        ["How much has the planet warmed since pre-industrial times?","By roughly 1.1°C."]]}
+   ]},
+  {L:"B",t:"Timed reading — first attempt",
+   learn:[
+    {b:"note",x:"Read Text B with a timer running. Aim for 90 seconds, then record your time."},
+    {b:"p",x:"Text B — Remote work, also known as telecommuting, has grown significantly since 2020. Before the pandemic, only 6% of employees worked from home regularly. By 2022, that number had risen to 25%. This shift has brought both benefits and challenges. On the positive side, remote work eliminates commuting time, which can save employees an average of 54 minutes per day. It also offers greater flexibility for parents and caregivers. However, remote work may also lead to feelings of isolation. A study by Harvard Business Review found that 40% of remote workers reported feeling less connected to their colleagues compared to in-office workers. Additionally, some employees struggle to maintain work-life boundaries when their home becomes their office. The long-term effects of this shift are still unclear, but researchers suggest that hybrid models (partly in office, partly remote) may become the new standard."}
+   ],
+   ex:[
+    {n:"B1",k:"open",i:"Record your reading time for Text B.",q:[["Your reading time (seconds)",""]]},
+    {n:"B2",k:"write",i:"Without looking back at Text B, paraphrase the following information in your own words.",
+     q:[["The percentage of remote workers before the pandemic versus in 2022","Home working rose from about one employee in sixteen before the pandemic to one in four by 2022."],
+        ["One benefit of remote work mentioned in the text","Workers no longer commute, which gives back close to an hour of each day."],
+        ["One challenge of remote work mentioned in the text","Around two in five remote workers feel less connected to their colleagues."],
+        ["The hybrid model prediction","Researchers expect a mixture of office and home working to become the normal arrangement."]]}
+   ]},
+  {L:"C",t:"Speed + accuracy",
+   learn:[
+    {b:"note",x:"Now a second timed reading. Try to improve your speed while keeping your accuracy."},
+    {b:"p",x:"Text C (275 words) — Artificial intelligence (AI) is transforming education in ways that were unimaginable a decade ago. AI-powered tools can now personalize learning by adapting to an individual student’s strengths and weaknesses. For example, intelligent tutoring systems can identify when a student is struggling with a particular concept and provide additional practice problems automatically. This technology has shown promising results. A meta-analysis of 30 studies found that students using AI tutoring systems improved their test scores by an average of 15% compared to traditional instruction."},
+    {b:"p",x:"However, the integration of AI in education also raises concerns. Privacy is a major issue, as many AI systems collect large amounts of student data. Without proper safeguards, this information could be misused. Additionally, there is a risk that AI could widen the digital divide. Students in wealthy schools may have access to advanced AI tools, while those in underfunded schools may not. Some educators also worry that AI might reduce human interaction in the classroom, which is essential for developing social and emotional skills."},
+    {b:"p",x:"Despite these challenges, most experts agree that AI will play an increasingly important role in education. The key is to implement it carefully, with clear regulations and a focus on equity. Neither complete adoption nor total rejection seems wise. Instead, a balanced approach that combines AI tools with human teaching may offer the best outcomes for students."}
+   ],
+   ex:[
+    {n:"C1",k:"open",i:"Record your reading time for Text C. Goal: faster than Text B, but still accurate.",
+     q:[["Your reading time (seconds)",""],["Was it faster than B1? Were you still accurate?",""]]},
+    {n:"C2",k:"write",i:"Without looking back at Text C, complete these paraphrases.",
+     q:[["What AI-powered tools can do (two benefits)","They adjust to each learner’s strengths and weaknesses, and they spot the moment a student gets stuck and supply extra practice."],
+        ["The result of the meta-analysis of 30 studies","Students taught with AI tutoring scored about 15% higher than those taught conventionally."],
+        ["Two concerns about AI in education","The amount of student data collected, and the risk that well-funded schools get the best tools while others fall further behind."],
+        ["The balanced approach recommended by experts","Neither adopting AI wholesale nor rejecting it outright; combining AI tools with human teaching, under clear rules and with attention to fairness."]]}
+   ]},
+  {L:"D",t:"Mini Project: The \"Paraphrase & Guess\" Game",learn:[],
+   ex:[{n:"D1",k:"project",i:"Paraphrase a sentence about an everyday topic — but add a personal twist. Write your paraphrase on a slip of paper and put it in a bag. Your teacher reads each paraphrase aloud and the class guesses who wrote it.",
+        x:"Examples — \"I should probably go to bed earlier.\" → \"Going to bed before midnight is something I rarely do, which explains why I’m always sleepy during math class.\"  ·  \"My phone battery dies too fast.\" → \"My phone gives up on life by 2pm every day — just like I do when I have to study.\""}]}
+ ]},
+
+{n:19,t:"Me, Myself, and Tomorrow: Strengths & Future Vision",s:"Life journal — strengths + future vision",grp:"Skills & writing",tags:"life journal strengths five year plan future vision goals reflection",
+ sec:[
+  {L:"A",t:"Why reflect on strengths and future vision?",
+   learn:[
+    {b:"p",x:"Before you can write about your future, you need to know what you already bring to the table. Strengths = your skills, qualities and experiences. Future vision = where you want to go, and how you will get there. This set connects the two, so your 5-year plan is realistic and personal rather than a list of vague dreams."},
+    {b:"note",x:"Strengths list: I am organized · I work well in teams · I am creative · I can speak two or more languages · I am persistent (I don’t give up) · I am good at public speaking · I learn new things quickly · I am empathetic · I manage my time well · I am good with technology · I stay calm under pressure · I am a good writer."}
+   ],
+   ex:[
+    {n:"A1",k:"open",i:"Which of the strengths above apply to you? Add two of your own.",
+     q:[["Strengths from the list that apply to me",""],["My own strengths (not on the list)",""]]},
+    {n:"A2",k:"open",i:"Choose ONE strength from your list. Write 3–4 sentences about it: what the strength is · a specific example of when you used it · how it will help you in the future.",
+     q:[["My strength",""],["Your paragraph",""]]}
+   ]},
+  {L:"B",t:"Future vision — where do you want to be in 5 years?",
+   learn:[
+    {b:"p",x:"A 5-year plan is not about knowing exactly what will happen. It is about setting a direction and identifying the steps you can control."},
+    {b:"formula",x:"GOOD 5-YEAR PLAN = SPECIFIC + REALISTIC + STEP-BY-STEP"},
+    {b:"eg",x:["In 5 years, I see myself working as a marketing coordinator for an international company. To get there, my first step is to complete my bachelor’s degree in business administration within the next 2 years. My second step is to gain practical experience through two internships — one local and one abroad. My third step is to improve my English to a C2 level by taking advanced writing courses and practicing with native speakers."]}
+   ],
+   ex:[
+    {n:"B1",k:"write",i:"Answer these questions about the example above.",
+     q:[["What is the specific job title mentioned?","Marketing coordinator for an international company."],
+        ["What is the first step?","Finishing a bachelor’s degree in business administration within two years."],
+        ["What is the second step?","Gaining practical experience through two internships, one local and one abroad."],
+        ["What is the third step?","Reaching C2 English through advanced writing courses and practice with native speakers."],
+        ["Are these steps realistic? Why or why not?","Yes — each one has a timeframe, depends mostly on the writer’s own effort, and builds on the step before it."]]},
+    {n:"B2",k:"open",i:"Answer these questions in note form (not full sentences yet).",
+     q:[["Career / study goal: what job do you want, or what further study?",""],
+        ["First step (next 6–12 months): what can you do soon?",""],
+        ["Second step (1–2 years from now): what comes after that?",""],
+        ["Third step (3–5 years from now): where do you want to be?",""]]}
+   ]},
+  {L:"C",t:"Write your strengths paragraph + 5-year plan",
+   learn:[
+    {b:"note",x:"Use the grammar and vocabulary from previous sets: hedging, paired conjunctions, verb + preposition, inversions."}
+   ],
+   ex:[
+    {n:"C1",k:"open",i:"Write 4–6 sentences describing your key strengths. Include at least two specific strengths, a concrete example for each (or one detailed example), and a concluding sentence about how these strengths will help your future.",
+     q:[["Your strengths paragraph",""]]},
+    {n:"C2",k:"open",i:"Write 5–7 sentences describing your vision for the next five years. Include a clear opening sentence stating your long-term goal, three specific steps (first, second, third), and a concluding sentence about staying motivated or adapting to challenges.",
+     q:[["Your 5-year plan",""]]}
+   ]},
+  {L:"D",t:"Mini Project: \"Future Me\" Vision Board",learn:[],
+   ex:[{n:"D1",k:"project",i:"Create a vision board — a visual collage that represents your key strengths (from Part A), your 5-year plan (from Part C), and your motivation (quotes, images, symbols that inspire you).",x:""}]}
+ ]},
+
+{n:20,t:"See It, Say It: Describing Data Like a Pro",s:"Speaking with visuals — describe, compare, interpret",grp:"Skills & writing",tags:"charts graphs data describe compare interpret trends ielts speaking",
+ sec:[
+  {L:"A",t:"Why describe charts and graphs?",
+   learn:[
+    {b:"p",x:"In academic and professional settings you often need to explain data visually. This skill is tested in IELTS Speaking Part 3 (describing trends), business presentations, university reports and data journalism."},
+    {b:"table",h:["Task","What you do","Example language"],r:[
+      ["Describe","Say what you see (facts only)","The chart shows… / According to the graph…"],
+      ["Compare","Find similarities and differences","In contrast… / Similarly… / Unlike X, Y…"],
+      ["Interpret","Explain what the data means (your analysis)","This suggests that… / The data indicates… / This may be due to…"]]}
+   ],
+   ex:[
+    {n:"A1",k:"pick",i:"Is each sentence describing, comparing or interpreting?",
+     o:[["D","D — describe"],["C","C — compare"],["I","I — interpret"]],
+     q:[["The bar chart shows the percentage of teenagers using social media in 2020.","D"],
+        ["Unlike boys, girls reported higher levels of stress.","C"],
+        ["This trend may be caused by increased screen time.","I"],
+        ["In 2010, only 30% of adults owned a smartphone, compared to 85% in 2020.","C"],
+        ["The data suggests that online learning is becoming more accepted.","I"]]}
+   ]},
+  {L:"B",t:"Useful language for describing visuals",
+   learn:[
+    {b:"table",h:["Function","Useful phrases"],r:[
+      ["Describing the visual","The chart / graph / table / diagram shows… presents… illustrates… provides data on…"],
+      ["Trends going up","increased · rose · went up · grew · climbed · surged"],
+      ["Trends going down","decreased · fell · declined · dropped · went down · plummeted"],
+      ["No change","remained stable · stayed constant · leveled off"],
+      ["Highs and lows","reached a peak of… · hit a low of… · the highest point was…"],
+      ["Comparing","in contrast · similarly · unlike X · while X…, Y… · compared to"],
+      ["Interpreting","This suggests that… · The data indicates that… · This may be due to… · One possible explanation is…"]]}
+   ],
+   ex:[
+    {n:"B1",k:"mcq",i:"Choose the correct trend word.",
+     q:[["The number of users ___ from 200 to 500 between 2015 and 2020.",["increased","decreased"],0,"200 → 500 is a rise."],
+        ["After reaching a peak in March, sales ___ sharply in April.",["rose","fell"],1,"After a peak, the next movement is downward."],
+        ["The unemployment rate ___ at 5% for three consecutive years.",["remained stable","surged"],0,"The same figure across three years means no change."],
+        ["Temperatures ___ to a record low of -15°C.",["climbed","plummeted"],1,"A record low calls for a steep fall."],
+        ["Student enrollment ___ by 50% after the scholarship program was introduced.",["grew","dropped"],0,"A scholarship program would be expected to raise enrollment, and the sentence reports its effect."]]},
+    {n:"B2",k:"open",i:"Library visits at one school, 2015–2020: 120 · 145 · 160 · 158 · 190 · 95.  Write 3 sentences describing the chart, using at least 3 different trend words.",
+     q:[["Sentence 1","Library visits rose steadily from 120 in 2015 to 160 in 2017."],
+        ["Sentence 2","Numbers then leveled off, dipping slightly to 158 in 2018 before climbing to a peak of 190 in 2019."],
+        ["Sentence 3","In 2020 visits plummeted to 95, barely half the previous year’s figure."]]}
+   ]},
+  {L:"C",t:"Describe, compare, interpret",
+   learn:[
+    {b:"p",x:"Average hours of sleep per night — teenagers, by age group."},
+    {b:"table",h:["Age group","2010","2015","2020","2025 (projected)"],r:[
+      ["13–14","9.0","8.6","8.1","7.8"],
+      ["15–16","8.4","8.0","7.4","7.1"],
+      ["17–18","7.9","7.4","6.8","6.5"]]}
+   ],
+   ex:[
+    {n:"C1",k:"write",i:"Answer these questions about the chart.",
+     q:[["Describe: what was the average sleep for 15–16 year olds in 2015?","8.0 hours a night."],
+        ["Describe: what is the projected average for 17–18 year olds in 2025?","6.5 hours a night."],
+        ["Compare: how do 13–14 year olds compare with 17–18 year olds in 2020?","13–14 year olds slept 8.1 hours against 6.8 for 17–18 year olds — about 1.3 hours more."],
+        ["Compare: which age group showed the biggest decrease between 2010 and 2020?","The 17–18 group, which fell 1.1 hours, from 7.9 to 6.8."],
+        ["Interpret: what might be causing this trend?","Later screen use, heavier homework loads and early school start times are all plausible contributors."],
+        ["Interpret: what could be a consequence of this trend?","Chronic sleep debt is linked to poorer concentration and mood, so attainment and mental health may both suffer."]]},
+    {n:"C2",k:"open",i:"Write a short paragraph (6–8 sentences) that describes, compares AND interprets the chart above.",
+     q:[["Describe (2–3 sentences)",""],["Compare (2–3 sentences)",""],["Interpret (2–3 sentences)",""]]}
+   ]},
+  {L:"D",t:"Mini Project: The \"Create Your Own Chart\" Challenge",learn:[],
+   ex:[{n:"D1",k:"project",i:"Create your own chart or graph based on real data from your life, from situations around you, or from your own imagination. Then write a short paragraph (6–8 sentences) describing, comparing and interpreting your data. Step 1: choose a topic and collect data. Step 2: draw or design your chart. Step 3: write your paragraph. Step 4: share your chart with a partner — can they interpret it correctly?",x:""}]}
+ ]}
+
+);
+/* ===== SETS 21–25 ===== */
+DATA.push(
+
+{n:21,t:"Mastery Check: Integrated Grammar Test",s:"Final integrated grammar test — Sets 1–14, 60 items",grp:"Review",tags:"test mastery check integrated grammar exam articles word order parallel hedging inversions",
+ sec:[
+  {L:"A",t:"Parts 1–4 — Sets 1 to 4",
+   learn:[
+    {b:"p",x:"This test covers all the grammar topics from Sets 1 through 14. Read each question carefully and write your answers in the spaces provided. Do not use dictionaries, notes or phones. Each question is worth one point."},
+    {b:"trick",x:"60 questions in 12 parts. Check each part as you go, or save the checking until the end and treat the whole thing as a mock exam."}
+   ],
+   ex:[
+    {n:"P1",k:"gap",i:"Part 1 — Articles (Set 1). Items 1–5. Complete each sentence with a, an or the.",
+     q:[["I have ___ idea for ___ new project.",["an","a"]],
+        ["___ sun rises in ___ east.",["the","the"]],
+        ["She wants to become ___ engineer.",["an"]],
+        ["___ book you lent me was fascinating.",["the"]],
+        ["He is ___ best student in ___ class.",["the","the"]]]},
+    {n:"P2",k:"write",i:"Part 2 — Word order, SVO (Set 2). Items 6–10. Rewrite each sentence with correct word order.",
+     q:[["She every day drinks coffee.","She drinks coffee every day."],
+        ["They to the beach went last weekend.","They went to the beach last weekend."],
+        ["He speaks fluently English.","He speaks English fluently."],
+        ["We once a week exercise at the gym.","We exercise at the gym once a week."],
+        ["I my homework always do in the evening.","I always do my homework in the evening."]]},
+    {n:"P3",k:"write",i:"Part 3 — Parallel structure (Set 3). Items 11–15. Correct the parallel structure error.",
+     q:[["She enjoys reading, to write, and painting.","She enjoys reading, writing, and painting."],
+        ["The solution is cheap, fast, and it is easy.","The solution is cheap, fast, and easy."],
+        ["He likes swimming, to run, and biking.","He likes swimming, running, and biking."],
+        ["The course requires time, patience, and to be dedicated.","The course requires time, patience, and dedication."],
+        ["She is smart, creative, and works hard.","She is smart, creative, and hardworking."]]},
+    {n:"P4",k:"write",i:"Part 4 — Hedging (Set 4). Items 16–20. Rewrite each sentence to make it hedged, using the word in parentheses.",
+     q:[["This solution will solve the problem. (may)","This solution may solve the problem."],
+        ["Air pollution causes asthma. (might)","Air pollution might cause asthma."],
+        ["Online learning is the best option for everyone. (may not)","Online learning may not be the best option for everyone."],
+        ["The new policy will reduce costs. (seems)","The new policy seems likely to reduce costs."],
+        ["Students fail because of this reason. (could)","Students could fail for this reason."]]},
+   ]},
+  {L:"B",t:"Parts 5–7 — Sets 5 to 7",learn:[],
+   ex:[
+    {n:"P5",k:"write",i:"Part 5 — Reduced relative clauses (Set 5). Items 21–25. Reduce the relative clause in each sentence.",
+     q:[["The research that was conducted in 2020 is still relevant.","The research conducted in 2020 is still relevant."],
+        ["Students who are enrolled in the evening course start next week.","Students enrolled in the evening course start next week."],
+        ["The report which was written by the committee is on the desk.","The report written by the committee is on the desk."],
+        ["Influencers who are paid by brands often hide sponsorships.","Influencers paid by brands often hide sponsorships."],
+        ["The data that was collected last year has been published.","The data collected last year has been published."]]},
+    {n:"P6",k:"pick",i:"Part 6 — Gerunds vs. participles (Set 6). Items 26–30. Is the -ing word a gerund or a participle?",
+     o:[["G","G — gerund"],["P","P — participle"]],
+     q:[["Swimming is excellent exercise.","G"],
+        ["The swimming pool is closed for repairs.","P"],
+        ["She avoids driving at night.","G"],
+        ["The crying baby kept everyone awake.","P"],
+        ["Learning a language takes patience.","G"]]},
+    {n:"P7",k:"write",i:"Part 7 — Errors with -ing forms (Set 7). Items 31–35. Rewrite each sentence correctly.",
+     q:[["Is important keep good study habits.","Keeping good study habits is important."],
+        ["Spend hours online is not productive.","Spending hours online is not productive."],
+        ["She avoids to compare herself to influencers.","She avoids comparing herself to influencers."],
+        ["They saw him posted a comment.","They saw him posting a comment."],
+        ["I suggest to take a break before the exam.","I suggest taking a break before the exam."]]},
+   ]},
+  {L:"C",t:"Parts 8–9 — Sets 10 and 11",learn:[],
+   ex:[
+    {n:"P8",k:"gap",i:"Part 8 — Paired conjunctions (Set 10). Items 36–40. Complete each sentence.",
+     q:[["She speaks ___ Spanish ___ Portuguese — two languages fluently.",["both","and"]],
+        ["He ___ arrived late ___ forgot the report.",["not only","but also"]],
+        ["You can ___ email the file ___ bring a printed copy.",["either","or"]],
+        ["___ the first source ___ the second provides enough evidence.",["neither","nor"]],
+        ["The policy will ___ save money ___ reduce waste.",["not only","but also"]]]},
+    {n:"P9",k:"write",i:"Part 9 — Inversions (Set 11). Items 41–45. Rewrite each sentence as an inversion, using the word in parentheses.",
+     q:[["I have never seen such a long queue. (Never)","Never have I seen such a long queue."],
+        ["She only then understood the instructions. (Only then)","Only then did she understand the instructions."],
+        ["We rarely receive complaints about the service. (Rarely)","Rarely do we receive complaints about the service."],
+        ["I did not understand the topic until I read the book. (Not until)","Not until I read the book did I understand the topic."],
+        ["He not only missed the deadline, but he also lost the file. (Not only)","Not only did he miss the deadline, but he also lost the file."]]},
+   ]},
+  {L:"D",t:"Parts 10–12 — Sets 12 to 14",learn:[],
+   ex:[
+    {n:"P10",k:"gap",i:"Part 10 — Neither / Either (Set 12). Items 46–50. Complete each sentence with neither or either.",
+     q:[["I have two brothers. ___ of them lives near me.",["neither"]],
+        ["You can take ___ bus. They both go downtown.",["either"]],
+        ["A: \"Do you want coffee or tea?\"  B: \"___ is fine. You choose.\"",["either"]],
+        ["She doesn’t like ___ coffee or tea. She only drinks water.",["either"]],
+        ["___ of the two solutions seems feasible. We need a third option.",["neither"]]]},
+    {n:"P11",k:"write",i:"Part 11 — Pronoun correspondence (Set 13). Items 51–55. Rewrite each sentence to fix the pronoun error or ambiguity.",
+     q:[["A doctor should listen to his patients.","Doctors should listen to their patients."],
+        ["When the teacher spoke to the student, he was very nervous.","When the teacher spoke to the student, the student was very nervous."],
+        ["Everyone forgot his notebook.","Everyone forgot their notebook."],
+        ["The car hit the tree, but it wasn’t damaged.","The car hit the tree, but the car wasn’t damaged."],
+        ["Someone left his phone on the desk.","Someone left their phone on the desk."]]},
+    {n:"P12",k:"gap",i:"Part 12 — Verb + preposition (Set 14). Items 56–60. Complete with on, of, to, in or from.",
+     q:[["The success of the project depends ___ many factors.",["on"]],
+        ["The committee consists ___ ten members.",["of"]],
+        ["In your conclusion, you should refer ___ your main arguments.",["to"]],
+        ["Lack of exercise can lead ___ serious health problems.",["to"]],
+        ["The accident resulted ___ a simple mistake. (meaning: was caused by)",["from"]]]}
+   ]}
+ ]},
+
+{n:22,t:"Bounce Back: The Art of Resilience Storytelling",s:"Life journal — resilience storytelling",grp:"Skills & writing",tags:"resilience storytelling challenge response learning interview personal story speaking",
+ sec:[
+  {L:"A",t:"What is resilience storytelling?",
+   learn:[
+    {b:"p",x:"Resilience is the ability to bounce back from difficulties. A resilience story is a short, honest account of a hard moment and what came out of it."},
+    {b:"formula",x:"A CHALLENGE  →  YOUR RESPONSE  →  WHAT YOU LEARNED"},
+    {b:"note",x:"Why tell resilience stories? Job interviews (\"Tell me about a time you faced a challenge\") · university applications and personal statements · leadership, to inspire others · self-reflection, to recognize your own growth. A good resilience story is not about being perfect. It is about being honest and showing growth."},
+    {b:"p",x:"Story: When I first moved to this country, I could not understand my classmates. Everyone spoke so fast, and I felt lost in every conversation. I wanted to give up and stay silent. Instead, I started listening to podcasts every day for 20 minutes. I also asked my teacher for extra speaking practice. After six months, I could follow conversations easily. Now, I am not afraid to ask questions when I don’t understand something. I learned that feeling lost is temporary — but only if you take action."}
+   ],
+   ex:[
+    {n:"A1",k:"pick",i:"Label each part of the story above.",
+     o:[["C","Challenge (the difficulty)"],["R","Response (what you did)"],["L","Learning (what you gained)"]],
+     q:[["When I first moved to this country, I could not understand my classmates. Everyone spoke so fast, and I felt lost in every conversation.","C"],
+        ["Instead, I started listening to podcasts every day for 20 minutes. I also asked my teacher for extra speaking practice.","R"],
+        ["After six months, I could follow conversations easily. I learned that feeling lost is temporary — but only if you take action.","L"]]},
+    {n:"A2",k:"open",i:"Think of a time you faced a challenge and overcame it, or learned something important. Answer in notes.",
+     q:[["The challenge: what happened? When? Why was it difficult?",""],
+        ["Your response: what did you do? (One specific action is better than many vague ones.)",""],
+        ["What you learned: how did you change? What will you do differently in the future?",""]]}
+   ]},
+  {L:"B",t:"From notes to a 2–3 minute story",
+   learn:[
+    {b:"table",h:["Section","Length","Content"],r:[
+      ["Opening (15–20 seconds)","2–3 sentences","Set the scene. Where were you? What was the challenge?"],
+      ["Middle (1.5–2 minutes)","5–7 sentences","Describe your response. What specific actions did you take? Include ONE vivid detail."],
+      ["Ending (20–30 seconds)","2–3 sentences","State what you learned. Connect it to who you are now."]]}
+   ],
+   ex:[
+    {n:"B1",k:"open",i:"Using your notes from A2, write full sentences for each section.",
+     q:[["Opening (challenge)",""],["Middle (response — be specific)",""],["Ending (learning)",""]]},
+    {n:"B2",k:"open",i:"Now write your complete resilience story (10–15 sentences).",
+     q:[["Your 2–3 minute story",""]]}
+   ]},
+  {L:"C",t:"Tell your story (2–3 minutes)",
+   learn:[
+    {b:"p",x:"Writing is only half the work. Now you will tell your story aloud."},
+    {b:"note",x:"Before you speak: read your story aloud to yourself 2–3 times · underline the key words — these are the only ones you need to remember · practice without looking at the paper, using only the underlined words · time yourself (is it between 2 and 3 minutes?) · mark where to pause, slow down, or emphasize a word."},
+    {b:"table",h:["Instructions for the speaker","Instructions for the listener"],r:[
+      ["You may look at your notes, but try to make eye contact.","Do not interrupt."],
+      ["Do not apologize before speaking (\"This isn’t good, but…\").","Afterwards, say one thing that was strong (\"I liked how specific you were about…\")."],
+      ["Speak at a normal pace — not too fast.","Then ask one question (\"How did you feel at that moment?\")."]]}
+   ],
+   ex:[
+    {n:"C1",k:"open",i:"Preparation. Time yourself and choose your focus for this story: be clear / be honest / show emotion / keep it simple.",
+     q:[["My time (seconds)",""],["My focus for this story",""]]},
+    {n:"C2",k:"open",i:"Reflection, after telling your story. Answer in complete sentences.",
+     q:[["How did it feel to tell your story aloud? Was it easier or harder than writing it?",""],
+        ["What did your listener say was strong about your story?",""],
+        ["If you told this story again, what would you change?",""]]}
+   ]},
+  {L:"D",t:"Mini Project: The Interview Answer",learn:[],
+   ex:[{n:"D1",k:"project",i:"Compress your story into a 60-second answer to the interview question \"Tell me about a time you faced a challenge.\" Deliver it to a partner who plays the interviewer and may ask one follow-up question. The hardest part is cutting: keep the one vivid detail and lose everything that only sets the scene.",x:""}]}
+ ]},
+
+{n:23,t:"Read, Think, Speak: Your First Critical Analysis",s:"Critical analysis — summary + critique",grp:"Skills & writing",tags:"critical analysis summary critique argument evidence counter-argument hedging",
+ sec:[
+  {L:"A",t:"What is a critical analysis?",
+   learn:[
+    {b:"p",x:"A critical analysis is more than a summary. It is your informed opinion about a text. Summary = what the author says (facts only). Critique = whether you agree, why, and with what evidence."},
+    {b:"table",h:["Part","What you do","Length"],r:[
+      ["Summary","Restate the author’s main argument and key points (neutral, factual)","1 paragraph"],
+      ["Critique","Evaluate the argument — strengths, weaknesses, your opinion","1–2 paragraphs"]]},
+    {b:"trick",x:"You’re not just repeating what someone said. You’re saying: here’s what they said, and here’s what I think about it."}
+   ],
+   ex:[
+    {n:"A1",k:"pick",i:"Original text: \"Schools should ban smartphones during class because they distract students and reduce learning. A study of 500 students found that test scores were 15% higher in classrooms where phones were prohibited.\"  Label each response.",
+     o:[["S","S — summary"],["C","C — critique"]],
+     q:[["The author argues that smartphones should be banned in class due to distraction and lower learning. The study mentioned shows a 15% increase in test scores when phones are not allowed.","S"],
+        ["While the study seems convincing, the author does not consider that some students use smartphones for educational purposes, such as dictionaries or research. A ban might solve one problem but create another. I partially agree, but a limited-use policy might be better than a complete ban.","C"]]},
+    {n:"A2",k:"open",i:"Choose your article. You can use one your teacher provides, or choose from: Breaking News English (short, adjustable level, current topics) · British Council Learn English (free, short articles with clear arguments) · Simple Wikipedia (neutral, easy to understand) · TED Talks transcripts (real arguments from real speakers).",
+     q:[["My article (title and source)",""],["Why I chose it",""]]}
+   ]},
+  {L:"B",t:"Identify the author’s \"moves\"",
+   learn:[
+    {b:"p",x:"Before you write your analysis, look at what the author is doing. This will help you write a smarter critique: what they claim, what evidence they bring, how careful they are with their language, and what they leave out."}
+   ],
+   ex:[
+    {n:"B1",k:"open",i:"Answer these questions about your article.",
+     q:[["What is the author’s main argument? (1 sentence)",""],
+        ["What evidence does the author use? Is it convincing?",""],
+        ["Does the author use hedging? If yes, give one example.",""],
+        ["Does the author address a counter-argument? If not, what’s missing?",""]]}
+   ]},
+  {L:"C",t:"Write your critical analysis (two paragraphs)",
+   learn:[
+    {b:"note",x:"Questions to answer in your critique: Is the argument convincing — why or why not? Is the evidence strong or weak? What is missing? Do you agree or disagree, and why?"}
+   ],
+   ex:[
+    {n:"C1",k:"open",i:"Write your summary paragraph — a neutral, factual summary (4–6 sentences). Include the author’s thesis and 2–3 key supporting points. No opinion yet.",
+     q:[["My summary",""]]},
+    {n:"C2",k:"open",i:"Write your critique paragraph (6–8 sentences). Use hedging, paired conjunctions, and at least one grammar structure from previous sets.",
+     q:[["My critique",""],["Grammar structures I used",""]]}
+   ]},
+  {L:"D",t:"Mini Project: The \"Celebrity Critic\" Game",learn:[],
+   ex:[{n:"D1",k:"project",i:"Write one-sentence critiques of celebrities — their style, their behavior, their films, or their social media presence. Your goal: be clever, be funny, and use at least one grammar structure from previous sets (hedging, paired conjunctions, inversions).",x:""}]}
+ ]},
+
+{n:24,t:"Grammar Jam: The Final Review",s:"The grammar review — find it in a song",grp:"Review",tags:"final review error correction real world texts song grammar table",
+ sec:[
+  {L:"A",t:"Grammar review — previous sets",
+   learn:[
+    {b:"p",x:"Let’s review the grammar topics you’ve learned. Create your own example for each one. The challenge: all your examples should follow one single theme."},
+    {b:"note",x:"Themes: soccer (or any sport) · parties / going out · social media · food · school life · travel / dream vacation · movies & TV · relationships · video games · music & concerts · fashion & style · sleep & procrastination · pets & animals · superheroes · aliens & space."}
+   ],
+   ex:[
+    {n:"A1",k:"open",i:"Complete the review table — one example sentence of your own for each topic, all on the same theme.",
+     q:[["1 — Articles (a/an/the)",""],["2 — Word order (SVO)",""],["3 — Parallel structure",""],
+        ["4 — Hedging (may, might, seems)",""],["5 — Reduced relative clauses",""],
+        ["6 — Gerund",""],["6 — Participle",""],
+        ["10 — Paired conjunctions",""],["11 — Inversions",""],
+        ["12 — Neither / Either",""],["13 — Pronoun agreement",""],
+        ["14 — Verb + preposition",""],["17 — Word forms (noun / verb / adjective / adverb of one root)",""]]},
+    {n:"A2",k:"write",i:"Quick error correction. Each sentence has one error from a previous set. Write the corrected sentence.",
+     q:[["She every day drinks coffee.","She drinks coffee every day."],
+        ["He is a beauty singer.","He is a beautiful singer."],
+        ["The solution depends of many factors.","The solution depends on many factors."],
+        ["Only then she understood the problem.","Only then did she understand the problem."],
+        ["I don’t like neither coffee nor tea.","I like neither coffee nor tea."],
+        ["The car which she arrived in was expensive. (rewrite formally)","The car in which she arrived was expensive."],
+        ["Everyone forgot his notebook.","Everyone forgot their notebook."],
+        ["He enjoys reading, to write, and painting.","He enjoys reading, writing, and painting."],
+        ["The research that was conducted in 2020 is important. (reduce the clause)","The research conducted in 2020 is important."],
+        ["She spoke angry when she heard the news.","She spoke angrily when she heard the news."]]}
+   ]},
+  {L:"B",t:"Identify the errors",
+   learn:[
+    {b:"p",x:"Each text below contains errors from previous sets. Read it, find the errors, and rewrite the text correctly."}
+   ],
+   ex:[
+    {n:"B1",k:"write",i:"Text 1 — a student blog post. \"I can’t believe nobody never told me about this hack! If you would have told me sooner, I would of saved so much time. Me and my friend tried it yesterday and it work perfectly. Neither the instructions or the video was confusing. Everyone should try this, it’s the best thing ever!\"",
+     q:[["How many errors can you find?","Six: nobody never (double negative) · if you would have told (should be had told) · would of (would have) · Me and my friend (My friend and I) · it work (it worked) · Neither… or (Neither… nor)."],
+        ["Rewrite the text correctly","I can’t believe nobody ever told me about this hack! If you had told me sooner, I would have saved so much time. My friend and I tried it yesterday and it worked perfectly. Neither the instructions nor the video was confusing. Everyone should try this — it’s the best thing ever!"]]},
+    {n:"B2",k:"write",i:"Text 2 — a social media caption. \"This cafe is the best place to study. The coffee is to strong for me but the vibes where immaculate. Me and my friend go there every weekend. Not only the food is good but also the service. Everyone should bring their own laptop and study there. I’m def going back!\"",
+     q:[["How many errors can you find?","Five: to strong (too strong) · where immaculate (were immaculate) · Me and my friend (My friend and I) · Not only the food is good (Not only is the food good — inversion) · a missing comma before but."],
+        ["Rewrite the text correctly","This cafe is the best place to study. The coffee is too strong for me, but the vibes were immaculate. My friend and I go there every weekend. Not only is the food good, but the service is excellent too. Everyone should bring their own laptop and study there. I’m definitely going back!"]]},
+    {n:"B3",k:"write",i:"Text 3 — a student essay introduction. \"The education is one of most important factors in a person’s life. Students who receive quality education are more likely to get good jobs. However, the information that students learn in school is not always useful. Many graduates say that they needed an advice about career planning. The research on this topic has shown that students who participate in internships have better outcomes.\"",
+     q:[["How many errors can you find?","Four: The education (zero article) · one of most important (one of the most important) · an advice (advice is uncountable) · The research (zero article for a general statement)."],
+        ["Rewrite the text correctly","Education is one of the most important factors in a person’s life. Students who receive a quality education are more likely to get good jobs. However, the information that students learn in school is not always useful. Many graduates say that they needed advice about career planning. Research on this topic has shown that students who participate in internships have better outcomes."]]}
+   ]},
+  {L:"C",t:"Mini Project: \"Find the Grammar\" in a Song",learn:[],
+   ex:[{n:"C1",k:"project",i:"Find a song in English that contains examples of grammar from previous sets. Choose one song and find at least 5 grammar structures in the lyrics. Present your song to the class. Can your classmates identify the grammar topics?",x:""}]}
+ ]},
+
+{n:25,t:"Revised: Celebration & Reflection Edition",s:"Looking back at Advanced 3 — reflection, awards, time capsule",grp:"Skills & writing",tags:"reflection celebration class awards time capsule end of course looking back",
+ sec:[
+  {L:"A",t:"Looking back",
+   learn:[
+    {b:"p",x:"You have written thesis statements, problem-solution essays, critical reviews, personal statements, synthesis reports and resilience stories. You have also worked through fourteen sets of grammar. Before the celebration, take a moment to notice what actually changed."}
+   ],
+   ex:[
+    {n:"A1",k:"open",i:"Answer these questions in complete sentences.",
+     q:[["Looking back at Set 1, what can you write now that you could not write then?",""],
+        ["Which grammar topic gave you the most trouble — and where are you with it now?",""],
+        ["Which piece of writing from this course are you most proud of? Why?",""],
+        ["Which one would you most like to rewrite? Why?",""],
+        ["What is one skill you still want to improve in Advanced 4?",""]]}
+   ]},
+  {L:"B",t:"Advice to the next class",
+   learn:[
+    {b:"p",x:"The best course advice comes from someone who has just finished it, not from someone who designed it."}
+   ],
+   ex:[
+    {n:"B1",k:"open",i:"Write 3–5 sentences of honest advice for a student starting Advanced 3 next semester. Be specific — \"study hard\" helps nobody.",
+     q:[["Your advice",""]]},
+    {n:"B2",k:"open",i:"Write one sentence of appreciation for a classmate who helped you this semester, and say exactly what they did.",
+     q:[["Your appreciation",""]]}
+   ]},
+  {L:"C",t:"The \"Class Awards\" Ceremony",
+   learn:[
+    {b:"p",x:"Let’s celebrate your classmates. Work with your group to nominate classmates for the awards below — and any others you think fit your group. Each nomination should include one sentence explaining why."}
+   ],
+   ex:[
+    {n:"C1",k:"open",i:"Nominate your classmates (name + reason).",
+     q:[["The \"Always on Time\" Award (most punctual)",""],
+        ["The \"Late but Great\" Award (most late arrivals)",""],
+        ["The \"Grammar Guru\" Award (most grammar questions answered)",""],
+        ["The \"Best Laugh\" Award",""],
+        ["The \"Most Creative\" Award",""],
+        ["The \"Most Likely to Survive a Zombie Apocalypse\" Award",""],
+        ["The \"Best Vocabulary\" Award",""],
+        ["The \"Most Helpful\" Award",""],
+        ["The \"Best Comebacks\" Award",""],
+        ["The \"Most Likely to Succeed (and Tell Us About It)\" Award",""]]},
+    {n:"C2",k:"open",i:"If you win an award, write a one-sentence acceptance speech.",
+     q:[["My award",""],["My speech",""]]}
+   ]},
+  {L:"D",t:"Mini Project: The Time Capsule",learn:[],
+   ex:[{n:"D1",k:"project",i:"Write a short note to your future self — not a full letter, just 3–5 sentences. It can be advice, a hope, or a reminder of who you are right now. Put it in an envelope labelled with your name and the date. Your teacher will collect the notes and return them at the end of Advanced 4. Start: \"Dear Future Me (at the end of Advanced 4), …\"",
+        x:"Congratulations — you have completed Advanced 3 at Phil Young’s English School. You’ve grown more than you realize. Take what you’ve learned into Advanced 4, and into life.  \"Progress is not a straight line. It is a spiral. You will revisit the same challenges — but each time, from a higher level.\""}]}
+ ]}
+
+);
+
+
+/* ══════════ STORAGE ══════════ */
+var KEY='adv3-v1';
+var ST={ans:{},done:{}};
+function load(){try{var r=localStorage.getItem(KEY);if(r){var p=JSON.parse(r);ST.ans=p.ans||{};ST.done=p.done||{};}}catch(e){}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(ST));}catch(e){}}
+load();
+function aget(k){return ST.ans[k]||'';}
+function aset(k,v){if(v===''){delete ST.ans[k];}else{ST.ans[k]=v;}save();}
+function mark(k,v){if(v){ST.done[k]=1;}else{delete ST.done[k];}save();}
+
+/* ══════════ HELPERS ══════════ */
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function norm(s){
+  return String(s==null?'':s).toLowerCase()
+    .replace(/[\u2018\u2019\u02bc]/g,"'").replace(/[\u201c\u201d]/g,'"')
+    .replace(/[\u2013\u2014\u2212]/g,'-')
+    .replace(/[.,;:!?"()\[\]]/g,'').replace(/'/g,'')
+    .replace(/\s+/g,' ').trim();
+}
+function hit(val,key){
+  var alts=String(key).split('|');
+  var v=norm(val);
+  for(var i=0;i<alts.length;i++){
+    var a=norm(alts[i]);
+    if(a===v) return true;
+    if(a==='-'&&(v===''||v==='-'||v==='zero'||v==='no article')) return true;
+    if(a===''&&v==='') return true;
+  }
+  return false;
+}
+function loose(val,key){
+  if(hit(val,key)) return true;
+  var v=norm(val).replace(/^(the|a|an)\s+/,''), k=norm(String(key).split('|')[0]).replace(/^(the|a|an)\s+/,'');
+  if(!v) return false;
+  if(v===k) return true;
+  /* accept if the answer contains the model's distinctive core, e.g. "no commas" */
+  if(k.length<18&&v.indexOf(k)>-1) return true;
+  return false;
+}
+function exKey(set,ex){return 's'+set+'.'+ex;}
+function itKey(set,ex,i,g){return 's'+set+'.'+ex+'.'+i+(g==null?'':'.'+g);}
+
+function exCount(s){var c=0;s.sec.forEach(function(x){c+=x.ex.length;});return c;}
+function exDone(s){var c=0;s.sec.forEach(function(x){x.ex.forEach(function(e){if(ST.done[exKey(s.n,e.n)])c++;});});return c;}
+
+/* ══════════ SIDEBAR ══════════ */
+var GROUPS=['Writing & essays','Grammar core','Review','Skills & writing'];
+function buildSide(){
+  var h='<button class="slink" data-go="home"><span class="num">◆</span><span class="ttl">All sets</span></button>';
+  GROUPS.forEach(function(g){
+    h+='<h4 data-grp="'+esc(g)+'">'+esc(g)+'</h4>';
+    DATA.filter(function(s){return s.grp===g;}).forEach(function(s){
+      h+='<button class="slink" data-go="'+s.n+'" data-find="'+esc((s.n+' '+s.t+' '+s.s+' '+s.tags).toLowerCase())+'">'+
+         '<span class="num">'+s.n+'</span><span class="ttl">'+esc(s.t)+'</span><span class="pip" data-pip="'+s.n+'"></span></button>';
+    });
+  });
+  document.getElementById('side').innerHTML=h;
+}
+function paintPips(){
+  DATA.forEach(function(s){
+    var el=document.querySelector('[data-pip="'+s.n+'"]');if(!el)return;
+    var d=exDone(s),t=exCount(s);
+    el.className='pip'+(d===0?'':(d>=t?' full':' part'));
+    el.title=d+' of '+t+' activities done';
+  });
+}
+
+/* ══════════ LEARN BLOCKS ══════════ */
+function learnHTML(bs){
+  if(!bs||!bs.length) return '';
+  var h='<div class="learn">';
+  bs.forEach(function(b){
+    if(b.b==='p') h+='<p>'+esc(b.x)+'</p>';
+    else if(b.b==='formula') h+='<div class="formula">'+esc(b.x)+'</div>';
+    else if(b.b==='trick') h+='<div class="trick">'+esc(b.x)+'</div>';
+    else if(b.b==='note') h+='<div class="note">'+esc(b.x)+'</div>';
+    else if(b.b==='eg'){h+='<div class="egs">';b.x.forEach(function(e){h+='<div>'+esc(e)+'</div>';});h+='</div>';}
+    else if(b.b==='table'){
+      h+='<div class="tblwrap"><table><thead><tr>';
+      b.h.forEach(function(c){h+='<th>'+esc(c)+'</th>';});
+      h+='</tr></thead><tbody>';
+      b.r.forEach(function(row){h+='<tr>';row.forEach(function(c){h+='<td>'+esc(c)+'</td>';});h+='</tr>';});
+      h+='</tbody></table></div>';
+    }
+  });
+  return h+'</div>';
+}
+
+/* ══════════ EXERCISE RENDERERS ══════════ */
+function gapRow(set,e,i,q){
+  var parts=String(q[0]).split('___'), h='<div class="q">';
+  for(var g=0;g<parts.length;g++){
+    h+=esc(parts[g]);
+    if(g<parts.length-1){
+      var k=itKey(set,e.n,i,g);
+      h+='<input class="txt gapi" data-k="'+k+'" data-a="'+esc(q[1][g]||'')+'" value="'+esc(aget(k))+'" autocomplete="off" spellcheck="false">';
+    }
+  }
+  return h+'</div><div class="why"></div>';
+}
+function nextBtn(n){return '<button class="btn ghost" data-act="next">'+nextTxt(n)+'</button>';}
+function nextTxt(left){return left?'Reveal next answer ('+left+' left)':'All answers shown';}
+/* items that have something to reveal (open items without a model answer are skipped) */
+function revealables(card){
+  var kind=card.getAttribute('data-kind');
+  return Array.prototype.filter.call(card.querySelectorAll('.item'),function(it){
+    return (kind==='open')?!!it.querySelector('.model'):true;
+  });
+}
+function paintNext(card){
+  var b=card.querySelector('[data-act="next"]');
+  var all=revealables(card), left=all.filter(function(it){return !it.classList.contains('rv');}).length;
+  if(b){b.textContent=nextTxt(left); b.disabled=!left;}
+  var sp=card.querySelector('.score');
+  if(sp&&left<all.length&&card.getAttribute('data-kind')!=='open'){sp.textContent=(all.length-left)+' / '+all.length+' shown';sp.className='score';}
+}
+function revealItem(card,it){
+  var kind=card.getAttribute('data-kind');
+  it.classList.add('rv');
+  if(kind==='gap'){
+    it.querySelectorAll('input.gapi').forEach(function(inp){
+      if(!hit(inp.value,inp.getAttribute('data-a'))){inp.value=String(inp.getAttribute('data-a')).split('|')[0].replace(/^-$/,'–');aset(inp.getAttribute('data-k'),inp.value);}
+      inp.classList.remove('no');inp.classList.add('ok');
+    });
+  } else if(kind==='pick'||kind==='mcq'){
+    var box=it.querySelector('.opts'), ans=box.getAttribute('data-a');
+    box.querySelectorAll('.opt').forEach(function(b){
+      b.classList.remove('good','bad','reveal');
+      var right=b.getAttribute('data-v')===String(ans);
+      if(b.classList.contains('sel'))b.classList.add(right?'good':'bad');
+      else if(right)b.classList.add('reveal');
+    });
+    var why=it.querySelector('.why');
+    if(why){var t=why.getAttribute('data-txt');if(t){why.innerHTML='<b>Why:</b> '+esc(t);why.classList.add('show');}}
+  } else if(kind==='match'){
+    var sel=it.querySelector('select.txt');
+    if(sel.value!==sel.getAttribute('data-a')){sel.value=sel.getAttribute('data-a');aset(sel.getAttribute('data-k'),sel.value);}
+    sel.classList.remove('no');sel.classList.add('ok');
+  } else {
+    var m=it.querySelector('.model');if(m)m.classList.add('show');
+  }
+  it.classList.remove('rv-flash');void it.offsetWidth;it.classList.add('rv-flash');
+}
+function exHTML(set,e){
+  var done=!!ST.done[exKey(set,e.n)];
+  var h='<section class="ex'+(done?' done':'')+'" id="ex-'+set+'-'+e.n+'" data-ex="'+e.n+'" data-set="'+set+'" data-kind="'+e.k+'">'+
+        '<div class="exhead"><span class="exno">'+esc(e.n)+'</span><span class="exi">'+esc(e.i)+'</span></div>';
+
+  if(e.k==='study'){
+    h+='<div class="tblwrap" style="margin-top:.9rem"><table><thead><tr>';
+    e.h.forEach(function(c){h+='<th>'+esc(c)+'</th>';});
+    h+='</tr></thead><tbody>';
+    e.r.forEach(function(r){h+='<tr>';r.forEach(function(c){h+='<td>'+esc(c)+'</td>';});h+='</tr>';});
+    h+='</tbody></table></div>';
+    h+='<div class="row"><button class="btn ghost" data-act="tick">'+(done?'Done ✓':'Mark as read')+'</button></div></section>';
+    return h;
+  }
+  if(e.k==='project'){
+    var k=itKey(set,e.n,0);
+    h+='<div class="project">'+esc(e.i)+(e.x?'<div class="extra">'+esc(e.x)+'</div>':'')+'</div>'+
+       '<textarea class="txt" rows="5" data-k="'+k+'" placeholder="Draft it here — your text is saved on this device.">'+esc(aget(k))+'</textarea><div class="saved"></div>'+
+       '<div class="row"><button class="btn ghost" data-act="tick">'+(done?'Done ✓':'Mark as done')+'</button></div></section>';
+    return h;
+  }
+
+  h+='<div class="items">';
+  e.q.forEach(function(q,i){
+    var k=itKey(set,e.n,i);
+    h+='<div class="item" data-i="'+i+'"><span class="idx">'+(i+1)+'.</span><div class="body">';
+    if(e.k==='gap'){ h+=gapRow(set,e,i,q); }
+    else if(e.k==='pick'){
+      h+='<div class="q">'+esc(q[0])+'</div><div class="opts" data-a="'+esc(q[1])+'">';
+      e.o.forEach(function(o){
+        h+='<button class="opt'+(aget(k)===o[0]?' sel':'')+'" data-k="'+k+'" data-v="'+esc(o[0])+'">'+esc(o[1])+'</button>';
+      });
+      h+='</div><div class="why"></div>';
+    }
+    else if(e.k==='mcq'){
+      h+='<div class="q">'+esc(q[0])+'</div><div class="opts" data-a="'+q[2]+'">';
+      q[1].forEach(function(o,j){
+        h+='<button class="opt'+(aget(k)===String(j)?' sel':'')+'" data-k="'+k+'" data-v="'+j+'">'+esc(o)+'</button>';
+      });
+      h+='</div><div class="why" data-txt="'+esc(q[3]||'')+'"></div>';
+    }
+    else if(e.k==='match'){
+      h+='<div class="q">'+esc(q[0])+'</div><select class="txt" data-k="'+k+'" data-a="'+esc(q[1])+'"><option value="">— choose —</option>';
+      e.o.forEach(function(o){
+        h+='<option value="'+esc(o[0])+'"'+(aget(k)===o[0]?' selected':'')+'>'+esc(o[0])+'. '+esc(o[1])+'</option>';
+      });
+      h+='</select><div class="why"></div>';
+    }
+    else { /* write | open */
+      h+='<div class="q">'+esc(q[0])+'</div>'+
+         '<textarea class="txt" rows="'+(e.k==='open'?3:2)+'" data-k="'+k+'" data-a="'+esc(q[1]||'')+'" placeholder="Your answer…">'+esc(aget(k))+'</textarea>'+
+         '<div class="saved"></div>'+
+         (q[1]?'<div class="model"><b>Model answer</b>'+esc(q[1])+'</div>':'');
+    }
+    h+='</div>'+((e.k!=='open'||(q[1]&&String(q[1]).trim()))?'<button class="rvbtn" data-act="one" aria-label="Show answer '+(i+1)+'">Show</button>':'')+'</div>';
+  });
+  h+='</div><div class="row">';
+  h=h.replace('<div class="items">', e.q.length<2?'<div class="items one">':'<div class="items">');
+  if(e.k==='gap'||e.k==='pick'||e.k==='mcq'||e.k==='match') h+='<button class="btn primary" data-act="check">Check answers</button>';
+  else if(e.k==='write') h+='<button class="btn primary" data-act="check">Check answers</button>';
+  else {
+    h+='<button class="btn primary" data-act="tick">'+(done?'Done ✓':'Mark as done')+'</button>';
+  }
+  h+='<button class="btn ghost" data-act="clear">Clear</button><span class="score"></span></div></section>';
+  return h;
+}
+
+/* ══════════ VIEWS ══════════ */
+var cur='home';
+function renderHome(){
+  var totalD=0,totalT=0;
+  DATA.forEach(function(s){totalD+=exDone(s);totalT+=exCount(s);});
+  var h='<div class="home"><span class="eyebrow">Advanced 3 · B2 → C1</span>'+
+    '<h1>The whole booklet,<br><span>one screen.</span></h1>'+
+    '<p class="lede">Twenty-five sets: essay craft, grammar explanations, self-checking practice, and space to draft every writing task. Your answers stay on this device.</p>'+
+    '<div class="bar" style="max-width:420px"><i style="width:'+(totalT?Math.round(totalD/totalT*100):0)+'%"></i></div>'+
+    '<div class="barlabel" style="max-width:420px"><span>'+totalD+' of '+totalT+' activities completed</span><span>'+(totalT?Math.round(totalD/totalT*100):0)+'%</span></div>'+
+    '<div class="grid" id="grid">';
+  DATA.forEach(function(s){
+    var d=exDone(s),t=exCount(s);
+    h+='<button class="tile" data-go="'+s.n+'" data-find="'+esc((s.n+' '+s.t+' '+s.s+' '+s.tags).toLowerCase())+'">'+
+       '<span class="n">SET '+s.n+'</span><h3>'+esc(s.t)+'</h3><p>'+esc(s.s)+'</p>'+
+       '<span class="mini"><i style="width:'+(t?Math.round(d/t*100):0)+'%"></i></span></button>';
+  });
+  h+='</div><div class="foot">Companion to <em>Natural Speech Advanced 3</em> — Phil Young\'s English School. '+
+     'Explanations and practice items follow the printed Student\'s Booklet; answer keys and model answers were written for this study tool. '+
+     'For use by students enrolled in the course.</div></div>';
+  document.getElementById('main').innerHTML=h;
+}
+function renderSet(n){
+  var s=DATA.filter(function(x){return x.n===n;})[0]; if(!s) return renderHome();
+  var d=exDone(s),t=exCount(s);
+  var h='<div class="shead"><span class="eyebrow">Set '+s.n+' · '+esc(s.grp)+'</span>'+
+        '<h1>'+esc(s.t)+'</h1><div class="sub">'+esc(s.s)+'</div>'+
+        '<div class="bar"><i style="width:'+(t?Math.round(d/t*100):0)+'%"></i></div>'+
+        '<div class="barlabel"><span>'+d+' of '+t+' activities completed</span><span>'+(t?Math.round(d/t*100):0)+'%</span></div></div>';
+  s.sec.forEach(function(sec){
+    h+='<section class="sec"><h2><span class="tag">'+esc(sec.L)+'</span>'+esc(sec.t)+'</h2>';
+    h+=learnHTML(sec.learn);
+    sec.ex.forEach(function(e){h+=exHTML(s.n,e);});
+    h+='</section>';
+  });
+  var pv=DATA.filter(function(x){return x.n===n-1;})[0], nx=DATA.filter(function(x){return x.n===n+1;})[0];
+  h+='<div class="pager">'+
+     (pv?'<button data-go="'+pv.n+'"><small>← Set '+pv.n+'</small>'+esc(pv.t)+'</button>':'<button disabled><small>Start</small>First set</button>')+
+     (nx?'<button class="nx" data-go="'+nx.n+'"><small>Set '+nx.n+' →</small>'+esc(nx.t)+'</button>':'<button class="nx" disabled><small>End</small>You made it 🎓</button>')+
+     '</div>';
+  document.getElementById('main').innerHTML=h;
+}
+function chrome(){
+  var pv=document.getElementById('prev'), nx=document.getElementById('next'), lb=document.getElementById('setnav');
+  var n=cur==='home'?0:+cur;
+  pv.disabled=!(n>1); nx.disabled=!(n>0&&n<25);
+  if(n){var s=DATA.filter(function(x){return x.n===n;})[0];lb.innerHTML='<b>SET '+n+'</b>'+esc(s?s.t:'');}
+  else lb.textContent='';
+}
+function go(v){
+  cur=v;
+  if(v==='home'){renderHome();location.hash='';}
+  else{renderSet(+v);location.hash='set'+v;}
+  window.scrollTo(0,0);
+  document.querySelectorAll('.slink').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-go')===String(v));});
+  paintPips();
+  chrome();
+  closeSide();
+}
+
+/* ══════════ CHECKING ══════════ */
+function setScore(card,right,total,reveal){
+  var sp=card.querySelector('.score');
+  if(sp){sp.textContent=reveal?('answers shown — '+right+' / '+total):(right+' / '+total+' correct');
+         sp.className='score'+(reveal?'':(right===total?' good':(right>0?' part':'')));}
+  if(reveal) return;                       /* revealing answers does not earn progress */
+  var k=exKey(card.getAttribute('data-set'),card.getAttribute('data-ex'));
+  var ok=right===total&&total>0;
+  mark(k,ok); card.classList.toggle('done',ok); paintPips();
+}
+function check(card,reveal){
+  var kind=card.getAttribute('data-kind'), right=0, total=0;
+  if(kind==='gap'){
+    card.querySelectorAll('input.gapi').forEach(function(inp){
+      total++;
+      var good=hit(inp.value,inp.getAttribute('data-a'));
+      if(reveal&&!good){inp.value=String(inp.getAttribute('data-a')).split('|')[0].replace(/^-$/,'–');aset(inp.getAttribute('data-k'),inp.value);good=true;}
+      inp.classList.remove('ok','no');inp.classList.add(good?'ok':'no');
+      if(good)right++;
+    });
+  } else if(kind==='pick'||kind==='mcq'){
+    card.querySelectorAll('.opts').forEach(function(box){
+      total++;
+      var ans=box.getAttribute('data-a'), got=null;
+      box.querySelectorAll('.opt').forEach(function(b){if(b.classList.contains('sel'))got=b.getAttribute('data-v');});
+      var good=String(got)===String(ans);
+      box.querySelectorAll('.opt').forEach(function(b){
+        b.classList.remove('good','bad','reveal');
+        if(b.classList.contains('sel'))b.classList.add(good?'good':'bad');
+        if((reveal||!good)&&b.getAttribute('data-v')===String(ans)&&!b.classList.contains('sel'))b.classList.add('reveal');
+      });
+      var why=box.parentNode.querySelector('.why');
+      if(why){var t=why.getAttribute('data-txt');if(t){why.innerHTML='<b>Why:</b> '+esc(t);why.classList.add('show');}}
+      if(good)right++;
+    });
+  } else if(kind==='match'){
+    card.querySelectorAll('select.txt').forEach(function(sel){
+      total++;
+      var good=sel.value===sel.getAttribute('data-a');
+      if(reveal&&!good){sel.value=sel.getAttribute('data-a');aset(sel.getAttribute('data-k'),sel.value);good=true;}
+      sel.classList.remove('ok','no');sel.classList.add(good?'ok':'no');
+      if(good)right++;
+    });
+  } else if(kind==='write'){
+    card.querySelectorAll('textarea.txt').forEach(function(ta){
+      total++;
+      var good=loose(ta.value,ta.getAttribute('data-a'));
+      ta.classList.remove('ok','no');ta.classList.add(good?'ok':'no');
+      var m=ta.parentNode.querySelector('.model');
+      if(m&&(!good||reveal))m.classList.add('show');
+      if(good)right++;
+    });
+  }
+  setScore(card,right,total,reveal);
+}
+
+/* ══════════ EVENTS ══════════ */
+document.addEventListener('click',function(ev){
+  var t=ev.target;
+
+  var goer=t.closest('[data-go]');
+  if(goer){go(goer.getAttribute('data-go'));return;}
+
+  if(t.classList&&t.classList.contains('opt')){
+    var box=t.parentNode;
+    box.querySelectorAll('.opt').forEach(function(b){b.classList.remove('sel','good','bad','reveal');});
+    t.classList.add('sel');
+    aset(t.getAttribute('data-k'),t.getAttribute('data-v'));
+    return;
+  }
+
+  var act=t.getAttribute&&t.getAttribute('data-act');
+  if(!act) return;
+  var card=t.closest('.ex');
+  if(act==='check') check(card,false);
+  else if(act==='one'){
+    revealItem(card,t.closest('.item'));
+    paintNext(card);
+  }
+  else if(act==='next'){
+    var nx=revealables(card).filter(function(it){return !it.classList.contains('rv');})[0];
+    if(nx)revealItem(card,nx);
+    paintNext(card);
+  }
+  else if(act==='show'){
+    if(card.getAttribute('data-kind')==='open'||card.getAttribute('data-kind')==='project'){
+      card.querySelectorAll('.model').forEach(function(m){m.classList.add('show');});
+    } else check(card,true);
+  }
+  else if(act==='tick'){
+    var k=exKey(card.getAttribute('data-set'),card.getAttribute('data-ex'));
+    var now=!card.classList.contains('done');
+    mark(k,now);card.classList.toggle('done',now);paintPips();
+    t.textContent=now?'Done ✓':(card.getAttribute('data-kind')==='study'?'Mark as read':'Mark as done');
+  }
+  else if(act==='clear'){
+    card.querySelectorAll('input.gapi,textarea.txt,select.txt').forEach(function(f){
+      f.value='';f.classList.remove('ok','no');aset(f.getAttribute('data-k'),'');
+    });
+    card.querySelectorAll('.opt').forEach(function(b){b.classList.remove('sel','good','bad','reveal');aset(b.getAttribute('data-k'),'');});
+    card.querySelectorAll('.model,.why').forEach(function(m){m.classList.remove('show');});
+    var sp=card.querySelector('.score');if(sp){sp.textContent='';sp.className='score';}
+    card.querySelectorAll('.item.rv').forEach(function(it){it.classList.remove('rv','rv-flash');});
+    paintNext(card);
+    mark(exKey(card.getAttribute('data-set'),card.getAttribute('data-ex')),false);
+    card.classList.remove('done');paintPips();
+  }
+});
+
+document.addEventListener('input',function(ev){
+  var f=ev.target;
+  if(!f.getAttribute||!f.getAttribute('data-k')) return;
+  aset(f.getAttribute('data-k'),f.value);
+  f.classList.remove('ok','no');
+  var s=f.parentNode.querySelector('.saved');
+  if(s){s.textContent='Saved';clearTimeout(f._t);f._t=setTimeout(function(){s.textContent='';},1200);}
+});
+document.addEventListener('change',function(ev){
+  var f=ev.target;
+  if(f.tagName==='SELECT'&&f.getAttribute('data-k')) aset(f.getAttribute('data-k'),f.value);
+});
+
+/* search */
+document.getElementById('q').addEventListener('input',function(){
+  var v=this.value.trim().toLowerCase();
+  document.querySelectorAll('.slink[data-find]').forEach(function(b){
+    b.classList.toggle('hide', v!==''&&b.getAttribute('data-find').indexOf(v)<0);
+  });
+  document.querySelectorAll('.side h4').forEach(function(hh){
+    var any=false,el=hh.nextElementSibling;
+    while(el&&el.tagName!=='H4'){if(el.classList.contains('slink')&&!el.classList.contains('hide'))any=true;el=el.nextElementSibling;}
+    hh.classList.toggle('hide',!any);
+  });
+  document.querySelectorAll('#grid .tile').forEach(function(b){
+    b.classList.toggle('hide', v!==''&&b.getAttribute('data-find').indexOf(v)<0);
+  });
+});
+
+/* chrome */
+function closeSide(){document.getElementById('side').classList.remove('open');document.getElementById('scrim').classList.remove('on');}
+document.getElementById('burger').addEventListener('click',function(){
+  document.getElementById('side').classList.toggle('open');
+  document.getElementById('scrim').classList.toggle('on');
+});
+document.getElementById('scrim').addEventListener('click',closeSide);
+document.getElementById('print').addEventListener('click',function(){window.print();});
+document.getElementById('prev').addEventListener('click',function(){if(cur!=='home'&&+cur>1)go(+cur-1);});
+document.getElementById('next').addEventListener('click',function(){if(cur!=='home'&&+cur<25)go(+cur+1);});
+function toggleTheme(){
+  var r=document.documentElement,t=r.getAttribute('data-theme')==='dark'?'light':'dark';
+  r.setAttribute('data-theme',t);
+  try{localStorage.setItem('arschul:theme',t);}catch(e){}
+}
+document.getElementById('theme').addEventListener('click',function(){window.toggleTheme();});
+window.addEventListener('keydown',function(e){
+  if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA'||e.target.tagName==='SELECT') return;
+  if(cur==='home') return;
+  if(e.key==='ArrowRight'&&+cur<25) go(+cur+1);
+  if(e.key==='ArrowLeft'&&+cur>1) go(+cur-1);
+});
+window.addEventListener('hashchange',function(){
+  var m=/^#set(\d+)$/.exec(location.hash);
+  var v=m?m[1]:'home';
+  if(String(cur)!==String(v)) go(v);
+});
+
+/* boot */
+DATA.sort(function(a,b){return a.n-b.n;});
+buildSide();
+var m0=/^#set(\d+)$/.exec(location.hash);
+go(m0?m0[1]:'home');
+</script>
+</body>
+</html>
